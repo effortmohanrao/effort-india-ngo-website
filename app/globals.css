@@ -22,5 +22,92 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+@keyframes light-sweep {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(250%); }
+}
+.animate-light-sweep {
+  animation: light-sweep 6s ease-in-out infinite;
+}
+
+@keyframes heartbeat-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+}
+.animate-heartbeat-glow {
+  animation: heartbeat-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+  50% { transform: translate(6px, -14px); opacity: 1; }
+}
+.animate-float-particle {
+  animation: float-particle 5s ease-in-out infinite;
+}
+
+@keyframes ripple-effect {
+  0% { transform: scale(0); opacity: 0.45; }
+  100% { transform: scale(9); opacity: 0; }
+}
+.animate-ripple {
+  animation: ripple-effect 0.6s ease-out forwards;
+}
+
+@keyframes liquid-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, 8px) scale(1.2); }
+  66% { transform: translate(-20px, -6px) scale(0.9); }
+}
+.animate-liquid-drift-a {
+  animation: liquid-drift-a 10s ease-in-out infinite;
+}
+
+@keyframes liquid-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-45px, -8px) scale(1.15); }
+  70% { transform: translate(25px, 6px) scale(0.95); }
+}
+.animate-liquid-drift-b {
+  animation: liquid-drift-b 13s ease-in-out infinite;
+}
+
+@keyframes liquid-drift-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -10px) scale(1.25); }
+}
+.animate-liquid-drift-c {
+  animation: liquid-drift-c 8s ease-in-out infinite;
+}
+
+@keyframes liquid-ribbon-flow {
+  from { background-position: 0% 50%; }
+  to { background-position: -100% 50%; }
+}
+.bg-liquid-ribbon {
+  background-image: linear-gradient(
+    90deg,
+    #10b981,
+    #14b8a6,
+    #f59e0b,
+    #d946ef,
+    #10b981
+  );
+  background-size: 200% 100%;
+  animation: liquid-ribbon-flow 16s linear infinite;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.035;
 }
