@@ -1,32 +1,299 @@
 "use client";
 
-import React, { useState } from "react";
-import { 
-  Heart, 
-  ArrowRight, 
-  BookOpen, 
-  Activity, 
-  Briefcase, 
-  Users, 
-  Globe, 
-  Award, 
-  ChevronRight, 
-  ChevronLeft, 
-  Play, 
-  CheckCircle2, 
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import {
+  Heart,
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  Briefcase,
+  Globe2,
+  Award,
+  ChevronRight,
+  ChevronLeft,
+  Play,
+  CheckCircle2,
   ShieldCheck,
   Calendar,
   Sparkles,
   MapPin,
   Mail,
-  Phone
+  Phone,
+  Landmark,
+  FileText,
+  Download,
+  Fingerprint,
+  Building2,
+  Users,
+  Sprout,
+  Baby,
+  LifeBuoy,
+  GraduationCap,
+  HeartPulse
 } from "lucide-react";
+
+function useScrollReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) setVisible(true);
+      },
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+    );
+    observer.observe(el);
+    // Safety net: never leave a section stuck invisible if the observer
+    // doesn't fire (e.g. tab was backgrounded, unusual layout timing).
+    const fallback = setTimeout(() => setVisible(true), 2500);
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
+  }, []);
+  return [ref, visible] as const;
+}
+
+type HeroStat = { target: number; suffix: string; label: string; decimals?: number };
+
+const heroLines: { text: string; accent?: boolean }[] = [
+  { text: "Transforming Lives" },
+  { text: "Through Sustainable", accent: true },
+  { text: "Community Development" },
+];
+
+const heroStats: HeroStat[] = [
+  { target: 120, suffix: "+", label: "Communities Empowered" },
+  { target: 15000, suffix: "+", label: "Lives Impacted" },
+  { target: 45, suffix: "+", label: "Projects Completed" },
+  { target: 250, suffix: "+", label: "Dedicated Volunteers" },
+];
+
+const trustItems = ["Registered NGO", "Transparent Operations", "Community Driven", "Sustainable Impact"];
+
+type ComplianceStatus = "verified" | "pending" | "na";
+
+const complianceCards: {
+  icon: typeof Landmark;
+  title: string;
+  number: string;
+  status: string;
+  statusType: ComplianceStatus;
+  cta: string;
+}[] = [
+  { icon: Landmark, title: "NGO Registration", number: "Society Reg. No. 340/1999", status: "Verified", statusType: "verified", cta: "View Certificate" },
+  { icon: ShieldCheck, title: "80G Tax Exemption", number: "Certificate number pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
+  { icon: FileText, title: "12A Registration", number: "Registration number pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
+  { icon: Globe2, title: "FCRA Registration", number: "Not yet registered", status: "Not Applicable Yet", statusType: "na", cta: "Learn More" },
+  { icon: Building2, title: "CSR-1 Registration", number: "Registration number pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
+  { icon: Fingerprint, title: "NGO Darpan ID", number: "Unique ID pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
+];
+
+const complianceTrustStrip = [
+  { icon: ShieldCheck, label: "Government Registered" },
+  { icon: Building2, label: "CSR Ready" },
+  { icon: Award, label: "Tax Exemption In Process" },
+  { icon: Fingerprint, label: "Darpan Registration Pending" },
+  { icon: Sparkles, label: "Transparent Governance" },
+  { icon: Heart, label: "Ethical Operations" },
+];
+
+const impactStats: { target: number }[] = [
+  { target: 120 }, // Villages Covered
+  { target: 15000 }, // Lives Impacted (headline)
+  { target: 45 }, // Projects Completed
+  { target: 250 }, // Volunteers Engaged
+  { target: 3 }, // Districts Reached
+  { target: 27 }, // Years of Service
+];
+
+type Program = {
+  title: string;
+  icon: typeof BookOpen;
+  image: string;
+  desc: string;
+  size: "hero" | "medium" | "tall" | "wide" | "floating";
+  gradient: string;
+  textColor: string;
+  bgTint: string;
+};
+
+const programs: Program[] = [
+  {
+    title: "Education",
+    icon: GraduationCap,
+    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1000",
+    desc: "Bridging the gap for dropouts and underprivileged kids through digital classrooms, free study kits, and girl-child scholarships.",
+    size: "hero",
+    gradient: "from-blue-500 to-blue-700",
+    textColor: "text-blue-600",
+    bgTint: "bg-blue-50",
+  },
+  {
+    title: "Healthcare",
+    icon: HeartPulse,
+    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800",
+    desc: "Rural mobile clinics and child nutrition support for families with no access to primary care.",
+    size: "medium",
+    gradient: "from-emerald-500 to-emerald-700",
+    textColor: "text-emerald-600",
+    bgTint: "bg-emerald-50",
+  },
+  {
+    title: "Women Empowerment",
+    icon: Users,
+    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=800",
+    desc: "Self-help groups, vocational training, and micro-business grants for rural women.",
+    size: "tall",
+    gradient: "from-purple-500 to-purple-700",
+    textColor: "text-purple-600",
+    bgTint: "bg-purple-50",
+  },
+  {
+    title: "Livelihood & Skill Development",
+    icon: Briefcase,
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
+    desc: "Vocational setups, computer labs, and income-generation training for rural youth.",
+    size: "wide",
+    gradient: "from-orange-500 to-orange-700",
+    textColor: "text-orange-600",
+    bgTint: "bg-orange-50",
+  },
+  {
+    title: "Child Development",
+    icon: Baby,
+    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=800",
+    desc: "Early learning support and safe spaces for children.",
+    size: "floating",
+    gradient: "from-pink-500 to-pink-700",
+    textColor: "text-pink-600",
+    bgTint: "bg-pink-50",
+  },
+  {
+    title: "Environment & Climate",
+    icon: Sprout,
+    image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800",
+    desc: "Water governance, biodiversity, and sustainable farming initiatives.",
+    size: "floating",
+    gradient: "from-teal-500 to-teal-700",
+    textColor: "text-teal-600",
+    bgTint: "bg-teal-50",
+  },
+  {
+    title: "Disaster Relief",
+    icon: LifeBuoy,
+    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=800",
+    desc: "Rapid-response relief support for communities facing crisis.",
+    size: "floating",
+    gradient: "from-red-500 to-red-700",
+    textColor: "text-red-600",
+    bgTint: "bg-red-50",
+  },
+];
+
+const programTags = ["Education", "Health", "Nutrition", "Water", "Livelihood", "Women", "Youth", "Climate", "Agriculture", "Digital Literacy"];
 
 export default function Home() {
   // States
   const [donationAmount, setDonationAmount] = useState(2500);
   const [customAmount, setCustomAmount] = useState("");
   const [currentStory, setCurrentStory] = useState(0);
+
+  // Hero section states
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [statValues, setStatValues] = useState(() => heroStats.map(() => 0));
+  const [ctaHover, setCtaHover] = useState(false);
+  const [ctaMagnet, setCtaMagnet] = useState({ x: 0, y: 0 });
+  const [ctaRipples, setCtaRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+
+  // Trust & Compliance section states
+  const [trustRef, trustVisible] = useScrollReveal<HTMLElement>();
+  const [trustScore, setTrustScore] = useState(0);
+
+  // Impact section states
+  const [impactRef, impactVisible] = useScrollReveal<HTMLElement>();
+  const [impactValues, setImpactValues] = useState(() => impactStats.map(() => 0));
+  const [impactBounce, setImpactBounce] = useState(false);
+
+  // Core Programs section states
+  const [programsRef, programsVisible] = useScrollReveal<HTMLElement>();
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!trustVisible) return;
+    const duration = 1400;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setTrustScore(100 * eased);
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [trustVisible]);
+
+  useEffect(() => {
+    if (!impactVisible) return;
+    const duration = 2500;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setImpactValues(impactStats.map((s) => s.target * eased));
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        setImpactBounce(true);
+        setTimeout(() => setImpactBounce(false), 450);
+      }
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [impactVisible]);
+
+  useEffect(() => {
+    if (!heroVisible) return;
+    const duration = 1600;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setStatValues(heroStats.map((s) => s.target * eased));
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [heroVisible]);
+
+  const handleCtaMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) * 0.2;
+    const y = (e.clientY - rect.top - rect.height / 2) * 0.2;
+    setCtaMagnet({ x, y });
+  };
+  const handleCtaMouseLeave = () => {
+    setCtaMagnet({ x: 0, y: 0 });
+    setCtaHover(false);
+  };
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const id = Date.now();
+    setCtaRipples((prev) => [...prev, { id, x: e.clientX - rect.left, y: e.clientY - rect.top }]);
+    setTimeout(() => {
+      setCtaRipples((prev) => prev.filter((r) => r.id !== id));
+    }, 650);
+  };
 
   // Dummy success stories
   const successStories = [
@@ -104,234 +371,556 @@ export default function Home() {
     setCurrentStory((prev) => (prev - 1 + successStories.length) % successStories.length);
   };
 
+  const EducationIcon = programs[0].icon;
+  const HealthcareIcon = programs[1].icon;
+  const WomenIcon = programs[2].icon;
+  const LivelihoodIcon = programs[3].icon;
+
   return (
     <div className="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
       
       {/* --- HERO SECTION --- */}
-      <section className="relative bg-gradient-to-b from-slate-900 via-emerald-950 to-slate-900 text-white overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        
-        {/* Glowing liquid glassmorphism blobs */}
-        <div className="absolute top-1/4 left-[10%] w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-emerald-600/20 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-[10%] w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-amber-500/10 rounded-full blur-[100px] animate-pulse delay-75"></div>
+      <section className="relative overflow-hidden bg-gradient-to-br from-white via-emerald-50/40 to-sky-50/60 py-20 lg:py-28">
+        {/* Soft mesh background */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 left-[5%] w-[420px] h-[420px] bg-emerald-200/40 rounded-full blur-[110px] animate-liquid-drift-a" />
+          <div className="absolute top-1/3 right-[-8%] w-[380px] h-[380px] bg-sky-200/40 rounded-full blur-[110px] animate-liquid-drift-b" />
+          <div className="absolute bottom-[-12%] left-[28%] w-[320px] h-[320px] bg-amber-100/50 rounded-full blur-[100px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#065f46_1px,transparent_1px)] [background-size:26px_26px]" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-16 lg:gap-10 items-center">
+
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Hand-in-Hand for a Better Tomorrow
+          <div className="lg:col-span-7 space-y-7">
+
+            <div
+              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 text-xs font-bold uppercase tracking-wider transition-all duration-700 ${
+                heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Together We Create Lasting Impact
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-              Empowering Lives. <br/>
-              <span className="bg-gradient-to-r from-emerald-400 to-amber-300 bg-clip-text text-transparent">
-                Creating Sustainable
-              </span> <br className="hidden sm:inline"/>
-              Futures.
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-900">
+              {heroLines.map((line, i) => (
+                <span key={line.text} className="block overflow-hidden py-0.5">
+                  <span
+                    className={`inline-block transition-all duration-700 ease-out ${
+                      line.accent ? "bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent" : ""
+                    } ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[110%]"}`}
+                    style={{ transitionDelay: `${150 + i * 140}ms` }}
+                  >
+                    {line.text}
+                  </span>
+                </span>
+              ))}
             </h1>
 
-            <p className="text-slate-350 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Effort India NGO is committed to uplifting underprivileged communities through integrated programs in quality education, sustainable healthcare, and robust livelihood opportunities.
+            <p
+              className={`text-slate-600 text-lg sm:text-xl max-w-2xl font-normal leading-relaxed transition-all duration-700 ${
+                heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "550ms" }}
+            >
+              Empowering individuals, strengthening communities, and creating long-term social impact through education, healthcare, livelihood support, environmental sustainability, and inclusive development programs.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a 
-                href="#donate-section" 
-                className="px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-lg transition-all flex items-center justify-center gap-2 group hover:-translate-y-0.5"
-              >
-                Start Supporting
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a 
+            <div
+              className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 ${
+                heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: "680ms" }}
+            >
+              <a
                 href="#programs-section"
-                className="px-8 py-4 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 text-white font-semibold text-base transition-all flex items-center justify-center gap-2"
+                onMouseMove={handleCtaMouseMove}
+                onMouseEnter={() => setCtaHover(true)}
+                onMouseLeave={handleCtaMouseLeave}
+                onClick={handleCtaClick}
+                style={{
+                  transform: `translate(${ctaMagnet.x}px, ${ctaMagnet.y - (ctaHover ? 2 : 0)}px) scale(${ctaHover ? 1.05 : 1})`,
+                }}
+                className="relative overflow-hidden px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 text-white font-bold text-base shadow-[0_10px_30px_-8px_rgba(16,185,129,0.55)] transition-transform duration-200 ease-out flex items-center justify-center gap-2"
               >
-                <Play className="w-4 h-4 fill-white" />
-                Explore Programs
+                <span className="absolute inset-0 bg-gradient-to-tr from-white/25 via-transparent to-transparent pointer-events-none" />
+                {ctaRipples.map((r) => (
+                  <span
+                    key={r.id}
+                    className="absolute rounded-full bg-white/40 animate-ripple pointer-events-none"
+                    style={{ left: r.x - 6, top: r.y - 6, width: 12, height: 12 }}
+                  />
+                ))}
+                <span className="relative">Explore Our Programs</span>
+                <ArrowRight className={`w-5 h-5 relative transition-transform duration-300 ${ctaHover ? "translate-x-1" : ""}`} />
               </a>
+              <Link
+                href="/get-involved"
+                className="group px-8 py-4 rounded-full bg-transparent hover:bg-emerald-50/80 backdrop-blur-md border border-emerald-300/60 hover:border-emerald-400 text-emerald-700 font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5"
+              >
+                <Play className="w-4 h-4 fill-emerald-600 text-emerald-600 group-hover:rotate-12 transition-transform duration-300" />
+                Become a Volunteer
+              </Link>
             </div>
 
-            {/* Quick trust metrics */}
-            <div className="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
-              <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-amber-400">100%</p>
-                <p className="text-xs sm:text-sm text-slate-400 uppercase tracking-wide">Tax Exemption</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-emerald-450">15K+</p>
-                <p className="text-xs sm:text-sm text-slate-400 uppercase tracking-wide">Beneficiaries</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-emerald-400">4.9★</p>
-                <p className="text-xs sm:text-sm text-slate-400 uppercase tracking-wide">Donor Rating</p>
-              </div>
+            {/* Stat glass cards */}
+            <div
+              className={`grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 transition-all duration-700 ${
+                heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: "850ms" }}
+            >
+              {heroStats.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl p-4 shadow-[0_8px_24px_-14px_rgba(6,95,70,0.35)] text-center sm:text-left"
+                >
+                  <p className="text-2xl sm:text-3xl font-extrabold text-emerald-700">
+                    {stat.decimals ? statValues[i].toFixed(stat.decimals) : Math.round(statValues[i]).toLocaleString("en-IN")}
+                    {stat.suffix}
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-slate-500 font-semibold uppercase tracking-wide mt-1">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Trust indicator row */}
+            <div
+              className={`flex flex-wrap gap-x-6 gap-y-2 pt-2 transition-all duration-700 ${
+                heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "1050ms" }}
+            >
+              {trustItems.map((item) => (
+                <span key={item} className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-600">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  {item}
+                </span>
+              ))}
             </div>
 
           </div>
 
-          {/* Hero Right Media / Interactive Card */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-900/50 p-3 group">
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800" 
-                alt="Children smiling at school"
-                className="w-full h-[350px] sm:h-[450px] object-cover rounded-2xl group-hover:scale-102 transition-transform duration-700" 
-              />
-              
-              <div className="absolute bottom-6 left-6 right-6 z-20 space-y-2">
-                <span className="px-2.5 py-1 rounded bg-amber-500 text-slate-950 text-xs font-bold uppercase tracking-wider">Active Relief</span>
-                <h3 className="text-xl font-bold text-white leading-tight">Shiksha Mission: Building Hope</h3>
-                <p className="text-xs text-slate-300">Every donation guarantees a child's annual education cost including school kit, books, and uniforms.</p>
-                
-                {/* Donation progress indicator */}
-                <div className="pt-2">
-                  <div className="flex justify-between text-xs text-white mb-1">
-                    <span>Raised: ₹18.5 L</span>
-                    <span>Goal: ₹25 L</span>
+          {/* Hero Right Visual Area (intentionally empty) */}
+          <div className="lg:col-span-5" />
+
+        </div>
+      </section>
+
+      {/* --- IMPACT SECTION (dark editorial) --- */}
+      <section ref={impactRef} className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-emerald-950 to-slate-950 py-24 lg:py-32">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[160px]" />
+          <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[140px]" />
+          <div className="bg-noise absolute inset-0" />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div
+            className={`text-center max-w-2xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+              impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-amber-300/20 text-amber-200 text-xs font-bold uppercase tracking-wider">
+              Our Reach
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+              Impact That Speaks in Numbers
+            </h2>
+            <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
+              Every figure below reflects real work on the ground — communities reached, projects delivered, and years of consistent, on-the-record service.
+            </p>
+          </div>
+
+          {/* Giant headline stat */}
+          <div
+            className={`text-center mb-20 transition-all duration-1000 ${
+              impactVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            }`}
+          >
+            <p
+              className={`text-7xl sm:text-8xl lg:text-9xl font-black tracking-tight bg-gradient-to-b from-white to-emerald-200 bg-clip-text text-transparent ${
+                impactBounce ? "animate-count-bounce" : ""
+              }`}
+            >
+              {Math.round(impactValues[1]).toLocaleString("en-IN")}+
+            </p>
+            <div className="flex items-center justify-center gap-3 mt-2">
+              <span className="h-px w-8 bg-amber-300/40" />
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-amber-200">Lives Impacted</p>
+              <span className="h-px w-8 bg-amber-300/40" />
+            </div>
+          </div>
+
+          {/* Editorial stat ledger */}
+          <div
+            className={`grid grid-cols-2 lg:grid-cols-5 divide-x divide-y lg:divide-y-0 divide-white/10 border-y border-white/10 transition-all duration-700 ${
+              impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+            style={{ transitionDelay: "300ms" }}
+          >
+            {[
+              { i: 0, label: "Villages Covered", desc: "Program areas reached" },
+              { i: 2, label: "Projects Completed", desc: "Delivered end-to-end" },
+              { i: 3, label: "Volunteers Engaged", desc: "Time and skills contributed" },
+              { i: 4, label: "Districts Reached", desc: "Across Andhra Pradesh" },
+              { i: 5, label: "Years of Service", desc: "Since our 1999 founding" },
+            ].map((stat) => (
+              <div key={stat.label} className="group px-4 py-8 lg:py-10 text-center hover:bg-white/[0.03] transition-colors duration-300">
+                <p
+                  className={`text-3xl sm:text-4xl font-extrabold text-white group-hover:text-amber-200 transition-colors duration-300 ${
+                    impactBounce ? "animate-count-bounce" : ""
+                  }`}
+                >
+                  {Math.round(impactValues[stat.i]).toLocaleString("en-IN")}+
+                </p>
+                <p className="text-xs font-bold uppercase tracking-wider text-emerald-300 mt-2">{stat.label}</p>
+                <p className="text-xs text-slate-500 mt-1">{stat.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className={`text-center mt-14 transition-all duration-700 ${
+              impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "700ms" }}
+          >
+            <Link
+              href="/impact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-amber-300/30 text-amber-100 font-bold text-sm hover:bg-amber-300/10 hover:border-amber-300/50 hover:-translate-y-0.5 transition-all"
+            >
+              View Full Impact Report <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* --- TRUST & COMPLIANCE SECTION --- */}
+      <section ref={trustRef} className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white py-20 lg:py-28">
+        {/* Background decoration */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[8%] left-[-8%] w-[380px] h-[380px] bg-emerald-100/50 rounded-full blur-[110px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[5%] right-[-6%] w-[340px] h-[340px] bg-sky-100/50 rounded-full blur-[110px] animate-liquid-drift-b" />
+          <div className="absolute top-[38%] right-[12%] w-[220px] h-[220px] bg-amber-50/60 rounded-full blur-[90px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#065f46_1px,transparent_1px)] [background-size:28px_28px]" />
+          <div className="absolute top-16 right-[8%] w-32 h-32 rounded-full border-2 border-dashed border-emerald-200/70" />
+          <div className="absolute bottom-24 left-[6%] w-24 h-24 rounded-full border-2 border-dashed border-sky-200/70" />
+        </div>
+
+        <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          {/* Section header */}
+          <div
+            className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+              trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-200 text-emerald-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Verified &bull; Government Recognized
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
+              Built on Transparency, Backed by Compliance
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Our commitment to transparency is reflected through nationally recognized registrations, regulatory compliance, financial accountability, and responsible governance, giving every stakeholder complete confidence in partnering with us.
+            </p>
+          </div>
+
+          {/* Bento grid: feature card + compliance cards */}
+          <div className="grid lg:grid-cols-12 gap-6">
+
+            {/* Feature card (~40%) */}
+            <div
+              className={`lg:col-span-5 transition-all duration-700 ${
+                trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              <div className="h-full bg-white/70 backdrop-blur-[22px] border border-white/70 rounded-3xl shadow-[0_20px_60px_-20px_rgba(6,95,70,0.25)] p-8 flex flex-col gap-6 hover:-translate-y-1 transition-transform duration-500">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">Trust &amp; Compliance Center</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Our organization follows the highest standards of legal compliance, ethical governance, financial transparency, and public accountability.
+                  </p>
+                </div>
+
+                <div className="relative rounded-2xl overflow-hidden border border-white/60 shadow-md">
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-light-sweep" />
                   </div>
-                  <div className="w-full bg-white/20 h-2 rounded-full overflow-hidden">
-                    <div className="bg-emerald-400 h-full rounded-full" style={{ width: '74%' }}></div>
+                  <img
+                    src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800"
+                    alt="Official registration documents"
+                    className="w-full h-40 object-cover"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-emerald-50/80 border border-emerald-100">
+                  <div>
+                    <p className="text-2xl font-extrabold text-emerald-700">{Math.round(trustScore)}% Compliance</p>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 uppercase tracking-wide mt-1">
+                      <ShieldCheck className="w-3.5 h-3.5 animate-pulse" /> Government Registered
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                  <Link
+                    href="/transparency"
+                    className="flex-1 px-5 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700 text-white font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                  >
+                    View All Certifications <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                  <a
+                    href="#"
+                    className="flex-1 px-5 py-3 rounded-full bg-white/70 border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 font-semibold text-sm transition-all flex items-center justify-center gap-2"
+                  >
+                    <Download className="w-4 h-4" /> Compliance Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Compliance cards (6, staggered bento) */}
+            <div className="lg:col-span-7 grid sm:grid-cols-3 gap-5">
+              {complianceCards.map((card, i) => (
+                <div
+                  key={card.title}
+                  className={`bg-white/70 backdrop-blur-xl border border-white/70 rounded-2xl p-5 shadow-[0_10px_30px_-16px_rgba(6,95,70,0.3)] hover:shadow-[0_20px_40px_-16px_rgba(6,95,70,0.35)] hover:-translate-y-2.5 transition-all duration-500 group ${
+                    trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                  } ${i >= 3 ? "sm:mt-6" : ""}`}
+                  style={{ transitionDelay: `${150 + i * 100}ms` }}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform duration-300">
+                    <card.icon className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-sm font-bold text-slate-900">{card.title}</h4>
+                  <p className="text-xs text-slate-500 mt-1">{card.number}</p>
+                  <span
+                    className={`inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${
+                      card.statusType === "verified"
+                        ? "bg-emerald-100 text-emerald-700"
+                        : card.statusType === "pending"
+                        ? "bg-amber-100 text-amber-700"
+                        : "bg-slate-100 text-slate-500"
+                    }`}
+                  >
+                    {card.status}
+                  </span>
+                  <Link href="/transparency" className="mt-3 flex items-center gap-1 text-xs font-bold text-emerald-600 hover:text-emerald-700">
+                    {card.cta} <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom trust strip */}
+          <div
+            className={`mt-14 bg-white/80 backdrop-blur-xl border border-white/70 rounded-2xl shadow-lg px-6 py-5 flex flex-wrap justify-center gap-x-8 gap-y-3 transition-all duration-700 ${
+              trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{ transitionDelay: "700ms" }}
+          >
+            {complianceTrustStrip.map((item) => (
+              <span key={item.label} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700">
+                <item.icon className="w-4 h-4 text-emerald-600" /> {item.label}
+              </span>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- CORE PROGRAMS SECTION --- */}
+      <section id="programs-section" ref={programsRef} className="relative overflow-hidden py-20 lg:py-28">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 via-white to-purple-50/30" />
+          <div className="absolute top-[-5%] left-[15%] w-[420px] h-[420px] bg-sky-100/40 rounded-full blur-[130px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[0%] right-[10%] w-[380px] h-[380px] bg-pink-100/40 rounded-full blur-[120px] animate-liquid-drift-b" />
+          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-teal-100/30 rounded-full blur-[110px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#78350f_1px,transparent_1px)] [background-size:26px_26px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div
+            className={`text-center max-w-3xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
+              programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+              🌱 Our Core Programs
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
+              Creating Sustainable Change Through Every Initiative
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Our programs are designed to strengthen communities, improve lives, and create long-term social impact through innovative and inclusive development initiatives.
+            </p>
+          </div>
+
+          {/* Floating program tags */}
+          <div
+            className={`flex flex-wrap justify-center gap-3 mb-14 transition-all duration-700 ${
+              programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            {programTags.map((tag, i) => (
+              <span
+                key={tag}
+                className="animate-card-float px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/70 text-xs font-bold text-slate-600 shadow-sm hover:scale-110 hover:text-slate-900 hover:shadow-md transition-all cursor-default"
+                style={{ animationDelay: `${i * 0.3}s` }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Bento ecosystem */}
+          <div className="grid lg:grid-cols-12 gap-6 items-stretch">
+
+            {/* Hero card: Education */}
+            <div
+              className={`lg:col-span-7 transition-all duration-700 ${
+                programsVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              }`}
+            >
+              <div className="group relative h-full min-h-[420px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_25px_60px_-20px_rgba(37,99,235,0.35)]">
+                <img
+                  src={programs[0].image}
+                  alt={programs[0].title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${programs[0].gradient} opacity-80 mix-blend-multiply`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-light-sweep" />
+                </div>
+                <div className="relative z-10 h-full flex flex-col justify-end p-8 sm:p-10">
+                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
+                    <EducationIcon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">{programs[0].title}</h3>
+                  <p className="text-sm text-white/85 leading-relaxed max-w-md mb-6">{programs[0].desc}</p>
+                  <Link
+                    href="/programs"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-blue-700 font-bold text-sm w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group/btn"
+                  >
+                    Explore Program <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Right column: Healthcare (medium) + Women Empowerment (tall) */}
+            <div className="lg:col-span-5 flex flex-col gap-6">
+
+              <div
+                className={`transition-all duration-700 ${
+                  programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: "150ms" }}
+              >
+                <div className="group relative h-[190px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_45px_-18px_rgba(5,150,105,0.35)]">
+                  <img
+                    src={programs[1].image}
+                    alt={programs[1].title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${programs[1].gradient} opacity-75 mix-blend-multiply`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
+                      <HealthcareIcon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-black text-white">{programs[1].title}</h3>
+                    <p className="text-xs text-white/85 mt-1 leading-relaxed">{programs[1].desc}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={`flex-1 transition-all duration-700 ${
+                  programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: "250ms" }}
+              >
+                <div className="group relative h-full min-h-[210px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_45px_-18px_rgba(147,51,234,0.35)]">
+                  <img
+                    src={programs[2].image}
+                    alt={programs[2].title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${programs[2].gradient} opacity-75 mix-blend-multiply`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
+                      <WomenIcon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-black text-white">{programs[2].title}</h3>
+                    <p className="text-xs text-white/85 mt-1 leading-relaxed">{programs[2].desc}</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        </div>
-      </section>
-
-      {/* --- LIVE IMPACT COUNTERS --- */}
-      <section className="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 sm:p-10 border border-emerald-100/20 grid grid-cols-2 md:grid-cols-4 gap-8">
-          
-          <div className="flex items-center gap-4 md:border-r border-slate-100 md:pr-6 last:border-0">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100/80 text-emerald-600 flex items-center justify-center shrink-0">
-              <Users className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">15,000+</p>
-              <p className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Lives Transformed</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 md:border-r border-slate-100 md:pr-6 last:border-0">
-            <div className="w-12 h-12 rounded-2xl bg-amber-100/80 text-amber-600 flex items-center justify-center shrink-0">
-              <Globe className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">120+</p>
-              <p className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Villages Covered</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 md:border-r border-slate-100 md:pr-6 last:border-0">
-            <div className="w-12 h-12 rounded-2xl bg-sky-100/80 text-sky-600 flex items-center justify-center shrink-0">
-              <BookOpen className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">45+</p>
-              <p className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Centers</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 last:border-0">
-            <div className="w-12 h-12 rounded-2xl bg-purple-100/80 text-purple-600 flex items-center justify-center shrink-0">
-              <Award className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">98%</p>
-              <p className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Impact Efficiency</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* --- MAIN PROGRAMS SECTION --- */}
-      <section id="programs-section" className="py-20 lg:py-28 relative">
-        {/* Soft background liquid gradient */}
-        <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-emerald-100/30 rounded-full blur-[100px] -z-10"></div>
-        <div className="absolute bottom-[20%] left-[-10%] w-[400px] h-[400px] bg-amber-100/25 rounded-full blur-[100px] -z-10"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-sm font-bold text-emerald-600 uppercase tracking-widest">Our core focus areas</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Pillars of Sustainable Development
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-600 to-amber-500 mx-auto rounded-full"></div>
-            <p className="text-slate-600 text-lg">
-              We focus on holistic empowerment. Our programs are designed to solve root problems, creating long-term positive change.
-            </p>
-          </div>
-
-          {/* Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
-            
-            {/* Pillars 1: Education */}
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
-                <BookOpen className="w-7 h-7" />
+            {/* Wide banner: Livelihood */}
+            <div
+              className={`lg:col-span-12 transition-all duration-700 ${
+                programsVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
+              }`}
+              style={{ transitionDelay: "350ms" }}
+            >
+              <div className="group relative h-[220px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_50px_-18px_rgba(234,88,12,0.35)]">
+                <img
+                  src={programs[3].image}
+                  alt={programs[3].title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-r ${programs[3].gradient} opacity-75 mix-blend-multiply`} />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+                <div className="relative z-10 h-full flex flex-col justify-center p-8 sm:p-10 max-w-lg">
+                  <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform">
+                    <LivelihoodIcon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-2">{programs[3].title}</h3>
+                  <p className="text-sm text-white/85 leading-relaxed">{programs[3].desc}</p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-700 transition-colors">Quality Education</h3>
-              <p className="text-slate-655 text-sm leading-relaxed mb-6">
-                Bridging the gap for dropouts and underprivileged kids. Supporting digital literacy, primary schooling infrastructure, and girls' higher education scholarship grants.
-              </p>
-              <ul className="space-y-2 mb-8 text-sm font-medium text-slate-700">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Digital Smart Classrooms</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Free Kits & Study Materials</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Girl Child Scholarship Support</li>
-              </ul>
-              <a href="/programs" className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-600 hover:text-emerald-700 group/link">
-                Read Program Details <ChevronRight className="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform" />
-              </a>
             </div>
 
-            {/* Pillars 2: Healthcare */}
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-              <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
-                <Activity className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-650 transition-colors">Healthcare Access</h3>
-              <p className="text-slate-655 text-sm leading-relaxed mb-6">
-                Providing standard diagnostic care and critical medicine kits to families who have zero access to primary doctors. Special support campaigns for child nutrition.
-              </p>
-              <ul className="space-y-2 mb-8 text-sm font-medium text-slate-700">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Rural Mobile Medical Clinics</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Child Nutrition Programs</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Safe Sanitation & Hygiene</li>
-              </ul>
-              <a href="/programs" className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 hover:text-amber-700 group/link">
-                Read Program Details <ChevronRight className="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform" />
-              </a>
-            </div>
-
-            {/* Pillars 3: Livelihood */}
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-              <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:bg-sky-650 group-hover:text-white transition-all duration-300">
-                <Briefcase className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-sky-700 transition-colors">Sustainable Livelihoods</h3>
-              <p className="text-slate-655 text-sm leading-relaxed mb-6">
-                Helping rural youth and women acquire income generation skills. Providing vocational setups, tailorship lessons, computer labs, and micro-business development grants.
-              </p>
-              <ul className="space-y-2 mb-8 text-sm font-medium text-slate-700">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-sky-500" /> Women Self-Help Groups (SHGs)</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-sky-500" /> Vocational Training Centers</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-sky-500" /> Youth IT & Soft Skills Training</li>
-              </ul>
-              <a href="/programs" className="inline-flex items-center gap-1.5 text-sm font-bold text-sky-600 hover:text-sky-700 group/link">
-                Read Program Details <ChevronRight className="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform" />
-              </a>
-            </div>
-
+            {/* Floating trio: Child Development, Environment, Disaster Relief */}
+            {[4, 5, 6].map((idx, i) => {
+              const FloatingIcon = programs[idx].icon;
+              return (
+                <div
+                  key={programs[idx].title}
+                  className={`lg:col-span-4 transition-all duration-700 ${
+                    programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: `${450 + i * 100}ms` }}
+                >
+                  <div className="group relative h-[180px] rounded-[24px] overflow-hidden border border-white/70 shadow-[0_15px_35px_-16px_rgba(0,0,0,0.25)]">
+                    <img
+                      src={programs[idx].image}
+                      alt={programs[idx].title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${programs[idx].gradient} opacity-70 mix-blend-multiply`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="relative z-10 h-full flex flex-col justify-end p-5">
+                      <div className="w-9 h-9 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
+                        <FloatingIcon className="w-4 h-4 text-white" />
+                      </div>
+                      <h3 className="text-base font-black text-white">{programs[idx].title}</h3>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-
         </div>
       </section>
 
