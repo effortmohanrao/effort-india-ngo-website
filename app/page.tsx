@@ -970,8 +970,14 @@ export default function Home() {
                 {partnershipBadges.map((badge, i) => (
                   <span
                     key={badge.label}
-                    className="animate-card-float inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15 text-[11px] font-bold text-slate-300 hover:text-cyan-200 hover:border-cyan-300/30 transition-colors"
-                    style={{ animationDelay: `${i * 0.3}s` }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15 text-[11px] font-bold text-slate-300 hover:text-cyan-200 hover:border-cyan-300/30 transition-colors"
+                    style={{
+                      animationName: "card-float",
+                      animationDuration: "5s",
+                      animationTimingFunction: "ease-in-out",
+                      animationIterationCount: "infinite",
+                      animationDelay: `${i * 0.3}s`,
+                    }}
                   >
                     <badge.icon className="w-3 h-3 text-cyan-300" /> {badge.label}
                   </span>

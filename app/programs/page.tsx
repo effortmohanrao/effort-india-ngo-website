@@ -254,8 +254,14 @@ export default function Programs() {
             {bentoProgramTags.map((tag, i) => (
               <span
                 key={tag}
-                className="animate-card-float px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/70 text-xs font-bold text-slate-600 shadow-sm hover:scale-110 hover:text-slate-900 hover:shadow-md transition-all cursor-default"
-                style={{ animationDelay: `${i * 0.3}s` }}
+                className="px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/70 text-xs font-bold text-slate-600 shadow-sm hover:scale-110 hover:text-slate-900 hover:shadow-md transition-all cursor-default"
+                style={{
+                  animationName: "card-float",
+                  animationDuration: "5s",
+                  animationTimingFunction: "ease-in-out",
+                  animationIterationCount: "infinite",
+                  animationDelay: `${i * 0.3}s`,
+                }}
               >
                 {tag}
               </span>

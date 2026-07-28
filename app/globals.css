@@ -52,9 +52,6 @@ body {
   0%, 100% { transform: translate(0, 0); opacity: 0.5; }
   50% { transform: translate(6px, -14px); opacity: 1; }
 }
-.animate-float-particle {
-  animation: float-particle 5s ease-in-out infinite;
-}
 
 @keyframes ripple-effect {
   0% { transform: scale(0); opacity: 0.45; }
@@ -119,9 +116,6 @@ body {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
-.animate-card-float {
-  animation: card-float 5s ease-in-out infinite;
-}
 
 @keyframes count-bounce {
   0%, 100% { transform: scale(1); }
@@ -148,6 +142,40 @@ body {
 }
 .animate-breathing-shadow {
   animation: breathing-shadow 4s ease-in-out infinite;
+}
+
+@keyframes draw-connector {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+.animate-draw-connector {
+  animation: draw-connector 2s ease-out forwards;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes orbit-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-counter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes breathing-shadow-emerald {
+  0%, 100% { box-shadow: 0 20px 60px -20px rgba(16, 185, 129, 0.35); }
+  50% { box-shadow: 0 25px 70px -15px rgba(16, 185, 129, 0.5); }
+}
+.animate-breathing-shadow-emerald {
+  animation: breathing-shadow-emerald 4s ease-in-out infinite;
 }
 
 .bg-noise {

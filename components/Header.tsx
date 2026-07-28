@@ -218,12 +218,16 @@ export default function Header() {
             {headerParticles.map((p, i) => (
               <div
                 key={i}
-                className={`absolute rounded-full ${p.color} animate-float-particle`}
+                className={`absolute rounded-full ${p.color}`}
                 style={{
                   left: `${p.left}%`,
                   top: `${p.top}%`,
                   width: `${p.size * 4}px`,
                   height: `${p.size * 4}px`,
+                  animationName: "float-particle",
+                  animationDuration: "5s",
+                  animationTimingFunction: "ease-in-out",
+                  animationIterationCount: "infinite",
                   animationDelay: `${p.delay}s`,
                 }}
               />
