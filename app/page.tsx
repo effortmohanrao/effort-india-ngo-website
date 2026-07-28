@@ -28,7 +28,15 @@ import {
   Search,
   ClipboardList,
   Rocket,
-  LineChart
+  LineChart,
+  GraduationCap,
+  Handshake,
+  Briefcase,
+  Users,
+  Eye,
+  BarChart3,
+  Target,
+  Quote
 } from "lucide-react";
 
 function useScrollReveal<T extends HTMLElement>() {
@@ -113,6 +121,140 @@ const processSteps: { step: string; title: string; desc: string; icon: typeof Se
   { step: "05", title: "Sustainable Impact", desc: "Communities equipped to carry the progress forward on their own.", icon: Sprout },
 ];
 
+type PartnershipSlide = { title: string; icon: typeof Landmark; image: string; desc: string };
+
+const partnershipSlides: PartnershipSlide[] = [
+  {
+    title: "Government",
+    icon: Landmark,
+    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=900",
+    desc: "Working alongside government departments on ground-level implementation and reporting.",
+  },
+  {
+    title: "CSR Partners",
+    icon: Building2,
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=900",
+    desc: "Delivering measurable, auditable outcomes for corporate CSR mandates.",
+  },
+  {
+    title: "Educational Institutions",
+    icon: GraduationCap,
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=900",
+    desc: "Collaborating with universities and colleges on research and field programs.",
+  },
+  {
+    title: "International Organizations",
+    icon: Globe2,
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=900",
+    desc: "Aligning with global development frameworks and cross-border initiatives.",
+  },
+  {
+    title: "Foundations",
+    icon: Award,
+    image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=900",
+    desc: "Partnering with grant-making foundations on long-term, outcome-driven funding.",
+  },
+];
+
+const partnershipStats: { label: string; value: string }[] = [
+  { label: "Government Partners", value: "Coming Soon" },
+  { label: "Institutional Partners", value: "Coming Soon" },
+  { label: "CSR Projects", value: "Coming Soon" },
+  { label: "States Reached", value: "1" },
+];
+
+const partnershipBadges: { label: string; icon: typeof ShieldCheck }[] = [
+  { label: "Transparent Governance", icon: ShieldCheck },
+  { label: "Verified NGO", icon: CheckCircle2 },
+  { label: "CSR Ready", icon: Handshake },
+  { label: "Government Compliant", icon: Landmark },
+  { label: "Impact Driven", icon: TrendingUp },
+  { label: "Sustainable Development", icon: Sprout },
+];
+
+const partnerLogoPlaceholders = ["Government Dept.", "CSR Partner", "University", "Foundation", "Development Agency", "Public Sector Org."];
+
+type CsrSlide = { step: string; title: string; icon: typeof Briefcase; image: string; desc: string };
+
+const csrSlides: CsrSlide[] = [
+  {
+    step: "01",
+    title: "Corporate Requirement",
+    icon: Briefcase,
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=900",
+    desc: "We start by understanding your CSR mandate, budget, and focus areas under Schedule VII.",
+  },
+  {
+    step: "02",
+    title: "Project Planning",
+    icon: ClipboardList,
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=900",
+    desc: "A joint proposal is built with clear timelines, budgets, and measurable outcomes.",
+  },
+  {
+    step: "03",
+    title: "Implementation",
+    icon: Users,
+    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=900",
+    desc: "Our field teams execute directly in the community, with your brand visible throughout.",
+  },
+  {
+    step: "04",
+    title: "Monitoring",
+    icon: LineChart,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=900",
+    desc: "Progress is tracked against agreed milestones, not assumptions.",
+  },
+  {
+    step: "05",
+    title: "Impact Report",
+    icon: FileText,
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=900",
+    desc: "A documented report is delivered for your CSR compliance and board reporting.",
+  },
+];
+
+const csrAdvantageChips: { label: string; icon: typeof Eye }[] = [
+  { label: "Transparent Reporting", icon: Eye },
+  { label: "Real-Time Monitoring", icon: LineChart },
+  { label: "Government Alignment", icon: Landmark },
+  { label: "Dedicated Project Team", icon: Users },
+  { label: "Impact Analytics", icon: BarChart3 },
+  { label: "Periodic Reports", icon: FileText },
+  { label: "SDG Mapping", icon: Target },
+  { label: "CSR Compliance", icon: ShieldCheck },
+];
+
+const featuredStory = {
+  name: "Savita Devi",
+  age: 34,
+  location: "Prakasam District, Andhra Pradesh",
+  title: "Empowered Homemaker to Micro-Entrepreneur",
+  quote:
+    "I never imagined I'd run my own business. Effort India didn't just give me a loan — they gave me belief in myself.",
+  heroImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1200",
+  beforeImage: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800",
+  afterImage: "https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=800",
+  paragraph:
+    "Savita joined our Self-Help Group training program with little more than a sewing machine and a dream. With a micro-grant and tailoring training, she now runs a small apparel boutique, employs two other women from her village, and pays for her daughters' high school education — a future she once thought was out of reach.",
+};
+
+const storyHighlights: { label: string; target: number; suffix: string }[] = [
+  { label: "Lives Improved", target: 12, suffix: "+" },
+  { label: "Income Growth", target: 3, suffix: "x" },
+  { label: "Families Supported", target: 3, suffix: "" },
+  { label: "Years of Impact", target: 2, suffix: "" },
+];
+
+const achievementBadges: { label: string; icon: typeof Users }[] = [
+  { label: "Community Leadership", icon: Users },
+  { label: "Women Empowerment", icon: Handshake },
+  { label: "Education Success", icon: GraduationCap },
+  { label: "Healthcare Access", icon: Heart },
+  { label: "Livelihood Improvement", icon: TrendingUp },
+  { label: "Sustainable Development", icon: Sprout },
+];
+
 export default function Home() {
   // States
   const [donationAmount, setDonationAmount] = useState(2500);
@@ -137,10 +279,92 @@ export default function Home() {
   // How We Work section states
   const [howWeWorkRef, howWeWorkVisible] = useScrollReveal<HTMLElement>();
 
+  // Government & Institutional Partnerships section states
+  const [partnershipRef, partnershipVisible] = useScrollReveal<HTMLElement>();
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
+
+  // CSR Partnership Model section states
+  const [csrRef, csrVisible] = useScrollReveal<HTMLElement>();
+  const [activeCsrSlide, setActiveCsrSlide] = useState(0);
+  const [csrPaused, setCsrPaused] = useState(false);
+  const [csrRingProgress, setCsrRingProgress] = useState(0);
+
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    if (!partnershipVisible || carouselPaused) return;
+    const id = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % partnershipSlides.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [partnershipVisible, carouselPaused]);
+
+  useEffect(() => {
+    if (!csrVisible || csrPaused) return;
+    const id = setInterval(() => {
+      setActiveCsrSlide((prev) => (prev + 1) % csrSlides.length);
+    }, 3800);
+    return () => clearInterval(id);
+  }, [csrVisible, csrPaused]);
+
+  useEffect(() => {
+    if (!csrVisible) return;
+    const duration = 1600;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCsrRingProgress(92 * eased);
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [csrVisible]);
+
+  // Featured Success Story section states
+  const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const [storyValues, setStoryValues] = useState(() => storyHighlights.map(() => 0));
+  const sliderContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isDragging) return;
+    const updatePos = (clientX: number) => {
+      const rect = sliderContainerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const pct = ((clientX - rect.left) / rect.width) * 100;
+      setSliderPos(Math.min(100, Math.max(0, pct)));
+    };
+    const handlePointerMove = (e: PointerEvent) => updatePos(e.clientX);
+    const handlePointerUp = () => setIsDragging(false);
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerup", handlePointerUp);
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerup", handlePointerUp);
+    };
+  }, [isDragging]);
+
+  useEffect(() => {
+    if (!storyVisible) return;
+    const duration = 1600;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setStoryValues(storyHighlights.map((s) => s.target * eased));
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [storyVisible]);
 
   useEffect(() => {
     if (!trustVisible) return;
@@ -681,6 +905,515 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- GOVERNMENT & INSTITUTIONAL PARTNERSHIPS SECTION --- */}
+      <section ref={partnershipRef} className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 py-16 lg:py-20">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-20%] right-[10%] w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-[150px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-20%] left-[5%] w-[420px] h-[420px] bg-cyan-400/10 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:32px_32px]" />
+          <div className="bg-noise absolute inset-0" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+
+            {/* Left: content, stats, CTAs */}
+            <div
+              className={`lg:col-span-5 transition-all duration-700 ${
+                partnershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-cyan-300/20 text-cyan-200 text-xs font-bold uppercase tracking-wider">
+                🏛 Government &amp; Institutional Partnerships
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white mt-4">
+                Building Strong Partnerships For Sustainable Development
+              </h2>
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-4">
+                We collaborate with governments, institutions, CSR partners, foundations, and development organizations to deliver transparent, scalable, and measurable social impact.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                {partnershipStats.map((stat) => (
+                  <div key={stat.label} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
+                    <p className={`font-black ${stat.value === "Coming Soon" ? "text-sm text-slate-400" : "text-2xl text-white"}`}>{stat.value}</p>
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mt-1">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3 mt-8">
+                <Link
+                  href="/csr"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.6)] hover:-translate-y-0.5 transition-all group"
+                >
+                  Become A Partner <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15 text-slate-200 font-bold text-sm hover:border-cyan-300/40 hover:text-white transition-all"
+                >
+                  <Download className="w-4 h-4" /> Download Partnership Profile
+                </a>
+              </div>
+            </div>
+
+            {/* Right: carousel + trust badges */}
+            <div
+              className={`lg:col-span-7 transition-all duration-1000 ${
+                partnershipVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+              {/* Floating trust badges */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {partnershipBadges.map((badge, i) => (
+                  <span
+                    key={badge.label}
+                    className="animate-card-float inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15 text-[11px] font-bold text-slate-300 hover:text-cyan-200 hover:border-cyan-300/30 transition-colors"
+                    style={{ animationDelay: `${i * 0.3}s` }}
+                  >
+                    <badge.icon className="w-3 h-3 text-cyan-300" /> {badge.label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Liquid glass carousel */}
+              <div
+                className="group relative bg-white/[0.06] backdrop-blur-[32px] border border-white/15 rounded-[34px] p-6 sm:p-8 animate-breathing-shadow overflow-hidden"
+                onMouseEnter={() => setCarouselPaused(true)}
+                onMouseLeave={() => setCarouselPaused(false)}
+              >
+                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-light-sweep" />
+                </div>
+
+                {(() => {
+                  const slide = partnershipSlides[activeSlide];
+                  const SlideIcon = slide.icon;
+                  return (
+                    <div key={activeSlide} className="animate-fade-in relative z-10">
+                      <div className="grid sm:grid-cols-2 gap-6 items-center">
+                        <div className="relative rounded-2xl overflow-hidden h-48 sm:h-56 border border-white/10">
+                          <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        </div>
+                        <div>
+                          <div className="w-12 h-12 rounded-2xl bg-cyan-400/10 border border-cyan-300/20 flex items-center justify-center mb-4">
+                            <SlideIcon className="w-6 h-6 text-cyan-300" />
+                          </div>
+                          <h3 className="text-xl sm:text-2xl font-black text-white">{slide.title}</h3>
+                          <p className="text-sm text-slate-400 leading-relaxed mt-2">{slide.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {/* Dot indicators */}
+                <div className="relative z-10 flex justify-center gap-2 mt-6">
+                  {partnershipSlides.map((s, i) => (
+                    <button
+                      key={s.title}
+                      onClick={() => setActiveSlide(i)}
+                      aria-label={`Show ${s.title}`}
+                      className={`h-1.5 rounded-full transition-all ${i === activeSlide ? "w-6 bg-cyan-300" : "w-1.5 bg-white/20 hover:bg-white/40"}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Infinite partner logo marquee */}
+          <div
+            className={`mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transition-all duration-700 ${
+              partnershipVisible ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ transitionDelay: "500ms" }}
+          >
+            <div className="flex w-max gap-4 animate-marquee">
+              {[...partnerLogoPlaceholders, ...partnerLogoPlaceholders].map((logo, i) => (
+                <span
+                  key={i}
+                  className="shrink-0 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-slate-500"
+                >
+                  {logo}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- CSR PARTNERSHIP MODEL SECTION --- */}
+      <section ref={csrRef} className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-white to-indigo-50 py-16 lg:py-20">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-15%] right-[5%] w-[460px] h-[460px] bg-cyan-200/30 rounded-full blur-[140px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-15%] left-[5%] w-[400px] h-[400px] bg-indigo-200/25 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute top-[40%] left-[45%] w-[280px] h-[280px] bg-amber-100/25 rounded-full blur-[120px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#0369a1_1px,transparent_1px)] [background-size:30px_30px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+
+            {/* Left: content */}
+            <div
+              className={`lg:col-span-5 transition-all duration-700 ${
+                csrVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+                🤝 CSR Partnership Model
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 mt-4">
+                Transform Corporate Responsibility Into Measurable Social Impact
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-4">
+                Partner with us to implement transparent, scalable, and measurable CSR initiatives that create lasting change while strengthening your organization&apos;s social responsibility.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mt-6">
+                {["100% Transparent Reporting", "Quarterly Impact Reports", "Dedicated Project Team"].map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-sky-100 text-xs font-bold text-slate-600"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-sky-500" /> {item}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3 mt-8">
+                <Link
+                  href="/csr"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(14,165,233,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(14,165,233,0.6)] hover:-translate-y-0.5 transition-all group"
+                >
+                  Partner With Us <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-sky-200 text-slate-700 font-bold text-sm hover:border-sky-400 hover:text-sky-700 transition-all"
+                >
+                  <Download className="w-4 h-4" /> Download CSR Brochure
+                </a>
+              </div>
+            </div>
+
+            {/* Right: process slider + dashboard preview */}
+            <div
+              className={`lg:col-span-7 transition-all duration-1000 ${
+                csrVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+              {/* Process slider */}
+              <div
+                className="group relative bg-white/70 backdrop-blur-[30px] border border-white/70 rounded-[32px] p-6 animate-breathing-shadow overflow-hidden"
+                onMouseEnter={() => setCsrPaused(true)}
+                onMouseLeave={() => setCsrPaused(false)}
+              >
+                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-light-sweep" />
+                </div>
+
+                {(() => {
+                  const slide = csrSlides[activeCsrSlide];
+                  const SlideIcon = slide.icon;
+                  return (
+                    <div key={activeCsrSlide} className="animate-fade-in relative z-10">
+                      <div className="grid sm:grid-cols-2 gap-5 items-center">
+                        <div className="relative rounded-2xl overflow-hidden h-40 sm:h-44 border border-white/60">
+                          <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
+                          <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest text-white/90 bg-black/30 px-2 py-1 rounded-full">
+                            Step {slide.step}
+                          </span>
+                        </div>
+                        <div>
+                          <div className="w-11 h-11 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center mb-3">
+                            <SlideIcon className="w-5 h-5 text-sky-600" />
+                          </div>
+                          <h3 className="text-lg sm:text-xl font-black text-slate-900">{slide.title}</h3>
+                          <p className="text-sm text-slate-600 leading-relaxed mt-2">{slide.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                <div className="relative z-10 flex justify-center gap-2 mt-5">
+                  {csrSlides.map((s, i) => (
+                    <button
+                      key={s.title}
+                      onClick={() => setActiveCsrSlide(i)}
+                      aria-label={`Show ${s.title}`}
+                      className={`h-1.5 rounded-full transition-all ${i === activeCsrSlide ? "w-6 bg-sky-500" : "w-1.5 bg-slate-300 hover:bg-slate-400"}`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Live dashboard preview */}
+              <div className="mt-5 bg-white/70 backdrop-blur-[30px] border border-white/70 rounded-[28px] p-6 shadow-[0_15px_40px_-20px_rgba(14,165,233,0.3)]">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-xs font-black uppercase tracking-wider text-slate-500">Sample Partner Dashboard</p>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-1 rounded-full border border-amber-100">
+                    Illustrative Preview
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {[
+                    { label: "Projects Running", value: "6" },
+                    { label: "Communities Reached", value: "18" },
+                    { label: "Funds Utilized", value: "72%" },
+                    { label: "Reports Submitted", value: "12" },
+                  ].map((w) => (
+                    <div key={w.label} className="bg-sky-50/60 rounded-xl p-3">
+                      <p className="text-lg font-black text-slate-900">{w.value}</p>
+                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500 mt-0.5 leading-tight">{w.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-6 mt-5">
+                  {/* Progress ring */}
+                  <div className="relative w-20 h-20 shrink-0">
+                    <svg viewBox="0 0 100 100" className="w-20 h-20 -rotate-90">
+                      <circle cx="50" cy="50" r="42" fill="none" stroke="#e2e8f0" strokeWidth="8" />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        fill="none"
+                        stroke="url(#csrRingGrad)"
+                        strokeWidth="8"
+                        strokeLinecap="round"
+                        strokeDasharray={2 * Math.PI * 42}
+                        strokeDashoffset={2 * Math.PI * 42 * (1 - csrRingProgress / 100)}
+                      />
+                      <defs>
+                        <linearGradient id="csrRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#0ea5e9" />
+                          <stop offset="100%" stopColor="#06b6d4" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-sm font-black text-slate-900">{Math.round(csrRingProgress)}%</span>
+                    </div>
+                  </div>
+
+                  {/* Mini bar chart */}
+                  <div className="flex-1">
+                    <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500 mb-2">Fund Utilization Trend</p>
+                    <div className="flex items-end gap-1.5 h-12">
+                      {[40, 55, 45, 70, 60, 85, 72].map((h, i) => (
+                        <div
+                          key={i}
+                          className="flex-1 rounded-t-md bg-gradient-to-t from-sky-400 to-cyan-300 transition-all duration-700"
+                          style={{ height: csrVisible ? `${h}%` : "0%", transitionDelay: `${i * 60}ms` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CSR Advantage Strip */}
+          <div
+            className={`flex flex-wrap justify-center gap-3 mt-12 transition-all duration-700 ${
+              csrVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "500ms" }}
+          >
+            {csrAdvantageChips.map((chip) => (
+              <div
+                key={chip.label}
+                className="p-[1.5px] rounded-full bg-gradient-to-r from-cyan-300 via-sky-300 to-indigo-300 hover:shadow-[0_0_20px_-4px_rgba(14,165,233,0.5)] transition-shadow"
+              >
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md hover:bg-white transition-colors">
+                  <chip.icon className="w-4 h-4 text-sky-600" />
+                  <span className="text-xs font-bold text-slate-700">{chip.label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FEATURED SUCCESS STORY SECTION --- */}
+      <section ref={storyRef} className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-rose-50 to-orange-50 py-16 lg:py-24">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-15%] left-[10%] w-[440px] h-[440px] bg-amber-200/25 rounded-full blur-[150px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-15%] right-[5%] w-[420px] h-[420px] bg-rose-200/25 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="bg-noise absolute inset-0" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div
+            className={`text-center max-w-2xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
+              storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+              ✨ Featured Success Story
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
+              One Story That Changed Everything
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Behind every successful project is a powerful human story. Discover how sustainable support transformed lives, strengthened communities, and created hope for future generations.
+            </p>
+          </div>
+
+          {/* Top row: heading/text/CTA + hero image */}
+          <div className="grid lg:grid-cols-2 gap-8 items-center mb-10">
+            <div
+              className={`transition-all duration-700 ${
+                storyVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              }`}
+            >
+              <p className="text-xs font-black uppercase tracking-widest text-amber-600">{featuredStory.location}</p>
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-2 leading-tight">{featuredStory.title}</h3>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-4">{featuredStory.paragraph}</p>
+              <div className="flex flex-wrap gap-3 mt-6">
+                <Link
+                  href="#more-stories"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(245,158,11,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(245,158,11,0.6)] hover:-translate-y-0.5 transition-all group"
+                >
+                  Read Full Story <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+                <Link
+                  href="#more-stories"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-amber-200 text-slate-700 font-bold text-sm hover:border-amber-400 hover:text-amber-700 transition-all"
+                >
+                  Explore More Stories <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            <div
+              className={`relative rounded-[32px] overflow-hidden h-64 sm:h-80 border border-white/60 shadow-[0_25px_60px_-20px_rgba(217,119,6,0.3)] group transition-all duration-1000 ${
+                storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: "150ms" }}
+            >
+              <img
+                src={featuredStory.heroImage}
+                alt={featuredStory.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            </div>
+          </div>
+
+          {/* Bottom row: before/after slider + quote/stats/badges */}
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+
+            {/* Before & After comparison slider */}
+            <div
+              className={`transition-all duration-700 ${
+                storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: "250ms" }}
+            >
+              <div
+                ref={sliderContainerRef}
+                className="relative rounded-[28px] overflow-hidden h-72 sm:h-80 border border-white/60 shadow-[0_20px_50px_-20px_rgba(217,119,6,0.3)] select-none cursor-ew-resize"
+                onClick={(e) => {
+                  const rect = sliderContainerRef.current?.getBoundingClientRect();
+                  if (!rect) return;
+                  setSliderPos(Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100)));
+                }}
+              >
+                <img src={featuredStory.afterImage} alt="After" className="absolute inset-0 w-full h-full object-cover" />
+                <span className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+                  After
+                </span>
+
+                <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
+                  <img src={featuredStory.beforeImage} alt="Before" className="absolute inset-0 w-full h-full object-cover" />
+                  <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+                    Before
+                  </span>
+                </div>
+
+                <div
+                  className="absolute inset-y-0 z-20 w-1 bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.8)]"
+                  style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
+                >
+                  <div
+                    onPointerDown={(e) => {
+                      e.stopPropagation();
+                      setIsDragging(true);
+                    }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md shadow-lg border border-white flex items-center justify-center cursor-ew-resize"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5 text-slate-600 -mr-1" />
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-600 -ml-1" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating quote + impact stats + achievement badges */}
+            <div
+              className={`space-y-6 transition-all duration-700 ${
+                storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: "350ms" }}
+            >
+              {/* Floating quote card */}
+              <div className="bg-white/70 backdrop-blur-[30px] border border-white/70 rounded-[28px] p-6 animate-breathing-shadow">
+                <Quote className="w-7 h-7 text-amber-400" />
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed italic mt-3">&ldquo;{featuredStory.quote}&rdquo;</p>
+                <div className="flex items-center gap-3 mt-4">
+                  <img src={featuredStory.heroImage} alt={featuredStory.name} className="w-10 h-10 rounded-full object-cover border border-white/80" />
+                  <div>
+                    <p className="text-sm font-bold text-slate-900">{featuredStory.name}</p>
+                    <p className="text-xs text-slate-500">{featuredStory.location}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Impact highlights */}
+              <div className="grid grid-cols-2 gap-3">
+                {storyHighlights.map((stat, i) => (
+                  <div key={stat.label} className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-4">
+                    <p className="text-2xl font-black text-amber-700">
+                      {Math.round(storyValues[i])}
+                      {stat.suffix}
+                    </p>
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-slate-500 mt-1">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Achievement badges */}
+              <div className="flex flex-wrap gap-2">
+                {achievementBadges.map((badge) => (
+                  <div
+                    key={badge.label}
+                    className="p-[1.5px] rounded-full bg-gradient-to-r from-amber-300 via-rose-300 to-orange-300 hover:shadow-[0_0_16px_-4px_rgba(245,158,11,0.5)] transition-shadow"
+                  >
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md hover:bg-white hover:-rotate-1 transition-all">
+                      <badge.icon className="w-3.5 h-3.5 text-amber-600" />
+                      <span className="text-[11px] font-bold text-slate-700">{badge.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- DYNAMIC CAMPAIGNS & DONATION SECTION --- */}
       <section id="donate-section" className="py-20 lg:py-28 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
@@ -830,7 +1563,7 @@ export default function Home() {
       </section>
 
       {/* --- DYNAMIC SUCCESS STORIES TESTIMONIAL --- */}
-      <section className="py-20 lg:py-28 bg-white relative">
+      <section id="more-stories" className="py-20 lg:py-28 bg-white relative overflow-hidden">
         {/* Soft background liquid gradient */}
         <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-amber-100/30 rounded-full blur-[100px] -z-10 animate-pulse"></div>
 
@@ -918,9 +1651,9 @@ export default function Home() {
       </section>
 
       {/* --- CONTACT & NEWSLETTER CTA --- */}
-      <section className="py-20 lg:py-28 bg-emerald-950 text-white relative">
+      <section className="py-20 lg:py-28 bg-emerald-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
-        
+
         {/* Glowing liquid backdrop blob */}
         <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px] -z-10 animate-pulse"></div>
 

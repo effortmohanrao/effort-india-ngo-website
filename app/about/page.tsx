@@ -1,21 +1,49 @@
 "use client";
 
-import React, { useState } from "react";
-import { 
-  Award, 
-  ShieldCheck, 
-  Users, 
-  Target, 
-  History, 
-  ChevronRight, 
-  Sparkles, 
-  FileText, 
+import React, { useState, useEffect } from "react";
+import {
+  ShieldCheck,
+  Users,
+  Sparkles,
+  FileText,
   ArrowRight,
-  TrendingUp
+  ArrowUpRight,
+  Globe2,
+  Heart,
+  Handshake,
+  Star,
+  Download,
+  Eye,
+  Lightbulb,
+  Sprout
 } from "lucide-react";
+
+const aboutHeroLines = ["Building Hope.", "Creating Change.", "Transforming Communities."];
+
+const aboutHeroPanels: { icon: typeof Globe2; label: string; value: string }[] = [
+  { icon: Globe2, label: "Communities Served", value: "120+" },
+  { icon: Heart, label: "Lives Impacted", value: "15,000+" },
+  { icon: Handshake, label: "Partnerships", value: "Coming Soon" },
+  { icon: Star, label: "Years of Service", value: "27+" },
+];
+
+const aboutTrustStrip: { icon: typeof Eye; label: string }[] = [
+  { icon: Eye, label: "Transparency" },
+  { icon: ShieldCheck, label: "Integrity" },
+  { icon: Lightbulb, label: "Innovation" },
+  { icon: Users, label: "Community" },
+  { icon: Sprout, label: "Sustainability" },
+  { icon: Handshake, label: "Collaboration" },
+];
 
 export default function About() {
   const [activeTimelineYear, setActiveTimelineYear] = useState(2025);
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
 
   const timelineEvents = [
     {
@@ -80,64 +108,158 @@ export default function About() {
       <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-100/35 rounded-full blur-[100px] -z-10 animate-pulse"></div>
       <div className="absolute bottom-[20%] left-[-15%] w-[500px] h-[500px] bg-amber-100/25 rounded-full blur-[100px] -z-10 animate-pulse"></div>
 
-      {/* --- HERO / INTRO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Transparent & Compliant
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 leading-tight">
-              About Effort India: <br/>
-              <span className="bg-gradient-to-r from-emerald-600 to-amber-500 bg-clip-text text-transparent">
-                A Mission of Hope and Care
+      {/* --- ABOUT US HERO BANNER --- */}
+      <section className="relative overflow-hidden -mt-12 pt-12 pb-16 lg:pb-20">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-emerald-50" />
+          <div className="absolute top-[-10%] left-[10%] w-[420px] h-[420px] bg-sky-200/30 rounded-full blur-[140px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] right-[10%] w-[380px] h-[380px] bg-emerald-200/25 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute top-[45%] left-[45%] w-[280px] h-[280px] bg-purple-100/25 rounded-full blur-[120px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#0369a1_1px,transparent_1px)] [background-size:30px_30px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+
+            {/* Left 45% */}
+            <div className="lg:col-span-5">
+              <span
+                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider shadow-sm transition-all duration-700 ${
+                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" /> About Our Organization
               </span>
-            </h1>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-              Effort India NGO is a registered non-governmental organization working to uplift marginalized communities. By building robust development models, we ensure children receive education, families stay healthy, and youth gain professional, income-generating skills.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-6 pt-4">
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-150 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Target className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-sm">Our Mission</h4>
-                  <p className="text-xs text-slate-500 mt-1">To construct sustainable models of growth for underserved rural sectors.</p>
-                </div>
+
+              <h1 className="text-4xl sm:text-5xl font-black text-slate-900 leading-[1.1] mt-4">
+                {aboutHeroLines.map((line, i) => (
+                  <span
+                    key={line}
+                    className={`block transition-all duration-700 ${
+                      heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    } ${i === 1 ? "bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent" : ""}`}
+                    style={{ transitionDelay: `${150 + i * 120}ms` }}
+                  >
+                    {line}
+                  </span>
+                ))}
+              </h1>
+
+              <p
+                className={`text-slate-600 text-base sm:text-lg leading-relaxed mt-5 transition-all duration-700 ${
+                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: "550ms" }}
+              >
+                Effort India is a registered society working with rural communities in Andhra Pradesh on education, healthcare, livelihoods, and environmental sustainability — building models that communities can carry forward long after we step back.
+              </p>
+
+              {/* Mini NGO statistics */}
+              <p
+                className={`text-xs font-bold text-slate-500 mt-4 transition-all duration-700 ${
+                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: "620ms" }}
+              >
+                <span className="text-emerald-600">27+ Years</span> · <span className="text-emerald-600">120+ Communities</span> · <span className="text-emerald-600">15,000+ Lives</span>
+              </p>
+
+              {/* CTA buttons */}
+              <div
+                className={`flex flex-wrap gap-3 mt-7 transition-all duration-700 ${
+                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: "700ms" }}
+              >
+                <a
+                  href="#journey"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(37,99,235,0.6)] hover:-translate-y-0.5 transition-all group"
+                >
+                  Explore Our Journey <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-sky-200 text-slate-700 font-bold text-sm hover:border-sky-400 hover:text-sky-700 transition-all"
+                >
+                  <Download className="w-4 h-4" /> Download Organization Profile
+                </a>
               </div>
-              
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-150 text-amber-700 flex items-center justify-center shrink-0">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-sm">Our Values</h4>
-                  <p className="text-xs text-slate-500 mt-1">Uncompromising transparency, community ownership, and measurable impact.</p>
-                </div>
+
+              {/* Mini trust strip */}
+              <div
+                className={`flex flex-wrap gap-x-5 gap-y-2 mt-8 transition-all duration-700 ${
+                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: "800ms" }}
+              >
+                {aboutTrustStrip.map((item) => (
+                  <span key={item.label} className="group flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                    <item.icon className="w-4 h-4 text-emerald-600 group-hover:rotate-12 transition-transform" />
+                    {item.label}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
 
-          <div className="lg:col-span-5 relative">
-            <div className="absolute -top-4 -left-4 w-72 h-72 bg-emerald-50 rounded-3xl -z-10"></div>
-            <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-amber-50 rounded-3xl -z-10"></div>
-            <div className="bg-white/80 backdrop-blur-xl border border-white/20 rounded-3xl p-3 shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800" 
-                alt="Volunteers in field" 
-                className="rounded-2xl h-[380px] w-full object-cover shadow-sm"
-              />
+            {/* Right 55%: cinematic image + floating panels */}
+            <div
+              className={`lg:col-span-7 relative transition-all duration-1000 ${
+                heroVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
+              style={{ transitionDelay: "250ms" }}
+            >
+              <div className="relative rounded-[34px] overflow-hidden h-[420px] sm:h-[480px] border border-white/60 shadow-[0_30px_70px_-25px_rgba(37,99,235,0.3)] group">
+                <img
+                  src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200"
+                  alt="Effort India field team"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-light-sweep" />
+                </div>
+              </div>
+
+              {/* Floating glass panels */}
+              <div className="absolute -top-5 -left-5 sm:-left-8 grid grid-cols-2 gap-3 w-[calc(100%+2.5rem)] sm:w-auto sm:flex">
+                {aboutHeroPanels.slice(0, 2).map((panel, i) => (
+                  <div
+                    key={panel.label}
+                    className={`animate-breathing-shadow bg-white/80 backdrop-blur-[32px] border border-white/70 rounded-2xl p-4 shadow-lg transition-all duration-700 hover:-translate-y-1 ${
+                      heroVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+                    }`}
+                    style={{ transitionDelay: `${900 + i * 150}ms` }}
+                  >
+                    <panel.icon className="w-5 h-5 text-blue-600 mb-1.5" />
+                    <p className={`font-black text-slate-900 ${panel.value === "Coming Soon" ? "text-xs" : "text-lg"}`}>{panel.value}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">{panel.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="absolute -bottom-5 -right-5 sm:-right-8 grid grid-cols-2 gap-3 w-[calc(100%+2.5rem)] sm:w-auto sm:flex">
+                {aboutHeroPanels.slice(2, 4).map((panel, i) => (
+                  <div
+                    key={panel.label}
+                    className={`animate-breathing-shadow bg-white/80 backdrop-blur-[32px] border border-white/70 rounded-2xl p-4 shadow-lg transition-all duration-700 hover:-translate-y-1 ${
+                      heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    }`}
+                    style={{ transitionDelay: `${1200 + i * 150}ms` }}
+                  >
+                    <panel.icon className="w-5 h-5 text-emerald-600 mb-1.5" />
+                    <p className={`font-black text-slate-900 ${panel.value === "Coming Soon" ? "text-xs" : "text-lg"}`}>{panel.value}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">{panel.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 
       {/* --- INTERACTIVE TIMELINE --- */}
-      <section className="bg-slate-900 text-white py-20 lg:py-24 relative my-16">
+      <section id="journey" className="bg-slate-900 text-white py-20 lg:py-24 relative my-16">
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

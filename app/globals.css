@@ -131,6 +131,25 @@ body {
   animation: count-bounce 0.4s ease-out;
 }
 
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-scroll 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes breathing-shadow {
+  0%, 100% { box-shadow: 0 20px 60px -20px rgba(37, 99, 235, 0.35); }
+  50% { box-shadow: 0 25px 70px -15px rgba(37, 99, 235, 0.5); }
+}
+.animate-breathing-shadow {
+  animation: breathing-shadow 4s ease-in-out infinite;
+}
+
 .bg-noise {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   opacity: 0.035;
