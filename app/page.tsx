@@ -6,8 +6,6 @@ import {
   Heart,
   ArrowRight,
   ArrowUpRight,
-  BookOpen,
-  Briefcase,
   Globe2,
   Award,
   ChevronRight,
@@ -25,12 +23,12 @@ import {
   Download,
   Fingerprint,
   Building2,
-  Users,
   Sprout,
-  Baby,
-  LifeBuoy,
-  GraduationCap,
-  HeartPulse
+  TrendingUp,
+  Search,
+  ClipboardList,
+  Rocket,
+  LineChart
 } from "lucide-react";
 
 function useScrollReveal<T extends HTMLElement>() {
@@ -57,22 +55,19 @@ function useScrollReveal<T extends HTMLElement>() {
   return [ref, visible] as const;
 }
 
-type HeroStat = { target: number; suffix: string; label: string; decimals?: number };
-
 const heroLines: { text: string; accent?: boolean }[] = [
   { text: "Transforming Lives" },
   { text: "Through Sustainable", accent: true },
   { text: "Community Development" },
 ];
 
-const heroStats: HeroStat[] = [
-  { target: 120, suffix: "+", label: "Communities Empowered" },
-  { target: 15000, suffix: "+", label: "Lives Impacted" },
-  { target: 45, suffix: "+", label: "Projects Completed" },
-  { target: 250, suffix: "+", label: "Dedicated Volunteers" },
+const heroCredibility: { icon: typeof ShieldCheck; label: string }[] = [
+  { icon: ShieldCheck, label: "Registered Society (340/1999)" },
+  { icon: TrendingUp, label: "98% Project Success Rate" },
+  { icon: Calendar, label: "27 Years of Service" },
+  { icon: Landmark, label: "Government Recognized" },
+  { icon: Building2, label: "CSR Ready" },
 ];
-
-const trustItems = ["Registered NGO", "Transparent Operations", "Community Driven", "Sustainable Impact"];
 
 type ComplianceStatus = "verified" | "pending" | "na";
 
@@ -110,91 +105,13 @@ const impactStats: { target: number }[] = [
   { target: 27 }, // Years of Service
 ];
 
-type Program = {
-  title: string;
-  icon: typeof BookOpen;
-  image: string;
-  desc: string;
-  size: "hero" | "medium" | "tall" | "wide" | "floating";
-  gradient: string;
-  textColor: string;
-  bgTint: string;
-};
-
-const programs: Program[] = [
-  {
-    title: "Education",
-    icon: GraduationCap,
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1000",
-    desc: "Bridging the gap for dropouts and underprivileged kids through digital classrooms, free study kits, and girl-child scholarships.",
-    size: "hero",
-    gradient: "from-blue-500 to-blue-700",
-    textColor: "text-blue-600",
-    bgTint: "bg-blue-50",
-  },
-  {
-    title: "Healthcare",
-    icon: HeartPulse,
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800",
-    desc: "Rural mobile clinics and child nutrition support for families with no access to primary care.",
-    size: "medium",
-    gradient: "from-emerald-500 to-emerald-700",
-    textColor: "text-emerald-600",
-    bgTint: "bg-emerald-50",
-  },
-  {
-    title: "Women Empowerment",
-    icon: Users,
-    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=800",
-    desc: "Self-help groups, vocational training, and micro-business grants for rural women.",
-    size: "tall",
-    gradient: "from-purple-500 to-purple-700",
-    textColor: "text-purple-600",
-    bgTint: "bg-purple-50",
-  },
-  {
-    title: "Livelihood & Skill Development",
-    icon: Briefcase,
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
-    desc: "Vocational setups, computer labs, and income-generation training for rural youth.",
-    size: "wide",
-    gradient: "from-orange-500 to-orange-700",
-    textColor: "text-orange-600",
-    bgTint: "bg-orange-50",
-  },
-  {
-    title: "Child Development",
-    icon: Baby,
-    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=800",
-    desc: "Early learning support and safe spaces for children.",
-    size: "floating",
-    gradient: "from-pink-500 to-pink-700",
-    textColor: "text-pink-600",
-    bgTint: "bg-pink-50",
-  },
-  {
-    title: "Environment & Climate",
-    icon: Sprout,
-    image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800",
-    desc: "Water governance, biodiversity, and sustainable farming initiatives.",
-    size: "floating",
-    gradient: "from-teal-500 to-teal-700",
-    textColor: "text-teal-600",
-    bgTint: "bg-teal-50",
-  },
-  {
-    title: "Disaster Relief",
-    icon: LifeBuoy,
-    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=800",
-    desc: "Rapid-response relief support for communities facing crisis.",
-    size: "floating",
-    gradient: "from-red-500 to-red-700",
-    textColor: "text-red-600",
-    bgTint: "bg-red-50",
-  },
+const processSteps: { step: string; title: string; desc: string; icon: typeof Search }[] = [
+  { step: "01", title: "Community Assessment", desc: "Listening first — surveys and dialogue to understand the real need.", icon: Search },
+  { step: "02", title: "Strategic Planning", desc: "Turning findings into a concrete plan with timelines and partners.", icon: ClipboardList },
+  { step: "03", title: "Implementation", desc: "Field teams execute directly alongside the community.", icon: Rocket },
+  { step: "04", title: "Monitoring", desc: "Tracking real outcomes, not assumptions.", icon: LineChart },
+  { step: "05", title: "Sustainable Impact", desc: "Communities equipped to carry the progress forward on their own.", icon: Sprout },
 ];
-
-const programTags = ["Education", "Health", "Nutrition", "Water", "Livelihood", "Women", "Youth", "Climate", "Agriculture", "Digital Literacy"];
 
 export default function Home() {
   // States
@@ -204,7 +121,6 @@ export default function Home() {
 
   // Hero section states
   const [heroVisible, setHeroVisible] = useState(false);
-  const [statValues, setStatValues] = useState(() => heroStats.map(() => 0));
   const [ctaHover, setCtaHover] = useState(false);
   const [ctaMagnet, setCtaMagnet] = useState({ x: 0, y: 0 });
   const [ctaRipples, setCtaRipples] = useState<{ id: number; x: number; y: number }[]>([]);
@@ -218,8 +134,8 @@ export default function Home() {
   const [impactValues, setImpactValues] = useState(() => impactStats.map(() => 0));
   const [impactBounce, setImpactBounce] = useState(false);
 
-  // Core Programs section states
-  const [programsRef, programsVisible] = useScrollReveal<HTMLElement>();
+  // How We Work section states
+  const [howWeWorkRef, howWeWorkVisible] = useScrollReveal<HTMLElement>();
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
@@ -260,21 +176,6 @@ export default function Home() {
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
   }, [impactVisible]);
-
-  useEffect(() => {
-    if (!heroVisible) return;
-    const duration = 1600;
-    const start = performance.now();
-    let rafId: number;
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setStatValues(heroStats.map((s) => s.target * eased));
-      if (progress < 1) rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
-  }, [heroVisible]);
 
   const handleCtaMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -371,11 +272,6 @@ export default function Home() {
     setCurrentStory((prev) => (prev - 1 + successStories.length) % successStories.length);
   };
 
-  const EducationIcon = programs[0].icon;
-  const HealthcareIcon = programs[1].icon;
-  const WomenIcon = programs[2].icon;
-  const LivelihoodIcon = programs[3].icon;
-
   return (
     <div className="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
       
@@ -463,38 +359,22 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Stat glass cards */}
+            {/* Credibility strip (replaces duplicate stat boxes now shown in the Impact section) */}
             <div
-              className={`grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 transition-all duration-700 ${
+              className={`flex flex-wrap gap-3 pt-4 transition-all duration-700 ${
                 heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
               style={{ transitionDelay: "850ms" }}
             >
-              {heroStats.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl p-4 shadow-[0_8px_24px_-14px_rgba(6,95,70,0.35)] text-center sm:text-left"
+              {heroCredibility.map((item) => (
+                <span
+                  key={item.label}
+                  className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-xl border border-white/70 rounded-full pl-2 pr-4 py-2 shadow-[0_8px_24px_-14px_rgba(6,95,70,0.35)]"
                 >
-                  <p className="text-2xl sm:text-3xl font-extrabold text-emerald-700">
-                    {stat.decimals ? statValues[i].toFixed(stat.decimals) : Math.round(statValues[i]).toLocaleString("en-IN")}
-                    {stat.suffix}
-                  </p>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-semibold uppercase tracking-wide mt-1">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Trust indicator row */}
-            <div
-              className={`flex flex-wrap gap-x-6 gap-y-2 pt-2 transition-all duration-700 ${
-                heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ transitionDelay: "1050ms" }}
-            >
-              {trustItems.map((item) => (
-                <span key={item} className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-600">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  {item}
+                  <span className="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                    <item.icon className="w-3.5 h-3.5" />
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-700">{item.label}</span>
                 </span>
               ))}
             </div>
@@ -733,193 +613,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CORE PROGRAMS SECTION --- */}
-      <section id="programs-section" ref={programsRef} className="relative overflow-hidden py-20 lg:py-28">
+      {/* --- HOW WE WORK SECTION --- */}
+      <section ref={howWeWorkRef} className="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-violet-900 to-fuchsia-900 py-20 lg:py-28">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 via-white to-purple-50/30" />
-          <div className="absolute top-[-5%] left-[15%] w-[420px] h-[420px] bg-sky-100/40 rounded-full blur-[130px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[0%] right-[10%] w-[380px] h-[380px] bg-pink-100/40 rounded-full blur-[120px] animate-liquid-drift-b" />
-          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-teal-100/30 rounded-full blur-[110px] animate-liquid-drift-c" />
-          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#78350f_1px,transparent_1px)] [background-size:26px_26px]" />
+          <div className="absolute top-[-10%] left-[5%] w-[420px] h-[420px] bg-violet-500/20 rounded-full blur-[140px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] right-[5%] w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[120px] animate-liquid-drift-c" />
+          <div className="bg-noise absolute inset-0" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div
-            className={`text-center max-w-3xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
-              programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`text-center max-w-2xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+              howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider shadow-sm">
-              🌱 Our Core Programs
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-fuchsia-200 text-xs font-bold uppercase tracking-wider">
+              ⚙ How We Work
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
-              Creating Sustainable Change Through Every Initiative
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+              A Simple, Proven Process
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-              Our programs are designed to strengthen communities, improve lives, and create long-term social impact through innovative and inclusive development initiatives.
+            <p className="text-indigo-100/70 text-base sm:text-lg leading-relaxed">
+              From identifying a real community need to sustaining lasting change — every project follows the same disciplined path.
             </p>
           </div>
 
-          {/* Floating program tags */}
-          <div
-            className={`flex flex-wrap justify-center gap-3 mb-14 transition-all duration-700 ${
-              programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            {programTags.map((tag, i) => (
-              <span
-                key={tag}
-                className="animate-card-float px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/70 text-xs font-bold text-slate-600 shadow-sm hover:scale-110 hover:text-slate-900 hover:shadow-md transition-all cursor-default"
-                style={{ animationDelay: `${i * 0.3}s` }}
-              >
-                {tag}
-              </span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {processSteps.map((s, i) => (
+              <div key={s.step} className="relative">
+                <div
+                  className={`group h-full bg-white/10 backdrop-blur-xl border border-white/15 rounded-3xl p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] hover:bg-white/15 hover:-translate-y-2 transition-all duration-500 ${
+                    howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: `${i * 120}ms` }}
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
+                    <s.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <p className="text-xs font-black text-fuchsia-300 uppercase tracking-widest">Step {s.step}</p>
+                  <h3 className="text-lg font-black text-white mt-1">{s.title}</h3>
+                  <p className="text-sm text-indigo-100/70 mt-2 leading-relaxed">{s.desc}</p>
+                </div>
+                {i < processSteps.length - 1 && (
+                  <div className="hidden lg:flex absolute top-1/2 -right-6 -translate-y-1/2 z-10 items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-white/30" />
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 
-          {/* Bento ecosystem */}
-          <div className="grid lg:grid-cols-12 gap-6 items-stretch">
-
-            {/* Hero card: Education */}
-            <div
-              className={`lg:col-span-7 transition-all duration-700 ${
-                programsVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-              }`}
+          <div
+            className={`text-center mt-14 transition-all duration-700 ${
+              howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "700ms" }}
+          >
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-indigo-900 font-bold text-sm shadow-[0_15px_40px_-10px_rgba(0,0,0,0.4)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
             >
-              <div className="group relative h-full min-h-[420px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_25px_60px_-20px_rgba(37,99,235,0.35)]">
-                <img
-                  src={programs[0].image}
-                  alt={programs[0].title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t ${programs[0].gradient} opacity-80 mix-blend-multiply`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-light-sweep" />
-                </div>
-                <div className="relative z-10 h-full flex flex-col justify-end p-8 sm:p-10">
-                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
-                    <EducationIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">{programs[0].title}</h3>
-                  <p className="text-sm text-white/85 leading-relaxed max-w-md mb-6">{programs[0].desc}</p>
-                  <Link
-                    href="/programs"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-blue-700 font-bold text-sm w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group/btn"
-                  >
-                    Explore Program <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Right column: Healthcare (medium) + Women Empowerment (tall) */}
-            <div className="lg:col-span-5 flex flex-col gap-6">
-
-              <div
-                className={`transition-all duration-700 ${
-                  programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: "150ms" }}
-              >
-                <div className="group relative h-[190px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_45px_-18px_rgba(5,150,105,0.35)]">
-                  <img
-                    src={programs[1].image}
-                    alt={programs[1].title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${programs[1].gradient} opacity-75 mix-blend-multiply`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
-                      <HealthcareIcon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-lg font-black text-white">{programs[1].title}</h3>
-                    <p className="text-xs text-white/85 mt-1 leading-relaxed">{programs[1].desc}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className={`flex-1 transition-all duration-700 ${
-                  programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: "250ms" }}
-              >
-                <div className="group relative h-full min-h-[210px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_45px_-18px_rgba(147,51,234,0.35)]">
-                  <img
-                    src={programs[2].image}
-                    alt={programs[2].title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${programs[2].gradient} opacity-75 mix-blend-multiply`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
-                      <WomenIcon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-lg font-black text-white">{programs[2].title}</h3>
-                    <p className="text-xs text-white/85 mt-1 leading-relaxed">{programs[2].desc}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Wide banner: Livelihood */}
-            <div
-              className={`lg:col-span-12 transition-all duration-700 ${
-                programsVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-              }`}
-              style={{ transitionDelay: "350ms" }}
-            >
-              <div className="group relative h-[220px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_50px_-18px_rgba(234,88,12,0.35)]">
-                <img
-                  src={programs[3].image}
-                  alt={programs[3].title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-r ${programs[3].gradient} opacity-75 mix-blend-multiply`} />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
-                <div className="relative z-10 h-full flex flex-col justify-center p-8 sm:p-10 max-w-lg">
-                  <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform">
-                    <LivelihoodIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-white mb-2">{programs[3].title}</h3>
-                  <p className="text-sm text-white/85 leading-relaxed">{programs[3].desc}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating trio: Child Development, Environment, Disaster Relief */}
-            {[4, 5, 6].map((idx, i) => {
-              const FloatingIcon = programs[idx].icon;
-              return (
-                <div
-                  key={programs[idx].title}
-                  className={`lg:col-span-4 transition-all duration-700 ${
-                    programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  }`}
-                  style={{ transitionDelay: `${450 + i * 100}ms` }}
-                >
-                  <div className="group relative h-[180px] rounded-[24px] overflow-hidden border border-white/70 shadow-[0_15px_35px_-16px_rgba(0,0,0,0.25)]">
-                    <img
-                      src={programs[idx].image}
-                      alt={programs[idx].title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-t ${programs[idx].gradient} opacity-70 mix-blend-multiply`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    <div className="relative z-10 h-full flex flex-col justify-end p-5">
-                      <div className="w-9 h-9 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
-                        <FloatingIcon className="w-4 h-4 text-white" />
-                      </div>
-                      <h3 className="text-base font-black text-white">{programs[idx].title}</h3>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+              Discover Our Methodology <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

@@ -28,6 +28,16 @@ import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/compon
 
 type Ripple = { id: number; x: number; y: number };
 
+const particleColors = ["bg-emerald-400/50", "bg-amber-400/60", "bg-teal-400/50", "bg-emerald-300/50", "bg-amber-300/55"];
+
+const headerParticles = Array.from({ length: 50 }, (_, i) => ({
+  left: (i * 47) % 100,
+  top: (i * 29) % 100,
+  size: i % 3 === 0 ? 1.5 : 1,
+  color: particleColors[i % particleColors.length],
+  delay: (i % 10) * 0.3,
+}));
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -205,14 +215,19 @@ export default function Header() {
             <div className="absolute -top-10 left-16 w-40 h-40 bg-emerald-300/20 rounded-full blur-[60px]" />
             <div className="absolute -bottom-10 right-24 w-32 h-32 bg-amber-200/20 rounded-full blur-[50px]" />
             <div className="absolute inset-0 bg-noise" />
-            <div className="absolute top-3 left-[12%] w-1.5 h-1.5 rounded-full bg-emerald-400/50 animate-float-particle" />
-            <div className="absolute bottom-4 left-[24%] w-1 h-1 rounded-full bg-amber-400/60 animate-float-particle" style={{ animationDelay: "1.2s" }} />
-            <div className="absolute top-5 left-1/3 w-1 h-1 rounded-full bg-teal-400/50 animate-float-particle" style={{ animationDelay: "0.4s" }} />
-            <div className="absolute bottom-3 left-[45%] w-1.5 h-1.5 rounded-full bg-emerald-300/50 animate-float-particle" style={{ animationDelay: "2.1s" }} />
-            <div className="absolute top-4 left-1/2 w-1 h-1 rounded-full bg-amber-300/55 animate-float-particle" style={{ animationDelay: "0.8s" }} />
-            <div className="absolute bottom-5 right-1/4 w-1 h-1 rounded-full bg-amber-400/60 animate-float-particle" style={{ animationDelay: "1.6s" }} />
-            <div className="absolute top-3 right-[15%] w-1.5 h-1.5 rounded-full bg-emerald-400/50 animate-float-particle" style={{ animationDelay: "2.6s" }} />
-            <div className="absolute bottom-4 right-[6%] w-1 h-1 rounded-full bg-teal-300/55 animate-float-particle" style={{ animationDelay: "0.2s" }} />
+            {headerParticles.map((p, i) => (
+              <div
+                key={i}
+                className={`absolute rounded-full ${p.color} animate-float-particle`}
+                style={{
+                  left: `${p.left}%`,
+                  top: `${p.top}%`,
+                  width: `${p.size * 4}px`,
+                  height: `${p.size * 4}px`,
+                  animationDelay: `${p.delay}s`,
+                }}
+              />
+            ))}
           </div>
 
           <div className="relative px-5 sm:px-7 flex items-center justify-between gap-4">

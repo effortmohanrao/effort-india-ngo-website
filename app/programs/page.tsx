@@ -1,19 +1,114 @@
 "use client";
 
-import React, { useState } from "react";
-import { 
-  BookOpen, 
-  Activity, 
-  Briefcase, 
-  Leaf, 
-  CheckCircle2, 
-  Sparkles, 
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import {
+  BookOpen,
+  Briefcase,
+  CheckCircle2,
+  Sparkles,
   ArrowRight,
-  TrendingUp
+  ArrowUpRight,
+  GraduationCap,
+  HeartPulse,
+  Users,
+  Baby,
+  Sprout,
+  LifeBuoy
 } from "lucide-react";
+
+function useScrollReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) setVisible(true);
+      },
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+    );
+    observer.observe(el);
+    const fallback = setTimeout(() => setVisible(true), 2500);
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
+  }, []);
+  return [ref, visible] as const;
+}
+
+type BentoProgram = {
+  title: string;
+  icon: typeof BookOpen;
+  image: string;
+  desc: string;
+  gradient: string;
+};
+
+const bentoPrograms: BentoProgram[] = [
+  {
+    title: "Education",
+    icon: GraduationCap,
+    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1000",
+    desc: "Bridging the gap for dropouts and underprivileged kids through digital classrooms, free study kits, and girl-child scholarships.",
+    gradient: "from-blue-500 to-blue-700",
+  },
+  {
+    title: "Healthcare",
+    icon: HeartPulse,
+    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800",
+    desc: "Rural mobile clinics and child nutrition support for families with no access to primary care.",
+    gradient: "from-emerald-500 to-emerald-700",
+  },
+  {
+    title: "Women Empowerment",
+    icon: Users,
+    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=800",
+    desc: "Self-help groups, vocational training, and micro-business grants for rural women.",
+    gradient: "from-purple-500 to-purple-700",
+  },
+  {
+    title: "Livelihood & Skill Development",
+    icon: Briefcase,
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
+    desc: "Vocational setups, computer labs, and income-generation training for rural youth.",
+    gradient: "from-orange-500 to-orange-700",
+  },
+  {
+    title: "Child Development",
+    icon: Baby,
+    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=800",
+    desc: "Early learning support and safe spaces for children.",
+    gradient: "from-pink-500 to-pink-700",
+  },
+  {
+    title: "Environment & Climate",
+    icon: Sprout,
+    image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800",
+    desc: "Water governance, biodiversity, and sustainable farming initiatives.",
+    gradient: "from-teal-500 to-teal-700",
+  },
+  {
+    title: "Disaster Relief",
+    icon: LifeBuoy,
+    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=800",
+    desc: "Rapid-response relief support for communities facing crisis.",
+    gradient: "from-red-500 to-red-700",
+  },
+];
+
+const bentoProgramTags = ["Education", "Health", "Nutrition", "Water", "Livelihood", "Women", "Youth", "Climate", "Agriculture", "Digital Literacy"];
 
 export default function Programs() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [bentoRef, bentoVisible] = useScrollReveal<HTMLElement>();
+
+  const EducationIcon = bentoPrograms[0].icon;
+  const HealthcareIcon = bentoPrograms[1].icon;
+  const WomenIcon = bentoPrograms[2].icon;
+  const LivelihoodIcon = bentoPrograms[3].icon;
 
   const programList = [
     {
@@ -122,8 +217,199 @@ export default function Programs() {
         </div>
       </section>
 
+      {/* --- CORE PROGRAMS BENTO SHOWCASE --- */}
+      <section ref={bentoRef} className="relative overflow-hidden py-20 lg:py-28">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 via-white to-purple-50/30" />
+          <div className="absolute top-[-5%] left-[15%] w-[420px] h-[420px] bg-sky-100/40 rounded-full blur-[130px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[0%] right-[10%] w-[380px] h-[380px] bg-pink-100/40 rounded-full blur-[120px] animate-liquid-drift-b" />
+          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-teal-100/30 rounded-full blur-[110px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#78350f_1px,transparent_1px)] [background-size:26px_26px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div
+            className={`text-center max-w-3xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
+              bentoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+              🌱 Our Core Programs
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
+              Creating Sustainable Change Through Every Initiative
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Our programs are designed to strengthen communities, improve lives, and create long-term social impact through innovative and inclusive development initiatives.
+            </p>
+          </div>
+
+          {/* Floating program tags */}
+          <div
+            className={`flex flex-wrap justify-center gap-3 mb-14 transition-all duration-700 ${
+              bentoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            {bentoProgramTags.map((tag, i) => (
+              <span
+                key={tag}
+                className="animate-card-float px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/70 text-xs font-bold text-slate-600 shadow-sm hover:scale-110 hover:text-slate-900 hover:shadow-md transition-all cursor-default"
+                style={{ animationDelay: `${i * 0.3}s` }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Bento ecosystem */}
+          <div className="grid lg:grid-cols-12 gap-6 items-stretch">
+
+            {/* Hero card: Education */}
+            <div
+              className={`lg:col-span-7 transition-all duration-700 ${
+                bentoVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              }`}
+            >
+              <div className="group relative h-full min-h-[420px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_25px_60px_-20px_rgba(37,99,235,0.35)]">
+                <img
+                  src={bentoPrograms[0].image}
+                  alt={bentoPrograms[0].title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${bentoPrograms[0].gradient} opacity-80 mix-blend-multiply`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-light-sweep" />
+                </div>
+                <div className="relative z-10 h-full flex flex-col justify-end p-8 sm:p-10">
+                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
+                    <EducationIcon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">{bentoPrograms[0].title}</h3>
+                  <p className="text-sm text-white/85 leading-relaxed max-w-md mb-6">{bentoPrograms[0].desc}</p>
+                  <Link
+                    href="#programs-listing"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-blue-700 font-bold text-sm w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group/btn"
+                  >
+                    Explore Program <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Right column: Healthcare (medium) + Women Empowerment (tall) */}
+            <div className="lg:col-span-5 flex flex-col gap-6">
+
+              <div
+                className={`transition-all duration-700 ${
+                  bentoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: "150ms" }}
+              >
+                <div className="group relative h-[190px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_45px_-18px_rgba(5,150,105,0.35)]">
+                  <img
+                    src={bentoPrograms[1].image}
+                    alt={bentoPrograms[1].title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${bentoPrograms[1].gradient} opacity-75 mix-blend-multiply`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
+                      <HealthcareIcon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-black text-white">{bentoPrograms[1].title}</h3>
+                    <p className="text-xs text-white/85 mt-1 leading-relaxed">{bentoPrograms[1].desc}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={`flex-1 transition-all duration-700 ${
+                  bentoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: "250ms" }}
+              >
+                <div className="group relative h-full min-h-[210px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_45px_-18px_rgba(147,51,234,0.35)]">
+                  <img
+                    src={bentoPrograms[2].image}
+                    alt={bentoPrograms[2].title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${bentoPrograms[2].gradient} opacity-75 mix-blend-multiply`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
+                      <WomenIcon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-black text-white">{bentoPrograms[2].title}</h3>
+                    <p className="text-xs text-white/85 mt-1 leading-relaxed">{bentoPrograms[2].desc}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Wide banner: Livelihood */}
+            <div
+              className={`lg:col-span-12 transition-all duration-700 ${
+                bentoVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
+              }`}
+              style={{ transitionDelay: "350ms" }}
+            >
+              <div className="group relative h-[220px] rounded-[28px] overflow-hidden border border-white/70 shadow-[0_20px_50px_-18px_rgba(234,88,12,0.35)]">
+                <img
+                  src={bentoPrograms[3].image}
+                  alt={bentoPrograms[3].title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-r ${bentoPrograms[3].gradient} opacity-75 mix-blend-multiply`} />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+                <div className="relative z-10 h-full flex flex-col justify-center p-8 sm:p-10 max-w-lg">
+                  <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform">
+                    <LivelihoodIcon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-2">{bentoPrograms[3].title}</h3>
+                  <p className="text-sm text-white/85 leading-relaxed">{bentoPrograms[3].desc}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating trio: Child Development, Environment, Disaster Relief */}
+            {[4, 5, 6].map((idx, i) => {
+              const FloatingIcon = bentoPrograms[idx].icon;
+              return (
+                <div
+                  key={bentoPrograms[idx].title}
+                  className={`lg:col-span-4 transition-all duration-700 ${
+                    bentoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: `${450 + i * 100}ms` }}
+                >
+                  <div className="group relative h-[180px] rounded-[24px] overflow-hidden border border-white/70 shadow-[0_15px_35px_-16px_rgba(0,0,0,0.25)]">
+                    <img
+                      src={bentoPrograms[idx].image}
+                      alt={bentoPrograms[idx].title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${bentoPrograms[idx].gradient} opacity-70 mix-blend-multiply`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="relative z-10 h-full flex flex-col justify-end p-5">
+                      <div className="w-9 h-9 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
+                        <FloatingIcon className="w-4 h-4 text-white" />
+                      </div>
+                      <h3 className="text-base font-black text-white">{bentoPrograms[idx].title}</h3>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* --- PROGRAMS LISTING --- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+      <section id="programs-listing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
         {filteredPrograms.map((prog, idx) => {
           const isEven = idx % 2 === 0;
           return (
