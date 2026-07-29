@@ -27,8 +27,11 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
-  Gem
+  Gem,
+  UserCircle2,
+  Mail
 } from "lucide-react";
+import { LinkedinIcon } from "@/components/icons/SocialIcons";
 
 function useScrollReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -166,6 +169,22 @@ const coreValues: { title: string; icon: typeof ShieldCheck; desc: string; radiu
   { title: "Sustainability", icon: Sprout, desc: "Progress that holds up long after our involvement ends.", radius: 150, size: 72 },
 ];
 
+const founderProfile = {
+  name: "[ Founder Name ]",
+  title: "[ Founder Title ]",
+  quote:
+    "Add the founder's message here — a few sentences on why the organization exists, what drives its work, and the change it hopes to create.",
+  badges: ["Community Leader", "Social Innovator", "Visionary Leadership", "Impact Driven", "Grassroots Trusted", "Servant Leadership"],
+};
+
+const leadershipTeam: { name: string; role: string; intro: string }[] = [
+  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
+  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
+  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
+  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
+  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
+];
+
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [whoWeAreRef, whoWeAreVisible] = useScrollReveal<HTMLElement>();
@@ -175,11 +194,22 @@ export default function About() {
   const [vmPaused, setVmPaused] = useState(false);
   const [valuesRef, valuesVisible] = useScrollReveal<HTMLElement>();
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
+  const [leadershipRef, leadershipVisible] = useScrollReveal<HTMLElement>();
+  const [teamStart, setTeamStart] = useState(0);
+  const [teamPaused, setTeamPaused] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    if (!leadershipVisible || teamPaused) return;
+    const id = setInterval(() => {
+      setTeamStart((prev) => (prev + 1) % leadershipTeam.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [leadershipVisible, teamPaused]);
 
   useEffect(() => {
     if (!vmVisible || vmPaused) return;
@@ -189,26 +219,6 @@ export default function About() {
     return () => clearInterval(id);
   }, [vmVisible, vmPaused]);
 
-  const team = [
-    {
-      name: "Dr. Ananya Rao",
-      role: "Founder & Executive Director",
-      bio: "An alumnus of TISS with 15+ years in community development and public healthcare initiatives.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
-    },
-    {
-      name: "Mr. Rajeev Hegde",
-      role: "Co-Founder & Head of Operations",
-      bio: "Tech entrepreneur turned social worker. Manages ground projects and multi-state compliance systems.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400"
-    },
-    {
-      name: "Prof. S. Chakrabarti",
-      role: "Board Member & Educational Advisor",
-      bio: "Former Director at NCERT. Advises on rural curriculum building and bridging programs for dropouts.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400"
-    }
-  ];
 
   const documents = [
     { name: "Annual Activity Report 2024-25", size: "3.2 MB", date: "April 2025" },
@@ -967,29 +977,155 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- LEADERSHIP TEAM --- */}
-      <section id="leadership" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-sm font-bold text-emerald-650 uppercase tracking-widest font-sans">Board of trustees</span>
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Our Leadership Team</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-emerald-600 to-amber-500 mx-auto rounded-full"></div>
+      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION --- */}
+      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 py-16 lg:py-20">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-20%] left-[10%] w-[460px] h-[460px] bg-purple-600/15 rounded-full blur-[160px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-20%] right-[5%] w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full border border-amber-300/10" />
+          <div className="bg-noise absolute inset-0 opacity-60" />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {team.map((member, idx) => (
-            <div key={idx} className="bg-white/70 backdrop-blur-md rounded-3xl p-6 border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-              <div className="relative rounded-2xl overflow-hidden mb-6 aspect-square">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" 
-                />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div
+            className={`text-center max-w-2xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
+              leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-amber-300/25 text-amber-200 text-xs font-bold uppercase tracking-wider">
+              👥 Leadership
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+              Leadership That Inspires Change
+            </h2>
+            <p className="text-slate-400 text-base leading-relaxed">
+              The people steering our mission — and the wider team carrying it into every community we work with.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
+
+            {/* Left 55%: Founder showcase */}
+            <div
+              className={`lg:col-span-7 transition-all duration-1000 ${
+                leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              <div className="relative bg-white/[0.04] backdrop-blur-[40px] border border-white/10 rounded-[38px] p-7 sm:p-9 animate-breathing-shadow">
+
+                <div className="flex items-center gap-5">
+                  {/* Portrait placeholder */}
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-purple-500/20 to-amber-400/20 border-2 border-amber-300/30 flex items-center justify-center shrink-0">
+                    <UserCircle2 className="w-14 h-14 text-white/50" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white">{founderProfile.name}</h3>
+                    <p className="text-xs font-bold uppercase tracking-widest text-amber-300 mt-1">{founderProfile.title}</p>
+                    <div className="flex items-center gap-2 mt-3">
+                      <a href="#" aria-label="LinkedIn" className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all">
+                        <LinkedinIcon className="w-3.5 h-3.5" />
+                      </a>
+                      <a href="#" aria-label="Email" className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-slate-300 hover:bg-white/20 hover:scale-110 transition-all">
+                        <Mail className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Executive message */}
+                <div id="exec-message" className="relative mt-7 bg-white/[0.03] border border-white/10 rounded-3xl p-6 overflow-hidden">
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
+                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-light-sweep" />
+                  </div>
+                  <Quote className="w-6 h-6 text-amber-300/70 relative z-10" />
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed italic mt-3 relative z-10">{founderProfile.quote}</p>
+                  <p className="text-[11px] text-slate-500 italic mt-4 relative z-10">[ Signature Placeholder ]</p>
+                </div>
+
+                {/* Achievement badges */}
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {founderProfile.badges.map((badge) => (
+                    <div key={badge} className="p-[1.5px] rounded-full bg-gradient-to-r from-amber-300/40 via-purple-300/30 to-amber-300/40 hover:shadow-[0_0_16px_-4px_rgba(251,191,36,0.4)] transition-shadow">
+                      <div className="px-3 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md">
+                        <span className="text-[11px] font-bold text-slate-200">{badge}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <a
+                  href="#exec-message"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-purple-500 to-amber-400 text-slate-950 font-bold text-sm shadow-[0_15px_40px_-10px_rgba(251,191,36,0.35)] hover:shadow-[0_20px_50px_-15px_rgba(251,191,36,0.45)] hover:-translate-y-0.5 transition-all group mt-7"
+                >
+                  Read Leadership Message <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
               </div>
-              <h3 className="text-lg font-bold text-slate-900">{member.name}</h3>
-              <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3">{member.role}</p>
-              <p className="text-xs text-slate-500 leading-relaxed">{member.bio}</p>
             </div>
-          ))}
+
+            {/* Right 45%: Leadership carousel */}
+            <div
+              className={`lg:col-span-5 transition-all duration-1000 ${
+                leadershipVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+              }`}
+              style={{ transitionDelay: "150ms" }}
+              onMouseEnter={() => setTeamPaused(true)}
+              onMouseLeave={() => setTeamPaused(false)}
+            >
+              <p className="text-xs font-bold uppercase tracking-widest text-amber-300 mb-4">Meet Our Team</p>
+
+              <div className="space-y-3">
+                {[0, 1, 2].map((offset) => {
+                  const member = leadershipTeam[(teamStart + offset) % leadershipTeam.length];
+                  return (
+                    <div
+                      key={`${teamStart}-${offset}`}
+                      className="animate-fade-in group bg-white/[0.04] backdrop-blur-[24px] border border-white/10 rounded-2xl p-4 flex items-center gap-4 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-amber-400/20 border border-amber-300/25 flex items-center justify-center shrink-0">
+                        <UserCircle2 className="w-7 h-7 text-white/40" />
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="text-sm font-bold text-white truncate">{member.name}</h4>
+                        <p className="text-[10px] font-bold uppercase tracking-wide text-amber-300/80">{member.role}</p>
+                        <p className="text-[11px] text-slate-400 mt-1 leading-snug line-clamp-2">{member.intro}</p>
+                      </div>
+                      <div className="flex flex-col gap-1.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href="#" aria-label="LinkedIn" className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                          <LinkedinIcon className="w-3 h-3" />
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Navigation controls */}
+              <div className="flex items-center justify-between mt-5">
+                <button
+                  onClick={() => setTeamStart((p) => (p - 1 + leadershipTeam.length) % leadershipTeam.length)}
+                  aria-label="Previous team member"
+                  className="w-9 h-9 rounded-full border border-amber-300/25 flex items-center justify-center text-amber-300 hover:bg-amber-300/10 hover:-rotate-6 transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+
+                <div className="flex gap-1.5">
+                  {leadershipTeam.map((_, i) => (
+                    <span key={i} className={`h-1.5 rounded-full transition-all ${i === teamStart ? "w-5 bg-amber-300" : "w-1.5 bg-white/20"}`} />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setTeamStart((p) => (p + 1) % leadershipTeam.length)}
+                  aria-label="Next team member"
+                  className="w-9 h-9 rounded-full border border-amber-300/25 flex items-center justify-center text-amber-300 hover:bg-amber-300/10 hover:rotate-6 transition-all"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
