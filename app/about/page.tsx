@@ -33,7 +33,21 @@ import {
   MessageCircle,
   Search,
   BarChart3,
-  Paperclip
+  Paperclip,
+  Minus,
+  TreePine,
+  CheckCircle2,
+  Building2,
+  Landmark,
+  Image as ImageIcon,
+  Users2,
+  Baby,
+  Wheat,
+  HandHeart,
+  GraduationCap,
+  Stethoscope,
+  Leaf,
+  Camera
 } from "lucide-react";
 import { LinkedinIcon } from "@/components/icons/SocialIcons";
 
@@ -207,6 +221,114 @@ const philosophyNotes: PhilosophyNote[] = [
   { step: "07", title: "Long-Term Sustainability", icon: Sprout, note: "still standing after we leave", rotate: "rotate-2" },
 ];
 
+const traditionalPoints = [
+  "Manual Records",
+  "Limited Transparency",
+  "Slow Communication",
+  "Fragmented Reporting",
+  "Limited Community Participation",
+];
+
+type SmartPanel = {
+  title: string;
+  icon: typeof CheckCircle2;
+  detail: string;
+  kind: "stat" | "seal";
+  target?: number;
+  suffix?: string;
+  label?: string;
+};
+
+const smartPanels: SmartPanel[] = [
+  { title: "Real-Time Transparency", icon: Eye, detail: "Progress visible as it happens, not at year-end.", kind: "seal" },
+  { title: "Technology Driven", icon: BarChart3, detail: "Digital tracking replaces paper trails end to end.", kind: "seal" },
+  { title: "Community Participation", icon: Handshake, detail: "Programs co-designed with the people they serve.", kind: "seal" },
+  { title: "Data-Based Decisions", icon: Search, detail: "Every program adjustment is backed by field data.", kind: "seal" },
+  { title: "Measurable Impact", icon: CheckCircle2, detail: "Lives directly supported through our programs.", kind: "stat", target: 15000, suffix: "+", label: "Lives Impacted" },
+  { title: "Long-Term Sustainability", icon: TreePine, detail: "Continuous operation since our 1999 founding.", kind: "stat", target: 27, suffix: "+", label: "Years of Service" },
+];
+
+type PartnerZone = {
+  title: string;
+  icon: typeof Globe2;
+  accent: string;
+  names: string[];
+};
+
+const partnerZones: PartnerZone[] = [
+  {
+    title: "International Development Partners",
+    icon: Globe2,
+    accent: "#5eead4",
+    names: [
+      "German Cooperation (GIZ)",
+      "Great Place To Work",
+      "IDH – Sustainable Trade Initiative",
+      "Fairtrade Foundation",
+      "DKA Austria",
+      "CropLife International",
+      "EKAM USA",
+      "PGNF",
+    ],
+  },
+  {
+    title: "Corporate & CSR Partners",
+    icon: Building2,
+    accent: "#c4b5fd",
+    names: [
+      "Godfrey Phillips India Ltd.",
+      "JSW Foundation",
+      "Reliance Foundation",
+      "Azim Premji Foundation",
+      "Syngenta",
+      "Universal Corporation",
+      "Corteva Agriscience",
+      "ITC Limited",
+      "CropLife India",
+      "Bayer",
+    ],
+  },
+  {
+    title: "Government & Institutional Partners",
+    icon: Landmark,
+    accent: "#fcd34d",
+    names: ["NABARD", "Government of Andhra Pradesh", "Spices Board India", "Bala Vikasa", "AGS"],
+  },
+];
+
+type GalleryCard =
+  | { kind: "image"; category: string; icon: typeof ImageIcon; h: number }
+  | { kind: "story"; title: string; note: string; year: string; h: number };
+
+const galleryCards: GalleryCard[] = [
+  { kind: "image", category: "Our Journey", icon: ImageIcon, h: 420 },
+  { kind: "image", category: "Panorama", icon: ImageIcon, h: 320 },
+  { kind: "story", title: "Where It Began", note: "A short story placeholder describing this moment in our journey.", year: "[ Year ]", h: 420 },
+  { kind: "image", category: "Portrait", icon: UserCircle2, h: 420 },
+  { kind: "image", category: "Community Event", icon: Users2, h: 320 },
+  { kind: "image", category: "Children", icon: Baby, h: 420 },
+  { kind: "image", category: "Farm", icon: Wheat, h: 320 },
+  { kind: "story", title: "Growing Together", note: "A short story placeholder describing this moment in our journey.", year: "[ Year ]", h: 420 },
+  { kind: "image", category: "Volunteer", icon: HandHeart, h: 420 },
+  { kind: "image", category: "Training", icon: GraduationCap, h: 320 },
+  { kind: "image", category: "Healthcare", icon: Stethoscope, h: 420 },
+  { kind: "image", category: "Women Empowerment", icon: Users, h: 320 },
+  { kind: "story", title: "Hands That Help", note: "A short story placeholder describing this moment in our journey.", year: "[ Year ]", h: 420 },
+  { kind: "image", category: "Landscape", icon: ImageIcon, h: 420 },
+  { kind: "image", category: "Environment", icon: Leaf, h: 320 },
+];
+
+const finaleHeadlineLines = ["Together We Can Create", "A Better Tomorrow"];
+
+type FinaleStat = { value: number; suffix: string; label: string };
+
+const finaleStats: FinaleStat[] = [
+  { value: 120, suffix: "+", label: "Communities" },
+  { value: 27, suffix: "+", label: "Years of Service" },
+  { value: 15000, suffix: "+", label: "Lives Impacted" },
+  { value: 20, suffix: "+", label: "Partners" },
+];
+
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [whoWeAreRef, whoWeAreVisible] = useScrollReveal<HTMLElement>();
@@ -220,11 +342,95 @@ export default function About() {
   const [teamStart, setTeamStart] = useState(0);
   const [teamPaused, setTeamPaused] = useState(false);
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
+  const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
+  const [expandedPanel, setExpandedPanel] = useState<number | null>(null);
+  const [statValues, setStatValues] = useState<(number | null)[]>(() => smartPanels.map((p) => (p.kind === "stat" ? 0 : null)));
+  const [partnersRef, partnersVisible] = useScrollReveal<HTMLElement>();
+  const [galleryHeaderRef, galleryHeaderVisible] = useScrollReveal<HTMLDivElement>();
+  const galleryStripRef = useRef<HTMLDivElement>(null);
+  const [galleryScrollPct, setGalleryScrollPct] = useState(0);
+  const galleryDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
+  const [galleryPaused, setGalleryPaused] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    const strip = galleryStripRef.current;
+    if (!strip) return;
+    function updatePct() {
+      if (!strip) return;
+      const max = strip.scrollWidth - strip.clientWidth;
+      setGalleryScrollPct(max > 0 ? strip.scrollLeft / max : 0);
+    }
+    updatePct();
+    strip.addEventListener("scroll", updatePct, { passive: true });
+    return () => strip.removeEventListener("scroll", updatePct);
+  }, []);
+
+  useEffect(() => {
+    const strip = galleryStripRef.current;
+    if (!strip) return;
+    let raf = 0;
+    function drift() {
+      raf = requestAnimationFrame(drift);
+      const el = galleryStripRef.current;
+      if (!el || galleryPaused || galleryDrag.current.active) return;
+      const max = el.scrollWidth - el.clientWidth;
+      if (max <= 0) return;
+      el.scrollLeft = el.scrollLeft >= max - 1 ? 0 : el.scrollLeft + 0.6;
+    }
+    raf = requestAnimationFrame(drift);
+    return () => cancelAnimationFrame(raf);
+  }, [galleryPaused]);
+
+  useEffect(() => {
+    const strip = galleryStripRef.current;
+    if (!strip) return;
+    function onWheel(e: WheelEvent) {
+      if (!strip) return;
+      e.preventDefault();
+      strip.scrollLeft += e.deltaY;
+    }
+    strip.addEventListener("wheel", onWheel, { passive: false });
+    return () => strip.removeEventListener("wheel", onWheel);
+  }, []);
+
+  const [finaleRef, finaleVisible] = useScrollReveal<HTMLElement>();
+  const [finaleStatValues, setFinaleStatValues] = useState<number[]>(() => finaleStats.map(() => 0));
+  const [finaleParallax, setFinaleParallax] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!finaleVisible) return;
+    const duration = 1800;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setFinaleStatValues(finaleStats.map((s) => Math.round(s.value * eased)));
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [finaleVisible]);
+
+  useEffect(() => {
+    if (!compareVisible) return;
+    const duration = 1600;
+    const start = performance.now();
+    let rafId: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setStatValues(smartPanels.map((p) => (p.kind === "stat" && p.target ? p.target * eased : null)));
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [compareVisible]);
 
   useEffect(() => {
     if (!leadershipVisible || teamPaused) return;
@@ -1263,6 +1469,345 @@ export default function About() {
         </div>
       </section>
 
+      {/* --- WHY CHOOSE US SECTION (TRUST COMPARISON EXPERIENCE) --- */}
+      <section ref={compareRef} className="relative overflow-hidden bg-white py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div
+            className={`text-center max-w-2xl mx-auto mb-7 space-y-2 transition-all duration-700 ${
+              compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider">
+              Why Choose Us
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900">
+              Two Approaches. One Clear Difference.
+            </h2>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              See how our way of working stacks up against the traditional NGO model.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-[1fr_64px_1fr] border border-slate-200 overflow-hidden">
+
+            {/* Left: Traditional NGO */}
+            <div
+              className={`bg-stone-200 p-6 sm:p-8 flex flex-col justify-center transition-all duration-700 ${
+                compareVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              }`}
+            >
+              <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">Traditional Approach</span>
+              <h3 className="text-xl font-bold text-stone-600 mt-1.5">The Old Way</h3>
+              <div className="mt-4 border-t border-stone-300/80">
+                {traditionalPoints.map((point) => (
+                  <div key={point} className="flex items-center gap-3 py-2 border-b border-stone-300/80 opacity-80">
+                    <span className="w-5 h-5 rounded-full bg-stone-300 flex items-center justify-center shrink-0">
+                      <Minus className="w-3 h-3 text-stone-500" />
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-stone-600">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Center: transformation bridge */}
+            <div className="hidden lg:flex relative flex-col items-center justify-center bg-slate-50">
+              <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-slate-300" />
+              {compareVisible && (
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 w-1 h-14 bg-gradient-to-b from-transparent via-emerald-400 to-transparent"
+                  style={{ animationName: "beam-travel", animationDuration: "3s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}
+                />
+              )}
+              <div className="relative z-10 w-14 h-14 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-md">
+                <TreePine className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div
+                className="absolute w-1.5 h-1.5 rounded-full bg-emerald-400/70"
+                style={{ top: "20%", left: "60%", animationName: "float-particle", animationDuration: "5s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}
+              />
+              <div
+                className="absolute w-1 h-1 rounded-full bg-amber-400/70"
+                style={{ top: "72%", left: "35%", animationName: "float-particle", animationDuration: "5s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite", animationDelay: "1.4s" }}
+              />
+            </div>
+
+            {/* Right: Our NGO */}
+            <div
+              className={`relative bg-white p-6 sm:p-8 flex flex-col justify-center overflow-hidden transition-all duration-700 ${
+                compareVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+              <div className="absolute top-0 right-0 w-28 h-28 bg-emerald-500" style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }} />
+              <div className="absolute top-0 right-0 w-14 h-14 bg-amber-400" style={{ clipPath: "polygon(100% 0, 40% 0, 100% 60%)" }} />
+
+              <span className="relative z-10 text-[11px] font-bold uppercase tracking-widest text-emerald-600">Our Smart NGO Approach</span>
+              <h3 className="relative z-10 text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">The Smarter Way</h3>
+
+              <div className="relative z-10 mt-4 space-y-1.5">
+                {smartPanels.map((panel, i) => {
+                  const isExpanded = expandedPanel === i;
+                  const borderColors = ["border-emerald-500", "border-cyan-500", "border-amber-500"];
+                  return (
+                    <div
+                      key={panel.title}
+                      onMouseEnter={() => setExpandedPanel(i)}
+                      onMouseLeave={() => setExpandedPanel(null)}
+                      className={`border-l-4 ${borderColors[i % borderColors.length]} bg-slate-50 pl-4 pr-4 transition-all duration-300 cursor-default ${
+                        isExpanded ? "py-3" : "py-1.5"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <panel.icon className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                        <span className="text-xs sm:text-sm font-bold text-slate-900">{panel.title}</span>
+                      </div>
+                      {isExpanded && (
+                        <div className="mt-2 animate-fade-in">
+                          {panel.kind === "stat" ? (
+                            <div className="flex items-baseline gap-2">
+                              <span className="text-xl font-black text-emerald-600">
+                                {Math.round(statValues[i] ?? 0).toLocaleString("en-IN")}
+                                {panel.suffix}
+                              </span>
+                              <span className="text-[10px] font-bold uppercase text-slate-500">{panel.label}</span>
+                            </div>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 uppercase tracking-wide">
+                              <ShieldCheck className="w-3 h-3" /> Verified Practice
+                            </span>
+                          )}
+                          <p className="text-xs text-slate-500 mt-1">{panel.detail}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`text-center mt-6 transition-all duration-700 ${
+              compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "500ms" }}
+          >
+            <a
+              href="/impact"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-600 text-white font-bold text-sm border-2 border-emerald-600 hover:bg-white hover:text-emerald-600 transition-colors duration-300"
+            >
+              See Our Difference <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* --- OUR PARTNERS & RECOGNITION SECTION (TRUST NETWORK) --- */}
+      <section ref={partnersRef} className="relative overflow-hidden bg-aurora py-16 lg:py-20">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -left-16 w-[420px] h-[420px] rounded-full bg-emerald-500/25 blur-[110px] animate-smoke-a" />
+          <div className="absolute top-1/3 -right-20 w-[460px] h-[460px] rounded-full bg-fuchsia-500/20 blur-[120px] animate-smoke-b" />
+          <div className="absolute -bottom-28 left-1/3 w-[400px] h-[400px] rounded-full bg-cyan-500/20 blur-[110px] animate-smoke-c" />
+          <div className="absolute inset-0 bg-noise opacity-[0.08]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div
+            className={`text-center max-w-2xl mx-auto mb-12 space-y-3 transition-all duration-700 ${
+              partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Trusted Worldwide
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
+              Organizations That Believe In Our Mission
+            </h2>
+            <p className="text-white/60 text-sm sm:text-base leading-relaxed">
+              A growing trust network of international, corporate, and government partners powering our work.
+            </p>
+          </div>
+
+          {/* Trust core */}
+          <div
+            className={`flex justify-center mb-4 transition-all duration-1000 ${
+              partnersVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
+            }`}
+          >
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white/10 backdrop-blur-xl border border-white/25 flex items-center justify-center animate-glass-glow">
+              <div className="absolute -inset-3 rounded-full border border-white/10" />
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white text-center leading-relaxed">
+                Our
+                <br />
+                Partners
+              </p>
+            </div>
+          </div>
+
+          {/* Three partnership marquee zones */}
+          <div className="space-y-8">
+            {partnerZones.map((zone, zi) => {
+              const ZoneIcon = zone.icon;
+              const loop = [...zone.names, ...zone.names];
+              return (
+                <div
+                  key={zone.title}
+                  className={`partner-row transition-all duration-700 ${
+                    partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: `${350 + zi * 150}ms` }}
+                >
+                  <div className="flex items-center gap-2 mb-4 px-1">
+                    <ZoneIcon className="w-4 h-4" style={{ color: zone.accent }} />
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-white/70">{zone.title}</p>
+                  </div>
+
+                  <div className="relative overflow-hidden">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b1120] to-transparent z-10" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0b1120] to-transparent z-10" />
+                    <div className={`flex w-max gap-4 ${zi % 2 === 0 ? "partner-track" : "partner-track-reverse"}`}>
+                      {loop.map((name, i) => (
+                        <div
+                          key={`${name}-${i}`}
+                          className="group shrink-0 w-52 h-20 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 hover:bg-white/14 hover:border-white/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center px-4"
+                        >
+                          <span
+                            className="text-sm font-bold text-white/85 text-center leading-snug group-hover:text-white transition-colors duration-300"
+                          >
+                            {name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            className={`text-center mt-12 transition-all duration-700 ${
+              partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "900ms" }}
+          >
+            <a
+              href="/csr"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/10 backdrop-blur-md text-white font-bold text-sm border border-white/25 hover:bg-white hover:text-[#0b1120] transition-colors duration-300 rounded-full"
+            >
+              Become Our Partner <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* --- GALLERY PREVIEW SECTION (FLOWING HORIZONTAL GALLERY) --- */}
+      <section className="relative overflow-hidden bg-aurora-light py-14 lg:py-16">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-20 -left-10 w-[380px] h-[380px] rounded-full bg-rose-200/40 blur-[100px] animate-liquid-drift-a" />
+          <div className="absolute top-1/3 -right-16 w-[420px] h-[420px] rounded-full bg-amber-200/40 blur-[110px] animate-liquid-drift-b" />
+          <div className="absolute -bottom-24 left-1/3 w-[360px] h-[360px] rounded-full bg-violet-200/30 blur-[100px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 bg-noise opacity-[0.5]" />
+        </div>
+
+        <div className="relative z-10">
+          <div
+            ref={galleryHeaderRef}
+            className={`max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 space-y-3 transition-all duration-700 ${
+              galleryHeaderVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md border border-white/60 text-[#9a6b3f] text-xs font-bold uppercase tracking-wider">
+              <Camera className="w-3.5 h-3.5" /> Our Journey Through Images
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#2b2723]">
+              Every Picture Tells A Story Of Hope
+            </h2>
+            <p className="text-[#6b655c] text-sm sm:text-base leading-relaxed">
+              Drag, scroll, or just watch it flow — a glimpse of the moments and people our work touches.
+            </p>
+          </div>
+
+          <div
+            ref={galleryStripRef}
+            className="relative flex gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none"
+            onMouseEnter={() => setGalleryPaused(true)}
+            onMouseLeave={() => {
+              setGalleryPaused(false);
+              galleryDrag.current.active = false;
+            }}
+            onMouseDown={(e) => {
+              const strip = galleryStripRef.current;
+              if (!strip) return;
+              galleryDrag.current = { active: true, startX: e.clientX, startScroll: strip.scrollLeft };
+            }}
+            onMouseMove={(e) => {
+              const strip = galleryStripRef.current;
+              if (!strip || !galleryDrag.current.active) return;
+              strip.scrollLeft = galleryDrag.current.startScroll - (e.clientX - galleryDrag.current.startX);
+            }}
+            onMouseUp={() => (galleryDrag.current.active = false)}
+          >
+            {galleryCards.map((card, i) => {
+              const offsetClass = i % 3 === 1 ? "translate-y-4" : i % 3 === 2 ? "-translate-y-2" : "";
+              if (card.kind === "story") {
+                return (
+                  <div
+                    key={`story-${i}`}
+                    className={`group shrink-0 w-64 rounded-[28px] bg-white/45 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.35)] p-6 flex flex-col justify-center ${offsetClass}`}
+                    style={{ height: card.h }}
+                  >
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#b6813f]">{card.year}</p>
+                    <h3 className="text-lg font-bold text-[#2b2723] mt-2">{card.title}</h3>
+                    <p className="text-xs text-[#6b655c] mt-2 leading-relaxed">{card.note}</p>
+                    <div className="w-8 h-px bg-[#b6813f]/50 mt-4" />
+                  </div>
+                );
+              }
+              const CardIcon = card.icon;
+              return (
+                <div
+                  key={`${card.category}-${i}`}
+                  className={`group relative shrink-0 w-48 sm:w-56 rounded-[28px] overflow-hidden bg-white/35 backdrop-blur-xl border border-white/60 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a]/60 transition-all duration-500 ${offsetClass}`}
+                  style={{ height: card.h }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-[#d4af6a]/10" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <CardIcon className="w-7 h-7 text-[#b6813f]/35 group-hover:text-[#b6813f]/60 group-hover:scale-110 transition-all duration-500" />
+                  </div>
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#8a6633]">{card.category}</p>
+                    <p className="text-[9px] text-[#8a6633]/60 mt-0.5">[ Gallery Image ]</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="max-w-xs mx-auto mt-6 px-4">
+            <div className="h-[3px] rounded-full bg-white/50 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#d4af6a] to-[#b6813f] transition-[width] duration-150 ease-out"
+                style={{ width: `${Math.max(galleryScrollPct * 100, 8)}%` }}
+              />
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <a
+              href="/gallery"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/50 backdrop-blur-md text-[#2b2723] font-bold text-sm border border-[#d4af6a]/60 hover:bg-white/70 transition-colors duration-300 rounded-full"
+            >
+              View Complete Gallery <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* --- LEGAL COMPLIANCE & TRANSPARENCY DOCUMENTS --- */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200/50">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -1301,6 +1846,213 @@ export default function About() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* --- IMPACT FINALE CTA SECTION --- */}
+      <section
+        ref={finaleRef}
+        className="relative min-h-screen flex items-center overflow-hidden"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          setFinaleParallax({
+            x: ((e.clientX - rect.left) / rect.width - 0.5) * 2,
+            y: ((e.clientY - rect.top) / rect.height - 0.5) * 2,
+          });
+        }}
+      >
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[#fdf2e4]" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 60% at 12% 90%, rgba(255,138,101,0.35), transparent 65%), radial-gradient(ellipse 60% 55% at 88% 8%, rgba(245,185,66,0.3), transparent 65%), radial-gradient(ellipse 55% 55% at 50% 105%, rgba(255,213,170,0.45), transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute -bottom-[60%] -left-[30%] w-[160%] h-[160%] opacity-[0.1] animate-ray-rotate"
+            style={{
+              background:
+                "conic-gradient(from 0deg, transparent 0deg, rgba(245,185,66,0.6) 6deg, transparent 18deg, transparent 160deg, rgba(255,138,101,0.5) 172deg, transparent 184deg, transparent 360deg)",
+            }}
+          />
+          <div className="absolute inset-0 bg-noise opacity-[0.35]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_380px] gap-12 lg:gap-16 items-center py-20">
+
+          {/* LEFT — emotional typography + CTAs */}
+          <div>
+            <h2 className="text-[2.5rem] sm:text-6xl lg:text-[4.5rem] font-black leading-[1.05] tracking-tight text-[#2b1d10]">
+              {finaleHeadlineLines.map((line, i) => (
+                <span key={line} className="block overflow-hidden pb-1">
+                  <span
+                    className={`block transition-all duration-1000 ease-out ${
+                      finaleVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                    }`}
+                    style={{ transitionDelay: `${i * 180}ms` }}
+                  >
+                    {line}
+                  </span>
+                </span>
+              ))}
+            </h2>
+
+            <p
+              className={`max-w-md text-[#5c4a38] text-base sm:text-lg leading-relaxed mt-6 transition-all duration-700 ${
+                finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "450ms" }}
+            >
+              Every contribution, every hour, every voice moves communities closer to a future
+              they build on their own strength. This is where you come in.
+            </p>
+
+            <div
+              className={`flex flex-wrap items-center gap-4 mt-8 transition-all duration-700 ${
+                finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "600ms" }}
+            >
+              <a
+                href="/csr"
+                className="group inline-flex items-center gap-3 pl-8 pr-7 py-4 bg-[#d1481f] text-white font-bold text-sm rounded-full shadow-[0_20px_45px_-15px_rgba(209,72,31,0.55)] transition-[padding] duration-500 hover:pr-10"
+              >
+                Become A Partner
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-500" />
+              </a>
+
+              <a
+                href="/volunteer"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 border-2 border-[#c98a4b] text-[#8a5a2a] font-bold text-sm rounded-full overflow-hidden"
+              >
+                <span className="absolute inset-0 bg-[#c98a4b] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+                <span className="relative z-10 group-hover:text-white transition-colors duration-500">Volunteer With Us</span>
+              </a>
+            </div>
+
+            <div
+              className={`mt-5 transition-all duration-700 ${finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              style={{ transitionDelay: "750ms" }}
+            >
+              <a href="/donate" className="group inline-flex items-center gap-1.5 text-[#8a5a2a] font-bold text-sm hover:underline underline-offset-4">
+                Support Our Mission
+                <ArrowRight className="w-4 h-4 group-hover:w-6 transition-all duration-300" />
+              </a>
+            </div>
+
+            <div
+              className={`flex flex-wrap gap-x-10 gap-y-6 mt-12 pt-8 border-t border-[#c98a4b]/20 transition-all duration-700 ${
+                finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "900ms" }}
+            >
+              {finaleStats.map((s, i) => (
+                <div key={s.label} className="group cursor-default">
+                  <p className="text-3xl sm:text-4xl font-black text-[#c1481f] group-hover:scale-105 transition-transform duration-300">
+                    {finaleStatValues[i].toLocaleString()}
+                    {s.suffix}
+                  </p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#8a5a2a]/70 mt-1">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — abstract symbolic artwork */}
+          <div
+            className={`relative h-[340px] lg:h-[480px] flex items-center justify-center transition-all duration-[1400ms] ease-out ${
+              finaleVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+            }`}
+            style={{ transformOrigin: "bottom center" }}
+          >
+            <div
+              className="w-full h-full transition-transform duration-300 ease-out"
+              style={{ transform: `translate(${finaleParallax.x * 10}px, ${finaleParallax.y * 8}px)` }}
+            >
+              <svg viewBox="0 0 400 500" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="sunGlow" cx="50%" cy="88%" r="55%">
+                    <stop offset="0%" stopColor="#f5b942" stopOpacity="0.55" />
+                    <stop offset="100%" stopColor="#f5b942" stopOpacity="0" />
+                  </radialGradient>
+                  <linearGradient id="canopyGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#6b9d6e" />
+                    <stop offset="100%" stopColor="#4b7a52" />
+                  </linearGradient>
+                </defs>
+
+                <circle cx="200" cy="440" r="150" fill="url(#sunGlow)" />
+                {[60, 100, 140].map((r) => (
+                  <path
+                    key={r}
+                    d={`M ${200 - r} 440 A ${r} ${r} 0 0 1 ${200 + r} 440`}
+                    stroke="#d1481f"
+                    strokeOpacity="0.25"
+                    strokeWidth="1.5"
+                  />
+                ))}
+
+                <path
+                  d="M 30 448 C 100 430, 160 460, 220 440 C 280 422, 330 448, 390 434"
+                  stroke="#c98a4b"
+                  strokeOpacity="0.4"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+
+                <path d="M 200 440 C 198 360, 202 300, 200 250" stroke="#8a5a2a" strokeWidth="6" strokeLinecap="round" />
+                <path d="M 200 300 C 170 280, 140 260, 110 235" stroke="#8a5a2a" strokeWidth="4" strokeLinecap="round" fill="none" />
+                <path d="M 200 300 C 230 280, 260 260, 290 235" stroke="#8a5a2a" strokeWidth="4" strokeLinecap="round" fill="none" />
+                <path d="M 200 260 C 190 220, 190 190, 200 160" stroke="#8a5a2a" strokeWidth="4" strokeLinecap="round" fill="none" />
+
+                {[
+                  { cx: 110, cy: 235, r: 34 },
+                  { cx: 290, cy: 235, r: 34 },
+                  { cx: 200, cy: 160, r: 46 },
+                  { cx: 155, cy: 195, r: 26 },
+                  { cx: 245, cy: 195, r: 26 },
+                ].map((c, i) => (
+                  <circle key={i} cx={c.cx} cy={c.cy} r={c.r} fill="url(#canopyGrad)" fillOpacity="0.75" />
+                ))}
+
+                {[
+                  { x: 90, y: 90 },
+                  { x: 300, y: 70 },
+                  { x: 250, y: 110 },
+                ].map((b, i) => (
+                  <path
+                    key={i}
+                    d={`M ${b.x} ${b.y} q 8 -6 16 0 q 8 -6 16 0`}
+                    stroke="#c1481f"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    fill="none"
+                    className="animate-bird-bob"
+                    style={{ animationDelay: `${i * 0.6}s` }}
+                  />
+                ))}
+
+                {[
+                  { x: 130, y: 420 },
+                  { x: 260, y: 430 },
+                  { x: 180, y: 410 },
+                  { x: 220, y: 425 },
+                ].map((p, i) => (
+                  <circle
+                    key={i}
+                    cx={p.x}
+                    cy={p.y}
+                    r="3"
+                    fill="#f5b942"
+                    className="animate-seed-rise"
+                    style={{ animationDelay: `${i * 1.4}s` }}
+                  />
+                ))}
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
