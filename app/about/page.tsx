@@ -29,7 +29,11 @@ import {
   ChevronRight,
   Gem,
   UserCircle2,
-  Mail
+  Mail,
+  MessageCircle,
+  Search,
+  BarChart3,
+  Paperclip
 } from "lucide-react";
 import { LinkedinIcon } from "@/components/icons/SocialIcons";
 
@@ -185,6 +189,24 @@ const leadershipTeam: { name: string; role: string; intro: string }[] = [
   { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
 ];
 
+type PhilosophyNote = {
+  step: string;
+  title: string;
+  icon: typeof MessageCircle;
+  note: string;
+  rotate: string;
+};
+
+const philosophyNotes: PhilosophyNote[] = [
+  { step: "01", title: "Community Listening", icon: MessageCircle, note: "starts with ears, not plans", rotate: "-rotate-3" },
+  { step: "02", title: "Need Assessment", icon: Search, note: "verify before we design", rotate: "rotate-2" },
+  { step: "03", title: "Collaborative Planning", icon: Compass, note: "built with, not for", rotate: "rotate-3" },
+  { step: "04", title: "Transparent Execution", icon: Handshake, note: "no hidden line items", rotate: "-rotate-2" },
+  { step: "05", title: "Continuous Monitoring", icon: Eye, note: "check-ins, not check-outs", rotate: "rotate-1" },
+  { step: "06", title: "Impact Measurement", icon: BarChart3, note: "outcomes over activity", rotate: "-rotate-3" },
+  { step: "07", title: "Long-Term Sustainability", icon: Sprout, note: "still standing after we leave", rotate: "rotate-2" },
+];
+
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [whoWeAreRef, whoWeAreVisible] = useScrollReveal<HTMLElement>();
@@ -197,6 +219,7 @@ export default function About() {
   const [leadershipRef, leadershipVisible] = useScrollReveal<HTMLElement>();
   const [teamStart, setTeamStart] = useState(0);
   const [teamPaused, setTeamPaused] = useState(false);
+  const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
@@ -1123,6 +1146,117 @@ export default function About() {
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- OUR WORKING PHILOSOPHY SECTION (STRATEGY BLUEPRINT STUDIO) --- */}
+      <section ref={philosophyRef} className="relative overflow-hidden bg-[#f6f0e4] py-14 lg:py-16">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.5] bg-[linear-gradient(rgba(107,101,96,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(107,101,96,0.06)_1px,transparent_1px)] [background-size:40px_40px]" />
+          <div className="absolute inset-0 bg-noise opacity-[0.5]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+
+            {/* Left 40%: editorial intro */}
+            <div
+              className={`lg:col-span-4 transition-all duration-700 ${
+                philosophyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-1 h-16 bg-[#c2540f] mt-2 shrink-0" />
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#c2540f]">Our Working Philosophy</p>
+                  <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b2723] mt-3 leading-tight">
+                    How We Think Before We Act
+                  </h2>
+                </div>
+              </div>
+              <p className="text-[#5a5550] text-sm sm:text-base leading-relaxed mt-5">
+                Every program starts on paper, not in the field — mapped, questioned, and stress-tested before a single rupee moves. This is the working process behind everything we build.
+              </p>
+
+              <a
+                href="/programs"
+                className="group inline-flex items-center gap-2 mt-7 text-[#2b2723] font-bold text-sm"
+              >
+                <span className="bg-[#c2540f] text-white px-6 py-3.5 inline-flex items-center gap-2 group-hover:bg-[#a8480c] transition-colors">
+                  See The Process In Action
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </a>
+
+              <div className="flex gap-8 mt-9 pt-6 border-t border-[#d9cfb8]">
+                <div>
+                  <p className="font-serif text-2xl font-bold text-[#2b2723]">7</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wide text-[#8a8378] mt-1">Planning Stages</p>
+                </div>
+                <div>
+                  <p className="font-serif text-2xl font-bold text-[#2b2723]">27+</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wide text-[#8a8378] mt-1">Years Refined</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right 60%: blueprint canvas */}
+            <div
+              className={`lg:col-span-8 transition-all duration-1000 ${
+                philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
+              style={{ transitionDelay: "150ms" }}
+            >
+              <div className="relative bg-[#fbf8f1] border border-[#e0d5bd] rounded-sm p-6 sm:p-8 shadow-[0_20px_50px_-25px_rgba(43,39,35,0.3)]">
+                <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" aria-hidden="true">
+                  <path
+                    d="M60,40 Q180,10 300,60 T540,50 Q650,90 720,50"
+                    fill="none"
+                    stroke="#b5651d"
+                    strokeWidth="1.5"
+                    strokeDasharray="900"
+                    className={philosophyVisible ? "animate-draw-connector" : ""}
+                  />
+                </svg>
+
+                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
+                  {philosophyNotes.map((note, i) => (
+                    <div
+                      key={note.step}
+                      className={`group relative bg-white border border-[#e5dbc4] p-4 shadow-[0_8px_20px_-10px_rgba(43,39,35,0.35)] hover:shadow-[0_14px_28px_-12px_rgba(43,39,35,0.4)] hover:-translate-y-1.5 hover:rotate-0 transition-all duration-300 ${note.rotate} ${
+                        philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                      }`}
+                      style={{ transitionDelay: `${i * 90}ms` }}
+                    >
+                      <Paperclip className="absolute -top-2.5 -left-1.5 w-5 h-5 text-[#8a8378] -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                      <div className="absolute bottom-0 right-0 w-0 h-0 border-b-[14px] border-l-[14px] border-b-[#e5dbc4] border-l-transparent" />
+                      <p className="text-[10px] font-bold text-[#b5651d]">{note.step}</p>
+                      <note.icon className="w-5 h-5 text-[#2b2723] mt-1.5" />
+                      <h3 className="text-xs font-bold text-[#2b2723] mt-2 leading-snug">{note.title}</h3>
+                      <p className="text-[10px] italic text-[#8a8378] mt-1.5">— {note.note}</p>
+                    </div>
+                  ))}
+
+                  {/* Pinned image placeholder */}
+                  <div
+                    className={`relative bg-white border border-[#e5dbc4] p-2 shadow-[0_8px_20px_-10px_rgba(43,39,35,0.35)] hover:-translate-y-1.5 hover:rotate-0 transition-all duration-300 rotate-1 ${
+                      philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                    }`}
+                    style={{ transitionDelay: `${philosophyNotes.length * 90}ms` }}
+                  >
+                    <Paperclip className="absolute -top-2.5 -left-1.5 w-5 h-5 text-[#8a8378] -rotate-45" />
+                    <div className="relative w-full h-full min-h-[96px] overflow-hidden">
+                      <img
+                        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600"
+                        alt="NGO working process"
+                        className="absolute inset-0 w-full h-full object-cover grayscale-[20%]"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
