@@ -135,3 +135,63 @@ export function derivePartnerType(funder: string): string {
   if (funder.includes("Foundation") || funder.includes("CSR")) return "CSR & Foundation Partner";
   return "Corporate Partner";
 }
+
+export function extractVillageCount(project: Project): number | null {
+  const match = project.beneficiaries.match(/(\d[\d,]*)\s*villages/i);
+  if (!match) return null;
+  return parseInt(match[1].replace(/,/g, ""), 10);
+}
+
+export type FieldStory = {
+  title: string;
+  quote: string;
+  person: string;
+  place: string;
+  keywords: string[];
+};
+
+// Real, documented EFFORT field case studies (from the organisation's own case-study
+// records for its Prakasam district sustainable-agriculture and livelihoods work).
+// Matched to a project by theme, not by exact funding line — captioned accordingly.
+export const fieldStories: FieldStory[] = [
+  {
+    title: "Turning Pest Losses Into a Thriving Chilli Farm",
+    quote:
+      "This journey has changed my life and given me hope for a better future. I can support my family, contribute to my child's education, and purchase essential amenities for my home.",
+    person: "Srinivasa Reddy, Chilli Farmer",
+    place: "Dornala Mandal, Prakasam District",
+    keywords: ["chilli", "pest", "ipm", "cultivation"],
+  },
+  {
+    title: "Good Agricultural Practices, A New Season of Income",
+    quote:
+      "By adopting intercropping, she effectively utilised her land and resources, reduced risks, and improved soil health — a story that inspires other farmers to embrace sustainable techniques.",
+    person: "Ambati Thasamma, Farmer",
+    place: "Dornala Mandal, Prakasam District",
+    keywords: ["chilli", "sustainable", "organic", "farming"],
+  },
+  {
+    title: "From Hours of Grass-Cutting to Minutes a Day",
+    quote:
+      "She now spends only 10–15 minutes cutting grass, compared to hours spent earlier — and her family's monthly income has grown by over ₹4,000.",
+    person: "Ananthalakshmi, Dairy Farmer",
+    place: "Bestavaripeta Mandal, Prakasam District",
+    keywords: ["dairy", "fodder", "livestock", "livelihood", "women"],
+  },
+  {
+    title: "Turning Fodder Seed Into a New Revenue Stream",
+    quote:
+      "Determined not to depend on expensive market seed, he harvested and sold his own — resolving to keep improving his financial independence.",
+    person: "U. Ramaiah, Dairy Farmer",
+    place: "Peddaraveedu Mandal, Prakasam District",
+    keywords: ["dairy", "fodder", "livestock", "animal husbandry", "veterinary"],
+  },
+];
+
+export function findFieldStory(project: Project): FieldStory | null {
+  const text = (project.name + " " + project.beneficiaries).toLowerCase();
+  for (const story of fieldStories) {
+    if (story.keywords.some((k) => text.includes(k))) return story;
+  }
+  return null;
+}
