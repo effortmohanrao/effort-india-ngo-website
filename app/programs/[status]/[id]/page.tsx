@@ -334,154 +334,86 @@ function AchievementCard({
 
 function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
   const [entered, setEntered] = useState(false);
-  const [celebrating, setCelebrating] = useState(true);
   useEffect(() => {
-    const t1 = setTimeout(() => setEntered(true), 150);
-    const t2 = setTimeout(() => setCelebrating(false), 2400);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
+    const t = setTimeout(() => setEntered(true), 150);
+    return () => clearTimeout(t);
   }, []);
-
-  const burst = (seed: number) =>
-    Array.from({ length: 6 }).map((_, i) => ({
-      pos: `${5 + i * 15}%`,
-      delay: (i * 0.25 + seed).toFixed(2),
-      dur: (1.6 + (i % 3) * 0.3).toFixed(2),
-      width: i % 2 === 0 ? 3 : 6,
-      height: i % 2 === 0 ? 11 : 6,
-      shape: i % 2 === 0 ? "rounded-full" : "rounded-[2px]",
-      color: ["bg-emerald-400", "bg-amber-400", "bg-sky-400", "bg-[#d4af6a]", "bg-white", "bg-rose-300"][i % 6],
-    }));
-  const burstTL = useMemo(() => burst(0), []);
-  const burstTR = useMemo(() => burst(0.15), []);
-  const ambient = useMemo(
-    () =>
-      Array.from({ length: 6 }).map((_, i) => ({
-        left: `${8 + i * 15}%`,
-        top: `${20 + ((i * 37) % 60)}%`,
-        delay: (i * 0.7).toFixed(2),
-      })),
-    []
-  );
 
   return (
     <div className="relative">
-      {/* Success seal — sibling of the clipped card, so it never gets cropped */}
-      {isCompleted && (
-        <div className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] rounded-full bg-gradient-to-br from-[#f2c78a] via-[#d4af6a] to-[#b8860b] shadow-[0_15px_30px_-10px_rgba(180,140,40,0.55)] flex flex-col items-center justify-center border-[3px] border-white z-30 hover:rotate-12 transition-transform duration-500">
-          <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-          <span className="text-[6px] sm:text-[6.5px] font-black text-white uppercase tracking-wider mt-0.5 text-center leading-tight">
-            Verified
-            <br />
-            Complete
-          </span>
-        </div>
-      )}
-
       <div
-        className={`group/prog relative overflow-hidden rounded-[40px] p-5 sm:p-6 border border-[#e2ecdf] shadow-[0_30px_60px_-30px_rgba(80,120,100,0.35)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_40px_75px_-25px_rgba(80,140,120,0.4)] ${
+        className={`group/prog relative overflow-hidden rounded-[36px] p-6 sm:p-8 bg-white/90 backdrop-blur-2xl border-2 border-[#e2ecdf] shadow-[0_25px_60px_-20px_rgba(80,120,100,0.3)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_35px_75px_-20px_rgba(80,140,120,0.4)] ${
           entered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-[0.92] translate-y-6"
         }`}
       >
-        {/* Background: pearl aurora + soft corner glows + particles (no repeated line pattern) */}
-        <div className="pointer-events-none absolute inset-0 bg-pearl-aurora" />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.4] bg-noise" />
+        {/* Ambient Glow & Particles */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-amber-50/40 to-sky-50/50" />
         <div className="pointer-events-none absolute -top-16 -left-10 w-52 h-52 rounded-full bg-emerald-200/40 blur-[70px]" />
-        <div className="pointer-events-none absolute -bottom-20 -right-10 w-56 h-56 rounded-full bg-sky-200/40 blur-[80px]" />
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-amber-200/30 blur-[70px]" />
-        {ambient.map((a, i) => (
-          <div
-            key={i}
-            className="pointer-events-none absolute w-1 h-1 rounded-full bg-[#d4af6a] animate-ambient-drift"
-            style={{ left: a.left, top: a.top, animationDelay: `${a.delay}s` }}
-          />
-        ))}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-0 group-hover/prog:opacity-100 transition-opacity duration-700"
-          style={{ background: "radial-gradient(320px circle at 25% 25%, rgba(255,255,255,0.6), transparent 70%)" }}
-        />
+        <div className="pointer-events-none absolute -bottom-20 -right-10 w-56 h-56 rounded-full bg-amber-200/40 blur-[80px]" />
+        <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.2]" />
 
-        {/* Success celebration (first 2.4s) */}
-        {isCompleted && celebrating && (
-          <>
-            <div className="pointer-events-none absolute top-0 left-0 w-24 h-28 overflow-hidden z-20">
-              {burstTL.map((p, i) => (
-                <span
-                  key={i}
-                  className={`absolute top-0 ${p.shape} ${p.color} animate-ribbon-fall`}
-                  style={{ left: p.pos, width: p.width, height: p.height, animationDuration: `${p.dur}s`, animationDelay: `${p.delay}s` }}
-                />
-              ))}
+        <div className="relative z-10 space-y-6">
+          {/* Header Row: Label & Inline Status Badge */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200/80">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#221c0c]">
+                {isCompleted ? "Project Success Rate" : "Project Execution Progress"}
+              </span>
             </div>
-            <div className="pointer-events-none absolute top-0 right-0 w-24 h-28 overflow-hidden z-20">
-              {burstTR.map((p, i) => (
-                <span
-                  key={i}
-                  className={`absolute top-0 ${p.shape} ${p.color} animate-ribbon-fall`}
-                  style={{ right: p.pos, width: p.width, height: p.height, animationDuration: `${p.dur}s`, animationDelay: `${p.delay}s` }}
-                />
-              ))}
-            </div>
-          </>
-        )}
-
-        <div className="relative z-10 grid sm:grid-cols-[auto_1fr] gap-5 sm:gap-8 items-center">
-          {/* Left: label + number */}
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b7a68]">
-              {isCompleted ? "Project Success Rate" : "Project Progress"}
+            <span
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
+                isCompleted
+                  ? "bg-emerald-100 text-emerald-900 border border-emerald-300 shadow-sm"
+                  : "bg-amber-100 text-amber-900 border border-amber-300 shadow-sm"
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              {isCompleted ? "Verified & Handed Over" : "Active Field Delivery"}
             </span>
-            <div className="h-[2px] w-14 bg-gradient-to-r from-emerald-400 to-transparent rounded-full origin-left animate-underline-draw mt-1.5 mb-2" />
+          </div>
 
-            <div className="relative inline-block">
-              <p
-                className={`text-5xl sm:text-6xl font-black leading-none whitespace-nowrap ${
-                  isCompleted ? "text-success-gradient" : "text-amber-600"
-                }`}
-              >
-                {isCompleted ? "100%" : "In Progress"}
+          {/* Main Display Row: 100% Count + Progress Bar */}
+          <div className="grid sm:grid-cols-[auto_1fr] gap-6 sm:gap-10 items-center">
+            {/* 100% Numeric Display */}
+            <div className="relative shrink-0">
+              <p className="text-6xl sm:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 leading-none drop-shadow-sm">
+                {isCompleted ? "100%" : "In Motion"}
               </p>
               {isCompleted && (
-                <>
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <div className="absolute inset-y-0 w-1/4 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-light-sweep-slow" />
-                  </div>
-                  <Sparkles className="pointer-events-none absolute -top-2 -right-6 w-5 h-5 text-amber-400 animate-sparkle-appear" />
-                </>
+                <Sparkles className="pointer-events-none absolute -top-3 -right-5 w-6 h-6 text-amber-500 animate-pulse" />
               )}
+            </div>
+
+            {/* Progress Bar & Field Outcome Message */}
+            <div className="space-y-3 min-w-0">
+              <div className="relative h-5 rounded-full bg-stone-100 border border-stone-200 p-0.5 overflow-hidden shadow-inner">
+                <div
+                  className={`h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-500 transition-all duration-1000 shadow-md ${
+                    isCompleted ? "w-full" : "w-2/5"
+                  }`}
+                />
+                <div className="absolute inset-y-0 left-0 w-full overflow-hidden rounded-full pointer-events-none">
+                  <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/70 to-transparent animate-light-sweep" />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] font-bold text-[#5b6a60]">
+                <span>Stage 1: Mobilization</span>
+                <span>Stage 2: Execution</span>
+                <span className="text-emerald-700 font-black">100% Completion Verified</span>
+              </div>
             </div>
           </div>
 
-          {/* Right: energy line + message */}
-          <div className="min-w-0">
-            <div className="relative h-4 rounded-full bg-white/70 border border-[#e2ecdf] overflow-hidden shadow-inner">
-              <div
-                className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-emerald-400 via-sky-400 to-amber-400 ${
-                  isCompleted ? "animate-bar-fill" : ""
-                }`}
-                style={!isCompleted ? { width: "40%" } : undefined}
-              />
-              <div className="absolute inset-y-0 left-0 overflow-hidden rounded-full" style={{ width: isCompleted ? "100%" : "40%" }}>
-                <div className="absolute inset-y-0 w-1/4 bg-gradient-to-r from-transparent via-white/70 to-transparent animate-light-sweep" />
-                <span className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_2px_rgba(255,255,255,0.9)] animate-energy-travel" />
-                <span
-                  className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_2px_rgba(255,255,255,0.9)] animate-energy-travel"
-                  style={{ animationDelay: "1.1s" }}
-                />
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2 mt-3">
-              <Award className="w-4 h-4 text-[#5b7a68] shrink-0 mt-0.5" />
-              <p className="text-xs sm:text-sm font-semibold text-[#3f4d47] relative">
-                {isCompleted
-                  ? "Successfully completed and officially handed over to the beneficiary community."
-                  : "Actively being delivered on the ground right now."}
-                <span className="block h-px w-12 mt-1 bg-gradient-to-r from-emerald-400 to-transparent origin-left animate-underline-draw" />
-              </p>
-            </div>
+          {/* Bottom Field Confirmation Banner */}
+          <div className="pt-4 border-t border-stone-200/80 flex items-center gap-3">
+            <Award className="w-5 h-5 text-emerald-600 shrink-0" />
+            <p className="text-xs sm:text-sm font-bold text-[#221c0c] leading-relaxed">
+              {isCompleted
+                ? "This project has been 100% verified, independently audited, and officially handed over to the local community."
+                : "Active field operations are underway with direct community oversight."}
+            </p>
           </div>
         </div>
       </div>
