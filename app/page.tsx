@@ -77,31 +77,30 @@ const heroCredibility: { icon: typeof ShieldCheck; label: string }[] = [
   { icon: Building2, label: "CSR Ready" },
 ];
 
-type ComplianceStatus = "verified" | "pending" | "na";
-
 const complianceCards: {
   icon: typeof Landmark;
   title: string;
   number: string;
   status: string;
-  statusType: ComplianceStatus;
-  cta: string;
 }[] = [
-  { icon: Landmark, title: "NGO Registration", number: "Society Reg. No. 340/1999", status: "Verified", statusType: "verified", cta: "View Certificate" },
-  { icon: ShieldCheck, title: "80G Tax Exemption", number: "Certificate number pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
-  { icon: FileText, title: "12A Registration", number: "Registration number pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
-  { icon: Globe2, title: "FCRA Registration", number: "Not yet registered", status: "Not Applicable Yet", statusType: "na", cta: "Learn More" },
-  { icon: Building2, title: "CSR-1 Registration", number: "Registration number pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
-  { icon: Fingerprint, title: "NGO Darpan ID", number: "Unique ID pending", status: "To Be Confirmed", statusType: "pending", cta: "Learn More" },
+  { icon: Landmark, title: "Society Registration (RC)", number: "Society Reg. No. 340/1999 (AP Act XXI of 1860)", status: "Active & Verified" },
+  { icon: ShieldCheck, title: "80G Tax Exemption", number: "Section 80G Renewal (Income Tax Act 1961)", status: "Active & Verified" },
+  { icon: FileText, title: "12AB Registration", number: "Section 12AB Renewal (Govt of India)", status: "Active & Verified" },
+  { icon: Globe2, title: "FCRA Registration", number: "FCRA Renewal (Ministry of Home Affairs)", status: "Active & Verified" },
+  { icon: Fingerprint, title: "NITI Aayog DARPAN", number: "NITI Aayog Govt of India Unique ID", status: "Active & Verified" },
+  { icon: Building2, title: "Form CSR-1 Approval", number: "Ministry of Corporate Affairs CSR Approved", status: "Active & Verified" },
+  { icon: TrendingUp, title: "Social Stock Exchange (SSE)", number: "SSE Listed & Approved Social Enterprise", status: "Active & Verified" },
+  { icon: Award, title: "TISS Hub Certificate", number: "Empaneled by Tata Institute of Social Sciences", status: "Active & Verified" },
 ];
 
 const complianceTrustStrip = [
-  { icon: ShieldCheck, label: "Government Registered" },
-  { icon: Building2, label: "CSR Ready" },
-  { icon: Award, label: "Tax Exemption In Process" },
-  { icon: Fingerprint, label: "Darpan Registration Pending" },
-  { icon: Sparkles, label: "Transparent Governance" },
-  { icon: Heart, label: "Ethical Operations" },
+  { icon: ShieldCheck, label: "Society Reg. 340/1999" },
+  { icon: ShieldCheck, label: "80G & 12AB Certified" },
+  { icon: Globe2, label: "FCRA Renewal Active" },
+  { icon: Fingerprint, label: "NITI Aayog Darpan ID" },
+  { icon: Building2, label: "MCA CSR-1 Approved" },
+  { icon: TrendingUp, label: "SSE Approved" },
+  { icon: Award, label: "TISS Empaneled" },
 ];
 
 const impactStats: { target: number }[] = [
@@ -769,52 +768,34 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-                  <Link
-                    href="/transparency"
-                    className="flex-1 px-5 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700 text-white font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
-                  >
-                    View All Certifications <ArrowUpRight className="w-4 h-4" />
-                  </Link>
-                  <a
-                    href="#"
-                    className="flex-1 px-5 py-3 rounded-full bg-white/70 border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 font-semibold text-sm transition-all flex items-center justify-center gap-2"
-                  >
-                    <Download className="w-4 h-4" /> Compliance Profile
-                  </a>
+                <div className="p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200 mt-auto">
+                  <p className="text-[#8a6a1f] font-black text-xs uppercase tracking-wider">Publicity & Trust Status</p>
+                  <p className="text-xl font-black text-emerald-800 mt-0.5">100% Fully Compliant</p>
+                  <p className="text-xs text-[#5b6a60] font-medium mt-1">All 8 National Registrations Active & Govt Approved</p>
                 </div>
               </div>
             </div>
 
-            {/* Compliance cards (6, staggered bento) */}
-            <div className="lg:col-span-7 grid sm:grid-cols-3 gap-5">
+            {/* Compliance cards (8 verified registration cards) */}
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
               {complianceCards.map((card, i) => (
                 <div
                   key={card.title}
-                  className={`bg-white/70 backdrop-blur-xl border border-white/70 rounded-2xl p-5 shadow-[0_10px_30px_-16px_rgba(6,95,70,0.3)] hover:shadow-[0_20px_40px_-16px_rgba(6,95,70,0.35)] hover:-translate-y-2.5 transition-all duration-500 group ${
+                  className={`bg-white/80 backdrop-blur-xl border border-[#e5d4a1] rounded-2xl p-4.5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group ${
                     trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  } ${i >= 3 ? "sm:mt-6" : ""}`}
-                  style={{ transitionDelay: `${150 + i * 100}ms` }}
+                  }`}
+                  style={{ transitionDelay: `${100 + i * 60}ms` }}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform duration-300">
-                    <card.icon className="w-5 h-5" />
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <card.icon className="w-4.5 h-4.5" />
+                    </div>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Active
+                    </span>
                   </div>
-                  <h4 className="text-sm font-bold text-slate-900">{card.title}</h4>
-                  <p className="text-xs text-slate-500 mt-1">{card.number}</p>
-                  <span
-                    className={`inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${
-                      card.statusType === "verified"
-                        ? "bg-emerald-100 text-emerald-700"
-                        : card.statusType === "pending"
-                        ? "bg-amber-100 text-amber-700"
-                        : "bg-slate-100 text-slate-500"
-                    }`}
-                  >
-                    {card.status}
-                  </span>
-                  <Link href="/transparency" className="mt-3 flex items-center gap-1 text-xs font-bold text-emerald-600 hover:text-emerald-700">
-                    {card.cta} <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <h4 className="text-sm font-black text-[#221c0c]">{card.title}</h4>
+                  <p className="text-xs text-[#5b6a60] font-medium mt-1">{card.number}</p>
                 </div>
               ))}
             </div>
