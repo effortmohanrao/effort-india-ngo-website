@@ -40,62 +40,67 @@ export default function ImpactPage() {
     { title: "2,011 Children & 50 RO", subtitle: "Child & Health Impact", icon: HeartPulse, desc: "21 Child-Labour-Free Villages & 16,000 Families Safe Water" },
   ];
 
-  {/* 5 Comprehensive Strategic Impact Pillars (Covering All 90 Projects) */}
+  {/* 5 Comprehensive Strategic Impact Sectors (Summing to EXACTLY 90 Projects: 75 Completed + 15 Ongoing) */}
   const impactDomains = [
     {
       id: "agri",
       title: "Sustainable Agriculture & Farmers' Prosperity",
       icon: Sprout,
-      count: "48 Projects",
+      totalCount: "48 Projects",
+      completedCount: "40 Completed",
+      ongoingCount: "8 Active",
       stat: "1,68,500+ Farmers Capacitated",
-      desc: "Integrated Pest Management (IPM), Direct Seeded Rice (DSR saving 35% water across Punjab/UP/MP), crop diversification (20% cost reduction, 30-50% income growth), organic farming, mustard bee-pollination, and Rythu Bazaars direct market access.",
+      desc: "Integrated Pest Management (IPM), Direct Seeded Rice (DSR saving 35% water), crop diversification (20% cost reduction, 30-50% income growth), organic farming, mustard bee-pollination, and Rythu Bazaars direct market access.",
       highlights: ["IPM in Chilli & Cotton (450K+ Farmers trained)", "SRI & DSR Rice (100K Acres)", "Rythu Bazaars & Wayside Farmer Markets"],
       badge: "Agriculture & IPM",
-      color: "emerald",
     },
     {
       id: "fpo",
       title: "Collectives, FPOs & Women Empowerment",
       icon: TrendingUp,
-      count: "15 Projects",
+      totalCount: "13 Projects",
+      completedCount: "10 Completed",
+      ongoingCount: "3 Active",
       stat: "38,102 Collective Members",
       desc: "Promoted 42 Farmer Producer Organizations (23,352 farmer shareholders), 1,275 Women Self-Help Groups (14,750 women members), and 51 MACS Cooperatives enabling self-reliant micro-enterprises and sustainable micro-credit.",
       highlights: ["42 FPOs (NABARD & Govt. Funded)", "1,275 Women SHGs & 51 MACS Co-ops", "Income Generation Units (₹10,000/mo extra income)"],
       badge: "Livelihoods & FPOs",
-      color: "amber",
+    },
+    {
+      id: "nrm",
+      title: "Natural Resource & Watershed Management",
+      icon: Trees,
+      totalCount: "13 Projects",
+      completedCount: "11 Completed",
+      ongoingCount: "2 Active",
+      stat: "528 Villages & 1,03,062 Acres",
+      desc: "Comprehensive watershed development (NABARD WDF & IWMP), constructed 2,702 soil & water conservation structures (1.07 Cr m³/yr water harvested), created 3 Biodiversity Conservation Parks with 50,000 native flora species.",
+      highlights: ["90 Watershed Projects (NABARD RSO)", "2,702 Water Harvesting Structures", "3 Biodiversity Conservation Parks"],
+      badge: "Environment & Watershed",
     },
     {
       id: "child",
       title: "Child Development, Education & Welfare",
       icon: GraduationCap,
-      count: "10 Projects",
+      totalCount: "8 Projects",
+      completedCount: "6 Completed",
+      ongoingCount: "2 Active",
       stat: "2,011 Rehabilitated Children",
       desc: "Eradicated child labour through NCLP Special Schools across 21 declared Child-Labour-Free villages. Distributed 1,000 bicycles to girl students, strengthened government school amenities, and provided school sanitation (SAHY).",
       highlights: ["21 Child-Labour-Free Villages Achieved", "1,000 Bicycles for Girl Students", "Special NCLP Child Labour Schools"],
       badge: "Education & Child Rights",
-      color: "purple",
     },
     {
       id: "health",
       title: "Community Health, WASH & Safe Drinking Water",
       icon: HeartPulse,
-      count: "12 Projects",
+      totalCount: "8 Projects",
+      completedCount: "8 Completed",
+      ongoingCount: "0 Active",
       stat: "2,00,000+ Population Reached",
       desc: "Established 50 Community Reverse Osmosis (RO) Drinking Water Plants serving 16,000 families in fluoride-affected areas. Conducted AP Community Health Interventions (TB, Malaria, HIV/AIDS) and COVID-19 relief.",
       highlights: ["50 Community RO Plants (16,000 Families)", "DFID AP Health Interventions (65,000 People)", "Hospital Equipment & COVID-19 Rapid Support"],
       badge: "Health & Safe Water",
-      color: "rose",
-    },
-    {
-      id: "nrm",
-      title: "Natural Resource Management & Eco-Restoration",
-      icon: Trees,
-      count: "15 Projects",
-      stat: "528 Villages & 1,03,062 Acres",
-      desc: "Comprehensive watershed development (NABARD WDF & IWMP), constructed 2,702 soil & water conservation structures (1.07 Cr m³/yr water harvested), created 3 Biodiversity Conservation Parks with 50,000 native flora species.",
-      highlights: ["90 Watershed Projects (NABARD RSO)", "2,702 Water Harvesting Structures", "3 Biodiversity Conservation Parks"],
-      badge: "Environment & Watershed",
-      color: "sky",
     },
   ];
 
@@ -141,23 +146,23 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* --- DEDICATED SPECIAL FEATURE SECTION: AUTHENTIC REAL INDIA GIS MAP --- */}
+      {/* --- FULL-WIDTH CLEAN CREAM MAP SHOWCASE SECTION --- */}
       <section id="map-section" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="relative rounded-[40px] p-6 sm:p-10 bg-gradient-to-b from-[#1a140b] via-[#151008] to-[#0f0c06] text-white border-2 border-[#d4af6a]/60 shadow-[0_35px_80px_-20px_rgba(0,0,0,0.85)] space-y-10 overflow-hidden">
+        <div className="space-y-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af6a]/20 border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#f7e4a3]">
-              <Globe className="w-4 h-4 text-emerald-400" /> Special Feature: Authentic GIS Field Operations Map
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black uppercase tracking-[0.2em] text-emerald-900 shadow-xs">
+              <Globe className="w-4 h-4 text-emerald-600" /> Official GIS Field Operations Map
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#f7e4a3] tracking-tight">
-              Interactive 10-State Field Presence
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#221c0c] tracking-tight">
+              10-State Operational Field Footprint
             </h2>
-            <p className="text-sm sm:text-base text-stone-300 font-medium leading-relaxed">
-              Explore EFFORT India NGO’s verified field operations across 10 Indian states. Click any highlighted state on the map or tap the pills below to inspect real district hubs, flagship projects, and institutional partner credentials.
+            <p className="text-sm sm:text-base text-[#5b6a60] font-medium leading-relaxed">
+              Explore EFFORT India NGO’s verified field presence across 10 Indian states. Select any highlighted state on the map or tap the pills below to inspect district hubs, flagship projects, and partner credentials.
             </p>
           </div>
 
-          {/* Quick State Selection Pills */}
+          {/* State Selection Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2">
             {Object.values(IMPACT_STATES).map((state) => {
               const isSelected = selectedCode === state.code;
@@ -167,13 +172,13 @@ export default function ImpactPage() {
                   onClick={() => setSelectedCode(state.code)}
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black tracking-wide transition-all duration-300 cursor-pointer ${
                     isSelected
-                      ? "bg-amber-400 text-slate-950 border-2 border-amber-300 shadow-[0_0_20px_rgba(251,191,36,0.6)] scale-105"
-                      : "bg-white/10 backdrop-blur-md border border-amber-500/30 text-stone-300 hover:bg-white/20 hover:text-white"
+                      ? "bg-[#221c0c] text-[#f7e4a3] border-2 border-[#d4af6a] shadow-md scale-105"
+                      : "bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[#5a461e] hover:bg-white hover:border-[#d4af6a]"
                   }`}
                 >
-                  <MapPin className={`w-3.5 h-3.5 ${isSelected ? "text-slate-950" : "text-amber-400"}`} />
+                  <MapPin className={`w-3.5 h-3.5 ${isSelected ? "text-emerald-400" : "text-[#c9a24a]"}`} />
                   {state.name}
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isSelected ? "bg-slate-900 text-amber-300" : "bg-stone-800 text-stone-300"}`}>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isSelected ? "bg-amber-500/30 text-amber-200" : "bg-stone-100 text-stone-600"}`}>
                     {state.projectsCount}
                   </span>
                 </button>
@@ -181,55 +186,53 @@ export default function ImpactPage() {
             })}
           </div>
 
-          {/* Dedicated Map & State Info Panel Layout */}
-          <div className="grid lg:grid-cols-12 gap-8 items-center pt-4">
-            {/* Left/Center: Authentic Original Vector India Map */}
-            <div className="lg:col-span-7 flex items-center justify-center p-2 sm:p-4 bg-stone-900/60 rounded-3xl border border-[#d4af6a]/30 backdrop-blur-md shadow-inner">
-              <div className="w-full max-w-[620px]">
-                <IndiaMap selectedStateCode={selectedCode} onSelectState={(code) => setSelectedCode(code)} />
-              </div>
+          {/* Clean Map & Dynamic State Info Dashboard Layout (No Dark Nested Boxes!) */}
+          <div className="grid lg:grid-cols-12 gap-8 items-start pt-2">
+            {/* Left: Authentic Original Vector India Map on Light Cream Background */}
+            <div className="lg:col-span-7">
+              <IndiaMap selectedStateCode={selectedCode} onSelectState={(code) => setSelectedCode(code)} variant="light" />
             </div>
 
-            {/* Right: Dynamic Selected State Field Dashboard Card */}
+            {/* Right: Dynamic Selected State Dashboard Card */}
             <div className="lg:col-span-5">
-              <div className="rounded-3xl p-6 sm:p-8 bg-stone-900/90 backdrop-blur-xl border-2 border-[#d4af6a]/50 shadow-2xl space-y-6">
+              <div className="rounded-[32px] p-6 sm:p-8 bg-white/90 backdrop-blur-xl border-2 border-[#e5d4a1] shadow-[0_20px_50px_-15px_rgba(180,140,40,0.2)] space-y-6">
                 {/* Header */}
-                <div className="space-y-3 pb-4 border-b border-stone-800">
+                <div className="space-y-3 pb-4 border-b border-[#e5d4a1]">
                   <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-xs font-black uppercase tracking-wider">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Active Field Hub
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-black uppercase tracking-wider">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Active Field Hub
                     </span>
-                    <span className="text-xs font-black text-amber-300">{selectedState.villages}</span>
+                    <span className="text-xs font-black text-metallic-gold">{selectedState.villages}</span>
                   </div>
-                  <h3 className="text-3xl font-black text-[#f7e4a3] tracking-tight">{selectedState.name}</h3>
-                  <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-medium">{selectedState.description}</p>
+                  <h3 className="text-3xl font-black text-[#221c0c] tracking-tight">{selectedState.name}</h3>
+                  <p className="text-xs sm:text-sm text-[#5b6a60] leading-relaxed font-medium">{selectedState.description}</p>
                 </div>
 
                 {/* Flagship Project Highlight Box */}
-                <div className="p-4 rounded-2xl bg-amber-950/40 border border-amber-500/40 shadow-sm space-y-1.5">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400">Flagship Project</span>
-                  <p className="text-sm font-black text-white leading-snug">{selectedState.flagshipProject}</p>
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50/90 to-emerald-50/90 border border-[#d4af6a]/50 shadow-xs space-y-1.5">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Flagship Project</span>
+                  <p className="text-sm font-black text-[#221c0c] leading-snug">{selectedState.flagshipProject}</p>
                 </div>
 
                 {/* Stat Numbers Grid */}
-                <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-stone-950 border border-stone-800">
+                <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-200">
                   <div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-stone-400 block">Total Projects</span>
-                    <p className="text-2xl font-black text-amber-400 mt-0.5">{selectedState.projectsCount} Executed</p>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] block">Total Projects</span>
+                    <p className="text-2xl font-black text-[#221c0c] mt-0.5">{selectedState.projectsCount} Executed</p>
                   </div>
                   <div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-stone-400 block">Direct Reach</span>
-                    <p className="text-2xl font-black text-emerald-400 mt-0.5">{selectedState.beneficiaries}</p>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] block">Direct Reach</span>
+                    <p className="text-2xl font-black text-emerald-700 mt-0.5">{selectedState.beneficiaries}</p>
                   </div>
                 </div>
 
                 {/* Districts Covered */}
                 <div className="space-y-2">
-                  <span className="text-xs font-black uppercase tracking-wider text-amber-300">Districts Covered</span>
+                  <span className="text-xs font-black uppercase tracking-wider text-[#221c0c]">Districts Covered</span>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedState.districts.map((d, i) => (
-                      <span key={i} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-stone-800 border border-stone-700 text-xs font-bold text-stone-200">
-                        <MapPin className="w-3 h-3 text-amber-400" /> {d}
+                      <span key={i} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white border border-[#d4af6a]/50 text-xs font-bold text-[#4a3a18] shadow-2xs">
+                        <MapPin className="w-3 h-3 text-[#c9a24a]" /> {d}
                       </span>
                     ))}
                   </div>
@@ -237,11 +240,11 @@ export default function ImpactPage() {
 
                 {/* Key Funding & Institutional Partners */}
                 <div className="space-y-2">
-                  <span className="text-xs font-black uppercase tracking-wider text-amber-300">Funding & Governance Partners</span>
+                  <span className="text-xs font-black uppercase tracking-wider text-[#221c0c]">Funding & Governance Partners</span>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedState.partners.map((p, i) => (
-                      <span key={i} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-xs font-black text-emerald-300">
-                        <Building2 className="w-3 h-3 text-emerald-400" /> {p}
+                      <span key={i} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-black text-emerald-900 shadow-2xs">
+                        <Building2 className="w-3 h-3 text-emerald-600" /> {p}
                       </span>
                     ))}
                   </div>
@@ -251,7 +254,7 @@ export default function ImpactPage() {
                 <div className="pt-2">
                   <Link
                     href="/programs"
-                    className="group w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full hover:shadow-[0_0_25px_rgba(245,158,11,0.5)] transition-all duration-300"
+                    className="group w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-xs uppercase tracking-wider rounded-full hover:shadow-[0_15px_30px_-10px_rgba(5,150,105,0.5)] transition-all duration-300"
                   >
                     View All 90 Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
@@ -262,7 +265,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* --- COMPREHENSIVE 90-PROJECT DOMAIN SECTORS --- */}
+      {/* --- COMPREHENSIVE 90-PROJECT DOMAIN SECTORS (EXACT MATH: 75 COMPLETED + 15 ONGOING = 90 TOTAL) --- */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
@@ -287,12 +290,23 @@ export default function ImpactPage() {
                   <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
                     <domain.icon className="w-6 h-6 text-amber-700" />
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black text-emerald-900">
-                    {domain.count}
+                  <span className="px-3 py-1 rounded-full bg-[#221c0c] border border-[#d4af6a] text-xs font-black text-[#f7e4a3]">
+                    {domain.totalCount}
                   </span>
                 </div>
 
                 <h3 className="text-xl font-black text-[#221c0c] tracking-tight">{domain.title}</h3>
+                
+                {/* Clean Completed vs Ongoing Counter Badges */}
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">
+                    {domain.completedCount}
+                  </span>
+                  <span className="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                    {domain.ongoingCount}
+                  </span>
+                </div>
+
                 <p className="text-xs font-black text-metallic-gold uppercase tracking-wide">{domain.stat}</p>
                 <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">{domain.desc}</p>
               </div>
@@ -312,7 +326,7 @@ export default function ImpactPage() {
             </div>
           ))}
 
-          {/* 75 Completed vs 15 Ongoing Summary Box */}
+          {/* 75 Completed vs 15 Ongoing Portfolio Summary Box */}
           <div className="group relative rounded-[32px] p-7 bg-gradient-to-br from-[#1a140b] to-[#271d10] text-white border-2 border-[#d4af6a]/60 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8)] flex flex-col justify-between space-y-5">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -324,14 +338,14 @@ export default function ImpactPage() {
                 </span>
               </div>
 
-              <h3 className="text-xl font-black text-[#f7e4a3] tracking-tight">Project Portfolio Status</h3>
+              <h3 className="text-xl font-black text-[#f7e4a3] tracking-tight">Verified 90-Project Summary</h3>
               <div className="grid grid-cols-2 gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800">
                   <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 flex items-center gap-1">
                     <CheckCircle className="w-3 h-3 text-emerald-400" /> Completed
                   </span>
                   <p className="text-2xl font-black text-white mt-1">75 Projects</p>
-                  <p className="text-[10px] text-stone-400 font-medium">Fully Audited</p>
+                  <p className="text-[10px] text-stone-400 font-medium">Fully Executed</p>
                 </div>
                 <div className="p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800">
                   <span className="text-[10px] font-black uppercase tracking-wider text-amber-400 flex items-center gap-1">
