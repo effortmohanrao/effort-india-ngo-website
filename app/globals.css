@@ -503,3 +503,36 @@ body {
 .animate-ambient-drift {
   animation: ambient-drift 6s ease-in-out infinite;
 }
+
+@keyframes dust-float {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.2; }
+  50% { transform: translateY(-40px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-80px) scale(0.8); opacity: 0; }
+}
+.animate-dust-float {
+  animation: dust-float 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes halo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-halo-spin {
+  animation: halo-spin 12s linear infinite;
+}
+
+@keyframes halo-spin-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+.animate-halo-spin-reverse {
+  animation: halo-spin-reverse 16s linear infinite;
+}
+
+@keyframes halo-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.75; }
+}
+.animate-halo-breathe {
+  animation: halo-breathe 4s ease-in-out infinite;
+}

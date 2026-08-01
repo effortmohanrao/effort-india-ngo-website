@@ -187,35 +187,58 @@ export default function Programs() {
   return (
     <div className="bg-[#fdfaf4] min-h-screen relative overflow-hidden">
 
-      {/* --- HERO --- */}
-      <section ref={heroRef} className="relative flex items-center justify-center overflow-hidden pt-28 pb-14 lg:pt-36 lg:pb-20">
+      {/* --- HERO SECTION WITH HIGH-LEVEL GRAPHIC AURORA --- */}
+      <section ref={heroRef} className="relative flex items-center justify-center overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[#fdfaf4]" />
-          <div className="absolute -top-20 -left-24 w-[460px] h-[460px] rounded-full bg-emerald-100/60 blur-[110px] animate-liquid-drift-a" />
-          <div className="absolute top-1/3 -right-24 w-[420px] h-[420px] rounded-full bg-amber-100/60 blur-[110px] animate-liquid-drift-b" />
-          <div className="absolute -bottom-24 left-1/4 w-[400px] h-[400px] rounded-full bg-teal-100/50 blur-[110px] animate-liquid-drift-c" />
+          {/* Liquid Aurora Mesh Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#fffdf8] via-[#faf2db] to-[#f4e6b8]" />
+          <div className="absolute -top-24 -left-20 w-[520px] h-[520px] rounded-full bg-amber-200/50 blur-[130px] animate-liquid-drift-a" />
+          <div className="absolute top-1/3 -right-20 w-[480px] h-[480px] rounded-full bg-emerald-200/40 blur-[120px] animate-liquid-drift-b" />
+          <div className="absolute -bottom-24 left-1/3 w-[450px] h-[450px] rounded-full bg-sky-200/40 blur-[120px] animate-liquid-drift-c" />
 
-          <svg className="absolute inset-0 w-full h-full opacity-[0.35]" viewBox="0 0 1200 800" preserveAspectRatio="none">
-            <path d="M -50 200 C 250 100, 450 320, 750 220 S 1150 100, 1300 260" fill="none" stroke="#34d399" strokeWidth="2" strokeDasharray="10 14" className="animate-ribbon-flow" />
-            <path d="M -50 560 C 300 460, 500 660, 800 540 S 1150 460, 1300 600" fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="8 16" className="animate-ribbon-flow" style={{ animationDuration: "11s" }} />
-            <path d="M -50 380 C 280 300, 520 460, 820 360 S 1150 300, 1300 420" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="6 12" className="animate-ribbon-flow" style={{ animationDuration: "14s" }} />
+          {/* Frosted Geometric Mesh Overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.25]"
+            style={{
+              backgroundImage: `radial-gradient(#d4af6a 0.75px, transparent 0.75px), radial-gradient(#10b981 0.75px, #fffdf8 0.75px)`,
+              backgroundSize: `30px 30px`,
+              backgroundPosition: `0 0, 15px 15px`,
+            }}
+          />
+
+          {/* Topological Wave Ribbons */}
+          <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 1200 800" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#d4af6a" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#10b981" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.8" />
+              </linearGradient>
+              <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.7" />
+              </linearGradient>
+            </defs>
+            <path d="M -50 180 C 250 80, 480 300, 780 200 S 1150 80, 1300 240" fill="none" stroke="url(#waveGrad1)" strokeWidth="2.5" strokeDasharray="12 16" className="animate-ribbon-flow" />
+            <path d="M -50 540 C 320 440, 520 640, 820 520 S 1150 440, 1300 580" fill="none" stroke="url(#waveGrad2)" strokeWidth="2" strokeDasharray="10 18" className="animate-ribbon-flow" style={{ animationDuration: "12s" }} />
           </svg>
 
-          {Array.from({ length: 16 }).map((_, i) => (
+          {/* 20 Animated Floating Gold Dust Particles */}
+          {Array.from({ length: 20 }).map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-amber-300/50 animate-dust-float"
+              className="absolute rounded-full bg-amber-400/60 shadow-[0_0_8px_#d4af6a] animate-dust-float"
               style={{
-                width: 3 + (i % 3),
-                height: 3 + (i % 3),
-                left: `${(i * 6.3) % 100}%`,
-                top: `${(i * 11.7) % 100}%`,
-                animationDelay: `${(i % 7) * 0.6}s`,
-                animationDuration: `${6 + (i % 4)}s`,
+                width: 3 + (i % 4) * 2,
+                height: 3 + (i % 4) * 2,
+                left: `${(i * 5.2) % 100}%`,
+                top: `${(i * 9.3) % 100}%`,
+                animationDelay: `${(i % 8) * 0.45}s`,
+                animationDuration: `${5.5 + (i % 5)}s`,
               }}
             />
           ))}
-          <div className="absolute inset-0 bg-noise opacity-[0.3]" />
+          <div className="absolute inset-0 bg-noise opacity-[0.25]" />
         </div>
 
         <div
@@ -223,34 +246,35 @@ export default function Programs() {
             heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-[#d9c98e] text-[#8a6a1f] text-xs font-bold uppercase tracking-[0.2em] mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> Our Impact
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.25em] mb-6 shadow-md hover:scale-105 transition-transform">
+            <Sparkles className="w-4 h-4 text-[#d4af6a] animate-pulse" /> Our Impact & Legacy
           </span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#221c0c] leading-[1.05]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#221c0c] leading-[1.06]">
             50 Projects.
             <br />
             Thousands of Lives.
             <br />
-            <span className="text-metallic-gold">One Mission.</span>
+            <span className="text-metallic-gold drop-shadow-sm">One Mission.</span>
           </h1>
-          <p className="text-[#6b6046] text-base sm:text-lg leading-relaxed max-w-xl mx-auto mt-6">
-            Twenty-seven years of documented, on-the-ground work across rural Andhra Pradesh and beyond.
+          <p className="text-[#5c523a] text-base sm:text-xl font-medium leading-relaxed max-w-xl mx-auto mt-6">
+            Twenty-seven years of documented, high-impact work transforming rural communities across Andhra Pradesh and India.
           </p>
         </div>
       </section>
 
-      {/* --- TOGGLE + HALF-CENTURY SHOWCASE --- */}
-      <section ref={showcaseRef} className="relative py-10 lg:py-14 overflow-hidden">
+      {/* --- TOGGLE + HIGH-LEVEL HALF-CENTURY SHOWCASE --- */}
+      <section ref={showcaseRef} className="relative py-12 lg:py-16 overflow-hidden">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#fdfaf4] via-[#fbf5e6] to-[#fdfaf4]" />
-          <div className="absolute inset-0 bg-noise opacity-[0.25]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#fffdf8] via-[#fbf3db] to-[#fffdf8]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-amber-200/30 blur-[130px] animate-liquid-drift-a" />
+          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Segmented toggle */}
-          <div className="relative inline-flex p-1.5 rounded-full bg-white border border-[#e7ddc8] shadow-[0_10px_30px_-15px_rgba(120,90,40,0.3)] mb-10">
+          {/* Segmented Frosted Glass Toggle */}
+          <div className="relative inline-flex p-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-[#e5d4a1] shadow-[0_15px_35px_-15px_rgba(180,140,40,0.35)] mb-12">
             <div
-              className="absolute top-1.5 bottom-1.5 rounded-full bg-gradient-to-br from-[#e8c975] to-[#c9a24a] transition-elastic"
+              className="absolute top-1.5 bottom-1.5 rounded-full bg-gradient-to-br from-[#ebd488] via-[#d4af6a] to-[#b88c30] shadow-md transition-elastic"
               style={{ left: indicator.left, width: indicator.width, transitionDuration: "550ms" }}
             />
             <button
@@ -259,8 +283,8 @@ export default function Programs() {
                 setProjectsTab("completed");
                 setSelectedCategory(null);
               }}
-              className={`relative z-10 px-8 py-3 rounded-full font-bold text-sm transition-colors duration-300 ${
-                projectsTab === "completed" ? "text-[#3a2a08]" : "text-[#8a8066] hover:text-[#4a4230]"
+              className={`relative z-10 px-8 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-colors duration-300 ${
+                projectsTab === "completed" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
               }`}
             >
               Completed (50)
@@ -271,26 +295,37 @@ export default function Programs() {
                 setProjectsTab("ongoing");
                 setSelectedCategory(null);
               }}
-              className={`relative z-10 px-8 py-3 rounded-full font-bold text-sm transition-colors duration-300 ${
-                projectsTab === "ongoing" ? "text-[#3a2a08]" : "text-[#8a8066] hover:text-[#4a4230]"
+              className={`relative z-10 px-8 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-colors duration-300 ${
+                projectsTab === "ongoing" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
               }`}
             >
               Ongoing (13)
             </button>
           </div>
 
-          {/* Showcase */}
+          {/* 3D Glassmorphism Showcase Widget */}
           {projectsTab === "completed" ? (
             <div className="relative flex flex-col items-center">
-              <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-200/40 to-transparent blur-3xl animate-halo-breathe" />
-                <div className="absolute inset-6 rounded-full border border-amber-300/40 animate-halo-spin" />
-                <div className="absolute inset-14 rounded-full border border-dashed border-amber-400/30 animate-halo-spin-reverse" />
+              <div className="relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-[48px] bg-white/60 backdrop-blur-2xl border border-white/90 shadow-[0_30px_70px_-20px_rgba(180,140,40,0.35)] flex flex-col items-center justify-center p-8 hover:-translate-y-1.5 transition-all duration-500">
+                {/* Radial Breathing Halo Backdrop */}
+                <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-amber-200/50 to-transparent blur-3xl animate-halo-breathe" />
 
+                {/* Outer Orbital Glass Ring with Glowing Gold Nodes */}
+                <div className="absolute inset-4 rounded-full border-2 border-[#d4af6a]/40 animate-halo-spin">
+                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#d4af6a] shadow-[0_0_12px_#d4af6a]" />
+                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#10b981] shadow-[0_0_12px_#10b981]" />
+                  <span className="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#38bdf8] shadow-[0_0_12px_#38bdf8]" />
+                  <span className="absolute top-1/2 -right-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#f43f5e] shadow-[0_0_12px_#f43f5e]" />
+                </div>
+
+                {/* Inner Dashed Orbital Ring */}
+                <div className="absolute inset-12 rounded-full border-2 border-dashed border-[#e6c97a]/60 animate-halo-spin-reverse" />
+
+                {/* Particle Burst Effects */}
                 {burstParticles.map((p, i) => (
                   <div
                     key={i}
-                    className="absolute left-1/2 top-1/2 rounded-full bg-amber-400"
+                    className="absolute left-1/2 top-1/2 rounded-full bg-[#d4af6a] shadow-[0_0_8px_#d4af6a]"
                     style={
                       {
                         width: p.size,
@@ -306,38 +341,51 @@ export default function Programs() {
                   />
                 ))}
 
-                <p className="relative text-metallic-gold font-black leading-none text-[6.5rem] sm:text-[9rem] tracking-tight">
-                  {projectsCount}
-                </p>
+                {/* Metallic Gold Count Display with Light-Sweep */}
+                <div className="relative z-10 flex flex-col items-center">
+                  <p className="relative text-metallic-gold font-black leading-none text-[7rem] sm:text-[9.5rem] tracking-tight drop-shadow-md">
+                    {projectsCount}
+                    <span className="pointer-events-none absolute inset-0 overflow-hidden">
+                      <span className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-light-sweep-slow" />
+                    </span>
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d4af6a]/15 border border-[#d4af6a]/40 text-[10px] font-black uppercase tracking-[0.25em] text-[#8a6a1f] mt-2">
+                    <Sparkles className="w-3 h-3 text-[#c9a24a]" /> Half Century Milestone
+                  </span>
+                </div>
               </div>
 
-              <p className="text-[#a3711f] text-xs font-bold uppercase tracking-[0.25em] mt-4">Half Century Milestone</p>
-              <p className="text-[#221c0c] text-xl sm:text-2xl font-black tracking-tight mt-1">50 Completed Projects</p>
+              <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-6">50 Completed Projects</p>
+              <p className="text-[#7a6f55] text-xs font-bold uppercase tracking-wider mt-1">Verified Field Deliveries Handed Over to Communities</p>
             </div>
           ) : (
             <div className="relative flex flex-col items-center">
-              <div className="relative w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] flex items-center justify-center">
-                <div className="absolute inset-4 rounded-full animate-ring-pulse" />
-                <svg className="absolute inset-0 w-full h-full -rotate-90 animate-halo-spin" style={{ animationDuration: "5s" }} viewBox="0 0 100 100">
+              <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-[48px] bg-white/60 backdrop-blur-2xl border border-white/90 shadow-[0_30px_70px_-20px_rgba(16,185,129,0.3)] flex flex-col items-center justify-center p-8">
+                <div className="absolute inset-4 rounded-full border-2 border-emerald-400/40 animate-halo-spin" />
+                <svg className="absolute inset-0 w-full h-full -rotate-90 animate-halo-spin" style={{ animationDuration: "6s" }} viewBox="0 0 100 100">
                   <circle cx="50" cy="50" r="44" fill="none" stroke="#d1f0e0" strokeWidth="4" />
                   <circle cx="50" cy="50" r="44" fill="none" stroke="#10b981" strokeWidth="4" strokeLinecap="round" strokeDasharray="276.5" strokeDashoffset="200" />
                 </svg>
-                <p className="relative text-emerald-500 font-black leading-none text-[5rem] sm:text-[6rem] tracking-tight">
+                <p className="relative text-emerald-600 font-black leading-none text-[5.5rem] sm:text-[7rem] tracking-tight">
                   {projectsCount}
-                  <span className="text-4xl align-top">+</span>
+                  <span className="text-4xl align-top text-emerald-400">+</span>
                 </p>
               </div>
-              <p className="text-emerald-600 text-xs font-bold uppercase tracking-[0.25em] mt-4">Active &amp; In Motion</p>
-              <p className="text-[#221c0c] text-xl sm:text-2xl font-black tracking-tight mt-1">13 Active Projects</p>
-              <p className="text-[#6b6046] text-sm mt-1">Building Tomorrow.</p>
+              <p className="text-emerald-700 text-xs font-bold uppercase tracking-[0.25em] mt-6">Active &amp; In Motion</p>
+              <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-1">13 Active Projects</p>
+              <p className="text-[#6b6046] text-xs font-bold uppercase tracking-wider mt-1">Building Tomorrow&apos;s Impact Today</p>
             </div>
           )}
 
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-10 max-w-2xl mx-auto">
+          {/* Breakdown Cards */}
+          <div className="flex flex-wrap justify-center gap-4 mt-12 max-w-3xl mx-auto">
             {activeBreakdown.map((b) => (
-              <div key={b.label} className="text-center">
-                <span className="text-[#221c0c] font-bold text-sm">{b.count}</span>{" "}
-                <span className="text-[#7a6f55] text-xs">{b.label}</span>
+              <div
+                key={b.label}
+                className="px-5 py-2.5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-sm text-center hover:scale-105 transition-transform"
+              >
+                <span className="text-[#221c0c] font-black text-sm">{b.count}</span>{" "}
+                <span className="text-[#7a6f55] text-xs font-medium">{b.label}</span>
               </div>
             ))}
           </div>
