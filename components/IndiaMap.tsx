@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { MapPin, Sparkles, ArrowRight } from "lucide-react";
+import { INDIA_GEO } from "./indiaMapGeo";
 
 export type StateData = {
   id: string;
@@ -179,9 +180,16 @@ interface IndiaMapProps {
 
 export default function IndiaMap({ selectedStateCode, onSelectState }: IndiaMapProps) {
   const [hoveredState, setHoveredState] = useState<StateData | null>(null);
+  const [hoveredInactive, setHoveredInactive] = useState<string | null>(null);
+
+  const nameToState = useMemo(() => {
+    const map = new Map<string, StateData>();
+    Object.values(IMPACT_STATES).forEach((s) => map.set(s.name, s));
+    return map;
+  }, []);
 
   return (
-    <div className="relative w-full aspect-[813/926] bg-[#141009]/95 backdrop-blur-2xl rounded-[36px] border-2 border-[#d4af6a]/50 p-4 sm:p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden select-none flex flex-col justify-between">
+    <div className="relative w-full aspect-[1000/1136] bg-[#141009]/95 backdrop-blur-2xl rounded-[36px] border-2 border-[#d4af6a]/50 p-4 sm:p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden select-none flex flex-col justify-between">
       {/* Map Background Grid & Particle Glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#362916] via-[#1a140b] to-[#0d0a06]" />
       <div className="pointer-events-none absolute -top-20 -left-20 w-64 h-64 rounded-full bg-amber-500/10 blur-[100px]" />
@@ -203,7 +211,7 @@ export default function IndiaMap({ selectedStateCode, onSelectState }: IndiaMapP
 
       {/* SVG Map Container */}
       <div className="relative z-10 w-full h-full flex items-center justify-center py-2">
-        <svg viewBox="0 0 813 926" className="w-full h-full max-h-[640px] filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]">
+        <svg viewBox="0 0 1000 1136" className="w-full h-full max-h-[640px] filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]">
           <defs>
             <linearGradient id="activeStateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#d4af6a" />
@@ -216,44 +224,49 @@ export default function IndiaMap({ selectedStateCode, onSelectState }: IndiaMapP
             </linearGradient>
           </defs>
 
-          {/* Render Official India Region Paths */}
+          {/* Render accurate India region geography */}
           <g id="region-map__map--flat-map" className="region-map__map--flat-map">
-            {Object.values(IMPACT_STATES).map((state) => {
+            {INDIA_GEO.map((region) => {
+              const state = nameToState.get(region.name);
+
+              if (!state) {
+                // Non-operating state/UT: muted geographic context only
+                return (
+                  <path
+                    key={region.id}
+                    d={region.d}
+                    fill={hoveredInactive === region.name ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.05)"}
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth="1"
+                    className="transition-all duration-300 cursor-default"
+                    onMouseEnter={() => setHoveredInactive(region.name)}
+                    onMouseLeave={() => setHoveredInactive(null)}
+                  >
+                    <title>{region.name}</title>
+                  </path>
+                );
+              }
+
               const isSelected = selectedStateCode === state.code;
               const isHovered = hoveredState?.code === state.code;
 
               return (
-                <g key={state.code} className="cursor-pointer transition-all duration-300" onClick={() => onSelectState(state.code)}>
-                  {/* Authentic SVG Region Path */}
-                  <path
-                    d={state.path}
-                    fill={isSelected ? "url(#selectedStateGrad)" : isHovered ? "url(#activeStateGrad)" : "rgba(212,175,106,0.35)"}
-                    stroke={isSelected ? "#f59e0b" : isHovered ? "#10b981" : "#ffffff"}
-                    strokeWidth={isSelected || isHovered ? "3.5" : "1.5"}
-                    className="transition-all duration-300 hover:opacity-100"
-                    style={{
-                      filter: isSelected || isHovered ? "drop-shadow(0 0 18px rgba(212,175,106,0.95))" : "none",
-                    }}
-                    onMouseEnter={() => setHoveredState(state)}
-                    onMouseLeave={() => setHoveredState(null)}
-                  />
-
-                  {/* Hotspot Radar Marker & Label */}
-                  <g transform={`translate(${state.center.x}, ${state.center.y})`}>
-                    <circle r="16" fill="none" stroke="#10b981" strokeWidth="2" className="animate-ping opacity-75" />
-                    <circle r="7" fill={isSelected ? "#fbbf24" : "#10b981"} stroke="#141009" strokeWidth="2" />
-                    <text
-                      x="14"
-                      y="5"
-                      fill="#ffffff"
-                      fontSize="13"
-                      fontWeight="900"
-                      className="pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-                    >
-                      {state.name}
-                    </text>
-                  </g>
-                </g>
+                <path
+                  key={region.id}
+                  d={region.d}
+                  fill={isSelected ? "url(#selectedStateGrad)" : isHovered ? "url(#activeStateGrad)" : "rgba(212,175,106,0.45)"}
+                  stroke={isSelected ? "#f59e0b" : isHovered ? "#10b981" : "#ffffff"}
+                  strokeWidth={isSelected || isHovered ? "3" : "1.5"}
+                  className="transition-all duration-300 cursor-pointer"
+                  style={{
+                    filter: isSelected || isHovered ? "drop-shadow(0 0 18px rgba(212,175,106,0.95))" : "none",
+                  }}
+                  onClick={() => onSelectState(state.code)}
+                  onMouseEnter={() => setHoveredState(state)}
+                  onMouseLeave={() => setHoveredState(null)}
+                >
+                  <title>{state.name}</title>
+                </path>
               );
             })}
           </g>
@@ -280,7 +293,7 @@ export default function IndiaMap({ selectedStateCode, onSelectState }: IndiaMapP
 
       {/* Footer Instruction Ribbon */}
       <div className="relative z-20 pt-3 border-t border-[#d4af6a]/30 flex items-center justify-between text-[11px] font-bold text-[#c9a24a]">
-        <span>✨ Click any state on the map to inspect project footprint</span>
+        <span>✨ Click any highlighted state to inspect project footprint</span>
         <span className="hidden sm:inline-flex items-center gap-1 text-emerald-400 font-black">
           {Object.keys(IMPACT_STATES).length} Active States <ArrowRight className="w-3.5 h-3.5" />
         </span>
