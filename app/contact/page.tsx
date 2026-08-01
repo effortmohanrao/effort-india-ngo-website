@@ -1,157 +1,483 @@
 "use client";
 
-import React from "react";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Sparkles, 
+import React, { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Sparkles,
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  Send,
+  CheckCircle2,
+  Copy,
+  Check,
+  Building2,
+  Landmark,
+  MessageSquare,
+  Globe2,
+  Headphones,
+  ExternalLink,
+  ChevronRight,
+  Award,
 } from "lucide-react";
 
 export default function Contact() {
-  return (
-    <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-hidden">
-      
-      {/* Liquid background blobs */}
-      <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-100/35 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-      <div className="absolute bottom-[20%] left-[-15%] w-[500px] h-[500px] bg-amber-100/25 rounded-full blur-[100px] -z-10 animate-pulse"></div>
+  const [activeOffice, setActiveOffice] = useState<"hq" | "prakasam" | "guntur" | "hyderabad">("hq");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
-      {/* --- HERO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 text-center space-y-6">
-        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 text-xs font-semibold uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Always Available
-        </span>
-        <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-none">
-          Contact Our Team
+  {/* Form State */}
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    department: "CSR & Corporate Alliances",
+    subject: "",
+    message: "",
+  });
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("contact@effortindiango.org");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText("+91 94402 61287");
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+  };
+
+  {/* Offices Data */}
+  const officeLocations = {
+    hq: {
+      title: "EFFORT Registered Headquarters",
+      district: "Ongole, Prakasam District, Andhra Pradesh",
+      address: "D.No. 37-1-408(57), 3rd Lane, Bhagya Nagar, Ongole, Prakasam District, Andhra Pradesh - 523001, India.",
+      phone: "+91 94402 61287 / 08592-234567",
+      email: "contact@effortindiango.org",
+      head: "Executive Director & General Secretary",
+      landmark: "Near Bhagya Nagar 3rd Lane Center",
+      type: "Society Headquarters & Central Administrative Office",
+    },
+    prakasam: {
+      title: "Prakasam Watershed & IPM Field Hub",
+      district: "Podili / Markapur Region, Andhra Pradesh",
+      address: "Watershed Field Intervention Center, Main Road, Podili, Prakasam District, Andhra Pradesh - 523240.",
+      phone: "+91 94402 61287",
+      email: "prakasam.field@effortindiango.org",
+      head: "Senior Project Officer (NRM & Watersheds)",
+      landmark: "Opposite Agricultural Extension Office",
+      type: "Watershed, Check-Dam & DSR Demonstration Hub",
+    },
+    guntur: {
+      title: "Guntur & Palnadu FPO Operations Hub",
+      district: "Guntur District, Andhra Pradesh",
+      address: "FPO Farmer Facilitation Desk, Collectorate Road, Guntur, Andhra Pradesh - 522004.",
+      phone: "+91 94402 61287",
+      email: "guntur.fpo@effortindiango.org",
+      head: "FPO & Spices Board Project Manager",
+      landmark: "Near District Agriculture Office",
+      type: "Farmer Producer Organizations (FPOs) & SHG Training Hub",
+    },
+    hyderabad: {
+      title: "CSR Alliances & Institutional Desk",
+      district: "Hyderabad / Vijayawada CSR Liaison",
+      address: "Corporate Liaison Office, Jubliee Hills / MG Road Vijayawada Desk, Andhra Pradesh & Telangana.",
+      phone: "+91 94402 61287",
+      email: "csr.alliances@effortindiango.org",
+      head: "Head of Corporate Partnerships & MoUs",
+      landmark: "Corporate CSR Consultation Center",
+      type: "CSR Partnerships, Form CSR-1 & University MoUs",
+    },
+  };
+
+  const selectedOffice = officeLocations[activeOffice];
+
+  return (
+    <div className="min-h-screen bg-[#fcf8f0] text-[#221c0c] relative overflow-hidden">
+      {/* Background Liquid Ambient Aurora */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[700px] h-[700px] rounded-full bg-amber-200/40 blur-[150px]" />
+        <div className="absolute top-1/3 right-10 w-[600px] h-[600px] rounded-full bg-emerald-200/30 blur-[150px]" />
+        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] rounded-full bg-sky-200/30 blur-[150px]" />
+        <div className="absolute inset-0 bg-noise opacity-[0.18]" />
+      </div>
+
+      {/* --- HERO BANNER --- */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center space-y-6">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
+          <Headphones className="w-3.5 h-3.5 text-[#c9a24a]" /> Direct Communication Portal
+        </div>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#221c0c] max-w-4xl mx-auto leading-[1.12]">
+          Let's Connect & Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Self-Reliant Communities</span>
         </h1>
-        <p className="text-slate-655 text-lg max-w-2xl mx-auto">
-          Have questions about donations, tax exemption certificates, or partnership initiatives? Reach out to us.
+        <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
+          Have questions about Corporate CSR partnerships, 80G tax exemptions, University MoUs, volunteering, or project interventions? Reach out directly to our headquarters or regional field offices.
         </p>
       </section>
 
-      {/* --- FORM & CONTACT DETAILS GRID --- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid lg:grid-cols-12 gap-12">
+      {/* --- 4 QUICK CONTACT ACTION CARDS --- */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
-          {/* Form Left (7 cols) */}
-          <div className="lg:col-span-7 bg-white/80 backdrop-blur-xl rounded-3xl border border-slate-200/50 p-8 sm:p-10 shadow-lg space-y-8">
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold text-slate-900">Send Us a Message</h3>
-              <p className="text-slate-500 text-xs sm:text-sm">We usually respond to email inquiries within 24 business hours.</p>
+          {/* Phone Card */}
+          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center">
+              <Phone className="w-5 h-5" />
             </div>
-
-            <form onSubmit={(e) => e.preventDefault()} className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">First Name</label>
-                <input type="text" placeholder="e.g. Ramesh" className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-emerald-600 focus:outline-hidden text-sm" required />
-              </div>
-              <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">Last Name</label>
-                <input type="text" placeholder="e.g. Sharma" className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-emerald-600 focus:outline-hidden text-sm" required />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">Email Address</label>
-                <input type="email" placeholder="e.g. ramesh@work.com" className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-emerald-600 focus:outline-hidden text-sm" required />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">Subject</label>
-                <input type="text" placeholder="e.g. Tax certificate query, CSR partnership..." className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-emerald-600 focus:outline-hidden text-sm" required />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">Detailed Message</label>
-                <textarea rows={4} placeholder="Type your query here..." className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-emerald-600 focus:outline-hidden text-sm" required></textarea>
-              </div>
-              <div className="sm:col-span-2 pt-2">
-                <button type="submit" className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2">
-                  Send Inquiry <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </form>
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Helpline & Call Desk</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5">+91 94402 61287</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Mon – Sat: 9:00 AM – 6:00 PM IST</p>
+            </div>
+            <button
+              onClick={handleCopyPhone}
+              className="w-full py-2 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              {copiedPhone ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-amber-700" />}
+              {copiedPhone ? "Phone Copied!" : "Copy Phone Number"}
+            </button>
           </div>
 
-          {/* Details Right (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            {/* Quick contact info */}
-            <div className="bg-slate-905 bg-slate-900 text-white rounded-3xl p-8 space-y-6 shadow-lg relative overflow-hidden">
-              <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-              
-              <h4 className="text-lg font-bold text-white">Direct Communication</h4>
-
-              <div className="space-y-4 text-emerald-100 text-sm">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-emerald-400 flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-slate-450 block text-[10px] uppercase font-bold">Call Us</span>
-                    <strong className="text-white font-medium mt-0.5 block">+91 98765 43210</strong>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-emerald-400 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-slate-450 block text-[10px] uppercase font-bold">Email Inquiries</span>
-                    <strong className="text-white font-medium mt-0.5 block">info@effortindiango.org</strong>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-emerald-400 flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-slate-450 block text-[10px] uppercase font-bold">Business Hours</span>
-                    <strong className="text-white font-medium mt-0.5 block">Mon - Sat: 9 AM - 6 PM</strong>
-                  </div>
-                </div>
-              </div>
+          {/* Email Card */}
+          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center">
+              <Mail className="w-5 h-5" />
             </div>
-
-            {/* Office Locations */}
-            <div className="bg-white/80 backdrop-blur-xl border border-slate-200/50 rounded-3xl p-8 space-y-6 shadow-md">
-              <h4 className="text-lg font-bold text-slate-900">Regional Offices</h4>
-              
-              <div className="space-y-6 text-slate-650 text-xs">
-                
-                <div className="flex gap-3">
-                  <MapPin className="w-5 h-5 text-emerald-600 shrink-0" />
-                  <div>
-                    <strong className="text-slate-800 font-bold block text-sm">Karnataka Head Office</strong>
-                    <p className="mt-1 leading-relaxed">321, Progressive Towers, Outer Ring Road, Bengaluru - 560103</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <MapPin className="w-5 h-5 text-emerald-600 shrink-0" />
-                  <div>
-                    <strong className="text-slate-800 font-bold block text-sm">Odisha Operations</strong>
-                    <p className="mt-1 leading-relaxed">45, Temple Road, Ganjam district, Odisha - 761001</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <MapPin className="w-5 h-5 text-emerald-600 shrink-0" />
-                  <div>
-                    <strong className="text-slate-800 font-bold block text-sm">Rajasthan Bridging Schools</strong>
-                    <p className="mt-1 leading-relaxed">12, Vidyadhar Nagar, Jaipur, Rajasthan - 302039</p>
-                  </div>
-                </div>
-
-              </div>
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700">Official Email Desk</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5 truncate">contact@effortindiango.org</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Response within 24 business hours</p>
             </div>
+            <button
+              onClick={handleCopyEmail}
+              className="w-full py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-900 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-emerald-700" />}
+              {copiedEmail ? "Email Copied!" : "Copy Official Email"}
+            </button>
+          </div>
 
+          {/* Registered Office Card */}
+          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 text-sky-700 flex items-center justify-center">
+              <MapPin className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-sky-700">Registered Headquarters</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5">Ongole, Andhra Pradesh</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Prakasam District, AP - 523001</p>
+            </div>
+            <a
+              href="#office-explorer"
+              className="w-full py-2 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-900 font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
+            >
+              View Full Address Details <ChevronRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          {/* Working Hours Card */}
+          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center">
+              <Clock className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-purple-700">Operating Schedule</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5">Mon – Sat (9 AM – 6 PM)</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Field staff active 7 days a week</p>
+            </div>
+            <span className="w-full py-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 font-bold text-xs text-center block">
+              100% Active Ground Staff
+            </span>
           </div>
 
         </div>
       </section>
 
+      {/* --- FORM & OFFICE EXPLORER GRID --- */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Column: High-Level Interactive Inquiry Form (7 cols) */}
+          <div className="lg:col-span-7 rounded-[40px] p-8 sm:p-10 bg-white/95 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8">
+            <div className="space-y-2 border-b border-[#e5d4a1] pb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-xs font-black uppercase tracking-wider text-amber-900">
+                <MessageSquare className="w-3.5 h-3.5 text-amber-700" /> Send Us a Direct Message
+              </span>
+              <h2 className="text-3xl font-black text-[#221c0c]">Contact Our Program Team</h2>
+              <p className="text-xs sm:text-sm text-[#5b6a60] font-medium">
+                Fill out your details below and our team will get in touch with you within 24 business hours.
+              </p>
+            </div>
+
+            {formSubmitted ? (
+              <div className="p-8 rounded-3xl bg-emerald-50 border-2 border-emerald-300 text-center space-y-4 animate-fade-in">
+                <div className="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-md">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-black text-emerald-950">Inquiry Received Successfully!</h3>
+                <p className="text-sm text-emerald-800 font-medium max-w-md mx-auto">
+                  Thank you for contacting EFFORT India NGO. A Program Officer handling <strong>{formData.department}</strong> will reply to your message shortly.
+                </p>
+                <div className="p-3 rounded-2xl bg-white border border-emerald-200 text-xs font-mono font-bold text-emerald-900 inline-block">
+                  Reference ID: EFFORT-INQ-{Math.floor(100000 + Math.random() * 900000)}
+                </div>
+                <div>
+                  <button
+                    onClick={() => setFormSubmitted(false)}
+                    className="px-6 py-2.5 rounded-full bg-emerald-700 text-white font-black text-xs uppercase tracking-wider hover:bg-emerald-800"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. Ramesh Sharma"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="e.g. ramesh@work.com"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                      Phone / Mobile Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="e.g. +91 98765 43210"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                      Department / Concern *
+                    </label>
+                    <select
+                      value={formData.department}
+                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                    >
+                      <option value="CSR & Corporate Alliances">CSR & Corporate Alliances (Form CSR-1)</option>
+                      <option value="Volunteering & Internships">Volunteering & Student Internships</option>
+                      <option value="Donation & 80G Tax Receipts">Donation & 80G Tax Exemption Receipts</option>
+                      <option value="Government & Academic MoUs">Government & Academic MoUs</option>
+                      <option value="General Inquiry">General Inquiry / Media Query</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                    Subject Line *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder="e.g. CSR Project Inquiry / 80G Tax Receipt Request"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                    Detailed Message *
+                  </label>
+                  <textarea
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Type your inquiry, proposal parameters, or question here..."
+                    className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-full bg-[#221c0c] hover:bg-black text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Send className="w-4 h-4 text-amber-400" /> Send Message To EFFORT Team
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Right Column: Dynamic Office Location Explorer (5 cols) */}
+          <div id="office-explorer" className="lg:col-span-5 space-y-6">
+            <div className="rounded-[36px] p-6 sm:p-8 bg-gradient-to-b from-[#1a140b] to-[#120e08] text-white border-2 border-[#d4af6a]/60 shadow-2xl space-y-6">
+              <div className="flex items-center justify-between border-b border-[#d4af6a]/30 pb-4">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400">Field & Admin Locations</span>
+                  <h3 className="text-xl font-black text-[#f7e4a3]">EFFORT Office Directory</h3>
+                </div>
+                <Building2 className="w-6 h-6 text-amber-400" />
+              </div>
+
+              {/* Location Switcher Tabs */}
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setActiveOffice("hq")}
+                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
+                    activeOffice === "hq"
+                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
+                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
+                  }`}
+                >
+                  🏛️ Headquarters (AP)
+                </button>
+
+                <button
+                  onClick={() => setActiveOffice("prakasam")}
+                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
+                    activeOffice === "prakasam"
+                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
+                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
+                  }`}
+                >
+                  🌾 Prakasam Field Hub
+                </button>
+
+                <button
+                  onClick={() => setActiveOffice("guntur")}
+                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
+                    activeOffice === "guntur"
+                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
+                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
+                  }`}
+                >
+                  👩‍🌾 Guntur FPO Desk
+                </button>
+
+                <button
+                  onClick={() => setActiveOffice("hyderabad")}
+                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
+                    activeOffice === "hyderabad"
+                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
+                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
+                  }`}
+                >
+                  🏢 CSR Alliances Desk
+                </button>
+              </div>
+
+              {/* Selected Office Detail View */}
+              <div className="p-5 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-4 animate-fade-in">
+                <div>
+                  <span className="text-[10px] font-black uppercase text-amber-400">{selectedOffice.type}</span>
+                  <h4 className="text-lg font-black text-white">{selectedOffice.title}</h4>
+                  <p className="text-xs text-stone-400 font-medium mt-0.5">{selectedOffice.district}</p>
+                </div>
+
+                <div className="space-y-2 text-xs text-stone-300 leading-relaxed font-medium pt-2 border-t border-stone-800">
+                  <div className="flex gap-2">
+                    <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <span>{selectedOffice.address}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>{selectedOffice.phone}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                    <span>{selectedOffice.email}</span>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400">
+                  <span className="font-bold text-amber-300 block">Lead Coordinator:</span>
+                  {selectedOffice.head} ({selectedOffice.landmark})
+                </div>
+
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(selectedOffice.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 rounded-xl bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:bg-amber-300 transition-colors"
+                >
+                  Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Emergency / 80G Receipt Callout Card */}
+            <div className="p-6 rounded-[28px] bg-white/90 border-2 border-[#e5d4a1] space-y-3 shadow-sm">
+              <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-amber-700" />
+                <h4 className="font-black text-[#221c0c] text-sm">Need Urgent 80G Tax Receipt?</h4>
+              </div>
+              <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">
+                If you made a contribution and require your official Section 80G tax exemption certificate, please mention your payment transaction ID in the subject line above for priority issue within 12 hours.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- STATUTORY GOVERNANCE FOOTER STRIP --- */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="rounded-[36px] p-8 sm:p-10 bg-[#1a140b] text-white border-2 border-[#d4af6a]/60 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.8)] text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af6a]/20 border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#f7e4a3]">
+            <ShieldCheck className="w-4 h-4 text-emerald-400" /> Verified Legal Standing & Regulatory Accreditation
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-black text-[#f7e4a3]">
+            EFFORT India NGO Statutory Registration Credentials
+          </h3>
+          <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
+            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+          </p>
+
+          <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Society Reg 340/1999</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> 80G Tax Exempt</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Section 12AB Approved</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> FCRA Registered</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> NITI Aayog Darpan ID</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> MCA Form CSR-1 (CSR00034988)</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> SSE Listed</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> TISS Empaneled</span>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
