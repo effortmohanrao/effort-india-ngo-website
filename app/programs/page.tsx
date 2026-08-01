@@ -307,54 +307,15 @@ export default function Programs() {
             </button>
           </div>
 
-          {/* 3D Glassmorphism Showcase Widget with Calendar Flip Clock */}
-          <div className="relative flex flex-col items-center">
-            <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] rounded-[48px] bg-white/60 backdrop-blur-2xl border border-white/90 shadow-[0_30px_70px_-20px_rgba(180,140,40,0.35)] flex flex-col items-center justify-center p-6 sm:p-8 hover:-translate-y-1.5 transition-all duration-500">
-              {/* Radial Breathing Halo Backdrop */}
-              <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-amber-200/50 via-amber-100/30 to-transparent blur-3xl animate-halo-breathe" />
+          {/* 3D Calendar Flip Clock Display */}
+          <div className="relative flex flex-col items-center my-4">
+            <CalendarFlipClock
+              value={projectsCount + demoOffset}
+              label={projectsTab === "completed" ? "Half Century Milestone" : "Active & In Motion"}
+              onSimulateIncrement={projectsTab === "completed" ? () => setDemoOffset((prev) => prev + 1) : undefined}
+            />
 
-              {/* Outer Orbital Glass Ring with Glowing Gold Nodes */}
-              <div className="absolute inset-4 rounded-full border-2 border-[#d4af6a]/40 animate-halo-spin">
-                <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#d4af6a] shadow-[0_0_12px_#d4af6a]" />
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#10b981] shadow-[0_0_12px_#10b981]" />
-                <span className="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#38bdf8] shadow-[0_0_12px_#38bdf8]" />
-                <span className="absolute top-1/2 -right-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#f43f5e] shadow-[0_0_12px_#f43f5e]" />
-              </div>
-
-              {/* Inner Dashed Orbital Ring */}
-              <div className="absolute inset-12 rounded-full border-2 border-dashed border-[#e6c97a]/60 animate-halo-spin-reverse" />
-
-              {/* Particle Burst Effects */}
-              {burstParticles.map((p, i) => (
-                <div
-                  key={i}
-                  className="absolute left-1/2 top-1/2 rounded-full bg-[#d4af6a] shadow-[0_0_8px_#d4af6a]"
-                  style={
-                    {
-                      width: p.size,
-                      height: p.size,
-                      "--burst-end": `translate(${p.dx}px, ${p.dy}px)`,
-                      animationName: "particle-burst",
-                      animationDuration: "2.6s",
-                      animationTimingFunction: "cubic-bezier(0.2, 0.7, 0.3, 1)",
-                      animationIterationCount: "infinite",
-                      animationDelay: `${p.delay}s`,
-                    } as React.CSSProperties
-                  }
-                />
-              ))}
-
-              {/* 3D Calendar Flip Clock Display */}
-              <div className="relative z-20">
-                <CalendarFlipClock
-                  value={projectsCount + demoOffset}
-                  label={projectsTab === "completed" ? "Half Century Milestone" : "Active & In Motion"}
-                  onSimulateIncrement={projectsTab === "completed" ? () => setDemoOffset((prev) => prev + 1) : undefined}
-                />
-              </div>
-            </div>
-
-            <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-6">
+            <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-8">
               {projectsTab === "completed"
                 ? `${50 + demoOffset} Completed Projects`
                 : `${13 + demoOffset} Active Projects`}
