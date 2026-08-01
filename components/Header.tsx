@@ -84,7 +84,7 @@ export default function Header() {
 
   const moreLinks = [
     { name: "Transparency & Audits", href: "/transparency", icon: FileText, desc: "Audited financial balance sheets & filings" },
-    { name: "CSR Partnerships", href: "/csr", icon: Building, desc: "Corporate MCA CSR project collaborations" },
+    { name: "CSR Partnerships", href: "/get-involved", icon: Building, desc: "Corporate MCA CSR project collaborations" },
     { name: "Careers & Internships", href: "/careers", icon: Briefcase, desc: "Ground job openings & student roles" },
     { name: "News & Media Blog", href: "/news", icon: Newspaper, desc: "Field journals, releases & galleries" },
     { name: "Donor Portal Login", href: "/donor-login", icon: UserCheck, desc: "Access ledgers & tax certificates" },

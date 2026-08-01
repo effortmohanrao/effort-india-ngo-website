@@ -32,7 +32,7 @@ export default function Footer() {
             <li><Link href="/programs#education" className="hover:text-emerald-450 transition-colors">Shiksha: Rural Education</Link></li>
             <li><Link href="/programs#health" className="hover:text-emerald-450 transition-colors">Sanjeevani: Mobile Clinics</Link></li>
             <li><Link href="/programs#livelihood" className="hover:text-emerald-450 transition-colors">Swavalamban: Youth Skilling</Link></li>
-            <li><Link href="/csr" className="hover:text-emerald-450 transition-colors">CSR Corporate Partnerships</Link></li>
+            <li><Link href="/get-involved" className="hover:text-emerald-450 transition-colors">CSR Corporate Partnerships</Link></li>
             <li><Link href="/donate" className="hover:text-emerald-450 transition-colors">Direct Sponsorship Program</Link></li>
           </ul>
         </div>

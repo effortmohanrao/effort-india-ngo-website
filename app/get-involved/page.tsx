@@ -29,11 +29,12 @@ import {
   Calculator,
   UserCheck,
   Layers,
-  Sparkle,
+  FileText,
+  Building,
 } from "lucide-react";
 
 export default function GetInvolved() {
-  const [activePathway, setActivePathway] = useState<"volunteer" | "mou" | "giving" | "csr">("volunteer");
+  const [activePathway, setActivePathway] = useState<"volunteer" | "mou" | "giving" | "csr">("csr");
   const [selectedSkills, setSelectedSkills] = useState<string[]>(["Field Teaching & Literacy"]);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -44,7 +45,9 @@ export default function GetInvolved() {
     email: "",
     phone: "",
     organization: "",
-    pathway: "Grassroots Volunteer",
+    role: "",
+    pathway: "Corporate CSR Partnership",
+    sector: "Sustainable Agriculture & IPM",
     location: "",
     message: "",
   });
@@ -72,7 +75,41 @@ export default function GetInvolved() {
     "Event Management & Logistics",
   ];
 
-  {/* Adopt an Impact Project Cards */}
+  {/* CSR High-Level Sponsorship Opportunities (from CSR Portal) */}
+  const csrSponsorOptions = [
+    {
+      title: "Educate a Village Primary School",
+      desc: "Equip smart TVs, digital curriculums, school amenities, and clean drinking water units for 200+ rural students.",
+      budget: "₹3.5 Lakhs / Village School",
+      badge: "Child Education",
+    },
+    {
+      title: "Deploy a Mobile Diagnostic Health Clinic",
+      desc: "Fund a primary care diagnostic van, medical kits, nurse, driver, and free medicines for a full year.",
+      budget: "₹12.0 Lakhs / Year",
+      badge: "Healthcare Access",
+    },
+    {
+      title: "Women Tailoring SHG Collective Hub",
+      desc: "Equip 15 sewing machines, build training space, and fund micro-grants for SC/ST women self-help groups.",
+      budget: "₹2.0 Lakhs / Collective",
+      badge: "Women Livelihoods",
+    },
+    {
+      title: "Construct Village RO Clean Water Plant",
+      desc: "Build a community Reverse Osmosis (RO) drinking water plant providing fluoride-free water to 1,000 families.",
+      budget: "₹5.0 Lakhs / RO Plant",
+      badge: "Water & WASH",
+    },
+    {
+      title: "Direct Seeded Rice (DSR) & Water Governance",
+      desc: "Promote resource-conserving DSR rice farming across 500 acres, saving 35% ground water and boosting farmer net incomes.",
+      budget: "₹8.0 Lakhs / 500 Acres",
+      badge: "Climate Agriculture",
+    },
+  ];
+
+  {/* Adopt an Impact Project Cards for Donors */}
   const impactProjects = [
     {
       title: "Sponsor Bicycles for 5 Girl Students",
@@ -143,20 +180,20 @@ export default function GetInvolved() {
   {/* FAQs */}
   const faqs = [
     {
+      q: "What is EFFORT India NGO's MCA Form CSR-1 Registration number?",
+      a: "EFFORT India NGO is registered with the Ministry of Corporate Affairs (MCA) for executing corporate CSR projects under Registration ID: CSR00034988. All CSR contributions qualify under Schedule VII of the Companies Act.",
+    },
+    {
+      q: "Are corporate CSR contributions 80G tax-exempt?",
+      a: "Yes! EFFORT India NGO holds active 80G tax exemption approval, Section 12AB registration, and FCRA registration. Corporate and individual contributions qualify for 50% tax deduction under Section 80G.",
+    },
+    {
       q: "How can an institution or university sign an MoU with EFFORT India NGO?",
       a: "We welcome formal MoUs with universities, government departments, and development institutes. Select 'Sign an MoU / Institutional Alliance' in the form below, and our leadership team will initiate formal discussions and MoU drafting.",
     },
     {
-      q: "Are individual and corporate contributions tax-exempt under 80G?",
-      a: "Yes! All financial contributions to EFFORT India NGO qualify for a 50% tax exemption under Section 80G of the Income Tax Act 1961. Official 80G tax receipts are issued promptly upon contribution.",
-    },
-    {
-      q: "What is the process for signing up as a Volunteer?",
-      a: "Select your skills in the Volunteer Pathway, fill out your contact details, and our volunteer coordinator will contact you with current field opportunities in your state.",
-    },
-    {
-      q: "Does EFFORT India NGO execute turnkey Corporate CSR Projects?",
-      a: "Yes. EFFORT India NGO is fully registered under Ministry of Corporate Affairs (MCA Form CSR-1), 12AB, 80G, and FCRA. We execute complete Schedule VII CSR projects with independent baseline and impact audit reports.",
+      q: "Does EFFORT India NGO provide third-party CSR impact evaluation reports?",
+      a: "Yes. We deliver comprehensive quarterly baseline reports, milestone budget tracking, Form CSR-1 project completion certificates, and third-party impact audits for all corporate partners.",
     },
   ];
 
@@ -175,15 +212,15 @@ export default function GetInvolved() {
           {/* Left Column: Bold Action Intro */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#c9a24a]" /> Direct Action Portal
+              <Building className="w-3.5 h-3.5 text-[#c9a24a]" /> Corporate CSR & Engagement Portal
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#221c0c] leading-[1.1]">
-              Be the Catalyst: <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Choose Your Pathway to Impact</span>
+              Get Involved: <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Corporate CSR & Field Partnerships</span>
             </h1>
 
             <p className="text-base sm:text-lg text-[#5b6a60] font-medium leading-relaxed">
-              Join hands with EFFORT India NGO across <strong>4 dedicated engagement tracks</strong>: Volunteer on the ground, Sign an Institutional MoU, Sponsor an Impact Cause, or Execute Corporate CSR Projects.
+              Partner with EFFORT India NGO across <strong>4 dedicated engagement tracks</strong>: Execute MCA Form CSR-1 Projects, Sign an Institutional MoU, Volunteer on the ground, or Sponsor an Impact Cause.
             </p>
 
             {/* Impact Metric Bar */}
@@ -207,21 +244,21 @@ export default function GetInvolved() {
           <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
             <button
               onClick={() => {
-                setActivePathway("volunteer");
+                setActivePathway("csr");
                 document.getElementById("pathways")?.scrollIntoView({ behavior: "smooth" });
               }}
               className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
-                activePathway === "volunteer"
+                activePathway === "csr"
                   ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
                   : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
               }`}
             >
-              <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center mb-3">
-                <Users className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center mb-3">
+                <Building2 className="w-5 h-5" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-amber-500 block">Individual</span>
-              <h3 className="text-lg font-black mt-0.5">Grassroots Volunteer</h3>
-              <p className="text-xs opacity-80 mt-1 font-medium">Join teaching, medical, and organic farming field drives.</p>
+              <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 block">Corporate</span>
+              <h3 className="text-lg font-black mt-0.5">Corporate CSR Hub</h3>
+              <p className="text-xs opacity-80 mt-1 font-medium">Turnkey Schedule VII CSR execution with Form CSR-1.</p>
             </button>
 
             <button
@@ -245,6 +282,25 @@ export default function GetInvolved() {
 
             <button
               onClick={() => {
+                setActivePathway("volunteer");
+                document.getElementById("pathways")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
+                activePathway === "volunteer"
+                  ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
+                  : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
+              }`}
+            >
+              <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center mb-3">
+                <Users className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-amber-500 block">Individual</span>
+              <h3 className="text-lg font-black mt-0.5">Grassroots Volunteer</h3>
+              <p className="text-xs opacity-80 mt-1 font-medium">Join teaching, medical, and organic farming field drives.</p>
+            </button>
+
+            <button
+              onClick={() => {
                 setActivePathway("giving");
                 document.getElementById("pathways")?.scrollIntoView({ behavior: "smooth" });
               }}
@@ -261,42 +317,47 @@ export default function GetInvolved() {
               <h3 className="text-lg font-black mt-0.5">Adopt an Impact Project</h3>
               <p className="text-xs opacity-80 mt-1 font-medium">Sponsor girl student bikes, RO plants & SHG units (80G).</p>
             </button>
+          </div>
+        </div>
+      </section>
 
-            <button
-              onClick={() => {
-                setActivePathway("csr");
-                document.getElementById("pathways")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
-                activePathway === "csr"
-                  ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
-                  : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
-              }`}
-            >
-              <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center mb-3">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 block">Corporate</span>
-              <h3 className="text-lg font-black mt-0.5">Corporate CSR Hub</h3>
-              <p className="text-xs opacity-80 mt-1 font-medium">Turnkey Schedule VII CSR execution with Form CSR-1.</p>
-            </button>
+      {/* --- HIGH-LEVEL STATUTORY CSR CREDENTIALS STRIP --- */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="bg-gradient-to-b from-[#1a140b] to-[#120e08] text-white rounded-[32px] p-8 border-2 border-[#d4af6a]/60 shadow-2xl grid md:grid-cols-3 gap-8">
+          <div className="space-y-2">
+            <ShieldCheck className="w-8 h-8 text-emerald-400" />
+            <h4 className="font-black text-[#f7e4a3] text-lg">MCA Form CSR-1 Approved</h4>
+            <p className="text-xs text-stone-300 font-medium">Registered with Ministry of Corporate Affairs for turnkey CSR operations in India.</p>
+            <div className="text-xs font-mono font-bold bg-emerald-950/80 border border-emerald-500/40 p-2 rounded-xl text-emerald-300 inline-block">Registration ID: CSR00034988</div>
+          </div>
+          <div className="space-y-2">
+            <Award className="w-8 h-8 text-amber-400" />
+            <h4 className="font-black text-[#f7e4a3] text-lg">Section 80G & 12AB Verified</h4>
+            <p className="text-xs text-stone-300 font-medium">50% tax exemption under Section 80G for all corporate contributions.</p>
+            <div className="text-xs font-mono font-bold bg-amber-950/80 border border-amber-500/40 p-2 rounded-xl text-amber-300 inline-block">CIT (Exempt) Certified</div>
+          </div>
+          <div className="space-y-2">
+            <FileText className="w-8 h-8 text-sky-400" />
+            <h4 className="font-black text-[#f7e4a3] text-lg">Impact Evaluation Audits</h4>
+            <p className="text-xs text-stone-300 font-medium">We deliver quarterly baseline surveys, milestone reports & third-party audits.</p>
+            <div className="text-xs font-mono font-bold bg-sky-950/80 border border-sky-500/40 p-2 rounded-xl text-sky-300 inline-block">Schedule VII Audited</div>
           </div>
         </div>
       </section>
 
       {/* --- SECTION 2: INTERACTIVE PATHWAYS EXPLORER MODULE --- */}
-      <section id="pathways" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section id="pathways" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Pathway Navigation Bar */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           <button
-            onClick={() => setActivePathway("volunteer")}
+            onClick={() => setActivePathway("csr")}
             className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-black tracking-wide transition-all cursor-pointer ${
-              activePathway === "volunteer"
+              activePathway === "csr"
                 ? "bg-[#221c0c] text-[#f7e4a3] border-2 border-[#d4af6a] shadow-lg scale-105"
                 : "bg-white/80 border border-[#e5d4a1] text-[#5a461e] hover:bg-white"
             }`}
           >
-            <Users className="w-4 h-4 text-amber-500" /> Grassroots Volunteer Force
+            <Building2 className="w-4 h-4 text-purple-500" /> Corporate CSR Command Center
           </button>
 
           <button
@@ -311,6 +372,17 @@ export default function GetInvolved() {
           </button>
 
           <button
+            onClick={() => setActivePathway("volunteer")}
+            className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-black tracking-wide transition-all cursor-pointer ${
+              activePathway === "volunteer"
+                ? "bg-[#221c0c] text-[#f7e4a3] border-2 border-[#d4af6a] shadow-lg scale-105"
+                : "bg-white/80 border border-[#e5d4a1] text-[#5a461e] hover:bg-white"
+            }`}
+          >
+            <Users className="w-4 h-4 text-amber-500" /> Grassroots Volunteer Force
+          </button>
+
+          <button
             onClick={() => setActivePathway("giving")}
             className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-black tracking-wide transition-all cursor-pointer ${
               activePathway === "giving"
@@ -320,20 +392,120 @@ export default function GetInvolved() {
           >
             <Heart className="w-4 h-4 text-sky-500" /> Adopt an Impact Cause (80G)
           </button>
-
-          <button
-            onClick={() => setActivePathway("csr")}
-            className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-black tracking-wide transition-all cursor-pointer ${
-              activePathway === "csr"
-                ? "bg-[#221c0c] text-[#f7e4a3] border-2 border-[#d4af6a] shadow-lg scale-105"
-                : "bg-white/80 border border-[#e5d4a1] text-[#5a461e] hover:bg-white"
-            }`}
-          >
-            <Building2 className="w-4 h-4 text-purple-500" /> Corporate CSR Command Center
-          </button>
         </div>
 
-        {/* PATHWAY CONTENT A: VOLUNTEER MODULE WITH SKILL MATCHER */}
+        {/* PATHWAY CONTENT A: CORPORATE CSR COMMAND CENTER & SPONSORSHIP OPPORTUNITIES */}
+        {activePathway === "csr" && (
+          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
+            <div className="space-y-2 border-b border-[#e5d4a1] pb-6 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs font-black uppercase text-purple-900">
+                  <Building2 className="w-3.5 h-3.5 text-purple-600" /> High-Level Corporate CSR Hub
+                </span>
+                <h2 className="text-3xl font-black text-[#221c0c] mt-1">CSR Sponsorship Opportunities & Execution</h2>
+              </div>
+              <span className="px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-black">
+                Form CSR-1 ID: CSR00034988
+              </span>
+            </div>
+
+            {/* High-Level Sponsorship Opportunities Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {csrSponsorOptions.map((opt, idx) => (
+                <div key={idx} className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-3 flex flex-col justify-between hover:border-[#d4af6a] transition-all">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">{opt.badge}</span>
+                      <span className="text-[11px] font-black text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300">{opt.budget}</span>
+                    </div>
+                    <h3 className="font-black text-[#221c0c] text-lg leading-snug">{opt.title}</h3>
+                    <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">{opt.desc}</p>
+                  </div>
+
+                  <a
+                    href="#application-form"
+                    onClick={() => setFormData((prev) => ({ ...prev, pathway: "Corporate CSR Partnership", sector: opt.title, message: `Sponsoring: ${opt.title} (${opt.budget})` }))}
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#221c0c] text-[#f7e4a3] font-black text-[11px] uppercase tracking-wider hover:bg-black"
+                  >
+                    Sponsor This Project <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            {/* 3-Phase Execution Process */}
+            <div className="grid sm:grid-cols-3 gap-6 pt-4 border-t border-[#e5d4a1]">
+              <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-2">
+                <p className="text-xs font-black uppercase text-amber-700">Phase 1: Baseline Survey</p>
+                <h3 className="font-black text-[#221c0c] text-base">Needs Assessment</h3>
+                <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">Rigorous ground surveys across Prakasam, Guntur, and Kurnool habitations to define exact KPI targets.</p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-2">
+                <p className="text-xs font-black uppercase text-emerald-700">Phase 2: Field Execution</p>
+                <h3 className="font-black text-[#221c0c] text-base">Ground Operations</h3>
+                <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">Direct implementation with 27-year veteran field teams, co-branded launches & employee volunteer days.</p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-2">
+                <p className="text-xs font-black uppercase text-purple-700">Phase 3: Impact Audit</p>
+                <h3 className="font-black text-[#221c0c] text-base">Reporting & Audits</h3>
+                <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">Milestone-based budget reporting, MCA Form CSR-1 completion certificates, and ESG compliance files.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* PATHWAY CONTENT B: MOU & STRATEGIC ALLIANCES MODULE */}
+        {activePathway === "mou" && (
+          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
+            <div className="space-y-2 border-b border-[#e5d4a1] pb-6">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black uppercase text-emerald-900">
+                <Handshake className="w-3.5 h-3.5 text-emerald-600" /> Institutional Collaboration Portal
+              </span>
+              <h2 className="text-3xl font-black text-[#221c0c]">Memorandum of Understanding (MoU) Tracks</h2>
+              <p className="text-xs sm:text-sm text-[#5b6a60] font-medium">
+                EFFORT India NGO signs formal MoUs with Universities, Government Bodies, and Development Funding Agencies to execute long-term, high-impact projects.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {mouCategories.map((mou, i) => (
+                <div key={i} className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-4 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center">
+                      <mou.icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-black text-[#221c0c] text-lg leading-snug">{mou.type}</h3>
+                    <p className="text-xs font-black text-emerald-800">{mou.partner}</p>
+                    <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">{mou.scope}</p>
+                  </div>
+
+                  <a
+                    href="#application-form"
+                    onClick={() => setFormData((prev) => ({ ...prev, pathway: "Institutional & Govt Alliance", message: `Interested in: ${mou.type}` }))}
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#221c0c] text-[#f7e4a3] font-black text-[11px] uppercase tracking-wider hover:bg-black"
+                  >
+                    Initiate MoU Request <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            {/* Official Credentials Checklist */}
+            <div className="p-5 rounded-3xl bg-amber-50/80 border border-[#d4af6a]/50 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-black text-[#221c0c] uppercase">Statutory MoU Pre-requisites Verified:</p>
+                <p className="text-xs text-[#5b6a60] font-medium mt-0.5">FCRA Registered · 12AB & 80G Certified · NITI Aayog Darpan ID · TISS Empaneled</p>
+              </div>
+              <span className="px-3.5 py-1.5 rounded-full bg-emerald-700 text-white text-xs font-black">
+                100% Ready for MoU
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* PATHWAY CONTENT C: VOLUNTEER MODULE */}
         {activePathway === "volunteer" && (
           <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5d4a1] pb-6">
@@ -410,56 +582,7 @@ export default function GetInvolved() {
           </div>
         )}
 
-        {/* PATHWAY CONTENT B: MOU & STRATEGIC ALLIANCES MODULE */}
-        {activePathway === "mou" && (
-          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
-            <div className="space-y-2 border-b border-[#e5d4a1] pb-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black uppercase text-emerald-900">
-                <Handshake className="w-3.5 h-3.5 text-emerald-600" /> Institutional Collaboration Portal
-              </span>
-              <h2 className="text-3xl font-black text-[#221c0c]">Memorandum of Understanding (MoU) Tracks</h2>
-              <p className="text-xs sm:text-sm text-[#5b6a60] font-medium">
-                EFFORT India NGO signs formal MoUs with Universities, Government Bodies, and Development Funding Agencies to execute long-term, high-impact projects.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {mouCategories.map((mou, i) => (
-                <div key={i} className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-4 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center">
-                      <mou.icon className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-black text-[#221c0c] text-lg leading-snug">{mou.type}</h3>
-                    <p className="text-xs font-black text-emerald-800">{mou.partner}</p>
-                    <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">{mou.scope}</p>
-                  </div>
-
-                  <a
-                    href="#application-form"
-                    onClick={() => setFormData((prev) => ({ ...prev, pathway: "Institutional & Govt Alliance", message: `Interested in: ${mou.type}` }))}
-                    className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#221c0c] text-[#f7e4a3] font-black text-[11px] uppercase tracking-wider hover:bg-black"
-                  >
-                    Initiate MoU Request <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            {/* Official Credentials Checklist */}
-            <div className="p-5 rounded-3xl bg-amber-50/80 border border-[#d4af6a]/50 flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-black text-[#221c0c] uppercase">Statutory MoU Pre-requisites Verified:</p>
-                <p className="text-xs text-[#5b6a60] font-medium mt-0.5">FCRA Registered · 12AB & 80G Certified · NITI Aayog Darpan ID · TISS Empaneled</p>
-              </div>
-              <span className="px-3.5 py-1.5 rounded-full bg-emerald-700 text-white text-xs font-black">
-                100% Ready for MoU
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* PATHWAY CONTENT C: ADOPT AN IMPACT CAUSE MODULE */}
+        {/* PATHWAY CONTENT D: ADOPT AN IMPACT CAUSE MODULE */}
         {activePathway === "giving" && (
           <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5d4a1] pb-6">
@@ -499,65 +622,20 @@ export default function GetInvolved() {
             </div>
           </div>
         )}
-
-        {/* PATHWAY CONTENT D: CORPORATE CSR COMMAND CENTER */}
-        {activePathway === "csr" && (
-          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
-            <div className="space-y-2 border-b border-[#e5d4a1] pb-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs font-black uppercase text-purple-900">
-                <Building2 className="w-3.5 h-3.5 text-purple-600" /> Corporate CSR & ESG Hub
-              </span>
-              <h2 className="text-3xl font-black text-[#221c0c]">Turnkey CSR Project Execution</h2>
-              <p className="text-xs sm:text-sm text-[#5b6a60] font-medium">
-                EFFORT India NGO executes high-impact CSR initiatives under Companies Act Schedule VII with complete transparency and third-party audit reports.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-2">
-                <p className="text-xs font-black uppercase text-amber-700">Phase 1: Baseline Survey</p>
-                <h3 className="font-black text-[#221c0c] text-base">Needs Assessment</h3>
-                <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">Rigorous ground surveys across Prakasam, Guntur, and Kurnool habitations to define exact KPI targets.</p>
-              </div>
-
-              <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-2">
-                <p className="text-xs font-black uppercase text-emerald-700">Phase 2: Field Execution</p>
-                <h3 className="font-black text-[#221c0c] text-base">Ground Operations</h3>
-                <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">Direct implementation with 27-year veteran field teams, co-branded launches & employee volunteer days.</p>
-              </div>
-
-              <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 space-y-2">
-                <p className="text-xs font-black uppercase text-purple-700">Phase 3: Impact Audit</p>
-                <h3 className="font-black text-[#221c0c] text-base">Reporting & Audits</h3>
-                <p className="text-xs text-[#5b6a60] font-medium leading-relaxed">Milestone-based budget reporting, MCA Form CSR-1 completion certificates, and ESG compliance files.</p>
-              </div>
-            </div>
-
-            <div className="pt-2 text-center">
-              <a
-                href="#application-form"
-                onClick={() => setFormData((prev) => ({ ...prev, pathway: "Corporate CSR Partnership" }))}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#221c0c] text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider rounded-full hover:bg-black"
-              >
-                Initiate CSR Proposal Inquiry <ArrowRight className="w-4 h-4 text-amber-400" />
-              </a>
-            </div>
-          </div>
-        )}
       </section>
 
-      {/* --- SECTION 3: DYNAMIC UNIVERSAL ACTION FORM --- */}
+      {/* --- SECTION 3: HIGH-LEVEL DYNAMIC CORPORATE & GENERAL ACTION FORM --- */}
       <section id="application-form" className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="rounded-[40px] p-8 sm:p-12 bg-white/95 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_30px_70px_-20px_rgba(180,140,40,0.25)] space-y-8">
           <div className="text-center space-y-3">
             <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-100 border border-amber-300 text-xs font-black uppercase tracking-wider text-amber-900">
-              <Send className="w-3.5 h-3.5 text-amber-700" /> Universal Action Form
+              <Send className="w-3.5 h-3.5 text-amber-700" /> Direct Collaboration Inquiry
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-[#221c0c]">
-              Get Involved Application & Inquiry
+              Initiate Partnership / Application Query
             </h2>
             <p className="text-sm text-[#5b6a60] font-medium max-w-xl mx-auto">
-              Submit your inquiry below and our partnership lead will connect with you within 24–48 hours.
+              Submit your project preferences below and our senior alliance lead will email you our proposal decks within 24 hours.
             </p>
           </div>
 
@@ -566,15 +644,15 @@ export default function GetInvolved() {
               <div className="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-md">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-black text-emerald-950">Application Received!</h3>
+              <h3 className="text-2xl font-black text-emerald-950">Partnership Inquiry Submitted!</h3>
               <p className="text-sm text-emerald-800 font-medium max-w-md mx-auto">
-                Thank you for reaching out to EFFORT India NGO. Our program coordinator will review your <strong>{formData.pathway}</strong> request and contact you shortly.
+                Thank you for reaching out to EFFORT India NGO. A Senior Program Lead will contact you regarding <strong>{formData.pathway}</strong>.
               </p>
               <button
                 onClick={() => setFormSubmitted(false)}
                 className="px-6 py-2.5 rounded-full bg-emerald-700 text-white font-black text-xs uppercase tracking-wider hover:bg-emerald-800"
               >
-                Submit Another Request
+                Submit Another Inquiry
               </button>
             </div>
           ) : (
@@ -582,7 +660,7 @@ export default function GetInvolved() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                    Full Name / Representative *
+                    Company / Representative Name *
                   </label>
                   <input
                     type="text"
@@ -595,14 +673,13 @@ export default function GetInvolved() {
                 </div>
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                    Email Address *
+                    Designation / Role
                   </label>
                   <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="e.g. ramesh@example.com"
+                    type="text"
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    placeholder="e.g. CSR Director / Program Head"
                     className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
                   />
                 </div>
@@ -611,7 +688,20 @@ export default function GetInvolved() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                    Phone / WhatsApp Number *
+                    Contact Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="e.g. csr@company.com"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
+                    Phone / Mobile Number *
                   </label>
                   <input
                     type="tel"
@@ -619,18 +709,6 @@ export default function GetInvolved() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="e.g. +91 98765 43210"
-                    className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                    Organization / University / Company
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.organization}
-                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="e.g. Apex Ltd / Andhra University"
                     className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
                   />
                 </div>
@@ -646,36 +724,39 @@ export default function GetInvolved() {
                     onChange={(e) => setFormData({ ...formData, pathway: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
                   >
-                    <option value="Grassroots Volunteer">Grassroots On-Field Volunteer</option>
+                    <option value="Corporate CSR Partnership">Corporate CSR Partnership (Form CSR-1)</option>
                     <option value="Institutional & Govt Alliance">Institutional & Govt Alliance (MoU)</option>
                     <option value="Adopt an Impact Project">Adopt an Impact Project (80G Giving)</option>
-                    <option value="Corporate CSR Partnership">Corporate CSR Partnership (Form CSR-1)</option>
-                    <option value="Student Internship">Student Internship / Academic Research</option>
+                    <option value="Grassroots Volunteer">Grassroots On-Field Volunteer</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                    Preferred State / Location
+                    Target Sector
                   </label>
-                  <input
-                    type="text"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="e.g. Andhra Pradesh, Telangana, Maharashtra..."
+                  <select
+                    value={formData.sector}
+                    onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
-                  />
+                  >
+                    <option value="Sustainable Agriculture & IPM">Sustainable Agriculture & IPM</option>
+                    <option value="Natural Resource Management & Watershed">Natural Resource Management & Watershed</option>
+                    <option value="Women SHGs & FPO Cooperatives">Women SHGs & FPO Cooperatives</option>
+                    <option value="Child Development & Education">Child Development & Education</option>
+                    <option value="Community Health & Safe WASH">Community Health & Safe WASH</option>
+                  </select>
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                  Message / Proposal Details
+                  Detailed Partnership Parameters / Budget Query
                 </label>
                 <textarea
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell us about your goals, skillsets, availability, or proposed MoU mandate..."
+                  placeholder="Sponsor targets, geographic preferences (states/districts), budget parameters, or corporate CSR mandate..."
                   className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
                 />
               </div>
@@ -684,7 +765,7 @@ export default function GetInvolved() {
                 type="submit"
                 className="w-full py-4 rounded-full bg-[#221c0c] hover:bg-black text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Send className="w-4 h-4 text-amber-400" /> Submit Application
+                <Send className="w-4 h-4 text-amber-400" /> Submit Corporate / Partnership Inquiry
               </button>
             </form>
           )}
@@ -765,7 +846,7 @@ export default function GetInvolved() {
             100% Certified Statutory Compliance
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval, NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">
@@ -774,7 +855,7 @@ export default function GetInvolved() {
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Section 12AB Approved</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> FCRA Registered</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> NITI Aayog Darpan ID</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> MCA Form CSR-1</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> MCA Form CSR-1 (CSR00034988)</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> SSE Listed</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> TISS Empaneled</span>
           </div>

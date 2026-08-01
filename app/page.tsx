@@ -925,7 +925,7 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
-                  href="/csr"
+                  href="/get-involved"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.6)] hover:-translate-y-0.5 transition-all group"
                 >
                   Become A Partner <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -1074,7 +1074,7 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
-                  href="/csr"
+                  href="/get-involved"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(14,165,233,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(14,165,233,0.6)] hover:-translate-y-0.5 transition-all group"
                 >
                   Partner With Us <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

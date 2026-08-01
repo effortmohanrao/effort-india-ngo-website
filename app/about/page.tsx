@@ -1695,7 +1695,7 @@ export default function About() {
             style={{ transitionDelay: "900ms" }}
           >
             <a
-              href="/csr"
+              href="/get-involved"
               className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/10 backdrop-blur-md text-white font-bold text-sm border border-white/25 hover:bg-white hover:text-[#0b1120] transition-colors duration-300 rounded-full"
             >
               Become Our Partner <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -1916,7 +1916,7 @@ export default function About() {
               style={{ transitionDelay: "600ms" }}
             >
               <a
-                href="/csr"
+                href="/get-involved"
                 className="group inline-flex items-center gap-3 pl-8 pr-7 py-4 bg-[#d1481f] text-white font-bold text-sm rounded-full shadow-[0_20px_45px_-15px_rgba(209,72,31,0.55)] transition-[padding] duration-500 hover:pr-10"
               >
                 Become A Partner
