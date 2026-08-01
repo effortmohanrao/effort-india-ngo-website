@@ -297,6 +297,25 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
     return () => clearTimeout(t);
   }, []);
 
+  {/* Explosive Rapid Millisecond Continuous Cracker Particle Emitter */}
+  const crackerParticles = useMemo(
+    () =>
+      Array.from({ length: 20 }).map((_, i) => {
+        const angle = (i / 20) * Math.PI * 2;
+        const dist = 75 + (i % 5) * 22;
+        const dx = Math.round(Math.cos(angle) * dist);
+        const dy = Math.round(Math.sin(angle) * dist);
+        return {
+          dx,
+          dy,
+          delay: (i * 0.065).toFixed(2),
+          color: ["bg-amber-400", "bg-emerald-400", "bg-[#d4af6a]", "bg-sky-400", "bg-rose-400"][i % 5],
+          size: i % 3 === 0 ? 6.5 : 4,
+        };
+      }),
+    []
+  );
+
   return (
     <div className="relative">
       <div
@@ -309,6 +328,26 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
         <div className="pointer-events-none absolute -top-16 -left-10 w-52 h-52 rounded-full bg-emerald-200/40 blur-[70px]" />
         <div className="pointer-events-none absolute -bottom-20 -right-10 w-56 h-56 rounded-full bg-amber-200/40 blur-[80px]" />
         <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.2]" />
+
+        {/* Rapid Millisecond Continuous Cracker Blast Effect */}
+        {isCompleted && entered && (
+          <div className="pointer-events-none absolute top-8 right-8 z-30">
+            {crackerParticles.map((p, i) => (
+              <span
+                key={i}
+                className={`absolute rounded-full ${p.color} shadow-[0_0_8px_#d4af6a] animate-cracker-burst-rapid`}
+                style={
+                  {
+                    width: p.size,
+                    height: p.size,
+                    "--burst-vector": `translate(${p.dx}px, ${p.dy}px)`,
+                    animationDelay: `${p.delay}s`,
+                  } as React.CSSProperties
+                }
+              />
+            ))}
+          </div>
+        )}
 
         <div className="relative z-10 space-y-4">
           {/* Header Row: Label & Inline Status Badge */}
