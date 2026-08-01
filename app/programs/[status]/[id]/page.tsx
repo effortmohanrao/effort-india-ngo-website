@@ -509,6 +509,7 @@ export default function ProjectDetailPage({
   const fieldStory = findFieldStory(project);
   const [activeTab, setActiveTab] = useState<"mission" | "interventions" | "stakeholders">("mission");
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
+  const [activeStage, setActiveStage] = useState<number>(0);
 
   const [mainTitle, ...subInitiatives] = project.name.split(";").map((s) => s.trim());
 
@@ -806,36 +807,218 @@ export default function ProjectDetailPage({
             )}
           </div>
 
-          {/* Stepper / Field Journey */}
+          {/* Stepper / Field Journey with Animated Cards & Icons */}
           <div className="mb-20">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#8a6a1f]">Implementation Roadmap</span>
-              <h3 className="text-2xl sm:text-3xl font-black text-[#221c0c] mt-1">4-Stage Execution Blueprint</h3>
+            <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#e7ddc8] text-[#8a6a1f] text-xs font-bold uppercase tracking-wider">
+                <Milestone className="w-3.5 h-3.5 text-[#c9a24a]" /> Implementation Roadmap
+              </span>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#221c0c]">
+                4-Stage Execution Blueprint
+              </h3>
+              <p className="text-xs sm:text-sm text-[#5b6a60]">
+                Click any stage card to explore field milestones and action items.
+              </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { stage: "01", title: "Mobilization & Baseline", desc: "Village meetings, household baseline surveys, and CBO alignment across target areas.", icon: Compass },
-                { stage: "02", title: "Capacity Building", desc: "Hands-on farmer training, demo plot establishment, and bio-input skill sessions.", icon: Milestone },
-                { stage: "03", title: "Asset & Tech Delivery", desc: "Installation of vermi units, water harvesting assets, or clinic equipment.", icon: Flag },
-                { stage: "04", title: "Handover & Autonomy", desc: "Establishing community management for sustained post-project operations.", icon: Award },
-              ].map((s) => {
-                const SIcon = s.icon;
-                return (
-                  <div
-                    key={s.stage}
-                    className="group relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 shadow-sm hover:-translate-y-1.5 transition-all duration-300"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl font-black text-[#d4af6a] opacity-60 group-hover:opacity-100 transition-opacity">{s.stage}</span>
-                      <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
-                        <SIcon className="w-4.5 h-4.5" />
+
+            {/* Connecting Flow Pipeline (Desktop) */}
+            <div className="relative">
+              <div className="hidden lg:block absolute top-[52px] inset-x-12 h-1 bg-gradient-to-r from-amber-200 via-emerald-200 via-sky-200 to-violet-200 rounded-full z-0 overflow-hidden shadow-inner">
+                <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#d4af6a] to-transparent animate-light-sweep" />
+              </div>
+
+              {/* 4 Animated Stage Cards */}
+              <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  {
+                    idx: 0,
+                    stage: "01",
+                    phase: "Phase 1: Mobilization",
+                    title: "Mobilization & Baseline",
+                    desc: "Village meetings, household baseline surveys, and CBO alignment across target areas.",
+                    icon: Compass,
+                    color: "amber",
+                    iconClass: "group-hover:rotate-[360deg] transition-transform duration-1000 ease-out",
+                    items: [
+                      "Conducted baseline socio-economic household survey across target villages.",
+                      "Formed local Farmers' Interest Groups and Women SHG committees.",
+                      "Aligned community elders and village leaders on project timeline.",
+                    ],
+                  },
+                  {
+                    idx: 1,
+                    stage: "02",
+                    phase: "Phase 2: Capacity",
+                    title: "Capacity Building",
+                    desc: "Hands-on farmer training, demo plot establishment, and bio-input skill sessions.",
+                    icon: Milestone,
+                    color: "emerald",
+                    iconClass: "group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-400 ease-out",
+                    items: [
+                      "Organized practical Farmer Field Schools directly on demo plots.",
+                      "Demonstrated vermi-compost preparation and IPM/IDM bio-pesticide recipes.",
+                      "Distributed starter training kits and high-quality seeds to farmers.",
+                    ],
+                  },
+                  {
+                    idx: 2,
+                    stage: "03",
+                    phase: "Phase 3: Delivery",
+                    title: "Asset & Tech Delivery",
+                    desc: "Installation of vermi units, water harvesting assets, or clinic equipment.",
+                    icon: Flag,
+                    color: "sky",
+                    iconClass: "group-hover:rotate-[20deg] group-hover:scale-110 transition-transform duration-400 ease-out",
+                    items: [
+                      "Constructed rainwater harvesting structures and de-silted irrigation tanks.",
+                      "Setup individual vermi-compost units and livestock resource centres.",
+                      "Deployed mobile veterinary and health tracking services to farmers' doorsteps.",
+                    ],
+                  },
+                  {
+                    idx: 3,
+                    stage: "04",
+                    phase: "Phase 4: Handover",
+                    title: "Handover & Autonomy",
+                    desc: "Establishing community management for sustained post-project operations.",
+                    icon: Award,
+                    color: "violet",
+                    iconClass: "group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-500 text-violet-600",
+                    items: [
+                      "Transferred asset ownership directly to local Community-Based Organisations (CBOs).",
+                      "Established formal market linkages with Spices Board, NABARD, and buyers.",
+                      "Verified 100% completion and conducted post-implementation audit.",
+                    ],
+                  },
+                ].map((s) => {
+                  const SIcon = s.icon;
+                  const isSelected = activeStage === s.idx;
+
+                  return (
+                    <div
+                      key={s.stage}
+                      onClick={() => setActiveStage(s.idx)}
+                      className={`group relative rounded-[32px] p-6 cursor-pointer backdrop-blur-2xl border transition-all duration-500 overflow-hidden ${
+                        isSelected
+                          ? "bg-white border-[#d4af6a] shadow-[0_25px_60px_-15px_rgba(212,175,106,0.45)] -translate-y-2 ring-2 ring-[#d4af6a]/40"
+                          : "bg-white/60 border-white/80 hover:bg-white hover:border-[#d4af6a]/60 hover:-translate-y-2 hover:shadow-[0_20px_45px_-20px_rgba(180,140,40,0.3)]"
+                      }`}
+                    >
+                      {/* Diagonal Light Sweep Effect on Hover */}
+                      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                      </div>
+
+                      {/* Header with Stage Number & Animated Icon */}
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`text-3xl font-black transition-all duration-300 ${
+                              isSelected ? "text-[#d4af6a] scale-110" : "text-[#d4af6a]/60 group-hover:text-[#d4af6a]"
+                            }`}
+                          >
+                            {s.stage}
+                          </span>
+                          <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100/70 text-[#8a6a1f]">
+                            {s.phase}
+                          </span>
+                        </div>
+
+                        {/* Animated Icon Box */}
+                        <div
+                          className={`relative w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-md ${
+                            s.color === "amber"
+                              ? "bg-gradient-to-br from-amber-50 to-amber-100 text-amber-700 border border-amber-200/80"
+                              : s.color === "emerald"
+                              ? "bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-700 border border-emerald-200/80"
+                              : s.color === "sky"
+                              ? "bg-gradient-to-br from-sky-50 to-sky-100 text-sky-700 border border-sky-200/80"
+                              : "bg-gradient-to-br from-violet-50 to-violet-100 text-violet-700 border border-violet-200/80"
+                          }`}
+                        >
+                          <span className="absolute inset-0 rounded-2xl bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
+                          <SIcon className={`w-6 h-6 relative z-10 ${s.iconClass}`} />
+                        </div>
+                      </div>
+
+                      <h4 className="font-black text-[#221c0c] mb-2 text-base group-hover:text-[#8a6a1f] transition-colors">
+                        {s.title}
+                      </h4>
+                      <p className="text-xs text-[#7a6f55] leading-relaxed mb-4">{s.desc}</p>
+
+                      <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-[#c9a24a]">
+                          {isSelected ? "Active Milestone" : "View Details"}
+                        </span>
+                        <ChevronRight
+                          className={`w-4 h-4 text-[#c9a24a] transition-transform duration-300 ${
+                            isSelected ? "translate-x-1 rotate-90" : "group-hover:translate-x-1"
+                          }`}
+                        />
                       </div>
                     </div>
-                    <h4 className="font-black text-[#221c0c] mb-2 text-sm">{s.title}</h4>
-                    <p className="text-xs text-[#7a6f55] leading-relaxed">{s.desc}</p>
+                  );
+                })}
+              </div>
+
+              {/* Selected Stage Action Items Panel */}
+              <div className="mt-8 rounded-3xl bg-white/80 backdrop-blur-2xl border border-white p-6 sm:p-8 shadow-[0_20px_50px_-20px_rgba(80,120,100,0.2)] animate-fade-in">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-200 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-[#221c0c] text-white text-xs font-black flex items-center justify-center">
+                      0{activeStage + 1}
+                    </span>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-[#8a6a1f]">Milestone Highlights</p>
+                      <h4 className="text-lg font-black text-[#221c0c]">
+                        {
+                          [
+                            "Stage 1: Mobilization & Baseline Survey",
+                            "Stage 2: Technical Capacity Building & Demos",
+                            "Stage 3: Asset & Infrastructure Deployment",
+                            "Stage 4: Sustained Community Handover",
+                          ][activeStage]
+                        }
+                      </h4>
+                    </div>
                   </div>
-                );
-              })}
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">
+                    <Check className="w-3.5 h-3.5" /> Stage Completed
+                  </span>
+                </div>
+
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {[
+                    [
+                      "Conducted baseline socio-economic household survey across target villages.",
+                      "Formed local Farmers' Interest Groups and Women SHG committees.",
+                      "Aligned community elders and village leaders on project timeline.",
+                    ],
+                    [
+                      "Organized practical Farmer Field Schools directly on demo plots.",
+                      "Demonstrated vermi-compost preparation and IPM/IDM bio-pesticide recipes.",
+                      "Distributed starter training kits and high-quality seeds to farmers.",
+                    ],
+                    [
+                      "Constructed rainwater harvesting structures and de-silted irrigation tanks.",
+                      "Setup individual vermi-compost units and livestock resource centres.",
+                      "Deployed mobile veterinary and health tracking services to farmers' doorsteps.",
+                    ],
+                    [
+                      "Transferred asset ownership directly to local Community-Based Organisations (CBOs).",
+                      "Established formal market linkages with Spices Board, NABARD, and buyers.",
+                      "Verified 100% completion and conducted post-implementation audit.",
+                    ],
+                  ][activeStage].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white/70 border border-white shadow-sm">
+                      <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                        ✓
+                      </div>
+                      <p className="text-xs font-medium text-[#3f4d47] leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
