@@ -77,10 +77,9 @@ function SingleDigitFlip({ digit }: SingleDigitFlipProps) {
 interface CalendarFlipClockProps {
   value: number;
   label?: string;
-  onSimulateIncrement?: () => void;
 }
 
-export default function CalendarFlipClock({ value, label = "Milestone Projects", onSimulateIncrement }: CalendarFlipClockProps) {
+export default function CalendarFlipClock({ value, label = "Milestone Projects" }: CalendarFlipClockProps) {
   const digitsStr = String(value).padStart(2, "0");
   const tens = digitsStr[0];
   const ones = digitsStr[1];
@@ -110,17 +109,6 @@ export default function CalendarFlipClock({ value, label = "Milestone Projects",
         <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#d4af6a]/15 border border-[#d4af6a]/50 text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#8a6a1f] shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[#c9a24a]" /> {label}
         </span>
-
-        {/* Interactive Demo Button to watch 50 -> 51 */}
-        {onSimulateIncrement && (
-          <button
-            onClick={onSimulateIncrement}
-            className="group mt-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#221c0c] text-amber-200 text-[10px] font-black uppercase tracking-wider hover:bg-[#d4af6a] hover:text-[#221c0c] transition-all duration-300 shadow-md border border-[#d4af6a]/40"
-          >
-            <PlusCircle className="w-3.5 h-3.5 text-[#d4af6a] group-hover:text-[#221c0c] transition-colors" />
-            Simulate Next Project (+1 Flip)
-          </button>
-        )}
       </div>
     </div>
   );

@@ -150,7 +150,6 @@ export default function Programs() {
 
   const [projectsTab, setProjectsTab] = useState<"completed" | "ongoing">("completed");
   const [projectsCount, setProjectsCount] = useState(0);
-  const [demoOffset, setDemoOffset] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const completedBtnRef = useRef<HTMLButtonElement>(null);
@@ -284,7 +283,6 @@ export default function Programs() {
               onClick={() => {
                 setProjectsTab("completed");
                 setSelectedCategory(null);
-                setDemoOffset(0);
               }}
               className={`relative z-10 px-8 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-colors duration-300 ${
                 projectsTab === "completed" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
@@ -297,7 +295,6 @@ export default function Programs() {
               onClick={() => {
                 setProjectsTab("ongoing");
                 setSelectedCategory(null);
-                setDemoOffset(0);
               }}
               className={`relative z-10 px-8 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-colors duration-300 ${
                 projectsTab === "ongoing" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
@@ -310,15 +307,12 @@ export default function Programs() {
           {/* 3D Calendar Flip Clock Display */}
           <div className="relative flex flex-col items-center my-4">
             <CalendarFlipClock
-              value={projectsCount + demoOffset}
+              value={projectsCount}
               label={projectsTab === "completed" ? "Half Century Milestone" : "Active & In Motion"}
-              onSimulateIncrement={projectsTab === "completed" ? () => setDemoOffset((prev) => prev + 1) : undefined}
             />
 
             <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-8">
-              {projectsTab === "completed"
-                ? `${50 + demoOffset} Completed Projects`
-                : `${13 + demoOffset} Active Projects`}
+              {projectsTab === "completed" ? "50 Completed Projects" : "13 Active Projects"}
             </p>
             <p className="text-[#7a6f55] text-xs font-bold uppercase tracking-wider mt-1">
               {projectsTab === "completed"
