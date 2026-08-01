@@ -342,7 +342,7 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
   return (
     <div className="relative">
       <div
-        className={`group/prog relative overflow-hidden rounded-[36px] p-6 sm:p-8 bg-white/90 backdrop-blur-2xl border-2 border-[#e2ecdf] shadow-[0_25px_60px_-20px_rgba(80,120,100,0.3)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_35px_75px_-20px_rgba(80,140,120,0.4)] ${
+        className={`group/prog relative overflow-hidden rounded-[30px] p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border-2 border-[#e2ecdf] shadow-[0_20px_50px_-20px_rgba(80,120,100,0.25)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_30px_65px_-20px_rgba(80,140,120,0.35)] ${
           entered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-[0.92] translate-y-6"
         }`}
       >
@@ -352,17 +352,17 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
         <div className="pointer-events-none absolute -bottom-20 -right-10 w-56 h-56 rounded-full bg-amber-200/40 blur-[80px]" />
         <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.2]" />
 
-        <div className="relative z-10 space-y-6">
+        <div className="relative z-10 space-y-4">
           {/* Header Row: Label & Inline Status Badge */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200/80">
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-stone-200/80">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#221c0c]">
+              <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#221c0c]">
                 {isCompleted ? "Project Success Rate" : "Project Execution Progress"}
               </span>
             </div>
             <span
-              className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
+              className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider ${
                 isCompleted
                   ? "bg-emerald-100 text-emerald-900 border border-emerald-300 shadow-sm"
                   : "bg-amber-100 text-amber-900 border border-amber-300 shadow-sm"
@@ -374,20 +374,20 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
           </div>
 
           {/* Main Display Row: 100% Count + Progress Bar */}
-          <div className="grid sm:grid-cols-[auto_1fr] gap-6 sm:gap-10 items-center">
+          <div className="grid sm:grid-cols-[auto_1fr] gap-5 sm:gap-8 items-center">
             {/* 100% Numeric Display */}
             <div className="relative shrink-0">
-              <p className="text-6xl sm:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 leading-none drop-shadow-sm">
+              <p className="text-5xl sm:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 leading-none drop-shadow-sm">
                 {isCompleted ? "100%" : "In Motion"}
               </p>
               {isCompleted && (
-                <Sparkles className="pointer-events-none absolute -top-3 -right-5 w-6 h-6 text-amber-500 animate-pulse" />
+                <Sparkles className="pointer-events-none absolute -top-2.5 -right-4 w-5 h-5 text-amber-500 animate-pulse" />
               )}
             </div>
 
             {/* Progress Bar & Field Outcome Message */}
-            <div className="space-y-3 min-w-0">
-              <div className="relative h-5 rounded-full bg-stone-100 border border-stone-200 p-0.5 overflow-hidden shadow-inner">
+            <div className="space-y-2 min-w-0">
+              <div className="relative h-4 rounded-full bg-stone-100 border border-stone-200 p-0.5 overflow-hidden shadow-inner">
                 <div
                   className={`h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-500 transition-all duration-1000 shadow-md ${
                     isCompleted ? "w-full" : "w-2/5"
@@ -398,20 +398,20 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] font-bold text-[#5b6a60]">
+              <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-bold text-[#5b6a60]">
                 <span>Stage 1: Mobilization</span>
                 <span>Stage 2: Execution</span>
-                <span className="text-emerald-700 font-black">100% Completion Verified</span>
+                <span className="text-emerald-700 font-black">100% Verified</span>
               </div>
             </div>
           </div>
 
           {/* Bottom Field Confirmation Banner */}
-          <div className="pt-4 border-t border-stone-200/80 flex items-center gap-3">
-            <Award className="w-5 h-5 text-emerald-600 shrink-0" />
-            <p className="text-xs sm:text-sm font-bold text-[#221c0c] leading-relaxed">
+          <div className="pt-3 border-t border-stone-200/80 flex items-center gap-2.5">
+            <Award className="w-4.5 h-4.5 text-emerald-600 shrink-0" />
+            <p className="text-xs font-bold text-[#221c0c] leading-snug">
               {isCompleted
-                ? "This project has been 100% verified, independently audited, and officially handed over to the local community."
+                ? "This project has been 100% verified, independently audited, and officially handed over to the community."
                 : "Active field operations are underway with direct community oversight."}
             </p>
           </div>
@@ -515,7 +515,7 @@ export default function ProjectDetailPage({
               </p>
             )}
 
-            <div className="mt-10">
+            <div className="mt-6 sm:mt-7">
               <AchievementProgress isCompleted={isCompleted} />
             </div>
           </div>
