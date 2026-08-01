@@ -47,6 +47,7 @@ import {
   extractVillageCount,
   findFieldStory,
 } from "../../data";
+import { getProjectContent } from "../../projectContent";
 
 function getList(status: string): Project[] | null {
   if (status === "completed") return completedProjects;
@@ -507,6 +508,7 @@ export default function ProjectDetailPage({
   const stat = extractHeadlineStat(project);
   const villageCount = extractVillageCount(project);
   const fieldStory = findFieldStory(project);
+  const content = getProjectContent(project);
   const [activeTab, setActiveTab] = useState<"mission" | "interventions" | "stakeholders">("mission");
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
   const [activeStage, setActiveStage] = useState<number>(0);
@@ -607,10 +609,10 @@ export default function ProjectDetailPage({
               <CategoryIcon className="w-3.5 h-3.5 text-[#c9a24a]" /> The Project Story & Field Blueprint
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#221c0c]">
-              How We Transformed Lives On The Ground
+              {content.missionHeader}
             </h2>
             <p className="text-base sm:text-lg text-[#5b6a60] leading-relaxed">
-              Explore the strategic background, field interventions, and verified outcomes delivered for local communities across {location}.
+              {content.regionalNeedText}
             </p>
           </div>
 
@@ -710,10 +712,7 @@ export default function ProjectDetailPage({
                     Addressing Root Challenges in {location}
                   </h3>
                   <p className="text-[#4a5952] leading-relaxed text-sm sm:text-base">
-                    {project.beneficiaries}
-                  </p>
-                  <p className="text-[#4a5952] leading-relaxed text-sm sm:text-base">
-                    This initiative was launched by EFFORT India NGO to deliver structured, long-term assistance to vulnerable smallholders and rural families, fostering self-reliance and sustainable resource stewardship.
+                    {content.missionContextText}
                   </p>
                   <div className="pt-2 flex flex-wrap gap-2">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
@@ -725,21 +724,15 @@ export default function ProjectDetailPage({
                   </div>
                 </div>
                 <div className="rounded-3xl bg-gradient-to-br from-amber-500/10 via-emerald-500/10 to-sky-500/10 p-8 border border-white/60 space-y-4">
-                  <p className="text-xs font-bold uppercase tracking-wider text-[#8a6a1f]">Core Objective</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#8a6a1f]">Core Strategic Objectives</p>
                   <h4 className="text-lg font-black text-[#221c0c]">{mainTitle}</h4>
                   <div className="space-y-3 text-xs text-[#3f4d47]">
-                    <div className="flex items-start gap-2">
-                      <ChevronRight className="w-4 h-4 text-[#c9a24a] shrink-0 mt-0.5" />
-                      <span>Mobilizing small & marginal farmers, women, and marginalized households.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <ChevronRight className="w-4 h-4 text-[#c9a24a] shrink-0 mt-0.5" />
-                      <span>Introducing sustainable, climate-resilient practices tailored to regional eco-zones.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <ChevronRight className="w-4 h-4 text-[#c9a24a] shrink-0 mt-0.5" />
-                      <span>Building Community-Based Organisations (CBOs) for long-term project stewardship.</span>
-                    </div>
+                    {content.coreObjectivePoints.map((pt, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <ChevronRight className="w-4 h-4 text-[#c9a24a] shrink-0 mt-0.5" />
+                        <span>{pt}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -747,27 +740,15 @@ export default function ProjectDetailPage({
 
             {activeTab === "interventions" && (
               <div className="grid lg:grid-cols-3 gap-6 animate-fade-in">
-                <div className="rounded-3xl bg-white/70 border border-white p-6 shadow-sm space-y-3">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black">01</div>
-                  <h4 className="font-black text-[#221c0c]">Capacity Building & Demos</h4>
-                  <p className="text-xs text-[#4a5952] leading-relaxed">
-                    Conducting hands-on farmer field schools, method demonstrations, and practical workshops directly in project villages to build lasting local expertise.
-                  </p>
-                </div>
-                <div className="rounded-3xl bg-white/70 border border-white p-6 shadow-sm space-y-3">
-                  <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-black">02</div>
-                  <h4 className="font-black text-[#221c0c]">Resource & Input Support</h4>
-                  <p className="text-xs text-[#4a5952] leading-relaxed">
-                    Facilitating essential bio-inputs, vermi-compost kits, water-saving technology, or infrastructure support required for sustainable practice adoption.
-                  </p>
-                </div>
-                <div className="rounded-3xl bg-white/70 border border-white p-6 shadow-sm space-y-3">
-                  <div className="w-10 h-10 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center font-black">03</div>
-                  <h4 className="font-black text-[#221c0c]">Market & Institutional Linkages</h4>
-                  <p className="text-xs text-[#4a5952] leading-relaxed">
-                    Connecting beneficiary groups to formal markets, credit facilities, statutory schemes, and value chains for sustained economic returns.
-                  </p>
-                </div>
+                {content.interventionsPillars.map((p, idx) => (
+                  <div key={idx} className="rounded-3xl bg-white/70 border border-white p-6 shadow-sm space-y-3">
+                    <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center font-black">0{idx + 1}</div>
+                    <h4 className="font-black text-[#221c0c]">{p.title}</h4>
+                    <p className="text-xs text-[#4a5952] leading-relaxed">
+                      {p.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
             )}
 
@@ -777,7 +758,7 @@ export default function ProjectDetailPage({
                   <span className="text-[10px] font-black uppercase tracking-widest text-sky-700">Strategic Alignment</span>
                   <h3 className="text-2xl font-black text-[#221c0c]">Supported by {project.funder}</h3>
                   <p className="text-sm text-[#4a5952] leading-relaxed">
-                    EFFORT India NGO partners with leading statutory bodies, government departments, international non-profits, and corporate CSR arms to deliver high-accountability social development projects.
+                    EFFORT India NGO partners with statutory bodies, government departments, international non-profits, and corporate CSR arms to deliver high-accountability social development projects.
                   </p>
                   <div className="p-4 rounded-2xl bg-white/70 border border-white space-y-2">
                     <p className="text-xs font-bold text-[#221c0c]">Institutional Classification:</p>
@@ -789,18 +770,12 @@ export default function ProjectDetailPage({
                 <div className="rounded-3xl bg-white/70 border border-white p-6 space-y-4">
                   <h4 className="font-black text-[#221c0c] text-sm uppercase tracking-wider">Governance Framework</h4>
                   <ul className="space-y-3 text-xs text-[#4a5952]">
-                    <li className="flex items-center gap-2">
-                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Full financial and operational transparency with detailed reporting.</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Joint field monitoring with funding partner representatives and community leaders.</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Formally audited beneficiary rosters and outcome verification.</span>
-                    </li>
+                    {content.governancePoints.map((pt, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -829,75 +804,18 @@ export default function ProjectDetailPage({
 
               {/* 4 Animated Stage Cards */}
               <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {[
-                  {
-                    idx: 0,
-                    stage: "01",
-                    phase: "Phase 1: Mobilization",
-                    title: "Mobilization & Baseline",
-                    desc: "Village meetings, household baseline surveys, and CBO alignment across target areas.",
-                    icon: Compass,
-                    color: "amber",
-                    iconClass: "group-hover:rotate-[360deg] transition-transform duration-1000 ease-out",
-                    items: [
-                      "Conducted baseline socio-economic household survey across target villages.",
-                      "Formed local Farmers' Interest Groups and Women SHG committees.",
-                      "Aligned community elders and village leaders on project timeline.",
-                    ],
-                  },
-                  {
-                    idx: 1,
-                    stage: "02",
-                    phase: "Phase 2: Capacity",
-                    title: "Capacity Building",
-                    desc: "Hands-on farmer training, demo plot establishment, and bio-input skill sessions.",
-                    icon: Milestone,
-                    color: "emerald",
-                    iconClass: "group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-400 ease-out",
-                    items: [
-                      "Organized practical Farmer Field Schools directly on demo plots.",
-                      "Demonstrated vermi-compost preparation and IPM/IDM bio-pesticide recipes.",
-                      "Distributed starter training kits and high-quality seeds to farmers.",
-                    ],
-                  },
-                  {
-                    idx: 2,
-                    stage: "03",
-                    phase: "Phase 3: Delivery",
-                    title: "Asset & Tech Delivery",
-                    desc: "Installation of vermi units, water harvesting assets, or clinic equipment.",
-                    icon: Flag,
-                    color: "sky",
-                    iconClass: "group-hover:rotate-[20deg] group-hover:scale-110 transition-transform duration-400 ease-out",
-                    items: [
-                      "Constructed rainwater harvesting structures and de-silted irrigation tanks.",
-                      "Setup individual vermi-compost units and livestock resource centres.",
-                      "Deployed mobile veterinary and health tracking services to farmers' doorsteps.",
-                    ],
-                  },
-                  {
-                    idx: 3,
-                    stage: "04",
-                    phase: "Phase 4: Handover",
-                    title: "Handover & Autonomy",
-                    desc: "Establishing community management for sustained post-project operations.",
-                    icon: Award,
-                    color: "violet",
-                    iconClass: "group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-500 text-violet-600",
-                    items: [
-                      "Transferred asset ownership directly to local Community-Based Organisations (CBOs).",
-                      "Established formal market linkages with Spices Board, NABARD, and buyers.",
-                      "Verified 100% completion and conducted post-implementation audit.",
-                    ],
-                  },
-                ].map((s) => {
-                  const SIcon = s.icon;
-                  const isSelected = activeStage === s.idx;
+                {content.blueprintStages.map((s, idx) => {
+                  const SIcon = idx === 0 ? Compass : idx === 1 ? Milestone : idx === 2 ? Flag : Award;
+                  const isSelected = activeStage === idx;
+                  const iconClass = idx === 0 ? "group-hover:rotate-[360deg] transition-transform duration-1000 ease-out" :
+                                    idx === 1 ? "group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-400 ease-out" :
+                                    idx === 2 ? "group-hover:rotate-[20deg] group-hover:scale-110 transition-transform duration-400 ease-out" :
+                                    "group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-500 text-violet-600";
 
                   return (
                     <div
                       key={s.stage}
-                      onClick={() => setActiveStage(s.idx)}
+                      onClick={() => setActiveStage(idx)}
                       className={`group relative rounded-[32px] p-6 cursor-pointer backdrop-blur-2xl border transition-all duration-500 overflow-hidden ${
                         isSelected
                           ? "bg-white border-[#d4af6a] shadow-[0_25px_60px_-15px_rgba(212,175,106,0.45)] -translate-y-2 ring-2 ring-[#d4af6a]/40"
@@ -937,7 +855,7 @@ export default function ProjectDetailPage({
                           }`}
                         >
                           <span className="absolute inset-0 rounded-2xl bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
-                          <SIcon className={`w-6 h-6 relative z-10 ${s.iconClass}`} />
+                          <SIcon className={`w-6 h-6 relative z-10 ${iconClass}`} />
                         </div>
                       </div>
 
@@ -969,16 +887,9 @@ export default function ProjectDetailPage({
                       0{activeStage + 1}
                     </span>
                     <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-[#8a6a1f]">Milestone Highlights</p>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-[#8a6a1f]">Project Action Items</p>
                       <h4 className="text-lg font-black text-[#221c0c]">
-                        {
-                          [
-                            "Stage 1: Mobilization & Baseline Survey",
-                            "Stage 2: Technical Capacity Building & Demos",
-                            "Stage 3: Asset & Infrastructure Deployment",
-                            "Stage 4: Sustained Community Handover",
-                          ][activeStage]
-                        }
+                        {content.blueprintStages[activeStage]?.title}
                       </h4>
                     </div>
                   </div>
@@ -988,28 +899,7 @@ export default function ProjectDetailPage({
                 </div>
 
                 <div className="grid sm:grid-cols-3 gap-4">
-                  {[
-                    [
-                      "Conducted baseline socio-economic household survey across target villages.",
-                      "Formed local Farmers' Interest Groups and Women SHG committees.",
-                      "Aligned community elders and village leaders on project timeline.",
-                    ],
-                    [
-                      "Organized practical Farmer Field Schools directly on demo plots.",
-                      "Demonstrated vermi-compost preparation and IPM/IDM bio-pesticide recipes.",
-                      "Distributed starter training kits and high-quality seeds to farmers.",
-                    ],
-                    [
-                      "Constructed rainwater harvesting structures and de-silted irrigation tanks.",
-                      "Setup individual vermi-compost units and livestock resource centres.",
-                      "Deployed mobile veterinary and health tracking services to farmers' doorsteps.",
-                    ],
-                    [
-                      "Transferred asset ownership directly to local Community-Based Organisations (CBOs).",
-                      "Established formal market linkages with Spices Board, NABARD, and buyers.",
-                      "Verified 100% completion and conducted post-implementation audit.",
-                    ],
-                  ][activeStage].map((item, idx) => (
+                  {content.blueprintStages[activeStage]?.items.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white/70 border border-white shadow-sm">
                       <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
                         ✓
@@ -1032,12 +922,12 @@ export default function ProjectDetailPage({
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {IMPACT_HIGHLIGHTS.map((h) => {
-                const HIcon = h.icon;
+              {content.impactPillars.map((h, idx) => {
+                const HIcon = idx === 0 ? Tractor : idx === 1 ? Users : idx === 2 ? Globe2 : idx === 3 ? Droplets : idx === 4 ? TrendingUp : Handshake;
                 const a = ACCENT[h.color];
                 return (
                   <div
-                    key={h.title}
+                    key={h.title + idx}
                     className="group relative rounded-[28px] bg-white/60 backdrop-blur-xl border border-white/80 p-6 pl-7 shadow-[0_20px_45px_-25px_rgba(120,90,40,0.25)] hover:-translate-y-1.5 hover:shadow-[0_28px_55px_-20px_rgba(120,90,40,0.35)] transition-all duration-400 overflow-hidden"
                   >
                     <div className={`absolute top-0 left-0 w-1.5 h-full ${a.bar}`} />
@@ -1075,14 +965,7 @@ export default function ProjectDetailPage({
 
           {/* 6 Curated Gallery Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {[
-              { id: 0, label: "Village Mobilization & Baseline Survey", tag: "Community Planning" },
-              { id: 1, label: "Hands-on Farmer Field School Demonstration", tag: "Capacity Building" },
-              { id: 2, label: "Distribution of Bio-Inputs & Vermi Kits", tag: "Resource Support" },
-              { id: 3, label: "Water Harvesting & Infrastructure Check", tag: "Resource Management" },
-              { id: 4, label: "Yield & Produce Quality Inspection", tag: "Market Linkage" },
-              { id: 5, label: "Community Handover & CBO Committee Meeting", tag: "Long-term Governance" },
-            ].map((tile) => (
+            {content.galleryCaptions.map((tile) => (
               <div
                 key={tile.id}
                 onClick={() => setActivePhoto(tile.id)}
@@ -1117,19 +1000,10 @@ export default function ProjectDetailPage({
                   Field Photo #{activePhoto + 1}
                 </span>
                 <h3 className="text-xl font-black text-white">
-                  {
-                    [
-                      "Village Mobilization & Baseline Survey",
-                      "Hands-on Farmer Field School Demonstration",
-                      "Distribution of Bio-Inputs & Vermi Kits",
-                      "Water Harvesting & Infrastructure Check",
-                      "Yield & Produce Quality Inspection",
-                      "Community Handover & CBO Committee Meeting",
-                    ][activePhoto]
-                  }
+                  {content.galleryCaptions[activePhoto]?.label}
                 </h3>
                 <p className="text-xs text-stone-300 leading-relaxed">
-                  Documented during project execution in {location}. EFFORT India team members worked directly alongside local beneficiaries to ensure high-standard delivery and lasting community ownership.
+                  {content.galleryCaptions[activePhoto]?.modalDesc}
                 </p>
                 <div className="pt-2 flex items-center justify-between border-t border-stone-800 text-[10px] text-stone-400 font-bold uppercase tracking-wider">
                   <span>Category: {project.category}</span>
