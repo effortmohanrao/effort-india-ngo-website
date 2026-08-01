@@ -31,7 +31,7 @@ export default function ImpactPage() {
   const statCards = [
     { title: "90 Projects", subtitle: "Total Executed & Ongoing", icon: Award, desc: "75 Completed + 15 Active (1999–2026)" },
     { title: "2.67 Lakh", subtitle: "Families Empowered", icon: Users, desc: "2,67,439 Farmers & Villagers Reached" },
-    { title: "₹50.07 Cr", subtitle: "Spent (2022–2025)", icon: IndianRupee, desc: "Direct Field Development Budget" },
+    { title: "1.07 Cr m³", subtitle: "Water Harvested / Year", icon: Droplets, desc: "Across 2,702 Conservation Structures" },
     { title: "2,317", subtitle: "Villages & 42 Districts", icon: MapPin, desc: "Footprint Across 10 States" },
   ];
 
@@ -66,7 +66,7 @@ export default function ImpactPage() {
       title: "Collectives, FPOs & Women SHGs",
       icon: TrendingUp,
       stat: "42 FPOs & 1,275 SHGs",
-      desc: "Promoted 42 FPOs (23,352 shareholders, ₹2.53 Cr capital, ₹1.07 Cr equity grants), 1,275 SHGs (14,750 women, ₹1.495 Billion external lending), and 51 MACS co-ops.",
+      desc: "Promoted 42 FPOs (23,352 farmer shareholders), 1,275 SHGs (14,750 women members), and 51 MACS co-ops fostering self-reliant community enterprises.",
       badge: "Community Ownership",
       color: "amber",
     },
