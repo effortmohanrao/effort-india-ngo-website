@@ -1,16 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Sparkles, PlusCircle } from "lucide-react";
+import { Sparkles, ArrowUpRight } from "lucide-react";
 
 interface SingleDigitFlipProps {
   digit: string;
+  enablePeekHint?: boolean;
 }
 
-function SingleDigitFlip({ digit }: SingleDigitFlipProps) {
+function SingleDigitFlip({ digit, enablePeekHint = false }: SingleDigitFlipProps) {
   const [curr, setCurr] = useState(digit);
   const [prev, setPrev] = useState(digit);
   const [flipping, setFlipping] = useState(false);
+
+  const nextDigitStr = String((Number(digit) + 1) % 10);
 
   useEffect(() => {
     if (digit !== curr) {
@@ -39,21 +42,34 @@ function SingleDigitFlip({ digit }: SingleDigitFlipProps) {
       {/* Background Lighting Glow */}
       <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/10 via-transparent to-white/10 pointer-events-none z-10" />
 
-      {/* Top Half (New/Current Digit) */}
-      <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#2a2217] via-[#201a11] to-[#16120b] flex items-end justify-center pb-0 border-b border-black/80">
+      {/* Underneath Layer (Next Digit 1 Peeking when peek hint enabled) */}
+      {enablePeekHint && (
+        <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden bg-gradient-to-b from-amber-950 via-[#362916] to-[#1c1810] flex items-end justify-center pb-0 border-b border-amber-500/30 z-[1]">
+          <span className="text-[#f7e4a3] font-black text-6xl sm:text-8xl tracking-tight transform translate-y-[52%] opacity-90 drop-shadow-[0_0_15px_rgba(212,175,106,0.8)] animate-pulse">
+            {nextDigitStr}
+          </span>
+        </div>
+      )}
+
+      {/* Top Half (Current Digit with optional 3D Flutter Peek) */}
+      <div
+        className={`absolute inset-x-0 top-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#2a2217] via-[#201a11] to-[#16120b] flex items-end justify-center pb-0 border-b border-black/80 z-[2] ${
+          enablePeekHint ? "animate-calendar-peek" : ""
+        }`}
+      >
         <span className="text-metallic-gold font-black text-6xl sm:text-8xl tracking-tight transform translate-y-[52%] drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
           {digit}
         </span>
       </div>
 
       {/* Bottom Half (Static Current Digit) */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#18130c] via-[#110e08] to-[#0a0805] flex items-start justify-center pt-0 border-t border-[#d4af6a]/30">
+      <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#18130c] via-[#110e08] to-[#0a0805] flex items-start justify-center pt-0 border-t border-[#d4af6a]/30 z-[2]">
         <span className="text-metallic-gold font-black text-6xl sm:text-8xl tracking-tight transform -translate-y-[48%] drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
           {curr}
         </span>
       </div>
 
-      {/* 3D Animated Top Flap (Folds Down) */}
+      {/* 3D Animated Top Flap (Full Flip when count changes) */}
       {flipping && (
         <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#2d2417] via-[#201a11] to-[#16120b] flex items-end justify-center z-20 origin-bottom animate-calendar-flip-top border-b border-black/80 shadow-2xl">
           <span className="text-metallic-gold font-black text-6xl sm:text-8xl tracking-tight transform translate-y-[52%] drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
@@ -62,7 +78,7 @@ function SingleDigitFlip({ digit }: SingleDigitFlipProps) {
         </div>
       )}
 
-      {/* 3D Animated Bottom Flap (Unfolds Open) */}
+      {/* 3D Animated Bottom Flap (Full Flip when count changes) */}
       {flipping && (
         <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#18130c] via-[#110e08] to-[#0a0805] flex items-start justify-center z-20 origin-top animate-calendar-flip-bottom border-t border-[#d4af6a]/30 shadow-2xl">
           <span className="text-metallic-gold font-black text-6xl sm:text-8xl tracking-tight transform -translate-y-[48%] drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
@@ -77,9 +93,14 @@ function SingleDigitFlip({ digit }: SingleDigitFlipProps) {
 interface CalendarFlipClockProps {
   value: number;
   label?: string;
+  enablePeekHint?: boolean;
 }
 
-export default function CalendarFlipClock({ value, label = "Milestone Projects" }: CalendarFlipClockProps) {
+export default function CalendarFlipClock({
+  value,
+  label = "Milestone Projects",
+  enablePeekHint = true,
+}: CalendarFlipClockProps) {
   const digitsStr = String(value).padStart(2, "0");
   const tens = digitsStr[0];
   const ones = digitsStr[1];
@@ -91,8 +112,8 @@ export default function CalendarFlipClock({ value, label = "Milestone Projects" 
         {/* Decorative Top Calendar Binding Header */}
         <div className="absolute -top-3 inset-x-12 h-2.5 bg-gradient-to-r from-[#d4af6a] via-[#f7e4a3] to-[#d4af6a] rounded-full shadow-md z-40" />
 
-        {/* Tens Digit Flip Tile */}
-        <SingleDigitFlip digit={tens} />
+        {/* Tens Digit Flip Tile (Stable) */}
+        <SingleDigitFlip digit={tens} enablePeekHint={false} />
 
         {/* Colon Divider Dots */}
         <div className="flex flex-col gap-2 z-10 opacity-70">
@@ -100,15 +121,21 @@ export default function CalendarFlipClock({ value, label = "Milestone Projects" 
           <div className="w-2.5 h-2.5 rounded-full bg-[#d4af6a] shadow-[0_0_8px_#d4af6a]" />
         </div>
 
-        {/* Ones Digit Flip Tile */}
-        <SingleDigitFlip digit={ones} />
+        {/* Ones Digit Flip Tile (Features active peek flutter animation for next project) */}
+        <SingleDigitFlip digit={ones} enablePeekHint={enablePeekHint && value === 50} />
       </div>
 
-      {/* Label Badge */}
+      {/* Label Badges */}
       <div className="mt-4 flex flex-col items-center gap-2">
         <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#d4af6a]/15 border border-[#d4af6a]/50 text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#8a6a1f] shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[#c9a24a]" /> {label}
         </span>
+
+        {enablePeekHint && value === 50 && (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#221c0c] border border-[#d4af6a]/40 text-[#f7e4a3] text-[9px] font-bold uppercase tracking-wider animate-pulse">
+            <ArrowUpRight className="w-3 h-3 text-[#d4af6a]" /> 51st Project In Pipeline
+          </span>
+        )}
       </div>
     </div>
   );
