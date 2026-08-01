@@ -485,9 +485,14 @@ export default function ProjectDetailPage({
           <div>
             <Link
               href="/programs"
-              className="inline-flex items-center gap-2 text-[#8a6a1f] font-bold text-sm hover:text-[#6b4f1d] transition-colors duration-300 mb-8"
+              className="group relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-[#d4af6a]/60 text-xs font-black uppercase tracking-wider text-[#7a5a18] shadow-[0_10px_25px_-8px_rgba(212,175,106,0.4)] hover:bg-white hover:border-[#b88c30] hover:text-[#5a3f0e] hover:shadow-[0_15px_30px_-5px_rgba(212,175,106,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 overflow-hidden"
             >
-              <ArrowLeft className="w-4 h-4" /> Back to Programs
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-amber-100/50 via-white/80 to-amber-100/50" />
+              <div className="w-6 h-6 rounded-full bg-amber-100/80 border border-[#d4af6a]/50 flex items-center justify-center shrink-0 group-hover:bg-amber-500 transition-colors duration-300 relative z-10 shadow-sm">
+                <ArrowLeft className="w-3.5 h-3.5 text-[#7a5a18] group-hover:text-white group-hover:-translate-x-0.5 transition-all duration-300" />
+              </div>
+              <span className="relative z-10">Back to Programs</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse relative z-10 ml-0.5 shadow-[0_0_6px_#10b981]" />
             </Link>
 
             <div className="flex flex-wrap gap-2 mb-5">
