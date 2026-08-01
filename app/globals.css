@@ -536,3 +536,26 @@ body {
 .animate-halo-breathe {
   animation: halo-breathe 4s ease-in-out infinite;
 }
+
+@keyframes calendar-flip-top {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  50% { transform: rotateX(-90deg); opacity: 0.8; }
+  100% { transform: rotateX(-90deg); opacity: 0; }
+}
+@keyframes calendar-flip-bottom {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  50% { transform: rotateX(90deg); opacity: 0.8; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+.animate-calendar-flip-top {
+  animation: calendar-flip-top 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.animate-calendar-flip-bottom {
+  animation: calendar-flip-bottom 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}

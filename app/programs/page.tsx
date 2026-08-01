@@ -19,6 +19,7 @@ import {
   extractLocation,
   extractHeadlineStat,
 } from "./data";
+import CalendarFlipClock from "@/components/CalendarFlipClock";
 
 function useScrollReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -149,6 +150,7 @@ export default function Programs() {
 
   const [projectsTab, setProjectsTab] = useState<"completed" | "ongoing">("completed");
   const [projectsCount, setProjectsCount] = useState(0);
+  const [demoOffset, setDemoOffset] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const completedBtnRef = useRef<HTMLButtonElement>(null);
@@ -282,6 +284,7 @@ export default function Programs() {
               onClick={() => {
                 setProjectsTab("completed");
                 setSelectedCategory(null);
+                setDemoOffset(0);
               }}
               className={`relative z-10 px-8 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-colors duration-300 ${
                 projectsTab === "completed" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
@@ -294,6 +297,7 @@ export default function Programs() {
               onClick={() => {
                 setProjectsTab("ongoing");
                 setSelectedCategory(null);
+                setDemoOffset(0);
               }}
               className={`relative z-10 px-8 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-colors duration-300 ${
                 projectsTab === "ongoing" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
@@ -303,79 +307,64 @@ export default function Programs() {
             </button>
           </div>
 
-          {/* 3D Glassmorphism Showcase Widget */}
-          {projectsTab === "completed" ? (
-            <div className="relative flex flex-col items-center">
-              <div className="relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-[48px] bg-white/60 backdrop-blur-2xl border border-white/90 shadow-[0_30px_70px_-20px_rgba(180,140,40,0.35)] flex flex-col items-center justify-center p-8 hover:-translate-y-1.5 transition-all duration-500">
-                {/* Radial Breathing Halo Backdrop */}
-                <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-amber-200/50 to-transparent blur-3xl animate-halo-breathe" />
+          {/* 3D Glassmorphism Showcase Widget with Calendar Flip Clock */}
+          <div className="relative flex flex-col items-center">
+            <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] rounded-[48px] bg-white/60 backdrop-blur-2xl border border-white/90 shadow-[0_30px_70px_-20px_rgba(180,140,40,0.35)] flex flex-col items-center justify-center p-6 sm:p-8 hover:-translate-y-1.5 transition-all duration-500">
+              {/* Radial Breathing Halo Backdrop */}
+              <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-amber-200/50 via-amber-100/30 to-transparent blur-3xl animate-halo-breathe" />
 
-                {/* Outer Orbital Glass Ring with Glowing Gold Nodes */}
-                <div className="absolute inset-4 rounded-full border-2 border-[#d4af6a]/40 animate-halo-spin">
-                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#d4af6a] shadow-[0_0_12px_#d4af6a]" />
-                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#10b981] shadow-[0_0_12px_#10b981]" />
-                  <span className="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#38bdf8] shadow-[0_0_12px_#38bdf8]" />
-                  <span className="absolute top-1/2 -right-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#f43f5e] shadow-[0_0_12px_#f43f5e]" />
-                </div>
-
-                {/* Inner Dashed Orbital Ring */}
-                <div className="absolute inset-12 rounded-full border-2 border-dashed border-[#e6c97a]/60 animate-halo-spin-reverse" />
-
-                {/* Particle Burst Effects */}
-                {burstParticles.map((p, i) => (
-                  <div
-                    key={i}
-                    className="absolute left-1/2 top-1/2 rounded-full bg-[#d4af6a] shadow-[0_0_8px_#d4af6a]"
-                    style={
-                      {
-                        width: p.size,
-                        height: p.size,
-                        "--burst-end": `translate(${p.dx}px, ${p.dy}px)`,
-                        animationName: "particle-burst",
-                        animationDuration: "2.6s",
-                        animationTimingFunction: "cubic-bezier(0.2, 0.7, 0.3, 1)",
-                        animationIterationCount: "infinite",
-                        animationDelay: `${p.delay}s`,
-                      } as React.CSSProperties
-                    }
-                  />
-                ))}
-
-                {/* Metallic Gold Count Display with Light-Sweep */}
-                <div className="relative z-10 flex flex-col items-center">
-                  <p className="relative text-metallic-gold font-black leading-none text-[7rem] sm:text-[9.5rem] tracking-tight drop-shadow-md">
-                    {projectsCount}
-                    <span className="pointer-events-none absolute inset-0 overflow-hidden">
-                      <span className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-light-sweep-slow" />
-                    </span>
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d4af6a]/15 border border-[#d4af6a]/40 text-[10px] font-black uppercase tracking-[0.25em] text-[#8a6a1f] mt-2">
-                    <Sparkles className="w-3 h-3 text-[#c9a24a]" /> Half Century Milestone
-                  </span>
-                </div>
+              {/* Outer Orbital Glass Ring with Glowing Gold Nodes */}
+              <div className="absolute inset-4 rounded-full border-2 border-[#d4af6a]/40 animate-halo-spin">
+                <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#d4af6a] shadow-[0_0_12px_#d4af6a]" />
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#10b981] shadow-[0_0_12px_#10b981]" />
+                <span className="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#38bdf8] shadow-[0_0_12px_#38bdf8]" />
+                <span className="absolute top-1/2 -right-2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#f43f5e] shadow-[0_0_12px_#f43f5e]" />
               </div>
 
-              <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-6">50 Completed Projects</p>
-              <p className="text-[#7a6f55] text-xs font-bold uppercase tracking-wider mt-1">Verified Field Deliveries Handed Over to Communities</p>
-            </div>
-          ) : (
-            <div className="relative flex flex-col items-center">
-              <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-[48px] bg-white/60 backdrop-blur-2xl border border-white/90 shadow-[0_30px_70px_-20px_rgba(16,185,129,0.3)] flex flex-col items-center justify-center p-8">
-                <div className="absolute inset-4 rounded-full border-2 border-emerald-400/40 animate-halo-spin" />
-                <svg className="absolute inset-0 w-full h-full -rotate-90 animate-halo-spin" style={{ animationDuration: "6s" }} viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="44" fill="none" stroke="#d1f0e0" strokeWidth="4" />
-                  <circle cx="50" cy="50" r="44" fill="none" stroke="#10b981" strokeWidth="4" strokeLinecap="round" strokeDasharray="276.5" strokeDashoffset="200" />
-                </svg>
-                <p className="relative text-emerald-600 font-black leading-none text-[5.5rem] sm:text-[7rem] tracking-tight">
-                  {projectsCount}
-                  <span className="text-4xl align-top text-emerald-400">+</span>
-                </p>
+              {/* Inner Dashed Orbital Ring */}
+              <div className="absolute inset-12 rounded-full border-2 border-dashed border-[#e6c97a]/60 animate-halo-spin-reverse" />
+
+              {/* Particle Burst Effects */}
+              {burstParticles.map((p, i) => (
+                <div
+                  key={i}
+                  className="absolute left-1/2 top-1/2 rounded-full bg-[#d4af6a] shadow-[0_0_8px_#d4af6a]"
+                  style={
+                    {
+                      width: p.size,
+                      height: p.size,
+                      "--burst-end": `translate(${p.dx}px, ${p.dy}px)`,
+                      animationName: "particle-burst",
+                      animationDuration: "2.6s",
+                      animationTimingFunction: "cubic-bezier(0.2, 0.7, 0.3, 1)",
+                      animationIterationCount: "infinite",
+                      animationDelay: `${p.delay}s`,
+                    } as React.CSSProperties
+                  }
+                />
+              ))}
+
+              {/* 3D Calendar Flip Clock Display */}
+              <div className="relative z-20">
+                <CalendarFlipClock
+                  value={projectsCount + demoOffset}
+                  label={projectsTab === "completed" ? "Half Century Milestone" : "Active & In Motion"}
+                  onSimulateIncrement={projectsTab === "completed" ? () => setDemoOffset((prev) => prev + 1) : undefined}
+                />
               </div>
-              <p className="text-emerald-700 text-xs font-bold uppercase tracking-[0.25em] mt-6">Active &amp; In Motion</p>
-              <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-1">13 Active Projects</p>
-              <p className="text-[#6b6046] text-xs font-bold uppercase tracking-wider mt-1">Building Tomorrow&apos;s Impact Today</p>
             </div>
-          )}
+
+            <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-6">
+              {projectsTab === "completed"
+                ? `${50 + demoOffset} Completed Projects`
+                : `${13 + demoOffset} Active Projects`}
+            </p>
+            <p className="text-[#7a6f55] text-xs font-bold uppercase tracking-wider mt-1">
+              {projectsTab === "completed"
+                ? "Verified Field Deliveries Handed Over to Communities"
+                : "Building Tomorrow's Impact Today"}
+            </p>
+          </div>
 
           {/* Breakdown Cards */}
           <div className="flex flex-wrap justify-center gap-4 mt-12 max-w-3xl mx-auto">
