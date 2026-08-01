@@ -130,20 +130,20 @@ function AchievementCard({
   }, []);
   const reachValue = useCountUp(stat?.numeric ?? null, entered);
 
-  {/* Explosive Cracker Particle Burst Emitter */}
+  {/* Explosive Continuous Cracker Particle Burst Emitter (Loops every 4.5s) */}
   const crackerParticles = useMemo(
     () =>
       Array.from({ length: 16 }).map((_, i) => {
         const angle = (i / 16) * Math.PI * 2;
-        const dist = 80 + (i % 4) * 25;
+        const dist = 75 + (i % 4) * 20;
         const dx = Math.round(Math.cos(angle) * dist);
         const dy = Math.round(Math.sin(angle) * dist);
         return {
           dx,
           dy,
-          delay: (i * 0.07).toFixed(2),
+          delay: (i * 0.08).toFixed(2),
           color: ["bg-amber-400", "bg-emerald-400", "bg-[#d4af6a]", "bg-sky-400", "bg-rose-400"][i % 5],
-          size: i % 3 === 0 ? 7 : 4,
+          size: i % 3 === 0 ? 6 : 4,
         };
       }),
     []
@@ -151,7 +151,7 @@ function AchievementCard({
 
   return (
     <div
-      className={`group/card relative rounded-[32px] p-7 sm:p-8 overflow-hidden bg-white/85 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_65px_-20px_rgba(180,140,40,0.35)] transition-all duration-700 ease-out hover:-translate-y-1.5 hover:shadow-[0_35px_80px_-20px_rgba(180,140,40,0.45)] ${
+      className={`group/card relative rounded-[30px] p-5 sm:p-6 overflow-hidden bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_20px_55px_-20px_rgba(180,140,40,0.3)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_30px_70px_-20px_rgba(180,140,40,0.4)] ${
         entered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-6"
       }`}
     >
@@ -161,13 +161,18 @@ function AchievementCard({
       <div className="pointer-events-none absolute -bottom-20 -left-16 w-56 h-56 rounded-full bg-emerald-200/40 blur-[80px]" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.2]" />
 
-      {/* Explosive Cracker Particle Burst Effect (On Completion) */}
+      {/* Interactive Sheen Light Sweep Ray on Hover */}
+      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700">
+        <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-light-sweep" />
+      </div>
+
+      {/* Continuous Explosive Cracker Particle Burst Effect (Every 4.5s) */}
       {isCompleted && entered && (
-        <div className="pointer-events-none absolute top-12 right-12 z-30">
+        <div className="pointer-events-none absolute top-10 right-10 z-30">
           {crackerParticles.map((p, i) => (
             <span
               key={i}
-              className={`absolute rounded-full ${p.color} shadow-[0_0_10px_#d4af6a] animate-cracker-burst`}
+              className={`absolute rounded-full ${p.color} shadow-[0_0_8px_#d4af6a] animate-cracker-burst-loop`}
               style={
                 {
                   width: p.size,
@@ -181,41 +186,41 @@ function AchievementCard({
         </div>
       )}
 
-      <div className="relative z-10 space-y-6">
+      <div className="relative z-10 space-y-4">
         {/* Category Pill */}
         <div className="inline-flex flex-col">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-xs font-black uppercase tracking-wider text-[#8a6a1f] shadow-sm">
-            <CategoryIcon className="w-4 h-4 text-[#c9a24a]" /> {project.category}
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[11px] font-black uppercase tracking-wider text-[#8a6a1f] shadow-sm">
+            <CategoryIcon className="w-3.5 h-3.5 text-[#c9a24a]" /> {project.category}
           </span>
-          <span className="h-[2px] w-12 mt-2 bg-gradient-to-r from-[#d4af6a] to-transparent rounded-full" />
+          <span className="h-[2px] w-10 mt-1.5 bg-gradient-to-r from-[#d4af6a] to-transparent rounded-full" />
         </div>
 
         {/* Funding Partner Card */}
-        <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-md border border-[#e5d4a1] shadow-sm flex items-start gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 shadow-sm">
-            <Landmark className="w-5 h-5 text-amber-700" />
+        <div className="p-3.5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#e5d4a1] shadow-sm flex items-start gap-3">
+          <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 shadow-sm">
+            <Landmark className="w-4.5 h-4.5 text-amber-700" />
           </div>
           <div className="min-w-0">
-            <p className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] mb-0.5">Funding Partner</p>
-            <p className="text-base font-black text-[#221c0c] leading-snug">{project.funder}</p>
-            <span className="inline-flex items-center gap-1 mt-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
+            <p className="text-[9.5px] font-black uppercase tracking-wider text-[#8a6a1f] mb-0.5">Funding Partner</p>
+            <p className="text-sm font-black text-[#221c0c] leading-snug">{project.funder}</p>
+            <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[9.5px] font-bold border border-emerald-200">
               <ShieldCheck className="w-3 h-3 text-emerald-600" /> {partnerType}
             </span>
           </div>
         </div>
 
         {/* Location Badge */}
-        <div className="group/loc relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-[#d4af6a]/60 shadow-sm cursor-default">
-          <MapPin className="w-4 h-4 text-[#c9a24a]" />
+        <div className="group/loc relative inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#d4af6a]/60 shadow-sm cursor-default">
+          <MapPin className="w-3.5 h-3.5 text-[#c9a24a]" />
           <span className="text-xs font-black text-[#3a2f18]">{location}</span>
         </div>
 
         {/* Status & Beneficiaries Grid */}
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#e5d4a1]">
+        <div className="grid grid-cols-2 gap-3 pt-3 border-t border-[#e5d4a1]">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] mb-2">Status</p>
-            <div className="relative w-12 h-12">
-              <svg viewBox="0 0 44 44" className="w-12 h-12 -rotate-90">
+            <p className="text-[9.5px] font-black uppercase tracking-wider text-[#8a6a1f] mb-1.5">Status</p>
+            <div className="relative w-10 h-10">
+              <svg viewBox="0 0 44 44" className="w-10 h-10 -rotate-90">
                 <circle cx="22" cy="22" r="19" fill="none" stroke="#f1e6cc" strokeWidth="3" />
                 {isCompleted && (
                   <circle
@@ -237,48 +242,48 @@ function AchievementCard({
               </svg>
               {isCompleted && (
                 <CheckCircle2
-                  className="w-5 h-5 text-emerald-600 absolute inset-0 m-auto animate-check-pop"
+                  className="w-4.5 h-4.5 text-emerald-600 absolute inset-0 m-auto animate-check-pop"
                   style={{ animationDelay: "1.3s" }}
                 />
               )}
             </div>
-            <p className="text-xs font-black text-emerald-800 mt-1.5">{isCompleted ? "Completed" : "Ongoing"}</p>
+            <p className="text-[11px] font-black text-emerald-800 mt-1">{isCompleted ? "Completed" : "Ongoing"}</p>
           </div>
           {stat && (
             <div>
-              <p className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] mb-2">Beneficiaries</p>
-              <p className="text-3xl font-black text-metallic-gold leading-none drop-shadow-sm">{reachValue.toLocaleString()}</p>
-              <p className="text-xs text-[#7a6f55] font-bold capitalize mt-1">{stat.unit}</p>
+              <p className="text-[9.5px] font-black uppercase tracking-wider text-[#8a6a1f] mb-1.5">Beneficiaries</p>
+              <p className="text-2xl sm:text-3xl font-black text-metallic-gold leading-none drop-shadow-sm">{reachValue.toLocaleString()}</p>
+              <p className="text-[11px] text-[#7a6f55] font-bold capitalize mt-1">{stat.unit}</p>
             </div>
           )}
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap gap-3 pt-2">
+        <div className="flex flex-wrap gap-2.5 pt-1">
           <a
             href="#overview"
-            className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-xs uppercase tracking-wider rounded-full hover:pr-8 transition-[padding] duration-400 shadow-[0_15px_30px_-12px_rgba(5,150,105,0.5)]"
+            className="group/btn inline-flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-[11px] uppercase tracking-wider rounded-full hover:pr-7 transition-[padding] duration-400 shadow-[0_12px_25px_-10px_rgba(5,150,105,0.5)]"
           >
-            View Project Story <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+            View Project Story <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform duration-300" />
           </a>
           <a
             href="#gallery"
-            className="group/btn2 relative inline-flex items-center px-6 py-3 border-2 border-[#d4af6a] text-[#8a5a1f] font-black text-xs uppercase tracking-wider rounded-full overflow-hidden bg-white/50 backdrop-blur-sm"
+            className="group/btn2 relative inline-flex items-center px-5 py-2.5 border-2 border-[#d4af6a] text-[#8a5a1f] font-black text-[11px] uppercase tracking-wider rounded-full overflow-hidden bg-white/50 backdrop-blur-sm"
           >
             <span className="relative z-10">Open Case Study</span>
-            <span className="absolute left-6 right-6 bottom-2.5 h-[1.5px] bg-[#d4af6a] scale-x-0 group-hover/btn2:scale-x-100 origin-left transition-transform duration-400" />
+            <span className="absolute left-5 right-5 bottom-2 h-[1.5px] bg-[#d4af6a] scale-x-0 group-hover/btn2:scale-x-100 origin-left transition-transform duration-400" />
           </a>
         </div>
 
         {/* Footer Ribbon */}
-        <div className="relative flex flex-wrap items-center gap-2 pt-4 mt-2 border-t border-[#e5d4a1] overflow-hidden">
-          <div className="absolute inset-x-0 top-4 h-px overflow-hidden">
+        <div className="relative flex flex-wrap items-center gap-2 pt-3 mt-1 border-t border-[#e5d4a1] overflow-hidden">
+          <div className="absolute inset-x-0 top-3 h-px overflow-hidden">
             <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#d4af6a] to-transparent animate-light-sweep" />
           </div>
-          <Award className="w-4 h-4 text-[#8a6a1f] shrink-0" />
-          <p className="text-[11px] font-black text-[#6b4f1d]">Verified Project</p>
+          <Award className="w-3.5 h-3.5 text-[#8a6a1f] shrink-0" />
+          <p className="text-[10.5px] font-black text-[#6b4f1d]">Verified Project</p>
           <span className="w-1 h-1 rounded-full bg-[#8a6a1f]/40" />
-          <p className="text-[11px] font-black text-[#6b4f1d]">27 Years of Impact</p>
+          <p className="text-[10.5px] font-black text-[#6b4f1d]">27 Years of Impact</p>
         </div>
       </div>
     </div>
