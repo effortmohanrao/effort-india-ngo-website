@@ -130,20 +130,20 @@ function AchievementCard({
   }, []);
   const reachValue = useCountUp(stat?.numeric ?? null, entered);
 
-  {/* Explosive Continuous Cracker Particle Burst Emitter (Loops every 4.5s) */}
+  {/* Explosive Rapid Millisecond Continuous Cracker Particle Emitter */}
   const crackerParticles = useMemo(
     () =>
-      Array.from({ length: 16 }).map((_, i) => {
-        const angle = (i / 16) * Math.PI * 2;
-        const dist = 75 + (i % 4) * 20;
+      Array.from({ length: 20 }).map((_, i) => {
+        const angle = (i / 20) * Math.PI * 2;
+        const dist = 75 + (i % 5) * 22;
         const dx = Math.round(Math.cos(angle) * dist);
         const dy = Math.round(Math.sin(angle) * dist);
         return {
           dx,
           dy,
-          delay: (i * 0.08).toFixed(2),
+          delay: (i * 0.065).toFixed(2),
           color: ["bg-amber-400", "bg-emerald-400", "bg-[#d4af6a]", "bg-sky-400", "bg-rose-400"][i % 5],
-          size: i % 3 === 0 ? 6 : 4,
+          size: i % 3 === 0 ? 6.5 : 4,
         };
       }),
     []
@@ -151,7 +151,7 @@ function AchievementCard({
 
   return (
     <div
-      className={`group/card relative rounded-[30px] p-5 sm:p-6 overflow-hidden bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_20px_55px_-20px_rgba(180,140,40,0.3)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_30px_70px_-20px_rgba(180,140,40,0.4)] ${
+      className={`group/card relative rounded-[32px] p-6 sm:p-7 overflow-hidden bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_22px_60px_-20px_rgba(180,140,40,0.32)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_32px_75px_-20px_rgba(180,140,40,0.42)] ${
         entered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-6"
       }`}
     >
@@ -166,13 +166,13 @@ function AchievementCard({
         <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-light-sweep" />
       </div>
 
-      {/* Continuous Explosive Cracker Particle Burst Effect (Every 4.5s) */}
+      {/* Rapid Millisecond Continuous Cracker Blast Effect */}
       {isCompleted && entered && (
         <div className="pointer-events-none absolute top-10 right-10 z-30">
           {crackerParticles.map((p, i) => (
             <span
               key={i}
-              className={`absolute rounded-full ${p.color} shadow-[0_0_8px_#d4af6a] animate-cracker-burst-loop`}
+              className={`absolute rounded-full ${p.color} shadow-[0_0_8px_#d4af6a] animate-cracker-burst-rapid`}
               style={
                 {
                   width: p.size,
@@ -186,10 +186,10 @@ function AchievementCard({
         </div>
       )}
 
-      <div className="relative z-10 space-y-4">
+      <div className="relative z-10 space-y-4.5">
         {/* Category Pill */}
         <div className="inline-flex flex-col">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[11px] font-black uppercase tracking-wider text-[#8a6a1f] shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[11px] font-black uppercase tracking-wider text-[#8a6a1f] shadow-sm">
             <CategoryIcon className="w-3.5 h-3.5 text-[#c9a24a]" /> {project.category}
           </span>
           <span className="h-[2px] w-10 mt-1.5 bg-gradient-to-r from-[#d4af6a] to-transparent rounded-full" />
@@ -216,11 +216,11 @@ function AchievementCard({
         </div>
 
         {/* Status & Beneficiaries Grid */}
-        <div className="grid grid-cols-2 gap-3 pt-3 border-t border-[#e5d4a1]">
+        <div className="grid grid-cols-2 gap-3 pt-3.5 border-t border-[#e5d4a1]">
           <div>
             <p className="text-[9.5px] font-black uppercase tracking-wider text-[#8a6a1f] mb-1.5">Status</p>
-            <div className="relative w-10 h-10">
-              <svg viewBox="0 0 44 44" className="w-10 h-10 -rotate-90">
+            <div className="relative w-10.5 h-10.5">
+              <svg viewBox="0 0 44 44" className="w-10.5 h-10.5 -rotate-90">
                 <circle cx="22" cy="22" r="19" fill="none" stroke="#f1e6cc" strokeWidth="3" />
                 {isCompleted && (
                   <circle
@@ -259,25 +259,25 @@ function AchievementCard({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap gap-2.5 pt-1">
+        <div className="flex flex-wrap gap-2.5 pt-1.5">
           <a
             href="#overview"
-            className="group/btn inline-flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-[11px] uppercase tracking-wider rounded-full hover:pr-7 transition-[padding] duration-400 shadow-[0_12px_25px_-10px_rgba(5,150,105,0.5)]"
+            className="group/btn inline-flex items-center gap-1.5 px-5.5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-[11px] uppercase tracking-wider rounded-full hover:pr-7.5 transition-[padding] duration-400 shadow-[0_12px_25px_-10px_rgba(5,150,105,0.5)]"
           >
             View Project Story <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform duration-300" />
           </a>
           <a
             href="#gallery"
-            className="group/btn2 relative inline-flex items-center px-5 py-2.5 border-2 border-[#d4af6a] text-[#8a5a1f] font-black text-[11px] uppercase tracking-wider rounded-full overflow-hidden bg-white/50 backdrop-blur-sm"
+            className="group/btn2 relative inline-flex items-center px-5.5 py-2.5 border-2 border-[#d4af6a] text-[#8a5a1f] font-black text-[11px] uppercase tracking-wider rounded-full overflow-hidden bg-white/50 backdrop-blur-sm"
           >
             <span className="relative z-10">Open Case Study</span>
-            <span className="absolute left-5 right-5 bottom-2 h-[1.5px] bg-[#d4af6a] scale-x-0 group-hover/btn2:scale-x-100 origin-left transition-transform duration-400" />
+            <span className="absolute left-5.5 right-5.5 bottom-2 h-[1.5px] bg-[#d4af6a] scale-x-0 group-hover/btn2:scale-x-100 origin-left transition-transform duration-400" />
           </a>
         </div>
 
         {/* Footer Ribbon */}
-        <div className="relative flex flex-wrap items-center gap-2 pt-3 mt-1 border-t border-[#e5d4a1] overflow-hidden">
-          <div className="absolute inset-x-0 top-3 h-px overflow-hidden">
+        <div className="relative flex flex-wrap items-center gap-2 pt-3.5 mt-1 border-t border-[#e5d4a1] overflow-hidden">
+          <div className="absolute inset-x-0 top-3.5 h-px overflow-hidden">
             <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#d4af6a] to-transparent animate-light-sweep" />
           </div>
           <Award className="w-3.5 h-3.5 text-[#8a6a1f] shrink-0" />
