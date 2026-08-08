@@ -78,19 +78,95 @@ const heroCredibility: { icon: typeof ShieldCheck; label: string }[] = [
 ];
 
 const complianceCards: {
+  id: string;
   icon: typeof Landmark;
   title: string;
   number: string;
   status: string;
+  category: "govt" | "tax" | "csr";
+  authority: string;
+  details: string;
 }[] = [
-  { icon: Landmark, title: "Society Registration (RC)", number: "Society Reg. No. 340/1999 (AP Act XXI of 1860)", status: "Active & Verified" },
-  { icon: ShieldCheck, title: "80G Tax Exemption", number: "Section 80G Renewal (Income Tax Act 1961)", status: "Active & Verified" },
-  { icon: FileText, title: "12AB Registration", number: "Section 12AB Renewal (Govt of India)", status: "Active & Verified" },
-  { icon: Globe2, title: "FCRA Registration", number: "FCRA Renewal (Ministry of Home Affairs)", status: "Active & Verified" },
-  { icon: Fingerprint, title: "NITI Aayog DARPAN", number: "NITI Aayog Govt of India Unique ID", status: "Active & Verified" },
-  { icon: Building2, title: "Form CSR-1 Approval", number: "Ministry of Corporate Affairs CSR Approved", status: "Active & Verified" },
-  { icon: TrendingUp, title: "Social Stock Exchange (SSE)", number: "SSE Listed & Approved Social Enterprise", status: "Active & Verified" },
-  { icon: Award, title: "TISS Hub Certificate", number: "Empaneled by Tata Institute of Social Sciences", status: "Active & Verified" },
+  {
+    id: "rc",
+    icon: Landmark,
+    title: "Society Registration (RC)",
+    number: "Society Reg. No. 340/1999 (AP Act XXI of 1860)",
+    status: "Active & Verified",
+    category: "govt",
+    authority: "Registrar of Societies, Govt of Andhra Pradesh",
+    details: "Registered under Societies Registration Act XXI of 1860 with Reg. No. 340/1999. Fully compliant with annual filings, statutory reporting, and public audit standards."
+  },
+  {
+    id: "80g",
+    icon: ShieldCheck,
+    title: "80G Tax Exemption",
+    number: "Section 80G Renewal (Income Tax Act 1961)",
+    status: "Active & Verified",
+    category: "tax",
+    authority: "Income Tax Department, Govt of India",
+    details: "Deduction under Section 80G of the Income Tax Act, 1961 allowing 50% tax exemption for qualifying corporate and individual donations."
+  },
+  {
+    id: "12ab",
+    icon: FileText,
+    title: "12AB Registration",
+    number: "Section 12AB Renewal (Govt of India)",
+    status: "Active & Verified",
+    category: "tax",
+    authority: "Central Board of Direct Taxes (CBDT)",
+    details: "Tax exemption status for non-profit organizations under Section 12AB of the Income Tax Act, 1961 ensuring tax-free income utilization for public welfare."
+  },
+  {
+    id: "fcra",
+    icon: Globe2,
+    title: "FCRA Registration",
+    number: "FCRA Renewal (Ministry of Home Affairs)",
+    status: "Active & Verified",
+    category: "govt",
+    authority: "Ministry of Home Affairs (MHA), Govt of India",
+    details: "Authorized under Foreign Contribution Regulation Act (FCRA) to receive foreign grants, institutional aid, and international philanthropic funding."
+  },
+  {
+    id: "darpan",
+    icon: Fingerprint,
+    title: "NITI Aayog DARPAN",
+    number: "NITI Aayog Govt of India Unique ID",
+    status: "Active & Verified",
+    category: "govt",
+    authority: "NITI Aayog, Govt of India",
+    details: "Empaneled on NGO Darpan portal maintaining a verified Unique ID for central and state government department partnerships and grants."
+  },
+  {
+    id: "csr1",
+    icon: Building2,
+    title: "Form CSR-1 Approval",
+    number: "Ministry of Corporate Affairs CSR Approved",
+    status: "Active & Verified",
+    category: "csr",
+    authority: "Ministry of Corporate Affairs (MCA), Govt of India",
+    details: "Registration certificate under Rule 4(2) of Companies (CSR Policy) Rules for executing corporate CSR initiatives under Schedule VII."
+  },
+  {
+    id: "sse",
+    icon: TrendingUp,
+    title: "Social Stock Exchange (SSE)",
+    number: "SSE Listed & Approved Social Enterprise",
+    status: "Active & Verified",
+    category: "csr",
+    authority: "SEBI & National Stock Exchange (NSE)",
+    details: "Registered Social Enterprise (SPO) on the Social Stock Exchange framework enabling auditable public social impact funding."
+  },
+  {
+    id: "tiss",
+    icon: Award,
+    title: "TISS Hub Certificate",
+    number: "Empaneled by Tata Institute of Social Sciences",
+    status: "Active & Verified",
+    category: "csr",
+    authority: "Tata Institute of Social Sciences (TISS)",
+    details: "Empaneled NGO partner audited for high governance, operational capability, and financial transparency by the TISS National CSR Hub."
+  },
 ];
 
 const complianceTrustStrip = [
@@ -103,13 +179,31 @@ const complianceTrustStrip = [
   { icon: Award, label: "TISS Empaneled" },
 ];
 
+function useReentryScrollReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setVisible(entries[0].isIntersecting);
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return [ref, visible] as const;
+}
+
 const impactStats: { target: number }[] = [
-  { target: 120 }, // Villages Covered
-  { target: 15000 }, // Lives Impacted (headline)
-  { target: 45 }, // Projects Completed
-  { target: 250 }, // Volunteers Engaged
-  { target: 3 }, // Districts Reached
-  { target: 27 }, // Years of Service
+  { target: 1909 }, // 0: Villages Covered (1,909+ across 9 States)
+  { target: 267000 }, // 1: Families / Lives Impacted (Headline: 2,67,000+ / 2.67 Lakh)
+  { target: 50 }, // 2: Completed Projects (50 Completed Projects)
+  { target: 13 }, // 3: Ongoing Projects (13 Active Projects)
+  { target: 37 }, // 4: Districts Reached (37 Districts)
+  { target: 27 }, // 5: Years of Service (27 Years since 1999)
 ];
 
 const processSteps: { step: string; title: string; desc: string; icon: typeof Search }[] = [
@@ -269,9 +363,11 @@ export default function Home() {
   // Trust & Compliance section states
   const [trustRef, trustVisible] = useScrollReveal<HTMLElement>();
   const [trustScore, setTrustScore] = useState(0);
+  const [complianceFilter, setComplianceFilter] = useState<"all" | "govt" | "tax" | "csr">("all");
+  const [selectedComplianceDoc, setSelectedComplianceDoc] = useState<(typeof complianceCards)[0] | null>(null);
 
-  // Impact section states
-  const [impactRef, impactVisible] = useScrollReveal<HTMLElement>();
+  // Impact section states (re-triggers count-up animation on every scroll into view)
+  const [impactRef, impactVisible] = useReentryScrollReveal<HTMLElement>();
   const [impactValues, setImpactValues] = useState(() => impactStats.map(() => 0));
   const [impactBounce, setImpactBounce] = useState(false);
 
@@ -381,8 +477,11 @@ export default function Home() {
   }, [trustVisible]);
 
   useEffect(() => {
-    if (!impactVisible) return;
-    const duration = 2500;
+    if (!impactVisible) {
+      setImpactValues(impactStats.map(() => 0));
+      return;
+    }
+    const duration = 2000;
     const start = performance.now();
     let rafId: number;
     const tick = (now: number) => {
@@ -393,7 +492,7 @@ export default function Home() {
         rafId = requestAnimationFrame(tick);
       } else {
         setImpactBounce(true);
-        setTimeout(() => setImpactBounce(false), 450);
+        setTimeout(() => setImpactBounce(false), 400);
       }
     };
     rafId = requestAnimationFrame(tick);
@@ -611,7 +710,7 @@ export default function Home() {
       </section>
 
       {/* --- IMPACT SECTION (dark editorial) --- */}
-      <section ref={impactRef} className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-emerald-950 to-slate-950 py-24 lg:py-32">
+      <section ref={impactRef} className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-emerald-950 to-slate-950 py-10 lg:py-14">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[160px]" />
           <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[140px]" />
@@ -621,198 +720,416 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            className={`text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-2 transition-all duration-700 ${
               impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-amber-300/20 text-amber-200 text-xs font-bold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/5 backdrop-blur-md border border-amber-300/20 text-amber-200 text-xs font-bold uppercase tracking-wider">
               Our Reach
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
               Impact That Speaks in Numbers
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
               Every figure below reflects real work on the ground — communities reached, projects delivered, and years of consistent, on-the-record service.
             </p>
           </div>
 
           {/* Giant headline stat */}
           <div
-            className={`text-center mb-20 transition-all duration-1000 ${
+            className={`text-center mb-6 sm:mb-8 transition-all duration-700 ${
               impactVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
             }`}
           >
             <p
-              className={`text-7xl sm:text-8xl lg:text-9xl font-black tracking-tight bg-gradient-to-b from-white to-emerald-200 bg-clip-text text-transparent ${
+              className={`text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight bg-gradient-to-b from-white via-emerald-100 to-emerald-300 bg-clip-text text-transparent ${
                 impactBounce ? "animate-count-bounce" : ""
               }`}
             >
               {Math.round(impactValues[1]).toLocaleString("en-IN")}+
             </p>
             <div className="flex items-center justify-center gap-3 mt-2">
-              <span className="h-px w-8 bg-amber-300/40" />
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-amber-200">Lives Impacted</p>
-              <span className="h-px w-8 bg-amber-300/40" />
+              <span className="h-px w-10 bg-amber-400/50" />
+              <p className="text-xs sm:text-sm font-black uppercase tracking-[0.22em] text-amber-300">
+                FAMILIES &amp; LIVES IMPACTED (2.67 LAKH+)
+              </p>
+              <span className="h-px w-10 bg-amber-400/50" />
             </div>
           </div>
 
-          {/* Editorial stat ledger */}
+          {/* Editorial stat ledger updated with official PDF data */}
           <div
             className={`grid grid-cols-2 lg:grid-cols-5 divide-x divide-y lg:divide-y-0 divide-white/10 border-y border-white/10 transition-all duration-700 ${
               impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
-            style={{ transitionDelay: "300ms" }}
+            style={{ transitionDelay: "200ms" }}
           >
             {[
-              { i: 0, label: "Villages Covered", desc: "Program areas reached" },
-              { i: 2, label: "Projects Completed", desc: "Delivered end-to-end" },
-              { i: 3, label: "Volunteers Engaged", desc: "Time and skills contributed" },
-              { i: 4, label: "Districts Reached", desc: "Across Andhra Pradesh" },
-              { i: 5, label: "Years of Service", desc: "Since our 1999 founding" },
+              { i: 0, label: "Villages Covered", desc: "Across 9 Indian States", suffix: "+" },
+              { i: 2, label: "Completed Projects", desc: "50 Delivered End-to-End", suffix: "" },
+              { i: 3, label: "Ongoing Projects", desc: "13 Active Field Projects", suffix: "" },
+              { i: 4, label: "Districts Reached", desc: "In South & Central India", suffix: "+" },
+              { i: 5, label: "Years of Service", desc: "Founded in 1999", suffix: " Yrs" },
             ].map((stat) => (
-              <div key={stat.label} className="group px-4 py-8 lg:py-10 text-center hover:bg-white/[0.03] transition-colors duration-300">
+              <div key={stat.label} className="group px-4 py-5 lg:py-7 text-center hover:bg-white/[0.04] transition-colors duration-300">
                 <p
-                  className={`text-3xl sm:text-4xl font-extrabold text-white group-hover:text-amber-200 transition-colors duration-300 ${
+                  className={`text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-amber-300 transition-colors duration-300 ${
                     impactBounce ? "animate-count-bounce" : ""
                   }`}
                 >
-                  {Math.round(impactValues[stat.i]).toLocaleString("en-IN")}+
+                  {Math.round(impactValues[stat.i]).toLocaleString("en-IN")}{stat.suffix}
                 </p>
-                <p className="text-xs font-bold uppercase tracking-wider text-emerald-300 mt-2">{stat.label}</p>
-                <p className="text-xs text-slate-500 mt-1">{stat.desc}</p>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 mt-1.5">{stat.label}</p>
+                <p className="text-[10px] text-slate-400 mt-0.5 font-medium">{stat.desc}</p>
               </div>
             ))}
           </div>
 
           <div
-            className={`text-center mt-14 transition-all duration-700 ${
+            className={`text-center mt-6 transition-all duration-700 ${
               impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
-            style={{ transitionDelay: "700ms" }}
+            style={{ transitionDelay: "500ms" }}
           >
             <Link
-              href="/impact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-amber-300/30 text-amber-100 font-bold text-sm hover:bg-amber-300/10 hover:border-amber-300/50 hover:-translate-y-0.5 transition-all"
+              href="/programs"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-amber-300/40 bg-amber-400/10 text-amber-200 font-bold text-xs sm:text-sm hover:bg-amber-300/20 hover:border-amber-300/60 hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(251,191,36,0.15)]"
             >
-              View Full Impact Report <ArrowUpRight className="w-4 h-4" />
+              Explore All Projects &amp; Impact Report <ArrowUpRight className="w-4 h-4 text-amber-300" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* --- TRUST & COMPLIANCE SECTION --- */}
-      <section ref={trustRef} className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white py-20 lg:py-28">
-        {/* Background decoration */}
+      {/* --- TRUST & COMPLIANCE SECTION (BREATHING CREAM & RICH BROWN INSTITUTIONAL VAULT) --- */}
+      <section ref={trustRef} className="relative overflow-hidden text-white py-10 lg:py-14 bg-[#160608]">
+        {/* 4 Corner Coordinates Cream & Brown Mixed Glowing Light Spheres (Top-Left, Top-Right, Bottom-Left, Bottom-Right) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[8%] left-[-8%] w-[380px] h-[380px] bg-emerald-100/50 rounded-full blur-[110px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[5%] right-[-6%] w-[340px] h-[340px] bg-sky-100/50 rounded-full blur-[110px] animate-liquid-drift-b" />
-          <div className="absolute top-[38%] right-[12%] w-[220px] h-[220px] bg-amber-50/60 rounded-full blur-[90px] animate-liquid-drift-c" />
-          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#065f46_1px,transparent_1px)] [background-size:28px_28px]" />
-          <div className="absolute top-16 right-[8%] w-32 h-32 rounded-full border-2 border-dashed border-emerald-200/70" />
-          <div className="absolute bottom-24 left-[6%] w-24 h-24 rounded-full border-2 border-dashed border-sky-200/70" />
+          {/* Top-Left Corner Coordinate Glow */}
+          <div className="absolute top-[-12%] left-[-10%] w-[580px] h-[580px] bg-gradient-to-br from-[#fef08a]/30 via-[#f59e0b]/20 to-[#3b1216]/40 rounded-full blur-[150px] animate-liquid-drift-a" />
+          
+          {/* Top-Right Corner Coordinate Glow */}
+          <div className="absolute top-[-12%] right-[-10%] w-[580px] h-[580px] bg-gradient-to-bl from-[#78350f]/35 via-[#fde68a]/25 to-[#240b0e]/40 rounded-full blur-[150px] animate-liquid-drift-b" />
+          
+          {/* Bottom-Left Corner Coordinate Glow */}
+          <div className="absolute bottom-[-12%] left-[-10%] w-[580px] h-[580px] bg-gradient-to-tr from-[#92400e]/35 via-[#fef08a]/20 to-[#351014]/40 rounded-full blur-[150px] animate-liquid-drift-c" />
+          
+          {/* Bottom-Right Corner Coordinate Glow */}
+          <div className="absolute bottom-[-12%] right-[-10%] w-[580px] h-[580px] bg-gradient-to-tl from-[#fde68a]/25 via-[#d97706]/25 to-[#1c0709]/50 rounded-full blur-[150px] animate-liquid-drift-a" style={{ animationDelay: '3s' }} />
+
+          {/* Sharp Amber Dot-Dot Micro Grid Overlay */}
+          <div className="absolute inset-0 opacity-[0.24] bg-[radial-gradient(#d97706_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
+
+          {/* Technical laser grid & node lines */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.22]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="laserLineGradCreamBrown" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#fef08a" stopOpacity="0" />
+                <stop offset="50%" stopColor="#f59e0b" stopOpacity="1" />
+                <stop offset="100%" stopColor="#fef08a" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <line x1="5%" y1="18%" x2="95%" y2="18%" stroke="url(#laserLineGradCreamBrown)" strokeWidth="1" strokeDasharray="6 6" />
+            <line x1="5%" y1="82%" x2="95%" y2="82%" stroke="url(#laserLineGradCreamBrown)" strokeWidth="1" strokeDasharray="6 6" />
+            <circle cx="20%" cy="18%" r="3" fill="#fde68a" className="animate-pulse" />
+            <circle cx="80%" cy="18%" r="3" fill="#fef08a" className="animate-pulse" />
+            <circle cx="50%" cy="82%" r="3" fill="#f59e0b" className="animate-pulse" />
+          </svg>
         </div>
 
         <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {/* Section header */}
+          {/* Section Header */}
           <div
-            className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            className={`text-center max-w-5xl mx-auto mb-6 sm:mb-8 space-y-3 transition-all duration-700 ${
               trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-200 text-emerald-700 text-xs font-bold uppercase tracking-wider shadow-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Verified &bull; Government Recognized
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
-              Built on Transparency, Backed by Compliance
+            <div className="inline-flex items-center gap-2.5 px-4.5 py-1 rounded-full bg-[#351216]/90 backdrop-blur-xl border border-amber-400/50 text-amber-200 text-[11px] font-bold uppercase tracking-[0.18em] shadow-[0_0_25px_rgba(245,158,11,0.25)]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+              </span>
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
+              <span>VERIFIED &bull; GOVERNMENT RECOGNIZED</span>
+            </div>
+
+            {/* Single Line Title */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black tracking-tight text-white leading-tight md:whitespace-nowrap">
+              Built on <span className="bg-gradient-to-r from-amber-200 via-[#fde68a] to-amber-100 bg-clip-text text-transparent">Transparency</span>, Backed by <span className="bg-gradient-to-r from-[#fef08a] via-rose-200 to-amber-300 bg-clip-text text-transparent">Compliance</span>
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+
+            {/* Subtitle Balanced in Exactly 3 Lines */}
+            <p className="text-amber-100/90 text-sm sm:text-base leading-relaxed max-w-[780px] mx-auto font-medium [text-wrap:balance]">
               Our commitment to transparency is reflected through nationally recognized registrations, regulatory compliance, financial accountability, and responsible governance, giving every stakeholder complete confidence in partnering with us.
             </p>
           </div>
 
-          {/* Bento grid: feature card + compliance cards */}
-          <div className="grid lg:grid-cols-12 gap-6">
+          {/* Main Asymmetrical 40/60 Composition */}
+          <div className="grid lg:grid-cols-12 gap-6 items-stretch">
 
-            {/* Feature card (~40%) */}
+            {/* LEFT PANEL (~40%): TRUST & COMPLIANCE CENTER */}
             <div
               className={`lg:col-span-5 transition-all duration-700 ${
                 trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="h-full bg-white/70 backdrop-blur-[22px] border border-white/70 rounded-3xl shadow-[0_20px_60px_-20px_rgba(6,95,70,0.25)] p-8 flex flex-col gap-6 hover:-translate-y-1 transition-transform duration-500">
+              <div className="h-full bg-[#2a0e11]/90 backdrop-blur-2xl border border-amber-400/40 rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)] p-6 sm:p-7 flex flex-col justify-between gap-5 relative overflow-hidden">
+                
+                {/* Thin gold accent line */}
+                <div className="w-12 h-1 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 rounded-full" />
+
+                {/* Module title & description */}
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">Trust &amp; Compliance Center</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <h3 className="text-2xl font-black text-white tracking-tight">Trust &amp; Compliance Center</h3>
+                  <p className="text-sm text-amber-100/80 leading-relaxed font-normal mt-1.5">
                     Our organization follows the highest standards of legal compliance, ethical governance, financial transparency, and public accountability.
                   </p>
                 </div>
 
-                <div className="relative rounded-2xl overflow-hidden border border-white/60 shadow-md">
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-light-sweep" />
+                {/* Document Image inside framed container */}
+                <div className="relative rounded-2xl overflow-hidden border border-amber-400/40 shadow-lg bg-[#140608]">
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden z-10">
+                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-amber-200/40 to-transparent animate-light-sweep" />
                   </div>
                   <img
                     src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800"
                     alt="Official registration documents"
-                    className="w-full h-40 object-cover"
+                    className="w-full h-40 object-cover brightness-95"
                   />
-                </div>
-
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-emerald-50/80 border border-emerald-100">
-                  <div>
-                    <p className="text-2xl font-extrabold text-emerald-700">{Math.round(trustScore)}% Compliance</p>
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 uppercase tracking-wide mt-1">
-                      <ShieldCheck className="w-3.5 h-3.5 animate-pulse" /> Government Registered
-                    </span>
+                  {/* Floating Documented / Verified indicator badge */}
+                  <div className="absolute top-3 right-3 z-20 bg-[#19070a]/90 backdrop-blur-md border border-amber-400/50 text-amber-200 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                    <span>DOCUMENTED / VERIFIED</span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200 mt-auto">
-                  <p className="text-[#8a6a1f] font-black text-xs uppercase tracking-wider">Publicity & Trust Status</p>
-                  <p className="text-xl font-black text-emerald-800 mt-0.5">100% Fully Compliant</p>
-                  <p className="text-xs text-[#5b6a60] font-medium mt-1">All 8 National Registrations Active & Govt Approved</p>
+                {/* 100% COMPLIANCE BRAND NEW HIGH-IMPACT 3D HOLOGRAPHIC VAULT ENGINE */}
+                <div className="w-full bg-gradient-to-br from-[#2a0e11] via-[#1a080a] to-[#250b0e] border-2 border-amber-400/80 rounded-[32px] p-7 sm:p-9 shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col items-center justify-center text-center relative overflow-hidden group/compcard">
+                  
+                  {/* Shifting breathing cream & amber radial light halos */}
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-400/20 rounded-full blur-[80px] animate-liquid-drift-a" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#fde68a]/15 rounded-full blur-[60px] animate-liquid-drift-b" />
+                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-amber-300/20 to-transparent animate-light-sweep" />
+                  </div>
+
+                  {/* HIGH-IMPACT 3D HOLOGRAPHIC ENGINE ASSEMBLY */}
+                  <div className="relative w-48 h-48 sm:w-52 sm:h-52 flex items-center justify-center my-2">
+                    
+                    {/* Outer Pulsing Radar Aura Rings */}
+                    <div className="absolute inset-0 rounded-full border-2 border-amber-400/30 animate-ping opacity-30" style={{ animationDuration: '3.5s' }} />
+                    <div className="absolute -inset-4 rounded-full border border-amber-300/20 animate-halo-breathe" />
+
+                    {/* Dual Orbiting Glowing Light Nodes */}
+                    <div className="absolute inset-0 animate-[orbit-rotate_6s_linear_infinite] pointer-events-none">
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-amber-200 to-amber-400 shadow-[0_0_20px_#f59e0b] border-2 border-[#1a080a]" />
+                    </div>
+                    <div className="absolute inset-0 animate-[orbit-counter_10s_linear_infinite] pointer-events-none">
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-amber-100 to-amber-300 shadow-[0_0_15px_#fde68a] border-2 border-[#1a080a]" />
+                    </div>
+
+                    {/* Outer Precision Ticked SVG HUD Ring */}
+                    <svg className="w-full h-full transform -rotate-90 drop-shadow-[0_0_22px_rgba(245,158,11,0.85)]" viewBox="0 0 160 160">
+                      <defs>
+                        <linearGradient id="hudRingGradient3D" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#ffffff" />
+                          <stop offset="35%" stopColor="#fde68a" />
+                          <stop offset="70%" stopColor="#f59e0b" />
+                          <stop offset="100%" stopColor="#d97706" />
+                        </linearGradient>
+                      </defs>
+
+                      {/* Outer dashed notch ring */}
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="74"
+                        className="stroke-amber-300/40"
+                        strokeWidth="2"
+                        strokeDasharray="4 8"
+                        fill="transparent"
+                      />
+
+                      {/* Dark inner track */}
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="64"
+                        className="stroke-[#381318]"
+                        strokeWidth="12"
+                        fill="transparent"
+                      />
+
+                      {/* Glowing primary 100% progress ring */}
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="64"
+                        stroke="url(#hudRingGradient3D)"
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        fill="transparent"
+                        strokeDasharray={402.12}
+                        strokeDashoffset={402.12 - (402.12 * trustScore) / 100}
+                        className="transition-all duration-700 ease-out"
+                      />
+                    </svg>
+
+                    {/* Center 3D Glass Badge Disc: 100% & COMPLIANCE */}
+                    <div className="absolute w-32 h-32 rounded-full bg-gradient-to-br from-[#3b1518]/90 via-[#22090b]/95 to-[#160506]/90 border-2 border-amber-300/80 shadow-[0_0_35px_rgba(245,158,11,0.5)] backdrop-blur-xl flex flex-col items-center justify-center pointer-events-none">
+                      <span className="text-4xl sm:text-5xl font-black bg-gradient-to-b from-white via-amber-100 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(253,230,138,0.9)] tracking-tight leading-none">
+                        {Math.round(trustScore)}%
+                      </span>
+                      <span className="text-[11px] font-black text-[#fde68a] uppercase tracking-[0.25em] mt-1.5 drop-shadow-sm">
+                        COMPLIANCE
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Underneath Floating 3D Pill Badge: GOVERNMENT REGISTERED */}
+                  <div className="mt-4 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-[#351216] border-2 border-amber-400/80 text-[#fde68a] text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_25px_rgba(245,158,11,0.35)] hover:scale-105 transition-all duration-300">
+                    <ShieldCheck className="w-4 h-4 text-amber-300 animate-pulse" />
+                    <span>GOVERNMENT REGISTERED</span>
+                  </div>
+
                 </div>
+
+                {/* Compact Status Module */}
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-[#351216]/90 to-[#22090b]/90 border border-amber-400/40 shadow-sm relative overflow-hidden">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-amber-300 font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 text-amber-400" /> PUBLICITY &amp; TRUST STATUS
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-500/20 text-amber-200 border border-amber-400/50">
+                      100% Fully Compliant
+                    </span>
+                  </div>
+                  <p className="text-sm font-black text-white mt-0.5">
+                    All 8 National Registrations Active &amp; Govt Approved
+                  </p>
+                </div>
+
               </div>
             </div>
 
-            {/* Compliance cards (8 verified registration cards) */}
-            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-              {complianceCards.map((card, i) => (
-                <div
-                  key={card.title}
-                  className={`bg-white/80 backdrop-blur-xl border border-[#e5d4a1] rounded-2xl p-4.5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group ${
-                    trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
-                  style={{ transitionDelay: `${100 + i * 60}ms` }}
-                >
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <card.icon className="w-4.5 h-4.5" />
-                    </div>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Active
-                    </span>
-                  </div>
-                  <h4 className="text-sm font-black text-[#221c0c]">{card.title}</h4>
-                  <p className="text-xs text-[#5b6a60] font-medium mt-1">{card.number}</p>
+            {/* RIGHT PANEL (~60%): REGISTRATION & CERTIFICATION SYSTEM */}
+            <div className="lg:col-span-7 flex flex-col justify-between gap-3 relative">
+
+              {/* Registry Header & Filter Navigation */}
+              <div className="space-y-2 mb-1">
+                <div className="flex items-center justify-between px-1">
+                  <span className="text-[11px] font-black tracking-[0.2em] text-amber-300/90 uppercase flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                    COMPLIANCE REGISTRY
+                  </span>
+                  <span className="text-[11px] font-bold tracking-wider text-amber-200 bg-[#351216]/90 border border-amber-400/50 px-3 py-0.5 rounded-full font-mono shadow-sm">
+                    08 VERIFIED RECORDS
+                  </span>
                 </div>
-              ))}
+
+                {/* Category Tabs */}
+                <div className="flex flex-wrap gap-2 pt-0.5">
+                  {[
+                    { key: "all", label: "ALL RECORDS (8)" },
+                    { key: "govt", label: "GOVERNMENT REGISTRATIONS" },
+                    { key: "tax", label: "TAX EXEMPTIONS" },
+                    { key: "csr", label: "CSR & INSTITUTIONAL" },
+                  ].map((tab) => (
+                    <button
+                      key={tab.key}
+                      onClick={() => setComplianceFilter(tab.key as typeof complianceFilter)}
+                      className={`px-3 py-1 rounded-xl text-[11px] font-bold transition-all duration-300 ${
+                        complianceFilter === tab.key
+                          ? "bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.5)] scale-105"
+                          : "bg-[#250b0e]/90 text-amber-100/70 border border-amber-500/30 hover:bg-[#351216] hover:text-white"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 8 Compliance Registry Cards (Cream & Rich Brown Theme - Always Full Grid) */}
+              <div className="grid sm:grid-cols-2 gap-3.5">
+                {complianceCards.map((card, i) => {
+                  const isMatched = complianceFilter === "all" || card.category === complianceFilter;
+                  return (
+                    <div
+                      key={card.id}
+                      className={`bg-[#2a0e11]/90 backdrop-blur-xl rounded-2xl p-4.5 relative overflow-hidden flex flex-col justify-between transition-all duration-500 ${
+                        isMatched
+                          ? "border border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.25)] opacity-100 scale-100"
+                          : "border border-amber-500/20 opacity-40 grayscale-[35%] hover:opacity-80 scale-[0.98]"
+                      } ${
+                        trustVisible ? "translate-y-0" : "translate-y-6"
+                      }`}
+                      style={{ transitionDelay: `${40 + i * 40}ms` }}
+                    >
+                      {/* Top glowing edge accent line */}
+                      <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-300 via-amber-400 to-rose-400 transition-opacity duration-300 ${isMatched ? "opacity-100" : "opacity-30"}`} />
+
+                      <div>
+                        {/* High-Contrast Icon Box (Solid White Icon) & Status Badge */}
+                        <div className="flex items-start justify-between mb-2.5">
+                          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-white border border-amber-300 flex items-center justify-center transition-all duration-300 ${isMatched ? "shadow-[0_0_18px_rgba(245,158,11,0.5)]" : "opacity-75"}`}>
+                            <card.icon className="w-5 h-5 text-white" />
+                          </div>
+
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                            isMatched 
+                              ? "bg-amber-500/25 text-amber-200 border border-amber-400/60" 
+                              : "bg-amber-950/40 text-amber-300/50 border border-amber-500/20"
+                          }`}>
+                            <CheckCircle2 className="w-3 h-3 text-white" /> Active
+                          </span>
+                        </div>
+
+                        {/* Title & Detail */}
+                        <h4 className={`text-sm font-black leading-snug transition-colors duration-300 ${isMatched ? "text-amber-200" : "text-amber-100/50"}`}>
+                          {card.title}
+                        </h4>
+                        <p className={`text-xs font-medium mt-1 leading-relaxed transition-colors duration-300 ${isMatched ? "text-amber-100/80" : "text-amber-100/40"}`}>
+                          {card.number}
+                        </p>
+                      </div>
+
+                      {/* Verification Status Indicator */}
+                      <div className={`mt-3 pt-2 border-t flex items-center justify-between text-[10px] font-mono transition-colors duration-300 ${isMatched ? "border-amber-500/20 text-amber-300/80" : "border-amber-500/10 text-amber-300/40"}`}>
+                        <span className="tracking-wider">REGISTRATION &rarr; VERIFIED</span>
+                        <span className={`font-extrabold flex items-center gap-1 ${isMatched ? "text-amber-300" : "text-amber-300/50"}`}>
+                          <ShieldCheck className="w-3 h-3 text-white" /> OFFICIAL
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
             </div>
+
           </div>
 
-          {/* Bottom trust strip */}
+          {/* BOTTOM TRUST STRIP: Continuous Horizontal Scrolling Marquee */}
           <div
-            className={`mt-14 bg-white/80 backdrop-blur-xl border border-white/70 rounded-2xl shadow-lg px-6 py-5 flex flex-wrap justify-center gap-x-8 gap-y-3 transition-all duration-700 ${
+            className={`mt-6 relative overflow-hidden rounded-2xl bg-[#250b0e]/90 backdrop-blur-2xl border border-amber-400/40 shadow-lg py-3 px-2 transition-all duration-700 ${
               trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
             style={{ transitionDelay: "700ms" }}
           >
-            {complianceTrustStrip.map((item) => (
-              <span key={item.label} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700">
-                <item.icon className="w-4 h-4 text-emerald-600" /> {item.label}
-              </span>
-            ))}
+            {/* Fade masks on left & right edges */}
+            <div className="pointer-events-none absolute inset-0 z-10 [mask-image:linear-gradient(to_right,#250b0e,transparent_5%,transparent_95%,#250b0e)]" />
+
+            <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
+              {[...complianceTrustStrip, ...complianceTrustStrip, ...complianceTrustStrip].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2.5 px-4 text-xs font-semibold text-amber-100/90 shrink-0 cursor-default">
+                  <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>{item.label}</span>
+                  <span className="text-amber-600 font-bold text-xs ml-4">&bull;</span>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>

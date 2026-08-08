@@ -177,6 +177,18 @@ body {
   to { transform: rotate(-360deg); }
 }
 
+@keyframes cream-brown-breath {
+  0%, 100% {
+    background-color: #160608;
+  }
+  50% {
+    background-color: #2a0c10;
+  }
+}
+.bg-cream-brown-breath {
+  animation: cream-brown-breath 8s ease-in-out infinite;
+}
+
 @keyframes breathing-shadow-emerald {
   0%, 100% { box-shadow: 0 20px 60px -20px rgba(16, 185, 129, 0.35); }
   50% { box-shadow: 0 25px 70px -15px rgba(16, 185, 129, 0.5); }

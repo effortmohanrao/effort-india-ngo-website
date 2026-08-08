@@ -32,9 +32,9 @@ export default function ImpactPage() {
   const [selectedCode, setSelectedCode] = useState<string>("IN-AP");
   const selectedState: StateData = IMPACT_STATES[selectedCode] ?? IMPACT_STATES["IN-AP"];
 
-  {/* Overall Impact Metrics (Matching PDF Presentation List: 51 Completed + 13 Ongoing = 64 Total) */}
+  {/* Overall Impact Metrics (Matching PDF Presentation List: 50 Completed + 13 Ongoing = 63 Total) */}
   const statCards = [
-    { title: "64 Projects", subtitle: "Total Executed & Active", icon: Award, desc: "51 Completed + 13 Ongoing (1999–2026)" },
+    { title: "63 Projects", subtitle: "Total Executed & Active", icon: Award, desc: "50 Completed + 13 Ongoing (1999–2026)" },
     { title: "2.67 Lakh", subtitle: "Families Empowered", icon: Users, desc: "Farmers, Women, Children & Villagers Reached" },
     { title: "42 FPOs & 1,275 SHGs", subtitle: "Community Collectives", icon: TrendingUp, desc: "38,102 Farmer Shareholders & Women Members" },
     { title: "2,011 Children & 50 RO", subtitle: "Child & Health Impact", icon: HeartPulse, desc: "21 Child-Labour-Free Villages & 16,000 Families Safe Water" },
