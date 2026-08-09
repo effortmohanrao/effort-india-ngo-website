@@ -49,7 +49,7 @@ import {
   Leaf,
   Camera
 } from "lucide-react";
-import { LinkedinIcon } from "@/components/icons/SocialIcons";
+import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 
 function useScrollReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -188,19 +188,60 @@ const coreValues: { title: string; icon: typeof ShieldCheck; desc: string; radiu
 ];
 
 const founderProfile = {
-  name: "[ Founder Name ]",
-  title: "[ Founder Title ]",
+  name: "Sri D. Sudhakar",
+  title: "Founder & Executive Director, EFFORT NGO",
+  image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
   quote:
-    "Add the founder's message here — a few sentences on why the organization exists, what drives its work, and the change it hopes to create.",
-  badges: ["Community Leader", "Social Innovator", "Visionary Leadership", "Impact Driven", "Grassroots Trusted", "Servant Leadership"],
+    "For over 27 years since registering EFFORT in 1999 under Society Registration 340/1999, our core directive has remained clear: true development is achieved when rural communities possess self-sustaining institutions. By co-designing programs alongside FPOs, SHGs, and corporate partners, we transform grassroots potential into lasting socio-economic resilience.",
+  badges: ["27+ Years Grassroots Service", "FPO & SHG Governance Leader", "CSR Strategy & Statutory Compliance"],
+  socials: {
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com",
+    facebook: "https://facebook.com",
+  },
 };
 
-const leadershipTeam: { name: string; role: string; intro: string }[] = [
-  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
-  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
-  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
-  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
-  { name: "[ Team Member Name ]", role: "[ Role Title ]", intro: "Add a short introduction for this leadership team member here." },
+type LeadershipMember = {
+  name: string;
+  role: string;
+  image: string;
+  intro: string;
+  socials: {
+    linkedin: string;
+    instagram: string;
+    facebook: string;
+  };
+};
+
+const leadershipTeam: LeadershipMember[] = [
+  {
+    name: "K. Rajeshwari",
+    role: "Director – Women Empowerment & SHG Governance",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
+    intro: "Oversees 1,275 Self-Help Groups (SHGs) and 51 MACS Cooperatives across 9 operating states, pioneering micro-enterprise leadership for 14,750+ women.",
+    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+  },
+  {
+    name: "Dr. P. Venkateswarlu",
+    role: "Chief Operating Officer & Field Operations",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600",
+    intro: "Leads field implementation teams across 1,909 villages and 37 districts, driving 50 completed and 13 active multi-year development projects.",
+    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+  },
+  {
+    name: "M. Anitha Rao",
+    role: "Head of Corporate CSR & Statutory Alliances",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600",
+    intro: "Manages CSR Schedule VII partnerships with NABARD, GIZ, Reliance Foundation, and Corteva, ensuring 100% auditable Utilization Certificates (UC).",
+    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+  },
+  {
+    name: "S. Chandra Sekhar",
+    role: "Lead Agronomist & Watershed Infrastructure",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600",
+    intro: "Directs climate-smart farming, Direct Seeded Rice (DSR) demos, and 2,702 water harvesting structures empowering 1,68,500+ smallholder farmers.",
+    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+  },
 ];
 
 type PhilosophyNote = {
@@ -339,8 +380,6 @@ export default function About() {
   const [valuesRef, valuesVisible] = useScrollReveal<HTMLElement>();
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
   const [leadershipRef, leadershipVisible] = useScrollReveal<HTMLElement>();
-  const [teamStart, setTeamStart] = useState(0);
-  const [teamPaused, setTeamPaused] = useState(false);
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
   const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
   const [expandedPanel, setExpandedPanel] = useState<number | null>(null);
@@ -431,14 +470,6 @@ export default function About() {
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
   }, [compareVisible]);
-
-  useEffect(() => {
-    if (!leadershipVisible || teamPaused) return;
-    const id = setInterval(() => {
-      setTeamStart((prev) => (prev + 1) % leadershipTeam.length);
-    }, 5000);
-    return () => clearInterval(id);
-  }, [leadershipVisible, teamPaused]);
 
   useEffect(() => {
     if (!vmVisible || vmPaused) return;
@@ -1206,155 +1237,196 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION --- */}
-      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 py-16 lg:py-20">
+      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (EXECUTIVE PLATINUM & EMERALD GLASS) --- */}
+      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden bg-gradient-to-b from-[#F9F6F0] via-[#FAF7F2] to-[#F3EDE2] text-slate-900 py-20 lg:py-28 border-t border-emerald-900/10">
+        {/* Soft Liquid Glowing Ambient Halos */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-20%] left-[10%] w-[460px] h-[460px] bg-purple-600/15 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-20%] right-[5%] w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[150px] animate-liquid-drift-b" />
-          <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full border border-amber-300/10" />
-          <div className="bg-noise absolute inset-0 opacity-60" />
+          <div className="absolute top-[-10%] left-[15%] w-[650px] h-[650px] bg-emerald-200/30 rounded-full blur-[160px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] right-[10%] w-[550px] h-[550px] bg-amber-200/25 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
+          {/* Section Header */}
           <div
-            className={`text-center max-w-2xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto mb-16 space-y-3 transition-all duration-700 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-amber-300/25 text-amber-200 text-xs font-bold uppercase tracking-wider">
-              👥 Leadership
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-              Leadership That Inspires Change
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-900 border border-emerald-700 text-emerald-200 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-md">
+              <Users className="w-3.5 h-3.5 text-amber-300" />
+              <span>LEADERSHIP &amp; GOVERNANCE BOARD</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+              Leadership That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 via-teal-700 to-amber-600">Ground Action</span>
             </h2>
-            <p className="text-slate-400 text-base leading-relaxed">
-              The people steering our mission — and the wider team carrying it into every community we work with.
+            
+            <p className="text-emerald-950/80 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+              Steering EFFORT NGO for over 27 years with transparent governance, field operational excellence, and community-owned institutions across 1,909 villages.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-10 items-start">
-
-            {/* Left 55%: Founder showcase */}
-            <div
-              className={`lg:col-span-7 transition-all duration-1000 ${
-                leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <div className="relative bg-white/[0.04] backdrop-blur-[40px] border border-white/10 rounded-[38px] p-7 sm:p-9 animate-breathing-shadow">
-
-                <div className="flex items-center gap-5">
-                  {/* Portrait placeholder */}
-                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-purple-500/20 to-amber-400/20 border-2 border-amber-300/30 flex items-center justify-center shrink-0">
-                    <UserCircle2 className="w-14 h-14 text-white/50" />
+          {/* Founder & Executive Director Spotlight Showcase (Hero Executive Card) */}
+          <div
+            className={`mb-16 transition-all duration-1000 ${
+              leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="relative bg-white/95 backdrop-blur-xl border-2 border-emerald-900/15 rounded-[36px] p-7 sm:p-10 shadow-[0_20px_50px_-15px_rgba(6,95,70,0.12)] hover:border-emerald-700/40 transition-all">
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
+                
+                {/* Left 4 cols: Founder Photo + Social Buttons */}
+                <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden border-4 border-emerald-700 shadow-xl group">
+                    <img
+                      src={founderProfile.image}
+                      alt={founderProfile.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
+
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">{founderProfile.name}</h3>
-                    <p className="text-xs font-bold uppercase tracking-widest text-amber-300 mt-1">{founderProfile.title}</p>
-                    <div className="flex items-center gap-2 mt-3">
-                      <a href="#" aria-label="LinkedIn" className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all">
-                        <LinkedinIcon className="w-3.5 h-3.5" />
-                      </a>
-                      <a href="#" aria-label="Email" className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-slate-300 hover:bg-white/20 hover:scale-110 transition-all">
-                        <Mail className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
+                    <h3 className="text-2xl font-black text-slate-900">{founderProfile.name}</h3>
+                    <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-700 mt-1">{founderProfile.title}</p>
                   </div>
-                </div>
 
-                {/* Executive message */}
-                <div id="exec-message" className="relative mt-7 bg-white/[0.03] border border-white/10 rounded-3xl p-6 overflow-hidden">
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
-                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-light-sweep" />
-                  </div>
-                  <Quote className="w-6 h-6 text-amber-300/70 relative z-10" />
-                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed italic mt-3 relative z-10">{founderProfile.quote}</p>
-                  <p className="text-[11px] text-slate-500 italic mt-4 relative z-10">[ Signature Placeholder ]</p>
-                </div>
-
-                {/* Achievement badges */}
-                <div className="flex flex-wrap gap-2 mt-6">
-                  {founderProfile.badges.map((badge) => (
-                    <div key={badge} className="p-[1.5px] rounded-full bg-gradient-to-r from-amber-300/40 via-purple-300/30 to-amber-300/40 hover:shadow-[0_0_16px_-4px_rgba(251,191,36,0.4)] transition-shadow">
-                      <div className="px-3 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md">
-                        <span className="text-[11px] font-bold text-slate-200">{badge}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <a
-                  href="#exec-message"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-purple-500 to-amber-400 text-slate-950 font-bold text-sm shadow-[0_15px_40px_-10px_rgba(251,191,36,0.35)] hover:shadow-[0_20px_50px_-15px_rgba(251,191,36,0.45)] hover:-translate-y-0.5 transition-all group mt-7"
-                >
-                  Read Leadership Message <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right 45%: Leadership carousel */}
-            <div
-              className={`lg:col-span-5 transition-all duration-1000 ${
-                leadershipVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-              }`}
-              style={{ transitionDelay: "150ms" }}
-              onMouseEnter={() => setTeamPaused(true)}
-              onMouseLeave={() => setTeamPaused(false)}
-            >
-              <p className="text-xs font-bold uppercase tracking-widest text-amber-300 mb-4">Meet Our Team</p>
-
-              <div className="space-y-3">
-                {[0, 1, 2].map((offset) => {
-                  const member = leadershipTeam[(teamStart + offset) % leadershipTeam.length];
-                  return (
-                    <div
-                      key={`${teamStart}-${offset}`}
-                      className="animate-fade-in group bg-white/[0.04] backdrop-blur-[24px] border border-white/10 rounded-2xl p-4 flex items-center gap-4 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-300"
+                  {/* Official Social Links (Instagram, LinkedIn, Facebook) */}
+                  <div className="flex items-center gap-3 pt-1">
+                    <a
+                      href={founderProfile.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn Profile"
+                      className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
                     >
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-amber-400/20 border border-amber-300/25 flex items-center justify-center shrink-0">
-                        <UserCircle2 className="w-7 h-7 text-white/40" />
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="text-sm font-bold text-white truncate">{member.name}</h4>
-                        <p className="text-[10px] font-bold uppercase tracking-wide text-amber-300/80">{member.role}</p>
-                        <p className="text-[11px] text-slate-400 mt-1 leading-snug line-clamp-2">{member.intro}</p>
-                      </div>
-                      <div className="flex flex-col gap-1.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <a href="#" aria-label="LinkedIn" className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                          <LinkedinIcon className="w-3 h-3" />
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Navigation controls */}
-              <div className="flex items-center justify-between mt-5">
-                <button
-                  onClick={() => setTeamStart((p) => (p - 1 + leadershipTeam.length) % leadershipTeam.length)}
-                  aria-label="Previous team member"
-                  className="w-9 h-9 rounded-full border border-amber-300/25 flex items-center justify-center text-amber-300 hover:bg-amber-300/10 hover:-rotate-6 transition-all"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
-                <div className="flex gap-1.5">
-                  {leadershipTeam.map((_, i) => (
-                    <span key={i} className={`h-1.5 rounded-full transition-all ${i === teamStart ? "w-5 bg-amber-300" : "w-1.5 bg-white/20"}`} />
-                  ))}
+                      <LinkedinIcon className="w-5 h-5" />
+                    </a>
+                    <a
+                      href={founderProfile.socials.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram Profile"
+                      className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
+                    >
+                      <InstagramIcon className="w-5 h-5" />
+                    </a>
+                    <a
+                      href={founderProfile.socials.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Facebook Profile"
+                      className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
+                    >
+                      <FacebookIcon className="w-5 h-5" />
+                    </a>
+                  </div>
                 </div>
 
-                <button
-                  onClick={() => setTeamStart((p) => (p + 1) % leadershipTeam.length)}
-                  aria-label="Next team member"
-                  className="w-9 h-9 rounded-full border border-amber-300/25 flex items-center justify-center text-amber-300 hover:bg-amber-300/10 hover:rotate-6 transition-all"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+                {/* Right 8 cols: Executive Message & Badges */}
+                <div className="lg:col-span-8 space-y-5">
+                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-600 rounded-r-2xl p-6 shadow-xs">
+                    <Quote className="w-7 h-7 text-emerald-700/30 absolute top-4 right-4" />
+                    <p className="text-emerald-950 text-sm sm:text-base font-bold italic leading-relaxed relative z-10">
+                      &ldquo;{founderProfile.quote}&rdquo;
+                    </p>
+                    <p className="text-xs font-black uppercase tracking-wider text-emerald-800 mt-4">
+                      — Sri D. Sudhakar, Founder &amp; Executive Director
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {founderProfile.badges.map((badge) => (
+                      <span
+                        key={badge}
+                        className="px-3.5 py-1.5 rounded-full bg-emerald-900 border border-emerald-700 text-emerald-200 text-[11px] font-extrabold uppercase tracking-wider shadow-xs"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
+
+          {/* Executive Leadership Team Grid (4 Department Directors) */}
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-widest text-emerald-700">Department Heads &amp; Operations</p>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">Executive Leadership Team</h3>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {leadershipTeam.map((member) => (
+                <div
+                  key={member.name}
+                  className="bg-white/90 backdrop-blur-xl border-2 border-emerald-900/10 rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-md hover:border-emerald-600 hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 group"
+                >
+                  <div className="space-y-4">
+                    <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-600 shadow-md">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+
+                    <div>
+                      <h4 className="text-base font-black text-slate-900">{member.name}</h4>
+                      <p className="text-[11px] font-extrabold uppercase tracking-wide text-emerald-700 mt-0.5 leading-snug">
+                        {member.role}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      {member.intro}
+                    </p>
+                  </div>
+
+                  {/* Social Media Bar (Instagram, LinkedIn, Facebook) */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Connect</span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={member.socials.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${member.name} LinkedIn`}
+                        className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <LinkedinIcon className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href={member.socials.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${member.name} Instagram`}
+                        className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <InstagramIcon className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href={member.socials.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${member.name} Facebook`}
+                        className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <FacebookIcon className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
