@@ -380,6 +380,8 @@ export default function About() {
   const [valuesRef, valuesVisible] = useScrollReveal<HTMLElement>();
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
   const [leadershipRef, leadershipVisible] = useScrollReveal<HTMLElement>();
+  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
   const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
   const [expandedPanel, setExpandedPanel] = useState<number | null>(null);
@@ -1237,128 +1239,172 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (CLOTH MATTE FINISH WITH GEOMETRIC POLYGONS & DOT MATRIX) --- */}
-      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden w-full min-h-screen flex flex-col justify-center py-20 lg:py-28 bg-[#FAF6F0] text-slate-900 border-t border-emerald-900/10 shadow-[inset_0_0_100px_rgba(74,20,26,0.03)]">
-        {/* Cloth Matte Finish & Geometric Polygon Background Layers */}
+      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (ULTRA-PREMIUM INSTITUTIONAL GOVERNANCE PLATFORM) --- */}
+      <section
+        ref={leadershipRef}
+        id="leadership"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          setMousePos({ x, y });
+        }}
+        className="relative overflow-hidden w-full min-h-screen flex flex-col justify-center py-24 lg:py-32 bg-gradient-to-b from-[#FAF8F5] via-[#F6F1E8] to-[#EFE8DA] text-slate-900 border-t border-emerald-900/10 shadow-[inset_0_0_120px_rgba(6,95,70,0.04)]"
+      >
+        {/* Living Environment Backdrop: Micro Grid, Pearl Aurora, Floating Glass Bubbles & Governance Network */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           
-          {/* 1. Tactile Woven Cloth Matte Texture Pattern */}
-          <div className="absolute inset-0 opacity-[0.09] bg-[linear-gradient(to_right,#381116_1px,transparent_1px),linear-gradient(to_bottom,#381116_1px,transparent_1px)] [background-size:16px_16px]" />
+          {/* 1. Ultra-Faint Technical Grid & Microscopic Dot Matrix Pattern */}
+          <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#065f46_1.5px,transparent_1.5px),linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] [background-size:24px_24px,12px_12px,12px_12px]" />
           
-          {/* 2. Micro Dot-Matrix Sub-Grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(#065f46_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.12]" />
+          {/* 2. Soft Ambient Radial Light Fields */}
+          <div
+            className="absolute top-[-10%] left-[8%] w-[700px] h-[700px] bg-emerald-200/20 rounded-full blur-[160px] transition-transform duration-1000 ease-out"
+            style={{ transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)` }}
+          />
+          <div
+            className="absolute bottom-[-10%] right-[5%] w-[650px] h-[650px] bg-amber-200/20 rounded-full blur-[150px] transition-transform duration-1000 ease-out"
+            style={{ transform: `translate(${mousePos.x * -18}px, ${mousePos.y * -18}px)` }}
+          />
 
-          {/* 3. Dynamic Floating Corporate Glass Bubbles */}
-          <div className="absolute top-[8%] left-[6%] w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500/20 via-white/50 to-emerald-700/10 backdrop-blur-md border border-emerald-600/30 shadow-[0_10px_30px_rgba(6,95,70,0.12)] animate-hero-bob" />
-          <div className="absolute bottom-[14%] right-[8%] w-36 h-36 rounded-full bg-gradient-to-tr from-amber-400/20 via-white/60 to-amber-600/10 backdrop-blur-md border border-amber-500/30 shadow-[0_15px_40px_rgba(217,119,6,0.12)] animate-aurora-silk-1" />
-          <div className="absolute top-[35%] right-[12%] w-16 h-16 rounded-full bg-gradient-to-bl from-teal-500/25 via-white/40 to-emerald-600/15 backdrop-blur-md border border-teal-500/30 shadow-md animate-aurora-silk-3" />
-          <div className="absolute bottom-[28%] left-[10%] w-28 h-28 rounded-full bg-gradient-to-tr from-emerald-600/15 via-white/50 to-amber-400/20 backdrop-blur-md border border-emerald-500/25 shadow-lg animate-aurora-silk-2" />
-          <div className="absolute top-[20%] right-[30%] w-12 h-12 rounded-full bg-white/70 backdrop-blur-md border border-slate-300/40 shadow-xs animate-hero-bob" style={{ animationDelay: "1.5s" }} />
-          <div className="absolute top-[65%] left-[25%] w-20 h-20 rounded-full bg-gradient-to-br from-amber-300/20 to-emerald-400/20 backdrop-blur-md border border-amber-400/30 shadow-sm animate-hero-bob" style={{ animationDelay: "3s" }} />
+          {/* 3. Organizational Network Governance Lines & Nodes */}
+          <svg className="absolute inset-0 w-full h-full opacity-20 text-emerald-800/40" viewBox="0 0 1400 900" fill="none">
+            <path
+              d="M 200 150 Q 700 80 1200 150 M 350 450 Q 700 520 1050 450 M 200 750 Q 700 820 1200 750"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeDasharray="4 6"
+            />
+            <circle cx="200" cy="150" r="3" fill="currentColor" />
+            <circle cx="700" cy="80" r="4" fill="currentColor" />
+            <circle cx="1200" cy="150" r="3" fill="currentColor" />
+            <circle cx="350" cy="450" r="4" fill="currentColor" />
+            <circle cx="1050" cy="450" r="4" fill="currentColor" />
+          </svg>
 
-          {/* 4. Fine Noise Grain for Matte Finish */}
-          <div className="bg-noise absolute inset-0 opacity-20" />
+          {/* 4. Floating Corporate Glass Bubbles */}
+          <div
+            className="absolute top-[12%] left-[5%] w-24 h-24 rounded-full bg-white/40 backdrop-blur-md border border-emerald-600/20 shadow-[0_10px_30px_rgba(6,95,70,0.08)] transition-transform duration-700"
+            style={{ transform: `translate(${mousePos.x * 15}px, ${mousePos.y * 15}px)` }}
+          />
+          <div
+            className="absolute bottom-[18%] right-[6%] w-32 h-32 rounded-full bg-white/45 backdrop-blur-md border border-amber-500/20 shadow-[0_15px_35px_rgba(217,119,6,0.08)] transition-transform duration-700"
+            style={{ transform: `translate(${mousePos.x * -22}px, ${mousePos.y * -22}px)` }}
+          />
+          <div
+            className="absolute top-[40%] right-[10%] w-16 h-16 rounded-full bg-white/50 backdrop-blur-md border border-teal-500/20 shadow-xs transition-transform duration-700"
+            style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
+          />
+
+          {/* 5. Fine Noise Texture Grain */}
+          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
 
-          {/* Section Header */}
+          {/* Section Introduction */}
           <div
-            className={`text-center max-w-3xl mx-auto mb-16 space-y-3 transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-900 border border-emerald-700 text-emerald-200 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-md">
-              <Users className="w-3.5 h-3.5 text-amber-300" />
+            {/* Institutional Micro-Label */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-sm animate-heartbeat-glow">
+              <Users className="w-3.5 h-3.5 text-emerald-700" />
               <span>LEADERSHIP &amp; GOVERNANCE BOARD</span>
             </div>
             
+            {/* Editorial Headline */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
-              Leadership That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 via-teal-700 to-amber-600">Ground Action</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-700">Leadership</span> That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-amber-800 font-serif italic">Ground Action</span>
             </h2>
             
-            <p className="text-emerald-950/80 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
               Steering EFFORT NGO for over 27 years with transparent governance, field operational excellence, and community-owned institutions across 1,909 villages.
             </p>
           </div>
 
-          {/* Founder & Executive Director Spotlight Showcase (Hero Executive Wide Mat) */}
+          {/* Hero Leadership Profile — Executive Director Spotlight (Asymmetrical Composition) */}
           <div
-            className={`mb-16 transition-all duration-1000 ${
+            className={`mb-20 transition-all duration-1000 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[42px] p-8 sm:p-12 lg:p-14 shadow-[0_30px_80px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all">
+            <div className="relative bg-white/90 backdrop-blur-2xl border border-emerald-900/15 rounded-[40px] p-8 sm:p-12 lg:p-14 shadow-[0_25px_70px_-20px_rgba(6,95,70,0.12)] hover:border-emerald-700/30 transition-all group">
               <div className="grid lg:grid-cols-12 gap-10 items-center">
                 
-                {/* Left 4 cols: Founder Photo + Social Buttons */}
-                <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden border-4 border-emerald-700 shadow-xl group">
+                {/* LEFT: Large Editorial Portrait & Executive Social Dock */}
+                <div className="lg:col-span-4 flex flex-col items-center text-center space-y-5">
+                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-[36px] overflow-hidden border-4 border-emerald-700/30 shadow-2xl group/img">
                     <img
                       src={founderProfile.image}
                       alt={founderProfile.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover/img:scale-104 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {/* Light sweep overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-black text-slate-900">{founderProfile.name}</h3>
-                    <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-700 mt-1">{founderProfile.title}</p>
+                    <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{founderProfile.name}</h3>
+                    <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-800 mt-1">{founderProfile.title}</p>
                   </div>
 
-                  {/* Official Social Links (Instagram, LinkedIn, Facebook) */}
+                  {/* Refined Executive Social Dock */}
                   <div className="flex items-center gap-3 pt-1">
                     <a
                       href={founderProfile.socials.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="LinkedIn Profile"
-                      className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
+                      title="LinkedIn Profile"
+                      className="w-10 h-10 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
                     >
-                      <LinkedinIcon className="w-5 h-5" />
+                      <LinkedinIcon className="w-5 h-5 group-hover/icon:scale-110 transition-transform" />
                     </a>
                     <a
                       href={founderProfile.socials.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Instagram Profile"
-                      className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
+                      title="Instagram Profile"
+                      className="w-10 h-10 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
                     >
-                      <InstagramIcon className="w-5 h-5" />
+                      <InstagramIcon className="w-5 h-5 group-hover/icon:scale-110 transition-transform" />
                     </a>
                     <a
                       href={founderProfile.socials.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Facebook Profile"
-                      className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
+                      title="Facebook Profile"
+                      className="w-10 h-10 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
                     >
-                      <FacebookIcon className="w-5 h-5" />
+                      <FacebookIcon className="w-5 h-5 group-hover/icon:scale-110 transition-transform" />
                     </a>
                   </div>
                 </div>
 
-                {/* Right 8 cols: Executive Message & Badges */}
-                <div className="lg:col-span-8 space-y-5">
-                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-600 rounded-r-2xl p-6 shadow-xs">
-                    <Quote className="w-7 h-7 text-emerald-700/30 absolute top-4 right-4" />
-                    <p className="text-emerald-950 text-sm sm:text-base font-bold italic leading-relaxed relative z-10">
+                {/* RIGHT: Editorial Quotation Panel & Leadership Credentials */}
+                <div className="lg:col-span-8 space-y-6">
+                  {/* Translucent Glass Editorial Quote Block */}
+                  <div className="relative bg-emerald-50/70 border-l-4 border-emerald-700 rounded-r-3xl p-7 shadow-xs">
+                    <Quote className="w-8 h-8 text-emerald-800/25 absolute top-5 right-5" />
+                    <p className="text-slate-800 text-base sm:text-lg font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
                     </p>
-                    <p className="text-xs font-black uppercase tracking-wider text-emerald-800 mt-4">
-                      — Sri D. Sudhakar, Founder &amp; Executive Director
+                    <p className="text-xs font-black uppercase tracking-wider text-emerald-900 mt-4">
+                      — Executive Leadership Statement • EFFORT Registered Society 340/1999
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  {/* Refined Leadership Credentials Badges */}
+                  <div className="flex flex-wrap gap-2.5 pt-2">
                     {founderProfile.badges.map((badge) => (
-                      <span
+                      <div
                         key={badge}
-                        className="px-3.5 py-1.5 rounded-full bg-emerald-900 border border-emerald-700 text-emerald-200 text-[11px] font-extrabold uppercase tracking-wider shadow-xs"
+                        className="px-4 py-2 rounded-xl bg-white border border-emerald-800/15 text-slate-800 text-xs font-bold shadow-xs hover:border-emerald-600 hover:-translate-y-0.5 hover:shadow-md transition-all flex items-center gap-2"
                       >
-                        {badge}
-                      </span>
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+                        <span>{badge}</span>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -1367,77 +1413,101 @@ export default function About() {
             </div>
           </div>
 
-          {/* Executive Leadership Team Grid (4 Department Directors) */}
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
+          {/* Executive Leadership Team Section (Progressive Disclosure Directory Grid) */}
+          <div className="space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-slate-200/80 pb-4 gap-2">
               <div>
-                <p className="text-xs font-black uppercase tracking-widest text-emerald-700">Department Heads &amp; Operations</p>
-                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">Executive Leadership Team</h3>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-800">DEPARTMENT HEADS &amp; OPERATIONS</p>
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Executive Leadership Team</h3>
               </div>
+              <p className="text-xs font-semibold text-slate-500">
+                Hover over team members to view detailed governance bios &amp; social profiles
+              </p>
             </div>
 
+            {/* Interactive Progressive Disclosure Cards Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {leadershipTeam.map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-white/90 backdrop-blur-xl border-2 border-emerald-900/10 rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-md hover:border-emerald-600 hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 group"
-                >
-                  <div className="space-y-4">
-                    <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-600 shadow-md">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
+              {leadershipTeam.map((member, idx) => {
+                const isHovered = hoveredCardIndex === idx;
+                const isOtherHovered = hoveredCardIndex !== null && !isHovered;
 
-                    <div>
-                      <h4 className="text-base font-black text-slate-900">{member.name}</h4>
-                      <p className="text-[11px] font-extrabold uppercase tracking-wide text-emerald-700 mt-0.5 leading-snug">
-                        {member.role}
+                return (
+                  <div
+                    key={member.name}
+                    onMouseEnter={() => setHoveredCardIndex(idx)}
+                    onMouseLeave={() => setHoveredCardIndex(null)}
+                    className={`bg-white/90 backdrop-blur-xl border border-emerald-900/15 rounded-3xl p-6 flex flex-col justify-between space-y-5 shadow-md transition-all duration-300 group ${
+                      isHovered
+                        ? "-translate-y-2.5 shadow-2xl border-emerald-600 z-20"
+                        : isOtherHovered
+                        ? "opacity-75 scale-[0.99]"
+                        : "hover:-translate-y-1"
+                    }`}
+                  >
+                    <div className="space-y-4">
+                      {/* Portrait with Restrained Zoom */}
+                      <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-700 shadow-md">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
+                      </div>
+
+                      <div>
+                        <h4 className="text-base font-black text-slate-900">{member.name}</h4>
+                        <p className="text-[11px] font-extrabold uppercase tracking-wide text-emerald-800 mt-0.5 leading-snug">
+                          {member.role}
+                        </p>
+                      </div>
+
+                      {/* Progressive Disclosure Biography */}
+                      <p className="text-xs text-slate-600 leading-relaxed font-medium transition-all">
+                        {member.intro}
                       </p>
                     </div>
 
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {member.intro}
-                    </p>
-                  </div>
+                    {/* Interactive Social & Connect Dock */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <span className={`text-[10px] font-extrabold uppercase tracking-wider transition-colors ${isHovered ? "text-emerald-800" : "text-slate-400"}`}>
+                        {isHovered ? "CONNECT DIRECTLY" : "CONNECT"}
+                      </span>
 
-                  {/* Social Media Bar (Instagram, LinkedIn, Facebook) */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Connect</span>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={member.socials.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${member.name} LinkedIn`}
-                        className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center hover:scale-110 transition-transform"
-                      >
-                        <LinkedinIcon className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href={member.socials.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${member.name} Instagram`}
-                        className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center hover:scale-110 transition-transform"
-                      >
-                        <InstagramIcon className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href={member.socials.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${member.name} Facebook`}
-                        className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center hover:scale-110 transition-transform"
-                      >
-                        <FacebookIcon className="w-3.5 h-3.5" />
-                      </a>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={member.socials.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={`${member.name} LinkedIn`}
+                          className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-50 hover:scale-110 transition-all"
+                        >
+                          <LinkedinIcon className="w-3.5 h-3.5" />
+                        </a>
+                        <a
+                          href={member.socials.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={`${member.name} Instagram`}
+                          className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-50 hover:scale-110 transition-all"
+                        >
+                          <InstagramIcon className="w-3.5 h-3.5" />
+                        </a>
+                        <a
+                          href={member.socials.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={`${member.name} Facebook`}
+                          className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-50 hover:scale-110 transition-all"
+                        >
+                          <FacebookIcon className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
                     </div>
+
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
