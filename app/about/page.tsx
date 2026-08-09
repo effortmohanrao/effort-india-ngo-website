@@ -115,7 +115,7 @@ const storyMilestones = [
     era: "1999",
     label: "Beginning",
     title: "A Registered Society With a Simple Idea",
-    desc: "Effort India was founded as a registered society in Andhra Pradesh, built on the belief that rural communities know their own problems best — they just need the resources and structure to act on that knowledge.",
+    desc: "Effort was founded as a registered society in Andhra Pradesh, built on the belief that rural communities know their own problems best — they just need the resources and structure to act on that knowledge.",
     icon: BookOpen,
     kind: "block" as const,
   },
@@ -506,7 +506,7 @@ export default function About() {
                 }`}
                 style={{ transitionDelay: "550ms" }}
               >
-                Effort India is a registered society working with rural communities in Andhra Pradesh on education, healthcare, livelihoods, and environmental sustainability — building models that communities can carry forward long after we step back.
+                Effort is a registered society working with rural communities in Andhra Pradesh on education, healthcare, livelihoods, and environmental sustainability — building models that communities can carry forward long after we step back.
               </p>
 
               {/* Mini NGO statistics */}
@@ -566,7 +566,7 @@ export default function About() {
               <div className="relative rounded-[34px] overflow-hidden h-[420px] sm:h-[480px] border border-white/60 shadow-[0_30px_70px_-25px_rgba(37,99,235,0.3)] group">
                 <img
                   src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200"
-                  alt="Effort India field team"
+                  alt="Effort field team"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
@@ -654,7 +654,7 @@ export default function About() {
                 <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border-4 border-white shadow-[0_25px_60px_-20px_rgba(8,145,178,0.4)] group">
                   <img
                     src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=800"
-                    alt="Effort India team"
+                    alt="Effort team"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -690,7 +690,7 @@ export default function About() {
                 We are a registered society working where the need is greatest — not where it&apos;s easiest to reach.
               </p>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-4">
-                For 27 years, Effort India has built development models with rural communities in Andhra Pradesh, not for them. We believe lasting change happens when people have ownership over their own progress — our role is to provide the structure, resources, and consistency to make that possible.
+                For 27 years, Effort has built development models with rural communities in Andhra Pradesh, not for them. We believe lasting change happens when people have ownership over their own progress — our role is to provide the structure, resources, and consistency to make that possible.
               </p>
 
               <div className="bg-white/70 backdrop-blur-[30px] border border-white/70 rounded-[28px] p-6 mt-6 animate-breathing-shadow">

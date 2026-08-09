@@ -226,7 +226,7 @@ export default function Contact() {
                 </div>
                 <h3 className="text-2xl font-black text-emerald-950">Inquiry Received Successfully!</h3>
                 <p className="text-sm text-emerald-800 font-medium max-w-md mx-auto">
-                  Thank you for contacting EFFORT India NGO. A Program Officer handling <strong>{formData.department}</strong> will reply to your message shortly.
+                  Thank you for contacting EFFORT NGO. A Program Officer handling <strong>{formData.department}</strong> will reply to your message shortly.
                 </p>
                 <div className="p-3 rounded-2xl bg-white border border-emerald-200 text-xs font-mono font-bold text-emerald-900 inline-block">
                   Reference ID: EFFORT-INQ-{Math.floor(100000 + Math.random() * 900000)}
@@ -460,10 +460,10 @@ export default function Contact() {
             <ShieldCheck className="w-4 h-4 text-emerald-400" /> Verified Legal Standing & Regulatory Accreditation
           </div>
           <h3 className="text-2xl sm:text-3xl font-black text-[#f7e4a3]">
-            EFFORT India NGO Statutory Registration Credentials
+            EFFORT NGO Statutory Registration Credentials
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+            EFFORT NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">

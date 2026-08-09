@@ -79,7 +79,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     isChild ? "schooling infrastructure, child labour vulnerabilities, and youth skill building" :
     isVet ? "timely livestock healthcare, diagnostic coverage, and veterinary extension services" :
     "crop productivity, pest resistance, soil degradation, and market price discovery"
-  }. EFFORT India deployed structured, on-ground field solutions to build long-term community resilience.`;
+  }. EFFORT deployed structured, on-ground field solutions to build long-term community resilience.`;
 
   const coreObjectivePoints = [
     `Mobilize and empower ${stat ? `${stat.value} ${stat.unit}` : "local community members"} across ${villageCount ? `${villageCount} villages` : location}.`,
@@ -124,7 +124,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
   // Governance Points (Tab 3)
   const governancePoints = [
     `Transparent project delivery in strict alignment with ${project.funder} guidelines.`,
-    `Joint field verification by EFFORT India coordinators and local government / partner representatives.`,
+    `Joint field verification by EFFORT coordinators and local government / partner representatives.`,
     `Formally audited beneficiary rosters and verified project handover to community institutions.`
   ];
 
@@ -326,7 +326,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
 
   // Gallery Captions (6 tiles)
   const galleryCaptions = [
-    { id: 0, label: `${subject} — Baseline Village Meeting`, tag: "Mobilization", modalDesc: `Documented during initial community baseline mobilization in ${location} with EFFORT India coordinators and local leaders.` },
+    { id: 0, label: `${subject} — Baseline Village Meeting`, tag: "Mobilization", modalDesc: `Documented during initial community baseline mobilization in ${location} with EFFORT coordinators and local leaders.` },
     { id: 1, label: `${subject} — Field Demonstration & Training`, tag: "Capacity Building", modalDesc: `Hands-on training session conducted directly in project villages, educating beneficiaries on improved technical protocols.` },
     { id: 2, label: `${subject} — Distribution of Bio-Inputs & Kits`, tag: "Resource Delivery", modalDesc: `Facilitating essential equipment, bio-inputs, vermi beds, or educational kits to supported households.` },
     { id: 3, label: `${subject} — On-Ground Infrastructure Check`, tag: "Asset Deployment", modalDesc: `Inspection of constructed water structures, vermi-compost units, or mobile service vehicles by project engineers.` },

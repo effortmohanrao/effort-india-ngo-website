@@ -692,7 +692,7 @@ export default function ProjectDetailPage({
                   <span className="text-[10px] font-black uppercase tracking-widest text-sky-700">Strategic Alignment</span>
                   <h3 className="text-2xl font-black text-[#221c0c]">Supported by {project.funder}</h3>
                   <p className="text-sm text-[#4a5952] leading-relaxed">
-                    EFFORT India NGO partners with statutory bodies, government departments, international non-profits, and corporate CSR arms to deliver high-accountability social development projects.
+                    EFFORT NGO partners with statutory bodies, government departments, international non-profits, and corporate CSR arms to deliver high-accountability social development projects.
                   </p>
                   <div className="p-4 rounded-2xl bg-white/70 border border-white space-y-2">
                     <p className="text-xs font-bold text-[#221c0c]">Institutional Classification:</p>
@@ -966,7 +966,7 @@ export default function ProjectDetailPage({
               &ldquo;{fieldStory ? fieldStory.quote : "Long after a project closes, the practices, partnerships, and confidence it built continue working in the community."}&rdquo;
             </p>
             <p className="text-sm font-black text-[#8a6a1f] mt-5">
-              {fieldStory ? `— ${fieldStory.person}, ${fieldStory.place}` : "— Beneficiary Voice, EFFORT India"}
+              {fieldStory ? `— ${fieldStory.person}, ${fieldStory.place}` : "— Beneficiary Voice, EFFORT"}
             </p>
             <p className="text-xs text-[#7a6f55] mt-4 max-w-xl mx-auto leading-relaxed">
               The skills, water assets, and local CBO capacity established during this initiative remain fully operational today.
@@ -981,7 +981,7 @@ export default function ProjectDetailPage({
               <p className="text-xs text-stone-300">Request comprehensive project case studies, financial audits, and beneficiary rosters.</p>
             </div>
             <a
-              href={`mailto:info@effortindiango.org?subject=${encodeURIComponent(
+              href={`mailto:info@effortngo.org?subject=${encodeURIComponent(
                 "Full Project Dossier Request: " + mainTitle
               )}`}
               className="group inline-flex items-center gap-2.5 px-6 py-3 bg-[#d4af6a] text-[#221c0c] font-black text-xs uppercase tracking-wider rounded-full hover:bg-white transition-all duration-300 shrink-0 shadow-lg"

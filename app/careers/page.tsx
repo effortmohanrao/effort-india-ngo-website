@@ -156,7 +156,7 @@ export default function Careers() {
           Shape the Future of Rural India: <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Purpose-Driven Careers</span>
         </h1>
         <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
-          Turn your academic passion into ground reality. Apply for university fellowships, student internships with stipend, or full-time field roles with EFFORT India NGO across 10 operational states.
+          Turn your academic passion into ground reality. Apply for university fellowships, student internships with stipend, or full-time field roles with EFFORT NGO across 10 operational states.
         </p>
 
         {/* Quick Jump Pills */}
@@ -328,7 +328,7 @@ export default function Careers() {
               </div>
               <h3 className="text-2xl font-black text-emerald-950">Application Received!</h3>
               <p className="text-sm text-emerald-800 font-medium max-w-md mx-auto">
-                Thank you for applying for <strong>{formData.role}</strong> at EFFORT India NGO. Your application has been logged with reference ID.
+                Thank you for applying for <strong>{formData.role}</strong> at EFFORT NGO. Your application has been logged with reference ID.
               </p>
               <div className="p-3 rounded-2xl bg-white border border-emerald-200 text-xs font-mono font-bold text-emerald-900 inline-block">
                 Candidate Ref: EFFORT-HR-{Math.floor(100000 + Math.random() * 900000)}
@@ -435,7 +435,7 @@ export default function Careers() {
 
               <div>
                 <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                  Why do you want to join EFFORT India NGO? *
+                  Why do you want to join EFFORT NGO? *
                 </label>
                 <textarea
                   rows={4}
@@ -465,10 +465,10 @@ export default function Careers() {
             <ShieldCheck className="w-4 h-4 text-emerald-400" /> Verified Legal Standing & Academic Accreditation
           </div>
           <h3 className="text-2xl sm:text-3xl font-black text-[#f7e4a3]">
-            EFFORT India NGO Statutory Credentials
+            EFFORT NGO Statutory Credentials
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+            EFFORT NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">

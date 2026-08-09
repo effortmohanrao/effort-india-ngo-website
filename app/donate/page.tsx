@@ -75,7 +75,7 @@ export default function Donate() {
             Empower a Community Today
           </h1>
           <p className="text-slate-600 text-lg">
-            Your support brings hope. All donations to Effort India NGO are 100% transparent and eligible for Section 80G tax benefits.
+            Your support brings hope. All donations to Effort NGO are 100% transparent and eligible for Section 80G tax benefits.
           </p>
         </div>
 
@@ -282,9 +282,9 @@ export default function Donate() {
 
                   {paymentMethod === "net" && (
                     <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/50 text-xs text-slate-600 space-y-2 animate-fade-in">
-                      <h4 className="font-bold text-slate-800">Effort India Trust Account Details</h4>
+                      <h4 className="font-bold text-slate-800">Effort Trust Account Details</h4>
                       <p><strong>Bank:</strong> State Bank of India</p>
-                      <p><strong>Account Name:</strong> Effort India Charitable Trust</p>
+                      <p><strong>Account Name:</strong> Effort Charitable Trust</p>
                       <p><strong>Account No:</strong> 4892019482938</p>
                       <p><strong>IFSC Code:</strong> SBIN0003498</p>
                       <p><strong>Branch:</strong> ORR, Bengaluru</p>

@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Effort India NGO | Empowering Futures & Transforming Lives",
-  description: "Effort India NGO is committed to uplifting underprivileged communities through programs in quality education, healthcare, and sustainable livelihood opportunities.",
+  title: "Effort NGO | Empowering Futures & Transforming Lives",
+  description: "Effort NGO is committed to uplifting underprivileged communities through programs in quality education, healthcare, and sustainable livelihood opportunities.",
 };
 
 export default function RootLayout({

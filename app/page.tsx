@@ -199,20 +199,114 @@ function useReentryScrollReveal<T extends HTMLElement>() {
 
 const impactStats: { target: number }[] = [
   { target: 1909 }, // 0: Villages Covered (1,909+ across 9 States)
-  { target: 267000 }, // 1: Families / Lives Impacted (Headline: 2,67,000+ / 2.67 Lakh)
+  { target: 267000 }, // 1: Families / Lives Impacted (2.67 Lakh)
   { target: 50 }, // 2: Completed Projects (50 Completed Projects)
   { target: 13 }, // 3: Ongoing Projects (13 Active Projects)
   { target: 37 }, // 4: Districts Reached (37 Districts)
   { target: 27 }, // 5: Years of Service (27 Years since 1999)
 ];
 
-const processSteps: { step: string; title: string; desc: string; icon: typeof Search }[] = [
-  { step: "01", title: "Community Assessment", desc: "Listening first — surveys and dialogue to understand the real need.", icon: Search },
-  { step: "02", title: "Strategic Planning", desc: "Turning findings into a concrete plan with timelines and partners.", icon: ClipboardList },
-  { step: "03", title: "Implementation", desc: "Field teams execute directly alongside the community.", icon: Rocket },
-  { step: "04", title: "Monitoring", desc: "Tracking real outcomes, not assumptions.", icon: LineChart },
-  { step: "05", title: "Sustainable Impact", desc: "Communities equipped to carry the progress forward on their own.", icon: Sprout },
+type ProcessStep = {
+  step: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  icon: typeof Search;
+  image: string;
+  auditTag: string;
+  deliverables: string[];
+  kpiLabel: string;
+  kpiValue: string;
+};
+
+const processSteps: ProcessStep[] = [
+  {
+    step: "01",
+    title: "Grassroots Diagnostics",
+    subtitle: "Community Assessment & Need Identification",
+    desc: "We begin by conducting rigorous socio-economic baseline surveys, household vulnerability mapping, and participatory dialogues with village heads across 9 states to identify ground realities before formulating solutions.",
+    icon: Search,
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=900",
+    auditTag: "100% Ground Verified",
+    deliverables: [
+      "1,909 Villages & 37 Districts Surveyed",
+      "2.67 Lakh Families Vulnerability Mapping",
+      "Socio-Economic Need Matrix & Gap Analysis",
+      "Grama Sabha & Community Consent Filings"
+    ],
+    kpiLabel: "Grassroots Footprint",
+    kpiValue: "1,909 Villages & 37 Districts"
+  },
+  {
+    step: "02",
+    title: "Strategic Co-Design",
+    subtitle: "CSR Schedule VII Alignment & Planning",
+    desc: "Turning field diagnostics into structured, auditable project charters mapped to NITI Aayog guidelines, UN SDGs, and corporate CSR mandates under active Society Registration 340/1999.",
+    icon: ClipboardList,
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=900",
+    auditTag: "CSR Schedule VII Compliant",
+    deliverables: [
+      "Multi-Year Audited Statutory CSR Governance",
+      "NITI Aayog Darpan & Society Reg 340/1999 Alignment",
+      "Section 80G, 12AB & FCRA Statutory Clearances",
+      "Corporate CSR & International Agency MoUs"
+    ],
+    kpiLabel: "CSR Compliance",
+    kpiValue: "100% Statutory"
+  },
+  {
+    step: "03",
+    title: "Direct Deployment",
+    subtitle: "Grassroots Execution & Mobilization",
+    desc: "Deploying experienced field project managers alongside 42 FPOs, 1,275 SHGs, and local youth teams to execute 50 completed and 13 active field projects across target project areas.",
+    icon: Rocket,
+    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=900",
+    auditTag: "Active Field Operations",
+    deliverables: [
+      "Dedicated On-Site Field Leadership",
+      "2,702 Water Harvesting Structures (528 Villages)",
+      "3,716 Youth & 3,101 Women Skill Units",
+      "50 Community RO Plants & 21 Child-Labour-Free Villages"
+    ],
+    kpiLabel: "Execution Capacity",
+    kpiValue: "50 Completed & 13 Active"
+  },
+  {
+    step: "04",
+    title: "Auditable Monitoring",
+    subtitle: "Real-Time Tracking & Impact Analytics",
+    desc: "Continuous monitoring using digital field tools, third-party impact assessments, and compliance tracking, verifying 10.75M m³/yr water harvesting volume and 1,68,500+ farmer capacity building.",
+    icon: LineChart,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=900",
+    auditTag: "Third-Party Audited",
+    deliverables: [
+      "1,68,500+ Farmers Capacitated via IPM/DSR Demos",
+      "10.75M m³/yr Water Harvesting Volume Audits",
+      "Quarterly Audited Utilization Certificates (UC)",
+      "Geo-Tagged GIS Map & Photo Verification"
+    ],
+    kpiLabel: "Farmers Capacitated",
+    kpiValue: "1,68,500+ Trained"
+  },
+  {
+    step: "05",
+    title: "Sustained Legacy",
+    subtitle: "Community Ownership & Self-Reliant Institutions",
+    desc: "Transferring long-term governance to 1,368 community-led institutions (42 FPOs, 1,275 SHGs, 51 MACS), mobilizing institutional credit and capital for self-sustaining progress.",
+    icon: Sprout,
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=900",
+    auditTag: "Self-Sustaining Model",
+    deliverables: [
+      "42 FPOs (23,352 Farmer Shareholders)",
+      "1,275 SHGs (14,750 Women Members)",
+      "51 MACS Cooperatives (10,733 Shareholders)",
+      "Institutional Credit & Govt Scheme Linkages"
+    ],
+    kpiLabel: "Self-Reliant Collectives",
+    kpiValue: "1,368 Institutions (FPOs/SHGs/MACS)"
+  }
 ];
+
 
 type PartnershipSlide = { title: string; icon: typeof Landmark; image: string; desc: string };
 
@@ -324,7 +418,7 @@ const featuredStory = {
   location: "Prakasam District, Andhra Pradesh",
   title: "Empowered Homemaker to Micro-Entrepreneur",
   quote:
-    "I never imagined I'd run my own business. Effort India didn't just give me a loan — they gave me belief in myself.",
+    "I never imagined I'd run my own business. Effort didn't just give me a loan — they gave me belief in myself.",
   heroImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1200",
   beforeImage: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800",
   afterImage: "https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=800",
@@ -373,6 +467,17 @@ export default function Home() {
 
   // How We Work section states
   const [howWeWorkRef, howWeWorkVisible] = useScrollReveal<HTMLElement>();
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
+  const [processPaused, setProcessPaused] = useState(false);
+
+  useEffect(() => {
+    if (!howWeWorkVisible || processPaused) return;
+    const id = setInterval(() => {
+      setActiveProcessStep((prev) => (prev + 1) % processSteps.length);
+    }, 4500);
+    return () => clearInterval(id);
+  }, [howWeWorkVisible, processPaused]);
+
 
   // Government & Institutional Partnerships section states
   const [partnershipRef, partnershipVisible] = useScrollReveal<HTMLElement>();
@@ -526,7 +631,7 @@ export default function Home() {
       age: 12,
       location: "Rural Rajasthan",
       title: "From Brick Kiln to School Classroom",
-      story: "Ramesh used to work at a local brick kiln to help feed his family. Through Effort India's 'Shiksha Mission', he was rescued, enrolled in a bridging school, and is now thriving in 6th grade, dreaming of becoming a science teacher.",
+      story: "Ramesh used to work at a local brick kiln to help feed his family. Through Effort's 'Shiksha Mission', he was rescued, enrolled in a bridging school, and is now thriving in 6th grade, dreaming of becoming a science teacher.",
       image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&q=80&w=800",
       pill: "Education"
     },
@@ -768,7 +873,7 @@ export default function Home() {
               { i: 0, label: "Villages Covered", desc: "Across 9 Indian States", suffix: "+" },
               { i: 2, label: "Completed Projects", desc: "50 Delivered End-to-End", suffix: "" },
               { i: 3, label: "Ongoing Projects", desc: "13 Active Field Projects", suffix: "" },
-              { i: 4, label: "Districts Reached", desc: "In South & Central India", suffix: "+" },
+              { i: 4, label: "Districts Reached", desc: "Across 37 Districts", suffix: "" },
               { i: 5, label: "Years of Service", desc: "Founded in 1999", suffix: " Yrs" },
             ].map((stat) => (
               <div key={stat.label} className="group px-4 py-5 lg:py-7 text-center hover:bg-white/[0.04] transition-colors duration-300">
@@ -801,66 +906,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- TRUST & COMPLIANCE SECTION (BREATHING CREAM & RICH BROWN INSTITUTIONAL VAULT) --- */}
-      <section ref={trustRef} className="relative overflow-hidden text-white py-10 lg:py-14 bg-[#160608]">
-        {/* 4 Corner Coordinates Cream & Brown Mixed Glowing Light Spheres (Top-Left, Top-Right, Bottom-Left, Bottom-Right) */}
+      {/* --- TRUST & COMPLIANCE SECTION (OPTION 2: SOFT LIQUID SILK AURORA BACKGROUND) --- */}
+      <section ref={trustRef} id="trust-section" className="relative overflow-hidden text-slate-900 py-12 lg:py-16 bg-gradient-to-b from-[#FAF7F2] via-[#FDFBF7] to-[#F5EBE0]">
+        {/* Soft Liquid Silk Aurora Morphing Glow Bands (Option 2) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* Top-Left Corner Coordinate Glow */}
-          <div className="absolute top-[-12%] left-[-10%] w-[580px] h-[580px] bg-gradient-to-br from-[#fef08a]/30 via-[#f59e0b]/20 to-[#3b1216]/40 rounded-full blur-[150px] animate-liquid-drift-a" />
+          {/* Top-Left: Warm Champagne Gold Aurora Silk Band */}
+          <div className="absolute -top-36 -left-32 w-[720px] h-[720px] bg-gradient-to-br from-amber-200/50 via-amber-300/30 to-orange-200/20 rounded-full blur-[140px] animate-aurora-silk-1" />
           
-          {/* Top-Right Corner Coordinate Glow */}
-          <div className="absolute top-[-12%] right-[-10%] w-[580px] h-[580px] bg-gradient-to-bl from-[#78350f]/35 via-[#fde68a]/25 to-[#240b0e]/40 rounded-full blur-[150px] animate-liquid-drift-b" />
+          {/* Top-Right: Soft Rose & Amber Gold Aurora Silk Band */}
+          <div className="absolute top-1/4 -right-36 w-[760px] h-[760px] bg-gradient-to-bl from-rose-200/45 via-amber-200/30 to-yellow-100/25 rounded-full blur-[160px] animate-aurora-silk-2" />
           
-          {/* Bottom-Left Corner Coordinate Glow */}
-          <div className="absolute bottom-[-12%] left-[-10%] w-[580px] h-[580px] bg-gradient-to-tr from-[#92400e]/35 via-[#fef08a]/20 to-[#351014]/40 rounded-full blur-[150px] animate-liquid-drift-c" />
-          
-          {/* Bottom-Right Corner Coordinate Glow */}
-          <div className="absolute bottom-[-12%] right-[-10%] w-[580px] h-[580px] bg-gradient-to-tl from-[#fde68a]/25 via-[#d97706]/25 to-[#1c0709]/50 rounded-full blur-[150px] animate-liquid-drift-a" style={{ animationDelay: '3s' }} />
+          {/* Bottom-Left: Soft Warm Cream Aurora Silk Band */}
+          <div className="absolute -bottom-36 left-1/4 w-[680px] h-[680px] bg-gradient-to-tr from-amber-300/35 via-amber-100/25 to-rose-100/20 rounded-full blur-[150px] animate-aurora-silk-3" />
 
-          {/* Sharp Amber Dot-Dot Micro Grid Overlay */}
-          <div className="absolute inset-0 opacity-[0.24] bg-[radial-gradient(#d97706_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
-
-          {/* Technical laser grid & node lines */}
-          <svg className="absolute inset-0 w-full h-full opacity-[0.22]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="laserLineGradCreamBrown" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#fef08a" stopOpacity="0" />
-                <stop offset="50%" stopColor="#f59e0b" stopOpacity="1" />
-                <stop offset="100%" stopColor="#fef08a" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <line x1="5%" y1="18%" x2="95%" y2="18%" stroke="url(#laserLineGradCreamBrown)" strokeWidth="1" strokeDasharray="6 6" />
-            <line x1="5%" y1="82%" x2="95%" y2="82%" stroke="url(#laserLineGradCreamBrown)" strokeWidth="1" strokeDasharray="6 6" />
-            <circle cx="20%" cy="18%" r="3" fill="#fde68a" className="animate-pulse" />
-            <circle cx="80%" cy="18%" r="3" fill="#fef08a" className="animate-pulse" />
-            <circle cx="50%" cy="82%" r="3" fill="#f59e0b" className="animate-pulse" />
-          </svg>
+          {/* Center Ambient Warm Breathing Core */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[820px] h-[820px] bg-gradient-radial from-amber-200/25 via-orange-100/15 to-transparent rounded-full blur-[170px] animate-halo-breathe pointer-events-none" />
         </div>
 
         <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           {/* Section Header */}
           <div
-            className={`text-center max-w-5xl mx-auto mb-6 sm:mb-8 space-y-3 transition-all duration-700 ${
+            className={`text-center max-w-5xl mx-auto mb-8 sm:mb-10 space-y-3 transition-all duration-700 ${
               trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4.5 py-1 rounded-full bg-[#351216]/90 backdrop-blur-xl border border-amber-400/50 text-amber-200 text-[11px] font-bold uppercase tracking-[0.18em] shadow-[0_0_25px_rgba(245,158,11,0.25)]">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-amber-100/90 border border-amber-300/80 text-amber-900 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-600 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-600"></span>
               </span>
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
               <span>VERIFIED &bull; GOVERNMENT RECOGNIZED</span>
             </div>
 
             {/* Single Line Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black tracking-tight text-white leading-tight md:whitespace-nowrap">
-              Built on <span className="bg-gradient-to-r from-amber-200 via-[#fde68a] to-amber-100 bg-clip-text text-transparent">Transparency</span>, Backed by <span className="bg-gradient-to-r from-[#fef08a] via-rose-200 to-amber-300 bg-clip-text text-transparent">Compliance</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-tight md:whitespace-nowrap">
+              Built on <span className="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 bg-clip-text text-transparent">Transparency</span>, Backed by <span className="bg-gradient-to-r from-amber-800 via-rose-800 to-amber-950 bg-clip-text text-transparent">Compliance</span>
             </h2>
 
             {/* Subtitle Balanced in Exactly 3 Lines */}
-            <p className="text-amber-100/90 text-sm sm:text-base leading-relaxed max-w-[780px] mx-auto font-medium [text-wrap:balance]">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-[780px] mx-auto font-medium [text-wrap:balance]">
               Our commitment to transparency is reflected through nationally recognized registrations, regulatory compliance, financial accountability, and responsible governance, giving every stakeholder complete confidence in partnering with us.
             </p>
           </div>
@@ -868,13 +954,13 @@ export default function Home() {
           {/* Main Asymmetrical 40/60 Composition */}
           <div className="grid lg:grid-cols-12 gap-6 items-stretch">
 
-            {/* LEFT PANEL (~40%): TRUST & COMPLIANCE CENTER */}
+            {/* LEFT PANEL (~40%): TRUST & COMPLIANCE CENTER (RICH MAHOGANY DEEP VAULT) */}
             <div
               className={`lg:col-span-5 transition-all duration-700 ${
                 trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="h-full bg-[#2a0e11]/90 backdrop-blur-2xl border border-amber-400/40 rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)] p-6 sm:p-7 flex flex-col justify-between gap-5 relative overflow-hidden">
+              <div className="h-full bg-gradient-to-br from-[#2D1014] via-[#1E090C] to-[#250B0E] text-white border-2 border-amber-500/40 rounded-3xl shadow-[0_25px_60px_-15px_rgba(45,16,20,0.4)] p-6 sm:p-7 flex flex-col justify-between gap-5 relative overflow-hidden">
                 
                 {/* Thin gold accent line */}
                 <div className="w-12 h-1 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 rounded-full" />
@@ -889,9 +975,6 @@ export default function Home() {
 
                 {/* Document Image inside framed container */}
                 <div className="relative rounded-2xl overflow-hidden border border-amber-400/40 shadow-lg bg-[#140608]">
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden z-10">
-                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-amber-200/40 to-transparent animate-light-sweep" />
-                  </div>
                   <img
                     src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800"
                     alt="Official registration documents"
@@ -904,14 +987,13 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 100% COMPLIANCE BRAND NEW HIGH-IMPACT 3D HOLOGRAPHIC VAULT ENGINE */}
+                {/* 100% COMPLIANCE HIGH-IMPACT 3D HOLOGRAPHIC VAULT ENGINE */}
                 <div className="w-full bg-gradient-to-br from-[#2a0e11] via-[#1a080a] to-[#250b0e] border-2 border-amber-400/80 rounded-[32px] p-7 sm:p-9 shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col items-center justify-center text-center relative overflow-hidden group/compcard">
                   
                   {/* Shifting breathing cream & amber radial light halos */}
                   <div className="pointer-events-none absolute inset-0 overflow-hidden">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-400/20 rounded-full blur-[80px] animate-liquid-drift-a" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#fde68a]/15 rounded-full blur-[60px] animate-liquid-drift-b" />
-                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-amber-300/20 to-transparent animate-light-sweep" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#faf5ee]/15 rounded-full blur-[60px] animate-liquid-drift-b" />
                   </div>
 
                   {/* HIGH-IMPACT 3D HOLOGRAPHIC ENGINE ASSEMBLY */}
@@ -1013,17 +1095,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT PANEL (~60%): REGISTRATION & CERTIFICATION SYSTEM */}
+            {/* RIGHT PANEL (~60%): REGISTRATION & CERTIFICATION SYSTEM (LIGHT HIGH-CONTRAST ELEGANT CARDS) */}
             <div className="lg:col-span-7 flex flex-col justify-between gap-3 relative">
 
               {/* Registry Header & Filter Navigation */}
               <div className="space-y-2 mb-1">
                 <div className="flex items-center justify-between px-1">
-                  <span className="text-[11px] font-black tracking-[0.2em] text-amber-300/90 uppercase flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                  <span className="text-[11px] font-black tracking-[0.2em] text-amber-900 uppercase flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-600 animate-ping" />
                     COMPLIANCE REGISTRY
                   </span>
-                  <span className="text-[11px] font-bold tracking-wider text-amber-200 bg-[#351216]/90 border border-amber-400/50 px-3 py-0.5 rounded-full font-mono shadow-sm">
+                  <span className="text-[11px] font-bold tracking-wider text-amber-900 bg-amber-100/90 border border-amber-300/80 px-3 py-0.5 rounded-full font-mono shadow-sm">
                     08 VERIFIED RECORDS
                   </span>
                 </div>
@@ -1039,10 +1121,10 @@ export default function Home() {
                     <button
                       key={tab.key}
                       onClick={() => setComplianceFilter(tab.key as typeof complianceFilter)}
-                      className={`px-3 py-1 rounded-xl text-[11px] font-bold transition-all duration-300 ${
+                      className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all duration-300 ${
                         complianceFilter === tab.key
-                          ? "bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.5)] scale-105"
-                          : "bg-[#250b0e]/90 text-amber-100/70 border border-amber-500/30 hover:bg-[#351216] hover:text-white"
+                          ? "bg-gradient-to-r from-amber-700 to-amber-800 text-white font-black shadow-md scale-105"
+                          : "bg-white/80 text-slate-700 border border-amber-900/10 hover:bg-amber-50 hover:text-amber-900 shadow-sm"
                       }`}
                     >
                       {tab.label}
@@ -1051,55 +1133,55 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* 8 Compliance Registry Cards (Cream & Rich Brown Theme - Always Full Grid) */}
+              {/* 8 Compliance Registry Cards (Light Crisp High-Contrast Cards) */}
               <div className="grid sm:grid-cols-2 gap-3.5">
                 {complianceCards.map((card, i) => {
                   const isMatched = complianceFilter === "all" || card.category === complianceFilter;
                   return (
                     <div
                       key={card.id}
-                      className={`bg-[#2a0e11]/90 backdrop-blur-xl rounded-2xl p-4.5 relative overflow-hidden flex flex-col justify-between transition-all duration-500 ${
+                      className={`bg-white/95 backdrop-blur-xl rounded-2xl p-4.5 relative overflow-hidden flex flex-col justify-between transition-all duration-500 ${
                         isMatched
-                          ? "border border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.25)] opacity-100 scale-100"
-                          : "border border-amber-500/20 opacity-40 grayscale-[35%] hover:opacity-80 scale-[0.98]"
+                          ? "border border-amber-900/15 shadow-[0_10px_30px_-10px_rgba(120,53,15,0.12)] opacity-100 scale-100 hover:border-amber-500/50 hover:shadow-xl hover:-translate-y-0.5"
+                          : "border border-slate-200 opacity-40 grayscale-[35%] hover:opacity-80 scale-[0.98]"
                       } ${
                         trustVisible ? "translate-y-0" : "translate-y-6"
                       }`}
                       style={{ transitionDelay: `${40 + i * 40}ms` }}
                     >
                       {/* Top glowing edge accent line */}
-                      <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-300 via-amber-400 to-rose-400 transition-opacity duration-300 ${isMatched ? "opacity-100" : "opacity-30"}`} />
+                      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 transition-opacity duration-300 ${isMatched ? "opacity-100" : "opacity-30"}`} />
 
                       <div>
                         {/* High-Contrast Icon Box (Solid White Icon) & Status Badge */}
                         <div className="flex items-start justify-between mb-2.5">
-                          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-white border border-amber-300 flex items-center justify-center transition-all duration-300 ${isMatched ? "shadow-[0_0_18px_rgba(245,158,11,0.5)]" : "opacity-75"}`}>
+                          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-white border border-amber-400 flex items-center justify-center transition-all duration-300 ${isMatched ? "shadow-md" : "opacity-75"}`}>
                             <card.icon className="w-5 h-5 text-white" />
                           </div>
 
                           <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300 ${
                             isMatched 
-                              ? "bg-amber-500/25 text-amber-200 border border-amber-400/60" 
-                              : "bg-amber-950/40 text-amber-300/50 border border-amber-500/20"
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200" 
+                              : "bg-slate-100 text-slate-400 border border-slate-200"
                           }`}>
-                            <CheckCircle2 className="w-3 h-3 text-white" /> Active
+                            <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Active
                           </span>
                         </div>
 
                         {/* Title & Detail */}
-                        <h4 className={`text-sm font-black leading-snug transition-colors duration-300 ${isMatched ? "text-amber-200" : "text-amber-100/50"}`}>
+                        <h4 className={`text-sm font-black leading-snug transition-colors duration-300 ${isMatched ? "text-slate-900" : "text-slate-400"}`}>
                           {card.title}
                         </h4>
-                        <p className={`text-xs font-medium mt-1 leading-relaxed transition-colors duration-300 ${isMatched ? "text-amber-100/80" : "text-amber-100/40"}`}>
+                        <p className={`text-xs font-bold mt-1 leading-relaxed transition-colors duration-300 ${isMatched ? "text-amber-900/90" : "text-slate-400"}`}>
                           {card.number}
                         </p>
                       </div>
 
                       {/* Verification Status Indicator */}
-                      <div className={`mt-3 pt-2 border-t flex items-center justify-between text-[10px] font-mono transition-colors duration-300 ${isMatched ? "border-amber-500/20 text-amber-300/80" : "border-amber-500/10 text-amber-300/40"}`}>
-                        <span className="tracking-wider">REGISTRATION &rarr; VERIFIED</span>
-                        <span className={`font-extrabold flex items-center gap-1 ${isMatched ? "text-amber-300" : "text-amber-300/50"}`}>
-                          <ShieldCheck className="w-3 h-3 text-white" /> OFFICIAL
+                      <div className={`mt-3 pt-2 border-t flex items-center justify-between text-[10px] font-mono transition-colors duration-300 ${isMatched ? "border-amber-100 text-amber-900/80" : "border-slate-100 text-slate-400"}`}>
+                        <span className="tracking-wider font-semibold">REGISTRATION &rarr; VERIFIED</span>
+                        <span className={`font-black flex items-center gap-1 ${isMatched ? "text-amber-800" : "text-slate-400"}`}>
+                          <ShieldCheck className="w-3 h-3 text-amber-700" /> OFFICIAL
                         </span>
                       </div>
                     </div>
@@ -1113,18 +1195,18 @@ export default function Home() {
 
           {/* BOTTOM TRUST STRIP: Continuous Horizontal Scrolling Marquee */}
           <div
-            className={`mt-6 relative overflow-hidden rounded-2xl bg-[#250b0e]/90 backdrop-blur-2xl border border-amber-400/40 shadow-lg py-3 px-2 transition-all duration-700 ${
+            className={`mt-6 relative overflow-hidden rounded-2xl bg-white/90 backdrop-blur-xl border border-amber-900/15 shadow-md py-3 px-2 transition-all duration-700 ${
               trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
             style={{ transitionDelay: "700ms" }}
           >
             {/* Fade masks on left & right edges */}
-            <div className="pointer-events-none absolute inset-0 z-10 [mask-image:linear-gradient(to_right,#250b0e,transparent_5%,transparent_95%,#250b0e)]" />
+            <div className="pointer-events-none absolute inset-0 z-10 [mask-image:linear-gradient(to_right,white,transparent_5%,transparent_95%,white)]" />
 
             <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
               {[...complianceTrustStrip, ...complianceTrustStrip, ...complianceTrustStrip].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 px-4 text-xs font-semibold text-amber-100/90 shrink-0 cursor-default">
-                  <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                <div key={idx} className="flex items-center gap-2.5 px-4 text-xs font-bold text-slate-800 shrink-0 cursor-default">
+                  <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0" />
                   <span>{item.label}</span>
                   <span className="text-amber-600 font-bold text-xs ml-4">&bull;</span>
                 </div>
@@ -1135,71 +1217,214 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- HOW WE WORK SECTION --- */}
-      <section ref={howWeWorkRef} className="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-violet-900 to-fuchsia-900 py-20 lg:py-28">
+      {/* --- HOW WE WORK SECTION (NEXT-GEN INTERACTIVE NGO IMPACT PIPELINE COMMAND CENTER) --- */}
+      <section ref={howWeWorkRef} className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 py-20 lg:py-28 text-white">
+        {/* Soft Mesh Glowing Aurora Backdrop */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[5%] w-[420px] h-[420px] bg-violet-500/20 rounded-full blur-[140px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[5%] w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-[140px] animate-liquid-drift-b" />
-          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[120px] animate-liquid-drift-c" />
+          <div className="absolute top-[-10%] left-[10%] w-[520px] h-[520px] bg-cyan-500/15 rounded-full blur-[150px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[160px] animate-liquid-drift-b" />
+          <div className="absolute top-[40%] left-[45%] w-[380px] h-[380px] bg-amber-400/10 rounded-full blur-[140px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#38bdf8_1.2px,transparent_1.2px)] [background-size:28px_28px]" />
           <div className="bg-noise absolute inset-0" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
+          {/* Header */}
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto mb-12 lg:mb-16 space-y-4 transition-all duration-700 ${
               howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-fuchsia-200 text-xs font-bold uppercase tracking-wider">
-              ⚙ How We Work
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Strategic Execution Engine
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-              A Simple, Proven Process
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+              How Effort Delivers <span className="bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 bg-clip-text text-transparent">Auditable Social Impact</span>
             </h2>
-            <p className="text-indigo-100/70 text-base sm:text-lg leading-relaxed">
-              From identifying a real community need to sustaining lasting change — every project follows the same disciplined path.
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+              Every initiative follows a disciplined, 5-phase execution model — bridging ground-level community diagnostics with corporate CSR compliance and self-sustaining local governance.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {processSteps.map((s, i) => (
-              <div key={s.step} className="relative">
-                <div
-                  className={`group h-full bg-white/10 backdrop-blur-xl border border-white/15 rounded-3xl p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] hover:bg-white/15 hover:-translate-y-2 transition-all duration-500 ${
-                    howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          {/* 5-Phase Interactive Pipeline Selector Bar */}
+          <div
+            className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-8 transition-all duration-700 ${
+              howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{ transitionDelay: "150ms" }}
+          >
+            {processSteps.map((step, idx) => {
+              const StepIcon = step.icon;
+              const isActive = activeProcessStep === idx;
+              return (
+                <button
+                  key={step.step}
+                  onClick={() => setActiveProcessStep(idx)}
+                  className={`relative text-left p-4 rounded-2xl border transition-all duration-300 group overflow-hidden ${
+                    isActive
+                      ? "bg-gradient-to-br from-cyan-500/20 via-sky-500/15 to-indigo-500/20 border-cyan-400/70 shadow-[0_0_30px_rgba(6,182,212,0.3)] scale-[1.03] z-10"
+                      : "bg-slate-900/60 backdrop-blur-xl border-white/10 hover:border-white/25 hover:bg-slate-800/60"
                   }`}
-                  style={{ transitionDelay: `${i * 120}ms` }}
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
-                    <s.icon className="w-5 h-5 text-white" />
+                  {/* Top glowing indicator line for active step */}
+                  {isActive && (
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 animate-pulse" />
+                  )}
+
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full transition-colors ${
+                      isActive ? "bg-cyan-400 text-slate-950 font-extrabold" : "bg-white/10 text-slate-400"
+                    }`}>
+                      Phase {step.step}
+                    </span>
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${
+                      isActive ? "bg-cyan-400 text-slate-950 scale-110 shadow-md" : "bg-white/5 text-slate-400 group-hover:text-white"
+                    }`}>
+                      <StepIcon className="w-4 h-4" />
+                    </div>
                   </div>
-                  <p className="text-xs font-black text-fuchsia-300 uppercase tracking-widest">Step {s.step}</p>
-                  <h3 className="text-lg font-black text-white mt-1">{s.title}</h3>
-                  <p className="text-sm text-indigo-100/70 mt-2 leading-relaxed">{s.desc}</p>
+
+                  <h3 className={`text-sm font-black transition-colors ${isActive ? "text-white" : "text-slate-300 group-hover:text-white"}`}>
+                    {step.title}
+                  </h3>
+                  <p className="text-[11px] text-slate-400 font-medium truncate mt-0.5">
+                    {step.auditTag}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Phase Command Dashboard Panel */}
+          <div
+            className={`transition-all duration-700 ${
+              howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+            style={{ transitionDelay: "300ms" }}
+            onMouseEnter={() => setProcessPaused(true)}
+            onMouseLeave={() => setProcessPaused(false)}
+          >
+            {(() => {
+              const activeStep = processSteps[activeProcessStep];
+              const ActiveIcon = activeStep.icon;
+              return (
+                <div className="bg-slate-900/80 backdrop-blur-2xl border border-cyan-500/30 rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative overflow-hidden">
+                  
+                  {/* Subtle top edge glow */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-500" />
+
+                  <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+
+                    {/* Left 7 cols: Stage Details & Deliverables Checklist */}
+                    <div className="lg:col-span-7 space-y-6">
+
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-sky-600 text-slate-950 flex items-center justify-center shadow-lg shrink-0">
+                          <ActiveIcon className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-black uppercase tracking-widest text-cyan-300">
+                            PHASE {activeStep.step} &bull; NGO EXECUTION PROTOCOL
+                          </span>
+                          <h3 className="text-2xl sm:text-3xl font-black text-white leading-snug">
+                            {activeStep.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                        {activeStep.desc}
+                      </p>
+
+                      {/* Deliverables Grid Checklist */}
+                      <div className="space-y-3 pt-2">
+                        <p className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Core Outputs &amp; Deliverables
+                        </p>
+                        <div className="grid sm:grid-cols-2 gap-2.5">
+                          {activeStep.deliverables.map((item) => (
+                            <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-slate-200 hover:border-cyan-400/40 hover:bg-white/10 transition-all">
+                              <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Footer Badge & CTAs */}
+                      <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold font-mono">
+                          <ShieldCheck className="w-4 h-4 text-cyan-400" />
+                          <span>Status: {activeStep.auditTag}</span>
+                        </div>
+                        <Link
+                          href="#trust-section"
+                          className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white transition-colors ml-auto"
+                        >
+                          View Governance Framework &rarr;
+                        </Link>
+                      </div>
+
+                    </div>
+
+                    {/* Right 5 cols: High-Impact Visual Card */}
+                    <div className="lg:col-span-5 relative">
+                      <div className="relative rounded-2xl overflow-hidden border-2 border-cyan-400/40 shadow-2xl h-64 sm:h-72 lg:h-80 group/photo">
+                        <img
+                          src={activeStep.image}
+                          alt={activeStep.title}
+                          className="absolute inset-0 w-full h-full object-cover group-hover/photo:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                        
+                        {/* Floating KPI Overlay Badge */}
+                        <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-cyan-400/40 text-white flex items-center justify-between shadow-xl">
+                          <div>
+                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{activeStep.kpiLabel}</p>
+                            <p className="text-lg font-black text-cyan-300 mt-0.5">{activeStep.kpiValue}</p>
+                          </div>
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-400/20 text-cyan-200 border border-cyan-400/40">
+                            Verified
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
                 </div>
-                {i < processSteps.length - 1 && (
-                  <div className="hidden lg:flex absolute top-1/2 -right-6 -translate-y-1/2 z-10 items-center justify-center">
-                    <ArrowRight className="w-4 h-4 text-white/30" />
-                  </div>
-                )}
+              );
+            })()}
+          </div>
+
+          {/* Strategic NGO Advantage Chips Strip */}
+          <div
+            className={`flex flex-wrap justify-center gap-3 mt-12 transition-all duration-700 ${
+              howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "500ms" }}
+          >
+            {[
+              { label: "Geo-Tagged Field Verification", icon: MapPin },
+              { label: "100% Financial Auditability", icon: ShieldCheck },
+              { label: "Real-Time Partner Dashboards", icon: BarChart3 },
+              { label: "27 Years Field Legacy", icon: Calendar },
+              { label: "FPO & SHG Integration", icon: Users },
+              { label: "NITI Aayog DARPAN Compliant", icon: Landmark },
+            ].map((chip) => (
+              <div
+                key={chip.label}
+                className="p-[1.5px] rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 hover:shadow-[0_0_20px_-4px_rgba(6,182,212,0.5)] transition-shadow"
+              >
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 backdrop-blur-md hover:bg-slate-900 transition-colors text-white">
+                  <chip.icon className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs font-bold text-slate-200">{chip.label}</span>
+                </div>
               </div>
             ))}
           </div>
 
-          <div
-            className={`text-center mt-14 transition-all duration-700 ${
-              howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ transitionDelay: "700ms" }}
-          >
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-indigo-900 font-bold text-sm shadow-[0_15px_40px_-10px_rgba(0,0,0,0.4)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
-            >
-              Discover Our Methodology <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
       </section>
 

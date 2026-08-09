@@ -13,10 +13,10 @@ export default function Footer() {
             <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-black text-base shadow-sm">
               E
             </div>
-            <span className="text-lg font-bold tracking-tight text-white">EFFORT INDIA</span>
+            <span className="text-lg font-bold tracking-tight text-white">EFFORT</span>
           </div>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Effort India NGO is a registered charitable trust in India. We build sustainable, self-reliant models in education, healthcare, and livelihood skilling.
+            Effort NGO is a registered charitable trust. We build sustainable, self-reliant models in education, healthcare, and livelihood skilling.
           </p>
           <div className="text-xs space-y-1 font-mono text-slate-650">
             <p>Registration No: 4893/2021</p>
@@ -43,7 +43,7 @@ export default function Footer() {
           <ul className="space-y-2 text-xs font-semibold">
             <li><Link href="/about" className="hover:text-emerald-400 transition-colors">About Our Team</Link></li>
             <li><Link href="/impact" className="hover:text-emerald-400 transition-colors">Impact & Coverage Map</Link></li>
-            <li><Link href="/transparency" className="hover:text-emerald-400 transition-colors">Transparency & Audits</Link></li>
+            <li><Link href="/#trust-section" className="hover:text-emerald-400 transition-colors">Transparency & Audits</Link></li>
             <li><Link href="/careers" className="hover:text-emerald-405 transition-colors">Careers & Internships</Link></li>
             <li><Link href="/news" className="hover:text-emerald-405 transition-colors">News & Media Blog</Link></li>
             <li><Link href="/donor-login" className="hover:text-emerald-405 transition-colors">Donor Portal Login</Link></li>
@@ -54,7 +54,7 @@ export default function Footer() {
         <div>
           <h5 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Tax Exemption Info</h5>
           <p className="text-xs text-slate-500 leading-relaxed mb-4">
-            All contributions made to Effort India NGO are tax-exempt under Section 80G of the Income Tax Act. Instant tax certificates are emailed to donors.
+            All contributions made to Effort NGO are tax-exempt under Section 80G of the Income Tax Act. Instant tax certificates are emailed to donors.
           </p>
           <div className="flex gap-2">
             <span className="px-2 py-1 rounded bg-slate-900 border border-slate-800 text-[10px] text-slate-400 font-bold uppercase tracking-wider">CSR Compliant</span>
@@ -66,7 +66,7 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-550 gap-4">
-        <p>© {new Date().getFullYear()} Effort India NGO. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Effort NGO. All rights reserved.</p>
         <div className="flex gap-6 font-semibold">
           <Link href="#" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
           <Link href="#" className="hover:text-slate-400 transition-colors">Terms & Conditions</Link>

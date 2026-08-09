@@ -180,19 +180,19 @@ export default function GetInvolved() {
   {/* FAQs */}
   const faqs = [
     {
-      q: "What is EFFORT India NGO's MCA Form CSR-1 Registration number?",
-      a: "EFFORT India NGO is registered with the Ministry of Corporate Affairs (MCA) for executing corporate CSR projects under Registration ID: CSR00034988. All CSR contributions qualify under Schedule VII of the Companies Act.",
+      q: "What is EFFORT NGO's MCA Form CSR-1 Registration number?",
+      a: "EFFORT NGO is registered with the Ministry of Corporate Affairs (MCA) for executing corporate CSR projects under Registration ID: CSR00034988. All CSR contributions qualify under Schedule VII of the Companies Act.",
     },
     {
       q: "Are corporate CSR contributions 80G tax-exempt?",
-      a: "Yes! EFFORT India NGO holds active 80G tax exemption approval, Section 12AB registration, and FCRA registration. Corporate and individual contributions qualify for 50% tax deduction under Section 80G.",
+      a: "Yes! EFFORT NGO holds active 80G tax exemption approval, Section 12AB registration, and FCRA registration. Corporate and individual contributions qualify for 50% tax deduction under Section 80G.",
     },
     {
-      q: "How can an institution or university sign an MoU with EFFORT India NGO?",
+      q: "How can an institution or university sign an MoU with EFFORT NGO?",
       a: "We welcome formal MoUs with universities, government departments, and development institutes. Select 'Sign an MoU / Institutional Alliance' in the form below, and our leadership team will initiate formal discussions and MoU drafting.",
     },
     {
-      q: "Does EFFORT India NGO provide third-party CSR impact evaluation reports?",
+      q: "Does EFFORT NGO provide third-party CSR impact evaluation reports?",
       a: "Yes. We deliver comprehensive quarterly baseline reports, milestone budget tracking, Form CSR-1 project completion certificates, and third-party impact audits for all corporate partners.",
     },
   ];
@@ -220,7 +220,7 @@ export default function GetInvolved() {
             </h1>
 
             <p className="text-base sm:text-lg text-[#5b6a60] font-medium leading-relaxed">
-              Partner with EFFORT India NGO across <strong>4 dedicated engagement tracks</strong>: Execute MCA Form CSR-1 Projects, Sign an Institutional MoU, Volunteer on the ground, or Sponsor an Impact Cause.
+              Partner with EFFORT NGO across <strong>4 dedicated engagement tracks</strong>: Execute MCA Form CSR-1 Projects, Sign an Institutional MoU, Volunteer on the ground, or Sponsor an Impact Cause.
             </p>
 
             {/* Impact Metric Bar */}
@@ -465,7 +465,7 @@ export default function GetInvolved() {
               </span>
               <h2 className="text-3xl font-black text-[#221c0c]">Memorandum of Understanding (MoU) Tracks</h2>
               <p className="text-xs sm:text-sm text-[#5b6a60] font-medium">
-                EFFORT India NGO signs formal MoUs with Universities, Government Bodies, and Development Funding Agencies to execute long-term, high-impact projects.
+                EFFORT NGO signs formal MoUs with Universities, Government Bodies, and Development Funding Agencies to execute long-term, high-impact projects.
               </p>
             </div>
 
@@ -646,7 +646,7 @@ export default function GetInvolved() {
               </div>
               <h3 className="text-2xl font-black text-emerald-950">Partnership Inquiry Submitted!</h3>
               <p className="text-sm text-emerald-800 font-medium max-w-md mx-auto">
-                Thank you for reaching out to EFFORT India NGO. A Senior Program Lead will contact you regarding <strong>{formData.pathway}</strong>.
+                Thank you for reaching out to EFFORT NGO. A Senior Program Lead will contact you regarding <strong>{formData.pathway}</strong>.
               </p>
               <button
                 onClick={() => setFormSubmitted(false)}
@@ -783,7 +783,7 @@ export default function GetInvolved() {
               Our Institutional & CSR Partners
             </h3>
             <p className="text-xs sm:text-sm text-stone-300 font-medium">
-              Join premier government institutions, corporate CSR leads, and international development agencies working with EFFORT India NGO.
+              Join premier government institutions, corporate CSR leads, and international development agencies working with EFFORT NGO.
             </p>
           </div>
 
@@ -846,7 +846,7 @@ export default function GetInvolved() {
             100% Certified Statutory Compliance
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+            EFFORT NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">

@@ -149,8 +149,8 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            <a href="mailto:info@effortindiango.org" className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
-              <Mail className="w-3.5 h-3.5" /> info@effortindiango.org
+            <a href="mailto:info@effortngo.org" className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail className="w-3.5 h-3.5" /> info@effortngo.org
             </a>
             <a href="tel:+919876543210" className="hidden md:flex items-center gap-1.5 hover:text-white transition-colors">
               <Phone className="w-3.5 h-3.5" /> +91 98765 43210
@@ -248,7 +248,7 @@ export default function Header() {
               </div>
               <div>
                 <span className={`font-extrabold tracking-tight text-slate-900 block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl"}`}>
-                  EFFORT INDIA
+                  EFFORT
                 </span>
                 <span className="relative text-[10px] font-semibold text-emerald-600 tracking-widest uppercase mt-1 block w-fit">
                   Empowering Futures

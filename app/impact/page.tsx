@@ -123,7 +123,7 @@ export default function ImpactPage() {
           Our Impact & Verified <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Field Footprint</span>
         </h1>
         <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
-          Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT India NGO has executed <strong>51 completed projects</strong> and <strong>13 active ongoing initiatives</strong> across 10 states, transforming 2.67 lakh rural lives across farming, women's collectives, child welfare, health & watershed development.
+          Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT NGO has executed <strong>50 completed projects</strong> and <strong>13 active ongoing initiatives</strong> across 9 states, transforming 2.67 lakh rural lives across farming, women's collectives, child welfare, health & watershed development.
         </p>
       </section>
 
@@ -158,7 +158,7 @@ export default function ImpactPage() {
               10-State Operational Field Footprint
             </h2>
             <p className="text-sm sm:text-base text-[#5b6a60] font-medium leading-relaxed">
-              Explore EFFORT India NGO’s verified field presence across 10 Indian states. Select any highlighted state on the map or tap the pills below to inspect district hubs, flagship projects, and partner credentials.
+              Explore EFFORT NGO’s verified field presence across 10 Indian states. Select any highlighted state on the map or tap the pills below to inspect district hubs, flagship projects, and partner credentials.
             </p>
           </div>
 
@@ -275,7 +275,7 @@ export default function ImpactPage() {
             5 Strategic Intervention Sectors
           </h2>
           <p className="text-base text-[#5b6a60] font-medium leading-relaxed">
-            EFFORT India NGO’s 27-year work spans sustainable agriculture, women’s micro-cooperatives, child rights & education, community healthcare, and ecological conservation.
+            EFFORT NGO’s 27-year work spans sustainable agriculture, women’s micro-cooperatives, child rights & education, community healthcare, and ecological conservation.
           </p>
         </div>
 
@@ -344,7 +344,7 @@ export default function ImpactPage() {
                   <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 flex items-center gap-1">
                     <CheckCircle className="w-3 h-3 text-emerald-400" /> Completed
                   </span>
-                  <p className="text-2xl font-black text-white mt-1">51 Projects</p>
+                  <p className="text-2xl font-black text-white mt-1">50 Projects</p>
                   <p className="text-[10px] text-stone-400 font-medium">Fully Executed</p>
                 </div>
                 <div className="p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800">
@@ -362,7 +362,7 @@ export default function ImpactPage() {
                 href="/programs"
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider hover:bg-amber-300 transition-colors"
               >
-                Browse All 64 Programs <ExternalLink className="w-3.5 h-3.5" />
+                Browse All 63 Programs <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
@@ -379,7 +379,7 @@ export default function ImpactPage() {
             Audited Transparency & Institutional Endorsements
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT India NGO undergoes third-party impact assessments, government compliance audits, FCRA registration, and NITI Aayog (Darpan Portal) validation with partners including NABARD, Spices Board, Bayer, Syngenta, IFAD, GIZ Germany, Corteva, and Azim Premji Foundation.
+            EFFORT NGO undergoes third-party impact assessments, government compliance audits, FCRA registration, and NITI Aayog (Darpan Portal) validation with partners including NABARD, Spices Board, Bayer, Syngenta, IFAD, GIZ Germany, Corteva, and Azim Premji Foundation.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">

@@ -77,7 +77,7 @@ export const ongoingProjects: Project[] = [
   { name: "Integrated Agri Extension Project in Chilli Value Chain", beneficiaries: "Increasing farming incomes through better price discovery and stabilised yields of red chillies via GAP adoption across select regions of South India", funder: "IDH, Netherlands", category: AGRI },
   { name: "Water Governance and Management Project", beneficiaries: "Developing 'Water Plus Villages' ensuring water security, ecological restoration and biodiversity protection", funder: "JSW Foundation", category: NRM },
   { name: "Climate Resilient Agriculture Integrating Natural Resource Management", beneficiaries: "Promoting climate-resilient agricultural approaches integrating NRM practices in the drought-prone villages of Kalujuvvalapadu and Nagireddyapalli, Prakasam district", funder: "NABARD", category: AGRI },
-  { name: "Promotion of Sustainable Livelihoods of Women", beneficiaries: "Improving economic status of 275 women, enabling additional income of Rs. 10,000/month through Income Generation Units", funder: "PMI", category: CHILD_ONGOING },
+  { name: "Promotion of Sustainable Livelihoods of Women", beneficiaries: "Improving economic status of 275 women, enabling additional income through Income Generation Units", funder: "PMI", category: CHILD_ONGOING },
 ];
 
 export const completedBreakdown = [

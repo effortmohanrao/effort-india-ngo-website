@@ -37,7 +37,7 @@ export default function News() {
     "💧 50 RO Water Purification Plants now active, serving 16,000 rural families",
     "🌾 42 FPOs & 1,275 SHGs reach 38,102 active farmer & women shareholders",
     "🚲 1,000 Bicycles distributed to high school girl students in remote habitations",
-    "📜 EFFORT India NGO listed on Social Stock Exchange (SSE) & TISS Empaneled",
+    "📜 EFFORT NGO listed on Social Stock Exchange (SSE) & TISS Empaneled",
   ];
 
   {/* News & Field Stories Dataset */}
@@ -48,7 +48,7 @@ export default function News() {
       categoryName: "Sustainable Farming & IPM",
       title: "Direct Seeded Rice (DSR): How 500 Acres Saved 35% Water in Prakasam District",
       subtitle: "Field report on sustainable rice cultivation without traditional puddling, reducing labor costs and ground water depletion.",
-      desc: "In the drought-prone belts of Prakasam district, EFFORT India NGO facilitated the adoption of Direct Seeded Rice (DSR) technology across 500 acres. By eliminating heavy puddling and nursery transplanting, participating smallholder farmers saved over 35% irrigation water while boosting net profit margins by ₹8,500 per acre.",
+      desc: "In the drought-prone belts of Prakasam district, EFFORT NGO facilitated the adoption of Direct Seeded Rice (DSR) technology across 500 acres. By eliminating heavy puddling and nursery transplanting, participating smallholder farmers saved over 35% irrigation water while boosting net profit margins by ₹8,500 per acre.",
       fullContent: `Direct Seeded Rice (DSR) is revolutionizing cereal production in Andhra Pradesh. Under EFFORT's climate-smart agriculture initiative, over 500 acres were transitioned away from traditional flood irrigation.
 
 Key Impact Milestones:
@@ -70,7 +70,7 @@ Key Impact Milestones:
       categoryName: "Water & Watersheds",
       title: "2,702 Check-Dams & Water Harvesting Structures Mitigating Rural Drought",
       subtitle: "A 27-year retrospective on how rainwater harvesting revived groundwater levels across 90 NABARD watershed blocks.",
-      desc: "Over 27 years of unbroken watershed development, EFFORT India NGO constructed 2,702 water harvesting structures including check-dams, percolation tanks, and farm ponds. Independent surveys confirm groundwater table rejuvenation by 3.2 meters in target sub-basins.",
+      desc: "Over 27 years of unbroken watershed development, EFFORT NGO constructed 2,702 water harvesting structures including check-dams, percolation tanks, and farm ponds. Independent surveys confirm groundwater table rejuvenation by 3.2 meters in target sub-basins.",
       fullContent: `Water security forms the bedrock of rural prosperity. As a recognized Resource Support Organization (RSO) under NABARD, EFFORT executed watershed interventions across 90 project areas in Andhra Pradesh and Telangana.
 
 Intervention Highlights:
@@ -90,7 +90,7 @@ Intervention Highlights:
       categoryName: "Girl Child & Welfare",
       title: "Bicycles & Classrooms: 2,011 Children Reclaimed from Child Labour",
       subtitle: "How community vigilance and mobility support achieved 21 Child-Labour-Free Villages in Prakasam.",
-      desc: "Through dedicated rehabilitation centers and bridge schools, EFFORT India NGO successfully rehabilitated 2,011 former child labourers into mainstream government secondary schools across 21 villages.",
+      desc: "Through dedicated rehabilitation centers and bridge schools, EFFORT NGO successfully rehabilitated 2,011 former child labourers into mainstream government secondary schools across 21 villages.",
       fullContent: `Childhood belongs in school. Under EFFORT's child rights and education initiatives, special residential bridge schools were operated to prepare out-of-school children for formal grade placement.
 
 Key Achievements:
@@ -108,10 +108,10 @@ Key Achievements:
       id: 4,
       category: "csr",
       categoryName: "Corporate CSR Releases",
-      title: "EFFORT India NGO Lists on Social Stock Exchange (SSE) & Receives MCA CSR-1 Approval",
+      title: "EFFORT NGO Lists on Social Stock Exchange (SSE) & Receives MCA CSR-1 Approval",
       subtitle: "Official statutory update: MCA Registration ID CSR00034988 active for corporate Schedule VII project partnerships.",
-      desc: "EFFORT India NGO achieves listing on India's Social Stock Exchange (SSE) and completes MCA Form CSR-1 registration, empowering corporate partners to execute auditable CSR interventions under Section 80G and 12AB exemptions.",
-      fullContent: `EFFORT India NGO has officially been listed on the Social Stock Exchange (SSE) and holds active MCA Form CSR-1 Registration (ID: CSR00034988). Corporate CSR leads can now partner for turnkey Schedule VII interventions in Sustainable Agriculture, Water Security, Women SHGs, and Rural Education with complete quarterly impact evaluation reports.`,
+      desc: "EFFORT NGO achieves listing on India's Social Stock Exchange (SSE) and completes MCA Form CSR-1 registration, empowering corporate partners to execute auditable CSR interventions under Section 80G and 12AB exemptions.",
+      fullContent: `EFFORT NGO has officially been listed on the Social Stock Exchange (SSE) and holds active MCA Form CSR-1 Registration (ID: CSR00034988). Corporate CSR leads can now partner for turnkey Schedule VII interventions in Sustainable Agriculture, Water Security, Women SHGs, and Rural Education with complete quarterly impact evaluation reports.`,
       date: "May 2026",
       author: "Head of Corporate Alliances",
       readTime: "3 min read",
@@ -383,7 +383,7 @@ Key Achievements:
             </div>
 
             <div className="pt-4 border-t border-stone-200 flex items-center justify-between">
-              <span className="text-xs font-black text-[#8a6a1f]">EFFORT India NGO Official Dispatch</span>
+              <span className="text-xs font-black text-[#8a6a1f]">EFFORT NGO Official Dispatch</span>
               <button
                 onClick={() => setSelectedArticle(null)}
                 className="px-6 py-2.5 rounded-full bg-[#221c0c] text-[#f7e4a3] font-black text-xs uppercase"
@@ -440,10 +440,10 @@ Key Achievements:
             <ShieldCheck className="w-4 h-4 text-emerald-400" /> Verified Legal Standing & Regulatory Accreditation
           </div>
           <h3 className="text-2xl sm:text-3xl font-black text-[#f7e4a3]">
-            EFFORT India NGO Statutory Registration Credentials
+            EFFORT NGO Statutory Registration Credentials
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT India NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+            EFFORT NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">
