@@ -1251,22 +1251,22 @@ export default function About() {
         }}
         className="relative overflow-hidden w-full min-h-screen flex flex-col justify-center py-24 lg:py-36 bg-gradient-to-b from-[#FAF8F5] via-[#F5EFE4] to-[#EFE6D8] text-slate-900 border-t border-emerald-900/10 shadow-[inset_0_0_120px_rgba(6,95,70,0.04)]"
       >
-        {/* Layer 1: Background Typographic Landmark */}
-        <div className="text-[15vw] font-black text-slate-950/[0.035] leading-none pointer-events-none select-none absolute top-12 left-0 right-0 text-center tracking-tighter uppercase font-sans z-0">
+        {/* Layer 1: Background Typographic Landmark (With Dynamic Breathing Color Shift) */}
+        <div className="text-[15vw] font-black leading-none pointer-events-none select-none absolute top-12 left-0 right-0 text-center tracking-tighter uppercase font-sans z-0 animate-breathe-color">
           27+ YEARS LEADERSHIP
         </div>
 
-        {/* Layer 2: Living Environment Backdrop (Micro Grid, Ambient Orbs, Noise) */}
+        {/* Layer 2: Living Environment Backdrop (Micro Grid, Breathing Color Orbs, Noise) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
           <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#065f46_1.5px,transparent_1.5px),linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] [background-size:24px_24px,12px_12px,12px_12px]" />
           
           <div
-            className="absolute top-[-10%] left-[8%] w-[700px] h-[700px] bg-emerald-200/25 rounded-full blur-[160px] transition-transform duration-1000 ease-out"
+            className="absolute top-[-10%] left-[8%] w-[750px] h-[750px] bg-emerald-300/30 rounded-full blur-[160px] animate-breathe-pulse transition-transform duration-1000 ease-out"
             style={{ transform: `translate(${mousePos.x * 24}px, ${mousePos.y * 24}px)` }}
           />
           <div
-            className="absolute bottom-[-10%] right-[5%] w-[650px] h-[650px] bg-amber-200/20 rounded-full blur-[150px] transition-transform duration-1000 ease-out"
-            style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
+            className="absolute bottom-[-10%] right-[5%] w-[700px] h-[700px] bg-amber-300/25 rounded-full blur-[150px] animate-breathe-pulse transition-transform duration-1000 ease-out"
+            style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)`, animationDelay: "2.5s" }}
           />
 
           <div className="bg-noise absolute inset-0 opacity-15" />

@@ -125,6 +125,38 @@ body {
   animation: count-bounce 0.4s ease-out;
 }
 
+@keyframes breathe-color-shift {
+  0%, 100% {
+    color: rgba(6, 95, 70, 0.08);
+    text-shadow: 0 0 40px rgba(6, 95, 70, 0.12);
+  }
+  33% {
+    color: rgba(217, 119, 6, 0.09);
+    text-shadow: 0 0 55px rgba(217, 119, 6, 0.15);
+  }
+  66% {
+    color: rgba(13, 148, 136, 0.09);
+    text-shadow: 0 0 45px rgba(13, 148, 136, 0.14);
+  }
+}
+.animate-breathe-color {
+  animation: breathe-color-shift 6s ease-in-out infinite;
+}
+
+@keyframes breathe-pulse-glow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.12);
+  }
+}
+.animate-breathe-pulse {
+  animation: breathe-pulse-glow 5s ease-in-out infinite;
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
