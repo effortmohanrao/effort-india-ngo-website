@@ -1666,12 +1666,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- REAL VOICES, IMPACT & TESTIMONIALS HUB --- */}
-      <section ref={storyRef} className="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EBE0] text-slate-900 border-t border-amber-900/10">
+      {/* --- REAL VOICES, IMPACT & TESTIMONIALS HUB (OFFICIAL GREEN & WHITE BRAND PALETTE) --- */}
+      <section ref={storyRef} className="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-[#F4F9F5] via-[#EAF4EC] to-[#F7FAF8] text-slate-900 border-t border-emerald-900/10">
         {/* Soft Liquid Ambient Lighting */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[10%] w-[600px] h-[600px] bg-amber-200/20 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] bg-rose-200/20 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="absolute top-[-10%] right-[10%] w-[600px] h-[600px] bg-emerald-200/25 rounded-full blur-[160px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] bg-teal-200/20 rounded-full blur-[150px] animate-liquid-drift-b" />
           <div className="bg-noise absolute inset-0 opacity-10" />
         </div>
 
@@ -1683,16 +1683,16 @@ export default function Home() {
               storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#381116] border border-[#5B1D24] text-[#F7E4A3] text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-md">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-900 border border-emerald-700 text-emerald-200 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-md">
               <Quote className="w-3.5 h-3.5 text-amber-300" />
               <span>REAL VOICES, REAL IMPACT</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#2B0C10] leading-tight">
-              Ground Stories of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A141A] via-[#6B1F27] to-[#80242E]">Hope &amp; Transformation</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+              Ground Stories of <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 via-teal-700 to-amber-600">Hope &amp; Transformation</span>
             </h2>
             
-            <p className="text-[#522026] text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+            <p className="text-emerald-950/80 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
               Direct field testimony from the women leaders, smallholder farmers, and CSR partners whose lives and institutions have been transformed across 1,909 villages.
             </p>
           </div>
@@ -1705,11 +1705,11 @@ export default function Home() {
                 onClick={() => setActiveRealVoiceIndex(idx)}
                 className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                   activeRealVoiceIndex === idx
-                    ? "bg-[#381116] text-[#F7E4A3] border-2 border-[#D4AF6A] shadow-md scale-105"
-                    : "bg-white/80 border border-[#5B1D24]/20 text-[#4A141A] hover:bg-[#FAF0DD]"
+                    ? "bg-emerald-800 text-white border-2 border-amber-400 shadow-md scale-105"
+                    : "bg-white/80 border border-emerald-200 text-emerald-900 hover:bg-emerald-50"
                 }`}
               >
-                <span className={`w-2 h-2 rounded-full ${activeRealVoiceIndex === idx ? "bg-[#F7E4A3]" : "bg-[#6B1F27]"}`} />
+                <span className={`w-2 h-2 rounded-full ${activeRealVoiceIndex === idx ? "bg-amber-400" : "bg-emerald-600"}`} />
                 {story.category}
               </button>
             ))}
@@ -1725,41 +1725,41 @@ export default function Home() {
               >
                 
                 {/* Left Card (7 cols): Main Story Detail & Quote */}
-                <div className="lg:col-span-7 bg-[#FFFDF9] border-2 border-[#5B1D24]/25 rounded-[32px] p-6 sm:p-8 shadow-[0_15px_40px_-15px_rgba(74,20,26,0.15)] flex flex-col justify-between space-y-6">
+                <div className="lg:col-span-7 bg-white border-2 border-emerald-100 rounded-[32px] p-6 sm:p-8 shadow-[0_15px_40px_-15px_rgba(6,95,70,0.1)] flex flex-col justify-between space-y-6">
                   
                   <div className="space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="px-3 py-1 rounded-full bg-[#FAF0DD] border border-[#5B1D24]/30 text-[#4A141A] text-[10px] font-extrabold uppercase tracking-wider">
+                      <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] font-extrabold uppercase tracking-wider">
                         {current.badge}
                       </span>
-                      <span className="text-[11px] font-bold text-[#6B1F27] flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-[#4A141A]" /> {current.location}
+                      <span className="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5 text-emerald-600" /> {current.location}
                       </span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl font-black text-[#2B0C10] leading-tight">
+                    <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
                       {current.title}
                     </h3>
 
                     {/* Featured Quote Box */}
-                    <div className="relative bg-[#FAF0DD]/80 border-l-4 border-[#381116] rounded-r-2xl p-5 shadow-xs">
-                      <Quote className="w-6 h-6 text-[#381116]/40 absolute top-3 right-3" />
-                      <p className="text-[#381116] text-sm sm:text-base font-bold italic leading-relaxed">
+                    <div className="relative bg-emerald-50/80 border-l-4 border-emerald-600 rounded-r-2xl p-5 shadow-xs">
+                      <Quote className="w-6 h-6 text-emerald-700/30 absolute top-3 right-3" />
+                      <p className="text-emerald-950 text-sm sm:text-base font-bold italic leading-relaxed">
                         &ldquo;{current.quote}&rdquo;
                       </p>
                     </div>
 
-                    <p className="text-[#522026] text-xs sm:text-sm leading-relaxed font-medium">
+                    <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
                       {current.story}
                     </p>
                   </div>
 
                   {/* Impact Metrics Row */}
-                  <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#5B1D24]/15">
+                  <div className="grid grid-cols-3 gap-3 pt-4 border-t border-slate-100">
                     {current.metrics.map((m) => (
-                      <div key={m.label} className="bg-[#FAF0DD]/60 border border-[#5B1D24]/20 rounded-xl p-3 text-center">
-                        <p className="text-base sm:text-lg font-black text-[#4A141A]">{m.value}</p>
-                        <p className="text-[10px] font-bold text-[#6B1F27] mt-0.5 leading-tight">{m.label}</p>
+                      <div key={m.label} className="bg-emerald-50/60 border border-emerald-100/80 rounded-xl p-3 text-center">
+                        <p className="text-base sm:text-lg font-black text-emerald-800">{m.value}</p>
+                        <p className="text-[10px] font-bold text-slate-600 mt-0.5 leading-tight">{m.label}</p>
                       </div>
                     ))}
                   </div>
@@ -1769,13 +1769,13 @@ export default function Home() {
                     <img
                       src={current.avatar}
                       alt={current.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-[#5B1D24]/30 shadow-md"
+                      className="w-12 h-12 rounded-full object-cover border-2 border-emerald-200 shadow-md"
                     />
                     <div>
-                      <h4 className="text-sm font-black text-[#2B0C10]">{current.name}</h4>
-                      <p className="text-xs font-bold text-[#6B1F27]">{current.role}</p>
+                      <h4 className="text-sm font-black text-slate-900">{current.name}</h4>
+                      <p className="text-xs font-bold text-emerald-700">{current.role}</p>
                     </div>
-                    <span className="ml-auto px-3 py-1 rounded-full bg-[#381116] text-[#F7E4A3] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
+                    <span className="ml-auto px-3 py-1 rounded-full bg-emerald-900 text-amber-300 text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
                       {current.verifiedTag}
                     </span>
                   </div>
@@ -1785,25 +1785,25 @@ export default function Home() {
                 {/* Right Card (5 cols): Hero Image Spotlight + Interactive Selector */}
                 <div className="lg:col-span-5 flex flex-col space-y-5">
                   
-                  <div className="relative rounded-[32px] overflow-hidden flex-1 border-2 border-[#5B1D24]/25 shadow-[0_20px_50px_-20px_rgba(74,20,26,0.2)] group min-h-[280px]">
+                  <div className="relative rounded-[32px] overflow-hidden flex-1 border-2 border-emerald-200 shadow-[0_20px_50px_-20px_rgba(6,95,70,0.2)] group min-h-[280px]">
                     <img
                       src={current.heroImage}
                       alt={current.name}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2B0C10]/90 via-[#2B0C10]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-950/20 to-transparent" />
                     
                     <div className="absolute bottom-5 left-5 right-5 space-y-1 text-white">
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#F7E4A3] text-[#2B0C10] text-[10px] font-black uppercase tracking-wider">
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider">
                         {current.verifiedTag}
                       </span>
                       <h4 className="text-lg font-black text-white">{current.name}</h4>
-                      <p className="text-xs text-[#F5E5C9] font-medium">{current.location}</p>
+                      <p className="text-xs text-emerald-100 font-medium">{current.location}</p>
                     </div>
                   </div>
 
                   {/* Navigation dots & Explore CTAs */}
-                  <div className="bg-[#FAF0DD] border border-[#5B1D24]/30 rounded-2xl p-4 flex items-center justify-between gap-4">
+                  <div className="bg-emerald-50/90 border border-emerald-200/80 rounded-2xl p-4 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
                       {realVoiceStories.map((s, idx) => (
                         <button
@@ -1811,7 +1811,7 @@ export default function Home() {
                           onClick={() => setActiveRealVoiceIndex(idx)}
                           aria-label={`Show ${s.name}`}
                           className={`h-2 rounded-full transition-all cursor-pointer ${
-                            activeRealVoiceIndex === idx ? "w-8 bg-[#381116]" : "w-2 bg-[#5B1D24]/40 hover:bg-[#381116]/60"
+                            activeRealVoiceIndex === idx ? "w-8 bg-emerald-800" : "w-2 bg-emerald-300 hover:bg-emerald-600"
                           }`}
                         />
                       ))}
@@ -1819,7 +1819,7 @@ export default function Home() {
 
                     <Link
                       href="/programs"
-                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#381116] hover:text-[#6B1F27] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-emerald-800 hover:text-emerald-950 transition-colors"
                     >
                       All Interventions <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
