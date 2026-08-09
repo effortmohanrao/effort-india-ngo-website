@@ -1282,127 +1282,38 @@ export default function About() {
 
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-16">
 
-          {/* Section Introduction: Left-Aligned Editorial Composition */}
+          {/* Section Introduction: Clean Center-Aligned Editorial Composition */}
           <div
-            className={`transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto mb-10 space-y-3 transition-all duration-700 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="grid lg:grid-cols-12 gap-8 items-start">
-              
-              {/* Left 7 cols: Editorial Heading & Micro Label */}
-              <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
-                  <Users className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>01 / LEADERSHIP SYSTEM — LEADERSHIP &amp; GOVERNANCE</span>
-                </div>
-
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.1]">
-                  Leadership That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-900 via-teal-800 to-amber-700 font-serif italic">Ground Action</span>
-                </h2>
-
-                <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium max-w-xl">
-                  Steering EFFORT NGO for over 27 years under Society Registration 340/1999 with transparent governance, field operational excellence, and community-owned institutions across 1,909 villages.
-                </p>
-              </div>
-
-              {/* Right 5 cols: Hollywood-Level Graphic Animated Digits HUD Display (50 & 13) */}
-              <div className="lg:col-span-5 bg-slate-950/95 backdrop-blur-2xl border-2 border-emerald-500/30 rounded-3xl p-6 sm:p-7 shadow-[0_25px_70px_rgba(6,95,70,0.35)] space-y-5 relative group overflow-hidden text-white">
-                
-                {/* Hollywood Cyber Light Sweep & Ambient Neon Orbs */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent animate-light-sweep pointer-events-none" />
-                <div className="absolute -top-16 -right-16 w-44 h-44 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none group-hover:scale-150 transition-transform duration-1000" />
-                <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-amber-500/20 rounded-full blur-3xl pointer-events-none group-hover:scale-150 transition-transform duration-1000" />
-
-                {/* Top HUD Status Bar */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-3 relative z-10">
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-emerald-400 animate-pulse" />
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-emerald-400">
-                      LEADERSHIP METRICS HUD
-                    </span>
-                  </div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-extrabold uppercase tracking-widest flex items-center gap-1.5 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    <span>SOCIETY REG. 340/1999</span>
-                  </span>
-                </div>
-
-                {/* HOLLYWOOD-LEVEL GRAPHIC ANIMATED DIGITS GRID */}
-                <div className="grid grid-cols-2 gap-4 relative z-10">
-                  
-                  {/* DIGIT 1: 50 (COMPLETED PROJECTS / HALF CENTURY) */}
-                  <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-1 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_20px_rgba(6,95,70,0.2)]">
-                    {/* Glowing HUD Arc Ring */}
-                    <div className="absolute -top-2 -right-2 w-7 h-7 border-t-2 border-r-2 border-emerald-400 rounded-tr-lg opacity-70" />
-                    <div className="absolute -bottom-2 -left-2 w-7 h-7 border-b-2 border-l-2 border-emerald-400 rounded-bl-lg opacity-70" />
-
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
-                      <span>🏆 HALF CENTURY</span>
-                    </span>
-
-                    {/* Massive Glowing Graphic Digit 50 */}
-                    <div className="text-5xl sm:text-6xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_25px_rgba(16,185,129,0.8)] animate-hero-bob">
-                      50<span className="text-2xl text-emerald-400 font-sans">+</span>
-                    </div>
-
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-300">
-                      COMPLETED PROJECTS
-                    </span>
-                  </div>
-
-                  {/* DIGIT 2: 13 (ACTIVE ONGOING PROJECTS) */}
-                  <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-1 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-                    {/* Glowing HUD Arc Ring */}
-                    <div className="absolute -top-2 -right-2 w-7 h-7 border-t-2 border-r-2 border-amber-400 rounded-tr-lg opacity-70" />
-                    <div className="absolute -bottom-2 -left-2 w-7 h-7 border-b-2 border-l-2 border-amber-400 rounded-bl-lg opacity-70" />
-
-                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                      <span>LIVE IN FIELD</span>
-                    </span>
-
-                    {/* Massive Glowing Graphic Digit 13 */}
-                    <div className="text-5xl sm:text-6xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_25px_rgba(245,158,11,0.8)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
-                      13
-                    </div>
-
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-300">
-                      ACTIVE ONGOING
-                    </span>
-                  </div>
-
-                </div>
-
-                {/* Bottom HUD Ticker & Interactive Link */}
-                <a
-                  href="/programs"
-                  className="relative z-10 flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-900 to-teal-900 border border-emerald-500/40 hover:border-emerald-400 text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] group/btn"
-                >
-                  <span className="flex items-center gap-2">
-                    <Building2 className="w-3.5 h-3.5 text-amber-400" />
-                    <span>EXPLORE ALL 63 FIELD PROJECTS</span>
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                </a>
-
-              </div>
-
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
+              <Users className="w-3.5 h-3.5 text-emerald-700" />
+              <span>01 / LEADERSHIP SYSTEM — LEADERSHIP &amp; GOVERNANCE</span>
             </div>
+
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.1]">
+              Leadership That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-900 via-teal-800 to-amber-700 font-serif italic">Ground Action</span>
+            </h2>
+
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium max-w-2xl mx-auto">
+              Steering EFFORT NGO for over 27 years under Society Registration 340/1999 with transparent governance, field operational excellence, and community-owned institutions across 1,909 villages.
+            </p>
           </div>
 
-          {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (SRI D. SUDHAKAR, EXECUTIVE DIRECTOR WITH FIELD GALLERY) --- */}
+          {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (SRI D. SUDHAKAR, 3-COLUMN LAYOUT WITH EMBEDDED HOLLYWOOD HUD) --- */}
           <div
             className={`transition-all duration-1000 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[40px] p-6 sm:p-10 lg:p-12 shadow-[0_25px_70px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all group">
-              <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_25px_70px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all group">
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
                 
-                {/* Left 4 cols: Executive Portrait & Social Dock */}
-                <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
-                  <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-[30px] overflow-hidden border-4 border-emerald-700 shadow-2xl group/img">
+                {/* COLUMN 1 (Left 3 cols): Executive Portrait & Social Dock */}
+                <div className="lg:col-span-3 flex flex-col items-center text-center space-y-3.5 border-b lg:border-b-0 lg:border-r border-emerald-900/10 pb-6 lg:pb-0 lg:pr-6">
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-emerald-700 shadow-2xl group/img">
                     <img
                       src={founderProfile.image}
                       alt={founderProfile.name}
@@ -1412,12 +1323,12 @@ export default function About() {
                   </div>
 
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{founderProfile.name}</h3>
-                    <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-800 mt-0.5">{founderProfile.title}</p>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">{founderProfile.name}</h3>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-emerald-800 mt-0.5">{founderProfile.title}</p>
                   </div>
 
                   {/* Official Social Dock */}
-                  <div className="flex items-center gap-3 pt-0.5">
+                  <div className="flex items-center gap-2.5 pt-0.5">
                     <a
                       href={founderProfile.socials.linkedin}
                       target="_blank"
@@ -1448,65 +1359,98 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* Right 8 cols: Moved-Up Quote Box, Credentials & Automatic Horizontal Gallery Strip */}
-                <div className="lg:col-span-8 space-y-4">
-                  {/* Quote Box (Moved Upwards to make space inside container) */}
-                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-700 rounded-r-2xl p-5 sm:p-6 shadow-xs">
-                    <Quote className="w-7 h-7 text-emerald-800/20 absolute top-4 right-4" />
-                    <p className="text-slate-800 text-sm sm:text-base font-medium italic leading-relaxed relative z-10">
+                {/* COLUMN 2 (Middle 5 cols): Executive Statement & Credentials */}
+                <div className="lg:col-span-5 space-y-4">
+                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-700 rounded-r-2xl p-5 shadow-xs">
+                    <Quote className="w-6 h-6 text-emerald-800/20 absolute top-3.5 right-3.5" />
+                    <p className="text-slate-800 text-xs sm:text-sm font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
                     </p>
-                    <p className="text-[11px] font-black uppercase tracking-wider text-emerald-900 mt-2.5">
+                    <p className="text-[10px] font-black uppercase tracking-wider text-emerald-900 mt-2.5">
                       — Executive Leadership Statement • EFFORT Society Reg. 340/1999
                     </p>
                   </div>
 
                   {/* Credentials Badges */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 pt-1">
                     {founderProfile.badges.map((badge) => (
                       <div
                         key={badge}
-                        className="px-3.5 py-1.5 rounded-lg bg-white border border-emerald-800/15 text-slate-800 text-[11px] font-bold shadow-xs hover:border-emerald-600 hover:-translate-y-0.5 transition-all flex items-center gap-1.5"
+                        className="px-3 py-1.5 rounded-lg bg-white border border-emerald-800/15 text-slate-800 text-[10px] font-bold shadow-xs hover:border-emerald-600 hover:-translate-y-0.5 transition-all flex items-center gap-1.5"
                       >
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
                         <span>{badge}</span>
                       </div>
                     ))}
                   </div>
+                </div>
 
-                  {/* AUTOMATIC HORIZONTAL SCROLLING EXECUTIVE PHOTO GALLERY STRIP */}
-                  <div className="pt-1">
-                    <div className="flex items-center justify-between mb-1.5 px-0.5">
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-800 flex items-center gap-1.5">
-                        <Camera className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>EXECUTIVE FIELD LEADERSHIP GALLERY</span>
-                      </span>
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
-                        AUTO HORIZONTAL SCROLL
+                {/* COLUMN 3 (Right 4 cols): Embedded Hollywood Graphic Animated Digits HUD Box */}
+                <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-emerald-500/30 rounded-3xl p-5 shadow-[0_20px_50px_rgba(6,95,70,0.3)] space-y-4 relative group/hud overflow-hidden text-white">
+                  
+                  {/* Hollywood Cyber Light Sweep & Ambient Neon Orbs */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent animate-light-sweep pointer-events-none" />
+                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none group-hover/hud:scale-150 transition-transform duration-1000" />
+
+                  {/* Top HUD Status Bar */}
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5 relative z-10">
+                    <div className="flex items-center gap-1.5">
+                      <Zap className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-400">
+                        METRICS HUD
                       </span>
                     </div>
-
-                    <div className="relative w-full overflow-hidden rounded-2xl border border-emerald-800/20 bg-slate-900/5 p-1.5">
-                      <div className="flex gap-2.5 animate-marquee-scroll hover:[animation-play-state:paused] w-max">
-                        {[...founderProfile.galleryImages, ...founderProfile.galleryImages].map((img, i) => (
-                          <div
-                            key={i}
-                            className="relative w-36 h-20 sm:h-22 rounded-xl overflow-hidden shrink-0 border border-white/80 shadow-xs group/item"
-                          >
-                            <img
-                              src={img.url}
-                              alt={img.title}
-                              className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-85" />
-                            <p className="absolute bottom-1 left-1.5 right-1.5 text-[9px] font-bold text-white truncate leading-tight">
-                              {img.title}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      <span>REG. 340/1999</span>
+                    </span>
                   </div>
+
+                  {/* HOLLYWOOD-LEVEL GRAPHIC ANIMATED DIGITS GRID */}
+                  <div className="grid grid-cols-2 gap-3 relative z-10">
+                    
+                    {/* DIGIT 1: 50 (COMPLETED PROJECTS / HALF CENTURY) */}
+                    <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(6,95,70,0.2)]">
+                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-70" />
+                      <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">
+                        🏆 HALF CENTURY
+                      </span>
+                      <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_20px_rgba(16,185,129,0.8)] animate-hero-bob">
+                        50<span className="text-xl text-emerald-400 font-sans">+</span>
+                      </div>
+                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">
+                        COMPLETED
+                      </span>
+                    </div>
+
+                    {/* DIGIT 2: 13 (ACTIVE ONGOING PROJECTS) */}
+                    <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-amber-400 rounded-tr-md opacity-70" />
+                      <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                        <span>LIVE</span>
+                      </span>
+                      <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.8)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
+                        13
+                      </div>
+                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">
+                        ACTIVE ONGOING
+                      </span>
+                    </div>
+
+                  </div>
+
+                  {/* Bottom HUD Ticker & Interactive Link */}
+                  <a
+                    href="/programs"
+                    className="relative z-10 flex items-center justify-between px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-900 to-teal-900 border border-emerald-500/40 hover:border-emerald-400 text-white text-[11px] font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)] group/btn"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                      <span>EXPLORE 63 PROJECTS</span>
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                  </a>
 
                 </div>
 
