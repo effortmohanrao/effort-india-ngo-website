@@ -1237,12 +1237,25 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (EXECUTIVE PLATINUM & EMERALD GLASS) --- */}
-      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden bg-gradient-to-b from-[#F9F6F0] via-[#FAF7F2] to-[#F3EDE2] text-slate-900 py-20 lg:py-28 border-t border-emerald-900/10">
-        {/* Soft Liquid Glowing Ambient Halos */}
+      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (DYNAMIC ANIMATED EXECUTIVE AURORA BACKDROP) --- */}
+      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden py-20 lg:py-28 bg-aurora-light text-slate-900 border-t border-emerald-900/10">
+        {/* Multi-Layered Dynamic Animated Ambient Silk, Grid & Orbit Elements */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[15%] w-[650px] h-[650px] bg-emerald-200/30 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[10%] w-[550px] h-[550px] bg-amber-200/25 rounded-full blur-[150px] animate-liquid-drift-b" />
+          {/* Animated Morphing Aurora Silk Blobs */}
+          <div className="absolute top-[-15%] left-[10%] w-[650px] h-[650px] bg-emerald-300/30 rounded-full blur-[140px] animate-aurora-silk-1" />
+          <div className="absolute bottom-[-15%] right-[5%] w-[600px] h-[600px] bg-amber-300/25 rounded-full blur-[150px] animate-aurora-silk-2" />
+          <div className="absolute top-1/2 left-1/3 w-[450px] h-[450px] bg-teal-300/20 rounded-full blur-[130px] animate-aurora-silk-3" />
+
+          {/* Flowing Floating Mesh Grid Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(#065f46_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-[0.08]" />
+
+          {/* Animated Moving Light Sweep Overlay */}
+          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-light-sweep opacity-50" />
+
+          {/* Rotating Tech Orbit Rings */}
+          <div className="absolute -top-24 -right-24 w-[520px] h-[520px] rounded-full border-2 border-emerald-700/15 animate-[orbit-rotate_45s_linear_infinite]" />
+          <div className="absolute -bottom-28 -left-24 w-[620px] h-[620px] rounded-full border-2 border-amber-600/15 animate-[orbit-counter_55s_linear_infinite]" />
+
           <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
