@@ -199,6 +199,14 @@ const founderProfile = {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",
   },
+  galleryImages: [
+    { title: "Watershed & Water Ingestion Project", url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=400" },
+    { title: "Community FPO Farmers Training", url: "https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&q=80&w=400" },
+    { title: "SHG Women Governance Leadership", url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" },
+    { title: "Corporate CSR Partner Summit", url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=400" },
+    { title: "Field Operations Across 1,909 Villages", url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400" },
+    { title: "Climate Smart Agriculture Field Demo", url: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=400" },
+  ],
 };
 
 type LeadershipMember = {
@@ -1320,18 +1328,18 @@ export default function About() {
             </div>
           </div>
 
-          {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (SRI D. SUDHAKAR, EXECUTIVE DIRECTOR) --- */}
+          {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (SRI D. SUDHAKAR, EXECUTIVE DIRECTOR WITH FIELD GALLERY) --- */}
           <div
             className={`transition-all duration-1000 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[40px] p-8 sm:p-12 lg:p-14 shadow-[0_25px_70px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all group">
-              <div className="grid lg:grid-cols-12 gap-10 items-center">
+            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[40px] p-6 sm:p-10 lg:p-12 shadow-[0_25px_70px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all group">
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
                 {/* Left 4 cols: Executive Portrait & Social Dock */}
-                <div className="lg:col-span-4 flex flex-col items-center text-center space-y-5">
-                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-[32px] overflow-hidden border-4 border-emerald-700 shadow-2xl group/img">
+                <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
+                  <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-[30px] overflow-hidden border-4 border-emerald-700 shadow-2xl group/img">
                     <img
                       src={founderProfile.image}
                       alt={founderProfile.name}
@@ -1342,64 +1350,101 @@ export default function About() {
 
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{founderProfile.name}</h3>
-                    <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-800 mt-1">{founderProfile.title}</p>
+                    <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-800 mt-0.5">{founderProfile.title}</p>
                   </div>
 
                   {/* Official Social Dock */}
-                  <div className="flex items-center gap-3 pt-1">
+                  <div className="flex items-center gap-3 pt-0.5">
                     <a
                       href={founderProfile.socials.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="LinkedIn Profile"
-                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
+                      className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
                     >
-                      <LinkedinIcon className="w-5 h-5 group-hover/icon:scale-110 transition-transform" />
+                      <LinkedinIcon className="w-4.5 h-4.5 group-hover/icon:scale-110 transition-transform" />
                     </a>
                     <a
                       href={founderProfile.socials.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Instagram Profile"
-                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
+                      className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
                     >
-                      <InstagramIcon className="w-5 h-5 group-hover/icon:scale-110 transition-transform" />
+                      <InstagramIcon className="w-4.5 h-4.5 group-hover/icon:scale-110 transition-transform" />
                     </a>
                     <a
                       href={founderProfile.socials.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Facebook Profile"
-                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
+                      className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
                     >
-                      <FacebookIcon className="w-5 h-5 group-hover/icon:scale-110 transition-transform" />
+                      <FacebookIcon className="w-4.5 h-4.5 group-hover/icon:scale-110 transition-transform" />
                     </a>
                   </div>
                 </div>
 
-                {/* Right 8 cols: Quote Box & Executive Badges */}
-                <div className="lg:col-span-8 space-y-6">
-                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-700 rounded-r-3xl p-7 shadow-xs">
-                    <Quote className="w-8 h-8 text-emerald-800/25 absolute top-5 right-5" />
-                    <p className="text-slate-800 text-base sm:text-lg font-medium italic leading-relaxed relative z-10">
+                {/* Right 8 cols: Moved-Up Quote Box, Credentials & Automatic Horizontal Gallery Strip */}
+                <div className="lg:col-span-8 space-y-4">
+                  {/* Quote Box (Moved Upwards to make space inside container) */}
+                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-700 rounded-r-2xl p-5 sm:p-6 shadow-xs">
+                    <Quote className="w-7 h-7 text-emerald-800/20 absolute top-4 right-4" />
+                    <p className="text-slate-800 text-sm sm:text-base font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
                     </p>
-                    <p className="text-xs font-black uppercase tracking-wider text-emerald-900 mt-4">
+                    <p className="text-[11px] font-black uppercase tracking-wider text-emerald-900 mt-2.5">
                       — Executive Leadership Statement • EFFORT Society Reg. 340/1999
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2.5 pt-2">
+                  {/* Credentials Badges */}
+                  <div className="flex flex-wrap gap-2">
                     {founderProfile.badges.map((badge) => (
                       <div
                         key={badge}
-                        className="px-4 py-2 rounded-xl bg-white border border-emerald-800/15 text-slate-800 text-xs font-bold shadow-xs hover:border-emerald-600 hover:-translate-y-0.5 hover:shadow-md transition-all flex items-center gap-2"
+                        className="px-3.5 py-1.5 rounded-lg bg-white border border-emerald-800/15 text-slate-800 text-[11px] font-bold shadow-xs hover:border-emerald-600 hover:-translate-y-0.5 transition-all flex items-center gap-1.5"
                       >
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
                         <span>{badge}</span>
                       </div>
                     ))}
                   </div>
+
+                  {/* AUTOMATIC HORIZONTAL SCROLLING EXECUTIVE PHOTO GALLERY STRIP */}
+                  <div className="pt-1">
+                    <div className="flex items-center justify-between mb-1.5 px-0.5">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-800 flex items-center gap-1.5">
+                        <Camera className="w-3.5 h-3.5 text-emerald-700" />
+                        <span>EXECUTIVE FIELD LEADERSHIP GALLERY</span>
+                      </span>
+                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
+                        AUTO HORIZONTAL SCROLL
+                      </span>
+                    </div>
+
+                    <div className="relative w-full overflow-hidden rounded-2xl border border-emerald-800/20 bg-slate-900/5 p-1.5">
+                      <div className="flex gap-2.5 animate-marquee-scroll hover:[animation-play-state:paused] w-max">
+                        {[...founderProfile.galleryImages, ...founderProfile.galleryImages].map((img, i) => (
+                          <div
+                            key={i}
+                            className="relative w-36 h-20 sm:h-22 rounded-xl overflow-hidden shrink-0 border border-white/80 shadow-xs group/item"
+                          >
+                            <img
+                              src={img.url}
+                              alt={img.title}
+                              className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-85" />
+                            <p className="absolute bottom-1 left-1.5 right-1.5 text-[9px] font-bold text-white truncate leading-tight">
+                              {img.title}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
               </div>
