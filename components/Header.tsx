@@ -122,6 +122,8 @@ export default function Header() {
     }, 650);
   };
 
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <>
       {/* --- TOP INFORMATION BAR --- */}

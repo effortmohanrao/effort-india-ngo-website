@@ -344,22 +344,35 @@ const partnershipSlides: PartnershipSlide[] = [
 ];
 
 const partnershipStats: { label: string; value: string }[] = [
-  { label: "Government Partners", value: "Coming Soon" },
-  { label: "Institutional Partners", value: "Coming Soon" },
-  { label: "CSR Projects", value: "Coming Soon" },
-  { label: "States Reached", value: "1" },
+  { label: "Operating States", value: "9 States" },
+  { label: "Districts Reached", value: "37 Districts" },
+  { label: "Villages Transformed", value: "1,909 Villages" },
+  { label: "Community Collectives", value: "1,368 Orgs" },
 ];
 
 const partnershipBadges: { label: string; icon: typeof ShieldCheck }[] = [
   { label: "Transparent Governance", icon: ShieldCheck },
   { label: "Verified NGO", icon: CheckCircle2 },
-  { label: "CSR Ready", icon: Handshake },
+  { label: "CSR Schedule VII", icon: Handshake },
   { label: "Government Compliant", icon: Landmark },
   { label: "Impact Driven", icon: TrendingUp },
   { label: "Sustainable Development", icon: Sprout },
 ];
 
-const partnerLogoPlaceholders = ["Government Dept.", "CSR Partner", "University", "Foundation", "Development Agency", "Public Sector Org."];
+const partnerLogoPlaceholders = [
+  "NABARD",
+  "GIZ Germany",
+  "Reliance Foundation",
+  "Corteva Agriscience",
+  "Syngenta India",
+  "Azim Premji Foundation",
+  "Bayer CropScience",
+  "Water.org",
+  "Balavikasa",
+  "Godfrey Phillips",
+  "JSW Foundation",
+  "TISS CSR Hub",
+];
 
 type CsrSlide = { step: string; title: string; icon: typeof Briefcase; image: string; desc: string };
 
@@ -1428,13 +1441,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- GOVERNMENT & INSTITUTIONAL PARTNERSHIPS SECTION --- */}
-      <section ref={partnershipRef} className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 py-16 lg:py-20">
+      {/* --- GOVERNMENT & INSTITUTIONAL PARTNERSHIPS SECTION (OPTION A: EXECUTIVE CHAMPAGNE/CREAM PALETTE) --- */}
+      <section ref={partnershipRef} className="relative overflow-hidden text-slate-900 py-16 lg:py-24 bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0]">
+        {/* Soft Liquid Silk Ambient Halos */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-20%] right-[10%] w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-[150px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-20%] left-[5%] w-[420px] h-[420px] bg-cyan-400/10 rounded-full blur-[140px] animate-liquid-drift-b" />
-          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:32px_32px]" />
-          <div className="bg-noise absolute inset-0" />
+          <div className="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] bg-gradient-to-bl from-amber-200/45 via-amber-100/30 to-transparent rounded-full blur-[140px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] left-[-5%] w-[550px] h-[550px] bg-gradient-to-tr from-rose-100/40 via-amber-100/25 to-transparent rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1446,21 +1459,25 @@ export default function Home() {
                 partnershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-cyan-300/20 text-cyan-200 text-xs font-bold uppercase tracking-wider">
-                🏛 Government &amp; Institutional Partnerships
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white mt-4">
-                Building Strong Partnerships For Sustainable Development
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-amber-100/90 border border-amber-300/80 text-amber-900 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-sm">
+                <Landmark className="w-3.5 h-3.5 text-amber-700" />
+                <span>GOVERNMENT &amp; INSTITUTIONAL PARTNERSHIPS</span>
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 mt-4 leading-tight">
+                Building Strong Partnerships For <span className="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-950 bg-clip-text text-transparent">Sustainable Development</span>
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-4">
-                We collaborate with governments, institutions, CSR partners, foundations, and development organizations to deliver transparent, scalable, and measurable social impact.
+              
+              <p className="text-slate-700 text-sm sm:text-base leading-relaxed mt-4 font-medium">
+                We collaborate with central &amp; state government departments, international development agencies, corporate CSR funds, and academic institutions to deliver transparent, scalable, and auditable social impact.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mt-8">
+              {/* Verified Institutional Reach Matrix */}
+              <div className="grid grid-cols-2 gap-3.5 mt-7">
                 {partnershipStats.map((stat) => (
-                  <div key={stat.label} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
-                    <p className={`font-black ${stat.value === "Coming Soon" ? "text-sm text-slate-400" : "text-2xl text-white"}`}>{stat.value}</p>
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mt-1">{stat.label}</p>
+                  <div key={stat.label} className="bg-white/90 backdrop-blur-xl border border-amber-900/15 rounded-2xl p-4 shadow-[0_8px_25px_-8px_rgba(120,53,15,0.12)]">
+                    <p className="font-black text-2xl text-slate-900 tracking-tight">{stat.value}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-amber-900/80 mt-1">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -1468,20 +1485,20 @@ export default function Home() {
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
                   href="/get-involved"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.6)] hover:-translate-y-0.5 transition-all group"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-xs uppercase tracking-wider shadow-lg hover:bg-amber-800 hover:-translate-y-0.5 transition-all group"
                 >
-                  Become A Partner <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  Become A Partner <ArrowUpRight className="w-4 h-4 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
                 <a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15 text-slate-200 font-bold text-sm hover:border-cyan-300/40 hover:text-white transition-all"
+                  href="#trust-section"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/90 backdrop-blur-md border border-amber-900/20 text-slate-800 font-bold text-xs uppercase tracking-wider hover:bg-amber-50 hover:text-amber-900 transition-all shadow-xs"
                 >
-                  <Download className="w-4 h-4" /> Download Partnership Profile
+                  <ShieldCheck className="w-4 h-4 text-amber-700" /> View Statutory Credentials
                 </a>
               </div>
             </div>
 
-            {/* Right: carousel + trust badges */}
+            {/* Right: partner showcase carousel + trust badges */}
             <div
               className={`lg:col-span-7 transition-all duration-1000 ${
                 partnershipVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
@@ -1490,31 +1507,24 @@ export default function Home() {
             >
               {/* Floating trust badges */}
               <div className="flex flex-wrap gap-2 mb-4">
-                {partnershipBadges.map((badge, i) => (
+                {partnershipBadges.map((badge) => (
                   <span
                     key={badge.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15 text-[11px] font-bold text-slate-300 hover:text-cyan-200 hover:border-cyan-300/30 transition-colors"
-                    style={{
-                      animationName: "card-float",
-                      animationDuration: "5s",
-                      animationTimingFunction: "ease-in-out",
-                      animationIterationCount: "infinite",
-                      animationDelay: `${i * 0.3}s`,
-                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-amber-900/15 text-[11px] font-bold text-slate-800 shadow-xs hover:border-amber-500 transition-colors"
                   >
-                    <badge.icon className="w-3 h-3 text-cyan-300" /> {badge.label}
+                    <badge.icon className="w-3.5 h-3.5 text-amber-700" /> {badge.label}
                   </span>
                 ))}
               </div>
 
-              {/* Liquid glass carousel */}
+              {/* High-Contrast Light Glass Carousel Card */}
               <div
-                className="group relative bg-white/[0.06] backdrop-blur-[32px] border border-white/15 rounded-[34px] p-6 sm:p-8 animate-breathing-shadow overflow-hidden"
+                className="group relative bg-white/95 backdrop-blur-2xl border-2 border-amber-900/15 rounded-[34px] p-6 sm:p-8 shadow-[0_20px_50px_-15px_rgba(120,53,15,0.15)] overflow-hidden"
                 onMouseEnter={() => setCarouselPaused(true)}
                 onMouseLeave={() => setCarouselPaused(false)}
               >
                 <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-light-sweep" />
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent animate-light-sweep" />
                 </div>
 
                 {(() => {
@@ -1523,16 +1533,16 @@ export default function Home() {
                   return (
                     <div key={activeSlide} className="animate-fade-in relative z-10">
                       <div className="grid sm:grid-cols-2 gap-6 items-center">
-                        <div className="relative rounded-2xl overflow-hidden h-48 sm:h-56 border border-white/10">
+                        <div className="relative rounded-2xl overflow-hidden h-48 sm:h-56 border border-amber-900/15 shadow-sm">
                           <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
                         </div>
                         <div>
-                          <div className="w-12 h-12 rounded-2xl bg-cyan-400/10 border border-cyan-300/20 flex items-center justify-center mb-4">
-                            <SlideIcon className="w-6 h-6 text-cyan-300" />
+                          <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 text-amber-800 flex items-center justify-center mb-4 shadow-xs">
+                            <SlideIcon className="w-6 h-6 text-amber-700" />
                           </div>
-                          <h3 className="text-xl sm:text-2xl font-black text-white">{slide.title}</h3>
-                          <p className="text-sm text-slate-400 leading-relaxed mt-2">{slide.desc}</p>
+                          <h3 className="text-xl sm:text-2xl font-black text-slate-900">{slide.title}</h3>
+                          <p className="text-sm text-slate-600 font-medium leading-relaxed mt-2">{slide.desc}</p>
                         </div>
                       </div>
                     </div>
@@ -1546,7 +1556,7 @@ export default function Home() {
                       key={s.title}
                       onClick={() => setActiveSlide(i)}
                       aria-label={`Show ${s.title}`}
-                      className={`h-1.5 rounded-full transition-all ${i === activeSlide ? "w-6 bg-cyan-300" : "w-1.5 bg-white/20 hover:bg-white/40"}`}
+                      className={`h-2 rounded-full transition-all ${i === activeSlide ? "w-7 bg-amber-700" : "w-2 bg-amber-200 hover:bg-amber-400"}`}
                     />
                   ))}
                 </div>
@@ -1554,20 +1564,20 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Infinite partner logo marquee */}
+          {/* Infinite verified partner logo marquee */}
           <div
             className={`mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] transition-all duration-700 ${
               partnershipVisible ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDelay: "500ms" }}
           >
-            <div className="flex w-max gap-4 animate-marquee">
-              {[...partnerLogoPlaceholders, ...partnerLogoPlaceholders].map((logo, i) => (
+            <div className="flex w-max gap-3.5 animate-marquee">
+              {[...partnerLogoPlaceholders, ...partnerLogoPlaceholders, ...partnerLogoPlaceholders].map((logo, i) => (
                 <span
                   key={i}
-                  className="shrink-0 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-slate-500"
+                  className="shrink-0 px-6 py-3.5 rounded-2xl bg-white/95 border border-amber-900/15 text-xs font-black tracking-wider text-amber-900 shadow-sm flex items-center gap-2"
                 >
-                  {logo}
+                  <Building2 className="w-3.5 h-3.5 text-amber-700" /> {logo}
                 </span>
               ))}
             </div>
