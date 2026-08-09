@@ -1306,23 +1306,78 @@ export default function About() {
                 </p>
               </div>
 
-              {/* Right 5 cols: Leadership Philosophy Floating Quotation Panel */}
-              <div className="lg:col-span-5 bg-white/85 backdrop-blur-xl border-2 border-emerald-900/15 rounded-3xl p-6 sm:p-7 shadow-[0_20px_50px_-15px_rgba(6,95,70,0.12)] space-y-3 relative group">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-800">
-                    LEADERSHIP PHILOSOPHY
+              {/* Right 5 cols: High-Level Executive Project Milestones Attraction Box */}
+              <div className="lg:col-span-5 bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-3xl p-6 sm:p-7 shadow-[0_20px_50px_-15px_rgba(6,95,70,0.14)] space-y-5 relative group overflow-hidden">
+                
+                {/* Decorative Ambient Corner Illumination */}
+                <div className="absolute -top-12 -right-12 w-36 h-36 bg-gradient-to-br from-emerald-400/20 to-amber-400/20 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+
+                {/* Box Header */}
+                <div className="flex items-center justify-between border-b border-emerald-900/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <Award className="w-4 h-4 text-emerald-700" />
+                    <span className="text-[11px] font-black uppercase tracking-widest text-emerald-900">
+                      LEADERSHIP PROJECT MILESTONES
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-700/20 text-emerald-800 text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping" />
+                    <span>NGO REG. 340/1999</span>
                   </span>
-                  <Quote className="w-5 h-5 text-emerald-700/30" />
                 </div>
 
-                <p className="text-slate-800 text-xs sm:text-sm font-semibold italic leading-relaxed">
-                  &ldquo;{founderProfile.quote}&rdquo;
-                </p>
+                {/* Milestone Stats Grid: 50 Completed (Half-Century) & 13 Active Projects */}
+                <div className="grid grid-cols-2 gap-4">
+                  
+                  {/* 50 Completed Projects Box */}
+                  <div className="bg-gradient-to-br from-emerald-50/80 to-teal-50/50 border border-emerald-800/20 rounded-2xl p-4 space-y-1.5 relative overflow-hidden group/card hover:border-emerald-600 transition-all">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800">COMPLETED</span>
+                      <span className="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-900 text-[9px] font-extrabold uppercase">
+                        🏆 HALF CENTURY
+                      </span>
+                    </div>
+                    <div className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 flex items-baseline gap-1">
+                      <span>50</span>
+                      <span className="text-base font-extrabold text-emerald-700">+</span>
+                    </div>
+                    <p className="text-[11px] font-semibold text-slate-600 leading-snug">
+                      Multi-Year Field Projects Completed &amp; Transferred to Communities
+                    </p>
+                  </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-black text-slate-900">{founderProfile.name}</span>
-                  <span className="text-[10px] font-extrabold uppercase text-emerald-700">Executive Director</span>
+                  {/* 13 Active Ongoing Projects Box */}
+                  <div className="bg-gradient-to-br from-amber-50/80 to-orange-50/50 border border-amber-500/30 rounded-2xl p-4 space-y-1.5 relative overflow-hidden group/card hover:border-amber-600 transition-all">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-amber-900">ACTIVE ONGOING</span>
+                      <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-900 text-[9px] font-extrabold uppercase flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                        <span>LIVE</span>
+                      </span>
+                    </div>
+                    <div className="text-3xl sm:text-4xl font-black tracking-tight text-amber-900 flex items-baseline gap-1">
+                      <span>13</span>
+                      <span className="text-base font-extrabold text-amber-600">Active</span>
+                    </div>
+                    <p className="text-[11px] font-semibold text-slate-600 leading-snug">
+                      Programs Operational Across 1,909 Villages &amp; 37 Districts
+                    </p>
+                  </div>
+
                 </div>
+
+                {/* Direct Link to Projects Page */}
+                <a
+                  href="/programs"
+                  className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-900 text-white text-xs font-bold transition-all shadow-xs group/link"
+                >
+                  <span className="flex items-center gap-2">
+                    <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Explore All 63 NGO Field Projects</span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-amber-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                </a>
+
               </div>
 
             </div>
