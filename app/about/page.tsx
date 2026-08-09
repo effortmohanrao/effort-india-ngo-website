@@ -1237,8 +1237,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (DYNAMIC ANIMATED EXECUTIVE AURORA BACKDROP) --- */}
-      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden py-20 lg:py-28 bg-aurora-light text-slate-900 border-t border-emerald-900/10">
+      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (FULL-SCREEN EXECUTIVE WIDE MAT LAYOUT) --- */}
+      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden w-full min-h-screen flex flex-col justify-center py-20 lg:py-28 bg-aurora-light text-slate-900 border-t border-emerald-900/10 shadow-[inset_0_0_120px_rgba(6,95,70,0.05)]">
         {/* Multi-Layered Dynamic Animated Ambient Silk, Grid & Orbit Elements */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* Animated Morphing Aurora Silk Blobs */}
@@ -1259,7 +1259,7 @@ export default function About() {
           <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
 
           {/* Section Header */}
           <div
@@ -1281,14 +1281,14 @@ export default function About() {
             </p>
           </div>
 
-          {/* Founder & Executive Director Spotlight Showcase (Hero Executive Card) */}
+          {/* Founder & Executive Director Spotlight Showcase (Hero Executive Wide Mat) */}
           <div
             className={`mb-16 transition-all duration-1000 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative bg-white/95 backdrop-blur-xl border-2 border-emerald-900/15 rounded-[36px] p-7 sm:p-10 shadow-[0_20px_50px_-15px_rgba(6,95,70,0.12)] hover:border-emerald-700/40 transition-all">
-              <div className="grid lg:grid-cols-12 gap-8 items-center">
+            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[42px] p-8 sm:p-12 lg:p-14 shadow-[0_30px_80px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all">
+              <div className="grid lg:grid-cols-12 gap-10 items-center">
                 
                 {/* Left 4 cols: Founder Photo + Social Buttons */}
                 <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
