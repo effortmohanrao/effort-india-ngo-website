@@ -1302,29 +1302,36 @@ export default function About() {
             </p>
           </div>
 
-          {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (SRI D. SUDHAKAR, 3-COLUMN LAYOUT WITH EMBEDDED HOLLYWOOD HUD) --- */}
+          {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (DYNAMIC COLORFUL ANIMATED EXECUTIVE BOX WITH PROVEN TRACK RECORD) --- */}
           <div
             className={`transition-all duration-1000 ${
               leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_25px_70px_-20px_rgba(6,95,70,0.15)] hover:border-emerald-700/40 transition-all group">
-              <div className="grid lg:grid-cols-12 gap-8 items-center">
+            <div className="relative bg-gradient-to-br from-[#064e3b] via-[#022c22] to-[#0c1f17] text-white backdrop-blur-2xl border-2 border-emerald-500/50 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_30px_90px_rgba(6,95,70,0.45)] hover:border-emerald-400 transition-all group overflow-hidden">
+              
+              {/* Dynamic Colorful Background Animations (Breathing Aurora Orbs & Laser Sweep) */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
+              <div className="absolute -top-24 -left-24 w-80 h-80 bg-emerald-400/25 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" style={{ animationDelay: "2.5s" }} />
+              <div className="bg-noise absolute inset-0 opacity-20 pointer-events-none" />
+
+              <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
                 
                 {/* COLUMN 1 (Left 3 cols): Executive Portrait & Social Dock */}
-                <div className="lg:col-span-3 flex flex-col items-center text-center space-y-3.5 border-b lg:border-b-0 lg:border-r border-emerald-900/10 pb-6 lg:pb-0 lg:pr-6">
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-emerald-700 shadow-2xl group/img">
+                <div className="lg:col-span-3 flex flex-col items-center text-center space-y-3.5 border-b lg:border-b-0 lg:border-r border-emerald-500/20 pb-6 lg:pb-0 lg:pr-6">
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] group/img">
                     <img
                       src={founderProfile.image}
                       alt={founderProfile.name}
                       className="w-full h-full object-cover group-hover/img:scale-104 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-60" />
                   </div>
 
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">{founderProfile.name}</h3>
-                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-emerald-800 mt-0.5">{founderProfile.title}</p>
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">{founderProfile.name}</h3>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 mt-0.5">{founderProfile.title}</p>
                   </div>
 
                   {/* Official Social Dock */}
@@ -1334,75 +1341,85 @@ export default function About() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title="LinkedIn Profile"
-                      className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
+                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon"
                     >
-                      <LinkedinIcon className="w-4.5 h-4.5 group-hover/icon:scale-110 transition-transform" />
+                      <LinkedinIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
                     </a>
                     <a
                       href={founderProfile.socials.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Instagram Profile"
-                      className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
+                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon"
                     >
-                      <InstagramIcon className="w-4.5 h-4.5 group-hover/icon:scale-110 transition-transform" />
+                      <InstagramIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
                     </a>
                     <a
                       href={founderProfile.socials.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Facebook Profile"
-                      className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-xs hover:border-emerald-600 hover:-translate-y-1 hover:shadow-md transition-all group/icon"
+                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon"
                     >
-                      <FacebookIcon className="w-4.5 h-4.5 group-hover/icon:scale-110 transition-transform" />
+                      <FacebookIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
                     </a>
                   </div>
                 </div>
 
-                {/* COLUMN 2 (Middle 5 cols): Executive Statement & Credentials */}
+                {/* COLUMN 2 (Middle 5 cols): Executive Statement & Proven Track Record Badges */}
                 <div className="lg:col-span-5 space-y-4">
-                  <div className="relative bg-emerald-50/80 border-l-4 border-emerald-700 rounded-r-2xl p-5 shadow-xs">
-                    <Quote className="w-6 h-6 text-emerald-800/20 absolute top-3.5 right-3.5" />
-                    <p className="text-slate-800 text-xs sm:text-sm font-medium italic leading-relaxed relative z-10">
+                  
+                  {/* Track Record Callout Pill */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase tracking-widest shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+                    <Award className="w-3.5 h-3.5 text-amber-300" />
+                    <span>27-YEAR PROVEN FIELD TRACK RECORD</span>
+                  </div>
+
+                  <div className="relative bg-emerald-950/70 border-l-4 border-amber-400 rounded-r-2xl p-5 shadow-inner backdrop-blur-md">
+                    <Quote className="w-6 h-6 text-amber-400/30 absolute top-3.5 right-3.5" />
+                    <p className="text-emerald-100 text-xs sm:text-sm font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
                     </p>
-                    <p className="text-[10px] font-black uppercase tracking-wider text-emerald-900 mt-2.5">
-                      — Executive Leadership Statement • EFFORT Society Reg. 340/1999
+                    <p className="text-[10px] font-black uppercase tracking-wider text-amber-300 mt-2.5">
+                      — Executive Leadership Statement • Society Reg. 340/1999
                     </p>
                   </div>
 
                   {/* Credentials Badges */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
-                    {founderProfile.badges.map((badge) => (
-                      <div
-                        key={badge}
-                        className="px-3 py-1.5 rounded-lg bg-white border border-emerald-800/15 text-slate-800 text-[10px] font-bold shadow-xs hover:border-emerald-600 hover:-translate-y-0.5 transition-all flex items-center gap-1.5"
-                      >
-                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>{badge}</span>
-                      </div>
-                    ))}
+                    <div className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                      <span>27-YEAR PROVEN TRACK RECORD</span>
+                    </div>
+                    <div className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                      <span>FPO &amp; SHG GOVERNANCE LEADER</span>
+                    </div>
+                    <div className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                      <span>CSR STATUTORY COMPLIANCE</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* COLUMN 3 (Right 4 cols): Embedded Hollywood Graphic Animated Digits HUD Box */}
-                <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-emerald-500/30 rounded-3xl p-5 shadow-[0_20px_50px_rgba(6,95,70,0.3)] space-y-4 relative group/hud overflow-hidden text-white">
+                <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-emerald-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-4 relative group/hud overflow-hidden text-white">
                   
                   {/* Hollywood Cyber Light Sweep & Ambient Neon Orbs */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent animate-light-sweep pointer-events-none" />
-                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none group-hover/hud:scale-150 transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
+                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-400/20 rounded-full blur-2xl pointer-events-none group-hover/hud:scale-150 transition-transform duration-1000" />
 
                   {/* Top HUD Status Bar */}
                   <div className="flex items-center justify-between border-b border-white/10 pb-2.5 relative z-10">
                     <div className="flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-400">
-                        METRICS HUD
+                      <Zap className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-300">
+                        TRACK RECORD HUD
                       </span>
                     </div>
                     <span className="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                      <span>REG. 340/1999</span>
+                      <span>LIVE METRICS</span>
                     </span>
                   </div>
 
@@ -1410,8 +1427,8 @@ export default function About() {
                   <div className="grid grid-cols-2 gap-3 relative z-10">
                     
                     {/* DIGIT 1: 50 (COMPLETED PROJECTS / HALF CENTURY) */}
-                    <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(6,95,70,0.2)]">
-                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-70" />
+                    <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
+                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-80" />
                       <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">
                         🏆 HALF CENTURY
                       </span>
@@ -1424,8 +1441,8 @@ export default function About() {
                     </div>
 
                     {/* DIGIT 2: 13 (ACTIVE ONGOING PROJECTS) */}
-                    <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-amber-400 rounded-tr-md opacity-70" />
+                    <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-amber-400 rounded-tr-md opacity-80" />
                       <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
                         <span>LIVE</span>
