@@ -1237,26 +1237,38 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (FULL-SCREEN EXECUTIVE WIDE MAT LAYOUT) --- */}
-      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden w-full min-h-screen flex flex-col justify-center py-20 lg:py-28 bg-aurora-light text-slate-900 border-t border-emerald-900/10 shadow-[inset_0_0_120px_rgba(6,95,70,0.05)]">
-        {/* Multi-Layered Dynamic Animated Ambient Silk, Grid & Orbit Elements */}
+      {/* --- LEADERSHIP & EXECUTIVE TEAM SECTION (CLOTH MATTE FINISH WITH GEOMETRIC POLYGONS & DOT MATRIX) --- */}
+      <section ref={leadershipRef} id="leadership" className="relative overflow-hidden w-full min-h-screen flex flex-col justify-center py-20 lg:py-28 bg-[#FAF6F0] text-slate-900 border-t border-emerald-900/10 shadow-[inset_0_0_100px_rgba(74,20,26,0.03)]">
+        {/* Cloth Matte Finish & Geometric Polygon Background Layers */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* Animated Morphing Aurora Silk Blobs */}
-          <div className="absolute top-[-15%] left-[10%] w-[650px] h-[650px] bg-emerald-300/30 rounded-full blur-[140px] animate-aurora-silk-1" />
-          <div className="absolute bottom-[-15%] right-[5%] w-[600px] h-[600px] bg-amber-300/25 rounded-full blur-[150px] animate-aurora-silk-2" />
-          <div className="absolute top-1/2 left-1/3 w-[450px] h-[450px] bg-teal-300/20 rounded-full blur-[130px] animate-aurora-silk-3" />
+          
+          {/* 1. Tactile Woven Cloth Matte Texture Pattern */}
+          <div className="absolute inset-0 opacity-[0.09] bg-[linear-gradient(to_right,#381116_1px,transparent_1px),linear-gradient(to_bottom,#381116_1px,transparent_1px)] [background-size:16px_16px]" />
+          
+          {/* 2. Micro Dot-Matrix Sub-Grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(#065f46_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.12]" />
 
-          {/* Flowing Floating Mesh Grid Overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(#065f46_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-[0.08]" />
+          {/* 3. Floating Polygon Geometric Vectors & Diamond Facets */}
+          <svg className="absolute top-10 left-[8%] w-64 h-64 opacity-25 text-emerald-800 animate-hero-bob" viewBox="0 0 200 200" fill="none">
+            <polygon points="100,10 180,60 180,140 100,190 20,140 20,60" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
+            <polygon points="100,40 150,75 150,125 100,160 50,125 50,75" stroke="currentColor" strokeWidth="1" />
+            <circle cx="100" cy="100" r="4" fill="currentColor" />
+          </svg>
 
-          {/* Animated Moving Light Sweep Overlay */}
-          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-light-sweep opacity-50" />
+          <svg className="absolute bottom-12 right-[6%] w-80 h-80 opacity-20 text-amber-700 animate-aurora-silk-2" viewBox="0 0 240 240" fill="none">
+            <polygon points="120,20 220,120 120,220 20,120" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 6" />
+            <polygon points="120,60 180,120 120,180 60,120" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.04" />
+            <line x1="20" y1="120" x2="220" y2="120" stroke="currentColor" strokeWidth="0.8" />
+            <line x1="120" y1="20" x2="120" y2="220" stroke="currentColor" strokeWidth="0.8" />
+          </svg>
 
-          {/* Rotating Tech Orbit Rings */}
-          <div className="absolute -top-24 -right-24 w-[520px] h-[520px] rounded-full border-2 border-emerald-700/15 animate-[orbit-rotate_45s_linear_infinite]" />
-          <div className="absolute -bottom-28 -left-24 w-[620px] h-[620px] rounded-full border-2 border-amber-600/15 animate-[orbit-counter_55s_linear_infinite]" />
+          <svg className="absolute top-1/3 right-[15%] w-48 h-48 opacity-20 text-teal-700 animate-aurora-silk-3" viewBox="0 0 160 160" fill="none">
+            <polygon points="80,10 150,80 80,150 10,80" stroke="currentColor" strokeWidth="1.2" />
+            <circle cx="80" cy="80" r="30" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+          </svg>
 
-          <div className="bg-noise absolute inset-0 opacity-15" />
+          {/* 4. Fine Noise Grain for Matte Finish */}
+          <div className="bg-noise absolute inset-0 opacity-20" />
         </div>
 
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
