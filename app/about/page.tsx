@@ -1248,24 +1248,13 @@ export default function About() {
           {/* 2. Micro Dot-Matrix Sub-Grid */}
           <div className="absolute inset-0 bg-[radial-gradient(#065f46_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.12]" />
 
-          {/* 3. Floating Polygon Geometric Vectors & Diamond Facets */}
-          <svg className="absolute top-10 left-[8%] w-64 h-64 opacity-25 text-emerald-800 animate-hero-bob" viewBox="0 0 200 200" fill="none">
-            <polygon points="100,10 180,60 180,140 100,190 20,140 20,60" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-            <polygon points="100,40 150,75 150,125 100,160 50,125 50,75" stroke="currentColor" strokeWidth="1" />
-            <circle cx="100" cy="100" r="4" fill="currentColor" />
-          </svg>
-
-          <svg className="absolute bottom-12 right-[6%] w-80 h-80 opacity-20 text-amber-700 animate-aurora-silk-2" viewBox="0 0 240 240" fill="none">
-            <polygon points="120,20 220,120 120,220 20,120" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 6" />
-            <polygon points="120,60 180,120 120,180 60,120" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.04" />
-            <line x1="20" y1="120" x2="220" y2="120" stroke="currentColor" strokeWidth="0.8" />
-            <line x1="120" y1="20" x2="120" y2="220" stroke="currentColor" strokeWidth="0.8" />
-          </svg>
-
-          <svg className="absolute top-1/3 right-[15%] w-48 h-48 opacity-20 text-teal-700 animate-aurora-silk-3" viewBox="0 0 160 160" fill="none">
-            <polygon points="80,10 150,80 80,150 10,80" stroke="currentColor" strokeWidth="1.2" />
-            <circle cx="80" cy="80" r="30" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-          </svg>
+          {/* 3. Dynamic Floating Corporate Glass Bubbles */}
+          <div className="absolute top-[8%] left-[6%] w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500/20 via-white/50 to-emerald-700/10 backdrop-blur-md border border-emerald-600/30 shadow-[0_10px_30px_rgba(6,95,70,0.12)] animate-hero-bob" />
+          <div className="absolute bottom-[14%] right-[8%] w-36 h-36 rounded-full bg-gradient-to-tr from-amber-400/20 via-white/60 to-amber-600/10 backdrop-blur-md border border-amber-500/30 shadow-[0_15px_40px_rgba(217,119,6,0.12)] animate-aurora-silk-1" />
+          <div className="absolute top-[35%] right-[12%] w-16 h-16 rounded-full bg-gradient-to-bl from-teal-500/25 via-white/40 to-emerald-600/15 backdrop-blur-md border border-teal-500/30 shadow-md animate-aurora-silk-3" />
+          <div className="absolute bottom-[28%] left-[10%] w-28 h-28 rounded-full bg-gradient-to-tr from-emerald-600/15 via-white/50 to-amber-400/20 backdrop-blur-md border border-emerald-500/25 shadow-lg animate-aurora-silk-2" />
+          <div className="absolute top-[20%] right-[30%] w-12 h-12 rounded-full bg-white/70 backdrop-blur-md border border-slate-300/40 shadow-xs animate-hero-bob" style={{ animationDelay: "1.5s" }} />
+          <div className="absolute top-[65%] left-[25%] w-20 h-20 rounded-full bg-gradient-to-br from-amber-300/20 to-emerald-400/20 backdrop-blur-md border border-amber-400/30 shadow-sm animate-hero-bob" style={{ animationDelay: "3s" }} />
 
           {/* 4. Fine Noise Grain for Matte Finish */}
           <div className="bg-noise absolute inset-0 opacity-20" />
