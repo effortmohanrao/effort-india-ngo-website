@@ -425,41 +425,93 @@ const csrAdvantageChips: { label: string; icon: typeof Eye }[] = [
   { label: "CSR Compliance", icon: ShieldCheck },
 ];
 
-const featuredStory = {
-  name: "Savita Devi",
-  age: 34,
-  location: "Prakasam District, Andhra Pradesh",
-  title: "Empowered Homemaker to Micro-Entrepreneur",
-  quote:
-    "I never imagined I'd run my own business. Effort didn't just give me a loan — they gave me belief in myself.",
-  heroImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1200",
-  beforeImage: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800",
-  afterImage: "https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=800",
-  paragraph:
-    "Savita joined our Self-Help Group training program with little more than a sewing machine and a dream. With a micro-grant and tailoring training, she now runs a small apparel boutique, employs two other women from her village, and pays for her daughters' high school education — a future she once thought was out of reach.",
+type RealVoiceStory = {
+  id: string;
+  category: string;
+  badge: string;
+  name: string;
+  role: string;
+  location: string;
+  title: string;
+  quote: string;
+  story: string;
+  avatar: string;
+  heroImage: string;
+  beforeImage: string;
+  afterImage: string;
+  metrics: { label: string; value: string }[];
+  verifiedTag: string;
 };
 
-const storyHighlights: { label: string; target: number; suffix: string }[] = [
-  { label: "Lives Improved", target: 12, suffix: "+" },
-  { label: "Income Growth", target: 3, suffix: "x" },
-  { label: "Families Supported", target: 3, suffix: "" },
-  { label: "Years of Impact", target: 2, suffix: "" },
-];
-
-const achievementBadges: { label: string; icon: typeof Users }[] = [
-  { label: "Community Leadership", icon: Users },
-  { label: "Women Empowerment", icon: Handshake },
-  { label: "Education Success", icon: GraduationCap },
-  { label: "Healthcare Access", icon: Heart },
-  { label: "Livelihood Improvement", icon: TrendingUp },
-  { label: "Sustainable Development", icon: Sprout },
+const realVoiceStories: RealVoiceStory[] = [
+  {
+    id: "story-1",
+    category: "Women Micro-Entrepreneurs",
+    badge: "FPO & SHG Leadership",
+    name: "Savita Devi",
+    role: "President, Mahila Tejaswini Self-Help Group",
+    location: "Prakasam District, Andhra Pradesh",
+    title: "From Rural Homemaker to Micro-Apparel Entrepreneur",
+    quote: "Effort NGO didn't just give us tailoring machinery — they built our financial confidence, trained us in business management, and connected our SHG directly to regional market buyers.",
+    story: "Starting with a single sewing machine in her village, Savita participated in Effort NGO's intensive micro-enterprise capacity building program. Today, she leads a 15-woman tailoring collective, supplying school uniforms across 8 nearby villages and generating sustainable independent household income.",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
+    heroImage: "https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=1000",
+    beforeImage: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800",
+    afterImage: "https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=800",
+    metrics: [
+      { label: "Monthly Household Income", value: "3x Growth" },
+      { label: "Women Artisans Employed", value: "15 Members" },
+      { label: "Financial Credit Access", value: "100% Linked" }
+    ],
+    verifiedTag: "Grassroots SHG Leader"
+  },
+  {
+    id: "story-2",
+    category: "Climate Farmers",
+    badge: "Water & Soil Conservation",
+    name: "Rameshwar Rao",
+    role: "Director, Rythu Bandhu Farmer Producer Org (FPO)",
+    location: "Nalgonda District, Telangana",
+    title: "Transforming 5 Acres Through DSR & Water Harvesting",
+    quote: "Adopting Direct Seeded Rice (DSR) and Integrated Pest Management (IPM) under Effort NGO's guidance reduced our input costs by 28% while conserving ground water across our village watershed.",
+    story: "Rameshwar faced recurring drought and rising chemical fertilizer costs. Effort NGO introduced watershed structures, farm ponds, and climate-resilient cropping techniques across 528 villages, enabling over 1,68,500 farmers to transition to sustainable, high-yield agriculture.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
+    heroImage: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1000",
+    beforeImage: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
+    afterImage: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=800",
+    metrics: [
+      { label: "Ground Water Conserved", value: "35% Volume" },
+      { label: "Crop Yield Productivity", value: "22% Increase" },
+      { label: "Watershed Villages", value: "528 Covered" }
+    ],
+    verifiedTag: "FPO Board Representative"
+  },
+  {
+    id: "story-3",
+    category: "CSR Partner Testimonials",
+    badge: "Statutory & CSR Governance",
+    name: "Dr. Marcus Weber",
+    role: "Senior CSR Strategy Lead, International Development Agency",
+    location: "GIZ Rural Development Division",
+    title: "100% Statutory Governance & Auditable Field Execution",
+    quote: "Partnering with Effort NGO gives our corporate CSR committee complete trust. Their 27-year track record, quarterly Utilization Certificates (UC), and GIS geo-tagged field reports set a benchmark for ground governance.",
+    story: "Collaborating across Schedule VII CSR mandates, Effort NGO ensures that corporate contributions are directly mapped to auditable social outcomes, verified by independent third-party assessments, and filed under MCA CSR-1 guidelines.",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
+    heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000",
+    beforeImage: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+    afterImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+    metrics: [
+      { label: "Statutory Audit Compliance", value: "100% Clean" },
+      { label: "Quarterly UC Reporting", value: "Audited" },
+      { label: "Field Service Track Record", value: "27 Years" }
+    ],
+    verifiedTag: "CSR Strategy Partner"
+  }
 ];
 
 export default function Home() {
   // States
-  const [donationAmount, setDonationAmount] = useState(2500);
-  const [customAmount, setCustomAmount] = useState("");
-  const [currentStory, setCurrentStory] = useState(0);
+  const [activeRealVoiceIndex, setActiveRealVoiceIndex] = useState(0);
 
   // Hero section states
   const [heroVisible, setHeroVisible] = useState(false);
@@ -539,45 +591,8 @@ export default function Home() {
     return () => cancelAnimationFrame(rafId);
   }, [csrVisible]);
 
-  // Featured Success Story section states
+  // Real Voices & Impact Story section states
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
-  const [sliderPos, setSliderPos] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
-  const [storyValues, setStoryValues] = useState(() => storyHighlights.map(() => 0));
-  const sliderContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!isDragging) return;
-    const updatePos = (clientX: number) => {
-      const rect = sliderContainerRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      const pct = ((clientX - rect.left) / rect.width) * 100;
-      setSliderPos(Math.min(100, Math.max(0, pct)));
-    };
-    const handlePointerMove = (e: PointerEvent) => updatePos(e.clientX);
-    const handlePointerUp = () => setIsDragging(false);
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerup", handlePointerUp);
-    return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerup", handlePointerUp);
-    };
-  }, [isDragging]);
-
-  useEffect(() => {
-    if (!storyVisible) return;
-    const duration = 1600;
-    const start = performance.now();
-    let rafId: number;
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setStoryValues(storyHighlights.map((s) => s.target * eased));
-      if (progress < 1) rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
-  }, [storyVisible]);
 
   useEffect(() => {
     if (!trustVisible) return;
@@ -634,82 +649,6 @@ export default function Home() {
     setTimeout(() => {
       setCtaRipples((prev) => prev.filter((r) => r.id !== id));
     }, 650);
-  };
-
-  // Dummy success stories
-  const successStories = [
-    {
-      id: 1,
-      name: "Ramesh Kumar",
-      age: 12,
-      location: "Rural Rajasthan",
-      title: "From Brick Kiln to School Classroom",
-      story: "Ramesh used to work at a local brick kiln to help feed his family. Through Effort's 'Shiksha Mission', he was rescued, enrolled in a bridging school, and is now thriving in 6th grade, dreaming of becoming a science teacher.",
-      image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&q=80&w=800",
-      pill: "Education"
-    },
-    {
-      id: 2,
-      name: "Savita Devi",
-      age: 34,
-      location: "Ganjam, Odisha",
-      title: "Empowered Homemaker to Micro-Entrepreneur",
-      story: "Savita joined our Self-Help Group (SHG) training program. Armed with a micro-grant and tailoring training, she now runs a small apparel boutique, employs two other women, and pays for her daughters' high school education.",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
-      pill: "Livelihood"
-    },
-    {
-      id: 3,
-      name: "Karan G.",
-      age: 8,
-      location: "Urban Slum, Mumbai",
-      title: "Defeating Severe Acute Malnutrition",
-      story: "Karan was diagnosed with severe malnutrition during our community health check-up. With 6 months of specialized nutritional intervention and medical care, he has gained healthy weight and is full of infectious energy.",
-      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800",
-      pill: "Healthcare"
-    }
-  ];
-
-  // Campaign items
-  const campaigns = [
-    {
-      id: "edu",
-      title: "Educate 1,000 Rural Girls",
-      desc: "Provide school supplies, tuition support, and transport fee for girls in tribal belts of Central India.",
-      raised: "₹18,50,000",
-      goal: "₹25,00,000",
-      percent: 74,
-      image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=600",
-      tag: "Education"
-    },
-    {
-      id: "health",
-      title: "Mobile Medical Vans",
-      desc: "Deliver primary healthcare, medicines, and prenatal diagnostic tests to remote Himalayan villages.",
-      raised: "₹32,10,000",
-      goal: "₹40,00,000",
-      percent: 80,
-      image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600",
-      tag: "Healthcare"
-    },
-    {
-      id: "live",
-      title: "Youth Skilling & Job Placement",
-      desc: "Empower unemployed youth with digital skills, coding, and vocational training with assured jobs.",
-      raised: "₹12,00,000",
-      goal: "₹20,00,000",
-      percent: 60,
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600",
-      tag: "Livelihood"
-    }
-  ];
-
-  const handleNextStory = () => {
-    setCurrentStory((prev) => (prev + 1) % successStories.length);
-  };
-
-  const handlePrevStory = () => {
-    setCurrentStory((prev) => (prev - 1 + successStories.length) % successStories.length);
   };
 
   return (
@@ -1727,171 +1666,171 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURED SUCCESS STORY SECTION --- */}
-      <section ref={storyRef} className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-rose-50 to-orange-50 py-16 lg:py-24">
+      {/* --- REAL VOICES, IMPACT & TESTIMONIALS HUB --- */}
+      <section ref={storyRef} className="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EBE0] text-slate-900 border-t border-amber-900/10">
+        {/* Soft Liquid Ambient Lighting */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-15%] left-[10%] w-[440px] h-[440px] bg-amber-200/25 rounded-full blur-[150px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-15%] right-[5%] w-[420px] h-[420px] bg-rose-200/25 rounded-full blur-[150px] animate-liquid-drift-b" />
-          <div className="bg-noise absolute inset-0" />
+          <div className="absolute top-[-10%] right-[10%] w-[600px] h-[600px] bg-amber-200/20 rounded-full blur-[160px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] bg-rose-200/20 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="bg-noise absolute inset-0 opacity-10" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
+          {/* Section Header */}
           <div
-            className={`text-center max-w-2xl mx-auto mb-14 space-y-4 transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3 transition-all duration-700 ${
               storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider shadow-sm">
-              ✨ Featured Success Story
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
-              One Story That Changed Everything
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#381116] border border-[#5B1D24] text-[#F7E4A3] text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-md">
+              <Quote className="w-3.5 h-3.5 text-amber-300" />
+              <span>REAL VOICES, REAL IMPACT</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#2B0C10] leading-tight">
+              Ground Stories of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A141A] via-[#6B1F27] to-[#80242E]">Hope &amp; Transformation</span>
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-              Behind every successful project is a powerful human story. Discover how sustainable support transformed lives, strengthened communities, and created hope for future generations.
+            
+            <p className="text-[#522026] text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+              Direct field testimony from the women leaders, smallholder farmers, and CSR partners whose lives and institutions have been transformed across 1,909 villages.
             </p>
           </div>
 
-          {/* Top row: heading/text/CTA + hero image */}
-          <div className="grid lg:grid-cols-2 gap-8 items-center mb-10">
-            <div
-              className={`transition-all duration-700 ${
-                storyVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-              }`}
-            >
-              <p className="text-xs font-black uppercase tracking-widest text-amber-600">{featuredStory.location}</p>
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-2 leading-tight">{featuredStory.title}</h3>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-4">{featuredStory.paragraph}</p>
-              <div className="flex flex-wrap gap-3 mt-6">
-                <Link
-                  href="/news"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(245,158,11,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(245,158,11,0.6)] hover:-translate-y-0.5 transition-all group"
-                >
-                  Read Full Impact Story <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </Link>
-                <Link
-                  href="/programs"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-amber-200 text-slate-700 font-bold text-sm hover:border-amber-400 hover:text-amber-700 transition-all"
-                >
-                  Explore All Programs <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div
-              className={`relative rounded-[32px] overflow-hidden h-64 sm:h-80 border border-white/60 shadow-[0_25px_60px_-20px_rgba(217,119,6,0.3)] group transition-all duration-1000 ${
-                storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "150ms" }}
-            >
-              <img
-                src={featuredStory.heroImage}
-                alt={featuredStory.name}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            </div>
+          {/* Category Tabs Bar */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+            {realVoiceStories.map((story, idx) => (
+              <button
+                key={story.id}
+                onClick={() => setActiveRealVoiceIndex(idx)}
+                className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  activeRealVoiceIndex === idx
+                    ? "bg-[#381116] text-[#F7E4A3] border-2 border-[#D4AF6A] shadow-md scale-105"
+                    : "bg-white/80 border border-[#5B1D24]/20 text-[#4A141A] hover:bg-[#FAF0DD]"
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-full ${activeRealVoiceIndex === idx ? "bg-[#F7E4A3]" : "bg-[#6B1F27]"}`} />
+                {story.category}
+              </button>
+            ))}
           </div>
 
-          {/* Bottom row: before/after slider + quote/stats/badges */}
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-
-            {/* Before & After comparison slider */}
-            <div
-              className={`transition-all duration-700 ${
-                storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "250ms" }}
-            >
+          {/* Active Voice Spotlight & Testimonial Showcase */}
+          {(() => {
+            const current = realVoiceStories[activeRealVoiceIndex];
+            return (
               <div
-                ref={sliderContainerRef}
-                className="relative rounded-[28px] overflow-hidden h-72 sm:h-80 border border-white/60 shadow-[0_20px_50px_-20px_rgba(217,119,6,0.3)] select-none cursor-ew-resize"
-                onClick={(e) => {
-                  const rect = sliderContainerRef.current?.getBoundingClientRect();
-                  if (!rect) return;
-                  setSliderPos(Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100)));
-                }}
+                key={current.id}
+                className="grid lg:grid-cols-12 gap-8 items-stretch animate-fade-in"
               >
-                <img src={featuredStory.afterImage} alt="After" className="absolute inset-0 w-full h-full object-cover" />
-                <span className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
-                  After
-                </span>
+                
+                {/* Left Card (7 cols): Main Story Detail & Quote */}
+                <div className="lg:col-span-7 bg-[#FFFDF9] border-2 border-[#5B1D24]/25 rounded-[32px] p-6 sm:p-8 shadow-[0_15px_40px_-15px_rgba(74,20,26,0.15)] flex flex-col justify-between space-y-6">
+                  
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="px-3 py-1 rounded-full bg-[#FAF0DD] border border-[#5B1D24]/30 text-[#4A141A] text-[10px] font-extrabold uppercase tracking-wider">
+                        {current.badge}
+                      </span>
+                      <span className="text-[11px] font-bold text-[#6B1F27] flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5 text-[#4A141A]" /> {current.location}
+                      </span>
+                    </div>
 
-                <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
-                  <img src={featuredStory.beforeImage} alt="Before" className="absolute inset-0 w-full h-full object-cover" />
-                  <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
-                    Before
-                  </span>
-                </div>
+                    <h3 className="text-2xl sm:text-3xl font-black text-[#2B0C10] leading-tight">
+                      {current.title}
+                    </h3>
 
-                <div
-                  className="absolute inset-y-0 z-20 w-1 bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.8)]"
-                  style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
-                >
-                  <div
-                    onPointerDown={(e) => {
-                      e.stopPropagation();
-                      setIsDragging(true);
-                    }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md shadow-lg border border-white flex items-center justify-center cursor-ew-resize"
-                  >
-                    <ChevronLeft className="w-3.5 h-3.5 text-slate-600 -mr-1" />
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-600 -ml-1" />
-                  </div>
-                </div>
-              </div>
-            </div>
+                    {/* Featured Quote Box */}
+                    <div className="relative bg-[#FAF0DD]/80 border-l-4 border-[#381116] rounded-r-2xl p-5 shadow-xs">
+                      <Quote className="w-6 h-6 text-[#381116]/40 absolute top-3 right-3" />
+                      <p className="text-[#381116] text-sm sm:text-base font-bold italic leading-relaxed">
+                        &ldquo;{current.quote}&rdquo;
+                      </p>
+                    </div>
 
-            {/* Floating quote + impact stats + achievement badges */}
-            <div
-              className={`space-y-6 transition-all duration-700 ${
-                storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "350ms" }}
-            >
-              {/* Floating quote card */}
-              <div className="bg-white/70 backdrop-blur-[30px] border border-white/70 rounded-[28px] p-6 animate-breathing-shadow">
-                <Quote className="w-7 h-7 text-amber-400" />
-                <p className="text-slate-700 text-sm sm:text-base leading-relaxed italic mt-3">&ldquo;{featuredStory.quote}&rdquo;</p>
-                <div className="flex items-center gap-3 mt-4">
-                  <img src={featuredStory.heroImage} alt={featuredStory.name} className="w-10 h-10 rounded-full object-cover border border-white/80" />
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">{featuredStory.name}</p>
-                    <p className="text-xs text-slate-500">{featuredStory.location}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Impact highlights */}
-              <div className="grid grid-cols-2 gap-3">
-                {storyHighlights.map((stat, i) => (
-                  <div key={stat.label} className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-4">
-                    <p className="text-2xl font-black text-amber-700">
-                      {Math.round(storyValues[i])}
-                      {stat.suffix}
+                    <p className="text-[#522026] text-xs sm:text-sm leading-relaxed font-medium">
+                      {current.story}
                     </p>
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-slate-500 mt-1">{stat.label}</p>
                   </div>
-                ))}
-              </div>
 
-              {/* Achievement badges */}
-              <div className="flex flex-wrap gap-2">
-                {achievementBadges.map((badge) => (
-                  <div
-                    key={badge.label}
-                    className="p-[1.5px] rounded-full bg-gradient-to-r from-amber-300 via-rose-300 to-orange-300 hover:shadow-[0_0_16px_-4px_rgba(245,158,11,0.5)] transition-shadow"
-                  >
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md hover:bg-white hover:-rotate-1 transition-all">
-                      <badge.icon className="w-3.5 h-3.5 text-amber-600" />
-                      <span className="text-[11px] font-bold text-slate-700">{badge.label}</span>
+                  {/* Impact Metrics Row */}
+                  <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#5B1D24]/15">
+                    {current.metrics.map((m) => (
+                      <div key={m.label} className="bg-[#FAF0DD]/60 border border-[#5B1D24]/20 rounded-xl p-3 text-center">
+                        <p className="text-base sm:text-lg font-black text-[#4A141A]">{m.value}</p>
+                        <p className="text-[10px] font-bold text-[#6B1F27] mt-0.5 leading-tight">{m.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Author Card Footer */}
+                  <div className="flex items-center gap-4 pt-2">
+                    <img
+                      src={current.avatar}
+                      alt={current.name}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-[#5B1D24]/30 shadow-md"
+                    />
+                    <div>
+                      <h4 className="text-sm font-black text-[#2B0C10]">{current.name}</h4>
+                      <p className="text-xs font-bold text-[#6B1F27]">{current.role}</p>
+                    </div>
+                    <span className="ml-auto px-3 py-1 rounded-full bg-[#381116] text-[#F7E4A3] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
+                      {current.verifiedTag}
+                    </span>
+                  </div>
+
+                </div>
+
+                {/* Right Card (5 cols): Hero Image Spotlight + Interactive Selector */}
+                <div className="lg:col-span-5 flex flex-col space-y-5">
+                  
+                  <div className="relative rounded-[32px] overflow-hidden flex-1 border-2 border-[#5B1D24]/25 shadow-[0_20px_50px_-20px_rgba(74,20,26,0.2)] group min-h-[280px]">
+                    <img
+                      src={current.heroImage}
+                      alt={current.name}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2B0C10]/90 via-[#2B0C10]/20 to-transparent" />
+                    
+                    <div className="absolute bottom-5 left-5 right-5 space-y-1 text-white">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#F7E4A3] text-[#2B0C10] text-[10px] font-black uppercase tracking-wider">
+                        {current.verifiedTag}
+                      </span>
+                      <h4 className="text-lg font-black text-white">{current.name}</h4>
+                      <p className="text-xs text-[#F5E5C9] font-medium">{current.location}</p>
                     </div>
                   </div>
-                ))}
+
+                  {/* Navigation dots & Explore CTAs */}
+                  <div className="bg-[#FAF0DD] border border-[#5B1D24]/30 rounded-2xl p-4 flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-2">
+                      {realVoiceStories.map((s, idx) => (
+                        <button
+                          key={s.id}
+                          onClick={() => setActiveRealVoiceIndex(idx)}
+                          aria-label={`Show ${s.name}`}
+                          className={`h-2 rounded-full transition-all cursor-pointer ${
+                            activeRealVoiceIndex === idx ? "w-8 bg-[#381116]" : "w-2 bg-[#5B1D24]/40 hover:bg-[#381116]/60"
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <Link
+                      href="/programs"
+                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#381116] hover:text-[#6B1F27] transition-colors"
+                    >
+                      All Interventions <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+
+                </div>
+
               </div>
-            </div>
-          </div>
+            );
+          })()}
+
         </div>
       </section>
 
