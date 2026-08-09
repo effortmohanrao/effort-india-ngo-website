@@ -1585,7 +1585,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CSR PARTNERSHIP MODEL SECTION (WARM CREAM BACKSIDE, BROWN MIRROR CARDS & BLOOD MAROON TEXT) --- */}
+      {/* --- CSR PARTNERSHIP MODEL SECTION (SOLID MAROON FILLED CARDS WITH CREAM TEXT & ICONS) --- */}
       <section ref={csrRef} className="relative overflow-hidden text-[#2B0C10] py-16 lg:py-24 bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0]">
         {/* Soft Liquid Glowing Ambient Halos */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -1616,7 +1616,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Horizontal 4-Stage CSR Execution Lifecycle Cards Grid */}
+          {/* Horizontal 4-Stage CSR Execution Lifecycle Cards Grid (FILLED WITH SOLID MAROON) */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
             {[
               {
@@ -1650,44 +1650,44 @@ export default function Home() {
             ].map((card, i) => (
               <div
                 key={card.step}
-                className={`bg-[#FFFDF9]/95 backdrop-blur-xl border-2 border-[#5B1D24]/20 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between space-y-4 shadow-[0_10px_35px_-10px_rgba(74,20,26,0.12)] hover:border-[#6B1F27] hover:shadow-[0_15px_40px_-15px_rgba(74,20,26,0.22)] hover:-translate-y-1 transition-all duration-500 ${
+                className={`bg-gradient-to-b from-[#381116] via-[#2D0D11] to-[#22090B] border-2 border-[#D4AF6A]/40 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between space-y-4 shadow-[0_15px_40px_-15px_rgba(56,17,22,0.4)] hover:border-[#F7E4A3] hover:shadow-[0_20px_50px_-15px_rgba(56,17,22,0.6)] hover:-translate-y-1 transition-all duration-500 ${
                   csrVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
                 style={{ transitionDelay: `${i * 120}ms` }}
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="w-10 h-10 rounded-2xl bg-[#381116] border border-[#5B1D24] text-[#F7E4A3] font-mono font-black text-sm flex items-center justify-center shadow-xs">
+                    <span className="w-10 h-10 rounded-2xl bg-[#F7E4A3] border border-[#D4AF6A] text-[#2B0C10] font-mono font-black text-sm flex items-center justify-center shadow-md">
                       {card.step}
                     </span>
-                    <span className="px-2.5 py-1 rounded-full bg-[#FAF0DD] border border-[#5B1D24]/30 text-[#4A141A] text-[10px] font-extrabold uppercase tracking-wider">
+                    <span className="px-2.5 py-1 rounded-full bg-[#FAF6EE] border border-[#D4AF6A] text-[#2B0C10] text-[10px] font-extrabold uppercase tracking-wider shadow-xs">
                       {card.tag}
                     </span>
                   </div>
-                  <h3 className="text-lg font-black text-[#2B0C10]">{card.title}</h3>
-                  <p className="text-xs text-[#522026] font-medium leading-relaxed">{card.desc}</p>
+                  <h3 className="text-lg font-black text-[#FAF6EE]">{card.title}</h3>
+                  <p className="text-xs text-[#F5E5C9]/90 font-medium leading-relaxed">{card.desc}</p>
                 </div>
 
-                <div className="pt-3 border-t border-[#5B1D24]/15 flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-[#6B1F27] flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-[#6B1F27]" /> Milestone Verified
+                <div className="pt-3 border-t border-[#D4AF6A]/25 flex items-center justify-between">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[#F7E4A3] flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#F7E4A3]" /> Milestone Verified
                   </span>
-                  <card.icon className="w-4 h-4 text-[#4A141A]/70" />
+                  <card.icon className="w-4 h-4 text-[#F7E4A3]/80" />
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Sample Partner Governance & Execution Command Preview (NO Financial Percentages) */}
-          <div className="bg-[#FAF0DD]/90 backdrop-blur-xl border-2 border-[#5B1D24]/30 rounded-[32px] p-6 sm:p-8 shadow-[0_20px_50px_-15px_rgba(74,20,26,0.15)] relative overflow-hidden mb-12">
+          {/* Partner Governance Command Suite Box (FILLED WITH SOLID MAROON & CREAM TEXT) */}
+          <div className="bg-gradient-to-r from-[#381116] via-[#2A0B0E] to-[#381116] border-2 border-[#D4AF6A]/50 rounded-[32px] p-6 sm:p-8 shadow-[0_25px_60px_-20px_rgba(56,17,22,0.5)] relative overflow-hidden mb-12 text-white">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div>
-                <p className="text-xs font-black uppercase tracking-wider text-[#6B1F27] flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-700" /> Partner Governance Command Suite
+                <p className="text-xs font-black uppercase tracking-wider text-[#F7E4A3] flex items-center gap-2">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Partner Governance Command Suite
                 </p>
-                <h3 className="text-xl sm:text-2xl font-black text-[#2B0C10] mt-1">Real-Time Compliance &amp; Impact Analytics</h3>
+                <h3 className="text-xl sm:text-2xl font-black text-white mt-1">Real-Time Compliance &amp; Impact Analytics</h3>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#F7E4A3] bg-[#381116] px-3 py-1.5 rounded-full font-mono border border-[#5B1D24]">
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#2B0C10] bg-[#F7E4A3] px-3 py-1.5 rounded-full font-mono border border-[#D4AF6A] shadow-sm">
                 Auditable Standards
               </span>
             </div>
@@ -1699,10 +1699,10 @@ export default function Home() {
                 { label: "Geo-Tagged GIS Field Logs", value: "Verified", sub: "Photo & Map Proof" },
                 { label: "Corporate Governance Standard", value: "Zero-Tolerance", sub: "Clean Track Record" },
               ].map((item) => (
-                <div key={item.label} className="bg-[#FFFDF9] border border-[#5B1D24]/25 rounded-2xl p-4 shadow-xs">
-                  <p className="text-xl sm:text-2xl font-black text-[#4A141A]">{item.value}</p>
-                  <p className="text-xs font-bold text-[#2B0C10] mt-1">{item.label}</p>
-                  <p className="text-[10px] text-[#6B1F27]/80 font-medium mt-0.5">{item.sub}</p>
+                <div key={item.label} className="bg-[#1C0709]/90 border border-[#D4AF6A]/35 rounded-2xl p-4 shadow-sm">
+                  <p className="text-xl sm:text-2xl font-black text-[#F7E4A3]">{item.value}</p>
+                  <p className="text-xs font-bold text-[#FAF6EE] mt-1">{item.label}</p>
+                  <p className="text-[10px] text-[#F5E5C9]/70 font-medium mt-0.5">{item.sub}</p>
                 </div>
               ))}
             </div>
@@ -1712,15 +1712,15 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/get-involved"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#381116] via-[#4A141A] to-[#6B1F27] text-white font-black text-xs uppercase tracking-wider shadow-xl hover:scale-105 transition-all group"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#381116] border-2 border-[#D4AF6A] text-[#F7E4A3] font-black text-xs uppercase tracking-wider shadow-xl hover:bg-[#2B0C10] hover:scale-105 transition-all group"
             >
               Partner With Us <ArrowUpRight className="w-4 h-4 text-[#F7E4A3] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
             <a
               href="#trust-section"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white border-2 border-[#5B1D24]/30 text-[#2B0C10] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF0DD] transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#FAF6EE] border-2 border-[#381116] text-[#2B0C10] font-bold text-xs uppercase tracking-wider hover:bg-white transition-all shadow-md"
             >
-              <ShieldCheck className="w-4 h-4 text-[#6B1F27]" /> View Statutory Compliance Registrations
+              <ShieldCheck className="w-4 h-4 text-amber-800" /> View Statutory Compliance Registrations
             </a>
           </div>
 
