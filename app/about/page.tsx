@@ -573,8 +573,8 @@ export default function About() {
                   <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Families Impacted</span>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">₹50.07 Cr</span>
-                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">3-Yr Budget Deployed</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">1,368</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Community Collectives</span>
                 </div>
               </div>
 
