@@ -550,10 +550,10 @@ export default function About() {
                 }`}
                 style={{ transitionDelay: "300ms" }}
               >
-                Since 1999, EFFORT NGO has operated on a core institutional conviction: true development is achieved when rural communities own their governance. Operating across <strong className="text-emerald-300 font-extrabold">1,909 villages</strong>, we mobilize <strong className="text-amber-300 font-extrabold">38,102 smallholder farmers &amp; women</strong> into 42 FPOs, 1,275 Self-Help Groups, and 51 MACS Cooperatives — transforming grassroots potential into lasting economic self-reliance.
+                Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO has executed <strong className="text-amber-300 font-extrabold">75 Projects over 25+ years</strong> with <strong className="text-emerald-300 font-extrabold">15 Active Ongoing Projects</strong>. Operating across <strong className="text-amber-300 font-extrabold">9 States, 37 Districts, and 1,909 Villages</strong>, we empower <strong className="text-emerald-300 font-extrabold">2.67 Lakh (267,000+) Rural Families</strong> through climate-resilient farming, water harvesting, and 1,368 community collectives (42 FPOs, 1,275 SHGs, 51 MACS).
               </p>
 
-              {/* Core Executive Quick Metrics Strip (4 Highlights) */}
+              {/* Core Executive Quick Metrics Strip (4 Highlights from Official Presentation) */}
               <div
                 className={`grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 transition-all duration-700 ${
                   heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -561,20 +561,20 @@ export default function About() {
                 style={{ transitionDelay: "450ms" }}
               >
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">27+</span>
-                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Years Field Leadership</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">75 + 15</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Executed &amp; Active Projects</span>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
                   <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">1,909</span>
-                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Villages Covered</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Villages (9 States)</span>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">63</span>
-                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Total NGO Projects</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">2.67 Lakh</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Families Impacted</span>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">38,102+</span>
-                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Active Shareholders</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">₹50.07 Cr</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">3-Yr Budget Deployed</span>
                 </div>
               </div>
 
