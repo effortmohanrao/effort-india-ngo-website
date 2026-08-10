@@ -676,213 +676,239 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- SECTION 2: ULTRA-PREMIUM INSTITUTIONAL CHARTER ("WHO WE ARE") --- */}
-      <section ref={whoWeAreRef} className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-[#043327] to-slate-950 text-white py-20 lg:py-32 border-b border-emerald-500/20 shadow-2xl">
+      {/* --- SECTION 2: WHO WE ARE (EXACT REFERENCE MOCKUP RECREATION) --- */}
+      <section ref={whoWeAreRef} className="relative overflow-hidden bg-slate-50/90 py-20 lg:py-28 text-slate-900 border-b border-slate-200">
         
-        {/* Dynamic Atmosphere (Silk Light Waves & Micro Dot-Grid Overlay) */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[-10%] w-[550px] h-[550px] bg-emerald-500/15 rounded-full blur-[140px] animate-breathe-pulse" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px] animate-breathe-pulse" style={{ animationDelay: "2.5s" }} />
-          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(rgba(255,255,255,0.2)_1.5px,transparent_1.5px)] [background-size:30px_30px]" />
-          <div className="bg-noise absolute inset-0 opacity-20" />
-        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+          {/* MAIN GRID: Left Content & Right Top Image + Stacked Cards */}
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
 
-          {/* Section Introduction */}
-          <div
-            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
-              whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)]">
-              <Compass className="w-3.5 h-3.5 text-amber-300" />
-              <span>02 / INSTITUTIONAL CHARTER — WHO WE ARE</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Driven By Purpose. <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">Governed By Impact.</span>
-            </h2>
-
-            <p className="text-emerald-100/90 text-base sm:text-lg leading-relaxed font-medium">
-              Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO strives for self-empowered community-based organizations and sustainable livelihoods for smallholder farmers, landless agriculture labor, women, and youth across 9 Indian states.
-            </p>
-          </div>
-
-          {/* 3-Column Glassmorphic Institutional Identity Matrix */}
-          <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-
-            {/* COLUMN 1 (Left 4 cols): Legal & Statutory Governance Framework */}
+            {/* LEFT COLUMN (7 cols): Title, Paragraphs, Quote & Our Values Grid */}
             <div
-              className={`lg:col-span-4 bg-white/5 backdrop-blur-2xl border-2 border-emerald-400/30 rounded-3xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)] space-y-6 flex flex-col justify-between hover:border-emerald-400 transition-all group/card ${
-                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`lg:col-span-7 space-y-8 transition-all duration-700 ${
+                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
-              style={{ transitionDelay: "150ms" }}
             >
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 border-b border-white/10 pb-3">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                  <h3 className="text-xs font-black uppercase tracking-widest text-emerald-300">
-                    LEGAL &amp; STATUTORY FRAMEWORK
-                  </h3>
-                </div>
+              
+              {/* Header Badge */}
+              <div className="space-y-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-800 text-xs font-black uppercase tracking-wider shadow-sm">
+                  <Sprout className="w-3.5 h-3.5 text-emerald-600" /> WHO WE ARE
+                </span>
 
-                <div className="space-y-3 pt-1">
-                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">Registered Society #340/1999</h4>
-                      <p className="text-[11px] text-slate-300">Founded 1999 at Martur, Prakasam District, AP</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">Income Tax 80G &amp; 12A Certified</h4>
-                      <p className="text-[11px] text-slate-300">100% Tax Exemption for Donors &amp; Partners</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">FCRA Registered &amp; MCA CSR-1</h4>
-                      <p className="text-[11px] text-slate-300">Eligible for Foreign Grants &amp; Corporate CSR</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-white">NITI Aayog Darpan Listed</h4>
-                      <p className="text-[11px] text-slate-300">Government Portal Registered Partner NGO</p>
-                    </div>
-                  </div>
-                </div>
+                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                  Driven By <span className="text-emerald-700">Purpose.</span><br />
+                  Powered By <span className="text-emerald-700">People.</span>
+                </h2>
               </div>
 
-              {/* Bottom Values Badge */}
-              <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                <span className="text-[10px] font-black uppercase tracking-wider text-amber-300">VALUES</span>
-                <span className="text-[10px] font-bold text-emerald-200">Integrity • Commitment • Excellence</span>
-              </div>
-            </div>
-
-            {/* COLUMN 2 (Middle 4 cols): Vision, Mission & Core Directive */}
-            <div
-              className={`lg:col-span-4 bg-gradient-to-br from-emerald-950/90 to-slate-900/90 backdrop-blur-2xl border-2 border-emerald-400/40 rounded-3xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)] space-y-5 flex flex-col justify-between hover:border-emerald-300 transition-all group/card ${
-                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "300ms" }}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                  <div className="flex items-center gap-2">
-                    <Compass className="w-5 h-5 text-amber-400" />
-                    <h3 className="text-xs font-black uppercase tracking-widest text-amber-300">
-                      INSTITUTIONAL PURPOSE
-                    </h3>
-                  </div>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-bold">FOUNDATIONAL</span>
-                </div>
-
-                {/* Vision Box */}
-                <div className="bg-white/5 border-l-4 border-amber-400 rounded-r-xl p-4 space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-300">VISION STATEMENT</span>
-                  <p className="text-xs sm:text-sm font-medium italic text-slate-100 leading-relaxed">
-                    &ldquo;EFFORT envisions Empowering communities, by building resilient, inclusive, and sustainable development futures.&rdquo;
-                  </p>
-                </div>
-
-                {/* Mission Box */}
-                <div className="bg-white/5 border-l-4 border-emerald-400 rounded-r-xl p-4 space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400">MISSION DIRECTIVE</span>
-                  <p className="text-xs font-medium text-slate-200 leading-relaxed">
-                    To enable communities to sustainably manage natural resources, strengthen youth skills &amp; livelihoods, and function as a community-based knowledge-sharing center.
-                  </p>
-                </div>
-              </div>
-
-              {/* Quote Footer */}
-              <div className="pt-3 border-t border-white/10">
-                <p className="text-[11px] font-semibold text-emerald-200/90 italic">
-                  &ldquo;We don&apos;t measure success by what we build, but by what communities no longer need us for.&rdquo;
+              {/* Body Text */}
+              <div className="space-y-4 text-slate-700 font-medium leading-relaxed">
+                <p className="text-lg font-bold text-slate-900 leading-snug">
+                  We are a registered society working where the need is greatest — not where it&apos;s easiest to reach.
+                </p>
+                <p className="text-sm sm:text-base text-slate-600">
+                  For 27 years, Effort has built development models with rural communities in Andhra Pradesh, not for them. We believe lasting change happens when people have ownership over their own progress — our role is to provide the structure, resources, and consistency to make that possible.
                 </p>
               </div>
-            </div>
 
-            {/* COLUMN 3 (Right 4 cols): 4 Core Thematic Areas (From Presentation Slide 4) */}
-            <div
-              className={`lg:col-span-4 bg-white/5 backdrop-blur-2xl border-2 border-emerald-400/30 rounded-3xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)] space-y-4 flex flex-col justify-between hover:border-emerald-400 transition-all group/card ${
-                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "450ms" }}
-            >
-              <div className="space-y-3.5">
-                <div className="flex items-center gap-2 border-b border-white/10 pb-3">
-                  <Target className="w-5 h-5 text-emerald-400" />
-                  <h3 className="text-xs font-black uppercase tracking-widest text-emerald-300">
-                    THEMATIC OPERATIONAL AREAS
-                  </h3>
+              {/* Dark Emerald Quote Banner */}
+              <div className="bg-[#0f4c3a] text-white rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden flex items-center gap-6">
+                <span className="text-5xl sm:text-6xl font-serif font-black text-emerald-400/50 shrink-0 leading-none select-none">
+                  “
+                </span>
+                <p className="text-sm sm:text-base font-semibold italic text-emerald-50 leading-relaxed">
+                  &ldquo;We don&apos;t measure success by what we built. We measure it by what communities no longer need us for.&rdquo;
+                </p>
+              </div>
+
+              {/* OUR VALUES HORIZONTAL ICON STRIP */}
+              <div className="pt-2 space-y-4">
+                <div className="flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest text-emerald-800">
+                  <span className="text-emerald-600 font-extrabold">➔</span>
+                  <span>OUR VALUES</span>
+                  <span className="text-emerald-600 font-extrabold">⬅</span>
                 </div>
 
-                {/* 4 Thematic Area Badges */}
-                <div className="space-y-2.5 pt-1">
-                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                        <Sprout className="w-3.5 h-3.5 text-emerald-400" /> Sustainable Farming
-                      </span>
-                      <span className="text-[9px] font-extrabold text-amber-300">52,600 Farmers</span>
+                <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 text-center">
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <ShieldCheck className="w-5 h-5" />
                     </div>
-                    <p className="text-[10px] text-slate-300">Organic farming, climate resilient crop management across 1,03,200 acres.</p>
+                    <span className="text-[10px] font-bold text-slate-700">Transparency</span>
                   </div>
 
-                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                        <Droplets className="w-3.5 h-3.5 text-cyan-400" /> Natural Resource Management
-                      </span>
-                      <span className="text-[9px] font-extrabold text-emerald-300">2,702 Water Structures</span>
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Scale className="w-5 h-5" />
                     </div>
-                    <p className="text-[10px] text-slate-300">Check dams, farm ponds, and percolation tanks storing 35.59 Lakh m³ water.</p>
+                    <span className="text-[10px] font-bold text-slate-700">Integrity</span>
                   </div>
 
-                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-amber-400" /> Women &amp; FPO Collectives
-                      </span>
-                      <span className="text-[9px] font-extrabold text-amber-300">1,368 Collectives</span>
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Heart className="w-5 h-5" />
                     </div>
-                    <p className="text-[10px] text-slate-300">42 FPOs, 1,275 SHGs (14,750 Women), and 51 MACS Cooperatives.</p>
+                    <span className="text-[10px] font-bold text-slate-700">Compassion</span>
                   </div>
 
-                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                        <GraduationCap className="w-3.5 h-3.5 text-emerald-400" /> Skill Training &amp; Social Dev.
-                      </span>
-                      <span className="text-[9px] font-extrabold text-emerald-300">3,716 Youth Trained</span>
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Lightbulb className="w-5 h-5" />
                     </div>
-                    <p className="text-[10px] text-slate-300">Vocational trades, WASH programs, and child labor rehabilitation.</p>
+                    <span className="text-[10px] font-bold text-slate-700">Innovation</span>
+                  </div>
+
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Handshake className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-700">Collaboration</span>
+                  </div>
+
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-700">Equality</span>
+                  </div>
+
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Leaf className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-700">Sustainability</span>
+                  </div>
+
+                  <div className="flex flex-col items-center space-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-700">Empowerment</span>
                   </div>
                 </div>
               </div>
 
-              {/* Direct Link CTA */}
-              <a
-                href="#journey"
-                className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs font-bold transition-all shadow-md group/btn"
-              >
-                <span>EXPLORE 25-YEAR MILESTONES</span>
-                <ArrowUpRight className="w-4 h-4 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-              </a>
+            </div>
+
+            {/* RIGHT COLUMN (5 cols): Curved Hands Image + 4 Stacked Pillar Cards */}
+            <div
+              className={`lg:col-span-5 space-y-6 transition-all duration-700 ${
+                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+
+              {/* Curved Corner Hero Image Container */}
+              <div className="relative rounded-br-[100px] rounded-tl-[40px] rounded-tr-[40px] rounded-bl-[40px] overflow-hidden border-4 border-white shadow-2xl h-64 sm:h-72 group">
+                <img
+                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=1000"
+                  alt="Hands together in unity and teamwork"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                
+                {/* Circular Overlapping Emblem Badge */}
+                <div className="absolute bottom-3 left-4 w-14 h-14 rounded-full bg-[#0f4c3a] border-2 border-white text-emerald-300 flex items-center justify-center shadow-xl">
+                  <Sprout className="w-7 h-7" />
+                </div>
+              </div>
+
+              {/* 4 Stacked White Pillar Cards */}
+              <div className="space-y-3">
+
+                {/* Card 1: Purpose */}
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <Target className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900">Purpose</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      We exist to close the gap between where rural communities are and where they could be.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card 2: Mission */}
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center shrink-0">
+                    <Compass className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900">Mission</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      Build sustainable, community-owned models across agriculture, water management, and livelihoods.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card 3: Community */}
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900">Community</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      Every program is designed with the community, not handed down to it.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card 4: Innovation */}
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                    <Lightbulb className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900">Innovation</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      Practical, field-tested solutions that adapt and evolve to local needs.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
 
             </div>
 
           </div>
+
+          {/* BOTTOM FULL-WIDTH IMPACT BAR */}
+          <div className="grid lg:grid-cols-12 gap-4 items-center bg-[#0a3528] rounded-3xl p-4 sm:p-6 text-white shadow-2xl">
+            
+            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4 divide-x divide-white/10 text-center">
+              <div className="space-y-0.5 px-2">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">27+</span>
+                <span className="block text-[11px] font-extrabold text-slate-200">Years of Impact</span>
+              </div>
+
+              <div className="space-y-0.5 px-2">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">50 + 13</span>
+                <span className="block text-[11px] font-extrabold text-slate-200">Projects Delivered</span>
+              </div>
+
+              <div className="space-y-0.5 px-2">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">1,909</span>
+                <span className="block text-[11px] font-extrabold text-slate-200">Villages Reached</span>
+              </div>
+
+              <div className="space-y-0.5 px-2">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">2.67 Lakh</span>
+                <span className="block text-[11px] font-extrabold text-slate-200">Families Touched</span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 bg-white text-slate-900 rounded-2xl p-4 flex items-center justify-between gap-3 shadow-md">
+              <p className="text-xs font-bold leading-snug">
+                Building a better tomorrow by <span className="text-emerald-700 font-extrabold">empowering communities</span> today.
+              </p>
+              <Sprout className="w-8 h-8 text-emerald-600 shrink-0" />
+            </div>
+
+          </div>
+
         </div>
       </section>
 
