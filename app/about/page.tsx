@@ -550,10 +550,10 @@ export default function About() {
                 }`}
                 style={{ transitionDelay: "300ms" }}
               >
-                Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO has executed <strong className="text-amber-300 font-extrabold">48 Completed Projects</strong> with <strong className="text-emerald-300 font-extrabold">13 Active Ongoing Projects</strong>. Operating across <strong className="text-amber-300 font-extrabold">9 States, 37 Districts, and 1,909 Villages</strong>, we empower <strong className="text-emerald-300 font-extrabold">2.67 Lakh (267,000+) Rural Families</strong> through climate-resilient farming, water harvesting, and 1,368 community collectives (42 FPOs, 1,275 SHGs, 51 MACS).
+                Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO has executed <strong className="text-amber-300 font-extrabold">50 Completed Projects</strong> with <strong className="text-emerald-300 font-extrabold">13 Active Ongoing Projects</strong>. Operating across <strong className="text-amber-300 font-extrabold">9 States, 37 Districts, and 1,909 Villages</strong>, we empower <strong className="text-emerald-300 font-extrabold">2.67 Lakh (267,000+) Rural Families</strong> through climate-resilient farming, water harvesting, and 1,368 community collectives (42 FPOs, 1,275 SHGs, 51 MACS).
               </p>
 
-              {/* Core Executive Quick Metrics Strip (4 Highlights from PDF 2 Master Log) */}
+              {/* Core Executive Quick Metrics Strip (4 Highlights) */}
               <div
                 className={`grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 transition-all duration-700 ${
                   heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -561,7 +561,7 @@ export default function About() {
                 style={{ transitionDelay: "450ms" }}
               >
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">48 + 13</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">50 + 13</span>
                   <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Completed &amp; Active Projects</span>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
