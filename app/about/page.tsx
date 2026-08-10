@@ -550,7 +550,7 @@ export default function About() {
                 }`}
                 style={{ transitionDelay: "300ms" }}
               >
-                Steering grassroots development for over <strong className="text-amber-300 font-extrabold">27 years</strong> under Society Registration 340/1999, EFFORT NGO transforms rural families across <strong className="text-emerald-300 font-extrabold">1,909 villages</strong> in Andhra Pradesh &amp; Telangana through watershed management, women SHG financial inclusion, FPO market linkages, and transparent CSR execution.
+                Since 1999, EFFORT NGO has operated on a core institutional conviction: true development is achieved when rural communities own their governance. Operating across <strong className="text-emerald-300 font-extrabold">1,909 villages</strong>, we mobilize <strong className="text-amber-300 font-extrabold">38,102 smallholder farmers &amp; women</strong> into 42 FPOs, 1,275 Self-Help Groups, and 51 MACS Cooperatives — transforming grassroots potential into lasting economic self-reliance.
               </p>
 
               {/* Core Executive Quick Metrics Strip (4 Highlights) */}
@@ -573,8 +573,8 @@ export default function About() {
                   <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Total NGO Projects</span>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">15,000+</span>
-                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Lives Transformed</span>
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">38,102+</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Active Shareholders</span>
                 </div>
               </div>
 
