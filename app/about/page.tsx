@@ -47,7 +47,8 @@ import {
   GraduationCap,
   Stethoscope,
   Leaf,
-  Camera
+  Camera,
+  Droplets
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 
@@ -675,167 +676,212 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- WHO WE ARE SECTION --- */}
-      <section ref={whoWeAreRef} className="relative overflow-hidden bg-gradient-to-br from-cyan-50 via-white to-indigo-50 py-20 lg:py-28">
+      {/* --- SECTION 2: ULTRA-PREMIUM INSTITUTIONAL CHARTER ("WHO WE ARE") --- */}
+      <section ref={whoWeAreRef} className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-[#043327] to-slate-950 text-white py-20 lg:py-32 border-b border-emerald-500/20 shadow-2xl">
+        
+        {/* Dynamic Atmosphere (Silk Light Waves & Micro Dot-Grid Overlay) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-5%] w-[420px] h-[420px] bg-cyan-200/25 rounded-full blur-[140px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-indigo-200/20 rounded-full blur-[140px] animate-liquid-drift-b" />
-          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-emerald-100/20 rounded-full blur-[120px] animate-liquid-drift-c" />
-          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full border border-cyan-200/40" />
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 -translate-x-16 -translate-y-16 rounded-full border border-cyan-200/25" />
-          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0891b2_1px,transparent_1px)] [background-size:28px_28px]" />
-          <div className="bg-noise absolute inset-0" />
+          <div className="absolute top-[-10%] right-[-10%] w-[550px] h-[550px] bg-emerald-500/15 rounded-full blur-[140px] animate-breathe-pulse" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px] animate-breathe-pulse" style={{ animationDelay: "2.5s" }} />
+          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(rgba(255,255,255,0.2)_1.5px,transparent_1.5px)] [background-size:30px_30px]" />
+          <div className="bg-noise absolute inset-0 opacity-20" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
 
+          {/* Section Introduction */}
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
               whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-cyan-200 text-cyan-700 text-xs font-bold uppercase tracking-wider shadow-sm">
-              Who We Are
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
-              Driven By Purpose. Powered By People.
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-12 gap-10 items-start">
-
-            {/* Left: circular image + floating badges */}
-            <div
-              className={`lg:col-span-3 transition-all duration-1000 ${
-                whoWeAreVisible ? "opacity-100 rotate-0 scale-100" : "opacity-0 rotate-6 scale-90"
-              }`}
-            >
-              <div className="relative flex justify-center lg:justify-start">
-                <div className="absolute -top-6 -left-2 w-40 h-40 bg-cyan-200/50 rounded-full blur-2xl" />
-                <div className="absolute -bottom-4 right-2 w-32 h-32 bg-indigo-200/50 rounded-full blur-2xl" />
-                <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border-4 border-white shadow-[0_25px_60px_-20px_rgba(8,145,178,0.4)] group">
-                  <img
-                    src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=800"
-                    alt="Effort team"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-7 max-w-[280px] mx-auto lg:mx-0">
-                {identityBadges.map((badge, i) => (
-                  <span
-                    key={badge.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-[20px] border border-white/70 text-[11px] font-bold text-slate-600 shadow-sm hover:scale-110 hover:text-cyan-700 hover:shadow-md transition-all cursor-default"
-                    style={{
-                      animationName: "card-float",
-                      animationDuration: "5s",
-                      animationTimingFunction: "ease-in-out",
-                      animationIterationCount: "infinite",
-                      animationDelay: `${i * 0.3}s`,
-                    }}
-                  >
-                    <badge.icon className="w-3 h-3 text-cyan-600" /> {badge.label}
-                  </span>
-                ))}
-              </div>
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)]">
+              <Compass className="w-3.5 h-3.5 text-amber-300" />
+              <span>02 / INSTITUTIONAL CHARTER — WHO WE ARE</span>
             </div>
 
-            {/* Center: typography block */}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+              Driven By Purpose. <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">Governed By Impact.</span>
+            </h2>
+
+            <p className="text-emerald-100/90 text-base sm:text-lg leading-relaxed font-medium">
+              Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO strives for self-empowered community-based organizations and sustainable livelihoods for smallholder farmers, landless agriculture labor, women, and youth across 9 Indian states.
+            </p>
+          </div>
+
+          {/* 3-Column Glassmorphic Institutional Identity Matrix */}
+          <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+
+            {/* COLUMN 1 (Left 4 cols): Legal & Statutory Governance Framework */}
             <div
-              className={`lg:col-span-5 transition-all duration-700 ${
+              className={`lg:col-span-4 bg-white/5 backdrop-blur-2xl border-2 border-emerald-400/30 rounded-3xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)] space-y-6 flex flex-col justify-between hover:border-emerald-400 transition-all group/card ${
                 whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: "150ms" }}
             >
-              <p className="text-lg sm:text-xl font-bold text-slate-800 leading-snug">
-                We are a registered society working where the need is greatest — not where it&apos;s easiest to reach.
-              </p>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-4">
-                For 27 years, Effort has built development models with rural communities in Andhra Pradesh, not for them. We believe lasting change happens when people have ownership over their own progress — our role is to provide the structure, resources, and consistency to make that possible.
-              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 border-b border-white/10 pb-3">
+                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  <h3 className="text-xs font-black uppercase tracking-widest text-emerald-300">
+                    LEGAL &amp; STATUTORY FRAMEWORK
+                  </h3>
+                </div>
 
-              <div className="bg-white/70 backdrop-blur-[30px] border border-white/70 rounded-[28px] p-6 mt-6 animate-breathing-shadow">
-                <Quote className="w-6 h-6 text-cyan-400" />
-                <p className="text-slate-700 text-sm leading-relaxed italic mt-2">
-                  &ldquo;We don&apos;t measure success by what we built. We measure it by what communities no longer need us for.&rdquo;
-                </p>
+                <div className="space-y-3 pt-1">
+                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-xs font-bold text-white">Registered Society #340/1999</h4>
+                      <p className="text-[11px] text-slate-300">Founded 1999 at Martur, Prakasam District, AP</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-xs font-bold text-white">Income Tax 80G &amp; 12A Certified</h4>
+                      <p className="text-[11px] text-slate-300">100% Tax Exemption for Donors &amp; Partners</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-xs font-bold text-white">FCRA Registered &amp; MCA CSR-1</h4>
+                      <p className="text-[11px] text-slate-300">Eligible for Foreign Grants &amp; Corporate CSR</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-xs font-bold text-white">NITI Aayog Darpan Listed</h4>
+                      <p className="text-[11px] text-slate-300">Government Portal Registered Partner NGO</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Values Badge */}
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-black uppercase tracking-wider text-amber-300">VALUES</span>
+                <span className="text-[10px] font-bold text-emerald-200">Integrity • Commitment • Excellence</span>
               </div>
             </div>
 
-            {/* Right: identity modules with connector line */}
+            {/* COLUMN 2 (Middle 4 cols): Vision, Mission & Core Directive */}
             <div
-              className={`lg:col-span-4 relative transition-all duration-700 ${
+              className={`lg:col-span-4 bg-gradient-to-br from-emerald-950/90 to-slate-900/90 backdrop-blur-2xl border-2 border-emerald-400/40 rounded-3xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)] space-y-5 flex flex-col justify-between hover:border-emerald-300 transition-all group/card ${
                 whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: "300ms" }}
             >
-              <svg
-                className="absolute left-6 top-0 h-full w-4 pointer-events-none hidden lg:block"
-                viewBox="0 0 20 900"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <defs>
-                  <linearGradient id="connectorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#06b6d4" />
-                    <stop offset="100%" stopColor="#6366f1" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M10,0 C16,150 4,300 10,450 C16,600 4,750 10,900"
-                  stroke="url(#connectorGrad)"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeDasharray="1400"
-                  className={whoWeAreVisible ? "animate-draw-connector" : ""}
-                  opacity="0.35"
-                />
-              </svg>
-
-              <div className="space-y-4 relative z-10">
-                {identityModules.map((mod, i) => (
-                  <div
-                    key={mod.title}
-                    className={`group bg-white/70 backdrop-blur-[24px] border border-white/70 rounded-3xl p-5 shadow-[0_10px_30px_-16px_rgba(8,145,178,0.3)] hover:shadow-[0_20px_40px_-16px_rgba(8,145,178,0.35)] hover:-translate-y-1.5 transition-all duration-500 flex items-start gap-4 ${
-                      i === 0 || i === 2 ? "py-6" : "py-4"
-                    } ${
-                      whoWeAreVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
-                    }`}
-                    style={{ transitionDelay: `${450 + i * 120}ms` }}
-                  >
-                    <div className="w-11 h-11 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 group-hover:rotate-12 transition-transform">
-                      <mod.icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-black text-slate-900">{mod.title}</h3>
-                      <p className="text-xs text-slate-500 leading-relaxed mt-1">{mod.desc}</p>
-                    </div>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <Compass className="w-5 h-5 text-amber-400" />
+                    <h3 className="text-xs font-black uppercase tracking-widest text-amber-300">
+                      INSTITUTIONAL PURPOSE
+                    </h3>
                   </div>
-                ))}
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-bold">FOUNDATIONAL</span>
+                </div>
+
+                {/* Vision Box */}
+                <div className="bg-white/5 border-l-4 border-amber-400 rounded-r-xl p-4 space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-300">VISION STATEMENT</span>
+                  <p className="text-xs sm:text-sm font-medium italic text-slate-100 leading-relaxed">
+                    &ldquo;EFFORT envisions Empowering communities, by building resilient, inclusive, and sustainable development futures.&rdquo;
+                  </p>
+                </div>
+
+                {/* Mission Box */}
+                <div className="bg-white/5 border-l-4 border-emerald-400 rounded-r-xl p-4 space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400">MISSION DIRECTIVE</span>
+                  <p className="text-xs font-medium text-slate-200 leading-relaxed">
+                    To enable communities to sustainably manage natural resources, strengthen youth skills &amp; livelihoods, and function as a community-based knowledge-sharing center.
+                  </p>
+                </div>
+              </div>
+
+              {/* Quote Footer */}
+              <div className="pt-3 border-t border-white/10">
+                <p className="text-[11px] font-semibold text-emerald-200/90 italic">
+                  &ldquo;We don&apos;t measure success by what we build, but by what communities no longer need us for.&rdquo;
+                </p>
               </div>
             </div>
-          </div>
 
-          {/* Buttons */}
-          <div
-            className={`flex flex-wrap gap-3 justify-center mt-16 transition-all duration-700 ${
-              whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ transitionDelay: "900ms" }}
-          >
-            <a
-              href="#journey"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(6,182,212,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(6,182,212,0.6)] hover:-translate-y-0.5 transition-all group"
+            {/* COLUMN 3 (Right 4 cols): 4 Core Thematic Areas (From Presentation Slide 4) */}
+            <div
+              className={`lg:col-span-4 bg-white/5 backdrop-blur-2xl border-2 border-emerald-400/30 rounded-3xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)] space-y-4 flex flex-col justify-between hover:border-emerald-400 transition-all group/card ${
+                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: "450ms" }}
             >
-              Learn Our Story <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-            <a
-              href="#leadership"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-cyan-200 text-slate-700 font-bold text-sm hover:border-cyan-400 hover:text-cyan-700 transition-all"
-            >
-              Meet Our Team <ArrowRight className="w-4 h-4" />
-            </a>
+              <div className="space-y-3.5">
+                <div className="flex items-center gap-2 border-b border-white/10 pb-3">
+                  <Target className="w-5 h-5 text-emerald-400" />
+                  <h3 className="text-xs font-black uppercase tracking-widest text-emerald-300">
+                    THEMATIC OPERATIONAL AREAS
+                  </h3>
+                </div>
+
+                {/* 4 Thematic Area Badges */}
+                <div className="space-y-2.5 pt-1">
+                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                        <Sprout className="w-3.5 h-3.5 text-emerald-400" /> Sustainable Farming
+                      </span>
+                      <span className="text-[9px] font-extrabold text-amber-300">52,600 Farmers</span>
+                    </div>
+                    <p className="text-[10px] text-slate-300">Organic farming, climate resilient crop management across 1,03,200 acres.</p>
+                  </div>
+
+                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                        <Droplets className="w-3.5 h-3.5 text-cyan-400" /> Natural Resource Management
+                      </span>
+                      <span className="text-[9px] font-extrabold text-emerald-300">2,702 Water Structures</span>
+                    </div>
+                    <p className="text-[10px] text-slate-300">Check dams, farm ponds, and percolation tanks storing 35.59 Lakh m³ water.</p>
+                  </div>
+
+                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-amber-400" /> Women &amp; FPO Collectives
+                      </span>
+                      <span className="text-[9px] font-extrabold text-amber-300">1,368 Collectives</span>
+                    </div>
+                    <p className="text-[10px] text-slate-300">42 FPOs, 1,275 SHGs (14,750 Women), and 51 MACS Cooperatives.</p>
+                  </div>
+
+                  <div className="bg-emerald-950/70 border border-emerald-400/30 rounded-xl p-3 space-y-0.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                        <GraduationCap className="w-3.5 h-3.5 text-emerald-400" /> Skill Training &amp; Social Dev.
+                      </span>
+                      <span className="text-[9px] font-extrabold text-emerald-300">3,716 Youth Trained</span>
+                    </div>
+                    <p className="text-[10px] text-slate-300">Vocational trades, WASH programs, and child labor rehabilitation.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Link CTA */}
+              <a
+                href="#journey"
+                className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs font-bold transition-all shadow-md group/btn"
+              >
+                <span>EXPLORE 25-YEAR MILESTONES</span>
+                <ArrowUpRight className="w-4 h-4 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              </a>
+
+            </div>
+
           </div>
         </div>
       </section>
