@@ -504,149 +504,170 @@ export default function About() {
       <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-100/35 rounded-full blur-[100px] -z-10 animate-pulse"></div>
       <div className="absolute bottom-[20%] left-[-15%] w-[500px] h-[500px] bg-amber-100/25 rounded-full blur-[100px] -z-10 animate-pulse"></div>
 
-      {/* --- ABOUT US HERO BANNER --- */}
-      <section className="relative overflow-hidden -mt-12 pt-12 pb-16 lg:pb-20">
+      {/* --- SECTION 1: ULTRA-PREMIUM EXECUTIVE ABOUT US HERO BANNER --- */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#064e3b] to-slate-900 text-white -mt-12 pt-16 pb-20 lg:pt-24 lg:pb-32 shadow-2xl border-b border-emerald-500/20">
+        
+        {/* Dynamic Background Atmosphere (Silk Orbs, Dot Matrix & Laser Sweep) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-emerald-50" />
-          <div className="absolute top-[-10%] left-[10%] w-[420px] h-[420px] bg-sky-200/30 rounded-full blur-[140px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[10%] w-[380px] h-[380px] bg-emerald-200/25 rounded-full blur-[140px] animate-liquid-drift-b" />
-          <div className="absolute top-[45%] left-[45%] w-[280px] h-[280px] bg-purple-100/25 rounded-full blur-[120px] animate-liquid-drift-c" />
-          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#0369a1_1px,transparent_1px)] [background-size:30px_30px]" />
+          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-500/20 rounded-full blur-[150px] animate-breathe-pulse" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-amber-500/15 rounded-full blur-[150px] animate-breathe-pulse" style={{ animationDelay: "3s" }} />
+          <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-teal-500/15 rounded-full blur-[130px] animate-breathe-pulse" style={{ animationDelay: "1.5s" }} />
+          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(rgba(255,255,255,0.25)_1.5px,transparent_1.5px)] [background-size:28px_28px]" />
+          <div className="bg-noise absolute inset-0 opacity-20" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-            {/* Left 45% */}
-            <div className="lg:col-span-5">
-              <span
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider shadow-sm transition-all duration-700 ${
+            {/* Left 7 cols: Editorial Positioning, Core Impact Metrics & Action CTAs */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* Micro Registration Pill Badge */}
+              <div
+                className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-700 ${
                   heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" /> About Our Organization
-              </span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>ESTD. 1999 • SOCIETY REGISTRATION 340/1999</span>
+              </div>
 
-              <h1 className="text-4xl sm:text-5xl font-black text-slate-900 leading-[1.1] mt-4">
-                {aboutHeroLines.map((line, i) => (
-                  <span
-                    key={line}
-                    className={`block transition-all duration-700 ${
-                      heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    } ${i === 1 ? "bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent" : ""}`}
-                    style={{ transitionDelay: `${150 + i * 120}ms` }}
-                  >
-                    {line}
-                  </span>
-                ))}
+              {/* Main Executive Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">
+                  Building Hope.
+                </span>
+                <span className="block text-white">
+                  Creating Sustainable Change.
+                </span>
               </h1>
 
+              {/* Editorial Description */}
               <p
-                className={`text-slate-600 text-base sm:text-lg leading-relaxed mt-5 transition-all duration-700 ${
+                className={`text-emerald-100/90 text-base sm:text-lg leading-relaxed font-medium max-w-2xl transition-all duration-700 ${
                   heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
-                style={{ transitionDelay: "550ms" }}
+                style={{ transitionDelay: "300ms" }}
               >
-                Effort is a registered society working with rural communities in Andhra Pradesh on education, healthcare, livelihoods, and environmental sustainability — building models that communities can carry forward long after we step back.
+                Steering grassroots development for over <strong className="text-amber-300 font-extrabold">27 years</strong> under Society Registration 340/1999, EFFORT NGO transforms rural families across <strong className="text-emerald-300 font-extrabold">1,909 villages</strong> in Andhra Pradesh &amp; Telangana through watershed management, women SHG financial inclusion, FPO market linkages, and transparent CSR execution.
               </p>
 
-              {/* Mini NGO statistics */}
-              <p
-                className={`text-xs font-bold text-slate-500 mt-4 transition-all duration-700 ${
-                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: "620ms" }}
-              >
-                <span className="text-emerald-600">27+ Years</span> · <span className="text-emerald-600">120+ Communities</span> · <span className="text-emerald-600">15,000+ Lives</span>
-              </p>
-
-              {/* CTA buttons */}
+              {/* Core Executive Quick Metrics Strip (4 Highlights) */}
               <div
-                className={`flex flex-wrap gap-3 mt-7 transition-all duration-700 ${
+                className={`grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 transition-all duration-700 ${
                   heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
-                style={{ transitionDelay: "700ms" }}
+                style={{ transitionDelay: "450ms" }}
+              >
+                <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">27+</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Years Field Leadership</span>
+                </div>
+                <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">1,909</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Villages Covered</span>
+                </div>
+                <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">63</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Total NGO Projects</span>
+                </div>
+                <div className="bg-white/5 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-3.5 text-center space-y-0.5 hover:border-emerald-400 transition-all">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">15,000+</span>
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-300">Lives Transformed</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div
+                className={`flex flex-wrap gap-4 pt-4 transition-all duration-700 ${
+                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: "600ms" }}
               >
                 <a
                   href="#journey"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(37,99,235,0.6)] hover:-translate-y-0.5 transition-all group"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-black text-sm shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 transition-all group"
                 >
-                  Explore Our Journey <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>EXPLORE OUR 27-YEAR JOURNEY</span>
+                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
                 <a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-sky-200 text-slate-700 font-bold text-sm hover:border-sky-400 hover:text-sky-700 transition-all"
+                  href="#leadership"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm hover:bg-white/20 hover:border-emerald-400 transition-all"
                 >
-                  <Download className="w-4 h-4" /> Download Organization Profile
+                  <Users className="w-4 h-4 text-amber-300" />
+                  <span>MEET OUR LEADERSHIP SYSTEM</span>
                 </a>
               </div>
 
-              {/* Mini trust strip */}
+              {/* Statutory Compliance Badges */}
               <div
-                className={`flex flex-wrap gap-x-5 gap-y-2 mt-8 transition-all duration-700 ${
+                className={`flex flex-wrap gap-4 pt-2 text-xs font-bold text-emerald-200/80 transition-all duration-700 ${
                   heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
-                style={{ transitionDelay: "800ms" }}
+                style={{ transitionDelay: "750ms" }}
               >
-                {aboutTrustStrip.map((item) => (
-                  <span key={item.label} className="group flex items-center gap-1.5 text-xs font-semibold text-slate-600">
-                    <item.icon className="w-4 h-4 text-emerald-600 group-hover:rotate-12 transition-transform" />
-                    {item.label}
-                  </span>
-                ))}
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" /> 100% FCRA &amp; 80G Certified
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Award className="w-4 h-4 text-amber-400" /> NABARD &amp; GIZ Partnered
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Building2 className="w-4 h-4 text-emerald-400" /> Registered Society #340/1999
+                </span>
               </div>
+
             </div>
 
-            {/* Right 55%: cinematic image + floating panels */}
+            {/* Right 5 cols: Executive Glassmorphic Hero Showcase Container */}
             <div
-              className={`lg:col-span-7 relative transition-all duration-1000 ${
+              className={`lg:col-span-5 relative transition-all duration-1000 ${
                 heroVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
               }`}
               style={{ transitionDelay: "250ms" }}
             >
-              <div className="relative rounded-[34px] overflow-hidden h-[420px] sm:h-[480px] border border-white/60 shadow-[0_30px_70px_-25px_rgba(37,99,235,0.3)] group">
-                <img
-                  src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200"
-                  alt="Effort field team"
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-light-sweep" />
+              <div className="relative rounded-[36px] overflow-hidden border-2 border-emerald-400/30 bg-slate-900/60 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(0,0,0,0.6)] group">
+                
+                {/* Main Cinematic Image */}
+                <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/10">
+                  <img
+                    src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200"
+                    alt="EFFORT NGO Rural Community Field Operations"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-85" />
+                  
+                  {/* Laser Light Sweep */}
+                  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-light-sweep" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Floating glass panels */}
-              <div className="absolute -top-5 -left-5 sm:-left-8 grid grid-cols-2 gap-3 w-[calc(100%+2.5rem)] sm:w-auto sm:flex">
-                {aboutHeroPanels.slice(0, 2).map((panel, i) => (
-                  <div
-                    key={panel.label}
-                    className={`animate-breathing-shadow bg-white/80 backdrop-blur-[32px] border border-white/70 rounded-2xl p-4 shadow-lg transition-all duration-700 hover:-translate-y-1 ${
-                      heroVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-                    }`}
-                    style={{ transitionDelay: `${900 + i * 150}ms` }}
-                  >
-                    <panel.icon className="w-5 h-5 text-blue-600 mb-1.5" />
-                    <p className={`font-black text-slate-900 ${panel.value === "Coming Soon" ? "text-xs" : "text-lg"}`}>{panel.value}</p>
-                    <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">{panel.label}</p>
-                  </div>
-                ))}
-              </div>
+                {/* Top Right Floating Pill Badge */}
+                <div className="absolute top-8 right-8 z-10 animate-breathing-shadow bg-slate-950/90 backdrop-blur-xl border border-amber-400/40 rounded-2xl px-4 py-2 shadow-2xl">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                    <span>27 YEARS FIELD EXCELLENCE</span>
+                  </span>
+                </div>
 
-              <div className="absolute -bottom-5 -right-5 sm:-right-8 grid grid-cols-2 gap-3 w-[calc(100%+2.5rem)] sm:w-auto sm:flex">
-                {aboutHeroPanels.slice(2, 4).map((panel, i) => (
-                  <div
-                    key={panel.label}
-                    className={`animate-breathing-shadow bg-white/80 backdrop-blur-[32px] border border-white/70 rounded-2xl p-4 shadow-lg transition-all duration-700 hover:-translate-y-1 ${
-                      heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                    }`}
-                    style={{ transitionDelay: `${1200 + i * 150}ms` }}
-                  >
-                    <panel.icon className="w-5 h-5 text-emerald-600 mb-1.5" />
-                    <p className={`font-black text-slate-900 ${panel.value === "Coming Soon" ? "text-xs" : "text-lg"}`}>{panel.value}</p>
-                    <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">{panel.label}</p>
+                {/* Bottom Left Floating Glassmorphic Impact Overlay */}
+                <div className="absolute bottom-8 left-8 right-8 z-10 bg-slate-950/90 backdrop-blur-2xl border border-emerald-500/40 rounded-2xl p-4 shadow-2xl space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">
+                      COMMUNITY INSTITUTIONS
+                    </span>
+                    <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-bold">
+                      ACTIVE IN FIELD
+                    </span>
                   </div>
-                ))}
+                  <p className="text-xs font-semibold text-slate-200 leading-snug">
+                    Governance models carried forward by 1,275 SHGs &amp; 51 MACS Women Cooperatives across 37 districts.
+                  </p>
+                </div>
+
               </div>
             </div>
 
