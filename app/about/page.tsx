@@ -381,7 +381,6 @@ const finaleStats: FinaleStat[] = [
 
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
-  const [whoWeAreRef, whoWeAreVisible] = useScrollReveal<HTMLElement>();
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
   const [vmRef, vmVisible] = useScrollReveal<HTMLElement>();
   const [activeVMSlide, setActiveVMSlide] = useState(0);
@@ -676,241 +675,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- SECTION 2: WHO WE ARE (EXACT REFERENCE MOCKUP RECREATION) --- */}
-      <section ref={whoWeAreRef} className="relative overflow-hidden bg-slate-50/90 py-20 lg:py-28 text-slate-900 border-b border-slate-200">
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
 
-          {/* MAIN GRID: Left Content & Right Top Image + Stacked Cards */}
-          <div className="grid lg:grid-cols-12 gap-10 items-start">
-
-            {/* LEFT COLUMN (7 cols): Title, Paragraphs, Quote & Our Values Grid */}
-            <div
-              className={`lg:col-span-7 space-y-8 transition-all duration-700 ${
-                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
-            >
-              
-              {/* Header Badge */}
-              <div className="space-y-3">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-800 text-xs font-black uppercase tracking-wider shadow-sm">
-                  <Sprout className="w-3.5 h-3.5 text-emerald-600" /> WHO WE ARE
-                </span>
-
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                  Driven By <span className="text-emerald-700">Purpose.</span><br />
-                  Powered By <span className="text-emerald-700">People.</span>
-                </h2>
-              </div>
-
-              {/* Body Text */}
-              <div className="space-y-4 text-slate-700 font-medium leading-relaxed">
-                <p className="text-lg font-bold text-slate-900 leading-snug">
-                  We are a registered society working where the need is greatest — not where it&apos;s easiest to reach.
-                </p>
-                <p className="text-sm sm:text-base text-slate-600">
-                  For 27 years, Effort has built development models with rural communities in Andhra Pradesh, not for them. We believe lasting change happens when people have ownership over their own progress — our role is to provide the structure, resources, and consistency to make that possible.
-                </p>
-              </div>
-
-              {/* Dark Emerald Quote Banner */}
-              <div className="bg-[#0f4c3a] text-white rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden flex items-center gap-6">
-                <span className="text-5xl sm:text-6xl font-serif font-black text-emerald-400/50 shrink-0 leading-none select-none">
-                  “
-                </span>
-                <p className="text-sm sm:text-base font-semibold italic text-emerald-50 leading-relaxed">
-                  &ldquo;We don&apos;t measure success by what we built. We measure it by what communities no longer need us for.&rdquo;
-                </p>
-              </div>
-
-              {/* OUR VALUES HORIZONTAL ICON STRIP */}
-              <div className="pt-2 space-y-4">
-                <div className="flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest text-emerald-800">
-                  <span className="text-emerald-600 font-extrabold">➔</span>
-                  <span>OUR VALUES</span>
-                  <span className="text-emerald-600 font-extrabold">⬅</span>
-                </div>
-
-                <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 text-center">
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <ShieldCheck className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Transparency</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Scale className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Integrity</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Heart className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Compassion</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Lightbulb className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Innovation</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Handshake className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Collaboration</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Users className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Equality</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Leaf className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Sustainability</span>
-                  </div>
-
-                  <div className="flex flex-col items-center space-y-1 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-700 flex items-center justify-center shadow-sm group-hover:border-emerald-500 group-hover:scale-110 transition-all">
-                      <Sparkles className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-700">Empowerment</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            {/* RIGHT COLUMN (5 cols): Curved Hands Image + 4 Stacked Pillar Cards */}
-            <div
-              className={`lg:col-span-5 space-y-6 transition-all duration-700 ${
-                whoWeAreVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "200ms" }}
-            >
-
-              {/* Curved Corner Hero Image Container */}
-              <div className="relative rounded-br-[100px] rounded-tl-[40px] rounded-tr-[40px] rounded-bl-[40px] overflow-hidden border-4 border-white shadow-2xl h-64 sm:h-72 group">
-                <img
-                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=1000"
-                  alt="Hands together in unity and teamwork"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                
-                {/* Circular Overlapping Emblem Badge */}
-                <div className="absolute bottom-3 left-4 w-14 h-14 rounded-full bg-[#0f4c3a] border-2 border-white text-emerald-300 flex items-center justify-center shadow-xl">
-                  <Sprout className="w-7 h-7" />
-                </div>
-              </div>
-
-              {/* 4 Stacked White Pillar Cards */}
-              <div className="space-y-3">
-
-                {/* Card 1: Purpose */}
-                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                    <Target className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-extrabold text-slate-900">Purpose</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                      We exist to close the gap between where rural communities are and where they could be.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card 2: Mission */}
-                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center shrink-0">
-                    <Compass className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-extrabold text-slate-900">Mission</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                      Build sustainable, community-owned models across agriculture, water management, and livelihoods.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card 3: Community */}
-                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
-                    <Users className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-extrabold text-slate-900">Community</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                      Every program is designed with the community, not handed down to it.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card 4: Innovation */}
-                <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                    <Lightbulb className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-extrabold text-slate-900">Innovation</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                      Practical, field-tested solutions that adapt and evolve to local needs.
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* BOTTOM FULL-WIDTH IMPACT BAR */}
-          <div className="grid lg:grid-cols-12 gap-4 items-center bg-[#0a3528] rounded-3xl p-4 sm:p-6 text-white shadow-2xl">
-            
-            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4 divide-x divide-white/10 text-center">
-              <div className="space-y-0.5 px-2">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">27+</span>
-                <span className="block text-[11px] font-extrabold text-slate-200">Years of Impact</span>
-              </div>
-
-              <div className="space-y-0.5 px-2">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">50 + 13</span>
-                <span className="block text-[11px] font-extrabold text-slate-200">Projects Delivered</span>
-              </div>
-
-              <div className="space-y-0.5 px-2">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-300">1,909</span>
-                <span className="block text-[11px] font-extrabold text-slate-200">Villages Reached</span>
-              </div>
-
-              <div className="space-y-0.5 px-2">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">2.67 Lakh</span>
-                <span className="block text-[11px] font-extrabold text-slate-200">Families Touched</span>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4 bg-white text-slate-900 rounded-2xl p-4 flex items-center justify-between gap-3 shadow-md">
-              <p className="text-xs font-bold leading-snug">
-                Building a better tomorrow by <span className="text-emerald-700 font-extrabold">empowering communities</span> today.
-              </p>
-              <Sprout className="w-8 h-8 text-emerald-600 shrink-0" />
-            </div>
-
-          </div>
-
-        </div>
-      </section>
 
       {/* --- OUR STORY SECTION (HORIZONTAL FILMSTRIP) --- */}
       <section ref={storyRef} id="journey" className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50 py-20 lg:py-28">
@@ -1081,7 +846,7 @@ export default function About() {
               onMouseLeave={() => setVmPaused(false)}
             >
               <div className="relative bg-white/[0.03] backdrop-blur-[35px] border border-amber-400/15 rounded-[36px] p-7 sm:p-9 animate-breathing-shadow overflow-hidden">
-                <span className="pointer-events-none absolute -top-6 right-2 text-[130px] font-black text-white/[0.03] leading-none select-none">
+                <span className="pointer-events-none absolute -top-6 right-2 text-[130px] font-black leading-none select-none animate-breathe-numeric">
                   0{activeVMSlide + 1}
                 </span>
 
@@ -1138,205 +903,298 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- CORE VALUES SECTION (VALUE ECOSYSTEM, PLATINUM) --- */}
-      <section ref={valuesRef} className="relative overflow-hidden bg-gradient-to-br from-slate-100 via-zinc-50 to-slate-200 py-14 lg:py-16">
+      {/* --- CORE VALUES SECTION (INTERACTIVE ROTATING ORBIT ENGINE WITH LASER CONNECTOR & RIGHT DETAIL SUITE) --- */}
+      <section ref={valuesRef} className="relative overflow-hidden bg-gradient-to-br from-[#080B26] via-[#140E3B] via-[#1F0A42] to-[#09051B] py-20 lg:py-28 text-white border-t border-cyan-400/30">
+        {/* Soft Glowing Liquid Mixed Ambient Glows & Dynamic Mesh */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.5] bg-[linear-gradient(120deg,transparent_49%,rgba(15,23,42,0.04)_50%,transparent_51%)] [background-size:56px_56px]" />
-          <div className="absolute top-[-10%] right-[15%] w-[380px] h-[380px] bg-white/60 rounded-full blur-[140px]" />
-          <div className="absolute bottom-[-10%] left-[10%] w-[340px] h-[340px] bg-white/50 rounded-full blur-[130px]" />
-          <div
-            className="absolute top-10 left-[8%] w-1 h-1 rounded-full bg-slate-400/50"
-            style={{ animationName: "float-particle", animationDuration: "5s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}
-          />
-          <div
-            className="absolute bottom-16 right-[12%] w-1.5 h-1.5 rounded-full bg-emerald-400/40"
-            style={{ animationName: "float-particle", animationDuration: "5s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite", animationDelay: "1.5s" }}
-          />
-          <div className="absolute inset-0 opacity-[0.4] bg-noise" />
+          <div className="absolute top-[-10%] right-[15%] w-[650px] h-[650px] bg-cyan-500/25 rounded-full blur-[170px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] left-[10%] w-[550px] h-[550px] bg-purple-500/30 rounded-full blur-[160px] animate-liquid-drift-b" />
+          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-blue-500/25 rounded-full blur-[180px] animate-aurora-silk-1" />
+          <div className="bg-noise absolute inset-0 opacity-15" />
+          <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
+          
+          {/* HEADER IN TOP CENTER MIDDLE */}
+          <div
+            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
+              valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-xs font-black uppercase tracking-widest shadow-[0_0_25px_rgba(6,182,212,0.3)]">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" /> OUR CORE GUIDING PRINCIPLES
+            </span>
 
-            {/* Left: heading, description, CTA */}
-            <div
-              className={`lg:col-span-4 transition-all duration-700 ${
-                valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-300 text-slate-600 text-xs font-bold uppercase tracking-wider shadow-sm">
-                ⭐ Our Core Values
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 mt-4 leading-tight">
-                The Principles That Guide Every Decision
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-4">
-                Six values sit behind every program we design and every partnership we enter — hover over each one orbiting alongside our mission.
-              </p>
-              <a
-                href="/get-involved"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-slate-900 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(15,23,42,0.4)] hover:shadow-[0_20px_50px_-15px_rgba(15,23,42,0.5)] hover:-translate-y-0.5 transition-all group mt-7"
-              >
-                Live Our Values <ArrowUpRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+              The Unshakable Values That <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-purple-300">Drive Every Ground Decision</span>
+            </h2>
 
-            {/* Right: interactive value ecosystem */}
-            <div
-              className={`lg:col-span-8 transition-all duration-1000 ${
-                valuesVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-              }`}
-              style={{ transitionDelay: "150ms" }}
-            >
-              <div className="relative w-full max-w-[500px] aspect-square mx-auto">
+            <p className="text-cyan-100/90 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+              Click any pillar on the rotating orbital wheel to dock it into alignment. The laser connector immediately feeds its ground commitment to the detail suite on the right.
+            </p>
+          </div>
 
-                {/* Ambient glow rings */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-emerald-200/50 pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full border border-emerald-100/40 pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full bg-emerald-300/20 blur-[60px] pointer-events-none" />
+          {/* MAIN COMPOSITION: LEFT ROTATING ORBIT WHEEL + CONNECTOR BEAM + RIGHT DETAIL CARD */}
+          <div
+            className={`flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 transition-all duration-1000 ${
+              valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+            style={{ transitionDelay: "150ms" }}
+          >
+            
+            {/* LEFT COLUMN: INTERACTIVE ROTATING ORBITAL WHEEL */}
+            <div className="w-full max-w-[480px] sm:max-w-[520px] aspect-square relative shrink-0">
 
-                {/* Floating ambient particles */}
-                {[
-                  { top: "12%", left: "18%", size: 5, color: "bg-emerald-400/60", delay: 0 },
-                  { top: "22%", left: "78%", size: 4, color: "bg-teal-400/50", delay: 0.8 },
-                  { top: "68%", left: "84%", size: 6, color: "bg-emerald-300/50", delay: 1.6 },
-                  { top: "82%", left: "22%", size: 4, color: "bg-slate-400/50", delay: 2.2 },
-                  { top: "45%", left: "6%", size: 5, color: "bg-emerald-400/50", delay: 1.2 },
-                  { top: "5%", left: "50%", size: 4, color: "bg-teal-300/50", delay: 0.4 },
-                ].map((p, i) => (
+              {/* Glowing Ambient Rings */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-cyan-400/30 pointer-events-none animate-pulse" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-purple-400/20 pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full bg-cyan-500/20 blur-[70px] pointer-events-none" />
+
+              {/* Center Stationary Glass Emblem Core */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-[#0D1540]/95 via-[#180F4A]/95 to-[#090620]/95 backdrop-blur-2xl border-2 border-cyan-400/80 z-20 flex flex-col items-center justify-center text-center shadow-[0_0_60px_rgba(56,189,248,0.5)] overflow-hidden">
+                <div className="absolute inset-2 rounded-full border border-cyan-400/30" />
+                <Gem className="w-8 h-8 text-cyan-300 mb-1 animate-bounce" />
+                <p className="text-[11px] font-black uppercase tracking-widest text-cyan-300 relative z-10 leading-tight">
+                  ORBITAL<br />ENGINE
+                </p>
+                <span className="text-[9px] font-bold text-purple-200/80 mt-0.5">Click Node to Dock</span>
+              </div>
+
+              {/* ROTATING ORBIT CONTAINER (LIQUID SMOOTH ROTATION) */}
+              {(() => {
+                const activeIdx = hoveredValue !== null ? hoveredValue : 0;
+                const currentRotation = -activeIdx * 60;
+                return (
                   <div
-                    key={i}
-                    className={`absolute rounded-full ${p.color} pointer-events-none`}
+                    className="absolute inset-0 z-10"
                     style={{
-                      top: p.top,
-                      left: p.left,
-                      width: p.size,
-                      height: p.size,
-                      animationName: "float-particle",
-                      animationDuration: "5s",
-                      animationTimingFunction: "ease-in-out",
-                      animationIterationCount: "infinite",
-                      animationDelay: `${p.delay}s`,
+                      transform: `rotate(${currentRotation}deg)`,
+                      transition: "transform 1200ms cubic-bezier(0.22, 1, 0.36, 1)",
                     }}
-                  />
-                ))}
+                  >
+                    {/* SVG Ring Connection Lines */}
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 520 520">
+                      {coreValues.map((val, i) => {
+                        const angle = i * 60;
+                        const rad = (angle * Math.PI) / 180;
+                        const radius = 175;
+                        const x = Number((260 + radius * Math.cos(rad)).toFixed(2));
+                        const y = Number((260 + radius * Math.sin(rad)).toFixed(2));
+                        const isSelected = activeIdx === i;
+                        return (
+                          <line
+                            key={val.title}
+                            x1="260"
+                            y1="260"
+                            x2={x}
+                            y2={y}
+                            stroke={isSelected ? "#38bdf8" : "#818cf8"}
+                            strokeWidth={isSelected ? 4 : 2}
+                            opacity={isSelected ? 0.8 : 0.25}
+                            className="transition-all duration-300"
+                          />
+                        );
+                      })}
+                    </svg>
 
-                {/* Center glass core */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-white/70 backdrop-blur-[36px] border-2 border-emerald-300/70 animate-breathing-shadow-emerald z-20 flex items-center justify-center shadow-[0_0_40px_-5px_rgba(16,185,129,0.35)]">
-                  <div className="absolute inset-2 rounded-full border border-emerald-400/50" />
-                  <div className="absolute inset-0 rounded-full overflow-hidden opacity-90">
-                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/90 to-transparent animate-light-sweep" />
-                  </div>
-                  <p className="text-[11px] font-black uppercase tracking-widest text-emerald-700 text-center relative z-10">Our<br />Values</p>
-                </div>
-
-                {/* Connecting lines (rotate with the orbit) */}
-                <svg
-                  className="absolute inset-0 w-full h-full z-0 pointer-events-none"
-                  viewBox="0 0 500 500"
-                  style={{
-                    animationName: "orbit-rotate",
-                    animationDuration: "40s",
-                    animationTimingFunction: "linear",
-                    animationIterationCount: "infinite",
-                    animationPlayState: hoveredValue !== null ? "paused" : "running",
-                  }}
-                  aria-hidden="true"
-                >
-                  {coreValues.map((val, i) => {
-                    const angle = -90 + i * 60;
-                    const rad = (angle * Math.PI) / 180;
-                    const x = Number((250 + val.radius * Math.cos(rad)).toFixed(2));
-                    const y = Number((250 + val.radius * Math.sin(rad)).toFixed(2));
-                    return (
-                      <g key={val.title}>
-                        <line
-                          x1="250"
-                          y1="250"
-                          x2={x}
-                          y2={y}
-                          stroke="#10b981"
-                          strokeWidth={hoveredValue === i ? 5 : 3}
-                          opacity={hoveredValue === i ? 0.25 : 0.12}
-                          className="transition-all duration-300"
-                          style={{ filter: "blur(2px)" }}
-                        />
-                        <line
-                          x1="250"
-                          y1="250"
-                          x2={x}
-                          y2={y}
-                          stroke={hoveredValue === i ? "#059669" : "#10b981"}
-                          strokeWidth={hoveredValue === i ? 2 : 1.25}
-                          opacity={hoveredValue === i ? 0.7 : 0.4}
-                          className="transition-all duration-300"
-                        />
-                      </g>
-                    );
-                  })}
-                </svg>
-
-                {/* Orbiting value modules */}
-                <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    animationName: "orbit-rotate",
-                    animationDuration: "40s",
-                    animationTimingFunction: "linear",
-                    animationIterationCount: "infinite",
-                    animationPlayState: hoveredValue !== null ? "paused" : "running",
-                  }}
-                >
-                  {coreValues.map((val, i) => {
-                    const angle = -90 + i * 60;
-                    const rad = (angle * Math.PI) / 180;
-                    const x = Number((val.radius * Math.cos(rad)).toFixed(2));
-                    const y = Number((val.radius * Math.sin(rad)).toFixed(2));
-                    const isHovered = hoveredValue === i;
-                    return (
-                      <div
-                        key={val.title}
-                        className={`absolute top-1/2 left-1/2 transition-all duration-700 ${
-                          valuesVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
-                        }`}
-                        style={{
-                          transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                          transitionDelay: `${i * 100}ms`,
-                        }}
-                      >
+                    {/* 6 Fixed-Size Orbiting Spheres (Counter-rotated so text stays upright) */}
+                    {coreValues.map((val, i) => {
+                      const angle = i * 60;
+                      const rad = (angle * Math.PI) / 180;
+                      const radius = 175;
+                      const x = Number((radius * Math.cos(rad)).toFixed(2));
+                      const y = Number((radius * Math.sin(rad)).toFixed(2));
+                      const isSelected = activeIdx === i;
+                      const ValIcon = val.icon;
+                      return (
                         <div
+                          key={val.title}
+                          className="absolute top-1/2 left-1/2"
                           style={{
-                            animationName: "orbit-counter",
-                            animationDuration: "40s",
-                            animationTimingFunction: "linear",
-                            animationIterationCount: "infinite",
-                            animationPlayState: hoveredValue !== null ? "paused" : "running",
+                            transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                           }}
                         >
                           <div
-                            onMouseEnter={() => setHoveredValue(i)}
-                            onMouseLeave={() => setHoveredValue(null)}
-                            className={`group bg-white/80 backdrop-blur-[28px] border rounded-3xl shadow-[0_15px_35px_-18px_rgba(16,185,129,0.35)] transition-all duration-300 cursor-default ${
-                              isHovered ? "border-emerald-400 scale-125 z-30 relative shadow-[0_20px_45px_-15px_rgba(16,185,129,0.5)]" : "border-white/70"
-                            }`}
-                            style={{ width: val.size, height: isHovered ? "auto" : val.size, minHeight: val.size }}
+                            style={{
+                              transform: `rotate(${-currentRotation}deg)`,
+                              transition: "transform 1200ms cubic-bezier(0.22, 1, 0.36, 1)",
+                            }}
                           >
-                            <div className="flex flex-col items-center justify-center p-2 h-full text-center">
-                              <val.icon className={`text-emerald-600 transition-transform duration-300 ${isHovered ? "w-6 h-6 rotate-12" : "w-5 h-5"}`} />
-                              <p className="text-[10px] font-black text-slate-900 mt-1 leading-tight">{val.title}</p>
-                              {isHovered && (
-                                <p className="text-[9px] text-slate-500 leading-snug mt-1 animate-fade-in">{val.desc}</p>
-                              )}
-                            </div>
+                            <button
+                              onClick={() => setHoveredValue(i)}
+                              className={`group w-28 h-28 sm:w-32 sm:h-32 rounded-3xl backdrop-blur-2xl border-2 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center text-center ${
+                                isSelected
+                                  ? "border-cyan-300 bg-slate-900/95 scale-110 z-30 shadow-[0_0_40px_rgba(56,189,248,0.8)]"
+                                  : "bg-white/10 border-cyan-400/40 hover:border-cyan-300 hover:bg-slate-900/80 hover:scale-105"
+                              }`}
+                            >
+                              <div className={`p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${isSelected ? "bg-cyan-400 text-slate-950 scale-110 mb-1" : "bg-cyan-500/20 text-cyan-300 border border-cyan-400/30"}`}>
+                                <ValIcon className="w-5 h-5" />
+                              </div>
+                              <p className={`text-xs font-black mt-1 leading-tight transition-colors ${isSelected ? "text-cyan-300" : "text-white group-hover:text-cyan-200"}`}>
+                                {val.title}
+                              </p>
+                            </button>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
+
+            </div>
+
+            {/* MIDDLE ELECTRIC CURRENT CONNECTOR BRIDGE (TOUCHES BOTH BOXES WITH STREAMING DOTTED CURRENT LIGHTS) */}
+            <div className="hidden lg:flex items-center justify-center w-24 lg:w-36 shrink-0 relative z-30 -mx-6 lg:-mx-10">
+              <div className="relative w-full h-10 flex items-center justify-center">
+                {/* SVG Electric Current Channel */}
+                <svg className="w-full h-10 overflow-visible" viewBox="0 0 140 40" fill="none">
+                  {/* Glowing Ambient Outer Glow Path */}
+                  <line x1="0" y1="20" x2="140" y2="20" stroke="#0284c7" strokeWidth="6" opacity="0.35" strokeLinecap="round" />
+                  
+                  {/* Solid Base Laser Conduit */}
+                  <line x1="0" y1="20" x2="140" y2="20" stroke="#38bdf8" strokeWidth="2.5" strokeLinecap="round" />
+                  
+                  {/* Streaming Dotted Electric Current Flow Line */}
+                  <line
+                    x1="0"
+                    y1="20"
+                    x2="140"
+                    y2="20"
+                    stroke="#a855f7"
+                    strokeWidth="3.5"
+                    strokeDasharray="6 10"
+                    strokeLinecap="round"
+                    className="animate-electric-current"
+                  />
+                  
+                  {/* Second Dotted Neon Cyan Wave */}
+                  <line
+                    x1="0"
+                    y1="20"
+                    x2="140"
+                    y2="20"
+                    stroke="#38bdf8"
+                    strokeWidth="2.5"
+                    strokeDasharray="4 8"
+                    strokeLinecap="round"
+                    className="animate-electric-current"
+                    style={{ animationDuration: "0.35s", animationDirection: "reverse" }}
+                  />
+
+                  {/* Left Dock Attachment Socket Node */}
+                  <circle cx="0" cy="20" r="5" fill="#38bdf8" className="shadow-[0_0_12px_#38bdf8]" />
+                  <circle cx="0" cy="20" r="2.5" fill="#ffffff" />
+
+                  {/* Right Card Attachment Socket Node */}
+                  <circle cx="140" cy="20" r="5" fill="#a855f7" className="shadow-[0_0_12px_#a855f7]" />
+                  <circle cx="140" cy="20" r="2.5" fill="#ffffff" />
+                </svg>
+
+                {/* Central High-Energy Current Pulse Orb */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-300 shadow-[0_0_20px_#38bdf8] animate-ping" />
               </div>
             </div>
+
+            {/* RIGHT COLUMN: ACTIVE VALUE DETAIL SUITE CARD (WITH INSTANT DATA BLINK GLOW) */}
+            <div className="w-full flex-1 max-w-lg lg:max-w-xl">
+              {(() => {
+                const activeIndex = hoveredValue !== null ? hoveredValue : 0;
+                const activeVal = coreValues[activeIndex];
+                const ActiveIcon = activeVal.icon;
+
+                const tags = [
+                  "100% Statutory Schedule VII Verified",
+                  "Quarterly Audited UC Filings Delivered",
+                  "Field-Tested Grassroots Tech Integration",
+                  "Community-First Needs Diagnostics",
+                  "100% Local Ownership & Self-Governance",
+                  "27 Years Unbroken Ground Operation",
+                ];
+
+                return (
+                  <div
+                    key={activeIndex}
+                    className="animate-card-data-pulse bg-slate-950/85 backdrop-blur-2xl border-2 border-cyan-400/80 rounded-[36px] p-7 sm:p-9 shadow-[0_25px_60px_rgba(6,182,212,0.35)] space-y-6 relative overflow-hidden group"
+                  >
+                    {/* Top Accent Gradient Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-cyan-400 via-sky-300 to-purple-500" />
+                    
+                    {/* Background Watermark Icon */}
+                    <ActiveIcon className="w-40 h-40 text-cyan-400/5 absolute -bottom-6 -right-6 pointer-events-none" />
+
+                    {/* Header Row */}
+                    <div className="flex items-center justify-between gap-4 relative z-10">
+                      <div className="flex items-center gap-4">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-400 to-blue-600 text-slate-950 flex items-center justify-center shadow-lg shrink-0">
+                          <ActiveIcon className="w-7 h-7" />
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Pillar 0{activeIndex + 1} of 06</span>
+                          <h3 className="text-2xl font-black text-white">{activeVal.title}</h3>
+                        </div>
+                      </div>
+
+                      <span className="px-3.5 py-1.5 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/50 text-[10px] font-black uppercase tracking-wider shrink-0 shadow-sm animate-pulse">
+                        Docked Active
+                      </span>
+                    </div>
+
+                    {/* Description */}
+                    <div className="space-y-2 relative z-10">
+                      <p className="text-cyan-100/90 text-sm sm:text-base font-medium leading-relaxed">
+                        {activeVal.desc}
+                      </p>
+                    </div>
+
+                    {/* Statutory Verification Tag */}
+                    <div className="bg-black/60 backdrop-blur-md rounded-2xl p-4 border border-cyan-400/20 relative z-10 space-y-1 shadow-inner">
+                      <div className="flex items-center gap-2 text-xs font-bold text-cyan-300">
+                        <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>Statutory Verification</span>
+                      </div>
+                      <p className="text-xs text-slate-200 font-semibold pl-6">
+                        {tags[activeIndex]}
+                      </p>
+                    </div>
+
+                    {/* Action Button */}
+                    <div className="pt-2 relative z-10">
+                      <a
+                        href="/get-involved"
+                        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] hover:scale-[1.02] transition-all group"
+                      >
+                        Explore {activeVal.title} Commitment <ArrowUpRight className="w-4 h-4 text-slate-950 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </a>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+
           </div>
+
+          {/* BOTTOM FULL-WIDTH MIXED COSMIC TRUST BAR */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-cyan-400/20">
+            {[
+              { label: "Community Co-Design", desc: "100% programs planned with local village leaders", icon: Users },
+              { label: "Statutory Accountability", desc: "Quarterly Utilization Certificates and GIS logs", icon: ShieldCheck },
+              { label: "Self-Sustaining Impact", desc: "Local institutions designed to thrive permanently", icon: Sprout },
+            ].map((item) => (
+              <div key={item.label} className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-cyan-400/60 transition-all">
+                <div className="w-12 h-12 rounded-xl bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center shrink-0">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-white">{item.label}</h4>
+                  <p className="text-xs text-cyan-100/80 font-medium mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
