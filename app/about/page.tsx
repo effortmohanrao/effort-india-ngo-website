@@ -5,7 +5,6 @@ import {
   ShieldCheck,
   Users,
   Sparkles,
-  FileText,
   ArrowRight,
   ArrowUpRight,
   Globe2,
@@ -23,7 +22,6 @@ import {
   Scale,
   BookOpen,
   TrendingUp,
-  Play,
   Award,
   ChevronLeft,
   ChevronRight,
@@ -290,8 +288,8 @@ type SmartPanel = {
 };
 
 const smartPanels: SmartPanel[] = [
-  { title: "Real-Time Transparency", icon: Eye, detail: "Progress visible as it happens, not at year-end.", kind: "seal" },
-  { title: "Technology Driven", icon: BarChart3, detail: "Digital tracking replaces paper trails end to end.", kind: "seal" },
+  { title: "Regular Transparent Reporting", icon: Eye, detail: "Field progress shared with partners on a regular schedule, not just at year-end.", kind: "seal" },
+  { title: "Digital Record-Keeping", icon: BarChart3, detail: "Program data tracked digitally alongside field documentation.", kind: "seal" },
   { title: "Community Participation", icon: Handshake, detail: "Programs co-designed with the people they serve.", kind: "seal" },
   { title: "Data-Based Decisions", icon: Search, detail: "Every program adjustment is backed by field data.", kind: "seal" },
   { title: "Measurable Impact", icon: CheckCircle2, detail: "Lives directly supported through our programs.", kind: "stat", target: 15000, suffix: "+", label: "Lives Impacted" },
@@ -490,13 +488,6 @@ export default function About() {
   }, [vmVisible, vmPaused]);
 
 
-  const documents = [
-    { name: "Annual Activity Report 2024-25", size: "3.2 MB", date: "April 2025" },
-    { name: "Audited Financial Statements 2024", size: "1.8 MB", date: "Oct 2024" },
-    { name: "FCRA Returns Certificate 2023-24", size: "1.1 MB", date: "Dec 2024" },
-    { name: "Income Tax Exemption Form 80G", size: "0.9 MB", date: "Active" }
-  ];
-
   return (
     <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-hidden">
       
@@ -550,7 +541,7 @@ export default function About() {
                 }`}
                 style={{ transitionDelay: "300ms" }}
               >
-                Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO has executed <strong className="text-amber-300 font-extrabold">50 Completed Projects</strong> with <strong className="text-emerald-300 font-extrabold">13 Active Ongoing Projects</strong>. Operating across <strong className="text-amber-300 font-extrabold">9 States, 37 Districts, and 1,909 Villages</strong>, we empower <strong className="text-emerald-300 font-extrabold">2.67 Lakh (267,000+) Rural Families</strong> through climate-resilient farming, water harvesting, and 1,368 community collectives (42 FPOs, 1,275 SHGs, 51 MACS).
+                Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO has spent <strong className="text-amber-300 font-extrabold">27 years</strong> building climate-resilient farming, water harvesting, and community-led collectives across rural India — from a single registered society to a multi-state, multi-sector organization.
               </p>
 
               {/* Core Executive Quick Metrics Strip (4 Crisp White Highlight Cards) */}
@@ -561,19 +552,19 @@ export default function About() {
                 style={{ transitionDelay: "450ms" }}
               >
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-800">50 + 13</span>
+                  <span className="text-2xl sm:text-3xl font-black text-emerald-800">50 + 13</span>
                   <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Completed &amp; Active Projects</span>
                 </div>
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-700">1,909</span>
+                  <span className="text-2xl sm:text-3xl font-black text-amber-700">1,909</span>
                   <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Villages (9 States)</span>
                 </div>
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-800">2.67 Lakh</span>
+                  <span className="text-2xl sm:text-3xl font-black text-emerald-800">2.67 Lakh</span>
                   <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Families Impacted</span>
                 </div>
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-700">1,368</span>
+                  <span className="text-2xl sm:text-3xl font-black text-amber-700">1,368</span>
                   <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Community Collectives</span>
                 </div>
               </div>
@@ -589,7 +580,7 @@ export default function About() {
                   href="#journey"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-black text-sm shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 transition-all group"
                 >
-                  <span>EXPLORE OUR 27-YEAR JOURNEY</span>
+                  <span>Explore Our 27-Year Journey</span>
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
                 <a
@@ -597,7 +588,7 @@ export default function About() {
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm hover:bg-white/20 hover:border-emerald-400 transition-all"
                 >
                   <Users className="w-4 h-4 text-amber-300" />
-                  <span>MEET OUR LEADERSHIP SYSTEM</span>
+                  <span>Meet Our Leadership Team</span>
                 </a>
               </div>
 
@@ -693,7 +684,7 @@ export default function About() {
             }`}
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider shadow-sm">
-              📖 Our Story
+              <BookOpen className="w-3.5 h-3.5" /> Our Story
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Every Great Change Begins With A Small Step
@@ -791,12 +782,6 @@ export default function About() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold text-sm shadow-[0_15px_40px_-10px_rgba(217,119,6,0.5)] hover:shadow-[0_20px_50px_-15px_rgba(217,119,6,0.6)] hover:-translate-y-0.5 transition-all group"
             >
               Explore Our Journey <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-amber-200 text-slate-700 font-bold text-sm hover:border-amber-400 hover:text-amber-700 transition-all"
-            >
-              <Play className="w-4 h-4" /> Watch Our Story
             </a>
           </div>
         </div>
@@ -904,12 +889,12 @@ export default function About() {
       </section>
 
       {/* --- CORE VALUES SECTION (INTERACTIVE ROTATING ORBIT ENGINE WITH LASER CONNECTOR & RIGHT DETAIL SUITE) --- */}
-      <section ref={valuesRef} className="relative overflow-hidden bg-gradient-to-br from-[#080B26] via-[#140E3B] via-[#1F0A42] to-[#09051B] py-20 lg:py-28 text-white border-t border-cyan-400/30">
+      <section ref={valuesRef} className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-[#0b3d2e] to-slate-950 py-20 lg:py-28 text-white border-t border-emerald-400/30">
         {/* Soft Glowing Liquid Mixed Ambient Glows & Dynamic Mesh */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[15%] w-[650px] h-[650px] bg-cyan-500/25 rounded-full blur-[170px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[10%] w-[550px] h-[550px] bg-purple-500/30 rounded-full blur-[160px] animate-liquid-drift-b" />
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-blue-500/25 rounded-full blur-[180px] animate-aurora-silk-1" />
+          <div className="absolute top-[-10%] right-[15%] w-[650px] h-[650px] bg-emerald-500/25 rounded-full blur-[170px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] left-[10%] w-[550px] h-[550px] bg-amber-500/25 rounded-full blur-[160px] animate-liquid-drift-b" />
+          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-teal-500/20 rounded-full blur-[180px] animate-aurora-silk-1" />
           <div className="bg-noise absolute inset-0 opacity-15" />
           <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]" />
         </div>
@@ -922,16 +907,16 @@ export default function About() {
               valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-xs font-black uppercase tracking-widest shadow-[0_0_25px_rgba(6,182,212,0.3)]">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-300" /> OUR CORE GUIDING PRINCIPLES
+            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-widest shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-300" /> OUR CORE GUIDING PRINCIPLES
             </span>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              The Unshakable Values That <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-purple-300">Drive Every Ground Decision</span>
+              The Unshakable Values That <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">Drive Every Ground Decision</span>
             </h2>
 
-            <p className="text-cyan-100/90 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
-              Click any pillar on the rotating orbital wheel to dock it into alignment. The laser connector immediately feeds its ground commitment to the detail suite on the right.
+            <p className="text-emerald-100/90 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+              Tap any value below to see how we put it into practice in the field.
             </p>
           </div>
 
@@ -947,18 +932,18 @@ export default function About() {
             <div className="w-full max-w-[480px] sm:max-w-[520px] aspect-square relative shrink-0">
 
               {/* Glowing Ambient Rings */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-cyan-400/30 pointer-events-none animate-pulse" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-purple-400/20 pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full bg-cyan-500/20 blur-[70px] pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-emerald-400/30 pointer-events-none animate-pulse" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-amber-400/20 pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full bg-emerald-500/20 blur-[70px] pointer-events-none" />
 
               {/* Center Stationary Glass Emblem Core */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-[#0D1540]/95 via-[#180F4A]/95 to-[#090620]/95 backdrop-blur-2xl border-2 border-cyan-400/80 z-20 flex flex-col items-center justify-center text-center shadow-[0_0_60px_rgba(56,189,248,0.5)] overflow-hidden">
-                <div className="absolute inset-2 rounded-full border border-cyan-400/30" />
-                <Gem className="w-8 h-8 text-cyan-300 mb-1 animate-bounce" />
-                <p className="text-[11px] font-black uppercase tracking-widest text-cyan-300 relative z-10 leading-tight">
-                  ORBITAL<br />ENGINE
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-[#052e22]/95 via-[#064e3b]/95 to-[#022c1c]/95 backdrop-blur-2xl border-2 border-emerald-400/80 z-20 flex flex-col items-center justify-center text-center shadow-[0_0_60px_rgba(16,185,129,0.5)] overflow-hidden">
+                <div className="absolute inset-2 rounded-full border border-emerald-400/30" />
+                <Gem className="w-8 h-8 text-emerald-300 mb-1 animate-bounce" />
+                <p className="text-[11px] font-black uppercase tracking-widest text-emerald-300 relative z-10 leading-tight">
+                  OUR<br />VALUES
                 </p>
-                <span className="text-[9px] font-bold text-purple-200/80 mt-0.5">Click Node to Dock</span>
+                <span className="text-[9px] font-bold text-amber-200/80 mt-0.5">Tap a Value</span>
               </div>
 
               {/* ROTATING ORBIT CONTAINER (LIQUID SMOOTH ROTATION) */}
@@ -989,7 +974,7 @@ export default function About() {
                             y1="260"
                             x2={x}
                             y2={y}
-                            stroke={isSelected ? "#38bdf8" : "#818cf8"}
+                            stroke={isSelected ? "#10b981" : "#5eead4"}
                             strokeWidth={isSelected ? 4 : 2}
                             opacity={isSelected ? 0.8 : 0.25}
                             className="transition-all duration-300"
@@ -1025,14 +1010,14 @@ export default function About() {
                               onClick={() => setHoveredValue(i)}
                               className={`group w-28 h-28 sm:w-32 sm:h-32 rounded-3xl backdrop-blur-2xl border-2 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center text-center ${
                                 isSelected
-                                  ? "border-cyan-300 bg-slate-900/95 scale-110 z-30 shadow-[0_0_40px_rgba(56,189,248,0.8)]"
-                                  : "bg-white/10 border-cyan-400/40 hover:border-cyan-300 hover:bg-slate-900/80 hover:scale-105"
+                                  ? "border-emerald-300 bg-slate-900/95 scale-110 z-30 shadow-[0_0_40px_rgba(16,185,129,0.8)]"
+                                  : "bg-white/10 border-emerald-400/40 hover:border-emerald-300 hover:bg-slate-900/80 hover:scale-105"
                               }`}
                             >
-                              <div className={`p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${isSelected ? "bg-cyan-400 text-slate-950 scale-110 mb-1" : "bg-cyan-500/20 text-cyan-300 border border-cyan-400/30"}`}>
+                              <div className={`p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${isSelected ? "bg-emerald-400 text-slate-950 scale-110 mb-1" : "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"}`}>
                                 <ValIcon className="w-5 h-5" />
                               </div>
-                              <p className={`text-xs font-black mt-1 leading-tight transition-colors ${isSelected ? "text-cyan-300" : "text-white group-hover:text-cyan-200"}`}>
+                              <p className={`text-xs font-black mt-1 leading-tight transition-colors ${isSelected ? "text-emerald-300" : "text-white group-hover:text-emerald-200"}`}>
                                 {val.title}
                               </p>
                             </button>
@@ -1046,37 +1031,37 @@ export default function About() {
 
             </div>
 
-            {/* MIDDLE ELECTRIC CURRENT CONNECTOR BRIDGE (TOUCHES BOTH BOXES WITH STREAMING DOTTED CURRENT LIGHTS) */}
+            {/* MIDDLE CONNECTOR BRIDGE (LINKS THE SELECTED VALUE TO ITS DETAIL CARD) */}
             <div className="hidden lg:flex items-center justify-center w-24 lg:w-36 shrink-0 relative z-30 -mx-6 lg:-mx-10">
               <div className="relative w-full h-10 flex items-center justify-center">
-                {/* SVG Electric Current Channel */}
+                {/* SVG Connector Line */}
                 <svg className="w-full h-10 overflow-visible" viewBox="0 0 140 40" fill="none">
                   {/* Glowing Ambient Outer Glow Path */}
-                  <line x1="0" y1="20" x2="140" y2="20" stroke="#0284c7" strokeWidth="6" opacity="0.35" strokeLinecap="round" />
-                  
-                  {/* Solid Base Laser Conduit */}
-                  <line x1="0" y1="20" x2="140" y2="20" stroke="#38bdf8" strokeWidth="2.5" strokeLinecap="round" />
-                  
-                  {/* Streaming Dotted Electric Current Flow Line */}
+                  <line x1="0" y1="20" x2="140" y2="20" stroke="#059669" strokeWidth="6" opacity="0.35" strokeLinecap="round" />
+
+                  {/* Solid Base Conduit */}
+                  <line x1="0" y1="20" x2="140" y2="20" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" />
+
+                  {/* Streaming Dotted Flow Line */}
                   <line
                     x1="0"
                     y1="20"
                     x2="140"
                     y2="20"
-                    stroke="#a855f7"
+                    stroke="#f59e0b"
                     strokeWidth="3.5"
                     strokeDasharray="6 10"
                     strokeLinecap="round"
                     className="animate-electric-current"
                   />
-                  
-                  {/* Second Dotted Neon Cyan Wave */}
+
+                  {/* Second Dotted Wave */}
                   <line
                     x1="0"
                     y1="20"
                     x2="140"
                     y2="20"
-                    stroke="#38bdf8"
+                    stroke="#34d399"
                     strokeWidth="2.5"
                     strokeDasharray="4 8"
                     strokeLinecap="round"
@@ -1084,17 +1069,17 @@ export default function About() {
                     style={{ animationDuration: "0.35s", animationDirection: "reverse" }}
                   />
 
-                  {/* Left Dock Attachment Socket Node */}
-                  <circle cx="0" cy="20" r="5" fill="#38bdf8" className="shadow-[0_0_12px_#38bdf8]" />
+                  {/* Left Attachment Node */}
+                  <circle cx="0" cy="20" r="5" fill="#34d399" className="shadow-[0_0_12px_#34d399]" />
                   <circle cx="0" cy="20" r="2.5" fill="#ffffff" />
 
-                  {/* Right Card Attachment Socket Node */}
-                  <circle cx="140" cy="20" r="5" fill="#a855f7" className="shadow-[0_0_12px_#a855f7]" />
+                  {/* Right Attachment Node */}
+                  <circle cx="140" cy="20" r="5" fill="#f59e0b" className="shadow-[0_0_12px_#f59e0b]" />
                   <circle cx="140" cy="20" r="2.5" fill="#ffffff" />
                 </svg>
 
-                {/* Central High-Energy Current Pulse Orb */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-300 shadow-[0_0_20px_#38bdf8] animate-ping" />
+                {/* Central Pulse Marker */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-emerald-300 shadow-[0_0_20px_#34d399] animate-ping" />
               </div>
             </div>
 
@@ -1117,42 +1102,42 @@ export default function About() {
                 return (
                   <div
                     key={activeIndex}
-                    className="animate-card-data-pulse bg-slate-950/85 backdrop-blur-2xl border-2 border-cyan-400/80 rounded-[36px] p-7 sm:p-9 shadow-[0_25px_60px_rgba(6,182,212,0.35)] space-y-6 relative overflow-hidden group"
+                    className="animate-card-data-pulse bg-slate-950/85 backdrop-blur-2xl border-2 border-emerald-400/80 rounded-[36px] p-7 sm:p-9 shadow-[0_25px_60px_rgba(16,185,129,0.35)] space-y-6 relative overflow-hidden group"
                   >
                     {/* Top Accent Gradient Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-cyan-400 via-sky-300 to-purple-500" />
-                    
+                    <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-400" />
+
                     {/* Background Watermark Icon */}
-                    <ActiveIcon className="w-40 h-40 text-cyan-400/5 absolute -bottom-6 -right-6 pointer-events-none" />
+                    <ActiveIcon className="w-40 h-40 text-emerald-400/5 absolute -bottom-6 -right-6 pointer-events-none" />
 
                     {/* Header Row */}
                     <div className="flex items-center justify-between gap-4 relative z-10">
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-400 to-blue-600 text-slate-950 flex items-center justify-center shadow-lg shrink-0">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-400 to-teal-600 text-slate-950 flex items-center justify-center shadow-lg shrink-0">
                           <ActiveIcon className="w-7 h-7" />
                         </div>
                         <div>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Pillar 0{activeIndex + 1} of 06</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300">Value 0{activeIndex + 1} of 06</span>
                           <h3 className="text-2xl font-black text-white">{activeVal.title}</h3>
                         </div>
                       </div>
 
-                      <span className="px-3.5 py-1.5 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/50 text-[10px] font-black uppercase tracking-wider shrink-0 shadow-sm animate-pulse">
-                        Docked Active
+                      <span className="px-3.5 py-1.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/50 text-[10px] font-black uppercase tracking-wider shrink-0 shadow-sm animate-pulse">
+                        Selected
                       </span>
                     </div>
 
                     {/* Description */}
                     <div className="space-y-2 relative z-10">
-                      <p className="text-cyan-100/90 text-sm sm:text-base font-medium leading-relaxed">
+                      <p className="text-emerald-100/90 text-sm sm:text-base font-medium leading-relaxed">
                         {activeVal.desc}
                       </p>
                     </div>
 
                     {/* Statutory Verification Tag */}
-                    <div className="bg-black/60 backdrop-blur-md rounded-2xl p-4 border border-cyan-400/20 relative z-10 space-y-1 shadow-inner">
-                      <div className="flex items-center gap-2 text-xs font-bold text-cyan-300">
-                        <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <div className="bg-black/60 backdrop-blur-md rounded-2xl p-4 border border-emerald-400/20 relative z-10 space-y-1 shadow-inner">
+                      <div className="flex items-center gap-2 text-xs font-bold text-emerald-300">
+                        <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>Statutory Verification</span>
                       </div>
                       <p className="text-xs text-slate-200 font-semibold pl-6">
@@ -1164,7 +1149,7 @@ export default function About() {
                     <div className="pt-2 relative z-10">
                       <a
                         href="/get-involved"
-                        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] hover:scale-[1.02] transition-all group"
+                        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_10px_30px_rgba(16,185,129,0.4)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.6)] hover:scale-[1.02] transition-all group"
                       >
                         Explore {activeVal.title} Commitment <ArrowUpRight className="w-4 h-4 text-slate-950 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </a>
@@ -1177,19 +1162,19 @@ export default function About() {
           </div>
 
           {/* BOTTOM FULL-WIDTH MIXED COSMIC TRUST BAR */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-cyan-400/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-emerald-400/20">
             {[
               { label: "Community Co-Design", desc: "100% programs planned with local village leaders", icon: Users },
               { label: "Statutory Accountability", desc: "Quarterly Utilization Certificates and GIS logs", icon: ShieldCheck },
               { label: "Self-Sustaining Impact", desc: "Local institutions designed to thrive permanently", icon: Sprout },
             ].map((item) => (
-              <div key={item.label} className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-cyan-400/60 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center shrink-0">
+              <div key={item.label} className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-emerald-400/60 transition-all">
+                <div className="w-12 h-12 rounded-xl bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
                   <item.icon className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-white">{item.label}</h4>
-                  <p className="text-xs text-cyan-100/80 font-medium mt-0.5">{item.desc}</p>
+                  <p className="text-xs text-emerald-100/80 font-medium mt-0.5">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -1241,7 +1226,7 @@ export default function About() {
           >
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
               <Users className="w-3.5 h-3.5 text-emerald-700" />
-              <span>01 / LEADERSHIP SYSTEM — LEADERSHIP &amp; GOVERNANCE</span>
+              <span>LEADERSHIP &amp; GOVERNANCE</span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.1]">
@@ -1365,7 +1350,7 @@ export default function About() {
                     <div className="flex items-center gap-1.5">
                       <Zap className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
                       <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-300">
-                        TRACK RECORD HUD
+                        Our Track Record
                       </span>
                     </div>
                     <span className="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider flex items-center gap-1">
@@ -1380,8 +1365,8 @@ export default function About() {
                     {/* DIGIT 1: 50 (COMPLETED PROJECTS / HALF CENTURY) */}
                     <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
                       <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-80" />
-                      <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">
-                        🏆 HALF CENTURY
+                      <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
+                        <Award className="w-3 h-3 text-amber-400" /> HALF CENTURY
                       </span>
                       <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_20px_rgba(16,185,129,0.8)] animate-hero-bob">
                         50<span className="text-xl text-emerald-400 font-sans">+</span>
@@ -1503,22 +1488,6 @@ export default function About() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* GOVERNANCE PATHWAY FLOW (BOTTOM ARCHITECTURAL BAR) */}
-          <div className="pt-8 border-t border-emerald-900/10 flex flex-wrap items-center justify-between gap-4 text-xs font-extrabold uppercase tracking-widest text-slate-600">
-            <span className="text-emerald-900">ORGANIZATIONAL GOVERNANCE FLOW:</span>
-            <div className="flex items-center gap-3 sm:gap-6 flex-wrap">
-              <span className="px-3 py-1 rounded-full bg-white border border-emerald-800/20 text-slate-900 shadow-xs">VISION</span>
-              <span>➔</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-emerald-800/20 text-slate-900 shadow-xs">GOVERNANCE</span>
-              <span>➔</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-emerald-800/20 text-slate-900 shadow-xs">EXPERTISE</span>
-              <span>➔</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-emerald-800/20 text-slate-900 shadow-xs">OPERATIONS</span>
-              <span>➔</span>
-              <span className="px-3 py-1 rounded-full bg-emerald-900 text-amber-300 shadow-sm">GROUND ACTION</span>
             </div>
           </div>
 
@@ -1649,23 +1618,23 @@ export default function About() {
               Why Choose Us
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900">
-              Two Approaches. One Clear Difference.
+              What We Avoid, And What We Practice Instead.
             </h2>
             <p className="text-slate-600 text-sm leading-relaxed">
-              See how our way of working stacks up against the traditional NGO model.
+              A quick look at the operating principles that shape how we work.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-[1fr_64px_1fr] border border-slate-200 overflow-hidden">
 
-            {/* Left: Traditional NGO */}
+            {/* Left: What we avoid */}
             <div
               className={`bg-stone-200 p-6 sm:p-8 flex flex-col justify-center transition-all duration-700 ${
                 compareVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
               }`}
             >
-              <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">Traditional Approach</span>
-              <h3 className="text-xl font-bold text-stone-600 mt-1.5">The Old Way</h3>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">Common Pitfalls</span>
+              <h3 className="text-xl font-bold text-stone-600 mt-1.5">What We Avoid</h3>
               <div className="mt-4 border-t border-stone-300/80">
                 {traditionalPoints.map((point) => (
                   <div key={point} className="flex items-center gap-3 py-2 border-b border-stone-300/80 opacity-80">
@@ -1700,7 +1669,7 @@ export default function About() {
               />
             </div>
 
-            {/* Right: Our NGO */}
+            {/* Right: How we work */}
             <div
               className={`relative bg-white p-6 sm:p-8 flex flex-col justify-center overflow-hidden transition-all duration-700 ${
                 compareVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
@@ -1710,8 +1679,8 @@ export default function About() {
               <div className="absolute top-0 right-0 w-28 h-28 bg-emerald-500" style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }} />
               <div className="absolute top-0 right-0 w-14 h-14 bg-amber-400" style={{ clipPath: "polygon(100% 0, 40% 0, 100% 60%)" }} />
 
-              <span className="relative z-10 text-[11px] font-bold uppercase tracking-widest text-emerald-600">Our Smart NGO Approach</span>
-              <h3 className="relative z-10 text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">The Smarter Way</h3>
+              <span className="relative z-10 text-[11px] font-bold uppercase tracking-widest text-emerald-600">Our Approach</span>
+              <h3 className="relative z-10 text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">How We Work</h3>
 
               <div className="relative z-10 mt-4 space-y-1.5">
                 {smartPanels.map((panel, i) => {
@@ -1972,47 +1941,6 @@ export default function About() {
               View Complete Gallery <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* --- LEGAL COMPLIANCE & TRANSPARENCY DOCUMENTS --- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200/50">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-5 space-y-6">
-            <span className="text-sm font-bold text-emerald-600 uppercase tracking-widest">Transparency & Audit</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Compliance Documents</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-emerald-600 to-amber-500 rounded-full"></div>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              We strictly adhere to all government audit guidelines. Below are our financial reports and compliance certificates available for public review.
-            </p>
-            
-            <div className="p-5 rounded-2xl bg-amber-50 border border-amber-100 flex gap-3">
-              <ShieldCheck className="w-6 h-6 text-amber-600 shrink-0" />
-              <div>
-                <h5 className="font-bold text-amber-850 text-sm">FCRA & 80G Certified</h5>
-                <p className="text-xs text-amber-700 mt-1">Authorized to receive national & international donations under Indian Ministry of Home Affairs & IT Dept.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-            {documents.map((doc, idx) => (
-              <div key={idx} className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-slate-200/50 flex gap-4 hover:border-emerald-500/30 transition-all duration-300 group">
-                <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                  <FileText className="w-5 h-5" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm line-clamp-1">{doc.name}</h4>
-                  <p className="text-[10px] text-slate-400">Date: {doc.date} | Size: {doc.size}</p>
-                  <a href="#" className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 hover:text-emerald-700 pt-1 group/down">
-                    Download PDF <ArrowRight className="w-3.5 h-3.5 group-hover/down:translate-x-0.5 transition-transform" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-
         </div>
       </section>
 
