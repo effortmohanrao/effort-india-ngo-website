@@ -390,7 +390,6 @@ export default function About() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
   const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
-  const [expandedPanel, setExpandedPanel] = useState<number | null>(null);
   const [statValues, setStatValues] = useState<(number | null)[]>(() => smartPanels.map((p) => (p.kind === "stat" ? 0 : null)));
   const [partnersRef, partnersVisible] = useScrollReveal<HTMLElement>();
   const [galleryHeaderRef, galleryHeaderVisible] = useScrollReveal<HTMLDivElement>();
@@ -1605,138 +1604,179 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- WHY CHOOSE US SECTION (TRUST COMPARISON EXPERIENCE) --- */}
-      <section ref={compareRef} className="relative overflow-hidden bg-white py-10 lg:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* --- WHY CHOOSE US SECTION (DEEP OBSIDIAN & IRIDESCENT EMERALD GLASSMORPHISM ENGINE) --- */}
+      <section ref={compareRef} className="relative overflow-hidden bg-gradient-to-br from-[#041510] via-[#09261E] via-[#061D17] to-[#020F0B] py-24 lg:py-32 text-white border-t border-emerald-500/30">
+        {/* Glowing Liquid Ambient Glows & Mesh Grid */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-10%] left-[-10%] w-[650px] h-[650px] bg-emerald-500/20 rounded-full blur-[170px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[650px] h-[650px] bg-teal-500/25 rounded-full blur-[160px] animate-liquid-drift-b" />
+          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-cyan-500/20 rounded-full blur-[180px] animate-aurora-silk-1" />
+          <div className="bg-noise absolute inset-0 opacity-15" />
+          <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px]" />
+        </div>
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+
+          {/* Section Header */}
           <div
-            className={`text-center max-w-2xl mx-auto mb-7 space-y-2 transition-all duration-700 ${
+            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
               compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider">
-              Why Choose Us
+            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-widest shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-300" /> THE EFFORT NGO DIFFERENCE
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900">
-              What We Avoid, And What We Practice Instead.
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+              Why Leading Donors &amp; Communities <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300">Choose Effort NGO</span>
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              A quick look at the operating principles that shape how we work.
+
+            <p className="text-emerald-100/90 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+              We eliminate traditional operational bottlenecks, opaque accounting, and top-down decisions by building field-verified, tech-enabled grassroots governance.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_64px_1fr] border border-slate-200 overflow-hidden">
+          {/* Interactive Split-Screen 3D Glass Matrix */}
+          <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
 
-            {/* Left: What we avoid */}
+            {/* Center VS Emblem Core Badge (Desktop Only) */}
+            <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-slate-950/90 border-2 border-emerald-400/80 text-emerald-300 font-black text-xs items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.7)] backdrop-blur-xl">
+              <span className="text-xs tracking-wider">VS</span>
+            </div>
+
+            {/* LEFT COLUMN: WHAT WE ELIMINATE (COMMON PITFALLS AVOIDED) */}
             <div
-              className={`bg-stone-200 p-6 sm:p-8 flex flex-col justify-center transition-all duration-700 ${
+              className={`rounded-[36px] bg-slate-950/60 backdrop-blur-2xl border-2 border-rose-500/30 p-8 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.5)] flex flex-col justify-between space-y-8 relative overflow-hidden group transition-all duration-700 ${
                 compareVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
               }`}
             >
-              <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">Common Pitfalls</span>
-              <h3 className="text-xl font-bold text-stone-600 mt-1.5">What We Avoid</h3>
-              <div className="mt-4 border-t border-stone-300/80">
-                {traditionalPoints.map((point) => (
-                  <div key={point} className="flex items-center gap-3 py-2 border-b border-stone-300/80 opacity-80">
-                    <span className="w-5 h-5 rounded-full bg-stone-300 flex items-center justify-center shrink-0">
-                      <Minus className="w-3 h-3 text-stone-500" />
-                    </span>
-                    <span className="text-xs sm:text-sm font-medium text-stone-600">{point}</span>
-                  </div>
-                ))}
+              {/* Top Warning Accent Gradient Bar */}
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-rose-500 via-amber-500 to-rose-400" />
+              
+              <div className="space-y-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40">
+                    <Minus className="w-4 h-4 text-rose-400" /> Common NGO Pitfalls
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-rose-200/70">What We Avoid</span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-black text-white group-hover:text-rose-200 transition-colors">
+                    Traditional Operational Drift
+                  </h3>
+                  <p className="text-xs text-rose-100/80 font-medium mt-1">
+                    Systemic flaws that slow down grassroots impact and compromise donor trust across traditional channels.
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {traditionalPoints.map((point) => (
+                    <div
+                      key={point}
+                      className="flex items-center gap-4 py-3.5 px-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-400/50 hover:bg-rose-500/10 transition-all duration-300 group/item"
+                    >
+                      <span className="w-8 h-8 rounded-xl bg-rose-500/20 border border-rose-400/40 text-rose-300 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                        <Minus className="w-4 h-4 text-rose-400" />
+                      </span>
+                      <span className="text-sm font-bold text-rose-100/90 group-hover/item:text-white transition-colors">
+                        {point}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 relative z-10">
+                <p className="text-xs font-semibold text-rose-200/70 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0 animate-ping" />
+                  <span>Zero tolerance for operational drift &amp; unverified claims.</span>
+                </p>
               </div>
             </div>
 
-            {/* Center: transformation bridge */}
-            <div className="hidden lg:flex relative flex-col items-center justify-center bg-slate-50">
-              <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-slate-300" />
-              {compareVisible && (
-                <div
-                  className="absolute left-1/2 -translate-x-1/2 w-1 h-14 bg-gradient-to-b from-transparent via-emerald-400 to-transparent"
-                  style={{ animationName: "beam-travel", animationDuration: "3s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}
-                />
-              )}
-              <div className="relative z-10 w-14 h-14 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-md">
-                <TreePine className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div
-                className="absolute w-1.5 h-1.5 rounded-full bg-emerald-400/70"
-                style={{ top: "20%", left: "60%", animationName: "float-particle", animationDuration: "5s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}
-              />
-              <div
-                className="absolute w-1 h-1 rounded-full bg-amber-400/70"
-                style={{ top: "72%", left: "35%", animationName: "float-particle", animationDuration: "5s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite", animationDelay: "1.4s" }}
-              />
-            </div>
-
-            {/* Right: How we work */}
+            {/* RIGHT COLUMN: WHAT WE DELIVER (THE EFFORT NGO GUARANTEE) */}
             <div
-              className={`relative bg-white p-6 sm:p-8 flex flex-col justify-center overflow-hidden transition-all duration-700 ${
+              className={`rounded-[36px] bg-slate-950/80 backdrop-blur-2xl border-2 border-emerald-400/70 p-8 sm:p-10 shadow-[0_25px_60px_rgba(16,185,129,0.3)] flex flex-col justify-between space-y-8 relative overflow-hidden group transition-all duration-700 ${
                 compareVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              <div className="absolute top-0 right-0 w-28 h-28 bg-emerald-500" style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }} />
-              <div className="absolute top-0 right-0 w-14 h-14 bg-amber-400" style={{ clipPath: "polygon(100% 0, 40% 0, 100% 60%)" }} />
+              {/* Top Emerald Accent Gradient Bar */}
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400" />
+              
+              <div className="space-y-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/40">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" /> The Effort Standard
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300">How We Work</span>
+                </div>
 
-              <span className="relative z-10 text-[11px] font-bold uppercase tracking-widest text-emerald-600">Our Approach</span>
-              <h3 className="relative z-10 text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">How We Work</h3>
+                <div>
+                  <h3 className="text-2xl font-black text-white group-hover:text-emerald-200 transition-colors">
+                    Field-Verified &amp; Tech-Enabled
+                  </h3>
+                  <p className="text-xs text-emerald-100/80 font-medium mt-1">
+                    Continuous statutory transparency, digital GIS tracking, and 100% community-owned decision making.
+                  </p>
+                </div>
 
-              <div className="relative z-10 mt-4 space-y-1.5">
-                {smartPanels.map((panel, i) => {
-                  const isExpanded = expandedPanel === i;
-                  const borderColors = ["border-emerald-500", "border-cyan-500", "border-amber-500"];
-                  return (
+                <div className="space-y-3 pt-2">
+                  {smartPanels.map((panel, i) => (
                     <div
                       key={panel.title}
-                      onMouseEnter={() => setExpandedPanel(i)}
-                      onMouseLeave={() => setExpandedPanel(null)}
-                      className={`border-l-4 ${borderColors[i % borderColors.length]} bg-slate-50 pl-4 pr-4 transition-all duration-300 cursor-default ${
-                        isExpanded ? "py-3" : "py-1.5"
-                      }`}
+                      className="flex items-start gap-4 py-3.5 px-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all duration-300 group/item"
                     >
-                      <div className="flex items-center gap-3">
-                        <panel.icon className="w-3.5 h-3.5 text-slate-700 shrink-0" />
-                        <span className="text-xs sm:text-sm font-bold text-slate-900">{panel.title}</span>
-                      </div>
-                      {isExpanded && (
-                        <div className="mt-2 animate-fade-in">
-                          {panel.kind === "stat" ? (
-                            <div className="flex items-baseline gap-2">
-                              <span className="text-xl font-black text-emerald-600">
-                                {Math.round(statValues[i] ?? 0).toLocaleString("en-IN")}
-                                {panel.suffix}
-                              </span>
-                              <span className="text-[10px] font-bold uppercase text-slate-500">{panel.label}</span>
-                            </div>
-                          ) : (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 uppercase tracking-wide">
-                              <ShieldCheck className="w-3 h-3" /> Verified Practice
+                      <span className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-400 to-teal-500 text-slate-950 flex items-center justify-center shrink-0 mt-0.5 shadow-lg group-hover/item:scale-110 transition-transform">
+                        <panel.icon className="w-5 h-5" />
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <span className="text-sm font-black text-white group-hover/item:text-emerald-300 transition-colors">
+                            {panel.title}
+                          </span>
+                          {panel.kind === "stat" && (
+                            <span className="text-sm font-black text-emerald-300 shrink-0 bg-emerald-500/20 px-2.5 py-0.5 rounded-full border border-emerald-400/40">
+                              {Math.round(statValues[i] ?? 0).toLocaleString("en-IN")}
+                              {panel.suffix}
                             </span>
                           )}
-                          <p className="text-xs text-slate-500 mt-1">{panel.detail}</p>
                         </div>
-                      )}
+                        <p className="text-xs text-emerald-100/80 font-medium mt-1 leading-relaxed">
+                          {panel.detail}
+                        </p>
+                      </div>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 relative z-10">
+                <p className="text-xs font-semibold text-emerald-300 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>100% Schedule VII &amp; Statutory Utilization Certificate Verified</span>
+                </p>
               </div>
             </div>
+
           </div>
 
+          {/* Bottom High-Impact Action Bar */}
           <div
-            className={`text-center mt-6 transition-all duration-700 ${
+            className={`text-center transition-all duration-700 ${
               compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
-            style={{ transitionDelay: "500ms" }}
+            style={{ transitionDelay: "400ms" }}
           >
             <a
               href="/impact"
-              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-600 text-white font-bold text-sm border-2 border-emerald-600 hover:bg-white hover:text-emerald-600 transition-colors duration-300"
+              className="group inline-flex items-center gap-3 px-9 py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_15px_40px_rgba(16,185,129,0.4)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.6)] hover:scale-[1.03] transition-all"
             >
-              See Our Difference <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+              Explore Our Audited Impact &amp; Ground Results <ArrowRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1.5 transition-transform duration-300" />
             </a>
           </div>
+
         </div>
       </section>
 
