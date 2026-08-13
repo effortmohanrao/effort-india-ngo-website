@@ -1003,8 +1003,6 @@ export default function About() {
                   </div>
                 ) : (
                   
-                ) : (
-                  
                   /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" MAROON & CREAM EXECUTIVE SHOWCASE */
                   <div className="relative rounded-[40px] overflow-hidden border-2 border-amber-500/40 bg-gradient-to-br from-[#4a1220] via-[#380b18] to-[#2c0711] p-8 sm:p-12 lg:p-16 transition-all duration-700 shadow-2xl text-amber-50">
                     
