@@ -220,22 +220,22 @@ const chapterWorldsData = [
     phase: "CHAPTER 05 / 2.0 NEXT GEN",
     worldName: "2.0 THE NEXT GENERATION",
     subtitle: "Pioneering Next-Gen NGO Ecosystems",
-    bgClass: "bg-[#faf6f0]",
-    cardStyle: "bg-white/95 border-amber-900/20 shadow-2xl text-stone-900",
-    headerTextColor: "text-[#4a1220]",
-    subtitleColor: "text-[#4a1220] font-black",
-    phaseBadge: "bg-[#4a1220] text-amber-100 border-amber-900/30 font-extrabold",
-    storyBoxStyle: "bg-amber-50/90 border-amber-200 text-stone-800",
-    milestoneTextColor: "text-stone-800",
-    milestoneCheckColor: "#92400e",
-    navBtnStyle: "bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold border-amber-300",
-    accentColor: "#92400e",
-    headingFont: "font-black tracking-tight",
-    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2026–2030 VISION HERE] Stepping into EFFORT 2.0: Sustainable community-led initiatives, carbon-smart farming extension, youth skills incubators, and empowering 5,000+ model villages by 2030.",
+    bgClass: "bg-[#030712]",
+    cardStyle: "bg-slate-900/90 border-purple-500/50 shadow-2xl text-purple-50",
+    headerTextColor: "text-white",
+    subtitleColor: "text-purple-300 font-black",
+    phaseBadge: "bg-purple-500/20 text-purple-300 border-purple-500/40 font-extrabold",
+    storyBoxStyle: "bg-slate-800/80 border-purple-500/30 text-purple-100",
+    milestoneTextColor: "text-purple-100",
+    milestoneCheckColor: "#a855f7",
+    navBtnStyle: "bg-purple-950/80 hover:bg-purple-900 text-purple-200 font-bold border-purple-500/50",
+    accentColor: "#a855f7",
+    headingFont: "font-black tracking-tighter",
+    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2026–2030 VISION HERE] Stepping into EFFORT 2.0: Climate-smart carbon credit farming, AI farm extension tools, youth digital incubators, and transforming 5,000+ model sustainable villages by 2030.",
     archivalMarks: [
-      "Sustainable Agriculture & Climate-Resilient Extension Models",
-      "Youth Skill Development Incubators & SHG Micro-Finance Networks",
-      "Targeting 5,000 Sustainable Model Villages Across Rural India"
+      "Carbon Credit Farming & Climate-Resilient Agricultural Tech",
+      "Youth Digital Skill Incubators & Rural Micro-Enterprise Hubs",
+      "Targeting 5,000 Sustainable Model Villages by 2030"
     ],
     icon: Sparkles,
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
@@ -619,14 +619,14 @@ export default function About() {
 
   return (
     <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-hidden">
-      
+
       {/* Liquid background gradients */}
       <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-100/35 rounded-full blur-[100px] -z-10 animate-pulse"></div>
       <div className="absolute bottom-[20%] left-[-15%] w-[500px] h-[500px] bg-amber-100/25 rounded-full blur-[100px] -z-10 animate-pulse"></div>
 
       {/* --- SECTION 1: ULTRA-PREMIUM EXECUTIVE ABOUT US HERO BANNER --- */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#064e3b] to-slate-900 text-white -mt-12 pt-16 pb-20 lg:pt-24 lg:pb-32 shadow-2xl border-b border-emerald-500/20">
-        
+
         {/* Dynamic Background Atmosphere (Silk Orbs, Dot Matrix & Laser Sweep) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-500/20 rounded-full blur-[150px] animate-breathe-pulse" />
@@ -641,12 +641,11 @@ export default function About() {
 
             {/* Left 7 cols: Editorial Positioning, Core Impact Metrics & Action CTAs */}
             <div className="lg:col-span-7 space-y-6">
-              
+
               {/* Micro Registration Pill Badge */}
               <div
-                className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-700 ${
-                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
@@ -665,9 +664,8 @@ export default function About() {
 
               {/* Editorial Description */}
               <p
-                className={`text-emerald-100/90 text-base sm:text-lg leading-relaxed font-medium max-w-2xl transition-all duration-700 ${
-                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className={`text-emerald-100/90 text-base sm:text-lg leading-relaxed font-medium max-w-2xl transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
                 style={{ transitionDelay: "300ms" }}
               >
                 Founded in 1999 at Martur, Prakasam District (Society Reg. 340/1999), EFFORT NGO has spent <strong className="text-amber-300 font-extrabold">27 years</strong> building climate-resilient farming, water harvesting, and community-led collectives across rural India — from a single registered society to a multi-state, multi-sector organization.
@@ -675,9 +673,8 @@ export default function About() {
 
               {/* Core Executive Quick Metrics Strip (4 Crisp White Highlight Cards) */}
               <div
-                className={`grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 transition-all duration-700 ${
-                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className={`grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
                 style={{ transitionDelay: "450ms" }}
               >
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
@@ -700,9 +697,8 @@ export default function About() {
 
               {/* Action Buttons */}
               <div
-                className={`flex flex-wrap gap-4 pt-4 transition-all duration-700 ${
-                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className={`flex flex-wrap gap-4 pt-4 transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
                 style={{ transitionDelay: "600ms" }}
               >
                 <a
@@ -723,9 +719,8 @@ export default function About() {
 
               {/* Statutory Compliance Badges */}
               <div
-                className={`flex flex-wrap gap-4 pt-2 text-xs font-bold text-emerald-200/80 transition-all duration-700 ${
-                  heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className={`flex flex-wrap gap-4 pt-2 text-xs font-bold text-emerald-200/80 transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
                 style={{ transitionDelay: "750ms" }}
               >
                 <span className="flex items-center gap-1.5">
@@ -743,13 +738,12 @@ export default function About() {
 
             {/* Right 5 cols: Executive Glassmorphic Hero Showcase Container */}
             <div
-              className={`lg:col-span-5 relative transition-all duration-1000 ${
-                heroVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-              }`}
+              className={`lg:col-span-5 relative transition-all duration-1000 ${heroVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                }`}
               style={{ transitionDelay: "250ms" }}
             >
               <div className="relative rounded-[36px] overflow-hidden border-2 border-emerald-400/30 bg-slate-900/60 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(0,0,0,0.6)] group">
-                
+
                 {/* Main Cinematic Image */}
                 <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/10">
                   <img
@@ -758,7 +752,7 @@ export default function About() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-85" />
-                  
+
                   {/* Laser Light Sweep */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-light-sweep" />
@@ -798,8 +792,8 @@ export default function About() {
 
 
       {/* --- OUR STORY SECTION ("THE CHAPTER WORLDS" GRAPHIC STORYTELLING EXPERIENCE) --- */}
-      <section ref={storyRef} id="journey" className="relative overflow-hidden py-24 lg:py-36 transition-colors duration-1000 border-y border-black/20">
-        
+      <section ref={storyRef} id="journey" className="relative overflow-hidden py-24 lg:py-36 transition-colors duration-1000">
+
         {/* Dynamic World Atmosphere Background */}
         {(() => {
           const currentWorld = chapterWorldsData[activeStoryChapter];
@@ -837,27 +831,24 @@ export default function About() {
             const isLightWorld = currentWorld.id === "1999";
             return (
               <div className="text-center max-w-3xl mx-auto space-y-4">
-                <div className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-[0.3em] shadow-sm ${
-                  isLightWorld
+                <div className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-[0.3em] shadow-sm ${isLightWorld
                     ? "bg-amber-100/90 border-amber-300 text-amber-950"
                     : "bg-slate-900/90 border-white/20 text-white"
-                }`}>
+                  }`}>
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   <span>OUR STORY • THE CHAPTER WORLDS</span>
                 </div>
-                
-                <h2 className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${
-                  isLightWorld ? "text-slate-950" : "text-white"
-                }`}>
+
+                <h2 className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${isLightWorld ? "text-slate-950" : "text-white"
+                  }`}>
                   From Where We Began{" "}
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-emerald-400 to-sky-400">
                     To Where We're Going.
                   </span>
                 </h2>
 
-                <p className={`text-sm sm:text-base max-w-2xl mx-auto font-medium ${
-                  isLightWorld ? "text-slate-700" : "text-slate-200"
-                }`}>
+                <p className={`text-sm sm:text-base max-w-2xl mx-auto font-medium ${isLightWorld ? "text-slate-700" : "text-slate-200"
+                  }`}>
                   Travel through 5 distinct visual worlds — from our 1999 founding in Andhra Pradesh to our next-generation 2.0 era.
                 </p>
               </div>
@@ -875,17 +866,15 @@ export default function About() {
                   <button
                     key={w.id}
                     onClick={() => setActiveStoryChapter(idx)}
-                    className={`relative flex-1 flex items-center justify-center gap-3 px-4 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${
-                      isActive
+                    className={`relative flex-1 flex items-center justify-center gap-3 px-4 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${isActive
                         ? is20
                           ? "bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_35px_rgba(168,85,247,0.5)] font-black scale-[1.03]"
                           : "bg-slate-950 text-white shadow-xl font-black scale-[1.02]"
                         : "text-slate-700 hover:text-slate-950 hover:bg-slate-100/90"
-                    }`}
+                      }`}
                   >
-                    <span className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${
-                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700 group-hover:bg-slate-200"
-                    }`}>
+                    <span className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700 group-hover:bg-slate-200"
+                      }`}>
                       <IconComp className="w-4 h-4" />
                     </span>
                     <div className="text-left">
@@ -906,15 +895,15 @@ export default function About() {
 
             return (
               <div className="space-y-12">
-                
+
                 {/* WORLDS 01 TO 04 */}
                 {!is20World ? (
                   <div className={`relative rounded-[40px] overflow-hidden border-2 p-8 sm:p-12 lg:p-16 transition-all duration-700 shadow-2xl ${currentWorld.cardStyle}`}>
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                      
+
                       {/* Left 7 Cols: World Narrative & Archival Marks */}
                       <div className="lg:col-span-7 space-y-6">
-                        
+
                         <div className="flex flex-wrap items-center justify-between gap-4">
                           <span className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border ${currentWorld.phaseBadge}`}>
                             {currentWorld.phase}
@@ -971,7 +960,7 @@ export default function About() {
                               Next World →
                             </button>
                           </div>
-                          
+
                           <span className="text-xs font-bold opacity-80">
                             Currently exploring {currentWorld.worldName}
                           </span>
@@ -1002,117 +991,132 @@ export default function About() {
                     </div>
                   </div>
                 ) : (
-                  
-                  /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" MAROON & CREAM EXECUTIVE SHOWCASE */
-                  <div className="relative rounded-[40px] overflow-hidden border-2 border-amber-500/40 bg-gradient-to-br from-[#4a1220] via-[#380b18] to-[#2c0711] p-8 sm:p-12 lg:p-16 transition-all duration-700 shadow-2xl text-amber-50">
-                    
-                    {/* Ambient Background Glow */}
-                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                      <div className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[160px]" />
-                      <div className="absolute bottom-[-20%] right-[20%] w-[600px] h-[600px] bg-rose-700/15 rounded-full blur-[160px]" />
+
+                  /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" SHOWCASE */
+                  <div className="space-y-12">
+
+                    {/* SILENCE BEFORE 2.0 (VISUAL BREATHING PAUSE) */}
+                    <div className="text-center py-8 space-y-3 border-y border-white/10">
+                      <span className="text-xs font-mono uppercase tracking-[0.3em] text-purple-400">
+                        2016–2025 TRANSFORMATION COMPLETE
+                      </span>
+                      <h4 className="text-xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-indigo-200 to-cyan-300">
+                        THE NEXT CHAPTER IS DIFFERENT.
+                      </h4>
                     </div>
 
-                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-                      
-                      {/* Left 7 Cols: World Narrative & 6 Pillars */}
-                      <div className="lg:col-span-7 space-y-6">
-                        
-                        <div className="flex flex-wrap items-center justify-between gap-4">
-                          <span className="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest bg-amber-100 text-amber-950 border border-amber-300">
-                            {currentWorld.phase}
-                          </span>
-                          <span className="text-4xl sm:text-6xl font-black text-amber-400/30 tracking-tighter">
-                            {currentWorld.era}
-                          </span>
+                    {/* 2.0 HERO WORLD BUILD */}
+                    <div className="relative rounded-[40px] overflow-hidden border-2 border-purple-500/50 bg-[#030712] p-8 sm:p-12 lg:p-16 shadow-[0_0_100px_rgba(168,85,247,0.35)] space-y-16">
+
+                      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
+
+                        <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-purple-500/20 backdrop-blur-2xl border border-purple-400/40 text-purple-300 text-xs font-black uppercase tracking-[0.3em] shadow-[0_0_30px_rgba(168,85,247,0.4)] animate-pulse">
+                          <Sparkles className="w-4 h-4 text-cyan-300" />
+                          <span>2026 – 2030 • THE NEXT GENERATION ERA</span>
                         </div>
 
-                        <div>
-                          <span className="text-xs font-black uppercase tracking-[0.25em] text-amber-300/80 block mb-1">
-                            WORLD 05 • {currentWorld.worldName}
+                        {/* GIANT VOLUMETRIC 2.0 TITLE */}
+                        <div className="relative py-4">
+                          <span className="text-7xl sm:text-9xl lg:text-[150px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-amber-300 drop-shadow-[0_20px_50px_rgba(168,85,247,0.6)]">
+                            2.0
                           </span>
-                          <h3 className="text-3xl sm:text-5xl font-black leading-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-200 to-amber-300">
-                            {currentWorld.subtitle}
-                          </h3>
-                        </div>
-
-                        {/* Story Box */}
-                        <div className="p-6 rounded-2xl bg-[#2c0711]/90 border border-amber-500/30 space-y-3 shadow-inner text-amber-100">
-                          <p className="text-sm sm:text-base leading-relaxed font-medium">
-                            {currentWorld.desc}
+                          <p className="text-lg sm:text-2xl font-black uppercase tracking-[0.3em] text-purple-300 mt-2">
+                            EVERYTHING WE LEARNED BECOMES WHAT COMES NEXT
                           </p>
                         </div>
 
-                        {/* 6 Strategic Pillars Grid */}
-                        <div className="space-y-3 pt-2">
-                          <span className="text-xs font-black uppercase tracking-widest block text-amber-300">
-                            2.0 STRATEGIC FUTURE PILLARS:
-                          </span>
-                          <div className="grid sm:grid-cols-2 gap-2.5">
-                            {futurePillars20World.map((pillar) => {
-                              const PillarIcon = pillar.icon;
-                              return (
-                                <div key={pillar.num} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#2c0711]/70 border border-amber-500/20 text-xs font-bold text-amber-100">
-                                  <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0">
-                                    <PillarIcon className="w-3.5 h-3.5" />
-                                  </div>
-                                  <span className="truncate">{pillar.title}</span>
-                                </div>
-                              );
-                            })}
-                          </div>
+                        {/* Emotional Bridge Statement */}
+                        <div className="space-y-2 py-4 border-y border-white/10 max-w-2xl mx-auto">
+                          <p className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                            OUR HISTORY BUILT THE FOUNDATION.
+                          </p>
+                          <p className="text-xl sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-cyan-300">
+                            OUR FUTURE WILL BUILD WHAT COMES NEXT.
+                          </p>
                         </div>
 
-                        {/* Navigation controls */}
-                        <div className="pt-6 flex flex-wrap items-center justify-between gap-4 border-t border-amber-500/20">
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
-                              className="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300"
-                            >
-                              ← Previous World
-                            </button>
-                            <button
-                              onClick={() => setActiveStoryChapter((prev) => (prev < chapterWorldsData.length - 1 ? prev + 1 : 0))}
-                              className="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300"
-                            >
-                              Next World →
-                            </button>
-                          </div>
-                          
-                          <span className="text-xs font-bold text-amber-200/80">
-                            Currently exploring EFFORT 2.0
+                        {/* Vision Text Box */}
+                        <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-inner max-w-3xl mx-auto">
+                          {currentWorld.desc}
+                        </p>
+
+                      </div>
+
+                      {/* 2.0 FUTURE PILLARS ARCHITECTURAL GEOMETRY GRID */}
+                      <div className="relative z-10 space-y-8">
+
+                        <div className="text-center space-y-2">
+                          <span className="text-xs font-black uppercase tracking-[0.25em] text-cyan-400">
+                            2.0 ARCHITECTURAL FUTURE PILLARS
                           </span>
+                          <h4 className="text-xl sm:text-2xl font-black text-white">
+                            Connected Future Ecosystem
+                          </h4>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {futurePillars20World.map((pillar, pIdx) => {
+                            const IconComp = pillar.icon;
+                            const isHovered = hoveredPillar === pIdx;
+                            return (
+                              <div
+                                key={pillar.num}
+                                onMouseEnter={() => setHoveredPillar(pIdx)}
+                                onMouseLeave={() => setHoveredPillar(null)}
+                                className={`group relative rounded-3xl p-6 border transition-all duration-500 cursor-pointer overflow-hidden ${isHovered
+                                    ? "bg-slate-900 border-purple-400/80 shadow-[0_0_35px_rgba(168,85,247,0.4)] -translate-y-1.5"
+                                    : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                                  }`}
+                              >
+                                <div className="flex items-start justify-between gap-4 mb-4">
+                                  <span className="text-xs font-black text-purple-400 tracking-widest px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30">
+                                    PILLAR {pillar.num}
+                                  </span>
+                                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${isHovered ? "bg-purple-400 text-slate-950 scale-110" : "bg-slate-800 text-slate-300"
+                                    }`}>
+                                    <IconComp className="w-5 h-5" />
+                                  </div>
+                                </div>
+
+                                <h5 className="text-base font-black text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                                  {pillar.title}
+                                </h5>
+
+                                <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                                  {pillar.desc}
+                                </p>
+                              </div>
+                            );
+                          })}
                         </div>
 
                       </div>
 
-                      {/* Right 5 Cols: Visual 2.0 Showcase Frame */}
-                      <div className="lg:col-span-5">
-                        <div className="relative rounded-3xl overflow-hidden border-4 border-amber-400/40 shadow-2xl group">
-                          <img
-                            src={currentWorld.image}
-                            alt={currentWorld.worldName}
-                            className="w-full h-[380px] sm:h-[460px] object-cover group-hover:scale-105 transition-transform duration-1000"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#2c0711] via-black/40 to-transparent" />
-                          
-                          {/* 2.0 Oversized Overlay Badge */}
-                          <div className="absolute top-5 right-5 px-4 py-2 rounded-2xl bg-amber-100 text-amber-950 font-black text-2xl shadow-xl border border-amber-300">
-                            2.0
-                          </div>
+                      {/* FINAL 2.0 CALL TO ACTION */}
+                      <div className="relative z-10 pt-10 border-t border-white/10 text-center space-y-6 max-w-xl mx-auto">
 
-                          <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 block">
-                              NEXT GENERATION VISION · {currentWorld.era}
-                            </span>
-                            <p className="text-xs font-bold leading-snug text-amber-100">
-                              OUR HISTORY BUILT THE FOUNDATION.<br />OUR FUTURE WILL BUILD WHAT COMES NEXT.
-                            </p>
-                          </div>
+                        <h4 className="text-2xl font-black text-white">
+                          BE PART OF THE NEXT CHAPTER
+                        </h4>
+
+                        <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                          [HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC PARTNERSHIP MESSAGE HERE] Join EFFORT in shaping the future of rural development through sustainable CSR alliances and grassroots empowerment.
+                        </p>
+
+                        <div>
+                          <a
+                            href="/get-involved"
+                            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 via-indigo-400 to-cyan-300 text-slate-950 font-black text-sm shadow-[0_0_35px_rgba(168,85,247,0.4)] hover:shadow-[0_0_50px_rgba(168,85,247,0.6)] hover:-translate-y-1 transition-all group"
+                          >
+                            <span>EXPLORE THE NEXT CHAPTER</span>
+                            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          </a>
                         </div>
+
                       </div>
 
                     </div>
+
                   </div>
                 )}
 
@@ -1137,9 +1141,8 @@ export default function About() {
 
             {/* Left: editorial heading */}
             <div
-              className={`lg:col-span-5 transition-all duration-700 ${
-                vmVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`lg:col-span-5 transition-all duration-700 ${vmVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
             >
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-400">Vision &amp; Mission</p>
               <div className={`h-px bg-gradient-to-r from-amber-400 to-transparent mt-3 transition-all duration-1000 ${vmVisible ? "w-16" : "w-0"}`} />
@@ -1159,9 +1162,8 @@ export default function About() {
 
             {/* Right: Vision & Mission slider */}
             <div
-              className={`lg:col-span-7 transition-all duration-1000 ${
-                vmVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-              }`}
+              className={`lg:col-span-7 transition-all duration-1000 ${vmVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+                }`}
               style={{ transitionDelay: "150ms" }}
               onMouseEnter={() => setVmPaused(true)}
               onMouseLeave={() => setVmPaused(false)}
@@ -1236,12 +1238,11 @@ export default function About() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
-          
+
           {/* HEADER IN TOP CENTER MIDDLE */}
           <div
-            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
-              valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-widest shadow-[0_0_25px_rgba(16,185,129,0.3)]">
               <Sparkles className="w-3.5 h-3.5 text-emerald-300" /> OUR CORE GUIDING PRINCIPLES
@@ -1258,12 +1259,11 @@ export default function About() {
 
           {/* MAIN COMPOSITION: LEFT ROTATING ORBIT WHEEL + CONNECTOR BEAM + RIGHT DETAIL CARD */}
           <div
-            className={`flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 transition-all duration-1000 ${
-              valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+            className={`flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 transition-all duration-1000 ${valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
             style={{ transitionDelay: "150ms" }}
           >
-            
+
             {/* LEFT COLUMN: INTERACTIVE ROTATING ORBITAL WHEEL */}
             <div className="w-full max-w-[480px] sm:max-w-[520px] aspect-square relative shrink-0">
 
@@ -1344,11 +1344,10 @@ export default function About() {
                           >
                             <button
                               onClick={() => setHoveredValue(i)}
-                              className={`group w-28 h-28 sm:w-32 sm:h-32 rounded-3xl backdrop-blur-2xl border-2 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center text-center ${
-                                isSelected
+                              className={`group w-28 h-28 sm:w-32 sm:h-32 rounded-3xl backdrop-blur-2xl border-2 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center text-center ${isSelected
                                   ? "border-emerald-300 bg-slate-900/95 scale-110 z-30 shadow-[0_0_40px_rgba(16,185,129,0.8)]"
                                   : "bg-white/10 border-emerald-400/40 hover:border-emerald-300 hover:bg-slate-900/80 hover:scale-105"
-                              }`}
+                                }`}
                             >
                               <div className={`p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${isSelected ? "bg-emerald-400 text-slate-950 scale-110 mb-1" : "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"}`}>
                                 <ValIcon className="w-5 h-5" />
@@ -1539,7 +1538,7 @@ export default function About() {
         {/* Layer 2: Living Environment Backdrop (Micro Grid, Breathing Color Orbs, Noise) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
           <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#065f46_1.5px,transparent_1.5px),linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] [background-size:24px_24px,12px_12px,12px_12px]" />
-          
+
           <div
             className="absolute top-[-10%] left-[8%] w-[750px] h-[750px] bg-emerald-300/30 rounded-full blur-[160px] animate-breathe-pulse transition-transform duration-1000 ease-out"
             style={{ transform: `translate(${mousePos.x * 24}px, ${mousePos.y * 24}px)` }}
@@ -1556,9 +1555,8 @@ export default function About() {
 
           {/* Section Introduction: Clean Center-Aligned Editorial Composition */}
           <div
-            className={`text-center max-w-3xl mx-auto mb-10 space-y-3 transition-all duration-700 ${
-              leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`text-center max-w-3xl mx-auto mb-10 space-y-3 transition-all duration-700 ${leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
               <Users className="w-3.5 h-3.5 text-emerald-700" />
@@ -1576,12 +1574,11 @@ export default function About() {
 
           {/* --- MAIN EXECUTIVE SPOTLIGHT BOX (DYNAMIC COLORFUL ANIMATED EXECUTIVE BOX WITH PROVEN TRACK RECORD) --- */}
           <div
-            className={`transition-all duration-1000 ${
-              leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+            className={`transition-all duration-1000 ${leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
           >
             <div className="relative bg-gradient-to-br from-[#064e3b] via-[#022c22] to-[#0c1f17] text-white backdrop-blur-2xl border-2 border-emerald-500/50 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_30px_90px_rgba(6,95,70,0.45)] hover:border-emerald-400 transition-all group overflow-hidden">
-              
+
               {/* Dynamic Colorful Background Animations (Breathing Aurora Orbs & Laser Sweep) */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
               <div className="absolute -top-24 -left-24 w-80 h-80 bg-emerald-400/25 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" />
@@ -1589,7 +1586,7 @@ export default function About() {
               <div className="bg-noise absolute inset-0 opacity-20 pointer-events-none" />
 
               <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-                
+
                 {/* COLUMN 1 (Left 3 cols): Executive Portrait & Social Dock */}
                 <div className="lg:col-span-3 flex flex-col items-center text-center space-y-3.5 border-b lg:border-b-0 lg:border-r border-emerald-500/20 pb-6 lg:pb-0 lg:pr-6">
                   <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] group/img">
@@ -1640,7 +1637,7 @@ export default function About() {
 
                 {/* COLUMN 2 (Middle 5 cols): Executive Statement & Proven Track Record Badges */}
                 <div className="lg:col-span-5 space-y-4">
-                  
+
                   {/* Track Record Callout Pill */}
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase tracking-widest shadow-[0_0_12px_rgba(16,185,129,0.3)]">
                     <Award className="w-3.5 h-3.5 text-amber-300" />
@@ -1676,7 +1673,7 @@ export default function About() {
 
                 {/* COLUMN 3 (Right 4 cols): Embedded Hollywood Graphic Animated Digits HUD Box */}
                 <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-emerald-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-4 relative group/hud overflow-hidden text-white">
-                  
+
                   {/* Hollywood Cyber Light Sweep & Ambient Neon Orbs */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
                   <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-400/20 rounded-full blur-2xl pointer-events-none group-hover/hud:scale-150 transition-transform duration-1000" />
@@ -1697,7 +1694,7 @@ export default function About() {
 
                   {/* HOLLYWOOD-LEVEL GRAPHIC ANIMATED DIGITS GRID */}
                   <div className="grid grid-cols-2 gap-3 relative z-10">
-                    
+
                     {/* DIGIT 1: 50 (COMPLETED PROJECTS / HALF CENTURY) */}
                     <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
                       <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-80" />
@@ -1842,9 +1839,8 @@ export default function About() {
 
             {/* Left 40%: editorial intro */}
             <div
-              className={`lg:col-span-4 transition-all duration-700 ${
-                philosophyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`lg:col-span-4 transition-all duration-700 ${philosophyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
             >
               <div className="flex items-start gap-4">
                 <div className="w-1 h-16 bg-[#c2540f] mt-2 shrink-0" />
@@ -1883,9 +1879,8 @@ export default function About() {
 
             {/* Right 60%: blueprint canvas */}
             <div
-              className={`lg:col-span-8 transition-all duration-1000 ${
-                philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-              }`}
+              className={`lg:col-span-8 transition-all duration-1000 ${philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                }`}
               style={{ transitionDelay: "150ms" }}
             >
               <div className="relative bg-[#fbf8f1] border border-[#e0d5bd] rounded-sm p-6 sm:p-8 shadow-[0_20px_50px_-25px_rgba(43,39,35,0.3)]">
@@ -1904,9 +1899,8 @@ export default function About() {
                   {philosophyNotes.map((note, i) => (
                     <div
                       key={note.step}
-                      className={`group relative bg-white border border-[#e5dbc4] p-4 shadow-[0_8px_20px_-10px_rgba(43,39,35,0.35)] hover:shadow-[0_14px_28px_-12px_rgba(43,39,35,0.4)] hover:-translate-y-1.5 hover:rotate-0 transition-all duration-300 ${note.rotate} ${
-                        philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                      }`}
+                      className={`group relative bg-white border border-[#e5dbc4] p-4 shadow-[0_8px_20px_-10px_rgba(43,39,35,0.35)] hover:shadow-[0_14px_28px_-12px_rgba(43,39,35,0.4)] hover:-translate-y-1.5 hover:rotate-0 transition-all duration-300 ${note.rotate} ${philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                        }`}
                       style={{ transitionDelay: `${i * 90}ms` }}
                     >
                       <Paperclip className="absolute -top-2.5 -left-1.5 w-5 h-5 text-[#8a8378] -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
@@ -1920,9 +1914,8 @@ export default function About() {
 
                   {/* Pinned image placeholder */}
                   <div
-                    className={`relative bg-white border border-[#e5dbc4] p-2 shadow-[0_8px_20px_-10px_rgba(43,39,35,0.35)] hover:-translate-y-1.5 hover:rotate-0 transition-all duration-300 rotate-1 ${
-                      philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                    }`}
+                    className={`relative bg-white border border-[#e5dbc4] p-2 shadow-[0_8px_20px_-10px_rgba(43,39,35,0.35)] hover:-translate-y-1.5 hover:rotate-0 transition-all duration-300 rotate-1 ${philosophyVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                      }`}
                     style={{ transitionDelay: `${philosophyNotes.length * 90}ms` }}
                   >
                     <Paperclip className="absolute -top-2.5 -left-1.5 w-5 h-5 text-[#8a8378] -rotate-45" />
@@ -1956,9 +1949,8 @@ export default function About() {
 
           {/* Section Header */}
           <div
-            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
-              compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-300/80 text-emerald-800 text-xs font-black uppercase tracking-widest shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-emerald-600" /> THE EFFORT NGO DIFFERENCE
@@ -1975,9 +1967,8 @@ export default function About() {
 
           {/* EXPANDING 3D STAGE ACCORDION DECK (DESKTOP FLEX EXPANSION, MOBILE STACK) */}
           <div
-            className={`flex flex-col lg:flex-row gap-4 items-stretch min-h-[480px] transition-all duration-1000 ${
-              compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+            className={`flex flex-col lg:flex-row gap-4 items-stretch min-h-[480px] transition-all duration-1000 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
             style={{ transitionDelay: "150ms" }}
           >
             {[
@@ -2045,22 +2036,20 @@ export default function About() {
                   key={pillar.id}
                   onClick={() => setActiveWhyChooseTab(pillar.id)}
                   onMouseEnter={() => setActiveWhyChooseTab(pillar.id)}
-                  className={`group relative rounded-[36px] transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between p-6 sm:p-8 ${
-                    isActive
+                  className={`group relative rounded-[36px] transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between p-6 sm:p-8 ${isActive
                       ? "lg:flex-[3] bg-white/95 backdrop-blur-2xl border-2 border-emerald-500/40 shadow-[0_25px_60px_rgba(15,23,42,0.12)]"
                       : "lg:flex-1 bg-white/70 backdrop-blur-xl border border-slate-300/80 hover:bg-white/90 hover:border-emerald-400/60 shadow-md"
-                  }`}
+                    }`}
                 >
                   {/* Top Accent Gradient Bar */}
                   <div className={`absolute top-0 left-0 right-0 h-2 transition-opacity duration-300 ${isActive ? "bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 opacity-100" : "bg-slate-300 opacity-40"}`} />
 
                   {/* Top Row Header: Icon + Number */}
                   <div className="flex items-center justify-between gap-4 relative z-10">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shrink-0 ${
-                      isActive
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shrink-0 ${isActive
                         ? "bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 text-white shadow-lg scale-110"
                         : "bg-emerald-100/80 text-emerald-700 border border-emerald-300 group-hover:scale-105"
-                    }`}>
+                      }`}>
                       <PillarIcon className="w-7 h-7" />
                     </div>
 
@@ -2177,9 +2166,8 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div
-            className={`text-center max-w-2xl mx-auto mb-12 space-y-3 transition-all duration-700 ${
-              partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`text-center max-w-2xl mx-auto mb-12 space-y-3 transition-all duration-700 ${partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Trusted Worldwide
@@ -2194,9 +2182,8 @@ export default function About() {
 
           {/* Trust core */}
           <div
-            className={`flex justify-center mb-4 transition-all duration-1000 ${
-              partnersVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
-            }`}
+            className={`flex justify-center mb-4 transition-all duration-1000 ${partnersVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
+              }`}
           >
             <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white/10 backdrop-blur-xl border border-white/25 flex items-center justify-center animate-glass-glow">
               <div className="absolute -inset-3 rounded-full border border-white/10" />
@@ -2216,9 +2203,8 @@ export default function About() {
               return (
                 <div
                   key={zone.title}
-                  className={`partner-row transition-all duration-700 ${
-                    partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  }`}
+                  className={`partner-row transition-all duration-700 ${partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}
                   style={{ transitionDelay: `${350 + zi * 150}ms` }}
                 >
                   <div className="flex items-center gap-2 mb-4 px-1">
@@ -2250,9 +2236,8 @@ export default function About() {
           </div>
 
           <div
-            className={`text-center mt-12 transition-all duration-700 ${
-              partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+            className={`text-center mt-12 transition-all duration-700 ${partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
             style={{ transitionDelay: "900ms" }}
           >
             <a
@@ -2294,9 +2279,8 @@ export default function About() {
         <div className="relative z-10">
           <div
             ref={galleryHeaderRef}
-            className={`max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 space-y-3 transition-all duration-700 ${
-              galleryHeaderVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 space-y-3 transition-all duration-700 ${galleryHeaderVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/80 text-[#9a6b3f] text-xs font-black uppercase tracking-wider shadow-sm">
               <Camera className="w-3.5 h-3.5 text-amber-600 animate-bounce" /> Our Journey Through Images
@@ -2425,9 +2409,8 @@ export default function About() {
               {finaleHeadlineLines.map((line, i) => (
                 <span key={line} className="block overflow-hidden pb-1">
                   <span
-                    className={`block transition-all duration-1000 ease-out ${
-                      finaleVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-                    }`}
+                    className={`block transition-all duration-1000 ease-out ${finaleVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                      }`}
                     style={{ transitionDelay: `${i * 180}ms` }}
                   >
                     {line}
@@ -2437,9 +2420,8 @@ export default function About() {
             </h2>
 
             <p
-              className={`max-w-md text-[#5c4a38] text-base sm:text-lg leading-relaxed mt-6 transition-all duration-700 ${
-                finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`max-w-md text-[#5c4a38] text-base sm:text-lg leading-relaxed mt-6 transition-all duration-700 ${finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{ transitionDelay: "450ms" }}
             >
               Every contribution, every hour, every voice moves communities closer to a future
@@ -2447,9 +2429,8 @@ export default function About() {
             </p>
 
             <div
-              className={`flex flex-wrap items-center gap-4 mt-8 transition-all duration-700 ${
-                finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`flex flex-wrap items-center gap-4 mt-8 transition-all duration-700 ${finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{ transitionDelay: "600ms" }}
             >
               <a
@@ -2480,9 +2461,8 @@ export default function About() {
             </div>
 
             <div
-              className={`flex flex-wrap gap-x-10 gap-y-6 mt-12 pt-8 border-t border-[#c98a4b]/20 transition-all duration-700 ${
-                finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`flex flex-wrap gap-x-10 gap-y-6 mt-12 pt-8 border-t border-[#c98a4b]/20 transition-all duration-700 ${finaleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{ transitionDelay: "900ms" }}
             >
               {finaleStats.map((s, i) => (
@@ -2499,9 +2479,8 @@ export default function About() {
 
           {/* RIGHT — abstract symbolic artwork */}
           <div
-            className={`relative h-[340px] lg:h-[480px] flex items-center justify-center transition-all duration-[1400ms] ease-out ${
-              finaleVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-            }`}
+            className={`relative h-[340px] lg:h-[480px] flex items-center justify-center transition-all duration-[1400ms] ease-out ${finaleVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              }`}
             style={{ transformOrigin: "bottom center" }}
           >
             <div
