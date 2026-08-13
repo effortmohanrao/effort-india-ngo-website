@@ -717,19 +717,18 @@ export default function About() {
 
 
 
-      {/* --- OUR STORY SECTION (REDESIGNED ULTRA-PREMIUM INTERACTIVE TIMELINE) --- */}
-      <section ref={storyRef} id="journey" className="relative overflow-hidden bg-slate-950 py-24 lg:py-36 text-white border-y border-slate-800/80">
+      {/* --- OUR STORY SECTION (HIGH-LEVEL EXECUTIVE LUXURY LIGHT DESIGN) --- */}
+      <section ref={storyRef} id="journey" className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-emerald-50/20 py-24 lg:py-36 text-slate-900 border-y border-slate-200/60">
         
-        {/* Dynamic Colorful Atmosphere (Animated Mesh Lighting) */}
+        {/* Soft Ambient Silk Lighting */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[160px] animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-amber-500/15 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: "2s" }} />
-          <div className="absolute top-[40%] right-[30%] w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: "4s" }} />
-          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:32px_32px]" />
-          <div className="bg-noise absolute inset-0 opacity-25" />
+          <div className="absolute top-[-10%] left-[5%] w-[600px] h-[600px] bg-emerald-100/50 rounded-full blur-[140px] animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] bg-amber-100/40 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: "2.5s" }} />
+          <div className="absolute top-[40%] left-[35%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: "1.2s" }} />
+          <div className="bg-noise absolute inset-0 opacity-[0.03]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
 
           {/* Section Header */}
           <div
@@ -737,31 +736,31 @@ export default function About() {
               storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-xl border border-emerald-500/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_25px_rgba(16,185,129,0.25)]">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xl border border-emerald-500/30 text-emerald-800 text-xs font-black uppercase tracking-[0.2em] shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>OUR 27-YEAR EVOLUTIONARY TIMELINE</span>
             </div>
             
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
               Every Great Transformation Begins With A{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-300 to-cyan-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">
                 Single Conviction
               </span>
             </h2>
             
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium">
-              From our 1999 founding in Andhra Pradesh to multi-state grassroots institutions — click through the era milestones below to explore how EFFORT has redefined rural empowerment.
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+              From our 1999 founding in Andhra Pradesh to multi-state grassroots institutions — explore the key milestones that shaped EFFORT into a leading social development movement.
             </p>
           </div>
 
-          {/* Top Interactive Era Selector Tabs (Pill Bar) */}
+          {/* Top Interactive Era Selector (Clean Floating Glass Pill Track) */}
           <div
             className={`transition-all duration-700 ${
               storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: "150ms" }}
           >
-            <div className="relative p-2 rounded-3xl bg-slate-900/80 backdrop-blur-2xl border border-slate-800 shadow-2xl overflow-x-auto scrollbar-hide">
+            <div className="relative p-2 rounded-3xl bg-white/80 backdrop-blur-2xl border border-slate-200/80 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.06)] overflow-x-auto scrollbar-hide">
               <div className="flex items-center justify-between min-w-[700px] lg:min-w-0 gap-2">
                 {storyMilestones.map((m, idx) => {
                   const isActive = activeStoryTab === idx;
@@ -772,12 +771,12 @@ export default function About() {
                       onClick={() => setActiveStoryTab(idx)}
                       className={`relative flex-1 flex items-center justify-center gap-3 px-5 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${
                         isActive
-                          ? "bg-gradient-to-r " + m.gradient + " text-slate-950 shadow-[0_10px_30px_rgba(0,0,0,0.5)] font-extrabold scale-[1.02]"
-                          : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
+                          ? "bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-800 text-white shadow-lg shadow-emerald-700/20 font-extrabold scale-[1.02]"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
                       }`}
                     >
                       <span className={`w-7 h-7 rounded-xl flex items-center justify-center transition-all ${
-                        isActive ? "bg-slate-950/30 text-slate-950" : "bg-slate-800 text-slate-300 group-hover:bg-slate-700"
+                        isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600 group-hover:bg-slate-200"
                       }`}>
                         <IconComp className="w-4 h-4" />
                       </span>
@@ -792,10 +791,10 @@ export default function About() {
             </div>
           </div>
 
-          {/* Main Dual-Column Showcase Grid */}
+          {/* Main Showcase Layout (Dual Column Executive Cards) */}
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
 
-            {/* Left 5 Cols: Vertical Milestone Timeline Cards */}
+            {/* Left 5 Cols: Vertical Interactive Stage Selector Cards */}
             <div className="lg:col-span-5 space-y-4">
               {storyMilestones.map((m, idx) => {
                 const isActive = activeStoryTab === idx;
@@ -806,22 +805,22 @@ export default function About() {
                     onClick={() => setActiveStoryTab(idx)}
                     className={`cursor-pointer group relative rounded-3xl p-5 border transition-all duration-500 overflow-hidden ${
                       isActive
-                        ? "bg-slate-900/90 border-emerald-500/60 shadow-[0_0_35px_rgba(16,185,129,0.25)] translate-x-2"
-                        : "bg-slate-900/40 border-slate-800/80 hover:bg-slate-900/70 hover:border-slate-700 hover:translate-x-1"
+                        ? "bg-white border-2 border-emerald-500 shadow-xl shadow-emerald-500/10 translate-x-2"
+                        : "bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 hover:shadow-md hover:translate-x-1"
                     }`}
                   >
-                    {/* Active Accent Bar */}
+                    {/* Active Left Accent Bar */}
                     {isActive && (
-                      <div className={`absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b ${m.gradient}`} />
+                      <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-500 to-teal-600" />
                     )}
 
                     <div className="flex items-start gap-4">
-                      {/* Icon Node */}
+                      {/* Icon Container */}
                       <div
                         className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500 ${
                           isActive
-                            ? "bg-gradient-to-br " + m.gradient + " text-slate-950 shadow-lg scale-110"
-                            : "bg-slate-800 text-slate-400 group-hover:text-slate-200 group-hover:bg-slate-700"
+                            ? "bg-emerald-800 text-white shadow-md shadow-emerald-800/20 scale-110"
+                            : "bg-slate-100 text-slate-600 group-hover:text-emerald-700 group-hover:bg-emerald-50"
                         }`}
                       >
                         <IconComp className="w-5 h-5" />
@@ -830,22 +829,22 @@ export default function About() {
                       <div className="space-y-1 flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-2">
                           <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
-                            isActive ? m.badgeColor : "bg-slate-800 text-slate-400"
+                            isActive ? "bg-emerald-100 text-emerald-800 font-bold" : "bg-slate-100 text-slate-500"
                           }`}>
                             {m.era}
                           </span>
-                          <span className="text-[10px] font-bold text-slate-500">
+                          <span className="text-[10px] font-bold text-slate-400">
                             STAGE 0{idx + 1}
                           </span>
                         </div>
 
                         <h3 className={`text-base font-extrabold transition-colors ${
-                          isActive ? "text-white" : "text-slate-300 group-hover:text-white"
+                          isActive ? "text-emerald-950" : "text-slate-800 group-hover:text-slate-950"
                         }`}>
                           {m.title}
                         </h3>
 
-                        <p className="text-xs text-slate-400 font-medium line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-slate-500 font-medium line-clamp-2 leading-relaxed">
                           {m.desc}
                         </p>
                       </div>
@@ -855,58 +854,50 @@ export default function About() {
               })}
             </div>
 
-            {/* Right 7 Cols: Ultra-Luxurious Spotlight Card */}
+            {/* Right 7 Cols: Executive White Glass Spotlight Card */}
             <div className="lg:col-span-7">
               {(() => {
                 const current = storyMilestones[activeStoryTab];
                 const IconComp = current.icon;
                 return (
-                  <div className="h-full relative rounded-[36px] overflow-hidden border-2 border-emerald-500/30 bg-slate-900/90 backdrop-blur-2xl p-6 sm:p-8 lg:p-10 shadow-[0_25px_80px_rgba(0,0,0,0.7)] flex flex-col justify-between space-y-8 group transition-all duration-700">
+                  <div className="h-full relative rounded-[36px] overflow-hidden border-2 border-slate-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-[0_25px_70px_-15px_rgba(0,0,0,0.08)] flex flex-col justify-between space-y-8 group transition-all duration-700">
                     
-                    {/* Background Subtle Image Overlay */}
-                    <div className="absolute inset-0 z-0 opacity-20">
-                      <img
-                        src={current.image}
-                        alt={current.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/40" />
-                    </div>
-
                     <div className="relative z-10 space-y-6">
 
-                      {/* Header Badge & Stat Tag */}
+                      {/* Header Badge & Stat Box */}
                       <div className="flex flex-wrap items-center justify-between gap-4">
-                        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-emerald-400/30 text-emerald-300 text-xs font-black uppercase tracking-wider">
-                          <IconComp className="w-4 h-4 text-amber-300" />
+                        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-black uppercase tracking-wider">
+                          <IconComp className="w-4 h-4 text-emerald-600" />
                           <span>ERA {current.era} • {current.label}</span>
                         </div>
 
-                        <div className="px-4 py-2 rounded-2xl bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/30 backdrop-blur-md">
-                          <span className="block text-[9px] font-black uppercase tracking-widest text-slate-400">{current.stat.label}</span>
-                          <span className="text-xl font-black text-amber-300">{current.stat.value}</span>
+                        <div className="px-4 py-2 rounded-2xl bg-amber-50/80 border border-amber-200 shadow-sm">
+                          <span className="block text-[9px] font-black uppercase tracking-widest text-amber-700">{current.stat.label}</span>
+                          <span className="text-xl font-black text-amber-800">{current.stat.value}</span>
                         </div>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight">
                         {current.title}
                       </h3>
 
-                      {/* Narrative Content */}
-                      <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-medium bg-slate-950/70 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-inner">
-                        {current.desc}
-                      </p>
+                      {/* Detailed Narrative Highlight Card */}
+                      <div className="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-5 shadow-inner space-y-2">
+                        <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
+                          {current.desc}
+                        </p>
+                      </div>
 
                       {/* Key Highlights Bullet List */}
                       <div className="space-y-3 pt-2">
-                        <span className="text-xs font-black uppercase tracking-widest text-emerald-400 block">
+                        <span className="text-xs font-black uppercase tracking-widest text-emerald-800 block">
                           Key Era Milestones &amp; Achievements:
                         </span>
                         <div className="space-y-2.5">
                           {current.highlights.map((item, hIdx) => (
-                            <div key={hIdx} className="flex items-start gap-3 text-xs sm:text-sm font-semibold text-slate-300">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <div key={hIdx} className="flex items-start gap-3 text-xs sm:text-sm font-semibold text-slate-700">
+                              <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
                               <span>{item}</span>
                             </div>
                           ))}
@@ -915,31 +906,47 @@ export default function About() {
 
                     </div>
 
-                    {/* Bottom Footer Actions & Next/Prev Controls */}
-                    <div className="relative z-10 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                    {/* Image Preview & Bottom Actions */}
+                    <div className="relative z-10 space-y-6 pt-4 border-t border-slate-100">
                       
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setActiveStoryTab((prev) => (prev > 0 ? prev - 1 : storyMilestones.length - 1))}
-                          className="px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs border border-white/10 transition-all"
-                        >
-                          ← Previous Era
-                        </button>
-                        <button
-                          onClick={() => setActiveStoryTab((prev) => (prev < storyMilestones.length - 1 ? prev + 1 : 0))}
-                          className="px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs border border-white/10 transition-all"
-                        >
-                          Next Era →
-                        </button>
+                      {/* Photo banner */}
+                      <div className="relative h-44 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                        <img
+                          src={current.image}
+                          alt={current.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+                        <div className="absolute bottom-3 left-4 right-4 text-white text-xs font-bold truncate">
+                          {current.label} — Field Operations &amp; Community Institutions
+                        </div>
                       </div>
 
-                      <a
-                        href="/impact"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] hover:-translate-y-0.5 transition-all group"
-                      >
-                        <span>Explore Full Impact Data</span>
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </a>
+                      {/* Bottom Footer Actions & Next/Prev Controls */}
+                      <div className="flex flex-wrap items-center justify-between gap-4">
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setActiveStoryTab((prev) => (prev > 0 ? prev - 1 : storyMilestones.length - 1))}
+                            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all"
+                          >
+                            ← Previous Era
+                          </button>
+                          <button
+                            onClick={() => setActiveStoryTab((prev) => (prev < storyMilestones.length - 1 ? prev + 1 : 0))}
+                            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all"
+                          >
+                            Next Era →
+                          </button>
+                        </div>
+
+                        <a
+                          href="/impact"
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-xs sm:text-sm shadow-md shadow-emerald-600/20 hover:shadow-lg hover:-translate-y-0.5 transition-all group"
+                        >
+                          <span>Explore Impact Data</span>
+                          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      </div>
 
                     </div>
 
