@@ -1006,8 +1006,23 @@ export default function About() {
                   /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" FULLY CREAM NGO SHOWCASE */
                   <div className="relative rounded-[40px] overflow-hidden border-2 border-amber-900/20 bg-[#faf6f0] p-8 sm:p-12 lg:p-14 shadow-2xl space-y-12 text-stone-900">
                     
-                    {/* Warm NGO Background Texture */}
-                    <div className="pointer-events-none absolute inset-0 opacity-30 bg-[radial-gradient(#92400e_1px,transparent_1px)] [background-size:24px_24px]" />
+                    {/* Celebration Crackers Spark Particle Burst Background */}
+                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                      {/* Radial Firecracker Spark Floating Particles */}
+                      <div className="absolute top-[20%] left-[15%] w-3 h-3 rounded-full bg-amber-500 animate-spark-float shadow-[0_0_12px_#f59e0b]" style={{ animationDelay: "0.2s" }} />
+                      <div className="absolute top-[25%] right-[20%] w-4 h-4 rounded-full bg-rose-500 animate-spark-float shadow-[0_0_16px_#f43f5e]" style={{ animationDelay: "0.8s" }} />
+                      <div className="absolute top-[40%] left-[30%] w-3 h-3 rounded-full bg-amber-400 animate-spark-float shadow-[0_0_12px_#fbbf24]" style={{ animationDelay: "1.4s" }} />
+                      <div className="absolute top-[35%] right-[35%] w-4 h-4 rounded-full bg-[#4a1220] opacity-80 animate-spark-float shadow-[0_0_20px_#4a1220]" style={{ animationDelay: "2.1s" }} />
+                      <div className="absolute top-[60%] left-[20%] w-3 h-3 rounded-full bg-amber-600 animate-spark-float shadow-[0_0_12px_#d97706]" style={{ animationDelay: "1.7s" }} />
+                      <div className="absolute top-[65%] right-[15%] w-4 h-4 rounded-full bg-rose-600 animate-spark-float shadow-[0_0_15px_#e11d48]" style={{ animationDelay: "2.5s" }} />
+
+                      {/* Firework Cracker Radial Burst Rings */}
+                      <div className="absolute top-[25%] left-[22%] w-32 h-32 rounded-full border border-dashed border-amber-500/50 animate-cracker-burst" />
+                      <div className="absolute top-[30%] right-[22%] w-40 h-40 rounded-full border border-dashed border-rose-500/50 animate-cracker-burst" style={{ animationDelay: "1.2s" }} />
+                      <div className="absolute top-[45%] left-[42%] w-48 h-48 rounded-full border border-dashed border-amber-600/40 animate-cracker-burst" style={{ animationDelay: "2.4s" }} />
+
+                      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#4a1220_1.5px,transparent_1.5px)] [background-size:28px_28px]" />
+                    </div>
 
                     {/* HERO DISPLAY */}
                     <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
