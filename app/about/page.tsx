@@ -109,96 +109,140 @@ const identityBadges: { label: string; icon: typeof Eye }[] = [
   { label: "Empowerment", icon: Star },
 ];
 
-const storyMilestones = [
+const storyChapters = [
   {
+    id: "1999",
     era: "1999",
-    label: "Beginning & Foundation",
-    title: "Founding & Agricultural Vision",
-    desc: "EFFORT was founded in the year 1999 on the premise that development in India can take place only in proportion to the development of agriculture. EFFORT strongly believes that the Agricultural Development is Key to eradicate poverty, ensure food security, generate demand for industrial goods and promote overall development. EFFORT is registered as a Society (Non-profit Empowerment Organisation) promoted by a group of people who have been involved in the Field Social Development for quite a long time.",
-    icon: BookOpen,
-    highlights: [
-      "Registered Society (Reg. No. 340/1999) at Martur, Prakasam District",
-      "Founded by dedicated social development pioneers & agricultural experts",
-      "Core conviction: Agricultural empowerment is key to ending rural poverty"
+    phase: "ORIGIN",
+    title: "THE BEGINNING",
+    heading: "Where The Roots Were Planted",
+    theme: "parchment",
+    bgStyle: "bg-[#faf6f0] text-amber-950 border-amber-300/80 shadow-[0_20px_50px_rgba(180,83,9,0.08)]",
+    accentColor: "#b45309",
+    badgeBg: "bg-amber-100 text-amber-900 border-amber-300 font-extrabold",
+    desc: "[PLACEHOLDER — INSERT AUTHENTIC 1999 STORY HERE] EFFORT was founded in the year 1999 on the premise that development in India can take place only in proportion to the development of agriculture. EFFORT strongly believes that Agricultural Development is key to eradicate poverty, ensure food security, generate demand for industrial goods and promote overall development. EFFORT is registered as a Society (Non-profit Empowerment Organisation) promoted by a group of people who have been involved in Field Social Development for quite a long time.",
+    archivalNotes: [
+      "Founded in Martur, Prakasam District, Andhra Pradesh",
+      "Registered Society Registration #340/1999",
+      "Agricultural empowerment as the cornerstone of rural progress"
     ],
-    stat: { label: "Founding Year", value: "1999" },
-    gradient: "from-emerald-500 via-teal-500 to-emerald-600",
-    glowColor: "rgba(16,185,129,0.35)",
-    accentColor: "#10b981",
-    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+    icon: BookOpen,
     image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    era: "2000s",
-    label: "Growth & Multi-Sector Expansion",
-    title: "One Program Became Many",
-    desc: "What started as a targeted grassroots agricultural initiative rapidly expanded into a multi-sector development model spanning quality education, community healthcare, watershed management, and women-led micro-enterprises.",
-    icon: TrendingUp,
-    highlights: [
-      "Expanded from single-village pilots to multi-district rural clusters",
-      "Integrated SHG women micro-finance & community leadership networks",
-      "Pioneered soil conservation, watershed harvesting & farmer field schools"
+    id: "2000-2009",
+    era: "2000–2009",
+    phase: "FOUNDATION",
+    title: "BUILDING CAPACITY",
+    heading: "Institutionalizing Community Action",
+    theme: "earthy-green",
+    bgStyle: "bg-[#f2f7f3] text-emerald-950 border-emerald-300/80 shadow-[0_20px_50px_rgba(4,120,87,0.08)]",
+    accentColor: "#047857",
+    badgeBg: "bg-emerald-100 text-emerald-900 border-emerald-300 font-extrabold",
+    desc: "[PLACEHOLDER — INSERT AUTHENTIC 2000–2009 STORY HERE] During this foundation decade, EFFORT expanded its agricultural focus to include women-led Self-Help Groups (SHGs), watershed management, and non-formal education pilots across rural clusters.",
+    archivalNotes: [
+      "Multi-village cluster expansion & SHG micro-finance models",
+      "Pioneered soil conservation & rainwater harvesting systems",
+      "Grassroots leadership training for smallholder farmers"
     ],
-    stat: { label: "Operating Districts", value: "12+" },
-    gradient: "from-amber-500 via-orange-500 to-amber-600",
-    glowColor: "rgba(245,158,11,0.35)",
-    accentColor: "#f59e0b",
-    badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+    icon: TrendingUp,
     image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    era: "2010s",
-    label: "Field Presence & Scaling",
-    title: "Field Teams, Not Just Field Visits",
-    desc: "We established permanent field operations centers directly inside rural clusters rather than visiting periodically. This deep presence fostered unprecedented community trust and enabled long-term institution building.",
-    icon: Compass,
-    highlights: [
-      "Permanent cluster offices across Prakasam, Guntur & surrounding regions",
-      "Formation of Farmer Producer Organizations (FPOs) & MACS Cooperatives",
-      "Strategic partnerships with NABARD, GIZ & corporate CSR leaders"
+    id: "2009-2016",
+    era: "2009–2016",
+    phase: "EXPANSION",
+    title: "EXPANDING THE REACH",
+    heading: "Permanent Field Offices & Cooperatives",
+    theme: "emerald-teal",
+    bgStyle: "bg-[#edf8f6] text-teal-950 border-teal-300/80 shadow-[0_20px_50px_rgba(15,118,110,0.08)]",
+    accentColor: "#0f766e",
+    badgeBg: "bg-teal-100 text-teal-900 border-teal-300 font-extrabold",
+    desc: "[PLACEHOLDER — INSERT AUTHENTIC 2009–2016 STORY HERE] Established a permanent on-the-ground operational footprint in 1,000+ villages, establishing Farmer Producer Organizations (FPOs) and MACS Cooperatives in collaboration with NABARD and GIZ.",
+    archivalNotes: [
+      "1,909 villages operational footprint across 37 districts",
+      "Formalization of MACS Women Cooperatives & FPOs",
+      "Institutional partnership with NABARD, GIZ & State Govt"
     ],
-    stat: { label: "Villages Reached", value: "1,909" },
-    gradient: "from-cyan-500 via-blue-600 to-teal-500",
-    glowColor: "rgba(6,182,212,0.35)",
-    accentColor: "#06b6d4",
-    badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
+    icon: Compass,
     image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    era: "2020s",
-    label: "Transformation & Impact",
-    title: "From Activity to Measurable Outcome",
-    desc: "We redefined organizational benchmarks — shifting focus from inputs and activities to auditable, long-term impact on family income, water security, crop yield, and women's economic independence.",
-    icon: Award,
-    highlights: [
-      "Over 2.67 Lakh families empowered across 9 states",
-      "2,702+ water harvesting structures built with climate resilience",
-      "100% statutory compliance, FCRA certification, & 80G tax benefits"
+    id: "2016-2025",
+    era: "2016–2025",
+    phase: "TRANSFORMATION",
+    title: "FROM EXPERIENCE TO IMPACT",
+    heading: "Auditable Outcomes & National Scale",
+    theme: "pearl-navy",
+    bgStyle: "bg-slate-900 text-white border-slate-700 shadow-[0_25px_60px_rgba(0,0,0,0.4)]",
+    accentColor: "#38bdf8",
+    badgeBg: "bg-sky-500/20 text-sky-300 border-sky-400/40 font-extrabold",
+    desc: "[PLACEHOLDER — INSERT AUTHENTIC 2016–2025 STORY HERE] Shifted organizational metrics to auditable, long-term impact on household income, water security, and female economic independence, reaching over 2.67 Lakh families across 9 states.",
+    archivalNotes: [
+      "2,67,000+ families impacted across 9 operating states",
+      "2,702+ water harvesting structures constructed",
+      "100% FCRA & 80G statutory compliance & CSR Schedule VII standards"
     ],
-    stat: { label: "Families Empowered", value: "2.67L+" },
-    gradient: "from-fuchsia-500 via-purple-600 to-rose-500",
-    glowColor: "rgba(217,70,239,0.35)",
-    accentColor: "#d946ef",
-    badgeColor: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40",
+    icon: Award,
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    era: "2026 →",
-    label: "Future Vision & Scaling",
-    title: "Rooted, Resilient & Growing Stronger",
-    desc: "27+ years into our mission, EFFORT is pioneering climate-smart agriculture, digital farm extension tools, and youth entrepreneurship hubs while remaining deeply committed to community ownership.",
-    icon: Sparkles,
-    highlights: [
-      "Scaling climate-resilient farming & carbon credit models",
-      "Empowering next-gen rural youth with digital tech & skills",
-      "Expanding CSR alliances to transform 5,000+ model villages"
-    ],
-    stat: { label: "Years of Service", value: "27+ Yrs" },
-    gradient: "from-emerald-400 via-teal-400 to-amber-300",
-    glowColor: "rgba(52,211,153,0.35)",
+    id: "2026-2030",
+    era: "2026–2030",
+    phase: "2.0 — THE NEXT ERA",
+    title: "FUTURE VISION",
+    heading: "Pioneering The Next-Gen Ecosystem",
+    theme: "futuristic-luminous",
+    bgStyle: "bg-slate-950 text-white border-emerald-500/50 shadow-[0_0_80px_rgba(16,185,129,0.3)]",
     accentColor: "#34d399",
-    badgeColor: "bg-emerald-400/20 text-emerald-300 border-emerald-400/40",
+    badgeBg: "bg-emerald-400/20 text-emerald-300 border-emerald-400/50 font-extrabold animate-pulse",
+    desc: "[PLACEHOLDER — INSERT AUTHENTIC 2026–2030 VISION HERE] Stepping into EFFORT 2.0: Integrating climate-smart technology, carbon-neutral farming, AI extension services, and youth entrepreneurship hubs across 5,000+ villages.",
+    archivalNotes: [
+      "Climate-resilient carbon credit farming models",
+      "Youth digital skill incubators & micro-enterprises",
+      "Targeting 5,000 model sustainable villages by 2030"
+    ],
+    icon: Sparkles,
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
+  },
+];
+
+const futurePillars20 = [
+  {
+    num: "01",
+    title: "NEXT-GENERATION PROGRAMS",
+    desc: "Climate-smart agriculture, carbon credits, and high-value crop diversification.",
+    icon: Sprout,
+  },
+  {
+    num: "02",
+    title: "DIGITAL TRANSFORMATION",
+    desc: "AI farm advisory, IoT watershed telemetry, and digital record keeping.",
+    icon: Zap,
+  },
+  {
+    num: "03",
+    title: "COMMUNITY OWNERSHIP",
+    desc: "100% self-governing SHG federations and farmer-owned MACS cooperatives.",
+    icon: Users,
+  },
+  {
+    num: "04",
+    title: "INSTITUTIONAL PARTNERSHIPS",
+    desc: "Global CSR alliances with Fortune 500 foundations and international agencies.",
+    icon: Handshake,
+  },
+  {
+    num: "05",
+    title: "SCALE & IMPACT",
+    desc: "Expanding grassroots reach to 5,000+ model sustainable villages by 2030.",
+    icon: Globe2,
+  },
+  {
+    num: "06",
+    title: "FUTURE READINESS",
+    desc: "Youth skill incubators, green entrepreneurship, and disaster resilience.",
+    icon: ShieldCheck,
   },
 ];
 
@@ -428,7 +472,8 @@ const finaleStats: FinaleStat[] = [
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
-  const [activeStoryTab, setActiveStoryTab] = useState(0);
+  const [activeStoryChapter, setActiveStoryChapter] = useState(0);
+  const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
   const [vmRef, vmVisible] = useScrollReveal<HTMLElement>();
   const [activeVMSlide, setActiveVMSlide] = useState(0);
   const [vmPaused, setVmPaused] = useState(false);
@@ -717,72 +762,76 @@ export default function About() {
 
 
 
-      {/* --- OUR STORY SECTION (HIGH-LEVEL EXECUTIVE LUXURY LIGHT DESIGN) --- */}
-      <section ref={storyRef} id="journey" className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-emerald-50/20 py-24 lg:py-36 text-slate-900 border-y border-slate-200/60">
+      {/* --- OUR STORY SECTION ("FROM ROOTS TO 2.0" CINEMATIC DIGITAL EXHIBITION) --- */}
+      <section ref={storyRef} id="journey" className="relative overflow-hidden bg-slate-950 py-24 lg:py-36 text-white border-y border-slate-800/80">
         
-        {/* Soft Ambient Silk Lighting */}
+        {/* Dynamic Color Atmospheric Lighting Evolving Across Eras */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[5%] w-[600px] h-[600px] bg-emerald-100/50 rounded-full blur-[140px] animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] bg-amber-100/40 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: "2.5s" }} />
-          <div className="absolute top-[40%] left-[35%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: "1.2s" }} />
-          <div className="bg-noise absolute inset-0 opacity-[0.03]" />
+          <div className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] bg-emerald-500/15 rounded-full blur-[180px] animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-amber-500/15 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: "3s" }} />
+          <div className="absolute top-[45%] left-[30%] w-[550px] h-[550px] bg-teal-500/15 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:32px_32px]" />
+          <div className="bg-noise absolute inset-0 opacity-30" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
 
-          {/* Section Header */}
+          {/* Section Introduction */}
           <div
             className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
               storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xl border border-emerald-500/30 text-emerald-800 text-xs font-black uppercase tracking-[0.2em] shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>OUR 27-YEAR EVOLUTIONARY TIMELINE</span>
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-xl border border-emerald-500/40 text-emerald-300 text-xs font-black uppercase tracking-[0.25em] shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>OUR STORY</span>
             </div>
             
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
-              Every Great Transformation Begins With A{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">
-                Single Conviction
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
+              From Where We Began{" "}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">
+                To Where We're Going.
               </span>
             </h2>
             
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-              From our 1999 founding in Andhra Pradesh to multi-state grassroots institutions — explore the key milestones that shaped EFFORT into a leading social development movement.
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium">
+              From our 1999 origin in Andhra Pradesh to our next-generation 2.0 era — travel through the transformative chapters of EFFORT's ongoing legacy.
             </p>
           </div>
 
-          {/* Top Interactive Era Selector (Clean Floating Glass Pill Track) */}
+          {/* TIME RIVER: Organic Flowing SVG Path & Era Chapter Stepper */}
           <div
             className={`transition-all duration-700 ${
               storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: "150ms" }}
           >
-            <div className="relative p-2 rounded-3xl bg-white/80 backdrop-blur-2xl border border-slate-200/80 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.06)] overflow-x-auto scrollbar-hide">
-              <div className="flex items-center justify-between min-w-[700px] lg:min-w-0 gap-2">
-                {storyMilestones.map((m, idx) => {
-                  const isActive = activeStoryTab === idx;
-                  const IconComp = m.icon;
+            <div className="relative p-3 rounded-3xl bg-slate-900/80 backdrop-blur-2xl border border-slate-800 shadow-2xl overflow-x-auto scrollbar-hide">
+              <div className="flex items-center justify-between min-w-[850px] lg:min-w-0 gap-3">
+                {storyChapters.map((ch, idx) => {
+                  const isActive = activeStoryChapter === idx;
+                  const IconComp = ch.icon;
+                  const isIs20 = ch.id === "2026-2030";
                   return (
                     <button
-                      key={m.era}
-                      onClick={() => setActiveStoryTab(idx)}
-                      className={`relative flex-1 flex items-center justify-center gap-3 px-5 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${
+                      key={ch.id}
+                      onClick={() => setActiveStoryChapter(idx)}
+                      className={`relative flex-1 flex items-center justify-center gap-3 px-4 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${
                         isActive
-                          ? "bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-800 text-white shadow-lg shadow-emerald-700/20 font-extrabold scale-[1.02]"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
+                          ? isIs20
+                            ? "bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-300 text-slate-950 shadow-[0_0_35px_rgba(52,211,153,0.5)] font-black scale-[1.03]"
+                            : "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg font-black scale-[1.02]"
+                          : "text-slate-400 hover:text-white hover:bg-slate-800/60"
                       }`}
                     >
-                      <span className={`w-7 h-7 rounded-xl flex items-center justify-center transition-all ${
-                        isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600 group-hover:bg-slate-200"
+                      <span className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${
+                        isActive ? (isIs20 ? "bg-slate-950 text-emerald-300 font-black" : "bg-white/20 text-white") : "bg-slate-800 text-slate-400 group-hover:bg-slate-700"
                       }`}>
                         <IconComp className="w-4 h-4" />
                       </span>
                       <div className="text-left">
-                        <span className="block text-[10px] uppercase font-black tracking-widest opacity-80">{m.era}</span>
-                        <span className="block font-black truncate">{m.label.split("&")[0]}</span>
+                        <span className="block text-[10px] uppercase font-black tracking-widest opacity-80">{ch.era}</span>
+                        <span className="block font-black truncate text-xs">{ch.phase}</span>
                       </div>
                     </button>
                   );
@@ -791,171 +840,232 @@ export default function About() {
             </div>
           </div>
 
-          {/* Main Showcase Layout (Dual Column Executive Cards) */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          {/* CHAPTER SHOWCASE EXHIBITION */}
+          {(() => {
+            const current = storyChapters[activeStoryChapter];
+            const IconComp = current.icon;
+            const is20Era = current.id === "2026-2030";
 
-            {/* Left 5 Cols: Vertical Interactive Stage Selector Cards */}
-            <div className="lg:col-span-5 space-y-4">
-              {storyMilestones.map((m, idx) => {
-                const isActive = activeStoryTab === idx;
-                const IconComp = m.icon;
-                return (
-                  <div
-                    key={m.era}
-                    onClick={() => setActiveStoryTab(idx)}
-                    className={`cursor-pointer group relative rounded-3xl p-5 border transition-all duration-500 overflow-hidden ${
-                      isActive
-                        ? "bg-white border-2 border-emerald-500 shadow-xl shadow-emerald-500/10 translate-x-2"
-                        : "bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 hover:shadow-md hover:translate-x-1"
-                    }`}
-                  >
-                    {/* Active Left Accent Bar */}
-                    {isActive && (
-                      <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-500 to-teal-600" />
-                    )}
-
-                    <div className="flex items-start gap-4">
-                      {/* Icon Container */}
-                      <div
-                        className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500 ${
-                          isActive
-                            ? "bg-emerald-800 text-white shadow-md shadow-emerald-800/20 scale-110"
-                            : "bg-slate-100 text-slate-600 group-hover:text-emerald-700 group-hover:bg-emerald-50"
-                        }`}
-                      >
-                        <IconComp className="w-5 h-5" />
-                      </div>
-
-                      <div className="space-y-1 flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
-                            isActive ? "bg-emerald-100 text-emerald-800 font-bold" : "bg-slate-100 text-slate-500"
-                          }`}>
-                            {m.era}
+            return (
+              <div className="space-y-12">
+                
+                {/* Regular Chapters (1999 to 2016-2025) */}
+                {!is20Era ? (
+                  <div className={`rounded-[36px] overflow-hidden border-2 transition-all duration-700 p-6 sm:p-10 lg:p-12 ${current.bgStyle}`}>
+                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                      
+                      {/* Left 7 Cols: Archival Story Content */}
+                      <div className="lg:col-span-7 space-y-6">
+                        
+                        <div className="flex flex-wrap items-center justify-between gap-4">
+                          <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${current.badgeBg}`}>
+                            CHAPTER 0{activeStoryChapter + 1} • {current.phase}
                           </span>
-                          <span className="text-[10px] font-bold text-slate-400">
-                            STAGE 0{idx + 1}
+                          <span className="text-3xl sm:text-4xl font-black opacity-40">
+                            {current.era}
                           </span>
                         </div>
 
-                        <h3 className={`text-base font-extrabold transition-colors ${
-                          isActive ? "text-emerald-950" : "text-slate-800 group-hover:text-slate-950"
-                        }`}>
-                          {m.title}
+                        <h3 className="text-2xl sm:text-4xl font-black leading-tight">
+                          {current.heading}
                         </h3>
 
-                        <p className="text-xs text-slate-500 font-medium line-clamp-2 leading-relaxed">
-                          {m.desc}
-                        </p>
+                        {/* Story Text Box */}
+                        <div className="p-6 rounded-2xl bg-white/40 backdrop-blur-md border border-black/10 space-y-3">
+                          <p className="text-sm sm:text-base leading-relaxed font-medium">
+                            {current.desc}
+                          </p>
+                        </div>
+
+                        {/* Archival Notes */}
+                        <div className="space-y-3 pt-2">
+                          <span className="text-xs font-black uppercase tracking-widest block opacity-75">
+                            CHAPTER HIGHLIGHTS &amp; MILESTONES:
+                          </span>
+                          <div className="space-y-2">
+                            {current.archivalNotes.map((note, nIdx) => (
+                              <div key={nIdx} className="flex items-start gap-3 text-xs sm:text-sm font-semibold">
+                                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: current.accentColor }} />
+                                <span>{note}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Navigation controls */}
+                        <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-current/10">
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : storyChapters.length - 1))}
+                              className="px-4 py-2 rounded-xl bg-black/10 hover:bg-black/20 font-bold text-xs transition-all"
+                            >
+                              ← Previous Chapter
+                            </button>
+                            <button
+                              onClick={() => setActiveStoryChapter((prev) => (prev < storyChapters.length - 1 ? prev + 1 : 0))}
+                              className="px-4 py-2 rounded-xl bg-black/10 hover:bg-black/20 font-bold text-xs transition-all"
+                            >
+                              Next Chapter →
+                            </button>
+                          </div>
+                          
+                          <span className="text-xs font-bold opacity-75">
+                            Traveling through {current.era}
+                          </span>
+                        </div>
+
                       </div>
+
+                      {/* Right 5 Cols: Visual Photographic Archival Frame */}
+                      <div className="lg:col-span-5">
+                        <div className="relative rounded-3xl overflow-hidden border-4 border-white/60 shadow-2xl group">
+                          <img
+                            src={current.image}
+                            alt={current.title}
+                            className="w-full h-[380px] sm:h-[440px] object-cover group-hover:scale-105 transition-transform duration-1000"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                          <div className="absolute bottom-4 left-5 right-5 text-white">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 block">
+                              ARCHIVAL RECORD · {current.era}
+                            </span>
+                            <p className="text-xs font-bold leading-snug">
+                              {current.title} — Grassroots Field Operations
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Right 7 Cols: Executive White Glass Spotlight Card */}
-            <div className="lg:col-span-7">
-              {(() => {
-                const current = storyMilestones[activeStoryTab];
-                const IconComp = current.icon;
-                return (
-                  <div className="h-full relative rounded-[36px] overflow-hidden border-2 border-slate-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-[0_25px_70px_-15px_rgba(0,0,0,0.08)] flex flex-col justify-between space-y-8 group transition-all duration-700">
+                ) : (
+                  
+                  /* 2026-2030 "2.0" THE NEXT ERA CLIMAX SHOWCASE */
+                  <div className="relative rounded-[40px] overflow-hidden border-2 border-emerald-500/50 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 p-8 sm:p-12 lg:p-16 shadow-[0_0_100px_rgba(16,185,129,0.3)] space-y-16">
                     
-                    <div className="relative z-10 space-y-6">
+                    {/* Volumetric Emerald & Teal Light Sweep Background */}
+                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                      <div className="absolute top-[-20%] left-[20%] w-[800px] h-[800px] bg-emerald-500/20 rounded-full blur-[200px] animate-pulse" />
+                      <div className="absolute bottom-[-20%] right-[20%] w-[800px] h-[800px] bg-teal-500/20 rounded-full blur-[200px] animate-pulse" style={{ animationDelay: "2s" }} />
+                      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(52,211,153,0.3)_1.5px,transparent_1.5px)] [background-size:24px_24px]" />
+                    </div>
 
-                      {/* Header Badge & Stat Box */}
-                      <div className="flex flex-wrap items-center justify-between gap-4">
-                        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-black uppercase tracking-wider">
-                          <IconComp className="w-4 h-4 text-emerald-600" />
-                          <span>ERA {current.era} • {current.label}</span>
-                        </div>
-
-                        <div className="px-4 py-2 rounded-2xl bg-amber-50/80 border border-amber-200 shadow-sm">
-                          <span className="block text-[9px] font-black uppercase tracking-widest text-amber-700">{current.stat.label}</span>
-                          <span className="text-xl font-black text-amber-800">{current.stat.value}</span>
-                        </div>
+                    {/* 2.0 HERO MOMENT (GIANT ARCHITECTURAL "2.0" TYPOGRAPHY) */}
+                    <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
+                      
+                      <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-emerald-500/20 backdrop-blur-2xl border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.3em] shadow-[0_0_30px_rgba(52,211,153,0.4)] animate-pulse">
+                        <Sparkles className="w-4 h-4 text-amber-300" />
+                        <span>2026 – 2030 • THE NEXT GENERATION ERA</span>
                       </div>
 
-                      {/* Title */}
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight">
-                        {current.title}
-                      </h3>
-
-                      {/* Detailed Narrative Highlight Card */}
-                      <div className="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-5 shadow-inner space-y-2">
-                        <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
-                          {current.desc}
+                      {/* HUGE 3D VOLUMETRIC 2.0 TITLE */}
+                      <div className="relative py-4">
+                        <span className="text-7xl sm:text-9xl lg:text-[140px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 drop-shadow-[0_20px_50px_rgba(16,185,129,0.5)]">
+                          2.0
+                        </span>
+                        <p className="text-lg sm:text-2xl font-black uppercase tracking-[0.3em] text-emerald-300 mt-2">
+                          THE NEXT CHAPTER HAS BEGUN
                         </p>
                       </div>
 
-                      {/* Key Highlights Bullet List */}
-                      <div className="space-y-3 pt-2">
-                        <span className="text-xs font-black uppercase tracking-widest text-emerald-800 block">
-                          Key Era Milestones &amp; Achievements:
+                      {/* Emotional Bridge Statement */}
+                      <div className="space-y-2 py-4 border-y border-white/10 max-w-2xl mx-auto">
+                        <p className="text-sm font-bold uppercase tracking-widest text-slate-400">
+                          BUILT ON EXPERIENCE.
+                        </p>
+                        <p className="text-xl sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-amber-300">
+                          DESIGNED FOR WHAT'S NEXT.
+                        </p>
+                      </div>
+
+                      {/* Vision Text Box */}
+                      <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-inner max-w-3xl mx-auto">
+                        {current.desc}
+                      </p>
+
+                    </div>
+
+                    {/* 2.0 FUTURE PILLARS NETWORK GRID (6 INTERACTIVE NODES) */}
+                    <div className="relative z-10 space-y-8">
+                      
+                      <div className="text-center space-y-2">
+                        <span className="text-xs font-black uppercase tracking-[0.25em] text-emerald-400">
+                          2.0 STRATEGIC FUTURE PILLARS
                         </span>
-                        <div className="space-y-2.5">
-                          {current.highlights.map((item, hIdx) => (
-                            <div key={hIdx} className="flex items-start gap-3 text-xs sm:text-sm font-semibold text-slate-700">
-                              <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
-                              <span>{item}</span>
+                        <h4 className="text-xl sm:text-2xl font-black text-white">
+                          Connected Ecosystem For Scale &amp; Sustainability
+                        </h4>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {futurePillars20.map((pillar, pIdx) => {
+                          const IconComp = pillar.icon;
+                          const isHovered = hoveredPillar === pIdx;
+                          return (
+                            <div
+                              key={pillar.num}
+                              onMouseEnter={() => setHoveredPillar(pIdx)}
+                              onMouseLeave={() => setHoveredPillar(null)}
+                              className={`group relative rounded-3xl p-6 border transition-all duration-500 cursor-pointer overflow-hidden ${
+                                isHovered
+                                  ? "bg-slate-900 border-emerald-400/80 shadow-[0_0_35px_rgba(52,211,153,0.3)] -translate-y-1.5"
+                                  : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                              }`}
+                            >
+                              <div className="flex items-start justify-between gap-4 mb-4">
+                                <span className="text-xs font-black text-emerald-400 tracking-widest px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                                  PILLAR {pillar.num}
+                                </span>
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${
+                                  isHovered ? "bg-emerald-400 text-slate-950 scale-110" : "bg-slate-800 text-slate-300"
+                                }`}>
+                                  <IconComp className="w-5 h-5" />
+                                </div>
+                              </div>
+
+                              <h5 className="text-base font-black text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                                {pillar.title}
+                              </h5>
+
+                              <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                                {pillar.desc}
+                              </p>
                             </div>
-                          ))}
-                        </div>
+                          );
+                        })}
                       </div>
 
                     </div>
 
-                    {/* Image Preview & Bottom Actions */}
-                    <div className="relative z-10 space-y-6 pt-4 border-t border-slate-100">
+                    {/* FINAL 2.0 CALL TO ACTION */}
+                    <div className="relative z-10 pt-10 border-t border-white/10 text-center space-y-6 max-w-xl mx-auto">
                       
-                      {/* Photo banner */}
-                      <div className="relative h-44 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                        <img
-                          src={current.image}
-                          alt={current.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
-                        <div className="absolute bottom-3 left-4 right-4 text-white text-xs font-bold truncate">
-                          {current.label} — Field Operations &amp; Community Institutions
-                        </div>
-                      </div>
+                      <h4 className="text-2xl font-black text-white">
+                        BE PART OF THE NEXT CHAPTER
+                      </h4>
 
-                      {/* Bottom Footer Actions & Next/Prev Controls */}
-                      <div className="flex flex-wrap items-center justify-between gap-4">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => setActiveStoryTab((prev) => (prev > 0 ? prev - 1 : storyMilestones.length - 1))}
-                            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all"
-                          >
-                            ← Previous Era
-                          </button>
-                          <button
-                            onClick={() => setActiveStoryTab((prev) => (prev < storyMilestones.length - 1 ? prev + 1 : 0))}
-                            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all"
-                          >
-                            Next Era →
-                          </button>
-                        </div>
+                      <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                        [PLACEHOLDER — INSERT FUTURE PARTICIPATION / PARTNERSHIP MESSAGE] Join EFFORT in shaping the future of rural development through sustainable partnerships, CSR initiatives, and community leadership.
+                      </p>
 
+                      <div>
                         <a
-                          href="/impact"
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-xs sm:text-sm shadow-md shadow-emerald-600/20 hover:shadow-lg hover:-translate-y-0.5 transition-all group"
+                          href="/get-involved"
+                          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-300 text-slate-950 font-black text-sm shadow-[0_0_35px_rgba(52,211,153,0.4)] hover:shadow-[0_0_50px_rgba(52,211,153,0.6)] hover:-translate-y-1 transition-all group"
                         >
-                          <span>Explore Impact Data</span>
-                          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          <span>EXPLORE OUR 2.0 JOURNEY</span>
+                          <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         </a>
                       </div>
 
                     </div>
 
                   </div>
-                );
-              })()}
-            </div>
+                )}
 
-          </div>
+              </div>
+            );
+          })()}
 
         </div>
       </section>
