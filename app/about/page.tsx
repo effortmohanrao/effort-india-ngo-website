@@ -1021,12 +1021,33 @@ export default function About() {
                         <span>2026 – 2030 • THE NEXT GENERATION ERA</span>
                       </div>
 
-                      {/* GIANT 2.0 TITLE */}
-                      <div className="relative py-2">
-                        <span className="text-7xl sm:text-9xl lg:text-[140px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-amber-300 drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]">
-                          2.0
-                        </span>
-                        <p className="text-base sm:text-xl font-black uppercase tracking-[0.3em] text-purple-300 mt-2">
+                      {/* GIANT ANIMATED 2.0 TITLE DISPLAY */}
+                      <div className="relative py-6 flex flex-col items-center justify-center">
+                        
+                        {/* Rotating Orbital Halo Rings behind 2.0 */}
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                          <div className="w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] rounded-full border border-purple-500/25 animate-spin" style={{ animationDuration: "28s" }} />
+                          <div className="absolute w-[210px] h-[210px] sm:w-[310px] sm:h-[310px] rounded-full border border-dashed border-cyan-400/25 animate-spin" style={{ animationDuration: "18s", animationDirection: "reverse" }} />
+                        </div>
+
+                        {/* Animated 2.0 Number Display */}
+                        <div className="relative z-10 flex items-baseline justify-center gap-1 font-black tracking-tighter leading-none select-none">
+                          <span className="text-8xl sm:text-[140px] lg:text-[180px] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 via-amber-300 to-purple-400 animate-text-glow-sweep">
+                            2
+                          </span>
+                          
+                          {/* Animated Luminous Dot */}
+                          <span className="relative flex items-center justify-center mx-1 self-end mb-4 sm:mb-8">
+                            <span className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-cyan-400 animate-ping absolute opacity-75" />
+                            <span className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-300 shadow-[0_0_30px_#06b6d4] relative" />
+                          </span>
+
+                          <span className="text-8xl sm:text-[140px] lg:text-[180px] text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-amber-300 via-purple-400 to-cyan-300 animate-text-glow-sweep">
+                            0
+                          </span>
+                        </div>
+
+                        <p className="relative z-10 text-base sm:text-xl font-black uppercase tracking-[0.35em] text-purple-300 mt-4">
                           EVERYTHING WE LEARNED BECOMES WHAT COMES NEXT
                         </p>
                       </div>

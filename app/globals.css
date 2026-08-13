@@ -79,6 +79,16 @@ body {
   animation: liquid-drift-b 13s ease-in-out infinite;
 }
 
+@keyframes text-glow-sweep {
+  0% { background-position: 0% 50%; filter: drop-shadow(0 0 35px rgba(168, 85, 247, 0.5)); }
+  50% { background-position: 100% 50%; filter: drop-shadow(0 0 70px rgba(6, 182, 212, 0.8)); }
+  100% { background-position: 0% 50%; filter: drop-shadow(0 0 35px rgba(168, 85, 247, 0.5)); }
+}
+.animate-text-glow-sweep {
+  background-size: 200% 200%;
+  animation: text-glow-sweep 5s ease infinite;
+}
+
 @keyframes liquid-drift-c {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(30px, -10px) scale(1.25); }
