@@ -1003,178 +1003,122 @@ export default function About() {
                   </div>
                 ) : (
                   
-                  /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" FULL-HEIGHT FLAGSHIP EXPERIENCE */
-                  <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen min-h-[140vh] bg-[#030712] text-white py-20 lg:py-32 px-4 sm:px-8 lg:px-16 overflow-hidden border-t-2 border-purple-500/40 shadow-[0_0_120px_rgba(168,85,247,0.3)] space-y-24">
+                  /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" EXECUTIVE STYLE SHOWCASE */
+                  <div className="relative rounded-[40px] overflow-hidden border-2 border-purple-500/40 bg-gradient-to-b from-[#030712] via-slate-950 to-[#030712] p-8 sm:p-12 lg:p-14 shadow-[0_0_80px_rgba(168,85,247,0.25)] space-y-12">
                     
-                    {/* Deep Space Architectural Light Background */}
+                    {/* Atmospheric Lighting Background */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                      <div className="absolute top-[-10%] left-[15%] w-[900px] h-[900px] bg-purple-600/15 rounded-full blur-[240px] animate-pulse" />
-                      <div className="absolute bottom-[-10%] right-[15%] w-[900px] h-[900px] bg-cyan-500/15 rounded-full blur-[240px] animate-pulse" style={{ animationDelay: "3s" }} />
-                      <div className="absolute top-[40%] left-[40%] w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[200px] animate-pulse" style={{ animationDelay: "1.5s" }} />
-                      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#a855f7_1.5px,transparent_1.5px)] [background-size:36px_36px]" />
-                      
-                      {/* Floating Legacy Eras Background Typography (1999 -> 2000-2009 -> 2009-2016 -> 2016-2025 streaming to 2.0) */}
-                      <div className="absolute top-12 left-10 text-8xl font-black opacity-[0.03] select-none">1999</div>
-                      <div className="absolute top-48 right-16 text-8xl font-black opacity-[0.03] select-none">2000–2009</div>
-                      <div className="absolute bottom-64 left-16 text-8xl font-black opacity-[0.03] select-none">2009–2016</div>
-                      <div className="absolute bottom-20 right-20 text-8xl font-black opacity-[0.03] select-none">2016–2025</div>
+                      <div className="absolute top-[-20%] left-[20%] w-[700px] h-[700px] bg-purple-600/15 rounded-full blur-[180px] animate-pulse" />
+                      <div className="absolute bottom-[-20%] right-[20%] w-[700px] h-[700px] bg-cyan-500/15 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: "2s" }} />
+                      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#a855f7_1.5px,transparent_1.5px)] [background-size:28px_28px]" />
                     </div>
 
-                    <div className="max-w-7xl mx-auto relative z-10 space-y-24">
+                    {/* HERO DISPLAY */}
+                    <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+                      
+                      <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-purple-500/20 backdrop-blur-2xl border border-purple-400/40 text-purple-300 text-xs font-black uppercase tracking-[0.3em] shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+                        <Sparkles className="w-4 h-4 text-cyan-300" />
+                        <span>2026 – 2030 • THE NEXT GENERATION ERA</span>
+                      </div>
 
-                      {/* STAGE 01: SILENCE & MAJOR EDITORIAL STATEMENT */}
-                      <div className="text-center max-w-4xl mx-auto space-y-6">
-                        <span className="text-xs font-mono uppercase tracking-[0.4em] text-purple-400 block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 w-max mx-auto">
-                          2016–2025 TRANSFORMATION COMPLETE • ENTERING 2.0
+                      {/* GIANT 2.0 TITLE */}
+                      <div className="relative py-2">
+                        <span className="text-7xl sm:text-9xl lg:text-[140px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-amber-300 drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]">
+                          2.0
                         </span>
-
-                        <h3 className="text-3xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-indigo-200 to-cyan-300">
-                          2.0 IS NOT A VERSION.<br />IT IS AN EVOLUTION.
-                        </h3>
-                      </div>
-
-                      {/* STAGE 02: GIANT 2.0 ARCHITECTURAL HERO TYPOGRAPHY */}
-                      <div className="relative text-center py-12 space-y-8 max-w-5xl mx-auto">
-                        
-                        {/* Orbital Halo Rings around 2.0 */}
-                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                          <div className="w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] rounded-full border border-purple-500/30 animate-spin" style={{ animationDuration: "35s" }} />
-                          <div className="absolute w-[240px] h-[240px] sm:w-[380px] sm:h-[380px] rounded-full border border-dashed border-cyan-400/25 animate-spin" style={{ animationDuration: "25s", animationDirection: "reverse" }} />
-                        </div>
-
-                        {/* MASSIVE 2.0 ARCHITECTURAL DISPLAY */}
-                        <div className="relative z-10 py-6">
-                          <span className="text-8xl sm:text-[140px] lg:text-[220px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-amber-300 drop-shadow-[0_0_80px_rgba(168,85,247,0.7)]">
-                            2.0
-                          </span>
-                          <p className="text-xl sm:text-3xl font-black uppercase tracking-[0.35em] text-purple-300 mt-4">
-                            THE NEXT GENERATION ERA (2026–2030)
-                          </p>
-                        </div>
-
-                        {/* Major Emotional Statement */}
-                        <div className="space-y-3 py-6 border-y border-white/10 max-w-3xl mx-auto">
-                          <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-slate-400">
-                            FROM LEGACY TO WHAT COMES NEXT
-                          </p>
-                          <p className="text-2xl sm:text-4xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-indigo-100 to-cyan-300">
-                            EVERYTHING WE LEARNED BECOMES WHAT COMES NEXT.
-                          </p>
-                        </div>
-
-                        {/* Vision Description Box */}
-                        <div className="p-8 rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-purple-500/30 shadow-2xl text-slate-200 text-base sm:text-lg leading-relaxed max-w-4xl mx-auto font-medium">
-                          {currentWorld.desc}
-                        </div>
-
-                      </div>
-
-                      {/* STAGE 03: THE 6 ASYMMETRICAL FLOATING ARCHITECTURAL PILLARS (NO CARDS!) */}
-                      <div className="relative space-y-12">
-                        
-                        <div className="text-center space-y-3 max-w-2xl mx-auto">
-                          <span className="text-xs font-black uppercase tracking-[0.3em] text-cyan-400 block">
-                            2.0 ARCHITECTURAL ECOSYSTEM
-                          </span>
-                          <h4 className="text-2xl sm:text-4xl font-black text-white">
-                            Six Floating Pillars of Next-Gen Impact
-                          </h4>
-                          <p className="text-xs sm:text-sm text-slate-400 font-medium">
-                            Hover over any architectural node to illuminate its connection to the central 2.0 network.
-                          </p>
-                        </div>
-
-                        {/* ASYMMETRICAL FLOATING PILLARS GRID */}
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                          {futurePillars20World.map((pillar, pIdx) => {
-                            const IconComp = pillar.icon;
-                            const isHovered = hoveredPillar === pIdx;
-                            return (
-                              <div
-                                key={pillar.num}
-                                onMouseEnter={() => setHoveredPillar(pIdx)}
-                                onMouseLeave={() => setHoveredPillar(null)}
-                                className={`group relative rounded-[32px] p-8 border transition-all duration-700 cursor-pointer flex flex-col justify-between space-y-6 ${
-                                  isHovered
-                                    ? "bg-slate-900 border-purple-400 shadow-[0_0_60px_rgba(168,85,247,0.5)] -translate-y-2 scale-[1.03]"
-                                    : "bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:-translate-y-1"
-                                }`}
-                              >
-                                {/* Pillar Beam Light */}
-                                {isHovered && (
-                                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-purple-500 via-cyan-400 to-amber-300 shadow-[0_0_20px_#a855f7]" />
-                                )}
-
-                                <div className="space-y-4">
-                                  <div className="flex items-center justify-between gap-4">
-                                    <span className="text-xs font-black tracking-[0.25em] px-3.5 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300">
-                                      NODE {pillar.num}
-                                    </span>
-                                    
-                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                                      isHovered
-                                        ? "bg-gradient-to-br from-purple-500 to-cyan-400 text-slate-950 scale-110 shadow-lg shadow-purple-500/40"
-                                        : "bg-slate-800 text-slate-300 group-hover:bg-slate-700"
-                                    }`}>
-                                      <IconComp className="w-6 h-6" />
-                                    </div>
-                                  </div>
-
-                                  <h5 className="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
-                                    {pillar.title}
-                                  </h5>
-
-                                  <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
-                                    {pillar.desc}
-                                  </p>
-                                </div>
-
-                                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-slate-400">
-                                  <span>2.0 STRATEGIC PILLAR</span>
-                                  <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">EXPAND →</span>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-
-                      </div>
-
-                      {/* STAGE 04: LEGACY TO FUTURE BRIDGE */}
-                      <div className="text-center space-y-4 py-12 border-y border-white/10 max-w-3xl mx-auto">
-                        <span className="text-xs font-mono uppercase tracking-[0.35em] text-cyan-400">
-                          THE FOUNDATION HAS BEEN BUILT
-                        </span>
-                        <h4 className="text-2xl sm:text-4xl font-black text-white">
-                          "OUR HISTORY BUILT THE FOUNDATION.<br />OUR FUTURE WILL BUILD WHAT COMES NEXT."
-                        </h4>
-                        <p className="text-xs sm:text-sm text-slate-400 font-bold tracking-widest uppercase">
-                          EFFORT 2.0 • 2026 → 2030
+                        <p className="text-base sm:text-xl font-black uppercase tracking-[0.3em] text-purple-300 mt-2">
+                          EVERYTHING WE LEARNED BECOMES WHAT COMES NEXT
                         </p>
                       </div>
 
-                      {/* STAGE 05: FINAL 2.0 CALL TO ACTION */}
-                      <div className="text-center space-y-8 max-w-2xl mx-auto pt-6">
-                        
-                        <div className="space-y-3">
-                          <h4 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-                            THE NEXT CHAPTER STARTS HERE.
-                          </h4>
-                          <p className="text-xs sm:text-sm text-slate-400 font-medium leading-relaxed">
-                            [HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC PARTNERSHIP MESSAGE HERE] Join EFFORT in shaping the future of rural development through sustainable CSR alliances and grassroots empowerment.
-                          </p>
-                        </div>
+                      {/* Emotional Bridge Statement */}
+                      <div className="space-y-1.5 py-4 border-y border-white/10 max-w-2xl mx-auto">
+                        <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                          OUR HISTORY BUILT THE FOUNDATION.
+                        </p>
+                        <p className="text-lg sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-cyan-300">
+                          OUR FUTURE WILL BUILD WHAT COMES NEXT.
+                        </p>
+                      </div>
 
-                        <div>
-                          <a
-                            href="/get-involved"
-                            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-r from-purple-500 via-indigo-400 to-cyan-300 text-slate-950 font-black text-base shadow-[0_0_50px_rgba(168,85,247,0.5)] hover:shadow-[0_0_75px_rgba(168,85,247,0.7)] hover:-translate-y-1 transition-all group"
-                          >
-                            <span>EXPLORE OUR 2.0 VISION</span>
-                            <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                          </a>
-                        </div>
+                      {/* Vision Text Box */}
+                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-medium bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-inner max-w-3xl mx-auto">
+                        {currentWorld.desc}
+                      </p>
 
+                    </div>
+
+                    {/* 6 FUTURE PILLARS GRID */}
+                    <div className="relative z-10 space-y-6">
+                      
+                      <div className="text-center space-y-1">
+                        <span className="text-xs font-black uppercase tracking-[0.25em] text-cyan-400">
+                          2.0 STRATEGIC FUTURE PILLARS
+                        </span>
+                        <h4 className="text-xl sm:text-2xl font-black text-white">
+                          Connected Future Ecosystem
+                        </h4>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {futurePillars20World.map((pillar, pIdx) => {
+                          const IconComp = pillar.icon;
+                          const isHovered = hoveredPillar === pIdx;
+                          return (
+                            <div
+                              key={pillar.num}
+                              onMouseEnter={() => setHoveredPillar(pIdx)}
+                              onMouseLeave={() => setHoveredPillar(null)}
+                              className={`group relative rounded-3xl p-6 border transition-all duration-500 cursor-pointer overflow-hidden ${
+                                isHovered
+                                  ? "bg-slate-900 border-purple-400/80 shadow-[0_0_35px_rgba(168,85,247,0.4)] -translate-y-1.5"
+                                  : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                              }`}
+                            >
+                              <div className="flex items-start justify-between gap-4 mb-4">
+                                <span className="text-xs font-black text-purple-400 tracking-widest px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30">
+                                  PILLAR {pillar.num}
+                                </span>
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${
+                                  isHovered ? "bg-purple-400 text-slate-950 scale-110" : "bg-slate-800 text-slate-300"
+                                }`}>
+                                  <IconComp className="w-5 h-5" />
+                                </div>
+                              </div>
+
+                              <h5 className="text-base font-black text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                                {pillar.title}
+                              </h5>
+
+                              <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                                {pillar.desc}
+                              </p>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                    </div>
+
+                    {/* FINAL 2.0 CALL TO ACTION */}
+                    <div className="relative z-10 pt-8 border-t border-white/10 text-center space-y-6 max-w-xl mx-auto">
+                      
+                      <h4 className="text-2xl font-black text-white">
+                        BE PART OF THE NEXT CHAPTER
+                      </h4>
+
+                      <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                        [HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC PARTNERSHIP MESSAGE HERE] Join EFFORT in shaping the future of rural development through sustainable CSR alliances and grassroots empowerment.
+                      </p>
+
+                      <div>
+                        <a
+                          href="/get-involved"
+                          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 via-indigo-400 to-cyan-300 text-slate-950 font-black text-sm shadow-[0_0_35px_rgba(168,85,247,0.4)] hover:shadow-[0_0_50px_rgba(168,85,247,0.6)] hover:-translate-y-1 transition-all group"
+                        >
+                          <span>EXPLORE OUR 2.0 VISION</span>
+                          <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </a>
                       </div>
 
                     </div>
