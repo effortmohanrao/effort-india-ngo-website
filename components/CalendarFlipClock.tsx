@@ -22,7 +22,7 @@ function SingleDigitFlip({ digit, enablePeekHint = false }: SingleDigitFlipProps
       const timer = setTimeout(() => {
         setCurr(digit);
         setFlipping(false);
-      }, 480);
+      }, 140);
       return () => clearTimeout(timer);
     }
   }, [digit, curr]);

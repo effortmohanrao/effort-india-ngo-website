@@ -43,6 +43,24 @@ function useScrollReveal<T extends HTMLElement>() {
   return [ref, visible] as const;
 }
 
+function useReentryScrollReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setVisible(entries[0].isIntersecting);
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return [ref, visible] as const;
+}
+
 const burstParticles = Array.from({ length: 10 }).map((_, i) => {
   const angle = (i / 10) * Math.PI * 2;
   const dist = 110 + (i % 3) * 25;
@@ -145,7 +163,7 @@ function ProjectCard({ project, index, status }: { project: Project; index: numb
 
 export default function Programs() {
   const [heroRef, heroVisible] = useScrollReveal<HTMLElement>();
-  const [showcaseRef, showcaseVisible] = useScrollReveal<HTMLElement>();
+  const [showcaseRef, showcaseVisible] = useReentryScrollReveal<HTMLElement>();
   const [explorerRef, explorerVisible] = useScrollReveal<HTMLElement>();
 
   const [projectsTab, setProjectsTab] = useState<"completed" | "ongoing">("completed");
@@ -171,15 +189,22 @@ export default function Programs() {
   }, [projectsTab]);
 
   useEffect(() => {
-    if (!showcaseVisible) return;
-    const duration = 1600;
+    if (!showcaseVisible) {
+      setProjectsCount(0);
+      return;
+    }
+    setProjectsCount(0);
+    const duration = 1800;
     const start = performance.now();
     let rafId: number;
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setProjectsCount(Math.round(activeTarget * eased));
-      if (progress < 1) rafId = requestAnimationFrame(tick);
+      const eased = 1 - Math.pow(1 - progress, 2.5);
+      const val = Math.round(activeTarget * eased);
+      setProjectsCount(val);
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      }
     };
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
@@ -188,7 +213,7 @@ export default function Programs() {
   return (
     <div className="bg-[#fdfaf4] min-h-screen relative overflow-hidden">
 
-      {/* --- HERO SECTION WITH HIGH-LEVEL GRAPHIC AURORA --- */}
+      {/* --- HERO SECTION WITH HIGH-LEVEL ANIMATED GRAPHIC AURORA --- */}
       <section ref={heroRef} className="relative flex items-center justify-center overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* Liquid Aurora Mesh Gradient Background */}
@@ -196,6 +221,14 @@ export default function Programs() {
           <div className="absolute -top-24 -left-20 w-[520px] h-[520px] rounded-full bg-amber-200/50 blur-[130px] animate-liquid-drift-a" />
           <div className="absolute top-1/3 -right-20 w-[480px] h-[480px] rounded-full bg-emerald-200/40 blur-[120px] animate-liquid-drift-b" />
           <div className="absolute -bottom-24 left-1/3 w-[450px] h-[450px] rounded-full bg-sky-200/40 blur-[120px] animate-liquid-drift-c" />
+
+          {/* Continuous Rising Translucent Bubbles */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute bottom-0 left-[10%] w-12 h-12 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0s", animationDuration: "7s" }} />
+            <div className="absolute bottom-0 left-[30%] w-16 h-16 rounded-full bg-emerald-400/20 border border-emerald-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.5s", animationDuration: "8.5s" }} />
+            <div className="absolute bottom-0 left-[55%] w-20 h-20 rounded-full bg-sky-400/20 border border-sky-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0.8s", animationDuration: "9s" }} />
+            <div className="absolute bottom-0 left-[80%] w-14 h-14 rounded-full bg-purple-400/20 border border-purple-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "2.8s", animationDuration: "7.5s" }} />
+          </div>
 
           {/* Frosted Geometric Mesh Overlay */}
           <div
@@ -247,19 +280,39 @@ export default function Programs() {
             heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.25em] mb-6 shadow-md hover:scale-105 transition-transform">
-            <Sparkles className="w-4 h-4 text-[#d4af6a] animate-pulse" /> Our Impact & Legacy
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border-2 border-[#d4af6a]/60 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.25em] mb-6 shadow-md hover:scale-105 transition-transform">
+            <Sparkles className="w-4 h-4 text-[#d4af6a] animate-bounce" /> 27+ Years Field Leadership (1999–2026)
           </span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#221c0c] leading-[1.06]">
-            50 Projects.
-            <br />
-            Thousands of Lives.
-            <br />
-            <span className="text-metallic-gold drop-shadow-sm">One Mission.</span>
+          
+          {/* RADIANT ANIMATED MULTI-COLOR GRADIENT HEADLINE */}
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] space-y-2">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">
+              2.67 Lakh+ Families Empowered.
+            </span>
+            <span className="block text-metallic-gold drop-shadow-md">
+              27+ Years Grassroots Legacy.
+            </span>
           </h1>
-          <p className="text-[#5c523a] text-base sm:text-xl font-medium leading-relaxed max-w-xl mx-auto mt-6">
-            Twenty-seven years of documented, high-impact work transforming rural communities across Andhra Pradesh and India.
+
+          <p className="text-[#5c523a] text-base sm:text-xl font-semibold leading-relaxed max-w-2xl mx-auto mt-6">
+            Twenty-seven years of documented, field-verified work — <strong className="text-emerald-950 font-black">50 completed initiatives</strong> &amp; <strong className="text-amber-950 font-black">13 active ongoing projects</strong> transforming <strong className="text-teal-950 font-black">2.67 Lakh+ families (2,67,000+ lives)</strong> across <strong className="text-slate-950 font-black">1,909 villages in 9 states</strong>.
           </p>
+
+          {/* Quick Highlight Metrics Pills Bar (Authentic Homepage Matrix Data) */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 mt-10">
+            <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/10 border-2 border-amber-400/60 text-amber-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-amber-600 animate-spin" /> 63+ Total Projects (50 Completed + 13 Ongoing)
+            </span>
+            <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-600/10 border-2 border-emerald-400/60 text-emerald-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
+              🏆 2.67 Lakh+ Families (2,67,000+ Lives)
+            </span>
+            <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-500/20 to-cyan-600/10 border-2 border-sky-400/60 text-sky-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
+              ⚡ 1,909 Villages Across 9 States
+            </span>
+            <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-500/20 to-fuchsia-600/10 border-2 border-purple-400/60 text-purple-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
+              🌟 27+ Years Legacy (Since 1999)
+            </span>
+          </div>
         </div>
       </section>
 

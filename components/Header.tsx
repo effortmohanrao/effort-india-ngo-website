@@ -24,7 +24,7 @@ import {
   Globe,
   ArrowRight,
 } from "lucide-react";
-import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
+import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 
 type Ripple = { id: number; x: number; y: number };
 
@@ -42,8 +42,6 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("EN");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isDonateHover, setIsDonateHover] = useState(false);
@@ -51,7 +49,6 @@ export default function Header() {
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const pathname = usePathname();
 
-  const langRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -62,9 +59,6 @@ export default function Header() {
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
-        setIsLangOpen(false);
-      }
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
         setIsSearchOpen(false);
       }
@@ -78,6 +72,7 @@ export default function Header() {
     { name: "About Us", href: "/about" },
     { name: "Our Programs", href: "/programs" },
     { name: "Impact & Map", href: "/impact" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Get Involved", href: "/get-involved" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -88,13 +83,8 @@ export default function Header() {
     { name: "Donor Portal Login", href: "/donor-login", icon: UserCheck, desc: "Access ledgers & tax certificates" },
   ];
 
-  const languages = [
-    { code: "EN", label: "English" },
-    { code: "TE", label: "తెలుగు" },
-    { code: "HI", label: "हिन्दी" },
-  ];
-
   const socialLinks = [
+    { Icon: TwitterXIcon, href: "https://twitter.com", label: "X / Twitter" },
     { Icon: InstagramIcon, href: "#", label: "Instagram" },
     { Icon: FacebookIcon, href: "#", label: "Facebook" },
     { Icon: LinkedinIcon, href: "#", label: "LinkedIn" },
@@ -158,7 +148,7 @@ export default function Header() {
               <Phone className="w-3.5 h-3.5" /> +91 98765 43210
             </a>
             <span className="hidden lg:block w-px h-3 bg-emerald-700/60" />
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="flex items-center gap-2">
               {socialLinks.map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -170,41 +160,14 @@ export default function Header() {
                 </a>
               ))}
             </div>
-            <span className="hidden md:block w-px h-3 bg-emerald-700/60" />
-            <div className="relative" ref={langRef}>
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                {selectedLang}
-                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""}`} />
-              </button>
-              {isLangOpen && (
-                <div className="absolute right-0 top-full mt-2 w-32 bg-slate-900/95 backdrop-blur-xl border border-emerald-800/40 rounded-xl shadow-xl py-1.5 z-[100] animate-fade-in">
-                  {languages.map((l) => (
-                    <button
-                      key={l.code}
-                      onClick={() => {
-                        setSelectedLang(l.code);
-                        setIsLangOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-[11px] text-emerald-100 hover:bg-emerald-800/40 hover:text-white transition-colors cursor-pointer"
-                    >
-                      {l.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </div>
 
       {/* --- FLOATING MAIN NAVIGATION --- */}
-      <div className={`sticky top-0 z-50 transition-all duration-500 px-3 sm:px-6 lg:px-8 ${isScrolled ? "pt-2" : "pt-4"}`}>
+      <div className={`sticky top-0 z-50 transition-all duration-500 px-2 sm:px-4 lg:px-6 ${isScrolled ? "pt-2" : "pt-4"}`}>
         <header
-          className={`relative max-w-7xl mx-auto rounded-[28px] border transition-all duration-500 ${
+          className={`relative max-w-[1440px] mx-auto rounded-[28px] border transition-all duration-500 ${
             isScrolled
               ? "bg-white/80 backdrop-blur-[30px] border-white/60 shadow-[0_8px_40px_-8px_rgba(6,95,70,0.28)] py-2.5"
               : "bg-white/60 backdrop-blur-[24px] border-white/40 shadow-[0_10px_50px_-12px_rgba(6,95,70,0.18)] py-4"
@@ -234,7 +197,7 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="relative px-5 sm:px-7 flex items-center justify-between gap-4">
+          <div className="relative px-4 sm:px-6 flex items-center justify-between gap-3 sm:gap-4">
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
@@ -259,12 +222,12 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8 font-semibold text-slate-600 text-[13px]">
+            {/* Desktop Navigation (Expanded Horizontal Tube Layout) */}
+            <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 font-bold text-slate-700 text-xs sm:text-[13px] xl:text-sm whitespace-nowrap">
               {mainLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
-                  <Link key={link.name} href={link.href} className="relative py-1.5 group/nav">
+                  <Link key={link.name} href={link.href} className="relative py-1.5 group/nav whitespace-nowrap shrink-0">
                     <span
                       className={`inline-block transition-all duration-300 group-hover/nav:-translate-y-0.5 ${
                         isActive ? "text-emerald-700" : "group-hover/nav:text-emerald-700"
@@ -282,8 +245,8 @@ export default function Header() {
               })}
 
               {/* Corporate Dropdown wrapper */}
-              <div className="relative" onMouseEnter={() => setIsDropdownOpen(true)} onMouseLeave={() => setIsDropdownOpen(false)}>
-                <button className="flex items-center gap-1 hover:text-emerald-700 text-slate-600 py-1.5 transition-colors focus:outline-hidden cursor-pointer">
+              <div className="relative shrink-0" onMouseEnter={() => setIsDropdownOpen(true)} onMouseLeave={() => setIsDropdownOpen(false)}>
+                <button className="flex items-center gap-1 hover:text-emerald-700 text-slate-700 py-1.5 transition-colors focus:outline-hidden cursor-pointer whitespace-nowrap">
                   Resources
                   <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
                 </button>

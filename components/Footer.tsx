@@ -3,11 +3,19 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Heart, Phone, Mail, MapPin, ShieldCheck, Calendar } from "lucide-react";
+import { TwitterXIcon, InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
 
 export default function Footer() {
   const pathname = usePathname();
   if (pathname?.startsWith("/admin")) return null;
+
+  const socialLinks = [
+    { Icon: TwitterXIcon, href: "https://twitter.com", label: "X / Twitter" },
+    { Icon: InstagramIcon, href: "#", label: "Instagram" },
+    { Icon: FacebookIcon, href: "#", label: "Facebook" },
+    { Icon: LinkedinIcon, href: "#", label: "LinkedIn" },
+    { Icon: YoutubeIcon, href: "#", label: "YouTube" },
+  ];
 
   return (
     <footer className="bg-slate-950 text-slate-400 pt-20 pb-12 border-t border-slate-900 mt-auto">
@@ -29,6 +37,19 @@ export default function Footer() {
             <p>Section 80G: Unique ID AACTE8492DF20214</p>
             <p>Section 12A: Unique ID AACTE8492DE20211</p>
           </div>
+
+          <div className="flex items-center gap-2 pt-2">
+            {socialLinks.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white text-white hover:text-slate-950 flex items-center justify-center hover:scale-110 transition-all duration-200"
+              >
+                <Icon className="w-4 h-4" />
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Programs Column */}
@@ -49,6 +70,7 @@ export default function Footer() {
           <ul className="space-y-2 text-xs font-semibold">
             <li><Link href="/about" className="hover:text-emerald-400 transition-colors">About Our Team</Link></li>
             <li><Link href="/impact" className="hover:text-emerald-400 transition-colors">Impact & Coverage Map</Link></li>
+            <li><Link href="/gallery" className="hover:text-emerald-400 transition-colors">Field Photo & Video Gallery</Link></li>
             <li><Link href="/#trust-section" className="hover:text-emerald-400 transition-colors">Transparency & Audits</Link></li>
             <li><Link href="/careers" className="hover:text-emerald-405 transition-colors">Careers & Internships</Link></li>
             <li><Link href="/news" className="hover:text-emerald-405 transition-colors">News & Media Blog</Link></li>

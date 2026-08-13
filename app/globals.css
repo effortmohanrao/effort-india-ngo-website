@@ -244,6 +244,49 @@ body {
   animation: aurora-silk-1 18s ease-in-out infinite;
 }
 
+/* Continuous Rising Bubbles Keyframe Animation */
+@keyframes float-rising-bubble {
+  0% {
+    transform: translateY(120%) scale(0.4) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-130%) scale(1.4) rotate(360deg);
+    opacity: 0;
+  }
+}
+.animate-float-rising-bubble {
+  animation: float-rising-bubble 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Fireworks / Particle Burst Keyframe Animation */
+@keyframes fireworks-blast {
+  0% {
+    transform: scale(0.2) rotate(0deg);
+    opacity: 0;
+    filter: blur(3px);
+  }
+  40% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(2.2) rotate(360deg);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+.animate-fireworks-blast {
+  animation: fireworks-blast 4.5s ease-out infinite;
+}
+
 @keyframes aurora-silk-2 {
   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.4; }
   40% { transform: translate(-50px, 30px) rotate(-5deg) scale(1.2); opacity: 0.6; }

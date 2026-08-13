@@ -57,3 +57,15 @@ export function YoutubeIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function TwitterXIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className}>
+      <rect x="1" y="1" width="22" height="22" rx="5" fill="#000000" />
+      <path
+        d="M16.99 5h2.58l-5.64 6.445L20.57 20h-5.2l-4.07-5.32L6.56 20H3.97l6.04-6.905L3.5 5h5.33l3.68 4.864L16.99 5zm-.9 13.52h1.43L8.01 6.41H6.47l9.62 12.11z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}

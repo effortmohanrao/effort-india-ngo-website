@@ -390,6 +390,7 @@ export default function About() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
   const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
+  const [activeWhyChooseTab, setActiveWhyChooseTab] = useState(0);
   const [statValues, setStatValues] = useState<(number | null)[]>(() => smartPanels.map((p) => (p.kind === "stat" ? 0 : null)));
   const [partnersRef, partnersVisible] = useScrollReveal<HTMLElement>();
   const [galleryHeaderRef, galleryHeaderVisible] = useScrollReveal<HTMLDivElement>();
@@ -1604,15 +1605,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- WHY CHOOSE US SECTION (DEEP OBSIDIAN & IRIDESCENT EMERALD GLASSMORPHISM ENGINE) --- */}
-      <section ref={compareRef} className="relative overflow-hidden bg-gradient-to-br from-[#041510] via-[#09261E] via-[#061D17] to-[#020F0B] py-24 lg:py-32 text-white border-t border-emerald-500/30">
-        {/* Glowing Liquid Ambient Glows & Mesh Grid */}
+      {/* --- WHY CHOOSE US SECTION (PRISTINE LIGHT PEARL & EXPANDING 3D STAGE CARDS MATRIX) --- */}
+      <section ref={compareRef} className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F3EFE6] to-[#EAE3D5] py-24 lg:py-32 text-slate-900 border-t border-slate-200 shadow-[inset_0_0_120px_rgba(0,0,0,0.02)]">
+        {/* Soft Glowing Liquid Ambient Glows & Subtle Micro-Mesh */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-10%] w-[650px] h-[650px] bg-emerald-500/20 rounded-full blur-[170px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[650px] h-[650px] bg-teal-500/25 rounded-full blur-[160px] animate-liquid-drift-b" />
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-cyan-500/20 rounded-full blur-[180px] animate-aurora-silk-1" />
-          <div className="bg-noise absolute inset-0 opacity-15" />
-          <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px]" />
+          <div className="absolute top-[-10%] left-[-10%] w-[650px] h-[650px] bg-emerald-200/45 rounded-full blur-[160px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[650px] h-[650px] bg-amber-200/45 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-sky-200/40 rounded-full blur-[170px] animate-aurora-silk-1" />
+          <div className="bg-noise absolute inset-0 opacity-10" />
+          <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:24px_24px]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
@@ -1623,157 +1624,205 @@ export default function About() {
               compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-widest shadow-[0_0_25px_rgba(16,185,129,0.3)]">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-300" /> THE EFFORT NGO DIFFERENCE
+            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-300/80 text-emerald-800 text-xs font-black uppercase tracking-widest shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600" /> THE EFFORT NGO DIFFERENCE
             </span>
-            
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Why Leading Donors &amp; Communities <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300">Choose Effort NGO</span>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+              5 Unshakable Pillars of <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">Field-Verified Trust</span>
             </h2>
 
-            <p className="text-emerald-100/90 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
-              We eliminate traditional operational bottlenecks, opaque accounting, and top-down decisions by building field-verified, tech-enabled grassroots governance.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+              Click or hover any pillar below to inspect how Effort NGO replaces traditional NGO delays with transparent, tech-enabled governance.
             </p>
           </div>
 
-          {/* Interactive Split-Screen 3D Glass Matrix */}
-          <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          {/* EXPANDING 3D STAGE ACCORDION DECK (DESKTOP FLEX EXPANSION, MOBILE STACK) */}
+          <div
+            className={`flex flex-col lg:flex-row gap-4 items-stretch min-h-[480px] transition-all duration-1000 ${
+              compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+            style={{ transitionDelay: "150ms" }}
+          >
+            {[
+              {
+                id: 0,
+                num: "01",
+                title: "Regular Transparent Audits",
+                icon: ShieldCheck,
+                tag: "Quarterly UC Filings",
+                traditional: "Manual paper invoices, annual-only reporting, opaque receipts",
+                effortWay: "Quarterly Audited Utilization Certificates (UC) & real-time GIS logs",
+                desc: "Financial statements and field progress reports are audited quarterly and shared directly with partners on a fixed schedule.",
+                proof: "100% Statutory Schedule VII Verified",
+              },
+              {
+                id: 1,
+                num: "02",
+                title: "Digital GIS & Photo Logs",
+                icon: Globe2,
+                tag: "Geotagged Infrastructure",
+                traditional: "Fragmented physical binders & unverified verbal status claims",
+                effortWay: "Digital dashboard tracking every rupee, beneficiary, and GPS coordinate",
+                desc: "Every water reservoir, school facility, and agricultural plot is geotagged with timestamped photographic proof.",
+                proof: "100% Geotagged Field Infrastructure",
+              },
+              {
+                id: 2,
+                num: "03",
+                title: "Community Co-Governance",
+                icon: Handshake,
+                tag: "100% Local Ownership",
+                traditional: "Top-down decisions imposed from corporate offices without village consultation",
+                effortWay: "100% programs co-designed with SHG women leaders & village FPOs",
+                desc: "Village committees and SHG leaders co-create every initiative from day one, ensuring self-sustaining local governance.",
+                proof: "Self-Governing Village Cooperatives",
+              },
+              {
+                id: 3,
+                num: "04",
+                title: "Data & Satellite Telemetry",
+                icon: Search,
+                tag: "Real-Time Crop Telemetry",
+                traditional: "Guesswork implementation with slow feedback loops",
+                effortWay: "Real-time field telemetry & satellite crop monitoring",
+                desc: "Soil health, water table levels, and crop yields are continuously monitored via real-time ground sensors and satellite data.",
+                proof: "Field-Tested Grassroots Telemetry",
+              },
+              {
+                id: 4,
+                num: "05",
+                title: "27+ Years Sustained Legacy",
+                icon: Award,
+                tag: "Founded in 1999",
+                traditional: "Short-term one-off projects that collapse after field teams leave",
+                effortWay: "Continuous operation since 1999 with self-sustaining village institutions",
+                desc: "Built to thrive permanently. Our watershed and livelihood infrastructure remains fully active long after project completion.",
+                proof: "27 Years Unbroken Track Record",
+              },
+            ].map((pillar) => {
+              const PillarIcon = pillar.icon;
+              const isActive = activeWhyChooseTab === pillar.id;
 
-            {/* Center VS Emblem Core Badge (Desktop Only) */}
-            <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-slate-950/90 border-2 border-emerald-400/80 text-emerald-300 font-black text-xs items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.7)] backdrop-blur-xl">
-              <span className="text-xs tracking-wider">VS</span>
-            </div>
+              return (
+                <div
+                  key={pillar.id}
+                  onClick={() => setActiveWhyChooseTab(pillar.id)}
+                  onMouseEnter={() => setActiveWhyChooseTab(pillar.id)}
+                  className={`group relative rounded-[36px] transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between p-6 sm:p-8 ${
+                    isActive
+                      ? "lg:flex-[3] bg-white/95 backdrop-blur-2xl border-2 border-emerald-500/40 shadow-[0_25px_60px_rgba(15,23,42,0.12)]"
+                      : "lg:flex-1 bg-white/70 backdrop-blur-xl border border-slate-300/80 hover:bg-white/90 hover:border-emerald-400/60 shadow-md"
+                  }`}
+                >
+                  {/* Top Accent Gradient Bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-2 transition-opacity duration-300 ${isActive ? "bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 opacity-100" : "bg-slate-300 opacity-40"}`} />
 
-            {/* LEFT COLUMN: WHAT WE ELIMINATE (COMMON PITFALLS AVOIDED) */}
-            <div
-              className={`rounded-[36px] bg-slate-950/60 backdrop-blur-2xl border-2 border-rose-500/30 p-8 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.5)] flex flex-col justify-between space-y-8 relative overflow-hidden group transition-all duration-700 ${
-                compareVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-              }`}
-            >
-              {/* Top Warning Accent Gradient Bar */}
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-rose-500 via-amber-500 to-rose-400" />
-              
-              <div className="space-y-6 relative z-10">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40">
-                    <Minus className="w-4 h-4 text-rose-400" /> Common NGO Pitfalls
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-rose-200/70">What We Avoid</span>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-black text-white group-hover:text-rose-200 transition-colors">
-                    Traditional Operational Drift
-                  </h3>
-                  <p className="text-xs text-rose-100/80 font-medium mt-1">
-                    Systemic flaws that slow down grassroots impact and compromise donor trust across traditional channels.
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  {traditionalPoints.map((point) => (
-                    <div
-                      key={point}
-                      className="flex items-center gap-4 py-3.5 px-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-400/50 hover:bg-rose-500/10 transition-all duration-300 group/item"
-                    >
-                      <span className="w-8 h-8 rounded-xl bg-rose-500/20 border border-rose-400/40 text-rose-300 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
-                        <Minus className="w-4 h-4 text-rose-400" />
-                      </span>
-                      <span className="text-sm font-bold text-rose-100/90 group-hover/item:text-white transition-colors">
-                        {point}
-                      </span>
+                  {/* Top Row Header: Icon + Number */}
+                  <div className="flex items-center justify-between gap-4 relative z-10">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shrink-0 ${
+                      isActive
+                        ? "bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 text-white shadow-lg scale-110"
+                        : "bg-emerald-100/80 text-emerald-700 border border-emerald-300 group-hover:scale-105"
+                    }`}>
+                      <PillarIcon className="w-7 h-7" />
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              <div className="pt-4 border-t border-white/10 relative z-10">
-                <p className="text-xs font-semibold text-rose-200/70 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0 animate-ping" />
-                  <span>Zero tolerance for operational drift &amp; unverified claims.</span>
-                </p>
-              </div>
-            </div>
+                    <span className={`text-2xl sm:text-3xl font-black transition-colors duration-300 ${isActive ? "text-emerald-600" : "text-slate-400 group-hover:text-emerald-600"}`}>
+                      {pillar.num}
+                    </span>
+                  </div>
 
-            {/* RIGHT COLUMN: WHAT WE DELIVER (THE EFFORT NGO GUARANTEE) */}
-            <div
-              className={`rounded-[36px] bg-slate-950/80 backdrop-blur-2xl border-2 border-emerald-400/70 p-8 sm:p-10 shadow-[0_25px_60px_rgba(16,185,129,0.3)] flex flex-col justify-between space-y-8 relative overflow-hidden group transition-all duration-700 ${
-                compareVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-              }`}
-              style={{ transitionDelay: "200ms" }}
-            >
-              {/* Top Emerald Accent Gradient Bar */}
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400" />
-              
-              <div className="space-y-6 relative z-10">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/40">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" /> The Effort Standard
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300">How We Work</span>
-                </div>
+                  {/* ACTIVE EXPANDED CONTENT (SHOWS FULL DETAILS WHEN ACTIVE) */}
+                  {isActive ? (
+                    <div className="space-y-6 pt-6 relative z-10 animate-fade-in">
+                      <div>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/90 text-emerald-800 border border-emerald-300 text-[10px] font-black uppercase tracking-wider mb-2">
+                          {pillar.proof}
+                        </span>
+                        <h3 className="text-2xl font-black text-slate-900 leading-tight">
+                          {pillar.title}
+                        </h3>
+                      </div>
 
-                <div>
-                  <h3 className="text-2xl font-black text-white group-hover:text-emerald-200 transition-colors">
-                    Field-Verified &amp; Tech-Enabled
-                  </h3>
-                  <p className="text-xs text-emerald-100/80 font-medium mt-1">
-                    Continuous statutory transparency, digital GIS tracking, and 100% community-owned decision making.
-                  </p>
-                </div>
+                      <p className="text-slate-700 text-sm font-medium leading-relaxed">
+                        {pillar.desc}
+                      </p>
 
-                <div className="space-y-3 pt-2">
-                  {smartPanels.map((panel, i) => (
-                    <div
-                      key={panel.title}
-                      className="flex items-start gap-4 py-3.5 px-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all duration-300 group/item"
-                    >
-                      <span className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-400 to-teal-500 text-slate-950 flex items-center justify-center shrink-0 mt-0.5 shadow-lg group-hover/item:scale-110 transition-transform">
-                        <panel.icon className="w-5 h-5" />
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2 flex-wrap">
-                          <span className="text-sm font-black text-white group-hover/item:text-emerald-300 transition-colors">
-                            {panel.title}
-                          </span>
-                          {panel.kind === "stat" && (
-                            <span className="text-sm font-black text-emerald-300 shrink-0 bg-emerald-500/20 px-2.5 py-0.5 rounded-full border border-emerald-400/40">
-                              {Math.round(statValues[i] ?? 0).toLocaleString("en-IN")}
-                              {panel.suffix}
-                            </span>
-                          )}
+                      {/* Side-by-Side Comparison Metric */}
+                      <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                        <div className="bg-rose-50/90 backdrop-blur-md rounded-2xl p-4 border border-rose-200/80 space-y-1">
+                          <div className="flex items-center gap-1.5 text-[11px] font-bold text-rose-700 uppercase tracking-wider">
+                            <Minus className="w-3.5 h-3.5 text-rose-600" /> Traditional Way
+                          </div>
+                          <p className="text-xs text-rose-900/80 font-semibold leading-normal">
+                            {pillar.traditional}
+                          </p>
                         </div>
-                        <p className="text-xs text-emerald-100/80 font-medium mt-1 leading-relaxed">
-                          {panel.detail}
-                        </p>
+
+                        <div className="bg-emerald-50/90 backdrop-blur-md rounded-2xl p-4 border-2 border-emerald-300 space-y-1 shadow-sm">
+                          <div className="flex items-center gap-1.5 text-[11px] font-black text-emerald-800 uppercase tracking-wider">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Effort Standard
+                          </div>
+                          <p className="text-xs text-emerald-950 font-bold leading-normal">
+                            {pillar.effortWay}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  ))}
+                  ) : (
+                    /* COLLAPSED INACTIVE STATE (CLEAN COMPACT VERTICAL PILLAR) */
+                    <div className="py-8 relative z-10 flex flex-col justify-end space-y-2">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                        Pillar {pillar.num}
+                      </span>
+                      <h3 className="text-lg font-black text-slate-800 group-hover:text-emerald-700 transition-colors leading-snug">
+                        {pillar.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium line-clamp-2">
+                        {pillar.tag}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Bottom Footer Status Tag */}
+                  <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between text-xs font-bold text-slate-500 relative z-10">
+                    <span className="text-[11px] uppercase tracking-wider text-emerald-700">
+                      {isActive ? "Active Dock" : "Click to Inspect"}
+                    </span>
+                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? "text-emerald-600 translate-x-1" : "text-slate-400 group-hover:translate-x-1"}`} />
+                  </div>
                 </div>
-              </div>
-
-              <div className="pt-4 border-t border-white/10 relative z-10">
-                <p className="text-xs font-semibold text-emerald-300 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>100% Schedule VII &amp; Statutory Utilization Certificate Verified</span>
-                </p>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
 
-          {/* Bottom High-Impact Action Bar */}
-          <div
-            className={`text-center transition-all duration-700 ${
-              compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ transitionDelay: "400ms" }}
-          >
+          {/* BOTTOM TRUST PROOF BAR (3-COLUMN HIGHLIGHTS) */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-300/70">
+            {[
+              { label: "Statutory Verification", desc: "100% Schedule VII & UC Compliance", icon: ShieldCheck },
+              { label: "Geotagged Evidence", desc: "GIS map & photo logs for all works", icon: Globe2 },
+              { label: "Community Leadership", desc: "Self-sustaining SHG & FPO cooperatives", icon: Handshake },
+            ].map((item) => (
+              <div key={item.label} className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-2xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                <div className="w-12 h-12 rounded-xl bg-emerald-100/90 border border-emerald-300 text-emerald-700 flex items-center justify-center shrink-0">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-slate-900">{item.label}</h4>
+                  <p className="text-xs text-slate-600 font-medium mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Action Button */}
+          <div className="text-center pt-2">
             <a
               href="/impact"
-              className="group inline-flex items-center gap-3 px-9 py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_15px_40px_rgba(16,185,129,0.4)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.6)] hover:scale-[1.03] transition-all"
+              className="group inline-flex items-center gap-3 px-9 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-black text-xs uppercase tracking-wider shadow-[0_15px_40px_rgba(16,185,129,0.3)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.5)] hover:scale-[1.03] transition-all"
             >
-              Explore Our Audited Impact &amp; Ground Results <ArrowRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1.5 transition-transform duration-300" />
+              Explore Our Audited Impact &amp; Ground Results <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1.5 transition-transform duration-300" />
             </a>
           </div>
 
@@ -1880,13 +1929,30 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- GALLERY PREVIEW SECTION (FLOWING HORIZONTAL GALLERY) --- */}
-      <section className="relative overflow-hidden bg-aurora-light py-14 lg:py-16">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -left-10 w-[380px] h-[380px] rounded-full bg-rose-200/40 blur-[100px] animate-liquid-drift-a" />
-          <div className="absolute top-1/3 -right-16 w-[420px] h-[420px] rounded-full bg-amber-200/40 blur-[110px] animate-liquid-drift-b" />
-          <div className="absolute -bottom-24 left-1/3 w-[360px] h-[360px] rounded-full bg-violet-200/30 blur-[100px] animate-liquid-drift-c" />
-          <div className="absolute inset-0 bg-noise opacity-[0.5]" />
+      {/* --- GALLERY PREVIEW SECTION (FLOWING HORIZONTAL GALLERY WITH BUBBLES & FIREWORKS BURSTS) --- */}
+      <section className="relative overflow-hidden bg-aurora-light py-16 lg:py-24">
+        {/* Continuous Rising Floating Bubbles & Fireworks Blasting Bursts Backdrop */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
+          <div className="absolute -top-20 -left-10 w-[480px] h-[480px] rounded-full bg-amber-300/30 blur-[110px] animate-liquid-drift-a" />
+          <div className="absolute top-1/3 -right-16 w-[520px] h-[520px] rounded-full bg-emerald-300/30 blur-[120px] animate-liquid-drift-b" />
+          <div className="absolute -bottom-24 left-1/3 w-[460px] h-[460px] rounded-full bg-rose-300/30 blur-[110px] animate-liquid-drift-c" />
+          <div className="absolute inset-0 bg-noise opacity-[0.3]" />
+
+          {/* Continuous Rising Translucent Bubbles */}
+          <div className="absolute inset-0">
+            <div className="absolute bottom-0 left-[8%] w-10 h-10 rounded-full bg-amber-400/25 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0s", animationDuration: "6.5s" }} />
+            <div className="absolute bottom-0 left-[22%] w-16 h-16 rounded-full bg-emerald-400/25 border border-emerald-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.2s", animationDuration: "8s" }} />
+            <div className="absolute bottom-0 left-[38%] w-12 h-12 rounded-full bg-rose-400/25 border border-rose-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "2.5s", animationDuration: "7s" }} />
+            <div className="absolute bottom-0 left-[55%] w-20 h-20 rounded-full bg-purple-400/20 border border-purple-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0.8s", animationDuration: "9.5s" }} />
+            <div className="absolute bottom-0 left-[70%] w-14 h-14 rounded-full bg-cyan-400/25 border border-cyan-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "3.2s", animationDuration: "7.5s" }} />
+            <div className="absolute bottom-0 left-[88%] w-18 h-18 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.8s", animationDuration: "8.5s" }} />
+          </div>
+
+          {/* Celebratory Fireworks / Starburst Energy Blasting Nodes */}
+          <div className="absolute top-[15%] left-[15%] w-32 h-32 rounded-full bg-gradient-to-r from-amber-400/40 via-rose-400/30 to-purple-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "0s" }} />
+          <div className="absolute top-[25%] right-[18%] w-40 h-40 rounded-full bg-gradient-to-r from-emerald-400/40 via-teal-400/30 to-cyan-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "2.2s" }} />
+          <div className="absolute bottom-[20%] left-[30%] w-36 h-36 rounded-full bg-gradient-to-r from-rose-400/40 via-purple-400/30 to-indigo-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "1.1s" }} />
+          <div className="absolute bottom-[25%] right-[25%] w-44 h-44 rounded-full bg-gradient-to-r from-amber-400/40 via-emerald-400/30 to-teal-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "3.4s" }} />
         </div>
 
         <div className="relative z-10">
@@ -1896,14 +1962,14 @@ export default function About() {
               galleryHeaderVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md border border-white/60 text-[#9a6b3f] text-xs font-bold uppercase tracking-wider">
-              <Camera className="w-3.5 h-3.5" /> Our Journey Through Images
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/80 text-[#9a6b3f] text-xs font-black uppercase tracking-wider shadow-sm">
+              <Camera className="w-3.5 h-3.5 text-amber-600 animate-bounce" /> Our Journey Through Images
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#2b2723]">
               Every Picture Tells A Story Of Hope
             </h2>
-            <p className="text-[#6b655c] text-sm sm:text-base leading-relaxed">
-              Drag, scroll, or just watch it flow — a glimpse of the moments and people our work touches.
+            <p className="text-[#6b655c] text-sm sm:text-base leading-relaxed font-semibold">
+              Drag, scroll, or watch it flow — floating moments and vibrant field stories captured live.
             </p>
           </div>
 
@@ -1933,7 +1999,7 @@ export default function About() {
                 return (
                   <div
                     key={`story-${i}`}
-                    className={`group shrink-0 w-64 rounded-[28px] bg-white/45 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.35)] p-6 flex flex-col justify-center ${offsetClass}`}
+                    className={`group shrink-0 w-64 rounded-[28px] bg-white/60 backdrop-blur-xl border border-white/80 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.35)] p-6 flex flex-col justify-center hover:scale-105 hover:bg-white/80 transition-all duration-300 ${offsetClass}`}
                     style={{ height: card.h }}
                   >
                     <p className="text-[10px] font-bold uppercase tracking-widest text-[#b6813f]">{card.year}</p>
@@ -1947,17 +2013,17 @@ export default function About() {
               return (
                 <div
                   key={`${card.category}-${i}`}
-                  className={`group relative shrink-0 w-48 sm:w-56 rounded-[28px] overflow-hidden bg-white/35 backdrop-blur-xl border border-white/60 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a]/60 transition-all duration-500 ${offsetClass}`}
+                  className={`group relative shrink-0 w-48 sm:w-56 rounded-[28px] overflow-hidden bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500 ${offsetClass}`}
                   style={{ height: card.h }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-[#d4af6a]/10" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-[#d4af6a]/20" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <CardIcon className="w-7 h-7 text-[#b6813f]/35 group-hover:text-[#b6813f]/60 group-hover:scale-110 transition-all duration-500" />
+                    <CardIcon className="w-7 h-7 text-[#b6813f]/50 group-hover:text-[#b6813f] group-hover:scale-125 transition-all duration-500" />
                   </div>
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-[#8a6633]">{card.category}</p>
-                    <p className="text-[9px] text-[#8a6633]/60 mt-0.5">[ Gallery Image ]</p>
+                    <p className="text-[9px] text-[#8a6633]/80 font-bold mt-0.5">[ Field Memory ]</p>
                   </div>
                 </div>
               );
@@ -1976,9 +2042,9 @@ export default function About() {
           <div className="text-center mt-8">
             <a
               href="/gallery"
-              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/50 backdrop-blur-md text-[#2b2723] font-bold text-sm border border-[#d4af6a]/60 hover:bg-white/70 transition-colors duration-300 rounded-full"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/70 backdrop-blur-md text-[#2b2723] font-black text-sm border border-[#d4af6a] hover:bg-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full"
             >
-              View Complete Gallery <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+              View Complete Gallery <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300 text-amber-700" />
             </a>
           </div>
         </div>
