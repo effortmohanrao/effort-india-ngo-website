@@ -1003,148 +1003,181 @@ export default function About() {
                   </div>
                 ) : (
                   
-                  /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" FULLY CREAM NGO SHOWCASE */
-                  <div className="relative rounded-[40px] overflow-hidden border-2 border-amber-900/20 bg-[#faf6f0] p-8 sm:p-12 lg:p-14 shadow-2xl space-y-12 text-stone-900">
+                  /* WORLD 5: 2026–2030 "THE 2.0 FUTURE GATEWAY" FULL VIEWPORT STANDALONE WORLD */
+                  <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen min-h-[160vh] bg-gradient-to-b from-[#030712] via-[#090414] to-[#030712] text-white py-24 lg:py-36 px-4 sm:px-8 lg:px-16 overflow-hidden border-t-2 border-purple-500/40 shadow-[0_0_120px_rgba(168,85,247,0.3)] space-y-24">
                     
-                    {/* Floating Animated Ambient Liquid Bubbles Background (NO DOTS) */}
+                    {/* Atmospheric Deep Space Gateway Lighting */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                      {/* Floating Liquid Bubble Orbs */}
-                      <div className="absolute top-[-15%] left-[10%] w-[380px] h-[380px] bg-amber-400/25 rounded-full blur-[100px] animate-liquid-drift-a" />
-                      <div className="absolute bottom-[-15%] right-[10%] w-[420px] h-[420px] bg-rose-400/20 rounded-full blur-[110px] animate-liquid-drift-b" />
-                      <div className="absolute top-[35%] right-[25%] w-[300px] h-[300px] bg-amber-300/30 rounded-full blur-[90px] animate-liquid-drift-c" />
-                      <div className="absolute bottom-[20%] left-[20%] w-[320px] h-[320px] bg-orange-300/20 rounded-full blur-[100px] animate-liquid-drift-a" style={{ animationDelay: "3s" }} />
-
-                      {/* Smooth Ambient Glow Radial Mesh */}
-                      <div
-                        className="absolute inset-0 opacity-80"
-                        style={{
-                          background:
-                            "radial-gradient(ellipse 70% 60% at 12% 90%, rgba(255, 183, 77, 0.25), transparent 65%), radial-gradient(ellipse 60% 55% at 88% 8%, rgba(251, 191, 36, 0.2), transparent 65%), radial-gradient(ellipse 55% 55% at 50% 105%, rgba(254, 215, 170, 0.3), transparent 70%)",
-                        }}
-                      />
+                      <div className="absolute top-[-10%] left-[15%] w-[900px] h-[900px] bg-purple-600/15 rounded-full blur-[240px] animate-pulse" />
+                      <div className="absolute bottom-[-10%] right-[15%] w-[900px] h-[900px] bg-cyan-500/15 rounded-full blur-[240px] animate-pulse" style={{ animationDelay: "3s" }} />
+                      <div className="absolute top-[40%] left-[40%] w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[200px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+                      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#a855f7_1.5px,transparent_1.5px)] [background-size:36px_36px]" />
+                      
+                      {/* Floating Legacy Eras Typography Streaming into 2.0 (1999 -> 2000-2009 -> 2009-2016 -> 2016-2025) */}
+                      <div className="absolute top-16 left-12 text-8xl font-black opacity-[0.03] select-none tracking-widest">1999</div>
+                      <div className="absolute top-48 right-16 text-8xl font-black opacity-[0.03] select-none tracking-widest">2000–2009</div>
+                      <div className="absolute bottom-72 left-16 text-8xl font-black opacity-[0.03] select-none tracking-widest">2009–2016</div>
+                      <div className="absolute bottom-24 right-20 text-8xl font-black opacity-[0.03] select-none tracking-widest">2016–2025</div>
                     </div>
 
-                    {/* HERO DISPLAY */}
-                    <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
-                      
-                      <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-[#4a1220] text-amber-100 border border-amber-900/30 text-xs font-black uppercase tracking-[0.3em] shadow-md">
-                        <Sparkles className="w-4 h-4 text-amber-300" />
-                        <span>2026 – 2030 • THE NEXT GENERATION ERA</span>
+                    <div className="max-w-7xl mx-auto relative z-10 space-y-24">
+
+                      {/* STAGE 01: SILENCE & MAJOR EDITORIAL STATEMENT */}
+                      <div className="text-center max-w-4xl mx-auto space-y-6">
+                        <span className="text-xs font-mono uppercase tracking-[0.4em] text-purple-400 block px-5 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 w-max mx-auto shadow-[0_0_25px_rgba(168,85,247,0.2)]">
+                          2016–2025 TRANSFORMATION COMPLETE • ENTERING 2.0
+                        </span>
+
+                        <h3 className="text-3xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.1]">
+                          <span className="text-slate-300 block mb-2">2.0 IS NOT A NEW PAGE.</span>
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-indigo-200 to-cyan-300">
+                            IT IS A NEW ERA.
+                          </span>
+                        </h3>
                       </div>
 
-                      {/* GIANT MAROON 2.0 TITLE DISPLAY */}
-                      <div className="relative py-4 flex flex-col items-center justify-center">
+                      {/* STAGE 02: GIANT ARCHITECTURAL 2.0 FUTURE GATEWAY */}
+                      <div className="relative text-center py-16 space-y-8 max-w-5xl mx-auto">
                         
-                        {/* Elegant 2.0 Number Display in Rich Maroon */}
-                        <div className="relative z-10 flex items-baseline justify-center gap-1 font-black tracking-tighter leading-none select-none">
-                          <span className="text-8xl sm:text-[140px] lg:text-[180px] text-transparent bg-clip-text bg-gradient-to-r from-[#4a1220] via-[#6b1d32] to-[#380b18] drop-shadow-sm">
-                            2
-                          </span>
-                          
-                          {/* Warm Luminous Dot */}
-                          <span className="relative flex items-center justify-center mx-1 self-end mb-4 sm:mb-8">
-                            <span className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-[#92400e] opacity-60 absolute" />
-                            <span className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-[#92400e] shadow-[0_0_15px_#92400e] relative" />
-                          </span>
-
-                          <span className="text-8xl sm:text-[140px] lg:text-[180px] text-transparent bg-clip-text bg-gradient-to-r from-[#380b18] via-[#6b1d32] to-[#4a1220] drop-shadow-sm">
-                            0
-                          </span>
+                        {/* Gateway Concentric Halo Rings */}
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                          <div className="w-[340px] h-[340px] sm:w-[540px] sm:h-[540px] rounded-full border border-purple-500/30 animate-spin" style={{ animationDuration: "35s" }} />
+                          <div className="absolute w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full border border-dashed border-cyan-400/25 animate-spin" style={{ animationDuration: "25s", animationDirection: "reverse" }} />
                         </div>
 
-                        <p className="relative z-10 text-base sm:text-xl font-black uppercase tracking-[0.35em] text-[#4a1220] mt-4">
-                          EVERYTHING WE LEARNED BECOMES WHAT COMES NEXT
-                        </p>
+                        {/* MONUMENTAL 2.0 EMBEDDED IN GATEWAY */}
+                        <div className="relative z-10 py-6">
+                          <span className="text-8xl sm:text-[150px] lg:text-[230px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-cyan-200 to-amber-200 drop-shadow-[0_0_80px_rgba(168,85,247,0.6)]">
+                            2.0
+                          </span>
+                          <p className="text-lg sm:text-2xl font-black uppercase tracking-[0.35em] text-purple-300 mt-4">
+                            THE NEXT GENERATION ERA (2026–2030)
+                          </p>
+                        </div>
+
+                        {/* Editorial Statement */}
+                        <div className="space-y-3 py-6 border-y border-white/10 max-w-3xl mx-auto">
+                          <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-slate-400">
+                            EVERYTHING WE LEARNED
+                          </p>
+                          <p className="text-2xl sm:text-4xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-indigo-100 to-cyan-300">
+                            BECOMES WHAT COMES NEXT.
+                          </p>
+                        </div>
+
+                        {/* Vision Description Box */}
+                        <div className="p-8 rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-purple-500/30 shadow-2xl text-slate-200 text-base sm:text-lg leading-relaxed max-w-4xl mx-auto font-medium">
+                          {currentWorld.desc}
+                        </div>
+
                       </div>
 
-                      {/* Emotional Bridge Statement */}
-                      <div className="space-y-1.5 py-4 border-y border-amber-900/20 max-w-2xl mx-auto">
-                        <p className="text-xs font-bold uppercase tracking-widest text-amber-900/80">
-                          OUR HISTORY BUILT THE FOUNDATION.
-                        </p>
-                        <p className="text-lg sm:text-2xl font-black tracking-wide text-[#4a1220]">
-                          OUR FUTURE WILL BUILD WHAT COMES NEXT.
-                        </p>
-                      </div>
+                      {/* STAGE 03: SIX ASYMMETRICAL FLOATING FUTURE MODULES (NO CARDS GRID!) */}
+                      <div className="relative space-y-16">
+                        
+                        <div className="text-center space-y-3 max-w-2xl mx-auto">
+                          <span className="text-xs font-black uppercase tracking-[0.3em] text-cyan-400 block">
+                            2.0 ARCHITECTURAL ECOSYSTEM
+                          </span>
+                          <h4 className="text-2xl sm:text-4xl font-black text-white">
+                            Six Asymmetrical Floating Future Modules
+                          </h4>
+                          <p className="text-xs sm:text-sm text-slate-400 font-medium">
+                            Hover over any module to illuminate its direct network connection to central 2.0.
+                          </p>
+                        </div>
 
-                      {/* Vision Text Box */}
-                      <p className="text-stone-800 text-sm sm:text-base leading-relaxed font-medium bg-white/90 backdrop-blur-xl border border-amber-200 rounded-2xl p-6 shadow-md max-w-3xl mx-auto">
-                        {currentWorld.desc}
-                      </p>
+                        {/* ASYMMETRICAL FLOATING MODULES ARCHITECTURE */}
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                          {futurePillars20World.map((pillar, pIdx) => {
+                            const IconComp = pillar.icon;
+                            const isHovered = hoveredPillar === pIdx;
+                            return (
+                              <div
+                                key={pillar.num}
+                                onMouseEnter={() => setHoveredPillar(pIdx)}
+                                onMouseLeave={() => setHoveredPillar(null)}
+                                className={`group relative rounded-[32px] p-8 border transition-all duration-700 cursor-pointer flex flex-col justify-between space-y-6 ${
+                                  isHovered
+                                    ? "bg-slate-900 border-purple-400 shadow-[0_0_60px_rgba(168,85,247,0.5)] -translate-y-2 scale-[1.04]"
+                                    : "bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:-translate-y-1"
+                                }`}
+                              >
+                                {/* Luminous Network Connection Line */}
+                                {isHovered && (
+                                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-1 bg-gradient-to-r from-purple-500 via-cyan-400 to-amber-300 shadow-[0_0_20px_#a855f7]" />
+                                )}
 
-                    </div>
+                                <div className="space-y-4">
+                                  <div className="flex items-center justify-between gap-4">
+                                    <span className="text-xs font-black tracking-[0.25em] px-3.5 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300">
+                                      MODULE {pillar.num}
+                                    </span>
+                                    
+                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                                      isHovered
+                                        ? "bg-gradient-to-br from-purple-500 to-cyan-400 text-slate-950 scale-110 shadow-lg shadow-purple-500/40"
+                                        : "bg-slate-800 text-slate-300 group-hover:bg-slate-700"
+                                    }`}>
+                                      <IconComp className="w-6 h-6" />
+                                    </div>
+                                  </div>
 
-                    {/* 6 FUTURE PILLARS GRID */}
-                    <div className="relative z-10 space-y-6">
-                      
-                      <div className="text-center space-y-1">
-                        <span className="text-xs font-black uppercase tracking-[0.25em] text-[#4a1220] block">
-                          2.0 STRATEGIC FUTURE PILLARS
-                        </span>
-                        <h4 className="text-xl sm:text-2xl font-black text-stone-900">
-                          Connected Future Ecosystem
-                        </h4>
-                      </div>
+                                  <h5 className="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
+                                    {pillar.title}
+                                  </h5>
 
-                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {futurePillars20World.map((pillar, pIdx) => {
-                          const IconComp = pillar.icon;
-                          const isHovered = hoveredPillar === pIdx;
-                          return (
-                            <div
-                              key={pillar.num}
-                              onMouseEnter={() => setHoveredPillar(pIdx)}
-                              onMouseLeave={() => setHoveredPillar(null)}
-                              className={`group relative rounded-3xl p-6 border transition-all duration-500 cursor-pointer overflow-hidden ${
-                                isHovered
-                                  ? "bg-white border-[#4a1220] shadow-xl -translate-y-1.5"
-                                  : "bg-white/90 border-amber-900/20 hover:border-amber-900/40"
-                              }`}
-                            >
-                              <div className="flex items-start justify-between gap-4 mb-4">
-                                <span className="text-xs font-black text-[#4a1220] tracking-widest px-3 py-1 rounded-full bg-amber-100 border border-amber-300">
-                                  PILLAR {pillar.num}
-                                </span>
-                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${
-                                  isHovered ? "bg-[#4a1220] text-amber-100 scale-110" : "bg-amber-100 text-[#4a1220]"
-                                }`}>
-                                  <IconComp className="w-5 h-5" />
+                                  <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                                    {pillar.desc}
+                                  </p>
+                                </div>
+
+                                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-slate-400">
+                                  <span>2.0 FUTURE MODULE</span>
+                                  <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">EXPAND →</span>
                                 </div>
                               </div>
+                            );
+                          })}
+                        </div>
 
-                              <h5 className="text-base font-black text-[#4a1220] mb-2 group-hover:text-amber-900 transition-colors">
-                                {pillar.title}
-                              </h5>
-
-                              <p className="text-xs text-stone-700 font-medium leading-relaxed">
-                                {pillar.desc}
-                              </p>
-                            </div>
-                          );
-                        })}
                       </div>
 
-                    </div>
+                      {/* STAGE 04: FUTURE VISION & LEGACY BRIDGE */}
+                      <div className="text-center space-y-4 py-12 border-y border-white/10 max-w-3xl mx-auto">
+                        <span className="text-xs font-mono uppercase tracking-[0.35em] text-cyan-400">
+                          2026–2030 • BUILDING WHAT COMES NEXT
+                        </span>
+                        <h4 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                          "OUR HISTORY BUILT THE FOUNDATION.<br />OUR FUTURE WILL BUILD WHAT COMES NEXT."
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-400 font-bold tracking-widest uppercase">
+                          EFFORT 2.0 • 2026 → 2030
+                        </p>
+                      </div>
 
-                    {/* FINAL 2.0 CALL TO ACTION */}
-                    <div className="relative z-10 pt-8 border-t border-amber-900/20 text-center space-y-6 max-w-xl mx-auto">
-                      
-                      <h4 className="text-2xl font-black text-[#4a1220]">
-                        BE PART OF THE NEXT CHAPTER
-                      </h4>
+                      {/* STAGE 05: FINAL FUTURE GATEWAY CTA */}
+                      <div className="text-center space-y-8 max-w-2xl mx-auto pt-6">
+                        
+                        <div className="space-y-3">
+                          <h4 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+                            THE NEXT CHAPTER STARTS HERE.
+                          </h4>
+                          <p className="text-xs sm:text-sm text-slate-400 font-medium leading-relaxed">
+                            [HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC PARTNERSHIP MESSAGE HERE] Join EFFORT in shaping the future of rural development through sustainable CSR alliances and grassroots empowerment.
+                          </p>
+                        </div>
 
-                      <p className="text-xs text-stone-700 font-medium leading-relaxed">
-                        [HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC PARTNERSHIP MESSAGE HERE] Join EFFORT in shaping the future of rural development through sustainable CSR alliances and grassroots empowerment.
-                      </p>
+                        <div>
+                          <a
+                            href="/get-involved"
+                            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-r from-purple-500 via-indigo-400 to-cyan-300 text-slate-950 font-black text-base shadow-[0_0_50px_rgba(168,85,247,0.5)] hover:shadow-[0_0_75px_rgba(168,85,247,0.7)] hover:-translate-y-1 transition-all group"
+                          >
+                            <span>EXPLORE THE 2.0 VISION</span>
+                            <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          </a>
+                        </div>
 
-                      <div>
-                        <a
-                          href="/get-involved"
-                          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#4a1220] hover:bg-[#380b18] text-amber-50 font-black text-sm shadow-xl hover:-translate-y-1 transition-all group"
-                        >
-                          <span>EXPLORE OUR 2.0 VISION</span>
-                          <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        </a>
                       </div>
 
                     </div>
