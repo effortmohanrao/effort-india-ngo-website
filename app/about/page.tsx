@@ -116,8 +116,15 @@ const chapterWorldsData = [
     phase: "CHAPTER 01 / ORIGIN",
     worldName: "THE ORIGIN",
     subtitle: "Where Everything Began",
-    bgClass: "bg-[#f7f2ea] text-stone-900 border-amber-900/20",
-    themeType: "parchment",
+    bgClass: "bg-[#faf6f0]",
+    cardStyle: "bg-white/95 border-amber-900/20 shadow-2xl text-stone-900",
+    headerTextColor: "text-stone-950",
+    subtitleColor: "text-amber-950 font-serif",
+    phaseBadge: "bg-amber-100 text-amber-900 border-amber-300 font-extrabold",
+    storyBoxStyle: "bg-amber-50/90 border-amber-200/90 text-stone-800",
+    milestoneTextColor: "text-stone-800",
+    milestoneCheckColor: "#b45309",
+    navBtnStyle: "bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold border-amber-300",
     accentColor: "#92400e",
     headingFont: "font-serif",
     desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 1999 STORY HERE] EFFORT was founded in 1999 in Martur, Prakasam District, Andhra Pradesh, on the core conviction that rural development in India takes place in proportion to agricultural growth. EFFORT is registered as a non-profit empowerment society (Reg. No. 340/1999).",
@@ -135,8 +142,15 @@ const chapterWorldsData = [
     phase: "CHAPTER 02 / FOUNDATION",
     worldName: "THE FOUNDATION",
     subtitle: "Institutionalizing Grassroots Action",
-    bgClass: "bg-[#451a03] text-amber-50 border-amber-800/40",
-    themeType: "terracotta",
+    bgClass: "bg-[#451a03]",
+    cardStyle: "bg-stone-900/90 border-amber-500/40 shadow-2xl text-amber-50",
+    headerTextColor: "text-amber-50",
+    subtitleColor: "text-amber-300 font-sans font-black",
+    phaseBadge: "bg-amber-500/20 text-amber-300 border-amber-500/40 font-extrabold",
+    storyBoxStyle: "bg-amber-950/80 border-amber-700/50 text-amber-100",
+    milestoneTextColor: "text-amber-100",
+    milestoneCheckColor: "#f97316",
+    navBtnStyle: "bg-amber-900/60 hover:bg-amber-800 text-amber-100 font-bold border-amber-600/50",
     accentColor: "#f97316",
     headingFont: "font-sans font-black tracking-tight",
     desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2000–2009 STORY HERE] Over this foundation decade, EFFORT constructed structural community systems: expanding from single-village pilots to multi-district rural clusters, women-led SHG micro-finance groups, and watershed harvesting projects.",
@@ -154,8 +168,15 @@ const chapterWorldsData = [
     phase: "CHAPTER 03 / EXPANSION",
     worldName: "THE EXPANSION",
     subtitle: "Permanent Footprint Across 1,900+ Villages",
-    bgClass: "bg-gradient-to-b from-[#0f172a] via-[#1e1b4b] to-[#0f172a] text-blue-50 border-blue-500/30",
-    themeType: "cobalt",
+    bgClass: "bg-[#0f172a]",
+    cardStyle: "bg-slate-900/90 border-sky-500/40 shadow-2xl text-slate-50",
+    headerTextColor: "text-slate-50",
+    subtitleColor: "text-sky-300 font-sans font-black",
+    phaseBadge: "bg-sky-500/20 text-sky-300 border-sky-500/40 font-extrabold",
+    storyBoxStyle: "bg-slate-800/80 border-sky-600/40 text-slate-100",
+    milestoneTextColor: "text-slate-100",
+    milestoneCheckColor: "#38bdf8",
+    navBtnStyle: "bg-sky-950/80 hover:bg-sky-900 text-sky-200 font-bold border-sky-600/50",
     accentColor: "#38bdf8",
     headingFont: "font-sans font-black tracking-tight",
     desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2009–2016 STORY HERE] Expanding beyond periodic field visits to permanent cluster centers inside rural communities. Formalized Farmer Producer Organizations (FPOs) and MACS Cooperatives with NABARD and GIZ support.",
@@ -173,8 +194,15 @@ const chapterWorldsData = [
     phase: "CHAPTER 04 / TRANSFORMATION",
     worldName: "THE TRANSFORMATION",
     subtitle: "Auditable Outcomes & National Footprint",
-    bgClass: "bg-[#09090b] text-zinc-100 border-zinc-800",
-    themeType: "transformation-lab",
+    bgClass: "bg-[#09090b]",
+    cardStyle: "bg-zinc-900/90 border-lime-500/40 shadow-2xl text-zinc-50",
+    headerTextColor: "text-zinc-50",
+    subtitleColor: "text-[#a3e635] font-mono font-black",
+    phaseBadge: "bg-lime-500/20 text-[#a3e635] border-lime-500/40 font-extrabold",
+    storyBoxStyle: "bg-zinc-800/80 border-lime-600/40 text-zinc-100",
+    milestoneTextColor: "text-zinc-100",
+    milestoneCheckColor: "#a3e635",
+    navBtnStyle: "bg-zinc-800 hover:bg-zinc-700 text-lime-300 font-bold border-lime-600/50",
     accentColor: "#a3e635",
     headingFont: "font-mono font-black tracking-tight",
     desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2016–2025 STORY HERE] Redefined social impact measurement: shifting to auditable family income enhancement, water security, and women's economic independence, reaching 2.67 Lakh families across 9 states.",
@@ -192,8 +220,15 @@ const chapterWorldsData = [
     phase: "CHAPTER 05 / 2.0 NEXT GEN",
     worldName: "2.0 THE NEXT GENERATION",
     subtitle: "Pioneering Next-Gen NGO Ecosystems",
-    bgClass: "bg-[#030712] text-white border-purple-500/40 shadow-[0_0_100px_rgba(139,92,246,0.35)]",
-    themeType: "futuristic-obsidian",
+    bgClass: "bg-[#030712]",
+    cardStyle: "bg-slate-900/90 border-purple-500/50 shadow-2xl text-purple-50",
+    headerTextColor: "text-white",
+    subtitleColor: "text-purple-300 font-black",
+    phaseBadge: "bg-purple-500/20 text-purple-300 border-purple-500/40 font-extrabold",
+    storyBoxStyle: "bg-slate-800/80 border-purple-500/30 text-purple-100",
+    milestoneTextColor: "text-purple-100",
+    milestoneCheckColor: "#a855f7",
+    navBtnStyle: "bg-purple-950/80 hover:bg-purple-900 text-purple-200 font-bold border-purple-500/50",
     accentColor: "#a855f7",
     headingFont: "font-black tracking-tighter",
     desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2026–2030 VISION HERE] Stepping into EFFORT 2.0: Climate-smart carbon credit farming, AI farm extension tools, youth digital incubators, and transforming 5,000+ model sustainable villages by 2030.",
@@ -770,24 +805,24 @@ export default function About() {
           const currentWorld = chapterWorldsData[activeStoryChapter];
           return (
             <div className={`absolute inset-0 transition-all duration-1000 ${currentWorld.bgClass}`}>
-              {/* World 1: Paper Grain & Archival Lighting */}
-              {currentWorld.themeType === "parchment" && (
-                <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#b45309_1px,transparent_1px)] [background-size:24px_24px]" />
+              {/* World 1: Paper Grain & Archival Grid */}
+              {currentWorld.id === "1999" && (
+                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#92400e_1px,transparent_1px)] [background-size:24px_24px]" />
               )}
               {/* World 2: Terracotta Grid Architecture */}
-              {currentWorld.themeType === "terracotta" && (
-                <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#ea580c_1px,transparent_1px),linear-gradient(to_bottom,#ea580c_1px,transparent_1px)] [background-size:40px_40px]" />
+              {currentWorld.id === "2000-2009" && (
+                <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,#ea580c_1px,transparent_1px),linear-gradient(to_bottom,#ea580c_1px,transparent_1px)] [background-size:40px_40px]" />
               )}
               {/* World 3: Cobalt Expansion Map Radial Waves */}
-              {currentWorld.themeType === "cobalt" && (
+              {currentWorld.id === "2009-2016" && (
                 <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,#38bdf8_1px,transparent_1px)] [background-size:32px_32px]" />
               )}
               {/* World 4: Transformation Lab Technical Lines */}
-              {currentWorld.themeType === "transformation-lab" && (
+              {currentWorld.id === "2016-2025" && (
                 <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,#a3e635_1px,transparent_1px),linear-gradient(to_bottom,#a3e635_1px,transparent_1px)] [background-size:20px_20px]" />
               )}
               {/* World 5: Futuristic Obsidian Particle Sweep */}
-              {currentWorld.themeType === "futuristic-obsidian" && (
+              {currentWorld.id === "2026-2030" && (
                 <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#a855f7_1.5px,transparent_1.5px)] [background-size:28px_28px] animate-pulse" />
               )}
             </div>
@@ -797,27 +832,41 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
 
           {/* Opening Editorial Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/10 backdrop-blur-xl border border-current/20 text-xs font-black uppercase tracking-[0.3em]">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>OUR STORY • THE CHAPTER WORLDS</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
-              From Where We Began{" "}
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-emerald-400 to-sky-400">
-                To Where We're Going.
-              </span>
-            </h2>
+          {(() => {
+            const currentWorld = chapterWorldsData[activeStoryChapter];
+            const isLightWorld = currentWorld.id === "1999";
+            return (
+              <div className="text-center max-w-3xl mx-auto space-y-4">
+                <div className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-[0.3em] shadow-sm ${
+                  isLightWorld
+                    ? "bg-amber-100/90 border-amber-300 text-amber-950"
+                    : "bg-slate-900/90 border-white/20 text-white"
+                }`}>
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>OUR STORY • THE CHAPTER WORLDS</span>
+                </div>
+                
+                <h2 className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${
+                  isLightWorld ? "text-slate-950" : "text-white"
+                }`}>
+                  From Where We Began{" "}
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-emerald-400 to-sky-400">
+                    To Where We're Going.
+                  </span>
+                </h2>
 
-            <p className="text-sm sm:text-base opacity-80 max-w-2xl mx-auto font-medium">
-              Travel through 5 distinct visual worlds — from our 1999 founding in Andhra Pradesh to our next-generation 2.0 era.
-            </p>
-          </div>
+                <p className={`text-sm sm:text-base max-w-2xl mx-auto font-medium ${
+                  isLightWorld ? "text-slate-700" : "text-slate-200"
+                }`}>
+                  Travel through 5 distinct visual worlds — from our 1999 founding in Andhra Pradesh to our next-generation 2.0 era.
+                </p>
+              </div>
+            );
+          })()}
 
-          {/* World Selection Bar */}
-          <div className="relative p-2 rounded-3xl bg-black/20 backdrop-blur-2xl border border-current/20 shadow-2xl overflow-x-auto scrollbar-hide">
-            <div className="flex items-center justify-between min-w-[850px] lg:min-w-0 gap-2">
+          {/* World Selection Bar (Ultra-Crisp Glass Pill Track) */}
+          <div className="relative p-3 rounded-3xl bg-white/95 backdrop-blur-2xl border border-slate-300/90 shadow-2xl overflow-x-auto scrollbar-hide">
+            <div className="flex items-center justify-between min-w-[850px] lg:min-w-0 gap-3">
               {chapterWorldsData.map((w, idx) => {
                 const isActive = activeStoryChapter === idx;
                 const IconComp = w.icon;
@@ -829,13 +878,13 @@ export default function About() {
                     className={`relative flex-1 flex items-center justify-center gap-3 px-4 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${
                       isActive
                         ? is20
-                          ? "bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_40px_rgba(168,85,247,0.5)] font-black scale-[1.03]"
-                          : "bg-white text-stone-900 shadow-xl font-black scale-[1.02]"
-                        : "opacity-75 hover:opacity-100 hover:bg-black/10"
+                          ? "bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_35px_rgba(168,85,247,0.5)] font-black scale-[1.03]"
+                          : "bg-slate-950 text-white shadow-xl font-black scale-[1.02]"
+                        : "text-slate-700 hover:text-slate-950 hover:bg-slate-100/90"
                     }`}
                   >
                     <span className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${
-                      isActive ? "bg-black/10 text-current" : "bg-black/20 text-current"
+                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700 group-hover:bg-slate-200"
                     }`}>
                       <IconComp className="w-4 h-4" />
                     </span>
@@ -860,14 +909,14 @@ export default function About() {
                 
                 {/* WORLDS 01 TO 04 */}
                 {!is20World ? (
-                  <div className="relative rounded-[40px] overflow-hidden border-2 border-current/20 p-8 sm:p-12 lg:p-16 transition-all duration-700 shadow-2xl">
+                  <div className={`relative rounded-[40px] overflow-hidden border-2 p-8 sm:p-12 lg:p-16 transition-all duration-700 shadow-2xl ${currentWorld.cardStyle}`}>
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                       
                       {/* Left 7 Cols: World Narrative & Archival Marks */}
                       <div className="lg:col-span-7 space-y-6">
                         
                         <div className="flex flex-wrap items-center justify-between gap-4">
-                          <span className="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest bg-black/10 border border-current/20">
+                          <span className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border ${currentWorld.phaseBadge}`}>
                             {currentWorld.phase}
                           </span>
                           <span className="text-4xl sm:text-6xl font-black opacity-30 tracking-tighter">
@@ -876,16 +925,16 @@ export default function About() {
                         </div>
 
                         <div>
-                          <span className="text-xs font-black uppercase tracking-[0.25em] opacity-75 block mb-1">
+                          <span className="text-xs font-black uppercase tracking-[0.25em] opacity-80 block mb-1">
                             WORLD 0{activeStoryChapter + 1} • {currentWorld.worldName}
                           </span>
-                          <h3 className={`text-3xl sm:text-5xl font-black leading-tight ${currentWorld.headingFont}`}>
+                          <h3 className={`text-3xl sm:text-5xl font-black leading-tight ${currentWorld.subtitleColor}`}>
                             {currentWorld.subtitle}
                           </h3>
                         </div>
 
                         {/* Story Box */}
-                        <div className="p-6 rounded-2xl bg-black/10 backdrop-blur-md border border-current/20 space-y-3">
+                        <div className={`p-6 rounded-2xl border space-y-3 shadow-inner ${currentWorld.storyBoxStyle}`}>
                           <p className="text-sm sm:text-base leading-relaxed font-medium">
                             {currentWorld.desc}
                           </p>
@@ -893,13 +942,13 @@ export default function About() {
 
                         {/* Archival Marks List */}
                         <div className="space-y-3 pt-2">
-                          <span className="text-xs font-black uppercase tracking-widest block opacity-75">
+                          <span className="text-xs font-black uppercase tracking-widest block opacity-85">
                             KEY WORLD MILESTONES:
                           </span>
-                          <div className="space-y-2">
+                          <div className="space-y-2.5">
                             {currentWorld.archivalMarks.map((mark, mIdx) => (
-                              <div key={mIdx} className="flex items-start gap-3 text-xs sm:text-sm font-semibold">
-                                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: currentWorld.accentColor }} />
+                              <div key={mIdx} className={`flex items-start gap-3 text-xs sm:text-sm font-semibold ${currentWorld.milestoneTextColor}`}>
+                                <CheckCircle2 className="w-4.5 h-4.5 shrink-0 mt-0.5" style={{ color: currentWorld.milestoneCheckColor }} />
                                 <span>{mark}</span>
                               </div>
                             ))}
@@ -911,19 +960,19 @@ export default function About() {
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
-                              className="px-4 py-2 rounded-xl bg-black/10 hover:bg-black/20 font-bold text-xs transition-all"
+                              className={`px-4 py-2 rounded-xl text-xs transition-all border ${currentWorld.navBtnStyle}`}
                             >
                               ← Previous World
                             </button>
                             <button
                               onClick={() => setActiveStoryChapter((prev) => (prev < chapterWorldsData.length - 1 ? prev + 1 : 0))}
-                              className="px-4 py-2 rounded-xl bg-black/10 hover:bg-black/20 font-bold text-xs transition-all"
+                              className={`px-4 py-2 rounded-xl text-xs transition-all border ${currentWorld.navBtnStyle}`}
                             >
                               Next World →
                             </button>
                           </div>
                           
-                          <span className="text-xs font-bold opacity-75">
+                          <span className="text-xs font-bold opacity-80">
                             Currently exploring {currentWorld.worldName}
                           </span>
                         </div>
@@ -932,7 +981,7 @@ export default function About() {
 
                       {/* Right 5 Cols: Visual World Photographic Frame */}
                       <div className="lg:col-span-5">
-                        <div className="relative rounded-3xl overflow-hidden border-4 border-current/30 shadow-2xl group">
+                        <div className="relative rounded-3xl overflow-hidden border-4 border-white/40 shadow-2xl group">
                           <img
                             src={currentWorld.image}
                             alt={currentWorld.worldName}
