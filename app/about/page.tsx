@@ -113,8 +113,8 @@ const storyMilestones = [
   {
     era: "1999",
     label: "Beginning",
-    title: "A Registered Society With a Simple Idea",
-    desc: "Effort was founded as a registered society in Andhra Pradesh, built on the belief that rural communities know their own problems best — they just need the resources and structure to act on that knowledge.",
+    title: "Founding & Agricultural Vision",
+    desc: "EFFORT was founded in the year 1999 on the premise that development in India can take place only in proportion to the development of agriculture. EFFORT strongly believes that the Agricultural Development is Key to eradicate poverty, ensure food security, generate demand for industrial goods and promote overall development. EFFORT is registered as a Society (Non-profit Empowerment Organisation) promoted by a group of people who have been involved in the Field Social Development for quite a long time.",
     icon: BookOpen,
     kind: "block" as const,
   },
