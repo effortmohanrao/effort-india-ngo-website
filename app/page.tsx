@@ -700,6 +700,14 @@ export default function Home() {
   const [ctaHover, setCtaHover] = useState(false);
   const [ctaMagnet, setCtaMagnet] = useState({ x: 0, y: 0 });
   const [ctaRipples, setCtaRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [heroImages, setHeroImages] = useState<{ key: string; url: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/site/media?prefix=homepage/hero-section", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => setHeroImages(data.images ?? []))
+      .catch(() => {});
+  }, []);
 
   // Trust & Compliance section states
   const [trustRef, trustVisible] = useScrollReveal<HTMLElement>();
@@ -948,8 +956,24 @@ export default function Home() {
 
           </div>
 
-          {/* Hero Right Visual Area (intentionally empty) */}
-          <div className="lg:col-span-5" />
+          {/* Hero Right Visual Area — renders whatever is uploaded via Admin Panel -> Home -> Hero. Empty until an image is uploaded. */}
+          <div className={`lg:col-span-5 relative transition-all duration-1000 ${heroVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
+            {heroImages[0] && (
+              <div className="relative">
+                <div className="absolute -inset-6 bg-gradient-to-br from-emerald-200/40 to-amber-100/40 rounded-[40px] blur-2xl -z-10" />
+                <div className="relative rounded-[32px] overflow-hidden border border-white/70 shadow-[0_30px_70px_-25px_rgba(6,95,70,0.35)] aspect-4/5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={heroImages[0].url} alt="EFFORT NGO field work" className="w-full h-full object-cover" />
+                </div>
+                {heroImages[1] && (
+                  <div className="hidden sm:block absolute -bottom-8 -left-8 w-36 h-36 rounded-[24px] overflow-hidden border-4 border-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={heroImages[1].url} alt="" className="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
         </div>
       </section>

@@ -39,6 +39,7 @@ const headerParticles = Array.from({ length: 50 }, (_, i) => ({
 }));
 
 export default function Header() {
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -55,6 +56,16 @@ export default function Header() {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/site/media?prefix=logo", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        const first = data.images?.[0];
+        if (first) setLogoUrl(first.url);
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -204,11 +215,16 @@ export default function Header() {
               <div className="relative">
                 <div className="absolute inset-0 bg-emerald-400/40 blur-xl rounded-2xl scale-125 group-hover:scale-150 transition-transform duration-500" />
                 <div
-                  className={`relative rounded-2xl bg-white/70 backdrop-blur-md border border-white/70 shadow-inner flex items-center justify-center font-extrabold text-emerald-700 transition-all duration-500 ${
+                  className={`relative rounded-2xl bg-white/70 backdrop-blur-md border border-white/70 shadow-inner flex items-center justify-center font-extrabold text-emerald-700 transition-all duration-500 overflow-hidden ${
                     isScrolled ? "w-9 h-9 text-base" : "w-11 h-11 text-xl"
                   }`}
                 >
-                  E
+                  {logoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={logoUrl} alt="EFFORT NGO logo" className="w-full h-full object-cover" />
+                  ) : (
+                    "E"
+                  )}
                 </div>
               </div>
               <div>

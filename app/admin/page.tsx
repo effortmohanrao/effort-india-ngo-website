@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LogOut } from "lucide-react";
 import AdminTabs from "@/components/admin/AdminTabs";
 import HomePanel from "@/components/admin/HomePanel";
+import BrandingPanel from "@/components/admin/BrandingPanel";
 import ComingSoonPanel from "@/components/admin/ComingSoonPanel";
 import { adminPages } from "@/components/admin/adminPages";
 import { logoutAction } from "./actions";
@@ -37,7 +38,13 @@ export default function AdminPage() {
       <AdminTabs pages={adminPages} activeId={activeId} onSelect={setActiveId} />
 
       <main className="max-w-7xl mx-auto">
-        {activeId === "home" ? <HomePanel /> : <ComingSoonPanel page={activePage} />}
+        {activeId === "home" ? (
+          <HomePanel />
+        ) : activeId === "branding" ? (
+          <BrandingPanel />
+        ) : (
+          <ComingSoonPanel page={activePage} />
+        )}
       </main>
     </div>
   );
