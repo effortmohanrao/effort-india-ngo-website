@@ -113,51 +113,54 @@ const chapterWorldsData = [
   {
     id: "1999",
     era: "1999",
-    phase: "CHAPTER 01 / ORIGIN",
+    phase: "01 / ORIGIN",
     worldName: "THE ORIGIN",
-    subtitle: "Where Everything Began",
-    bgClass: "bg-[#faf6f0]",
+    title: "THE BEGINNING",
+    subtitle: "Where Rooted Belief Began in 10 Villages",
+    bgClass: "bg-[#fdfbf7]",
     cardStyle: "bg-white/95 border-amber-900/20 shadow-2xl text-stone-900",
     headerTextColor: "text-stone-950",
     subtitleColor: "text-amber-950 font-serif",
-    phaseBadge: "bg-amber-100 text-amber-900 border-amber-300 font-extrabold",
+    phaseBadge: "bg-amber-100 text-amber-950 border-amber-300 font-black",
     storyBoxStyle: "bg-amber-50/90 border-amber-200/90 text-stone-800",
     milestoneTextColor: "text-stone-800",
     milestoneCheckColor: "#b45309",
     navBtnStyle: "bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold border-amber-300",
-    accentColor: "#92400e",
+    accentColor: "#b45309",
     headingFont: "font-serif",
-    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 1999 STORY HERE] EFFORT was founded in 1999 in Martur, Prakasam District, Andhra Pradesh, on the core conviction that rural development in India takes place in proportion to agricultural growth. EFFORT is registered as a non-profit empowerment society (Reg. No. 340/1999).",
+    desc: "EFFORT was founded in 1999 around the core conviction that agricultural development is central to poverty eradication, food security, demand generation, and overall development. The journey began in 10 pioneer villages in Prakasam District, Andhra Pradesh.",
     archivalMarks: [
-      "Registration Seal: Reg. No. 340/1999 (Martur, AP)",
-      "Founding Premise: Agricultural Empowerment = Poverty Eradication",
-      "Pioneer Field Directors & Social Development Team"
+      "Founded 1999: Agricultural Empowerment = Poverty Eradication & Food Security",
+      "Pioneer Field Roots: Started in 10 Villages in Prakasam District, Andhra Pradesh",
+      "Foundational Focus: Community Participation, Livelihoods & Demand Generation"
     ],
+    rootConcepts: ["AGRICULTURE", "COMMUNITY", "LIVELIHOODS", "FOOD SECURITY", "DEVELOPMENT"],
     icon: BookOpen,
     image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1200",
   },
   {
     id: "2000-2009",
     era: "2000–2009",
-    phase: "CHAPTER 02 / FOUNDATION",
-    worldName: "THE FOUNDATION",
-    subtitle: "Institutionalizing Grassroots Action",
-    bgClass: "bg-[#451a03]",
-    cardStyle: "bg-stone-900/90 border-amber-500/40 shadow-2xl text-amber-50",
-    headerTextColor: "text-amber-50",
-    subtitleColor: "text-amber-300 font-sans font-black",
-    phaseBadge: "bg-amber-500/20 text-amber-300 border-amber-500/40 font-extrabold",
-    storyBoxStyle: "bg-amber-950/80 border-amber-700/50 text-amber-100",
-    milestoneTextColor: "text-amber-100",
-    milestoneCheckColor: "#f97316",
-    navBtnStyle: "bg-amber-900/60 hover:bg-amber-800 text-amber-100 font-bold border-amber-600/50",
-    accentColor: "#f97316",
+    phase: "02 / FOUNDATION",
+    worldName: "BUILDING THE FOUNDATION",
+    title: "BUILDING THE FOUNDATION",
+    subtitle: "10 → 50 Villages & 20,000 Farmers",
+    bgClass: "bg-[#f5eade]",
+    cardStyle: "bg-white/95 border-orange-900/20 shadow-2xl text-stone-900",
+    headerTextColor: "text-stone-950",
+    subtitleColor: "text-orange-950 font-sans font-black",
+    phaseBadge: "bg-orange-100 text-orange-950 border-orange-300 font-black",
+    storyBoxStyle: "bg-orange-50/90 border-orange-200 text-stone-800",
+    milestoneTextColor: "text-stone-800",
+    milestoneCheckColor: "#ea580c",
+    navBtnStyle: "bg-orange-100 hover:bg-orange-200 text-orange-950 font-bold border-orange-300",
+    accentColor: "#ea580c",
     headingFont: "font-sans font-black tracking-tight",
-    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2000–2009 STORY HERE] Over this foundation decade, EFFORT constructed structural community systems: expanding from single-village pilots to multi-district rural clusters, women-led SHG micro-finance groups, and watershed harvesting projects.",
+    desc: "EFFORT expanded its grassroots work from 10 to 50 villages across Prakasam and Guntur districts, reaching 20,000 farmers. Facilitated Sustainable Agriculture, Women & Child Development projects with structural support from government agencies.",
     archivalMarks: [
-      "Multi-District Structural Growth Across Andhra Pradesh",
-      "Integrated SHG Women Cooperatives & Credit Systems",
-      "Rainwater Harvesting, Soil Conservation & Field Schools"
+      "Geographic Expansion: 10 Villages → 50 Villages (Prakasam & Guntur Districts)",
+      "Farmer Reach: 20,000 Farmers Integrated into Sustainable Agriculture",
+      "Institutional Support: Government-backed Women & Child Development Projects"
     ],
     icon: TrendingUp,
     image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200",
@@ -165,77 +168,112 @@ const chapterWorldsData = [
   {
     id: "2009-2016",
     era: "2009–2016",
-    phase: "CHAPTER 03 / EXPANSION",
-    worldName: "THE EXPANSION",
-    subtitle: "Permanent Footprint Across 1,900+ Villages",
-    bgClass: "bg-[#0f172a]",
-    cardStyle: "bg-slate-900/90 border-sky-500/40 shadow-2xl text-slate-50",
+    phase: "03 / EXPANSION",
+    worldName: "THE EXPANSION ENGINE",
+    title: "THE EXPANSION ENGINE",
+    subtitle: "405 Villages Across 6 Districts & 16 Grassroots NGOs",
+    bgClass: "bg-[#0a1638]",
+    cardStyle: "bg-slate-900/90 border-cyan-500/40 shadow-2xl text-slate-50",
     headerTextColor: "text-slate-50",
-    subtitleColor: "text-sky-300 font-sans font-black",
-    phaseBadge: "bg-sky-500/20 text-sky-300 border-sky-500/40 font-extrabold",
-    storyBoxStyle: "bg-slate-800/80 border-sky-600/40 text-slate-100",
+    subtitleColor: "text-cyan-300 font-sans font-black",
+    phaseBadge: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-black",
+    storyBoxStyle: "bg-slate-800/80 border-cyan-600/40 text-slate-100",
     milestoneTextColor: "text-slate-100",
     milestoneCheckColor: "#38bdf8",
-    navBtnStyle: "bg-sky-950/80 hover:bg-sky-900 text-sky-200 font-bold border-sky-600/50",
+    navBtnStyle: "bg-slate-800 hover:bg-slate-700 text-cyan-200 font-bold border-cyan-600/50",
     accentColor: "#38bdf8",
     headingFont: "font-sans font-black tracking-tight",
-    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2009–2016 STORY HERE] Expanding beyond periodic field visits to permanent cluster centers inside rural communities. Formalized Farmer Producer Organizations (FPOs) and MACS Cooperatives with NABARD and GIZ support.",
+    desc: "EFFORT recorded massive growth, expanding from 50 to 405 villages across 6 districts of Andhra Pradesh. Reached 1,50,000 small, marginal farmers and landless agricultural labourers with focus on Natural Resource Management, while providing technical support to 16 partner grassroots NGOs.",
     archivalMarks: [
-      "1,909 Villages Reached Across 37 Operational Districts",
-      "Farmer Producer Organizations (FPOs) & MACS Cooperatives",
-      "Strategic Alliances with NABARD, GIZ & State Agencies"
+      "Expansive Scale: 50 → 405 Villages Across 6 Districts of Andhra Pradesh",
+      "Target Community: 1,50,000 Small/Marginal Farmers & Landless Labourers",
+      "Grassroots Ecosystem: Supported 16 Partner NGOs in Natural Resource Management"
     ],
     icon: Compass,
     image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    id: "2016-2025",
-    era: "2016–2025",
-    phase: "CHAPTER 04 / TRANSFORMATION",
-    worldName: "THE TRANSFORMATION",
-    subtitle: "Auditable Outcomes & National Footprint",
-    bgClass: "bg-[#09090b]",
+    id: "2016-2022",
+    era: "2016–2022",
+    phase: "04 / TRANSFORMATION",
+    worldName: "MULTI-STATE TRANSFORMATION",
+    title: "MULTI-STATE TRANSFORMATION",
+    subtitle: "From 1 State to 6 Indian States & 2 Lakh Farm Families",
+    bgClass: "bg-[#121619]",
     cardStyle: "bg-zinc-900/90 border-lime-500/40 shadow-2xl text-zinc-50",
     headerTextColor: "text-zinc-50",
     subtitleColor: "text-[#a3e635] font-mono font-black",
-    phaseBadge: "bg-lime-500/20 text-[#a3e635] border-lime-500/40 font-extrabold",
+    phaseBadge: "bg-lime-500/20 text-[#a3e635] border-lime-500/40 font-black",
     storyBoxStyle: "bg-zinc-800/80 border-lime-600/40 text-zinc-100",
     milestoneTextColor: "text-zinc-100",
     milestoneCheckColor: "#a3e635",
     navBtnStyle: "bg-zinc-800 hover:bg-zinc-700 text-lime-300 font-bold border-lime-600/50",
     accentColor: "#a3e635",
     headingFont: "font-mono font-black tracking-tight",
-    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2016–2025 STORY HERE] Redefined social impact measurement: shifting to auditable family income enhancement, water security, and women's economic independence, reaching 2.67 Lakh families across 9 states.",
+    desc: "A remarkable milestone phase: EFFORT transformed from a single-state organization into a 6-state multi-regional entity, empowering 2 lakh farm families. Built strategic alliances with international funding agencies, corporate CSR partners, government departments, and CBBOs.",
     archivalMarks: [
-      "2,67,000+ Families Empowered Across 9 Indian States",
-      "2,702+ Water Harvesting Structures & Climate Resilience",
-      "100% FCRA & 80G Statutory Compliance & CSR Gold Standards"
+      "Multi-State Leap: Expanded from 1 State → 6 Indian States",
+      "Impact Scale: 2,00,000 Farm Families Empowered Across States",
+      "Strategic Alliances: International Agencies, Corporate CSR, Govt & CBBOs"
     ],
     icon: Award,
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200",
   },
   {
+    id: "2022-2025",
+    era: "2022–2025",
+    phase: "05 / PAN-INDIA",
+    worldName: "THE PAN-INDIA ERA",
+    title: "THE PAN-INDIA ERA",
+    subtitle: "9 States, 1,859 Villages & 2.50 Lakh Farm Families",
+    bgClass: "bg-[#2b0814]",
+    cardStyle: "bg-rose-950/90 border-amber-500/40 shadow-2xl text-amber-50",
+    headerTextColor: "text-amber-50",
+    subtitleColor: "text-amber-300 font-serif font-black",
+    phaseBadge: "bg-amber-500/20 text-amber-300 border-amber-500/40 font-black",
+    storyBoxStyle: "bg-rose-900/70 border-amber-500/30 text-amber-100",
+    milestoneTextColor: "text-amber-100",
+    milestoneCheckColor: "#fbbf24",
+    navBtnStyle: "bg-rose-900 hover:bg-rose-800 text-amber-200 font-bold border-amber-500/40",
+    accentColor: "#fbbf24",
+    headingFont: "font-serif font-black tracking-tight",
+    desc: "EFFORT established itself as a national PAN-India organization, working across 9 Indian states and reaching 2.50 lakh farm families in 1,859 villages with sustainable agriculture, women-led MACS cooperatives, and watershed development.",
+    archivalMarks: [
+      "National Footprint: 9 Indian States & 1,859 Villages",
+      "Community Scale: 2,50,000 Farm Families Actively Reached",
+      "Institutional Strength: Sustainable Agriculture, FPOs & Watershed Networks"
+    ],
+    icon: Globe2,
+    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
     id: "2026-2030",
     era: "2026–2030",
-    phase: "CHAPTER 05 / 2.0 NEXT GEN",
-    worldName: "2.0 THE NEXT GENERATION",
-    subtitle: "Pioneering Next-Gen NGO Ecosystems",
-    bgClass: "bg-[#030712]",
+    phase: "06 / 2.0 FUTURE",
+    worldName: "EFFORT 2.0 — THE NEXT GENERATION",
+    title: "EFFORT 2.0",
+    subtitle: "By 2030, EFFORT Will Be a Resilient, Respected & Sustainable Institution",
+    bgClass: "bg-[#030612]",
     cardStyle: "bg-slate-900/90 border-purple-500/50 shadow-2xl text-purple-50",
     headerTextColor: "text-white",
     subtitleColor: "text-purple-300 font-black",
-    phaseBadge: "bg-purple-500/20 text-purple-300 border-purple-500/40 font-extrabold",
+    phaseBadge: "bg-purple-500/20 text-purple-300 border-purple-500/40 font-black",
     storyBoxStyle: "bg-slate-800/80 border-purple-500/30 text-purple-100",
     milestoneTextColor: "text-purple-100",
     milestoneCheckColor: "#a855f7",
     navBtnStyle: "bg-purple-950/80 hover:bg-purple-900 text-purple-200 font-bold border-purple-500/50",
     accentColor: "#a855f7",
     headingFont: "font-black tracking-tighter",
-    desc: "[HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC 2026–2030 VISION HERE] Stepping into EFFORT 2.0: Climate-smart carbon credit farming, AI farm extension tools, youth digital incubators, and transforming 5,000+ model sustainable villages by 2030.",
+    desc: "Under its 2026–2030 strategic framework, EFFORT aims to evolve into a resilient, respected, and sustainable institution — building empowered communities, strong partnerships, and lasting contribution to inclusive and sustainable development.",
     archivalMarks: [
-      "Carbon Credit Farming & Climate-Resilient Agricultural Tech",
-      "Youth Digital Skill Incubators & Rural Micro-Enterprise Hubs",
-      "Targeting 5,000 Sustainable Model Villages by 2030"
+      "Strategic Goal: Resilient, Respected and Sustainable Institution by 2030",
+      "Pillar 1: Empowered Communities & Climate-Smart Livelihoods",
+      "Pillar 2: Strong Institutional Alliances & Lasting Contributions"
+    ],
+    futureTargets: [
+      { label: "FARMERS TARGET", value: "400,000–500,000", desc: "Farmers Integrated into Sustainable Models" },
+      { label: "YOUTH TARGET", value: "25,000–40,000", desc: "Youth Skilled & Micro-Empowered" },
+      { label: "FPOs & COLLECTIVES", value: "75–120", desc: "Producer Organizations & Collectives" }
     ],
     icon: Sparkles,
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
@@ -789,35 +827,37 @@ export default function About() {
         </div>
       </section>
 
-
-
-      {/* --- OUR STORY SECTION ("THE CHAPTER WORLDS" GRAPHIC STORYTELLING EXPERIENCE) --- */}
+      {/* --- OUR STORY SECTION ("EFFORT — A JOURNEY THAT KEEPS EVOLVING" GRAPHIC STORYTELLING EXPERIENCE) --- */}
       <section ref={storyRef} id="journey" className="relative overflow-hidden py-24 lg:py-36 transition-colors duration-1000">
 
-        {/* Dynamic World Atmosphere Background */}
+        {/* Dynamic World Atmosphere Background per Era */}
         {(() => {
           const currentWorld = chapterWorldsData[activeStoryChapter];
           return (
             <div className={`absolute inset-0 transition-all duration-1000 ${currentWorld.bgClass}`}>
-              {/* World 1: Paper Grain & Archival Grid */}
+              {/* World 01 (1999): Warm Parchment Soil Grid & Spreading Organic Root System */}
               {currentWorld.id === "1999" && (
-                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#92400e_1px,transparent_1px)] [background-size:24px_24px]" />
+                <div className="absolute inset-0 opacity-35 bg-[radial-gradient(#b45309_1.5px,transparent_1.5px)] [background-size:32px_32px]" />
               )}
-              {/* World 2: Terracotta Grid Architecture */}
+              {/* World 02 (2000-2009): Terracotta Structural Grid Geometry */}
               {currentWorld.id === "2000-2009" && (
-                <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,#ea580c_1px,transparent_1px),linear-gradient(to_bottom,#ea580c_1px,transparent_1px)] [background-size:40px_40px]" />
+                <div className="absolute inset-0 opacity-30 bg-[linear-gradient(to_right,#ea580c_1px,transparent_1px),linear-gradient(to_bottom,#ea580c_1px,transparent_1px)] [background-size:40px_40px]" />
               )}
-              {/* World 3: Cobalt Expansion Map Radial Waves */}
+              {/* World 03 (2009-2016): Deep Cobalt Expansion Network Radial Waves */}
               {currentWorld.id === "2009-2016" && (
-                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,#38bdf8_1px,transparent_1px)] [background-size:32px_32px]" />
+                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,#38bdf8_1.5px,transparent_1.5px)] [background-size:36px_36px]" />
               )}
-              {/* World 4: Transformation Lab Technical Lines */}
-              {currentWorld.id === "2016-2025" && (
-                <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,#a3e635_1px,transparent_1px),linear-gradient(to_bottom,#a3e635_1px,transparent_1px)] [background-size:20px_20px]" />
+              {/* World 04 (2016-2022): Graphite Technical Transformation Lines */}
+              {currentWorld.id === "2016-2022" && (
+                <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,#a3e635_1px,transparent_1px),linear-gradient(to_bottom,#a3e635_1px,transparent_1px)] [background-size:24px_24px]" />
               )}
-              {/* World 5: Futuristic Obsidian Particle Sweep */}
+              {/* World 05 (2022-2025): Deep Crimson Burgundy National Grid */}
+              {currentWorld.id === "2022-2025" && (
+                <div className="absolute inset-0 opacity-35 bg-[radial-gradient(#fbbf24_1.5px,transparent_1.5px)] [background-size:30px_30px]" />
+              )}
+              {/* World 06 (2026-2030): Obsidian Future Particle Field */}
               {currentWorld.id === "2026-2030" && (
-                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#a855f7_1.5px,transparent_1.5px)] [background-size:28px_28px] animate-pulse" />
+                <div className="absolute inset-0 opacity-35 bg-[radial-gradient(#a855f7_1.5px,transparent_1.5px)] [background-size:28px_28px] animate-pulse" />
               )}
             </div>
           );
@@ -828,36 +868,39 @@ export default function About() {
           {/* Opening Editorial Header */}
           {(() => {
             const currentWorld = chapterWorldsData[activeStoryChapter];
-            const isLightWorld = currentWorld.id === "1999";
+            const isLightWorld = currentWorld.id === "1999" || currentWorld.id === "2000-2009";
             return (
               <div className="text-center max-w-3xl mx-auto space-y-4">
-                <div className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-[0.3em] shadow-sm ${isLightWorld
+                <div className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-[0.3em] shadow-sm ${
+                  isLightWorld
                     ? "bg-amber-100/90 border-amber-300 text-amber-950"
                     : "bg-slate-900/90 border-white/20 text-white"
-                  }`}>
+                }`}>
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>OUR STORY • THE CHAPTER WORLDS</span>
+                  <span>EFFORT — A JOURNEY THAT KEEPS EVOLVING</span>
                 </div>
 
-                <h2 className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${isLightWorld ? "text-slate-950" : "text-white"
-                  }`}>
-                  From Where We Began{" "}
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-emerald-400 to-sky-400">
-                    To Where We're Going.
+                <h2 className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${
+                  isLightWorld ? "text-slate-950" : "text-white"
+                }`}>
+                  From Roots To{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-emerald-400 to-cyan-400">
+                    National Scale &amp; 2.0 Future
                   </span>
                 </h2>
 
-                <p className={`text-sm sm:text-base max-w-2xl mx-auto font-medium ${isLightWorld ? "text-slate-700" : "text-slate-200"
-                  }`}>
-                  Travel through 5 distinct visual worlds — from our 1999 founding in Andhra Pradesh to our next-generation 2.0 era.
+                <p className={`text-sm sm:text-base max-w-2xl mx-auto font-medium ${
+                  isLightWorld ? "text-slate-700" : "text-slate-200"
+                }`}>
+                  Journey through 6 evolving eras — from 1999 grassroots founding in Andhra Pradesh to our 2026–2030 EFFORT 2.0 strategic vision.
                 </p>
               </div>
             );
           })()}
 
-          {/* World Selection Bar (Ultra-Crisp Glass Pill Track) */}
+          {/* Interactive Chapter Selection Bar (Floating Glass Pill Track) */}
           <div className="relative p-3 rounded-3xl bg-white/95 backdrop-blur-2xl border border-slate-300/90 shadow-2xl overflow-x-auto scrollbar-hide">
-            <div className="flex items-center justify-between min-w-[850px] lg:min-w-0 gap-3">
+            <div className="flex items-center justify-between min-w-[900px] lg:min-w-0 gap-3">
               {chapterWorldsData.map((w, idx) => {
                 const isActive = activeStoryChapter === idx;
                 const IconComp = w.icon;
@@ -866,20 +909,22 @@ export default function About() {
                   <button
                     key={w.id}
                     onClick={() => setActiveStoryChapter(idx)}
-                    className={`relative flex-1 flex items-center justify-center gap-3 px-4 py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${isActive
+                    className={`relative flex-1 flex items-center justify-center gap-3 px-3 py-3.5 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-500 group ${
+                      isActive
                         ? is20
                           ? "bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_35px_rgba(168,85,247,0.5)] font-black scale-[1.03]"
                           : "bg-slate-950 text-white shadow-xl font-black scale-[1.02]"
                         : "text-slate-700 hover:text-slate-950 hover:bg-slate-100/90"
-                      }`}
+                    }`}
                   >
-                    <span className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700 group-hover:bg-slate-200"
-                      }`}>
+                    <span className={`w-7 h-7 rounded-xl flex items-center justify-center transition-all ${
+                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700 group-hover:bg-slate-200"
+                    }`}>
                       <IconComp className="w-4 h-4" />
                     </span>
                     <div className="text-left">
-                      <span className="block text-[10px] uppercase font-black tracking-widest opacity-80">{w.era}</span>
-                      <span className="block font-black truncate text-xs">{w.worldName}</span>
+                      <span className="block text-[9px] uppercase font-black tracking-widest opacity-80">{w.phase}</span>
+                      <span className="block font-black truncate text-xs">{w.era}</span>
                     </div>
                   </button>
                 );
@@ -887,21 +932,20 @@ export default function About() {
             </div>
           </div>
 
-          {/* ACTIVE WORLD SHOWCASE EXHIBITION */}
+          {/* ACTIVE ERA WORLD SHOWCASE EXHIBITION */}
           {(() => {
             const currentWorld = chapterWorldsData[activeStoryChapter];
-            const IconComp = currentWorld.icon;
             const is20World = currentWorld.id === "2026-2030";
 
             return (
               <div className="space-y-12">
 
-                {/* WORLDS 01 TO 04 */}
+                {/* ERAS 01 TO 05 (1999 TO 2025) */}
                 {!is20World ? (
                   <div className={`relative rounded-[40px] overflow-hidden border-2 p-8 sm:p-12 lg:p-16 transition-all duration-700 shadow-2xl ${currentWorld.cardStyle}`}>
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-                      {/* Left 7 Cols: World Narrative & Archival Marks */}
+                      {/* Left 7 Cols: Era Narrative & Milestones */}
                       <div className="lg:col-span-7 space-y-6">
 
                         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -915,24 +959,40 @@ export default function About() {
 
                         <div>
                           <span className="text-xs font-black uppercase tracking-[0.25em] opacity-80 block mb-1">
-                            WORLD 0{activeStoryChapter + 1} • {currentWorld.worldName}
+                            ERA 0{activeStoryChapter + 1} • {currentWorld.worldName}
                           </span>
                           <h3 className={`text-3xl sm:text-5xl font-black leading-tight ${currentWorld.subtitleColor}`}>
                             {currentWorld.subtitle}
                           </h3>
                         </div>
 
-                        {/* Story Box */}
+                        {/* Special Graphic Element for 1999 Origin Roots */}
+                        {currentWorld.id === "1999" && currentWorld.rootConcepts && (
+                          <div className="p-4 rounded-2xl bg-amber-100/80 border border-amber-300 space-y-2">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-amber-950 block">
+                              FOUNDATIONAL ROOT SYSTEM (1999):
+                            </span>
+                            <div className="flex flex-wrap gap-2">
+                              {currentWorld.rootConcepts.map((rootItem, rIdx) => (
+                                <span key={rIdx} className="px-3 py-1 rounded-full bg-amber-900 text-amber-50 text-xs font-black tracking-wider">
+                                  🌱 {rootItem}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Narrative Text Box */}
                         <div className={`p-6 rounded-2xl border space-y-3 shadow-inner ${currentWorld.storyBoxStyle}`}>
                           <p className="text-sm sm:text-base leading-relaxed font-medium">
                             {currentWorld.desc}
                           </p>
                         </div>
 
-                        {/* Archival Marks List */}
+                        {/* Milestones List */}
                         <div className="space-y-3 pt-2">
                           <span className="text-xs font-black uppercase tracking-widest block opacity-85">
-                            KEY WORLD MILESTONES:
+                            AUTHENTIC ERA MILESTONES:
                           </span>
                           <div className="space-y-2.5">
                             {currentWorld.archivalMarks.map((mark, mIdx) => (
@@ -951,13 +1011,13 @@ export default function About() {
                               onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
                               className={`px-4 py-2 rounded-xl text-xs transition-all border ${currentWorld.navBtnStyle}`}
                             >
-                              ← Previous World
+                              ← Previous Era
                             </button>
                             <button
                               onClick={() => setActiveStoryChapter((prev) => (prev < chapterWorldsData.length - 1 ? prev + 1 : 0))}
                               className={`px-4 py-2 rounded-xl text-xs transition-all border ${currentWorld.navBtnStyle}`}
                             >
-                              Next World →
+                              Next Era →
                             </button>
                           </div>
 
@@ -968,7 +1028,7 @@ export default function About() {
 
                       </div>
 
-                      {/* Right 5 Cols: Visual World Photographic Frame */}
+                      {/* Right 5 Cols: Visual World Frame */}
                       <div className="lg:col-span-5">
                         <div className="relative rounded-3xl overflow-hidden border-4 border-white/40 shadow-2xl group">
                           <img
@@ -979,10 +1039,10 @@ export default function About() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                           <div className="absolute bottom-5 left-5 right-5 text-white">
                             <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 block">
-                              ARCHIVAL MEDIA · {currentWorld.era}
+                              AUTHENTIC ARCHIVAL MEDIA · {currentWorld.era}
                             </span>
                             <p className="text-xs font-bold leading-snug">
-                              {currentWorld.worldName} — Grassroots Field Operations
+                              {currentWorld.worldName} — Field Operations
                             </p>
                           </div>
                         </div>
@@ -992,127 +1052,127 @@ export default function About() {
                   </div>
                 ) : (
 
-                  /* WORLD 5: 2026–2030 "2.0 THE NEXT GENERATION" SHOWCASE */
+                  /* WORLD 06: 2026–2030 "EFFORT 2.0 — THE NEXT GENERATION" */
                   <div className="space-y-12">
 
-                    {/* SILENCE BEFORE 2.0 (VISUAL BREATHING PAUSE) */}
+                    {/* SILENCE BEFORE 2.0 */}
                     <div className="text-center py-8 space-y-3 border-y border-white/10">
-                      <span className="text-xs font-mono uppercase tracking-[0.3em] text-purple-400">
-                        2016–2025 TRANSFORMATION COMPLETE
+                      <span className="text-xs font-mono uppercase tracking-[0.35em] text-purple-400">
+                        25+ YEARS OF GROWTH • ENTERING EFFORT 2.0
                       </span>
                       <h4 className="text-xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-indigo-200 to-cyan-300">
-                        THE NEXT CHAPTER IS DIFFERENT.
+                        "OUR HISTORY BUILT THE FOUNDATION. OUR FUTURE WILL BUILD WHAT COMES NEXT."
                       </h4>
                     </div>
 
-                    {/* 2.0 HERO WORLD BUILD */}
-                    <div className="relative rounded-[40px] overflow-hidden border-2 border-purple-500/50 bg-[#030712] p-8 sm:p-12 lg:p-16 shadow-[0_0_100px_rgba(168,85,247,0.35)] space-y-16">
+                    {/* 2.0 HERO MONUMENTAL DISPLAY */}
+                    <div className="relative rounded-[40px] overflow-hidden border-2 border-purple-500/50 bg-[#030612] p-8 sm:p-12 lg:p-16 shadow-[0_0_120px_rgba(168,85,247,0.35)] space-y-16">
 
                       <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
 
                         <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-purple-500/20 backdrop-blur-2xl border border-purple-400/40 text-purple-300 text-xs font-black uppercase tracking-[0.3em] shadow-[0_0_30px_rgba(168,85,247,0.4)] animate-pulse">
                           <Sparkles className="w-4 h-4 text-cyan-300" />
-                          <span>2026 – 2030 • THE NEXT GENERATION ERA</span>
+                          <span>2026 – 2030 • EFFORT 2.0 STRATEGIC VISION</span>
                         </div>
 
                         {/* GIANT VOLUMETRIC 2.0 TITLE */}
                         <div className="relative py-4">
-                          <span className="text-7xl sm:text-9xl lg:text-[150px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-amber-300 drop-shadow-[0_20px_50px_rgba(168,85,247,0.6)]">
+                          <span className="text-7xl sm:text-9xl lg:text-[160px] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-amber-300 drop-shadow-[0_20px_50px_rgba(168,85,247,0.6)]">
                             2.0
                           </span>
                           <p className="text-lg sm:text-2xl font-black uppercase tracking-[0.3em] text-purple-300 mt-2">
-                            EVERYTHING WE LEARNED BECOMES WHAT COMES NEXT
+                            EFFORT 2.0 — THE NEXT GENERATION
                           </p>
                         </div>
 
-                        {/* Emotional Bridge Statement */}
-                        <div className="space-y-2 py-4 border-y border-white/10 max-w-2xl mx-auto">
-                          <p className="text-sm font-bold uppercase tracking-widest text-slate-400">
-                            OUR HISTORY BUILT THE FOUNDATION.
-                          </p>
-                          <p className="text-xl sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-cyan-300">
-                            OUR FUTURE WILL BUILD WHAT COMES NEXT.
+                        {/* Main 2.0 Statement */}
+                        <div className="space-y-3 py-6 border-y border-white/10 max-w-3xl mx-auto">
+                          <span className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400">
+                            STRATEGIC VISION STATEMENT
+                          </span>
+                          <p className="text-xl sm:text-3xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-cyan-200 to-amber-200 leading-snug">
+                            "BY 2030, EFFORT WILL BE A RESILIENT, RESPECTED AND SUSTAINABLE INSTITUTION."
                           </p>
                         </div>
 
-                        {/* Vision Text Box */}
+                        {/* Three Core 2.0 Vision Pillars */}
+                        <div className="grid sm:grid-cols-3 gap-4 text-center">
+                          <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/30">
+                            <span className="text-xs font-black text-purple-300 tracking-widest uppercase block">PILLAR 01</span>
+                            <span className="text-sm sm:text-base font-bold text-white mt-1 block">EMPOWERED COMMUNITIES</span>
+                          </div>
+                          <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/30">
+                            <span className="text-xs font-black text-cyan-300 tracking-widest uppercase block">PILLAR 02</span>
+                            <span className="text-sm sm:text-base font-bold text-white mt-1 block">STRONG PARTNERSHIPS</span>
+                          </div>
+                          <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30">
+                            <span className="text-xs font-black text-amber-300 tracking-widest uppercase block">PILLAR 03</span>
+                            <span className="text-sm sm:text-base font-bold text-white mt-1 block">LASTING CONTRIBUTION</span>
+                          </div>
+                        </div>
+
+                        {/* Strategic Plan Narrative Box */}
                         <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-inner max-w-3xl mx-auto">
                           {currentWorld.desc}
                         </p>
 
                       </div>
 
-                      {/* 2.0 FUTURE PILLARS ARCHITECTURAL GEOMETRY GRID */}
-                      <div className="relative z-10 space-y-8">
+                      {/* 2030 STRATEGIC TARGETS (TYPOGRAPHIC FLOATING MODULES) */}
+                      {currentWorld.futureTargets && (
+                        <div className="relative z-10 space-y-6">
+                          <div className="text-center space-y-1">
+                            <span className="text-xs font-black uppercase tracking-[0.25em] text-cyan-400">
+                              2030 STRATEGIC TARGETS
+                            </span>
+                            <h4 className="text-xl sm:text-2xl font-black text-white">
+                              Target Metrics for Inclusive &amp; Sustainable Impact
+                            </h4>
+                          </div>
 
-                        <div className="text-center space-y-2">
-                          <span className="text-xs font-black uppercase tracking-[0.25em] text-cyan-400">
-                            2.0 ARCHITECTURAL FUTURE PILLARS
-                          </span>
-                          <h4 className="text-xl sm:text-2xl font-black text-white">
-                            Connected Future Ecosystem
-                          </h4>
-                        </div>
-
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {futurePillars20World.map((pillar, pIdx) => {
-                            const IconComp = pillar.icon;
-                            const isHovered = hoveredPillar === pIdx;
-                            return (
+                          <div className="grid sm:grid-cols-3 gap-6">
+                            {currentWorld.futureTargets.map((tgt, tIdx) => (
                               <div
-                                key={pillar.num}
-                                onMouseEnter={() => setHoveredPillar(pIdx)}
-                                onMouseLeave={() => setHoveredPillar(null)}
-                                className={`group relative rounded-3xl p-6 border transition-all duration-500 cursor-pointer overflow-hidden ${isHovered
-                                    ? "bg-slate-900 border-purple-400/80 shadow-[0_0_35px_rgba(168,85,247,0.4)] -translate-y-1.5"
-                                    : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
-                                  }`}
+                                key={tIdx}
+                                className="relative rounded-3xl p-6 bg-slate-900/90 border border-purple-500/30 shadow-xl space-y-3 text-center group hover:border-cyan-400 transition-colors"
                               >
-                                <div className="flex items-start justify-between gap-4 mb-4">
-                                  <span className="text-xs font-black text-purple-400 tracking-widest px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30">
-                                    PILLAR {pillar.num}
-                                  </span>
-                                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${isHovered ? "bg-purple-400 text-slate-950 scale-110" : "bg-slate-800 text-slate-300"
-                                    }`}>
-                                    <IconComp className="w-5 h-5" />
-                                  </div>
-                                </div>
-
-                                <h5 className="text-base font-black text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                                  {pillar.title}
-                                </h5>
-
-                                <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                                  {pillar.desc}
+                                <span className="text-[10px] font-black uppercase tracking-widest text-purple-400 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 inline-block">
+                                  {tgt.label}
+                                </span>
+                                <p className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-cyan-200 to-amber-200">
+                                  {tgt.value}
+                                </p>
+                                <p className="text-xs text-slate-400 font-medium">
+                                  {tgt.desc}
                                 </p>
                               </div>
-                            );
-                          })}
+                            ))}
+                          </div>
                         </div>
+                      )}
 
-                      </div>
-
-                      {/* FINAL 2.0 CALL TO ACTION */}
-                      <div className="relative z-10 pt-10 border-t border-white/10 text-center space-y-6 max-w-xl mx-auto">
-
-                        <h4 className="text-2xl font-black text-white">
-                          BE PART OF THE NEXT CHAPTER
-                        </h4>
-
-                        <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                          [HISTORICAL STORY PLACEHOLDER — INSERT AUTHENTIC PARTNERSHIP MESSAGE HERE] Join EFFORT in shaping the future of rural development through sustainable CSR alliances and grassroots empowerment.
-                        </p>
+                      {/* FINAL EMOTIONAL CONCLUDING STATEMENT */}
+                      <div className="relative z-10 text-center space-y-6 pt-12 border-t border-white/10 max-w-3xl mx-auto">
+                        <div className="space-y-2">
+                          <span className="text-xs font-mono uppercase tracking-[0.35em] text-cyan-400 block">
+                            THE JOURNEY CONTINUES
+                          </span>
+                          <h4 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                            BUILDING RESILIENT COMMUNITIES.<br />
+                            STRENGTHENING PARTNERSHIPS.<br />
+                            SHAPING SUSTAINABLE FUTURES.
+                          </h4>
+                        </div>
 
                         <div>
                           <a
                             href="/get-involved"
-                            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 via-indigo-400 to-cyan-300 text-slate-950 font-black text-sm shadow-[0_0_35px_rgba(168,85,247,0.4)] hover:shadow-[0_0_50px_rgba(168,85,247,0.6)] hover:-translate-y-1 transition-all group"
+                            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 text-slate-950 font-black text-base shadow-[0_0_50px_rgba(168,85,247,0.5)] hover:shadow-[0_0_75px_rgba(168,85,247,0.7)] hover:-translate-y-1 transition-all group"
                           >
-                            <span>EXPLORE THE NEXT CHAPTER</span>
-                            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            <span>EXPLORE THE 2.0 VISION</span>
+                            <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                           </a>
                         </div>
-
                       </div>
 
                     </div>
