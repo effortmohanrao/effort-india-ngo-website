@@ -39,52 +39,51 @@ export default function AdminTabs({ pages, activeId, onSelect }: Props) {
   };
 
   return (
-    <div className="relative flex items-center border-b border-slate-200 bg-white">
-      <button
-        type="button"
-        onClick={() => scrollByAmount(-220)}
-        disabled={!canScrollLeft}
-        aria-label="Scroll pages left"
-        className="shrink-0 flex items-center justify-center w-9 h-12 text-slate-400 hover:text-emerald-700 disabled:opacity-25 disabled:hover:text-slate-400 transition-colors cursor-pointer disabled:cursor-default"
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
+    <div className="relative bg-white/95 backdrop-blur-xl border-b border-amber-900/15 shadow-sm px-2 py-2">
+      <div className="max-w-[1440px] mx-auto flex items-center gap-1.5">
+        <button
+          type="button"
+          onClick={() => scrollByAmount(-260)}
+          disabled={!canScrollLeft}
+          aria-label="Scroll pages left"
+          className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-amber-50/80 hover:bg-amber-100 text-amber-900 border border-amber-200/80 disabled:opacity-25 transition-all cursor-pointer disabled:cursor-default"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
 
-      <div
-        ref={trackRef}
-        className="flex-1 flex items-center gap-1 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {pages.map((page) => {
-          const isActive = page.id === activeId;
-          return (
-            <button
-              key={page.id}
-              type="button"
-              onClick={() => onSelect(page.id)}
-              className={`relative shrink-0 px-4 py-3.5 text-[13px] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                isActive ? "text-emerald-700" : "text-slate-500 hover:text-slate-800"
-              }`}
-            >
-              {page.label}
-              <span
-                className={`absolute left-3 right-3 -bottom-px h-[2.5px] rounded-full bg-emerald-600 transition-opacity ${
-                  isActive ? "opacity-100" : "opacity-0"
+        <div
+          ref={trackRef}
+          className="flex-1 flex items-center gap-2 overflow-x-auto scroll-smooth py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {pages.map((page) => {
+            const isActive = page.id === activeId;
+            return (
+              <button
+                key={page.id}
+                type="button"
+                onClick={() => onSelect(page.id)}
+                className={`relative shrink-0 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? "bg-gradient-to-r from-amber-700 via-amber-800 to-emerald-800 text-white font-black shadow-md scale-105 border border-amber-300/40"
+                    : "bg-slate-100/80 hover:bg-amber-50 text-slate-700 hover:text-amber-900 border border-slate-200/60 shadow-2xs"
                 }`}
-              />
-            </button>
-          );
-        })}
-      </div>
+              >
+                {page.label}
+              </button>
+            );
+          })}
+        </div>
 
-      <button
-        type="button"
-        onClick={() => scrollByAmount(220)}
-        disabled={!canScrollRight}
-        aria-label="Scroll pages right"
-        className="shrink-0 flex items-center justify-center w-9 h-12 text-slate-400 hover:text-emerald-700 disabled:opacity-25 disabled:hover:text-slate-400 transition-colors cursor-pointer disabled:cursor-default"
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
+        <button
+          type="button"
+          onClick={() => scrollByAmount(260)}
+          disabled={!canScrollRight}
+          aria-label="Scroll pages right"
+          className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-amber-50/80 hover:bg-amber-100 text-amber-900 border border-amber-200/80 disabled:opacity-25 transition-all cursor-pointer disabled:cursor-default"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
