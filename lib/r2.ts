@@ -46,3 +46,18 @@ export async function getUploadUrl(key: string, contentType: string, expiresInSe
 export function publicUrlFor(key: string) {
   return `${PUBLIC_URL}/${key}`;
 }
+
+// Reads a small text/JSON object from R2. Returns null if the key doesn't exist yet
+// (e.g. settings that haven't been saved by an admin for the first time).
+export async function getR2Text(key: string): Promise<string | null> {
+  try {
+    const result = await r2.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+    const body = await result.Body?.transformToString();
+    return body ?? null;
+  } catch (err: unknown) {
+    const code = (err as { name?: string; $metadata?: { httpStatusCode?: number } })?.name;
+    const status = (err as { $metadata?: { httpStatusCode?: number } })?.$metadata?.httpStatusCode;
+    if (code === "NoSuchKey" || status === 404) return null;
+    throw err;
+  }
+}

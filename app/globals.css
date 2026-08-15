@@ -1532,3 +1532,139 @@ body {
   transform-style: preserve-3d;
   transform-origin: bottom;
 }
+/* --- About page "EFFORT Archive" journey rail (unique to this section) --- */
+@keyframes journey-node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 0, 0, 0);
+  }
+}
+
+.animate-journey-node-pulse {
+  animation: journey-node-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes journey-rail-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-journey-rail-shimmer {
+  background-size: 200% 100%;
+  animation: journey-rail-shimmer 3.5s linear infinite;
+}
+
+@keyframes journey-divider-glow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+.animate-journey-divider-glow {
+  animation: journey-divider-glow 3s ease-in-out infinite;
+}
+
+@keyframes journey-two-shine {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-journey-two-shine {
+  background-size: 200% auto;
+  animation: journey-two-shine 3.2s ease-in-out infinite;
+}
+
+/* --- EFFORT 2.0 Strategic Roadmap Animations --- */
+@keyframes halo-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-halo-spin {
+  animation: halo-spin 24s linear infinite;
+}
+
+@keyframes halo-breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.45;
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.85;
+    filter: drop-shadow(0 0 45px rgba(56, 189, 248, 0.7));
+  }
+}
+
+.animate-halo-breathe {
+  animation: halo-breathe 4s ease-in-out infinite;
+}
+
+@keyframes glass-sheen {
+  0% {
+    transform: translateX(-150%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-15deg);
+  }
+}
+
+.animate-glass-sheen {
+  animation: glass-sheen 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes node-ping-glow {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 25px 10px rgba(139, 92, 246, 0.6);
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+  }
+}
+
+.animate-node-ping-glow {
+  animation: node-ping-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes stat-count-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.3), 0 0 20px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.7), 0 0 40px rgba(56, 189, 248, 0.6);
+  }
+}
+
+.animate-stat-count-glow {
+  animation: stat-count-glow 3s ease-in-out infinite;
+}
+

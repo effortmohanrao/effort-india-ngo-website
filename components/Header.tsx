@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import DonateModal from "@/components/DonateModal";
 import {
   Heart,
   Menu,
@@ -54,9 +55,20 @@ export default function Header() {
   const [isDonateHover, setIsDonateHover] = useState(false);
   const [magnet, setMagnet] = useState({ x: 0, y: 0 });
   const [ripples, setRipples] = useState<Ripple[]>([]);
+  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const pathname = usePathname();
 
   const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("openDonate") === "1") {
+      setIsDonateModalOpen(true);
+      params.delete("openDonate");
+      const rest = params.toString();
+      window.history.replaceState(null, "", window.location.pathname + (rest ? `?${rest}` : ""));
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -108,7 +120,7 @@ export default function Header() {
     { Icon: YoutubeIcon, href: "#", label: "YouTube" },
   ];
 
-  const handleDonateMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleDonateMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
     const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
@@ -120,13 +132,14 @@ export default function Header() {
     setIsDonateHover(false);
   };
 
-  const handleDonateClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleDonateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const id = Date.now();
     setRipples((prev) => [...prev, { id, x: e.clientX - rect.left, y: e.clientY - rect.top }]);
     setTimeout(() => {
       setRipples((prev) => prev.filter((r) => r.id !== id));
     }, 650);
+    setIsDonateModalOpen(true);
   };
 
   if (pathname?.startsWith("/admin")) return null;
@@ -309,8 +322,8 @@ export default function Header() {
             {/* CTA + Utility Cluster */}
             <div className="hidden sm:flex items-center gap-3">
               {/* High-Impact 3D Glowing "Donate Now" Executive CTA */}
-              <Link
-                href="/donate"
+              <button
+                type="button"
                 onMouseMove={handleDonateMouseMove}
                 onMouseEnter={() => setIsDonateHover(true)}
                 onMouseLeave={handleDonateMouseLeave}
@@ -343,7 +356,7 @@ export default function Header() {
                 </span>
 
                 <ArrowRight className={`w-4 h-4 text-amber-200 relative transition-transform duration-300 ${isDonateHover ? "translate-x-1" : ""}`} />
-              </Link>
+              </button>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -388,19 +401,24 @@ export default function Header() {
               ))}
 
               <div className="pt-4 flex flex-col gap-2 border-t border-slate-100">
-                <Link
-                  href="/donate"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold shadow-md hover:from-emerald-700 hover:to-emerald-800 flex items-center justify-center gap-2"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsDonateModalOpen(true);
+                  }}
+                  className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold shadow-md hover:from-emerald-700 hover:to-emerald-800 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Heart className="w-4 h-4 fill-white" /> Donate Now
-                </Link>
+                </button>
               </div>
             </div>
           )}
         </header>
         </div>
       </div>
+
+      <DonateModal open={isDonateModalOpen} onClose={() => setIsDonateModalOpen(false)} />
     </>
   );
 }

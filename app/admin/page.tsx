@@ -6,6 +6,7 @@ import Link from "next/link";
 import AdminTabs from "@/components/admin/AdminTabs";
 import HomePanel from "@/components/admin/HomePanel";
 import BrandingPanel from "@/components/admin/BrandingPanel";
+import DonatePanel from "@/components/admin/DonatePanel";
 import ComingSoonPanel from "@/components/admin/ComingSoonPanel";
 import { adminPages } from "@/components/admin/adminPages";
 import { logoutAction } from "./actions";
@@ -93,6 +94,8 @@ export default function AdminPage() {
           <HomePanel />
         ) : activeId === "branding" ? (
           <BrandingPanel />
+        ) : activeId === "donate" ? (
+          <DonatePanel />
         ) : (
           <ComingSoonPanel page={activePage} />
         )}

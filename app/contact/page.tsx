@@ -402,42 +402,48 @@ export default function Contact() {
               </div>
 
               {/* Selected Office Detail View */}
-              <div className="p-5 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-4 animate-fade-in">
-                <div>
-                  <span className="text-[10px] font-black uppercase text-amber-400">{selectedOffice.type}</span>
-                  <h4 className="text-lg font-black text-white">{selectedOffice.title}</h4>
-                  <p className="text-xs text-stone-400 font-medium mt-0.5">{selectedOffice.district}</p>
-                </div>
+              {(() => {
+                const selectedOffice = officeLocations[activeOffice];
+                return (
+                  <div className="p-5 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-4 animate-fade-in">
+                    <div>
+                      <span className="text-[10px] font-black uppercase text-amber-400">{selectedOffice.type}</span>
+                      <h4 className="text-lg font-black text-white">{selectedOffice.title}</h4>
+                      <p className="text-xs text-stone-400 font-medium mt-0.5">{selectedOffice.district}</p>
+                    </div>
 
-                <div className="space-y-2 text-xs text-stone-300 leading-relaxed font-medium pt-2 border-t border-stone-800">
-                  <div className="flex gap-2">
-                    <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                    <span>{selectedOffice.address}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{selectedOffice.phone}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                    <span>{selectedOffice.email}</span>
-                  </div>
-                </div>
+                    <div className="space-y-2 text-xs text-stone-300 leading-relaxed font-medium pt-2 border-t border-stone-800">
+                      <div className="flex gap-2">
+                        <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{selectedOffice.address}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{selectedOffice.phone}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                        <span>{selectedOffice.email}</span>
+                      </div>
+                    </div>
 
-                <div className="p-3 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400">
-                  <span className="font-bold text-amber-300 block">Lead Coordinator:</span>
-                  {selectedOffice.head} ({selectedOffice.landmark})
-                </div>
+                    <div className="p-3 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400">
+                      <span className="font-bold text-amber-300 block">Lead Coordinator:</span>
+                      {selectedOffice.head} ({selectedOffice.landmark})
+                    </div>
 
-                <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(selectedOffice.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 rounded-xl bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:bg-amber-300 transition-colors"
-                >
-                  Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
+                    <a
+                      href={`https://maps.google.com/?q=${encodeURIComponent(selectedOffice.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 rounded-xl bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:bg-amber-300 transition-colors"
+                    >
+                      Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                );
+              })()}
+
             </div>
 
             {/* Quick Emergency / 80G Receipt Callout Card */}
