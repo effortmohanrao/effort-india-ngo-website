@@ -18,6 +18,9 @@ export type StateData = {
   description: string;
   path: string;
   center: { x: number; y: number };
+  // R2 folders under website/programs/{completed|ongoing}/ with real field photos
+  // taken in this state. Left empty when no matched album covers this state.
+  photoFolders?: { folder: string; status: "completed" | "ongoing" }[];
 };
 
 export const IMPACT_STATES: Record<string, StateData> = {
@@ -35,6 +38,21 @@ export const IMPACT_STATES: Record<string, StateData> = {
     description: "State HQ and primary operational hub since 1999. Operating comprehensive watershed management, 2,702 water harvesting structures, 42 FPOs, 1,275 SHGs, and 3 Biodiversity Parks (50,000 species).",
     center: { x: 420, y: 650 },
     path: "",
+    photoFolders: [
+      { folder: "reliance-foundation", status: "ongoing" },
+      { folder: "fpo-promotion-nabard", status: "ongoing" },
+      { folder: "biodiversity-water-gpi", status: "ongoing" },
+      { folder: "dka-nrm-kurnool", status: "ongoing" },
+      { folder: "jsw-water-governance", status: "ongoing" },
+      { folder: "prakasam-nri-schools", status: "ongoing" },
+      { folder: "sustainable-wellbeing-women", status: "ongoing" },
+      { folder: "apchip", status: "completed" },
+      { folder: "apsacs-hiv-aids", status: "completed" },
+      { folder: "millepede-watershed", status: "completed" },
+      { folder: "spices-board-ipm-chilli", status: "completed" },
+      { folder: "ipm-chilli-iffco", status: "completed" },
+      { folder: "nabard-programs", status: "completed" },
+    ],
   },
   "IN-TG": {
     id: "tg",
@@ -80,6 +98,7 @@ export const IMPACT_STATES: Record<string, StateData> = {
     description: "Transforming water-intensive paddy to Direct Seeded Rice (DSR) saving 35% water, and setting up rural school sanitation & hygiene education (SAHY).",
     center: { x: 190, y: 130 },
     path: "",
+    photoFolders: [{ folder: "dsr-punjab-haryana-mp-up", status: "completed" }],
   },
   "IN-HR": {
     id: "hr",
@@ -95,6 +114,10 @@ export const IMPACT_STATES: Record<string, StateData> = {
     description: "Training paddy and mustard farmers on resource-conserving cultivation, soil health, and apiculture integration for crop yield boosting.",
     center: { x: 250, y: 180 },
     path: "",
+    photoFolders: [
+      { folder: "dsr-punjab-haryana-mp-up", status: "completed" },
+      { folder: "mustard-bee-pollination", status: "completed" },
+    ],
   },
   "IN-MP": {
     id: "mp",
@@ -110,6 +133,7 @@ export const IMPACT_STATES: Record<string, StateData> = {
     description: "Empowering smallholders with direct seeding paddy techniques, soil conservation, and balanced plant nutrition across Central India.",
     center: { x: 300, y: 380 },
     path: "",
+    photoFolders: [{ folder: "dsr-punjab-haryana-mp-up", status: "completed" }],
   },
   "IN-UP": {
     id: "up",
@@ -125,6 +149,7 @@ export const IMPACT_STATES: Record<string, StateData> = {
     description: "Promoting DSR technology and IPM in Eastern UP rice belts to mitigate ground water depletion and increase farm net profitability.",
     center: { x: 380, y: 280 },
     path: "",
+    photoFolders: [{ folder: "dsr-punjab-haryana-mp-up", status: "completed" }],
   },
   "IN-KA": {
     id: "ka",
@@ -141,34 +166,34 @@ export const IMPACT_STATES: Record<string, StateData> = {
     center: { x: 320, y: 680 },
     path: "",
   },
-  "IN-OR": {
-    id: "or",
-    code: "IN-OR",
-    name: "Odisha",
-    projectsCount: 3,
-    beneficiaries: "12,000+ Tribal Families",
-    villages: "45+ Villages",
-    districts: ["Koraput", "Rayagada"],
-    partners: ["Fairtrade International", "NABARD"],
-    categories: ["Sustainable Agriculture", "Tribal Development"],
-    flagshipProject: "Tribal Organic Farming & Non-Timber Forest Product Livelihoods",
-    description: "Empowering indigenous tribal farmers with organic spice cultivation, fruit orchard development (Wadi approach), and forest produce marketing.",
-    center: { x: 490, y: 480 },
+  "IN-TN": {
+    id: "tn",
+    code: "IN-TN",
+    name: "Tamil Nadu",
+    projectsCount: 2,
+    beneficiaries: "Shared multi-state footprint",
+    villages: "Multi-district coverage",
+    districts: ["Oilseed & coffee growing belt"],
+    partners: ["GIZ, Germany", "Fairtrade International", "NAAP"],
+    categories: ["Sustainable Agriculture", "Coffee & Oilseed Value Chain"],
+    flagshipProject: "Sustainability in Oil Seed Production & Coffee Development",
+    description: "Improving oilseed crop productivity and farmer incomes with GIZ, alongside coffee smallholder resilience and Fairtrade-certified organic orchard support shared with Karnataka and Kerala.",
+    center: { x: 370, y: 830 },
     path: "",
   },
-  "IN-RJ": {
-    id: "rj",
-    code: "IN-RJ",
-    name: "Rajasthan",
+  "IN-KL": {
+    id: "kl",
+    code: "IN-KL",
+    name: "Kerala",
     projectsCount: 2,
-    beneficiaries: "8,000+ Farmers",
-    villages: "30+ Villages",
-    districts: ["Sri Ganganagar", "Hanumangarh"],
-    partners: ["CropLife India"],
-    categories: ["Sustainable Agriculture"],
-    flagshipProject: "Arid Region Pest Management & Water Conservation",
-    description: "Training canal-irrigated farmers in Northwest Rajasthan on responsible pesticide application and drip irrigation efficiency.",
-    center: { x: 180, y: 260 },
+    beneficiaries: "Shared multi-state footprint",
+    villages: "Multi-district coverage",
+    districts: ["Coffee growing belt"],
+    partners: ["Fairtrade International", "NAAP"],
+    categories: ["Sustainable Agriculture", "Coffee Value Chain"],
+    flagshipProject: "Coffee Development & Fairtrade Organic Orchard Resilience",
+    description: "Coffee smallholder resilience building and Fairtrade-certified organic orchard support, delivered as part of a joint Karnataka–Kerala–Tamil Nadu programme.",
+    center: { x: 280, y: 850 },
     path: "",
   },
 };

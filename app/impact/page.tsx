@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Globe,
@@ -27,18 +27,36 @@ import {
   ExternalLink,
 } from "lucide-react";
 import IndiaMap, { IMPACT_STATES, StateData } from "@/components/IndiaMap";
+import CategorizedImpactLedger from "@/components/CategorizedImpactLedger";
+
 
 export default function ImpactPage() {
   const [selectedCode, setSelectedCode] = useState<string>("IN-AP");
   const selectedState: StateData = IMPACT_STATES[selectedCode] ?? IMPACT_STATES["IN-AP"];
+  const [statePhotos, setStatePhotos] = useState<{ key: string; url: string }[]>([]);
 
-  {/* Overall Impact Metrics (65 Completed + 15 Ongoing = 80 Total) */}
-  const statCards = [
-    { title: "80 Projects", subtitle: "Total Executed & Active", icon: Award, desc: "65 Completed + 15 Ongoing (1999–2026)" },
-    { title: "2.67 Lakh", subtitle: "Families Empowered", icon: Users, desc: "Farmers, Women, Children & Villagers Reached" },
-    { title: "42 FPOs & 1,275 SHGs", subtitle: "Community Collectives", icon: TrendingUp, desc: "38,102 Farmer Shareholders & Women Members" },
-    { title: "2,011 Children & 50 RO", subtitle: "Child & Health Impact", icon: HeartPulse, desc: "21 Child-Labour-Free Villages & 16,000 Families Safe Water" },
-  ];
+  useEffect(() => {
+    const folders = selectedState.photoFolders ?? [];
+    if (folders.length === 0) {
+      setStatePhotos([]);
+      return;
+    }
+    let cancelled = false;
+    Promise.all(
+      folders.map((f) =>
+        fetch(`/api/site/media?prefix=programs/${f.status}/${f.folder}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => data.images?.[0] ?? null)
+      )
+    ).then((covers) => {
+      if (!cancelled) setStatePhotos(covers.filter(Boolean));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedState]);
+
+
 
   {/* 5 Comprehensive Strategic Impact Sectors (80 Total Projects: 65 Completed + 15 Ongoing) */}
   const impactDomains = [
@@ -123,27 +141,13 @@ export default function ImpactPage() {
           Our Impact & Verified <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Field Footprint</span>
         </h1>
         <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
-          Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT NGO has executed <strong>65 completed projects</strong> and <strong>15 active ongoing initiatives</strong> across 9 states, transforming 2.67 lakh rural lives across farming, women's collectives, child welfare, health & watershed development.
+          Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT NGO has executed <strong>65 completed projects</strong> and <strong>15 active ongoing initiatives</strong> across 10 states, transforming 2.67 lakh rural lives across <strong>Sustainable Agriculture</strong>, <strong>Natural Resource Management</strong>, <strong>Community Collectives</strong>, <strong>Livelihoods</strong>, and <strong>Social Development Initiatives</strong>.
         </p>
       </section>
 
-      {/* --- CUMULATIVE BALANCED STATS CARDS --- */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-          {statCards.map((card, idx) => (
-            <div
-              key={idx}
-              className="group relative rounded-3xl bg-white/80 backdrop-blur-xl border-2 border-[#e5d4a1] p-6 shadow-[0_20px_45px_-20px_rgba(120,90,30,0.2)] hover:-translate-y-1.5 hover:border-[#d4af6a] hover:shadow-[0_25px_55px_-15px_rgba(180,140,40,0.3)] transition-all duration-400"
-            >
-              <div className="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <card.icon className="w-5.5 h-5.5 text-amber-700" />
-              </div>
-              <p className="text-2xl sm:text-3xl font-black text-metallic-gold leading-tight drop-shadow-sm">{card.title}</p>
-              <p className="text-xs font-black uppercase tracking-wider text-[#221c0c] mt-2">{card.subtitle}</p>
-              <p className="text-xs text-[#7a6f55] font-medium mt-1">{card.desc}</p>
-            </div>
-          ))}
-        </div>
+      {/* --- CATEGORIZED IMPACT MASTER LEDGER SECTION --- */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <CategorizedImpactLedger />
       </section>
 
       {/* --- FULL-WIDTH CLEAN CREAM MAP SHOWCASE SECTION --- */}
@@ -212,6 +216,23 @@ export default function ImpactPage() {
                 <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50/90 to-emerald-50/90 border border-[#d4af6a]/50 shadow-xs space-y-1.5">
                   <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Flagship Project</span>
                   <p className="text-sm font-black text-[#221c0c] leading-snug">{selectedState.flagshipProject}</p>
+                </div>
+
+                {/* Real Field Photos for this state */}
+                <div className="space-y-2">
+                  <span className="text-xs font-black uppercase tracking-wider text-[#221c0c]">Field Photos</span>
+                  {statePhotos.length > 0 ? (
+                    <div className="grid grid-cols-4 gap-2">
+                      {statePhotos.slice(0, 8).map((p) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={p.key} src={p.url} alt="" className="w-full aspect-square object-cover rounded-xl border border-[#e5d4a1]" />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-[#8a7a5a] italic bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5">
+                      No field photos on file for this state yet.
+                    </p>
+                  )}
                 </div>
 
                 {/* Stat Numbers Grid */}

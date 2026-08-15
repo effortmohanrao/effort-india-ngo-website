@@ -91,7 +91,7 @@ export default function DonateModal({ open, onClose }: { open: boolean; onClose:
         <div className="sticky top-0 z-10 bg-gradient-to-r from-emerald-700 to-emerald-800 text-white px-6 py-5 rounded-t-3xl flex items-center justify-between">
           <div>
             <h2 className="text-lg font-black">Support EFFORT NGO</h2>
-            <p className="text-[11px] text-emerald-100">27 years, 9 states, 100% transparent. 80G tax exemption applies.</p>
+            <p className="text-[11px] text-emerald-100">27 years, 10 states, 100% transparent. 80G tax exemption applies.</p>
           </div>
           <button
             type="button"

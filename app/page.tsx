@@ -41,10 +41,10 @@ import {
   Volume2,
   VolumeX,
   X,
-  Maximize2,
-  Filter,
   Check
 } from "lucide-react";
+
+
 
 function useScrollReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -73,15 +73,14 @@ function useScrollReveal<T extends HTMLElement>() {
 const heroLines: { text: string; accent?: boolean }[] = [
   { text: "Transforming Lives" },
   { text: "Through Sustainable", accent: true },
-  { text: "Community Development" },
+  { text: "Development Initiatives" },
 ];
 
 const heroCredibility: { icon: typeof ShieldCheck; label: string }[] = [
   { icon: ShieldCheck, label: "Registered Society (340/1999)" },
   { icon: TrendingUp, label: "100% Project Success Rate" },
   { icon: Calendar, label: "27 Years of Service" },
-  { icon: Landmark, label: "Government Recognized" },
-  { icon: Building2, label: "CSR Ready" },
+  { icon: Landmark, label: "Recognized by Government, Foreign Funding Agencies & Corporate Companies" },
 ];
 
 const complianceCards: {
@@ -231,7 +230,7 @@ const processSteps: ProcessStep[] = [
     step: "01",
     title: "Grassroots Diagnostics",
     subtitle: "Community Assessment & Need Identification",
-    desc: "We begin by conducting rigorous socio-economic baseline surveys, household vulnerability mapping, and participatory dialogues with village heads across 9 states to identify ground realities before formulating solutions.",
+    desc: "We begin by conducting rigorous socio-economic baseline surveys, household vulnerability mapping, and participatory dialogues with village heads across 10 states to identify ground realities before formulating solutions.",
     icon: Search,
     image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=900",
     auditTag: "100% Ground Verified",
@@ -351,7 +350,7 @@ const partnershipSlides: PartnershipSlide[] = [
 ];
 
 const partnershipStats: { label: string; value: string }[] = [
-  { label: "Operating States", value: "9 States" },
+  { label: "Operating States", value: "10 States" },
   { label: "Districts Reached", value: "37 Districts" },
   { label: "Villages Transformed", value: "1,909 Villages" },
   { label: "Community Collectives", value: "1,368 Orgs" },
@@ -861,9 +860,7 @@ export default function Home() {
               alt="EFFORT NGO Background"
               className="w-full h-full object-cover animate-fade-in"
             />
-            {/* Subtle Gradient Overlay (Only on text side for crisp legibility, right side stays clear) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+            {/* Background image without dark black overlay */}
           </div>
         ) : (
           /* Soft mesh background fallback when no background image is uploaded */
@@ -881,18 +878,21 @@ export default function Home() {
           <div className="lg:col-span-7 space-y-7">
 
             <div
-              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Together We Create Lasting Impact
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white drop-shadow-md">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
               {heroLines.map((line, i) => (
                 <span key={line.text} className="block overflow-hidden py-0.5">
                   <span
-                    className={`inline-block transition-all duration-700 ease-out ${line.accent ? "bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent" : ""
-                      } ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[110%]"}`}
+                    className={`inline-block transition-all duration-700 ease-out ${
+                      line.accent
+                        ? "bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]"
+                        : "text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]"
+                    } ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[110%]"}`}
                     style={{ transitionDelay: `${150 + i * 140}ms` }}
                   >
                     {line.text}
@@ -902,11 +902,11 @@ export default function Home() {
             </h1>
 
             <p
-              className={`text-slate-100 text-lg sm:text-xl max-w-2xl font-normal leading-relaxed drop-shadow-sm transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`text-slate-100 text-lg sm:text-xl max-w-2xl font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
               style={{ transitionDelay: "550ms" }}
             >
-              Empowering individuals, strengthening communities, and creating long-term social impact through education, healthcare, livelihood support, environmental sustainability, and inclusive development programs.
+              Empowering farming communities and creating sustainable livelihoods of small and marginal farmers, landless agriculture labor, women, and youth by upholding natural resources, sustainable agriculture, and ecological balance in rural India.
             </p>
 
             <div
@@ -938,7 +938,7 @@ export default function Home() {
               </a>
               <Link
                 href="/get-involved"
-                className="group px-8 py-4 rounded-full bg-slate-900/60 hover:bg-slate-800/80 backdrop-blur-md border border-white/30 hover:border-white text-white font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5"
+                className="group px-8 py-4 rounded-full bg-slate-900/70 hover:bg-slate-800/80 backdrop-blur-md border border-white/30 hover:border-white text-white font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5"
               >
                 <Play className="w-4 h-4 fill-emerald-400 text-emerald-400 group-hover:rotate-12 transition-transform duration-300" />
                 Become a Volunteer
@@ -1024,7 +1024,7 @@ export default function Home() {
             style={{ transitionDelay: "200ms" }}
           >
             {[
-              { i: 0, label: "Villages Covered", desc: "Across 9 Indian States", suffix: "+" },
+              { i: 0, label: "Villages Covered", desc: "Across 10 Indian States", suffix: "+" },
               { i: 2, label: "Completed Projects", desc: "65 Delivered End-to-End", suffix: "" },
               { i: 3, label: "Ongoing Projects", desc: "15 Active Field Projects", suffix: "" },
               { i: 4, label: "Districts Reached", desc: "Across 37 Districts", suffix: "" },
@@ -1038,10 +1038,10 @@ export default function Home() {
                   {Math.round(impactValues[stat.i]).toLocaleString("en-IN")}{stat.suffix}
                 </p>
                 <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 mt-1.5">{stat.label}</p>
-                <p className="text-[10px] text-slate-400 mt-0.5 font-medium">{stat.desc}</p>
               </div>
             ))}
           </div>
+
 
           <div
             className={`text-center mt-6 transition-all duration-700 ${impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -1049,10 +1049,10 @@ export default function Home() {
             style={{ transitionDelay: "500ms" }}
           >
             <Link
-              href="/programs"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-amber-300/40 bg-amber-400/10 text-amber-200 font-bold text-xs sm:text-sm hover:bg-amber-300/20 hover:border-amber-300/60 hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(251,191,36,0.15)]"
+              href="/impact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-amber-300/40 bg-amber-400/10 text-amber-200 font-bold text-xs sm:text-sm hover:bg-amber-300/20 hover:border-amber-300/60 hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(251,191,36,0.25)]"
             >
-              Explore All Projects &amp; Impact Report <ArrowUpRight className="w-4 h-4 text-amber-300" />
+              Explore Full Impact Ledger &amp; Interactive GIS Field Map <ArrowUpRight className="w-4 h-4 text-amber-300" />
             </Link>
           </div>
         </div>
@@ -2144,7 +2144,7 @@ export default function Home() {
               </div>
               <div className="flex gap-3">
                 <Phone className="w-5 h-5 text-emerald-400 shrink-0" />
-                <p>+91 8404 - 271737 (Central Desk)</p>
+                <p>+91 99599 00081 (Central Desk)</p>
               </div>
             </div>
           </div>

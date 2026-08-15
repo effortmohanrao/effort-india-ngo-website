@@ -55,7 +55,7 @@ export default function Footer() {
           <div className="text-xs space-y-1.5 text-slate-300 font-medium pt-1 border-t border-slate-800">
             <p className="text-white font-bold">Central Office:</p>
             <p>Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India</p>
-            <p className="pt-1"><strong className="text-emerald-400">Phone:</strong> +91 8404 - 271737</p>
+            <p className="pt-1"><strong className="text-emerald-400">Phone:</strong> +91 99599 00081</p>
             <p><strong className="text-emerald-400">E-mail:</strong> effortap@gmail.com</p>
             <p><strong className="text-emerald-400">Website:</strong> www.effortindia.org</p>
           </div>
@@ -74,16 +74,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Programs Column */}
+        {/* Programs / Thematic Areas Column */}
         <div>
-          <h5 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Focus Areas</h5>
-          <ul className="space-y-2 text-xs font-semibold">
-            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Sustainable Agriculture</Link></li>
-            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Natural Resource Management</Link></li>
-            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Community Health &amp; WASH</Link></li>
-            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Child &amp; Women Development</Link></li>
-            <li><Link href="/get-involved" className="hover:text-emerald-400 transition-colors">CSR Corporate Partnerships</Link></li>
-            <li><Link href="/donate" className="hover:text-emerald-400 transition-colors">Direct Sponsorship Program</Link></li>
+          <h5 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Thematic Areas</h5>
+          <ul className="space-y-2.5 text-xs font-semibold">
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors flex items-start gap-1.5"><span className="text-amber-400 font-bold">•</span> Sustainable and Climate Resilient Farming</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors flex items-start gap-1.5"><span className="text-amber-400 font-bold">•</span> Natural Resource Management</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors flex items-start gap-1.5"><span className="text-amber-400 font-bold">•</span> Livelihoods</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors flex items-start gap-1.5"><span className="text-amber-400 font-bold">•</span> Social Development</Link></li>
           </ul>
         </div>
 

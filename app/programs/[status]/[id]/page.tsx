@@ -441,6 +441,15 @@ export default function ProjectDetailPage({
   const [activeTab, setActiveTab] = useState<"mission" | "interventions" | "stakeholders">("mission");
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
   const [activeStage, setActiveStage] = useState<number>(0);
+  const [realPhotos, setRealPhotos] = useState<{ key: string; url: string }[]>([]);
+
+  useEffect(() => {
+    if (!project.photoFolder) return;
+    fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => setRealPhotos(data.images ?? []))
+      .catch(() => {});
+  }, [project.photoFolder, status]);
 
   const [mainTitle, ...subInitiatives] = project.name.split(";").map((s) => s.trim());
 
@@ -897,27 +906,35 @@ export default function ProjectDetailPage({
             <p className="text-xs sm:text-sm text-[#5b6a60]">Click any image to view details and field context.</p>
           </div>
 
-          {/* 6 Curated Gallery Grid */}
+          {/* Curated Gallery Grid — real field photos when available, honest icon placeholder otherwise */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {content.galleryCaptions.map((tile) => (
-              <div
-                key={tile.id}
-                onClick={() => setActivePhoto(tile.id)}
-                className="group relative rounded-3xl overflow-hidden bg-white/50 backdrop-blur-xl border border-white/80 aspect-[4/3] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-25px_rgba(80,120,100,0.35)] transition-all duration-400"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-amber-500/10 to-sky-500/10 flex items-center justify-center">
-                  <ImageIcon className="w-10 h-10 text-[#5b7a68]/40 group-hover:scale-110 transition-transform duration-500" />
+            {content.galleryCaptions.map((tile) => {
+              const photo = realPhotos[tile.id];
+              return (
+                <div
+                  key={tile.id}
+                  onClick={() => setActivePhoto(tile.id)}
+                  className="group relative rounded-3xl overflow-hidden bg-white/50 backdrop-blur-xl border border-white/80 aspect-[4/3] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-25px_rgba(80,120,100,0.35)] transition-all duration-400"
+                >
+                  {photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={photo.url} alt={tile.label} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-amber-500/10 to-sky-500/10 flex items-center justify-center">
+                      <ImageIcon className="w-10 h-10 text-[#5b7a68]/40 group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 bg-gradient-to-t from-[#221c0c]/85 via-[#221c0c]/50 to-transparent">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#d4af6a] text-[9px] font-black uppercase tracking-wider text-[#221c0c] mb-1">
+                      {tile.tag}
+                    </span>
+                    <p className="text-xs font-bold text-white leading-snug">{tile.label}</p>
+                    <p className="text-[10px] text-white/70 mt-0.5">{location}</p>
+                  </div>
                 </div>
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 bg-gradient-to-t from-[#221c0c]/85 via-[#221c0c]/50 to-transparent">
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#d4af6a] text-[9px] font-black uppercase tracking-wider text-[#221c0c] mb-1">
-                    {tile.tag}
-                  </span>
-                  <p className="text-xs font-bold text-white leading-snug">{tile.label}</p>
-                  <p className="text-[10px] text-white/70 mt-0.5">{location}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Interactive Lightbox Modal */}
@@ -930,6 +947,10 @@ export default function ProjectDetailPage({
                 >
                   <X className="w-5 h-5" />
                 </button>
+                {realPhotos[activePhoto] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={realPhotos[activePhoto].url} alt="" className="w-full max-h-72 object-cover rounded-2xl" />
+                )}
                 <span className="inline-block px-3 py-1 rounded-full bg-[#d4af6a] text-[#221c0c] text-xs font-black uppercase tracking-wider">
                   Field Photo #{activePhoto + 1}
                 </span>

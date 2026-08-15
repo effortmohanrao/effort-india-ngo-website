@@ -40,6 +40,26 @@ body {
   animation: fade-in 0.25s ease-out;
 }
 
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
+
 @keyframes chapter-enter {
   from {
     opacity: 0;

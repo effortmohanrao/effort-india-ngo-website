@@ -46,7 +46,7 @@ export default function Contact() {
   };
 
   const handleCopyPhone = () => {
-    navigator.clipboard.writeText("+91 8404-271737");
+    navigator.clipboard.writeText("+91 99599 00081");
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
@@ -62,7 +62,7 @@ export default function Contact() {
       title: "EFFORT Central Administrative Office",
       district: "Martur, Bapatla District, Andhra Pradesh",
       address: "Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India.",
-      phone: "+91 8404 - 271737",
+      phone: "+91 99599 00081",
       email: "effortap@gmail.com",
       website: "www.effortindia.org",
       head: "Central Administrative Office Desk",
@@ -73,7 +73,7 @@ export default function Contact() {
       title: "Prakasam Watershed & IPM Field Hub",
       district: "Podili / Markapur Region, Andhra Pradesh",
       address: "Watershed Field Intervention Center, Main Road, Podili, Prakasam District, Andhra Pradesh - 523240.",
-      phone: "+91 8404 - 271737",
+      phone: "+91 99599 00081",
       email: "effortap@gmail.com",
       head: "Senior Project Officer (NRM & Watersheds)",
       landmark: "Opposite Agricultural Extension Office",
@@ -83,7 +83,7 @@ export default function Contact() {
       title: "Guntur & Palnadu FPO Operations Hub",
       district: "Guntur District, Andhra Pradesh",
       address: "FPO Farmer Facilitation Desk, Collectorate Road, Guntur, Andhra Pradesh - 522004.",
-      phone: "+91 8404 - 271737",
+      phone: "+91 99599 00081",
       email: "effortap@gmail.com",
       head: "FPO & Spices Board Project Manager",
       landmark: "Near District Agriculture Office",
@@ -93,7 +93,7 @@ export default function Contact() {
       title: "CSR Alliances & Institutional Desk",
       district: "Hyderabad / Vijayawada CSR Liaison",
       address: "Corporate Liaison Office, Jubliee Hills / MG Road Vijayawada Desk, Andhra Pradesh & Telangana.",
-      phone: "+91 8404 - 271737",
+      phone: "+91 99599 00081",
       email: "effortap@gmail.com",
       head: "Head of Corporate Partnerships & MoUs",
       landmark: "Corporate CSR Consultation Center",
@@ -138,7 +138,7 @@ export default function Contact() {
             </div>
             <div>
               <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Helpline &amp; Call Desk</span>
-              <p className="text-base font-black text-[#221c0c] mt-0.5">+91 8404 - 271737</p>
+              <p className="text-base font-black text-[#221c0c] mt-0.5">+91 99599 00081</p>
               <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Mon &ndash; Sat: 9:00 AM &ndash; 6:00 PM IST</p>
             </div>
             <button

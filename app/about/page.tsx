@@ -444,7 +444,7 @@ const leadershipTeam: LeadershipMember[] = [
     name: "K. Rajeshwari",
     role: "Director – Women Empowerment & SHG Governance",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
-    intro: "Oversees 1,275 Self-Help Groups (SHGs) and 51 MACS Cooperatives across 9 operating states, pioneering micro-enterprise leadership for 14,750+ women.",
+    intro: "Oversees 1,275 Self-Help Groups (SHGs) and 51 MACS Cooperatives across 10 operating states, pioneering micro-enterprise leadership for 14,750+ women.",
     socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
   },
   {
@@ -563,27 +563,7 @@ const partnerZones: PartnerZone[] = [
   },
 ];
 
-type GalleryCard =
-  | { kind: "image"; category: string; icon: typeof ImageIcon; h: number }
-  | { kind: "story"; title: string; note: string; year: string; h: number };
-
-const galleryCards: GalleryCard[] = [
-  { kind: "image", category: "Our Journey", icon: ImageIcon, h: 420 },
-  { kind: "image", category: "Panorama", icon: ImageIcon, h: 320 },
-  { kind: "story", title: "Where It Began", note: "A short story placeholder describing this moment in our journey.", year: "[ Year ]", h: 420 },
-  { kind: "image", category: "Portrait", icon: UserCircle2, h: 420 },
-  { kind: "image", category: "Community Event", icon: Users2, h: 320 },
-  { kind: "image", category: "Children", icon: Baby, h: 420 },
-  { kind: "image", category: "Farm", icon: Wheat, h: 320 },
-  { kind: "story", title: "Growing Together", note: "A short story placeholder describing this moment in our journey.", year: "[ Year ]", h: 420 },
-  { kind: "image", category: "Volunteer", icon: HandHeart, h: 420 },
-  { kind: "image", category: "Training", icon: GraduationCap, h: 320 },
-  { kind: "image", category: "Healthcare", icon: Stethoscope, h: 420 },
-  { kind: "image", category: "Women Empowerment", icon: Users, h: 320 },
-  { kind: "story", title: "Hands That Help", note: "A short story placeholder describing this moment in our journey.", year: "[ Year ]", h: 420 },
-  { kind: "image", category: "Landscape", icon: ImageIcon, h: 420 },
-  { kind: "image", category: "Environment", icon: Leaf, h: 320 },
-];
+const galleryCardHeights = [420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420];
 
 const finaleHeadlineLines = ["Together We Can Create", "A Better Tomorrow"];
 
@@ -649,6 +629,14 @@ export default function About() {
   const [galleryScrollPct, setGalleryScrollPct] = useState(0);
   const galleryDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
   const [galleryPaused, setGalleryPaused] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<{ key: string; url: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/site/media?prefix=about/gallery", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => setGalleryImages(data.images ?? []))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
@@ -805,7 +793,7 @@ export default function About() {
                 </div>
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
                   <span className="text-2xl sm:text-3xl font-black text-amber-700">1,909</span>
-                  <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Villages (9 States)</span>
+                  <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Villages (10 States)</span>
                 </div>
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
                   <span className="text-2xl sm:text-3xl font-black text-emerald-800">2.67 Lakh</span>
@@ -2311,41 +2299,27 @@ export default function About() {
             }}
             onMouseUp={() => (galleryDrag.current.active = false)}
           >
-            {galleryCards.map((card, i) => {
-              const offsetClass = i % 3 === 1 ? "translate-y-4" : i % 3 === 2 ? "-translate-y-2" : "";
-              if (card.kind === "story") {
+            {galleryImages.length === 0 ? (
+              <div className="w-full text-center py-12 text-sm text-[#6b655c] font-semibold">
+                Field photos coming soon.
+              </div>
+            ) : (
+              galleryImages.map((img, i) => {
+                const offsetClass = i % 3 === 1 ? "translate-y-4" : i % 3 === 2 ? "-translate-y-2" : "";
+                const h = galleryCardHeights[i % galleryCardHeights.length];
                 return (
                   <div
-                    key={`story-${i}`}
-                    className={`group shrink-0 w-64 rounded-[28px] bg-white/60 backdrop-blur-xl border border-white/80 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.35)] p-6 flex flex-col justify-center hover:scale-105 hover:bg-white/80 transition-all duration-300 ${offsetClass}`}
-                    style={{ height: card.h }}
+                    key={img.key}
+                    className={`group relative shrink-0 w-48 sm:w-56 rounded-[28px] overflow-hidden bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500 ${offsetClass}`}
+                    style={{ height: h }}
                   >
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#b6813f]">{card.year}</p>
-                    <h3 className="text-lg font-bold text-[#2b2723] mt-2">{card.title}</h3>
-                    <p className="text-xs text-[#6b655c] mt-2 leading-relaxed">{card.note}</p>
-                    <div className="w-8 h-px bg-[#b6813f]/50 mt-4" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img.url} alt="EFFORT NGO field photo" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                   </div>
                 );
-              }
-              const CardIcon = card.icon;
-              return (
-                <div
-                  key={`${card.category}-${i}`}
-                  className={`group relative shrink-0 w-48 sm:w-56 rounded-[28px] overflow-hidden bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500 ${offsetClass}`}
-                  style={{ height: card.h }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-[#d4af6a]/20" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <CardIcon className="w-7 h-7 text-[#b6813f]/50 group-hover:text-[#b6813f] group-hover:scale-125 transition-all duration-500" />
-                  </div>
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#8a6633]">{card.category}</p>
-                    <p className="text-[9px] text-[#8a6633]/80 font-bold mt-0.5">[ Field Memory ]</p>
-                  </div>
-                </div>
-              );
-            })}
+              })
+            )}
           </div>
 
           <div className="max-w-xs mx-auto mt-6 px-4">

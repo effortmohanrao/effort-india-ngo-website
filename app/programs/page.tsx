@@ -295,7 +295,7 @@ export default function Programs() {
           </h1>
 
           <p className="text-[#5c523a] text-base sm:text-xl font-semibold leading-relaxed max-w-2xl mx-auto mt-6">
-            Twenty-seven years of documented, field-verified work — <strong className="text-emerald-950 font-black">65 completed initiatives</strong> &amp; <strong className="text-amber-950 font-black">15 active ongoing projects</strong> transforming <strong className="text-teal-950 font-black">2.67 Lakh+ families (2,67,000+ lives)</strong> across <strong className="text-slate-950 font-black">1,909 villages in 9 states</strong>.
+            Twenty-seven years of documented, field-verified work — <strong className="text-emerald-950 font-black">65 completed initiatives</strong> &amp; <strong className="text-amber-950 font-black">15 active ongoing projects</strong> transforming <strong className="text-teal-950 font-black">2.67 Lakh+ families (2,67,000+ lives)</strong> across <strong className="text-slate-950 font-black">1,909 villages in 10 states</strong>.
           </p>
 
           {/* Quick Highlight Metrics Pills Bar (Authentic Homepage Matrix Data) */}
@@ -307,7 +307,7 @@ export default function Programs() {
               🏆 2.67 Lakh+ Families (2,67,000+ Lives)
             </span>
             <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-500/20 to-cyan-600/10 border-2 border-sky-400/60 text-sky-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
-              ⚡ 1,909 Villages Across 9 States
+              ⚡ 1,909 Villages Across 10 States
             </span>
             <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-500/20 to-fuchsia-600/10 border-2 border-purple-400/60 text-purple-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
               🌟 27+ Years Legacy (Since 1999)
