@@ -563,8 +563,6 @@ const partnerZones: PartnerZone[] = [
   },
 ];
 
-const galleryCardHeights = [420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420, 320, 420];
-
 const finaleHeadlineLines = ["Together We Can Create", "A Better Tomorrow"];
 
 type FinaleStat = { value: number; suffix: string; label: string };
@@ -578,6 +576,17 @@ const finaleStats: FinaleStat[] = [
 
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/site/media?prefix=logo", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        const first = data.images?.[0];
+        if (first) setLogoUrl(first.url);
+      })
+      .catch(() => {});
+  }, []);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
   const journeyTrackRef = useRef<HTMLDivElement>(null);
   const [journeyScrollPct, setJourneyScrollPct] = useState(0);
@@ -2168,16 +2177,24 @@ export default function About() {
 
           {/* Trust core */}
           <div
-            className={`flex justify-center mb-4 transition-all duration-1000 ${partnersVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
+            className={`flex justify-center mb-6 transition-all duration-1000 ${partnersVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
               }`}
           >
-            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white/10 backdrop-blur-xl border border-white/25 flex items-center justify-center animate-glass-glow">
-              <div className="absolute -inset-3 rounded-full border border-white/10" />
-              <p className="text-[10px] font-bold uppercase tracking-widest text-white text-center leading-relaxed">
-                Our
-                <br />
-                Partners
-              </p>
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-white backdrop-blur-xl border-4 border-amber-300/80 p-2.5 flex items-center justify-center animate-glass-glow shadow-[0_0_35px_rgba(251,191,36,0.4)] overflow-hidden group">
+              <div className="absolute -inset-3 rounded-full border border-white/20" />
+              {logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={logoUrl}
+                  alt="EFFORT NGO official logo"
+                  className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center">
+                  <span className="text-2xl font-black text-emerald-700">EFFORT</span>
+                  <span className="text-[9px] font-bold text-amber-600 uppercase tracking-widest">NGO</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -2281,7 +2298,7 @@ export default function About() {
 
           <div
             ref={galleryStripRef}
-            className="relative flex gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none"
+            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none"
             onMouseEnter={() => setGalleryPaused(true)}
             onMouseLeave={() => {
               setGalleryPaused(false);
@@ -2304,21 +2321,16 @@ export default function About() {
                 Field photos coming soon.
               </div>
             ) : (
-              galleryImages.map((img, i) => {
-                const offsetClass = i % 3 === 1 ? "translate-y-4" : i % 3 === 2 ? "-translate-y-2" : "";
-                const h = galleryCardHeights[i % galleryCardHeights.length];
-                return (
-                  <div
-                    key={img.key}
-                    className={`group relative shrink-0 w-48 sm:w-56 rounded-[28px] overflow-hidden bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500 ${offsetClass}`}
-                    style={{ height: h }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={img.url} alt="EFFORT NGO field photo" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-                  </div>
-                );
-              })
+              galleryImages.map((img) => (
+                <div
+                  key={img.key}
+                  className="group relative w-72 sm:w-80 h-48 sm:h-52 rounded-[28px] overflow-hidden bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={img.url} alt="EFFORT NGO field photo" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                </div>
+              ))
             )}
           </div>
 

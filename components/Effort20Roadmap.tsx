@@ -162,13 +162,7 @@ export default function Effort20Roadmap() {
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Auto-traveling node pulse timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveNodeIndex((prev) => (prev + 1) % phasesData.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, []);
+  // Manual click node selection — Auto automation timer loop removed as requested
 
   // Intersection observer for section entry trigger
   useEffect(() => {

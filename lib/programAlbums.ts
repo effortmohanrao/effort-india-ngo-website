@@ -177,4 +177,22 @@ export const programAlbums: ProgramAlbum[] = [
     desc: "Sensitising 500 chilli farmers to produce residue-free chilli and develop marketing linkages.",
     covers: ["Integrated Pest Management (IPM) in Chilli Cultivation"],
   },
+  {
+    folder: "rythu-bazaar-market",
+    status: "completed",
+    label: "Farmer Market Linkages (Syngenta)",
+    location: "Khammam District, Telangana & Andhra Pradesh",
+    year: "1999–2023",
+    desc: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers.",
+    covers: ["Promotion of Wayside Market", "Promotion of Rythu Bazaar at Khammam District"],
+  },
+  {
+    folder: "ro-water-plants",
+    status: "completed",
+    label: "RO Water Plants & Sanitation (Universal Leaf)",
+    location: "Andhra Pradesh",
+    year: "1999–2023",
+    desc: "Supporting farming communities with safe drinking water through RO plants, school sanitary block promotion and tank renovation.",
+    covers: ["Community Development Interventions"],
+  },
 ];

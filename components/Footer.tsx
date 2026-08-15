@@ -95,7 +95,6 @@ export default function Footer() {
             <li><Link href="/#trust-section" className="hover:text-emerald-400 transition-colors">Transparency & Audits</Link></li>
             <li><Link href="/careers" className="hover:text-emerald-400 transition-colors">Careers & Internships</Link></li>
             <li><Link href="/news" className="hover:text-emerald-400 transition-colors">News & Media Blog</Link></li>
-            <li><Link href="/donor-login" className="hover:text-emerald-400 transition-colors">Donor Portal Login</Link></li>
           </ul>
         </div>
 

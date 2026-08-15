@@ -62,7 +62,7 @@ export const completedProjects: Project[] = [
   { name: "Providing Medical Equipment to Government Hospitals", beneficiaries: "Essential medical equipment for government hospitals to render effective services to deserving communities", funder: "HSBC", category: HEALTH },
   { name: "IWMP — Integrated Watershed Management Programme", beneficiaries: "Addressing soil, water and vegetative conservation across 5,000 Ha in Polavaram Mandal, West Godavari district", funder: "Government of AP, Department of Rural Development", category: NRM },
   { name: "Spreading Happiness through Sustainable Rice Farming (Direct Seeded Rice)", beneficiaries: "Enhancing skills & knowledge of 1,00,000 paddy-cultivating farmers on DSR practices across Punjab, Haryana, Madhya Pradesh and Uttar Pradesh", funder: "Corteva Agriscience under CSR", category: AGRI, photoFolder: "dsr-punjab-haryana-mp-up" },
-  { name: "Promotion of Wayside Market", beneficiaries: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers", funder: "Syngenta India Ltd", category: AGRI },
+  { name: "Promotion of Wayside Market", beneficiaries: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers", funder: "Syngenta India Ltd", category: AGRI, photoFolder: "rythu-bazaar-market" },
   { name: "Sustainability in Oil Seed Production — Tamil Nadu", beneficiaries: "Increasing production & productivity of oilseed crops and improving farmer livelihoods through capacity building", funder: "GIZ, Germany", category: AGRI },
   { name: "Promotion and Strengthening of Sustainable Integrated Ginger Cultivation", beneficiaries: "Increasing ginger productivity by 20% and net income of 750 farmers by 25% across 28 villages of Vizag district", funder: "GIZ, Germany", category: AGRI, photoFolder: "organic-ginger-giz" },
   { name: "Integrated Pest Management (IPM) in Chilli Cultivation", beneficiaries: "Sensitising 500 chilli farmers to produce residue-free chilli and develop marketing linkages", funder: "Iffco Kisan", category: AGRI, photoFolder: "ipm-chilli-iffco" },
@@ -72,7 +72,7 @@ export const completedProjects: Project[] = [
   { name: "Capacity Building for Adoption of Technology (CAT) for Banana Farmers", beneficiaries: "Training 200 banana farmers to adopt new technologies in banana cultivation, Guntur district", funder: "NABARD", category: AGRI, photoFolder: "nabard-programs" },
   { name: "Skill Development Training for Rural Youth", beneficiaries: "Improving the livelihoods of 200 rural youth through identified vocational skills", funder: "NABARD", category: CHILD, photoFolder: "nabard-programs" },
   { name: "Ambulance for Benefit of Needy & Deserved Communities", beneficiaries: "Supporting deserving communities during the Covid-19 period", funder: "Mahindra and Mahindra Finance Limited", category: HEALTH },
-  { name: "Promotion of Rythu Bazaar at Khammam District", beneficiaries: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers, Telangana", funder: "Syngenta India Ltd", category: AGRI },
+  { name: "Promotion of Rythu Bazaar at Khammam District", beneficiaries: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers, Telangana", funder: "Syngenta India Ltd", category: AGRI, photoFolder: "rythu-bazaar-market" },
   { name: "Campaign on Catch the Rain", beneficiaries: "Sensitising 1,000 farmers on the importance of rainwater harvesting", funder: "National Water Mission", category: NRM },
   { name: "Livelihood Promotion of Youth", beneficiaries: "Improving the livelihoods of 100 youth members through a skill development programme", funder: "Mulpuri Foundation", category: CHILD },
   { name: "Campaign on Black Thrips in Chilli Cultivation", beneficiaries: "Sensitising and capacitating 2,000 farmers on Black Thrips management in Prakasam and Guntur districts", funder: "CABI International", category: AGRI },
@@ -80,7 +80,7 @@ export const completedProjects: Project[] = [
   { name: "Climate Literacy and Marine Litter Management Project", beneficiaries: "Educating 10,000 coastal community members on protecting coastal beaches", funder: "Academy of Gandhian Studies", category: NRM },
   { name: "Well-Being out of Waste Management Programme", beneficiaries: "Educating children in 100 schools and communities in 100 villages on waste management", funder: "ITC, through Academy of Gandhian Studies", category: CHILD },
   { name: "Livelihoods Promotion Project", beneficiaries: "Livelihood promotion of 30 women members through setting up a processing unit", funder: "Melania Foundation", category: CHILD },
-  { name: "Community Development Interventions", beneficiaries: "Supporting farming communities with safe drinking water through RO plants, school sanitary block promotion and tank renovation", funder: "Universal Leaf Tobacco Company", category: HEALTH },
+  { name: "Community Development Interventions", beneficiaries: "Supporting farming communities with safe drinking water through RO plants, school sanitary block promotion and tank renovation", funder: "Universal Leaf Tobacco Company", category: HEALTH, photoFolder: "ro-water-plants" },
 ];
 
 export const ongoingProjects: Project[] = [

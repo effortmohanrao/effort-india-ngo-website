@@ -26,6 +26,8 @@ import {
   Sprout,
   TrendingUp,
   Search,
+  Lightbulb,
+  Layers,
   ClipboardList,
   Rocket,
   LineChart,
@@ -214,103 +216,42 @@ const impactStats: { target: number }[] = [
 
 type ProcessStep = {
   step: string;
-  title: string;
-  subtitle: string;
-  desc: string;
+  badge: string;
+  topic: string;
   icon: typeof Search;
-  image: string;
-  auditTag: string;
-  deliverables: string[];
-  kpiLabel: string;
-  kpiValue: string;
 };
 
 const processSteps: ProcessStep[] = [
   {
     step: "01",
-    title: "Grassroots Diagnostics",
-    subtitle: "Community Assessment & Need Identification",
-    desc: "We begin by conducting rigorous socio-economic baseline surveys, household vulnerability mapping, and participatory dialogues with village heads across 10 states to identify ground realities before formulating solutions.",
-    icon: Search,
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=900",
-    auditTag: "100% Ground Verified",
-    deliverables: [
-      "1,909 Villages & 37 Districts Surveyed",
-      "2.67 Lakh Families Vulnerability Mapping",
-      "Socio-Economic Need Matrix & Gap Analysis",
-      "Grama Sabha & Community Consent Filings"
-    ],
-    kpiLabel: "Grassroots Footprint",
-    kpiValue: "1,909 Villages & 37 Districts"
+    badge: "Attitude & Skills",
+    topic: "Change the attitudes of rural communities and enhance the skills & Knowledge",
+    icon: Lightbulb,
   },
   {
     step: "02",
-    title: "Strategic Co-Design",
-    subtitle: "CSR Schedule VII Alignment & Planning",
-    desc: "Turning field diagnostics into structured, auditable project charters mapped to NITI Aayog guidelines, UN SDGs, and corporate CSR mandates under active Society Registration 340/1999.",
-    icon: ClipboardList,
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=900",
-    auditTag: "CSR Schedule VII Compliant",
-    deliverables: [
-      "Multi-Year Audited Statutory CSR Governance",
-      "NITI Aayog Darpan & Society Reg 340/1999 Alignment",
-      "Section 80G, 12AB & FCRA Statutory Clearances",
-      "Corporate CSR & International Agency MoUs"
-    ],
-    kpiLabel: "CSR Compliance",
-    kpiValue: "100% Statutory"
+    badge: "CBO & Planning",
+    topic: "Formation & Nurturing the Community Based Organisations and Participatory Programme Planning",
+    icon: Users,
   },
   {
     step: "03",
-    title: "Direct Deployment",
-    subtitle: "Grassroots Execution & Mobilization",
-    desc: "Deploying experienced field project managers alongside 42 FPOs, 1,275 SHGs, and local youth teams to execute 65 completed and 15 active field projects across target project areas.",
-    icon: Rocket,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=900",
-    auditTag: "Active Field Operations",
-    deliverables: [
-      "Dedicated On-Site Field Leadership",
-      "2,702 Water Harvesting Structures (528 Villages)",
-      "3,716 Youth & 3,101 Women Skill Units",
-      "50 Community RO Plants & 21 Child-Labour-Free Villages"
-    ],
-    kpiLabel: "Execution Capacity",
-    kpiValue: "65 Completed & 15 Active"
+    badge: "Resource Utilisation",
+    topic: "Optimum Utilisation of Local Resources",
+    icon: Layers,
   },
   {
     step: "04",
-    title: "Auditable Monitoring",
-    subtitle: "Real-Time Tracking & Impact Analytics",
-    desc: "Continuous monitoring using digital field tools, third-party impact assessments, and compliance tracking, verifying 10.75M m³/yr water harvesting volume and 1,68,500+ farmer capacity building.",
+    badge: "Monitoring",
+    topic: "Participatory Monitoring",
     icon: LineChart,
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=900",
-    auditTag: "Third-Party Audited",
-    deliverables: [
-      "1,68,500+ Farmers Capacitated via IPM/DSR Demos",
-      "10.75M m³/yr Water Harvesting Volume Audits",
-      "Quarterly Audited Utilization Certificates (UC)",
-      "Geo-Tagged GIS Map & Photo Verification"
-    ],
-    kpiLabel: "Farmers Capacitated",
-    kpiValue: "1,68,500+ Trained"
   },
   {
     step: "05",
-    title: "Sustained Legacy",
-    subtitle: "Community Ownership & Self-Reliant Institutions",
-    desc: "Transferring long-term governance to 1,368 community-led institutions (42 FPOs, 1,275 SHGs, 51 MACS), mobilizing institutional credit and capital for self-sustaining progress.",
-    icon: Sprout,
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=900",
-    auditTag: "Self-Sustaining Model",
-    deliverables: [
-      "42 FPOs (23,352 Farmer Shareholders)",
-      "1,275 SHGs (14,750 Women Members)",
-      "51 MACS Cooperatives (10,733 Shareholders)",
-      "Institutional Credit & Govt Scheme Linkages"
-    ],
-    kpiLabel: "Self-Reliant Collectives",
-    kpiValue: "1,368 Institutions (FPOs/SHGs/MACS)"
-  }
+    badge: "Sustenance",
+    topic: "Measures for the sustenance of project Initiatives",
+    icon: ShieldCheck,
+  },
 ];
 
 
@@ -330,7 +271,7 @@ const partnershipSlides: PartnershipSlide[] = [
     desc: "Delivering measurable, auditable outcomes for corporate CSR mandates.",
   },
   {
-    title: "Educational Institutions",
+    title: "Educational & Research Institutions",
     icon: GraduationCap,
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=900",
     desc: "Collaborating with universities and colleges on research and field programs.",
@@ -730,13 +671,7 @@ export default function Home() {
     }
   }, [howWeWorkVisible]);
 
-  useEffect(() => {
-    if (!howWeWorkVisible || processPaused) return;
-    const id = setInterval(() => {
-      setActiveProcessStep((prev) => (prev + 1) % processSteps.length);
-    }, 4500);
-    return () => clearInterval(id);
-  }, [howWeWorkVisible, processPaused]);
+  // Process step selection is 100% manual click only — Auto interval loop removed as requested
 
 
   // Government & Institutional Partnerships section states
@@ -1400,150 +1335,43 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 5-Phase Interactive Pipeline Selector Bar */}
+          {/* 5 Glassmorphism Strategic Execution Cards */}
           <div
-            className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-8 transition-all duration-700 ${howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5 transition-all duration-700 ${howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             style={{ transitionDelay: "150ms" }}
           >
-            {processSteps.map((step, idx) => {
+            {processSteps.map((step) => {
               const StepIcon = step.icon;
-              const isActive = activeProcessStep === idx;
               return (
-                <button
+                <div
                   key={step.step}
-                  onClick={() => setActiveProcessStep(idx)}
-                  className={`relative text-left p-4 rounded-2xl border transition-all duration-300 group overflow-hidden ${isActive
-                    ? "bg-gradient-to-br from-cyan-500/20 via-sky-500/15 to-indigo-500/20 border-cyan-400/70 shadow-[0_0_30px_rgba(6,182,212,0.3)] scale-[1.03] z-10"
-                    : "bg-slate-900/60 backdrop-blur-xl border-white/10 hover:border-white/25 hover:bg-slate-800/60"
-                    }`}
+                  className="group relative rounded-3xl bg-slate-900/90 backdrop-blur-2xl border-2 border-cyan-400/80 p-5 sm:p-6 shadow-[0_0_30px_rgba(6,182,212,0.35)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-400 flex flex-col justify-between overflow-hidden"
                 >
-                  {/* Top glowing indicator line for active step */}
-                  {isActive && (
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 animate-pulse" />
-                  )}
+                  {/* Permanent top edge glow bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 opacity-100" />
 
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full transition-colors ${isActive ? "bg-cyan-400 text-slate-950 font-extrabold" : "bg-white/10 text-slate-400"
-                      }`}>
-                      Phase {step.step}
-                    </span>
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${isActive ? "bg-cyan-400 text-slate-950 scale-110 shadow-md" : "bg-white/5 text-slate-400 group-hover:text-white"
-                      }`}>
-                      <StepIcon className="w-4 h-4" />
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-cyan-400 text-slate-950 font-black shadow-sm">
+                        Phase {step.step}
+                      </span>
+                      <div className="w-9 h-9 rounded-xl bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                        <StepIcon className="w-4.5 h-4.5 text-slate-950" />
+                      </div>
                     </div>
+
+                    <h3 className="text-xs font-black uppercase tracking-wider text-cyan-300">
+                      {step.badge}
+                    </h3>
+
+                    <p className="text-sm font-bold text-white leading-relaxed">
+                      {step.topic}
+                    </p>
                   </div>
-
-                  <h3 className={`text-sm font-black transition-colors ${isActive ? "text-white" : "text-slate-300 group-hover:text-white"}`}>
-                    {step.title}
-                  </h3>
-                  <p className="text-[11px] text-slate-400 font-medium truncate mt-0.5">
-                    {step.auditTag}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Phase Command Dashboard Panel */}
-          <div
-            className={`transition-all duration-700 ${howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            style={{ transitionDelay: "300ms" }}
-            onMouseEnter={() => setProcessPaused(true)}
-            onMouseLeave={() => setProcessPaused(false)}
-          >
-            {(() => {
-              const activeStep = processSteps[activeProcessStep];
-              const ActiveIcon = activeStep.icon;
-              return (
-                <div className="bg-slate-900/80 backdrop-blur-2xl border border-cyan-500/30 rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative overflow-hidden">
-
-                  {/* Subtle top edge glow */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-500" />
-
-                  <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-
-                    {/* Left 7 cols: Stage Details & Deliverables Checklist */}
-                    <div className="lg:col-span-7 space-y-6">
-
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-sky-600 text-slate-950 flex items-center justify-center shadow-lg shrink-0">
-                          <ActiveIcon className="w-6 h-6" />
-                        </div>
-                        <div>
-                          <span className="text-xs font-black uppercase tracking-widest text-cyan-300">
-                            PHASE {activeStep.step} &bull; NGO EXECUTION PROTOCOL
-                          </span>
-                          <h3 className="text-2xl sm:text-3xl font-black text-white leading-snug">
-                            {activeStep.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                        {activeStep.desc}
-                      </p>
-
-                      {/* Deliverables Grid Checklist */}
-                      <div className="space-y-3 pt-2">
-                        <p className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Core Outputs &amp; Deliverables
-                        </p>
-                        <div className="grid sm:grid-cols-2 gap-2.5">
-                          {activeStep.deliverables.map((item) => (
-                            <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-slate-200 hover:border-cyan-400/40 hover:bg-white/10 transition-all">
-                              <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
-                              <span>{item}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Footer Badge & CTAs */}
-                      <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold font-mono">
-                          <ShieldCheck className="w-4 h-4 text-cyan-400" />
-                          <span>Status: {activeStep.auditTag}</span>
-                        </div>
-                        <Link
-                          href="#trust-section"
-                          className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white transition-colors ml-auto"
-                        >
-                          View Governance Framework &rarr;
-                        </Link>
-                      </div>
-
-                    </div>
-
-                    {/* Right 5 cols: High-Impact Visual Card */}
-                    <div className="lg:col-span-5 relative">
-                      <div className="relative rounded-2xl overflow-hidden border-2 border-cyan-400/40 shadow-2xl h-64 sm:h-72 lg:h-80 group/photo">
-                        <img
-                          src={activeStep.image}
-                          alt={activeStep.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover/photo:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-
-                        {/* Floating KPI Overlay Badge */}
-                        <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-cyan-400/40 text-white flex items-center justify-between shadow-xl">
-                          <div>
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{activeStep.kpiLabel}</p>
-                            <p className="text-lg font-black text-cyan-300 mt-0.5">{activeStep.kpiValue}</p>
-                          </div>
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-400/20 text-cyan-200 border border-cyan-400/40">
-                            Verified
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
                 </div>
               );
-            })()}
+            })}
           </div>
 
           {/* Strategic NGO Advantage Chips Strip */}
@@ -2097,60 +1925,7 @@ export default function Home() {
 
 
 
-      {/* --- CONTACT & NEWSLETTER CTA --- */}
-      <section className="py-20 lg:py-28 bg-emerald-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
 
-        {/* Glowing liquid backdrop blob */}
-        <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
-
-          <div className="lg:col-span-7 space-y-6">
-            <span className="text-sm font-bold text-emerald-450 uppercase tracking-widest font-mono">Join our mailing list</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Get Ground Action Reports in Your Inbox
-            </h2>
-            <p className="text-emerald-100 text-base max-w-xl font-normal leading-relaxed">
-              Sign up for our quarterly newsletter. Read about field intervention audits, direct financial reports, and heartening success stories.
-            </p>
-
-            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-3 max-w-lg">
-              <input
-                type="email"
-                placeholder="Enter your personal/work email"
-                className="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 focus:border-emerald-400 focus:outline-hidden text-white placeholder-slate-405 flex-1 font-medium"
-                required
-              />
-              <button className="px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-bold transition-all shadow-md hover:bg-emerald-700 cursor-pointer">
-                Subscribe
-              </button>
-            </form>
-          </div>
-
-          <div className="lg:col-span-5 bg-white/5 rounded-3xl p-8 border border-white/10 space-y-6">
-            <h4 className="text-lg font-bold text-white flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-amber-400" />
-              Visit Our Central Office
-            </h4>
-            <div className="space-y-4 text-sm text-emerald-100">
-              <div className="flex gap-3">
-                <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                <p><strong className="text-white">Central Office:</strong> Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India</p>
-              </div>
-              <div className="flex gap-3">
-                <Mail className="w-5 h-5 text-emerald-400 shrink-0" />
-                <p>effortap@gmail.com</p>
-              </div>
-              <div className="flex gap-3">
-                <Phone className="w-5 h-5 text-emerald-400 shrink-0" />
-                <p>+91 99599 00081 (Central Desk)</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
 
     </div>
   );

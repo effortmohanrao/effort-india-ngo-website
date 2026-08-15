@@ -72,7 +72,7 @@ const burstParticles = Array.from({ length: 10 }).map((_, i) => {
   };
 });
 
-function ProjectCard({ project, index, status }: { project: Project; index: number; status: "completed" | "ongoing" }) {
+function ProjectCard({ project, index, status, coverUrl }: { project: Project; index: number; status: "completed" | "ongoing"; coverUrl?: string | null }) {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const location = extractLocation(project);
   const stat = extractHeadlineStat(project);
@@ -110,7 +110,13 @@ function ProjectCard({ project, index, status }: { project: Project; index: numb
       />
 
       <div className="relative h-32 bg-gradient-to-br from-[#faf3e3] to-[#f1e6cc] flex items-center justify-center overflow-hidden">
-        <FolderOpen className="w-8 h-8 text-[#c9a24a]/40 group-hover:scale-110 group-hover:text-[#c9a24a]/60 transition-all duration-500" />
+        {coverUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={coverUrl} alt={project.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+        ) : (
+          <FolderOpen className="w-8 h-8 text-[#c9a24a]/40 group-hover:scale-110 group-hover:text-[#c9a24a]/60 transition-all duration-500" />
+        )}
+        {coverUrl && <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />}
         <span
           className={`absolute top-3 left-3 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider ${
             status === "completed" ? "bg-amber-400/90 text-[#3a2a08]" : "bg-emerald-500/90 text-white"
@@ -177,6 +183,56 @@ export default function Programs() {
   const activeProjects = projectsTab === "completed" ? completedProjects : ongoingProjects;
   const activeBreakdown = projectsTab === "completed" ? completedBreakdown : ongoingBreakdown;
   const activeTarget = projectsTab === "completed" ? 65 : 15;
+
+  // --- Real-photo cover resolution: each project's own album first, else a
+  // rotating real photo from its category's fallback pool. Every card ends up
+  // with a genuine EFFORT field photo — none are project-specific claims when
+  // pulled from the fallback pool.
+  const [folderCovers, setFolderCovers] = useState<Record<string, string>>({});
+  const [categoryPools, setCategoryPools] = useState<Record<string, string[]>>({});
+
+  useEffect(() => {
+    const allProjects = [...completedProjects, ...ongoingProjects];
+    const folderJobs = [...new Set(allProjects.map((p) => p.photoFolder).filter(Boolean))] as string[];
+    const folderStatus = new Map<string, "completed" | "ongoing">();
+    for (const p of allProjects) {
+      if (p.photoFolder) folderStatus.set(p.photoFolder, completedProjects.includes(p) ? "completed" : "ongoing");
+    }
+
+    Promise.all(
+      folderJobs.map((folder) =>
+        fetch(`/api/site/media?prefix=programs/${folderStatus.get(folder)}/${folder}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [folder, data.images?.[0]?.url ?? null] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [folder, url] of entries) if (url) map[folder] = url;
+      setFolderCovers(map);
+    });
+
+    const categorySlugs = ["agriculture", "nrm", "health", "child"];
+    Promise.all(
+      categorySlugs.map((slug) =>
+        fetch(`/api/site/media?prefix=programs/category-covers/${slug}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [slug, (data.images ?? []).map((i: { url: string }) => i.url)] as const)
+      )
+    ).then((entries) => setCategoryPools(Object.fromEntries(entries)));
+  }, []);
+
+  const categorySlugFor = (category: string) =>
+    category === "Sustainable Agriculture" ? "agriculture" :
+    category === "Natural Resource Management" ? "nrm" :
+    category === "Community Health" ? "health" :
+    "child";
+
+  function resolveCover(project: Project, indexInCategory: number): string | null {
+    if (project.photoFolder && folderCovers[project.photoFolder]) return folderCovers[project.photoFolder];
+    const pool = categoryPools[categorySlugFor(project.category)];
+    if (pool && pool.length > 0) return pool[indexInCategory % pool.length];
+    return null;
+  }
 
   useEffect(() => {
     function measure() {
@@ -437,10 +493,23 @@ export default function Programs() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {activeProjects.map((p, i) => {
-              if (selectedCategory && p.category !== selectedCategory) return null;
-              return <ProjectCard key={`${projectsTab}-${i}`} project={p} index={i} status={projectsTab} />;
-            })}
+            {(() => {
+              const categoryCounters: Record<string, number> = {};
+              return activeProjects.map((p, i) => {
+                if (selectedCategory && p.category !== selectedCategory) return null;
+                const catIndex = categoryCounters[p.category] ?? 0;
+                categoryCounters[p.category] = catIndex + 1;
+                return (
+                  <ProjectCard
+                    key={`${projectsTab}-${i}`}
+                    project={p}
+                    index={i}
+                    status={projectsTab}
+                    coverUrl={resolveCover(p, catIndex)}
+                  />
+                );
+              });
+            })()}
           </div>
         </div>
       </section>

@@ -99,7 +99,7 @@ export default function Header() {
   const mainLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Our Programs", href: "/programs" },
+    { name: "Our Projects", href: "/programs" },
     { name: "Impact & Map", href: "/impact" },
     { name: "Gallery", href: "/gallery" },
     { name: "Get Involved", href: "/get-involved" },
@@ -109,7 +109,6 @@ export default function Header() {
   const moreLinks = [
     { name: "Careers & Internships", href: "/careers", icon: Briefcase, desc: "Ground job openings & student roles" },
     { name: "News & Media Blog", href: "/news", icon: Newspaper, desc: "Field journals, releases & galleries" },
-    { name: "Donor Portal Login", href: "/donor-login", icon: UserCheck, desc: "Access ledgers & tax certificates" },
   ];
 
   const socialLinks = [
@@ -195,13 +194,13 @@ export default function Header() {
       </div>
 
       {/* --- FLOATING MAIN NAVIGATION --- */}
-      <div className={`sticky top-0 z-50 transition-all duration-500 px-2 sm:px-4 lg:px-6 ${isScrolled ? "pt-2" : "pt-4"}`}>
+      <div className={`sticky top-0 z-[100] transition-all duration-500 px-2 sm:px-4 lg:px-6 ${isScrolled ? "pt-2" : "pt-4"}`}>
         
         {/* Official Indian Flag Tricolor (Saffron, White, India Green) 4-Side Boundary Wrapper */}
-        <div className="relative max-w-[1440px] mx-auto rounded-[30px] p-[2.5px] overflow-hidden bg-gradient-to-r from-[#F58220] via-white via-[#138808] via-[#000080] to-[#F58220] animate-indian-tricolor-breathe">
+        <div className="relative max-w-[1440px] mx-auto rounded-[30px] p-[2.5px] bg-gradient-to-r from-[#F58220] via-white via-[#138808] via-[#000080] to-[#F58220] animate-indian-tricolor-breathe">
 
           {/* Animated 4-Side Laser Light-Sweep Beam Lines (Tricolor Saffron & Green) */}
-          <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden rounded-[30px]">
             {/* Top Border Saffron & White Laser Sweep */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 via-white to-transparent animate-light-sweep" />
             {/* Bottom Border Green & Navy Laser Sweep */}
@@ -302,8 +301,8 @@ export default function Header() {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 top-full pt-3 w-80 z-50">
-                    <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/50 rounded-2xl p-4 shadow-2xl space-y-1 animate-fade-in">
+                  <div className="absolute right-0 top-full pt-3 w-80 z-[9999]">
+                    <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/50 rounded-2xl p-4 shadow-2xl space-y-1 animate-fade-in shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
                       {moreLinks.map((subLink) => (
                         <Link key={subLink.name} href={subLink.href} className="flex gap-3 items-start p-2.5 rounded-xl hover:bg-emerald-50/80 transition-colors group/item">
                           <subLink.icon className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
