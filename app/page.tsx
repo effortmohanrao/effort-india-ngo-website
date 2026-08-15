@@ -78,7 +78,7 @@ const heroLines: { text: string; accent?: boolean }[] = [
 
 const heroCredibility: { icon: typeof ShieldCheck; label: string }[] = [
   { icon: ShieldCheck, label: "Registered Society (340/1999)" },
-  { icon: TrendingUp, label: "98% Project Success Rate" },
+  { icon: TrendingUp, label: "100% Project Success Rate" },
   { icon: Calendar, label: "27 Years of Service" },
   { icon: Landmark, label: "Government Recognized" },
   { icon: Building2, label: "CSR Ready" },

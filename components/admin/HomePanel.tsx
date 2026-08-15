@@ -2,41 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  ExternalLink,
-  Sparkles,
-  BarChart3,
-  ShieldCheck,
-  Rocket,
-  Landmark,
-  Briefcase,
-  Quote,
-  HeartHandshake,
-  Users,
-  Building2,
-  Mail,
-} from "lucide-react";
+import { ExternalLink, Sparkles } from "lucide-react";
 import HeroSectionPanel from "./HeroSectionPanel";
 
 type Section = {
   icon: typeof Sparkles;
   title: string;
   desc: string;
-  managed?: boolean; // true = wired up and clickable, false/undefined = still "Coming soon"
+  managed?: boolean; // true = wired up and clickable. Only sections with a real image-upload connection appear here.
 };
 
 const sections: Section[] = [
   { icon: Sparkles, title: "Hero", desc: "Headline, subtext, call-to-action buttons, and the credibility strip.", managed: true },
-  { icon: BarChart3, title: "Impact Numbers", desc: "Villages covered, families reached, completed & ongoing projects, years of service." },
-  { icon: ShieldCheck, title: "Trust & Compliance Center", desc: "Registration, 80G/12AB, FCRA, CSR-1 and other verified compliance cards." },
-  { icon: Rocket, title: "How We Work", desc: "The 5-step process from grassroots diagnostics to sustained legacy." },
-  { icon: Landmark, title: "Government & Institutional Partnerships", desc: "Partner category carousel — government, CSR, education, international, foundations." },
-  { icon: Briefcase, title: "CSR Partnership Model", desc: "The 5-step CSR engagement flow for corporate partners." },
-  { icon: Quote, title: "Featured Success Story", desc: "The highlighted beneficiary story with before/after slider." },
-  { icon: HeartHandshake, title: "Campaigns & Donation", desc: "Active fundraising campaigns with progress bars and the donate widget." },
-  { icon: Users, title: "More Success Stories", desc: "The rotating carousel of additional beneficiary stories." },
-  { icon: Building2, title: "Corporate & CSR Partners", desc: "Partner / sponsor logo strip." },
-  { icon: Mail, title: "Newsletter & Head Office", desc: "Mailing list signup and head office contact details." },
 ];
 
 export default function HomePanel() {
@@ -52,7 +29,7 @@ export default function HomePanel() {
         <div>
           <h2 className="text-lg font-bold text-slate-800">Home Page</h2>
           <p className="text-xs text-slate-500 mt-0.5">
-            Sections currently on the live homepage. Editing controls for each one will be wired in next.
+            Sections with image management connected to Cloudflare R2.
           </p>
         </div>
         <Link

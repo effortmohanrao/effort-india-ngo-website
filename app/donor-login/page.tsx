@@ -28,11 +28,7 @@ export default function DonorLogin() {
     }
   };
 
-  const donationHistory = [
-    { date: "June 12, 2026", cause: "Educate 1,000 Rural Girls", amount: "₹5,000", status: "Cleared", receiptId: "REC-2026-4829" },
-    { date: "April 02, 2026", cause: "Mobile Medical Vans", amount: "₹2,500", status: "Cleared", receiptId: "REC-2026-1029" },
-    { date: "Jan 15, 2026", cause: "Youth Skilling Project", amount: "₹1,500", status: "Cleared", receiptId: "REC-2026-0428" }
-  ];
+  const donationHistory: { date: string; cause: string; amount: string; status: string; receiptId: string }[] = [];
 
   return (
     <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-hidden flex items-center justify-center">
@@ -166,31 +162,36 @@ export default function DonorLogin() {
             {activeTab === "history" ? (
               /* Ledger list */
               <div className="space-y-4">
-                {donationHistory.map((item, idx) => (
-                  <div key={idx} className="p-5 rounded-2xl border border-slate-200/50 flex justify-between items-center bg-white/40">
-                    <div className="space-y-1">
-                      <h4 className="font-bold text-slate-905 text-sm sm:text-base">{item.cause}</h4>
-                      <p className="text-[10px] text-slate-400">Date: {item.date} | Receipt: {item.receiptId}</p>
-                    </div>
-
-                    <div className="flex items-center gap-4 shrink-0">
-                      <strong className="text-emerald-700 font-bold text-sm sm:text-base">{item.amount}</strong>
-                      <button className="p-2.5 rounded-lg border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-600 transition-all shrink-0 cursor-pointer">
-                        <Download className="w-4 h-4" />
-                      </button>
-                    </div>
+                {donationHistory.length === 0 ? (
+                  <div className="p-6 rounded-2xl border border-slate-200/50 bg-slate-50/50 text-center text-sm text-slate-500">
+                    No donations on record for this account yet. Once a contribution is processed, it will appear here with a downloadable receipt.
                   </div>
-                ))}
+                ) : (
+                  donationHistory.map((item, idx) => (
+                    <div key={idx} className="p-5 rounded-2xl border border-slate-200/50 flex justify-between items-center bg-white/40">
+                      <div className="space-y-1">
+                        <h4 className="font-bold text-slate-905 text-sm sm:text-base">{item.cause}</h4>
+                        <p className="text-[10px] text-slate-400">Date: {item.date} | Receipt: {item.receiptId}</p>
+                      </div>
+
+                      <div className="flex items-center gap-4 shrink-0">
+                        <strong className="text-emerald-700 font-bold text-sm sm:text-base">{item.amount}</strong>
+                        <button className="p-2.5 rounded-lg border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-600 transition-all shrink-0 cursor-pointer">
+                          <Download className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             ) : (
               /* Impact timeline updates */
               <div className="p-6 rounded-2xl border border-slate-200/50 bg-slate-50/50 text-slate-650 space-y-4">
                 <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Project Milestones reached:
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Project Milestones
                 </h4>
-                <div className="space-y-3 text-xs leading-relaxed">
-                  <p>🔹 **Shiksha (June 2026):** Your donation sponsored study kit units delivered to 5 schoolgirls in Alwar, Rajasthan.</p>
-                  <p>🔹 **Sanjeevani (April 2026):** Sponsored clinic health checkups deployed in fishing blocks in Ganjam, Odisha.</p>
+                <div className="text-xs leading-relaxed text-slate-500">
+                  Personalised project impact updates will appear here once your contribution is linked to an active project.
                 </div>
               </div>
             )}

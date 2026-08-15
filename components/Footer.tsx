@@ -78,11 +78,12 @@ export default function Footer() {
         <div>
           <h5 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Focus Areas</h5>
           <ul className="space-y-2 text-xs font-semibold">
-            <li><Link href="/programs#education" className="hover:text-emerald-450 transition-colors">Shiksha: Rural Education</Link></li>
-            <li><Link href="/programs#health" className="hover:text-emerald-450 transition-colors">Sanjeevani: Mobile Clinics</Link></li>
-            <li><Link href="/programs#livelihood" className="hover:text-emerald-450 transition-colors">Swavalamban: Youth Skilling</Link></li>
-            <li><Link href="/get-involved" className="hover:text-emerald-450 transition-colors">CSR Corporate Partnerships</Link></li>
-            <li><Link href="/donate" className="hover:text-emerald-450 transition-colors">Direct Sponsorship Program</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Sustainable Agriculture</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Natural Resource Management</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Community Health &amp; WASH</Link></li>
+            <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Child &amp; Women Development</Link></li>
+            <li><Link href="/get-involved" className="hover:text-emerald-400 transition-colors">CSR Corporate Partnerships</Link></li>
+            <li><Link href="/donate" className="hover:text-emerald-400 transition-colors">Direct Sponsorship Program</Link></li>
           </ul>
         </div>
 
@@ -94,9 +95,9 @@ export default function Footer() {
             <li><Link href="/impact" className="hover:text-emerald-400 transition-colors">Impact & Coverage Map</Link></li>
             <li><Link href="/gallery" className="hover:text-emerald-400 transition-colors">Field Photo & Video Gallery</Link></li>
             <li><Link href="/#trust-section" className="hover:text-emerald-400 transition-colors">Transparency & Audits</Link></li>
-            <li><Link href="/careers" className="hover:text-emerald-405 transition-colors">Careers & Internships</Link></li>
-            <li><Link href="/news" className="hover:text-emerald-405 transition-colors">News & Media Blog</Link></li>
-            <li><Link href="/donor-login" className="hover:text-emerald-405 transition-colors">Donor Portal Login</Link></li>
+            <li><Link href="/careers" className="hover:text-emerald-400 transition-colors">Careers & Internships</Link></li>
+            <li><Link href="/news" className="hover:text-emerald-400 transition-colors">News & Media Blog</Link></li>
+            <li><Link href="/donor-login" className="hover:text-emerald-400 transition-colors">Donor Portal Login</Link></li>
           </ul>
         </div>
 

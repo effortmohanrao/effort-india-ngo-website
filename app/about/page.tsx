@@ -582,6 +582,7 @@ export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
   const [activeStoryChapter, setActiveStoryChapter] = useState(0);
+  const [activeStrategicTab, setActiveStrategicTab] = useState<"roadmap" | "pillars" | "theory" | "chronicle">("roadmap");
   const [isAutoTour, setIsAutoTour] = useState(false);
 
   useEffect(() => {
@@ -872,242 +873,420 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- THE JOURNEY: 1999 TO EFFORT 2.0 (EXECUTIVE HORIZONTAL SPLIT CAROUSEL) --- */}
+      {/* --- SECTION 2: EFFORT 2.0 STRATEGIC PLAN (2026–2030) ROADMAP & PILLARS --- */}
       <section id="journey" ref={storyRef} className="relative overflow-hidden bg-slate-950 py-20 lg:py-28 text-white border-t border-slate-800 shadow-2xl">
-        {/* Subtle Ambient Background Mesh & Dynamic Color Shift */}
-        {(() => {
-          const currentChapter = chapterWorldsData[activeStoryChapter];
-          const accent = currentChapter.accentColor;
-          return (
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div
-                className="absolute top-[-20%] left-[20%] w-[700px] h-[700px] rounded-full blur-[180px] transition-colors duration-1000 opacity-20"
-                style={{ backgroundColor: accent }}
-              />
-              <div
-                className="absolute bottom-[-20%] right-[20%] w-[700px] h-[700px] rounded-full blur-[180px] transition-colors duration-1000 opacity-15"
-                style={{ backgroundColor: accent }}
-              />
-              <div className="bg-noise absolute inset-0 opacity-20" />
-              <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:40px_40px]" />
-            </div>
-          );
-        })()}
+        {/* Subtle Ambient Background Mesh & Glow Orbs */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-20%] left-[20%] w-[750px] h-[750px] bg-amber-500/10 rounded-full blur-[180px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-20%] right-[20%] w-[750px] h-[750px] bg-emerald-500/10 rounded-full blur-[180px] animate-liquid-drift-b" />
+          <div className="bg-noise absolute inset-0 opacity-20" />
+          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:40px_40px]" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
 
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
-            <div className="space-y-3 max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-widest backdrop-blur-md shadow-md">
-                <BookOpen className="w-4 h-4 text-emerald-400" /> INSTITUTIONAL CHRONICLE (1999 → 2030)
-              </span>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-8">
+            <div className="space-y-3 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-md shadow-md">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" /> OFFICIAL INSTITUTIONAL DIRECTION (2026–2030)
+              </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-                27 Years of <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">Community Impact</span>
+                EFFORT 2.0 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-emerald-300 to-teal-200">Strategic Plan</span>
               </h2>
+              <p className="text-slate-300 text-xs sm:text-sm font-medium leading-relaxed max-w-2xl">
+                A 5-year strategic direction and institutional vision (2026–2030) — positioning EFFORT for greater relevance, scale, and long-term sustainability across India.
+              </p>
             </div>
 
-            {/* Auto Play & Slide Navigation Controls */}
-            <div className="flex items-center gap-3 shrink-0">
-              <button
-                type="button"
-                onClick={() => setIsAutoTour(!isAutoTour)}
-                className={`px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border transition-all cursor-pointer flex items-center gap-2 ${
-                  isAutoTour
-                    ? "bg-amber-400 text-slate-950 border-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.5)]"
-                    : "bg-white/5 text-slate-300 border-white/15 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{isAutoTour ? "Auto Tour ON" : "Play Tour"}</span>
-              </button>
-
-              <div className="flex items-center gap-2">
+            {/* Mode Selector Tabs (Roadmap, 6 Pillars, Theory of Change, Chronicle) */}
+            <div className="flex flex-wrap items-center gap-2 bg-white/5 border border-white/10 p-1.5 rounded-2xl backdrop-blur-md shrink-0">
+              {[
+                { id: "roadmap", label: "5-YEAR ROADMAP (2026–2030)", icon: TrendingUp },
+                { id: "pillars", label: "6 STRATEGIC PILLARS", icon: ShieldCheck },
+                { id: "theory", label: "THEORY OF CHANGE", icon: Lightbulb },
+                { id: "chronicle", label: "CHRONICLE (1999–2030)", icon: BookOpen },
+              ].map((tab) => (
                 <button
+                  key={tab.id}
                   type="button"
-                  onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
-                  className="p-3 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-all cursor-pointer shadow-sm"
-                  title="Previous Era"
+                  onClick={() => setActiveStrategicTab(tab.id as typeof activeStrategicTab)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
+                    activeStrategicTab === tab.id
+                      ? "bg-gradient-to-r from-amber-500 via-amber-600 to-emerald-600 text-white font-black shadow-md scale-105"
+                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                  }`}
                 >
-                  <ChevronLeft className="w-4.5 h-4.5" />
+                  <tab.icon className="w-3.5 h-3.5" />
+                  <span>{tab.label}</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveStoryChapter((prev) => (prev + 1) % chapterWorldsData.length)}
-                  className="p-3 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-all cursor-pointer shadow-sm"
-                  title="Next Era"
-                >
-                  <ChevronRight className="w-4.5 h-4.5" />
-                </button>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* HORIZONTAL ERA SELECTION TAB STRIP (EXECUTIVE STEPPER SPINE) */}
-          <div className="overflow-x-auto scrollbar-hide py-1">
-            <div className="flex items-center gap-2 sm:gap-3 min-w-max border-b border-white/10 pb-4">
-              {chapterWorldsData.map((chapter, idx) => {
-                const isActive = idx === activeStoryChapter;
-                return (
-                  <button
-                    key={chapter.era}
-                    type="button"
-                    onClick={() => setActiveStoryChapter(idx)}
-                    className={`group px-4.5 py-2.5 rounded-2xl font-black text-xs transition-all duration-300 cursor-pointer flex items-center gap-2.5 border ${
-                      isActive
-                        ? "bg-white/15 text-white border-white/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] -translate-y-0.5"
-                        : "bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-stone-200"
-                    }`}
+          {/* TAB 1: 5-YEAR PHASED ROADMAP (2026–2030) */}
+          {activeStrategicTab === "roadmap" && (
+            <div className="space-y-8 animate-fade-in">
+              <div className="grid lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    phase: "PHASE I",
+                    years: "2026–2027",
+                    title: "Foundation, Consolidation & Transition",
+                    tagline: "Strengthening Foundations & Deepening Program Models",
+                    focus: "Deepen NRM, WASH, and livelihood models in existing geographies; pilot youth skill initiatives; initiate MIS, HRMS & finance digitization; consolidate CSR & government partnerships.",
+                    milestone: "Cohesive, learning-oriented, and institutionally prepared organization ready for scale.",
+                    color: "border-amber-500/40 bg-gradient-to-b from-amber-950/40 via-slate-900 to-slate-950",
+                    badge: "bg-amber-400/20 text-amber-300 border-amber-300/40",
+                  },
+                  {
+                    phase: "PHASE II",
+                    years: "2028–2029",
+                    title: "Expansion, Integration & Deepening Impact",
+                    tagline: "Scaling Proven Models to New Geographies & Markets",
+                    focus: "Expand program models across new districts and 8–12 states; scale youth livelihoods & enterprise; establish regional Knowledge Hubs; integrate digital MIS & MEL org-wide.",
+                    milestone: "Operating at multi-state scale with strong institutional presence and credible field evidence.",
+                    color: "border-emerald-500/40 bg-gradient-to-b from-emerald-950/40 via-slate-900 to-slate-950",
+                    badge: "bg-emerald-400/20 text-emerald-300 border-emerald-300/40",
+                  },
+                  {
+                    phase: "PHASE III",
+                    years: "2030",
+                    title: "Sustainability, Influence & Maturity",
+                    tagline: "Institutionalizing Self-Reliance & Thought Leadership",
+                    focus: "Institutionalize community ownership to reduce dependency on EFFORT; position youth as long-term leaders & mentors; thought leadership; succession planning.",
+                    milestone: "Resilient, respected, and sustainable institution with an enduring footprint across India.",
+                    color: "border-purple-500/40 bg-gradient-to-b from-purple-950/40 via-slate-900 to-slate-950",
+                    badge: "bg-purple-400/20 text-purple-300 border-purple-300/40",
+                  },
+                ].map((item, idx) => (
+                  <div
+                    key={item.phase}
+                    className={`rounded-[32px] border-2 p-6 sm:p-8 flex flex-col justify-between space-y-6 relative overflow-hidden shadow-2xl transition-all duration-300 hover:-translate-y-1 ${item.color}`}
                   >
-                    <span
-                      className={`w-2 h-2 rounded-full transition-transform ${
-                        isActive ? "scale-125" : "scale-100 opacity-60"
-                      }`}
-                      style={{ backgroundColor: chapter.accentColor }}
-                    />
-                    <span className="tracking-wider">{chapter.era}</span>
-                    {isActive && (
-                      <span className="text-[10px] font-black text-amber-300 uppercase tracking-tight bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
-                        ACTIVE
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* EXECUTIVE SPLIT CAROUSEL DISPLAY CARD */}
-          {(() => {
-            const current = chapterWorldsData[activeStoryChapter];
-            const isFinal = activeStoryChapter === chapterWorldsData.length - 1;
-
-            return (
-              <div key={current.id} className="relative bg-slate-900/90 border border-white/15 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_rgba(0,0,0,0.8)] backdrop-blur-2xl overflow-hidden min-h-[520px] lg:min-h-[560px] flex flex-col justify-between animate-fade-in">
-                
-                {/* Background Ghost Year Watermark */}
-                <div
-                  className="absolute -right-8 -bottom-12 text-[11rem] sm:text-[15rem] font-black leading-none tracking-tighter select-none pointer-events-none opacity-10 transition-colors duration-700"
-                  style={{ color: current.accentColor }}
-                >
-                  {current.era.slice(0, 4)}
-                </div>
-
-                <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 my-auto">
-                  
-                  {/* LEFT 50%: ARCHIVAL DOCUMENTARY VISUAL FRAME */}
-                  <div className="lg:col-span-6 space-y-4">
-                    <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 group bg-slate-950">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={current.image}
-                        alt={current.title}
-                        className="w-full h-64 sm:h-80 lg:h-[370px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.95] contrast-[1.05]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                      
-                      {/* Photo Badge Tag */}
-                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                        <span className="text-xs font-black uppercase tracking-widest bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-white/10 text-amber-300">
-                          {current.phase}
+                    <div className="space-y-4 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${item.badge}`}>
+                          {item.phase} &bull; {item.years}
                         </span>
-                        <span className="text-xs font-bold text-white/80 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-                          {current.era}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* RIGHT 50%: EDITORIAL CONTENT & MILESTONES */}
-                  <div className="lg:col-span-6 space-y-6">
-                    
-                    {/* Chapter Header */}
-                    <div className="space-y-2 border-b border-white/10 pb-5">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs shadow-md"
-                          style={{ backgroundColor: `${current.accentColor}30`, color: current.accentColor }}
-                        >
-                          0{activeStoryChapter + 1}
-                        </span>
-                        <span className="text-xs font-black uppercase tracking-widest text-slate-400">
-                          CHAPTER 0{activeStoryChapter + 1} OF 0{chapterWorldsData.length}
-                        </span>
+                        <span className="text-xs font-mono font-bold text-slate-400">STAGE 0{idx + 1}</span>
                       </div>
 
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
-                        {current.title}
-                      </h3>
-
-                      <p className="text-sm sm:text-base font-bold" style={{ color: current.accentColor }}>
-                        {current.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Narrative Description */}
-                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
-                      {current.desc}
-                    </p>
-
-                    {/* Key Milestones Box */}
-                    <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 sm:p-5 space-y-2.5 backdrop-blur-md">
-                      <h4 className="text-xs font-black uppercase tracking-wider text-amber-300 flex items-center gap-2 mb-1">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Key Archival Highlights
-                      </h4>
-                      {current.archivalMarks.map((mark) => (
-                        <div key={mark} className="flex items-start gap-2.5 text-xs text-slate-200 font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
-                          <span>{mark}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Special Future Targets for 2026–2030 (EFFORT 2.0) */}
-                    {current.futureTargets && (
-                      <div className="grid grid-cols-3 gap-3 pt-1">
-                        {current.futureTargets.map((target) => (
-                          <div key={target.label} className="bg-emerald-950/60 text-white rounded-xl p-3 text-center border border-emerald-800/60 shadow-md">
-                            <p className="text-xs sm:text-base font-black text-amber-300">{target.value}</p>
-                            <p className="text-[9px] font-bold text-stone-300 uppercase tracking-tight mt-0.5">{target.label}</p>
-                          </div>
-                        ))}
+                      <div>
+                        <h3 className="text-xl sm:text-2xl font-black text-white leading-snug">{item.title}</h3>
+                        <p className="text-xs font-bold text-amber-300 mt-1">{item.tagline}</p>
                       </div>
-                    )}
 
+                      <div className="p-4 rounded-2xl bg-slate-950/80 border border-white/10 space-y-2">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">KEY PRIORITIES</span>
+                        <p className="text-xs text-slate-200 leading-relaxed font-normal">{item.focus}</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/10 relative z-10">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 block mb-1">EXPECTED OUTCOME</span>
+                      <p className="text-xs font-semibold text-slate-100">{item.milestone}</p>
+                    </div>
                   </div>
-
-                </div>
-
-                {/* BOTTOM FOOTER NAVIGATION PROGRESS */}
-                <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-bold text-slate-400 relative z-20">
-                  <span className="uppercase tracking-widest text-[10px]">
-                    EFFORT NGO HISTORICAL CHRONICLE
-                  </span>
-
-                  <div className="flex items-center gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
-                      className="hover:text-white transition-colors cursor-pointer"
-                    >
-                      &larr; PREVIOUS ERA
-                    </button>
-                    <span className="text-white font-serif font-black tracking-widest">
-                      0{activeStoryChapter + 1} / 0{chapterWorldsData.length}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setActiveStoryChapter((prev) => (prev + 1) % chapterWorldsData.length)}
-                      className="hover:text-white transition-colors cursor-pointer"
-                    >
-                      NEXT ERA &rarr;
-                    </button>
-                  </div>
-                </div>
-
+                ))}
               </div>
-            );
-          })()}
+            </div>
+          )}
+
+          {/* TAB 2: 6 STRATEGIC PILLARS & INDICATIVE TARGETS */}
+          {activeStrategicTab === "pillars" && (
+            <div className="space-y-8 animate-fade-in">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    num: "PILLAR 01",
+                    title: "Community-Led Resilience & Sustainable Development",
+                    desc: "Enabling communities to lead their own development through integrated resilience across ecological, social, and economic dimensions. Focuses on strengthening CBOs, federations, and local institutions.",
+                    targetTitle: "INDICATIVE SCALE TARGETS",
+                    target1: "1,000–1,500 Community Institutions",
+                    target2: "250,000–300,000 Reached Households",
+                    icon: Users,
+                    accent: "border-amber-400/40 text-amber-300",
+                  },
+                  {
+                    num: "PILLAR 02",
+                    title: "Sustainable Livelihoods & Youth Futures",
+                    desc: "Strengthening smallholder farmers, positioning youth as key economic drivers through employability, entrepreneurship, and green livelihoods, and building market-linked FPOs.",
+                    targetTitle: "INDICATIVE SCALE TARGETS",
+                    target1: "400,000–500,000 Farmers Supported",
+                    target2: "25,000–40,000 Youth Skilled | 75–120 FPOs",
+                    icon: Sprout,
+                    accent: "border-emerald-400/40 text-emerald-300",
+                  },
+                  {
+                    num: "PILLAR 03",
+                    title: "Knowledge, Learning & Practice Influence",
+                    desc: "Establishing EFFORT as a community-rooted knowledge center, systematically capturing field evidence to inform policy, practice, and peer learning across institutions.",
+                    targetTitle: "INDICATIVE SCALE TARGETS",
+                    target1: "1–2 Knowledge Learning Hubs",
+                    target2: "100+ Learning Products | Annual Forums",
+                    icon: BookOpen,
+                    accent: "border-cyan-400/40 text-cyan-300",
+                  },
+                  {
+                    num: "PILLAR 04",
+                    title: "Partnerships & Ecosystem Engagement",
+                    desc: "Building strong, value-aligned collaborations with government missions, CSR entities, academia, and local NGOs for scale, convergence, and systemic impact.",
+                    targetTitle: "INDICATIVE SCALE TARGETS",
+                    target1: "8–12 Indian States Active Footprint",
+                    target2: "30–50 Institutional Partners",
+                    icon: Handshake,
+                    accent: "border-purple-400/40 text-purple-300",
+                  },
+                  {
+                    num: "PILLAR 05",
+                    title: "Organizational Capacity & Governance",
+                    desc: "Nurturing a resilient, values-driven institution with second-line leadership continuity, HR capacity building, Board oversight, and staff well-being.",
+                    targetTitle: "INDICATIVE SCALE TARGETS",
+                    target1: "100–150 Skilled Team Members",
+                    target2: "Leadership Pipeline & Active Governance",
+                    icon: ShieldCheck,
+                    accent: "border-rose-400/40 text-rose-300",
+                  },
+                  {
+                    num: "PILLAR 06",
+                    title: "Systems, Digitalization & Sustainability",
+                    desc: "Leveraging digital MIS tools, MEL frameworks, and data systems to enhance operational efficiency, transparency, institutional branding, and financial diversification.",
+                    targetTitle: "INDICATIVE SCALE TARGETS",
+                    target1: "Org-Wide Integrated Digital MIS",
+                    target2: "MEL Repositories & Diversified Portfolio",
+                    icon: Zap,
+                    accent: "border-teal-400/40 text-teal-300",
+                  },
+                ].map((pillar) => (
+                  <div
+                    key={pillar.num}
+                    className="bg-slate-900/90 border-2 border-white/15 hover:border-amber-400/50 rounded-[32px] p-6 sm:p-7 shadow-2xl flex flex-col justify-between space-y-5 transition-all duration-300 hover:-translate-y-1 group"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+                          {pillar.num}
+                        </span>
+                        <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-amber-300 group-hover:scale-110 transition-transform">
+                          <pillar.icon className="w-4.5 h-4.5" />
+                        </div>
+                      </div>
+
+                      <h3 className="text-lg font-black text-white leading-snug group-hover:text-amber-200 transition-colors">{pillar.title}</h3>
+                      <p className="text-xs text-slate-300 leading-relaxed font-normal">{pillar.desc}</p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-amber-400/20 space-y-1.5">
+                      <span className="text-[9px] font-black uppercase tracking-wider text-amber-400 block">{pillar.targetTitle}</span>
+                      <p className="text-xs font-bold text-white font-mono">{pillar.target1}</p>
+                      <p className="text-[11px] font-semibold text-emerald-300">{pillar.target2}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: THEORY OF CHANGE & 5 PATHWAYS */}
+          {activeStrategicTab === "theory" && (
+            <div className="space-y-6 animate-fade-in">
+              <div className="bg-slate-900/90 border border-white/15 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-2xl">
+                <div className="max-w-3xl space-y-2">
+                  <span className="text-xs font-black uppercase tracking-widest text-amber-300">CORE HYPOTHESIS &amp; THEORY OF CHANGE</span>
+                  <h3 className="text-2xl font-black text-white">How EFFORT 2.0 Drives Sustainable Transformation</h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                    &ldquo;If communities are enabled to lead their own development, youth are supported to strengthen skills and livelihoods, local institutions are strengthened, and EFFORT functions as a learning-oriented and institutionally strong organization, then communities will be able to build resilient, inclusive, and sustainable futures.&rdquo;
+                  </p>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+                  {[
+                    { title: "Pathway 1", label: "Community Empowerment", desc: "Investing in participatory processes, local leadership, and institutional capacity for self-reliance." },
+                    { title: "Pathway 2", label: "Youth Futures & Livelihoods", desc: "Strengthening skills, market-linked enterprises, and leadership opportunities for youth." },
+                    { title: "Pathway 3", label: "Integrated Sustainability", desc: "Linking natural resource stewardship, livelihoods, and climate resilience for enduring outcomes." },
+                    { title: "Pathway 4", label: "Knowledge & Influence", desc: "Capturing field evidence to inform program improvement, partner learning, and sectoral dialogue." },
+                    { title: "Pathway 5", label: "Institutional Resilience", desc: "Strengthening systems, HR, digital MIS, governance, and financial sustainability for scale." },
+                  ].map((pw) => (
+                    <div key={pw.title} className="p-4 rounded-2xl bg-slate-950/80 border border-amber-400/20 space-y-1.5">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-amber-400">{pw.title} &bull; {pw.label}</span>
+                      <p className="text-xs text-slate-200 leading-relaxed font-medium">{pw.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 4: HISTORICAL CHRONICLE (1999 → 2030 STEPPER CAROUSEL) */}
+          {activeStrategicTab === "chronicle" && (
+            <div className="space-y-6 animate-fade-in">
+              {/* HORIZONTAL ERA SELECTION TAB STRIP (EXECUTIVE STEPPER SPINE) */}
+              <div className="overflow-x-auto scrollbar-hide py-1">
+                <div className="flex items-center gap-2 sm:gap-3 min-w-max border-b border-white/10 pb-4">
+                  {chapterWorldsData.map((chapter, idx) => {
+                    const isActive = idx === activeStoryChapter;
+                    return (
+                      <button
+                        key={chapter.era}
+                        type="button"
+                        onClick={() => setActiveStoryChapter(idx)}
+                        className={`group px-4.5 py-2.5 rounded-2xl font-black text-xs transition-all duration-300 cursor-pointer flex items-center gap-2.5 border ${
+                          isActive
+                            ? "bg-white/15 text-white border-white/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] -translate-y-0.5"
+                            : "bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-stone-200"
+                        }`}
+                      >
+                        <span
+                          className={`w-2 h-2 rounded-full transition-transform ${
+                            isActive ? "scale-125" : "scale-100 opacity-60"
+                          }`}
+                          style={{ backgroundColor: chapter.accentColor }}
+                        />
+                        <span className="tracking-wider">{chapter.era}</span>
+                        {isActive && (
+                          <span className="text-[10px] font-black text-amber-300 uppercase tracking-tight bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
+                            ACTIVE
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* EXECUTIVE SPLIT CAROUSEL DISPLAY CARD */}
+              {(() => {
+                const current = chapterWorldsData[activeStoryChapter];
+
+                return (
+                  <div key={current.id} className="relative bg-slate-900/90 border border-white/15 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_rgba(0,0,0,0.8)] backdrop-blur-2xl overflow-hidden min-h-[520px] lg:min-h-[560px] flex flex-col justify-between animate-fade-in">
+                    
+                    {/* Background Ghost Year Watermark */}
+                    <div
+                      className="absolute -right-8 -bottom-12 text-[11rem] sm:text-[15rem] font-black leading-none tracking-tighter select-none pointer-events-none opacity-10 transition-colors duration-700"
+                      style={{ color: current.accentColor }}
+                    >
+                      {current.era.slice(0, 4)}
+                    </div>
+
+                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 my-auto">
+                      
+                      {/* LEFT 50%: ARCHIVAL DOCUMENTARY VISUAL FRAME */}
+                      <div className="lg:col-span-6 space-y-4">
+                        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 group bg-slate-950">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={current.image}
+                            alt={current.title}
+                            className="w-full h-64 sm:h-80 lg:h-[370px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.95] contrast-[1.05]"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                          
+                          {/* Photo Badge Tag */}
+                          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                            <span className="text-xs font-black uppercase tracking-widest bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-white/10 text-amber-300">
+                              {current.phase}
+                            </span>
+                            <span className="text-xs font-bold text-white/80 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                              {current.era}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* RIGHT 50%: EDITORIAL CONTENT & MILESTONES */}
+                      <div className="lg:col-span-6 space-y-6">
+                        
+                        {/* Chapter Header */}
+                        <div className="space-y-2 border-b border-white/10 pb-5">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs shadow-md"
+                              style={{ backgroundColor: `${current.accentColor}30`, color: current.accentColor }}
+                            >
+                              0{activeStoryChapter + 1}
+                            </span>
+                            <span className="text-xs font-black uppercase tracking-widest text-slate-400">
+                              CHAPTER 0{activeStoryChapter + 1} OF 0{chapterWorldsData.length}
+                            </span>
+                          </div>
+
+                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
+                            {current.title}
+                          </h3>
+
+                          <p className="text-sm sm:text-base font-bold" style={{ color: current.accentColor }}>
+                            {current.subtitle}
+                          </p>
+                        </div>
+
+                        {/* Narrative Description */}
+                        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                          {current.desc}
+                        </p>
+
+                        {/* Key Milestones Box */}
+                        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 sm:p-5 space-y-2.5 backdrop-blur-md">
+                          <h4 className="text-xs font-black uppercase tracking-wider text-amber-300 flex items-center gap-2 mb-1">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Key Archival Highlights
+                          </h4>
+                          {current.archivalMarks.map((mark) => (
+                            <div key={mark} className="flex items-start gap-2.5 text-xs text-slate-200 font-medium">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
+                              <span>{mark}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Special Future Targets for 2026–2030 (EFFORT 2.0) */}
+                        {current.futureTargets && (
+                          <div className="grid grid-cols-3 gap-3 pt-1">
+                            {current.futureTargets.map((target) => (
+                              <div key={target.label} className="bg-emerald-950/60 text-white rounded-xl p-3 text-center border border-emerald-800/60 shadow-md">
+                                <p className="text-xs sm:text-base font-black text-amber-300">{target.value}</p>
+                                <p className="text-[9px] font-bold text-stone-300 uppercase tracking-tight mt-0.5">{target.label}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                      </div>
+
+                    </div>
+
+                    {/* BOTTOM FOOTER NAVIGATION PROGRESS */}
+                    <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-bold text-slate-400 relative z-20">
+                      <span className="uppercase tracking-widest text-[10px]">
+                        EFFORT NGO HISTORICAL CHRONICLE
+                      </span>
+
+                      <div className="flex items-center gap-4">
+                        <button
+                          type="button"
+                          onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
+                          className="hover:text-white transition-colors cursor-pointer"
+                        >
+                          &larr; PREVIOUS ERA
+                        </button>
+                        <span className="text-white font-serif font-black tracking-widest">
+                          0{activeStoryChapter + 1} / 0{chapterWorldsData.length}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setActiveStoryChapter((prev) => (prev + 1) % chapterWorldsData.length)}
+                          className="hover:text-white transition-colors cursor-pointer"
+                        >
+                          NEXT ERA &rarr;
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                );
+              })()}
+            </div>
+          )}
 
         </div>
       </section>
