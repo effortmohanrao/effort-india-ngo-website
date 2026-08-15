@@ -127,7 +127,7 @@ export default function GalleryPage() {
           {[
             { num: "1,909", label: "Villages Documented", desc: "Across 9 states & 37 districts" },
             { num: "2.67 Lakh+", label: "Families Empowered", desc: "Verified ground beneficiaries" },
-            { num: "63 Total", label: "Field Initiatives", desc: "50 completed & 13 ongoing" },
+            { num: "80 Total", label: "Field Initiatives", desc: "65 completed & 15 ongoing" },
             { num: "27+ Years", label: "Unbroken Legacy", desc: "Continuous service since 1999" },
           ].map((stat) => (
             <div key={stat.label} className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-3xl p-6 text-center shadow-sm hover:shadow-md transition-all">

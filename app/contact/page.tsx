@@ -40,13 +40,13 @@ export default function Contact() {
   });
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("contact@effortindiango.org");
+    navigator.clipboard.writeText("effortap@gmail.com");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const handleCopyPhone = () => {
-    navigator.clipboard.writeText("+91 94402 61287");
+    navigator.clipboard.writeText("+91 8404-271737");
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
@@ -59,21 +59,22 @@ export default function Contact() {
   {/* Offices Data */}
   const officeLocations = {
     hq: {
-      title: "EFFORT Registered Headquarters",
-      district: "Ongole, Prakasam District, Andhra Pradesh",
-      address: "D.No. 37-1-408(57), 3rd Lane, Bhagya Nagar, Ongole, Prakasam District, Andhra Pradesh - 523001, India.",
-      phone: "+91 94402 61287 / 08592-234567",
-      email: "contact@effortindiango.org",
-      head: "Executive Director & General Secretary",
-      landmark: "Near Bhagya Nagar 3rd Lane Center",
-      type: "Society Headquarters & Central Administrative Office",
+      title: "EFFORT Central Administrative Office",
+      district: "Martur, Bapatla District, Andhra Pradesh",
+      address: "Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India.",
+      phone: "+91 8404 - 271737",
+      email: "effortap@gmail.com",
+      website: "www.effortindia.org",
+      head: "Central Administrative Office Desk",
+      landmark: "G.T. Road, Martur",
+      type: "Central Office & Registered Society Headquarters",
     },
     prakasam: {
       title: "Prakasam Watershed & IPM Field Hub",
       district: "Podili / Markapur Region, Andhra Pradesh",
       address: "Watershed Field Intervention Center, Main Road, Podili, Prakasam District, Andhra Pradesh - 523240.",
-      phone: "+91 94402 61287",
-      email: "prakasam.field@effortindiango.org",
+      phone: "+91 8404 - 271737",
+      email: "effortap@gmail.com",
       head: "Senior Project Officer (NRM & Watersheds)",
       landmark: "Opposite Agricultural Extension Office",
       type: "Watershed, Check-Dam & DSR Demonstration Hub",
@@ -82,8 +83,8 @@ export default function Contact() {
       title: "Guntur & Palnadu FPO Operations Hub",
       district: "Guntur District, Andhra Pradesh",
       address: "FPO Farmer Facilitation Desk, Collectorate Road, Guntur, Andhra Pradesh - 522004.",
-      phone: "+91 94402 61287",
-      email: "guntur.fpo@effortindiango.org",
+      phone: "+91 8404 - 271737",
+      email: "effortap@gmail.com",
       head: "FPO & Spices Board Project Manager",
       landmark: "Near District Agriculture Office",
       type: "Farmer Producer Organizations (FPOs) & SHG Training Hub",
@@ -92,41 +93,42 @@ export default function Contact() {
       title: "CSR Alliances & Institutional Desk",
       district: "Hyderabad / Vijayawada CSR Liaison",
       address: "Corporate Liaison Office, Jubliee Hills / MG Road Vijayawada Desk, Andhra Pradesh & Telangana.",
-      phone: "+91 94402 61287",
-      email: "csr.alliances@effortindiango.org",
+      phone: "+91 8404 - 271737",
+      email: "effortap@gmail.com",
       head: "Head of Corporate Partnerships & MoUs",
       landmark: "Corporate CSR Consultation Center",
       type: "CSR Partnerships, Form CSR-1 & University MoUs",
     },
   };
 
-  const selectedOffice = officeLocations[activeOffice];
-
   return (
-    <div className="min-h-screen bg-[#fcf8f0] text-[#221c0c] relative overflow-hidden">
-      {/* Background Liquid Ambient Aurora */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[700px] h-[700px] rounded-full bg-amber-200/40 blur-[150px]" />
-        <div className="absolute top-1/3 right-10 w-[600px] h-[600px] rounded-full bg-emerald-200/30 blur-[150px]" />
-        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] rounded-full bg-sky-200/30 blur-[150px]" />
-        <div className="absolute inset-0 bg-noise opacity-[0.18]" />
-      </div>
-
-      {/* --- HERO BANNER --- */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center space-y-6">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
-          <Headphones className="w-3.5 h-3.5 text-[#c9a24a]" /> Direct Communication Portal
+    <div className="min-h-screen bg-[#faf7ee] text-[#221c0c] font-sans">
+      
+      {/* Page Header */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1409] via-[#2a200d] to-[#151007] text-white py-16 lg:py-24">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-amber-500/15 rounded-full blur-[160px] animate-liquid-drift-a" />
+          <div className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#221c0c] max-w-4xl mx-auto leading-[1.12]">
-          Let's Connect & Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Self-Reliant Communities</span>
-        </h1>
-        <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
-          Have questions about Corporate CSR partnerships, 80G tax exemptions, University MoUs, volunteering, or project interventions? Reach out directly to our headquarters or regional field offices.
-        </p>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md shadow-md">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Ground Action Helpline &amp; Central Desk
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-md">
+            Contact <span className="bg-gradient-to-r from-amber-300 via-emerald-300 to-teal-200 bg-clip-text text-transparent">EFFORT NGO</span>
+          </h1>
+
+          <p className="text-amber-100/90 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+            "A Non-Profit Organisation Committed to Empower Rural Communities for Sustainable Development"
+          </p>
+        </div>
       </section>
 
-      {/* --- 4 QUICK CONTACT ACTION CARDS --- */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+      {/* Top 4 Quick Info Cards */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Phone Card */}
@@ -135,9 +137,9 @@ export default function Contact() {
               <Phone className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Helpline & Call Desk</span>
-              <p className="text-base font-black text-[#221c0c] mt-0.5">+91 94402 61287</p>
-              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Mon – Sat: 9:00 AM – 6:00 PM IST</p>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Helpline &amp; Call Desk</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5">+91 8404 - 271737</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Mon &ndash; Sat: 9:00 AM &ndash; 6:00 PM IST</p>
             </div>
             <button
               onClick={handleCopyPhone}
@@ -155,8 +157,8 @@ export default function Contact() {
             </div>
             <div>
               <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700">Official Email Desk</span>
-              <p className="text-base font-black text-[#221c0c] mt-0.5 truncate">contact@effortindiango.org</p>
-              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Response within 24 business hours</p>
+              <p className="text-base font-black text-[#221c0c] mt-0.5 truncate">effortap@gmail.com</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">www.effortindia.org</p>
             </div>
             <button
               onClick={handleCopyEmail}
@@ -167,15 +169,15 @@ export default function Contact() {
             </button>
           </div>
 
-          {/* Registered Office Card */}
+          {/* Central Office Card */}
           <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
             <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 text-sky-700 flex items-center justify-center">
               <MapPin className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-sky-700">Registered Headquarters</span>
-              <p className="text-base font-black text-[#221c0c] mt-0.5">Ongole, Andhra Pradesh</p>
-              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Prakasam District, AP - 523001</p>
+              <span className="text-[10px] font-black uppercase tracking-wider text-sky-700">Central Office</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5">MARTUR, Bapatla Dist.</p>
+              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">Srujana, # 9-240, G.T. Road, AP - 523301</p>
             </div>
             <a
               href="#office-explorer"

@@ -329,26 +329,62 @@ const visionMissionSlides: { label: string; icon: typeof Eye; title: string; des
   {
     label: "Vision",
     icon: Eye,
-    title: "A Future Communities Build For Themselves",
-    desc: "A future where every rural community in Andhra Pradesh has the resources, skills, and opportunity to shape its own progress — regardless of where it starts.",
+    title: "Empowered Communities Building Resilient Futures",
+    desc: "Empowered communities building resilient, inclusive, and sustainable futures — where communities are empowered to make informed decisions, manage their resources sustainably, and respond effectively to challenges.",
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1000",
   },
   {
     label: "Mission",
     icon: Target,
-    title: "Sustainable Models, Not One-Off Projects",
-    desc: "To design and deliver community-owned programs in education, healthcare, livelihoods, and environmental sustainability that create measurable, lasting impact.",
+    title: "Sustainably Managing Resources & Empowering Youth",
+    desc: "To enable communities to sustainably manage natural resources, strengthen youth skills and livelihoods, and function as a community-based knowledge-sharing and learning centre that fosters experiential learning, shared solutions, and improved well-being.",
     image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
 const coreValues: { title: string; icon: typeof ShieldCheck; desc: string; radius: number; size: number }[] = [
-  { title: "Integrity", icon: ShieldCheck, desc: "We do what we say, and say what we do — even when no one's watching.", radius: 155, size: 88 },
-  { title: "Transparency", icon: Gem, desc: "Open books, open outcomes. Every rupee and result is accountable.", radius: 175, size: 76 },
-  { title: "Innovation", icon: Zap, desc: "Practical solutions built for real conditions, not textbook templates.", radius: 145, size: 70 },
-  { title: "Compassion", icon: Heart, desc: "Every program starts with listening to the people it's meant to serve.", radius: 170, size: 80 },
-  { title: "Empowerment", icon: Users, desc: "We hand over ownership, not just outcomes, to the communities we work with.", radius: 160, size: 86 },
-  { title: "Sustainability", icon: Sprout, desc: "Progress that holds up long after our involvement ends.", radius: 150, size: 72 },
+  {
+    title: "Community Ownership",
+    icon: Users,
+    desc: "Communities are the primary agents of their own development. EFFORT works to strengthen their leadership, decision-making, and collective action, ensuring that development processes are locally driven and sustained.",
+    radius: 155,
+    size: 88
+  },
+  {
+    title: "Sustainability & Stewardship",
+    icon: Sprout,
+    desc: "EFFORT is committed to long-term ecological, social, and economic sustainability through responsible stewardship of natural resources, institutions, and relationships.",
+    radius: 175,
+    size: 76
+  },
+  {
+    title: "Inclusion & Equity",
+    icon: Scale,
+    desc: "EFFORT ensures that development processes are inclusive and equitable, with particular attention to youth, women, and marginalized communities, enabling their meaningful participation and leadership.",
+    radius: 145,
+    size: 70
+  },
+  {
+    title: "Integrity & Accountability",
+    icon: ShieldCheck,
+    desc: "EFFORT upholds honesty, transparency, and responsibility in all its actions, remaining accountable to communities, partners, and stakeholders.",
+    radius: 170,
+    size: 80
+  },
+  {
+    title: "Partnership & Collaboration",
+    icon: Handshake,
+    desc: "EFFORT recognizes that complex development challenges require collective action and works in partnership with communities, civil society organizations, government, academia, and the private sector to amplify impact and scale solutions.",
+    radius: 160,
+    size: 86
+  },
+  {
+    title: "Adaptability & Resilience",
+    icon: Zap,
+    desc: "EFFORT remains responsive to change, open to innovation, and committed to strengthening its own capacity and that of communities to adapt, learn, and thrive in dynamic and uncertain environments.",
+    radius: 150,
+    size: 72
+  },
 ];
 
 const founderProfile = {
@@ -397,7 +433,7 @@ const leadershipTeam: LeadershipMember[] = [
     name: "Dr. P. Venkateswarlu",
     role: "Chief Operating Officer & Field Operations",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600",
-    intro: "Leads field implementation teams across 1,909 villages and 37 districts, driving 50 completed and 13 active multi-year development projects.",
+    intro: "Leads field implementation teams across 1,909 villages and 37 districts, driving 65 completed and 15 active multi-year development projects.",
     socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
   },
   {
@@ -546,6 +582,15 @@ export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
   const [activeStoryChapter, setActiveStoryChapter] = useState(0);
+  const [isAutoTour, setIsAutoTour] = useState(false);
+
+  useEffect(() => {
+    if (!isAutoTour) return;
+    const interval = setInterval(() => {
+      setActiveStoryChapter((prev) => (prev + 1) % chapterWorldsData.length);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [isAutoTour]);
   const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
   const [vmRef, vmVisible] = useScrollReveal<HTMLElement>();
   const [activeVMSlide, setActiveVMSlide] = useState(0);
@@ -716,7 +761,7 @@ export default function About() {
                 style={{ transitionDelay: "450ms" }}
               >
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
-                  <span className="text-2xl sm:text-3xl font-black text-emerald-800">50 + 13</span>
+                  <span className="text-2xl sm:text-3xl font-black text-emerald-800">65 + 15</span>
                   <span className="block text-[10px] font-black uppercase tracking-wider text-slate-800">Completed &amp; Active Projects</span>
                 </div>
                 <div className="bg-white border-2 border-white/90 rounded-2xl p-3.5 text-center space-y-0.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:border-emerald-500 transition-all">
@@ -827,7 +872,245 @@ export default function About() {
         </div>
       </section>
 
+      {/* --- THE JOURNEY: 1999 TO EFFORT 2.0 (EXECUTIVE HORIZONTAL SPLIT CAROUSEL) --- */}
+      <section id="journey" ref={storyRef} className="relative overflow-hidden bg-slate-950 py-20 lg:py-28 text-white border-t border-slate-800 shadow-2xl">
+        {/* Subtle Ambient Background Mesh & Dynamic Color Shift */}
+        {(() => {
+          const currentChapter = chapterWorldsData[activeStoryChapter];
+          const accent = currentChapter.accentColor;
+          return (
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div
+                className="absolute top-[-20%] left-[20%] w-[700px] h-[700px] rounded-full blur-[180px] transition-colors duration-1000 opacity-20"
+                style={{ backgroundColor: accent }}
+              />
+              <div
+                className="absolute bottom-[-20%] right-[20%] w-[700px] h-[700px] rounded-full blur-[180px] transition-colors duration-1000 opacity-15"
+                style={{ backgroundColor: accent }}
+              />
+              <div className="bg-noise absolute inset-0 opacity-20" />
+              <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:40px_40px]" />
+            </div>
+          );
+        })()}
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
+
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+            <div className="space-y-3 max-w-2xl">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-widest backdrop-blur-md shadow-md">
+                <BookOpen className="w-4 h-4 text-emerald-400" /> INSTITUTIONAL CHRONICLE (1999 → 2030)
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                27 Years of <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">Community Impact</span>
+              </h2>
+            </div>
+
+            {/* Auto Play & Slide Navigation Controls */}
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsAutoTour(!isAutoTour)}
+                className={`px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border transition-all cursor-pointer flex items-center gap-2 ${
+                  isAutoTour
+                    ? "bg-amber-400 text-slate-950 border-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.5)]"
+                    : "bg-white/5 text-slate-300 border-white/15 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{isAutoTour ? "Auto Tour ON" : "Play Tour"}</span>
+              </button>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-all cursor-pointer shadow-sm"
+                  title="Previous Era"
+                >
+                  <ChevronLeft className="w-4.5 h-4.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveStoryChapter((prev) => (prev + 1) % chapterWorldsData.length)}
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-all cursor-pointer shadow-sm"
+                  title="Next Era"
+                >
+                  <ChevronRight className="w-4.5 h-4.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* HORIZONTAL ERA SELECTION TAB STRIP (EXECUTIVE STEPPER SPINE) */}
+          <div className="overflow-x-auto scrollbar-hide py-1">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-max border-b border-white/10 pb-4">
+              {chapterWorldsData.map((chapter, idx) => {
+                const isActive = idx === activeStoryChapter;
+                return (
+                  <button
+                    key={chapter.era}
+                    type="button"
+                    onClick={() => setActiveStoryChapter(idx)}
+                    className={`group px-4.5 py-2.5 rounded-2xl font-black text-xs transition-all duration-300 cursor-pointer flex items-center gap-2.5 border ${
+                      isActive
+                        ? "bg-white/15 text-white border-white/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] -translate-y-0.5"
+                        : "bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-stone-200"
+                    }`}
+                  >
+                    <span
+                      className={`w-2 h-2 rounded-full transition-transform ${
+                        isActive ? "scale-125" : "scale-100 opacity-60"
+                      }`}
+                      style={{ backgroundColor: chapter.accentColor }}
+                    />
+                    <span className="tracking-wider">{chapter.era}</span>
+                    {isActive && (
+                      <span className="text-[10px] font-black text-amber-300 uppercase tracking-tight bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
+                        ACTIVE
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* EXECUTIVE SPLIT CAROUSEL DISPLAY CARD */}
+          {(() => {
+            const current = chapterWorldsData[activeStoryChapter];
+            const isFinal = activeStoryChapter === chapterWorldsData.length - 1;
+
+            return (
+              <div key={current.id} className="relative bg-slate-900/90 border border-white/15 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_rgba(0,0,0,0.8)] backdrop-blur-2xl overflow-hidden min-h-[520px] lg:min-h-[560px] flex flex-col justify-between animate-fade-in">
+                
+                {/* Background Ghost Year Watermark */}
+                <div
+                  className="absolute -right-8 -bottom-12 text-[11rem] sm:text-[15rem] font-black leading-none tracking-tighter select-none pointer-events-none opacity-10 transition-colors duration-700"
+                  style={{ color: current.accentColor }}
+                >
+                  {current.era.slice(0, 4)}
+                </div>
+
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 my-auto">
+                  
+                  {/* LEFT 50%: ARCHIVAL DOCUMENTARY VISUAL FRAME */}
+                  <div className="lg:col-span-6 space-y-4">
+                    <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 group bg-slate-950">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={current.image}
+                        alt={current.title}
+                        className="w-full h-64 sm:h-80 lg:h-[370px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.95] contrast-[1.05]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                      
+                      {/* Photo Badge Tag */}
+                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                        <span className="text-xs font-black uppercase tracking-widest bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-white/10 text-amber-300">
+                          {current.phase}
+                        </span>
+                        <span className="text-xs font-bold text-white/80 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                          {current.era}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* RIGHT 50%: EDITORIAL CONTENT & MILESTONES */}
+                  <div className="lg:col-span-6 space-y-6">
+                    
+                    {/* Chapter Header */}
+                    <div className="space-y-2 border-b border-white/10 pb-5">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs shadow-md"
+                          style={{ backgroundColor: `${current.accentColor}30`, color: current.accentColor }}
+                        >
+                          0{activeStoryChapter + 1}
+                        </span>
+                        <span className="text-xs font-black uppercase tracking-widest text-slate-400">
+                          CHAPTER 0{activeStoryChapter + 1} OF 0{chapterWorldsData.length}
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
+                        {current.title}
+                      </h3>
+
+                      <p className="text-sm sm:text-base font-bold" style={{ color: current.accentColor }}>
+                        {current.subtitle}
+                      </p>
+                    </div>
+
+                    {/* Narrative Description */}
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                      {current.desc}
+                    </p>
+
+                    {/* Key Milestones Box */}
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 sm:p-5 space-y-2.5 backdrop-blur-md">
+                      <h4 className="text-xs font-black uppercase tracking-wider text-amber-300 flex items-center gap-2 mb-1">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Key Archival Highlights
+                      </h4>
+                      {current.archivalMarks.map((mark) => (
+                        <div key={mark} className="flex items-start gap-2.5 text-xs text-slate-200 font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
+                          <span>{mark}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Special Future Targets for 2026–2030 (EFFORT 2.0) */}
+                    {current.futureTargets && (
+                      <div className="grid grid-cols-3 gap-3 pt-1">
+                        {current.futureTargets.map((target) => (
+                          <div key={target.label} className="bg-emerald-950/60 text-white rounded-xl p-3 text-center border border-emerald-800/60 shadow-md">
+                            <p className="text-xs sm:text-base font-black text-amber-300">{target.value}</p>
+                            <p className="text-[9px] font-bold text-stone-300 uppercase tracking-tight mt-0.5">{target.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                  </div>
+
+                </div>
+
+                {/* BOTTOM FOOTER NAVIGATION PROGRESS */}
+                <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-bold text-slate-400 relative z-20">
+                  <span className="uppercase tracking-widest text-[10px]">
+                    EFFORT NGO HISTORICAL CHRONICLE
+                  </span>
+
+                  <div className="flex items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setActiveStoryChapter((prev) => (prev > 0 ? prev - 1 : chapterWorldsData.length - 1))}
+                      className="hover:text-white transition-colors cursor-pointer"
+                    >
+                      &larr; PREVIOUS ERA
+                    </button>
+                    <span className="text-white font-serif font-black tracking-widest">
+                      0{activeStoryChapter + 1} / 0{chapterWorldsData.length}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setActiveStoryChapter((prev) => (prev + 1) % chapterWorldsData.length)}
+                      className="hover:text-white transition-colors cursor-pointer"
+                    >
+                      NEXT ERA &rarr;
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            );
+          })()}
+
+        </div>
+      </section>
 
       {/* --- VISION & MISSION SECTION (EDITORIAL, GRAPHITE & GOLD) --- */}
       <section ref={vmRef} className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-neutral-900 to-zinc-950 py-14 lg:py-16">
@@ -1128,12 +1411,12 @@ export default function About() {
                 const ActiveIcon = activeVal.icon;
 
                 const tags = [
-                  "100% Statutory Schedule VII Verified",
-                  "Quarterly Audited UC Filings Delivered",
-                  "Field-Tested Grassroots Tech Integration",
-                  "Community-First Needs Diagnostics",
-                  "100% Local Ownership & Self-Governance",
-                  "27 Years Unbroken Ground Operation",
+                  "Locally Driven & Sustained Development Processes",
+                  "Long-Term Ecological, Social & Economic Stewardship",
+                  "Youth, Women & Marginalized Community Focus",
+                  "Honesty, Transparency & Stakeholder Accountability",
+                  "Govt, NGO, Academia & CSR Collective Action",
+                  "Responsive, Learning-Oriented & Resilient Capacity",
                 ];
 
                 return (
@@ -1397,21 +1680,21 @@ export default function About() {
                   {/* HOLLYWOOD-LEVEL GRAPHIC ANIMATED DIGITS GRID */}
                   <div className="grid grid-cols-2 gap-3 relative z-10">
 
-                    {/* DIGIT 1: 50 (COMPLETED PROJECTS / HALF CENTURY) */}
+                    {/* DIGIT 1: 65 (COMPLETED PROJECTS) */}
                     <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
                       <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-80" />
                       <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
-                        <Award className="w-3 h-3 text-amber-400" /> HALF CENTURY
+                        <Award className="w-3 h-3 text-amber-400" /> TRACK RECORD
                       </span>
                       <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_20px_rgba(16,185,129,0.8)] animate-hero-bob">
-                        50<span className="text-xl text-emerald-400 font-sans">+</span>
+                        65<span className="text-xl text-emerald-400 font-sans">+</span>
                       </div>
                       <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">
                         COMPLETED
                       </span>
                     </div>
 
-                    {/* DIGIT 2: 13 (ACTIVE ONGOING PROJECTS) */}
+                    {/* DIGIT 2: 15 (ACTIVE ONGOING PROJECTS) */}
                     <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)]">
                       <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-amber-400 rounded-tr-md opacity-80" />
                       <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
@@ -1419,7 +1702,7 @@ export default function About() {
                         <span>LIVE</span>
                       </span>
                       <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.8)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
-                        13
+                        15
                       </div>
                       <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">
                         ACTIVE ONGOING
@@ -1435,7 +1718,7 @@ export default function About() {
                   >
                     <span className="flex items-center gap-1.5">
                       <Building2 className="w-3.5 h-3.5 text-amber-400" />
-                      <span>EXPLORE 63 PROJECTS</span>
+                      <span>EXPLORE 80 PROJECTS</span>
                     </span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
@@ -1636,225 +1919,314 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- WHY CHOOSE US SECTION (PRISTINE LIGHT PEARL & EXPANDING 3D STAGE CARDS MATRIX) --- */}
-      <section ref={compareRef} className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F3EFE6] to-[#EAE3D5] py-24 lg:py-32 text-slate-900 border-t border-slate-200 shadow-[inset_0_0_120px_rgba(0,0,0,0.02)]">
-        {/* Soft Glowing Liquid Ambient Glows & Subtle Micro-Mesh */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-10%] w-[650px] h-[650px] bg-emerald-200/45 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[650px] h-[650px] bg-amber-200/45 rounded-full blur-[150px] animate-liquid-drift-b" />
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-sky-200/40 rounded-full blur-[170px] animate-aurora-silk-1" />
-          <div className="bg-noise absolute inset-0 opacity-10" />
-          <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:24px_24px]" />
-        </div>
+      {/* --- 6 STRATEGIC PILLARS OF EFFORT 2.0 SECTION (DYNAMIC COLOR SHIFTING STAGE DECK) --- */}
+      {(() => {
+        const pillarThemes = [
+          {
+            bgGrad: "from-[#03241b] via-[#06382b] to-[#041d16]",
+            glowA: "bg-emerald-500/25",
+            glowB: "bg-teal-500/20",
+            headerSpan: "from-emerald-300 via-teal-200 to-amber-300",
+            pillTag: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40",
+            iconGrad: "from-emerald-400 to-teal-500 text-slate-950",
+            activeCardBg: "bg-slate-950/90 border-emerald-400/80 shadow-[0_0_50px_rgba(52,211,153,0.35)] text-slate-100",
+            accentLine: "bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500",
+            quoteBox: "bg-emerald-950/60 border-emerald-400/30 text-emerald-200",
+            targetBox: "bg-[#06241a] border-emerald-400/30 text-[#6ee7b7]",
+            iconText: "text-emerald-400"
+          },
+          {
+            bgGrad: "from-[#291402] via-[#3a1d04] to-[#1c0d01]",
+            glowA: "bg-amber-500/25",
+            glowB: "bg-yellow-500/20",
+            headerSpan: "from-amber-300 via-yellow-200 to-amber-400",
+            pillTag: "bg-amber-500/20 text-amber-300 border-amber-400/40",
+            iconGrad: "from-amber-400 to-yellow-500 text-slate-950",
+            activeCardBg: "bg-slate-950/90 border-amber-400/80 shadow-[0_0_50px_rgba(251,191,36,0.35)] text-slate-100",
+            accentLine: "bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500",
+            quoteBox: "bg-amber-950/60 border-amber-400/30 text-amber-200",
+            targetBox: "bg-[#241405] border-amber-400/30 text-[#fde047]",
+            iconText: "text-amber-400"
+          },
+          {
+            bgGrad: "from-[#03242b] via-[#0a3542] to-[#03191f]",
+            glowA: "bg-cyan-500/25",
+            glowB: "bg-sky-500/20",
+            headerSpan: "from-cyan-300 via-sky-200 to-teal-300",
+            pillTag: "bg-cyan-500/20 text-cyan-300 border-cyan-400/40",
+            iconGrad: "from-cyan-400 to-sky-500 text-slate-950",
+            activeCardBg: "bg-slate-950/90 border-cyan-400/80 shadow-[0_0_50px_rgba(56,189,248,0.35)] text-slate-100",
+            accentLine: "bg-gradient-to-r from-cyan-400 via-sky-300 to-teal-400",
+            quoteBox: "bg-cyan-950/60 border-cyan-400/30 text-cyan-200",
+            targetBox: "bg-[#06212b] border-cyan-400/30 text-[#7dd3fc]",
+            iconText: "text-cyan-400"
+          },
+          {
+            bgGrad: "from-[#110f36] via-[#1e1b4b] to-[#0a0824]",
+            glowA: "bg-indigo-500/25",
+            glowB: "bg-blue-500/20",
+            headerSpan: "from-indigo-300 via-blue-200 to-sky-300",
+            pillTag: "bg-indigo-500/20 text-indigo-300 border-indigo-400/40",
+            iconGrad: "from-indigo-400 to-blue-500 text-slate-950",
+            activeCardBg: "bg-slate-950/90 border-indigo-400/80 shadow-[0_0_50px_rgba(129,140,248,0.35)] text-slate-100",
+            accentLine: "bg-gradient-to-r from-indigo-400 via-blue-300 to-indigo-500",
+            quoteBox: "bg-indigo-950/60 border-indigo-400/30 text-indigo-200",
+            targetBox: "bg-[#110e30] border-indigo-400/30 text-[#a5b4fc]",
+            iconText: "text-indigo-400"
+          },
+          {
+            bgGrad: "from-[#2b030d] via-[#4c0519] to-[#1c0107]",
+            glowA: "bg-rose-500/25",
+            glowB: "bg-pink-500/20",
+            headerSpan: "from-rose-300 via-pink-200 to-rose-400",
+            pillTag: "bg-rose-500/20 text-rose-300 border-rose-400/40",
+            iconGrad: "from-rose-400 to-pink-500 text-slate-950",
+            activeCardBg: "bg-slate-950/90 border-rose-400/80 shadow-[0_0_50px_rgba(251,113,133,0.35)] text-slate-100",
+            accentLine: "bg-gradient-to-r from-rose-400 via-pink-300 to-rose-500",
+            quoteBox: "bg-rose-950/60 border-rose-400/30 text-rose-200",
+            targetBox: "bg-[#29040d] border-rose-400/30 text-[#f472b6]",
+            iconText: "text-rose-400"
+          },
+          {
+            bgGrad: "from-[#1d0736] via-[#3b0764] to-[#130324]",
+            glowA: "bg-purple-500/25",
+            glowB: "bg-fuchsia-500/20",
+            headerSpan: "from-purple-300 via-fuchsia-200 to-violet-300",
+            pillTag: "bg-purple-500/20 text-purple-300 border-purple-400/40",
+            iconGrad: "from-purple-400 to-fuchsia-500 text-slate-950",
+            activeCardBg: "bg-slate-950/90 border-purple-400/80 shadow-[0_0_50px_rgba(192,132,252,0.35)] text-slate-100",
+            accentLine: "bg-gradient-to-r from-purple-400 via-fuchsia-300 to-violet-500",
+            quoteBox: "bg-purple-950/60 border-purple-400/30 text-purple-200",
+            targetBox: "bg-[#1f0533] border-purple-400/30 text-[#e879f9]",
+            iconText: "text-purple-400"
+          }
+        ];
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+        const activeTheme = pillarThemes[activeWhyChooseTab % pillarThemes.length];
 
-          {/* Section Header */}
-          <div
-            className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+        return (
+          <section
+            ref={compareRef}
+            className={`relative overflow-hidden bg-gradient-to-br ${activeTheme.bgGrad} py-24 lg:py-32 text-white border-t border-white/10 shadow-2xl transition-colors duration-1000`}
           >
-            <span className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-300/80 text-emerald-800 text-xs font-black uppercase tracking-widest shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600" /> THE EFFORT NGO DIFFERENCE
-            </span>
+            {/* Dynamic Liquid Ambient Glow Orbs & Light Mesh */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div className={`absolute top-[-10%] left-[-10%] w-[650px] h-[650px] ${activeTheme.glowA} rounded-full blur-[170px] animate-pulse transition-colors duration-1000`} />
+              <div className={`absolute bottom-[-10%] right-[-10%] w-[650px] h-[650px] ${activeTheme.glowB} rounded-full blur-[160px] animate-pulse transition-colors duration-1000`} style={{ animationDelay: "2s" }} />
+              <div className="bg-noise absolute inset-0 opacity-20" />
+              <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:28px_28px]" />
+            </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
-              5 Unshakable Pillars of <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">Field-Verified Trust</span>
-            </h2>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
 
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
-              Click or hover any pillar below to inspect how Effort NGO replaces traditional NGO delays with transparent, tech-enabled governance.
-            </p>
-          </div>
+              {/* Section Header */}
+              <div
+                className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                  }`}
+              >
+                <span className={`inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full backdrop-blur-md border ${activeTheme.pillTag} text-xs font-black uppercase tracking-widest shadow-md transition-colors duration-700`}>
+                  <Sparkles className="w-3.5 h-3.5" /> STRATEGIC FRAMEWORK 2026–2030
+                </span>
 
-          {/* EXPANDING 3D STAGE ACCORDION DECK (DESKTOP FLEX EXPANSION, MOBILE STACK) */}
-          <div
-            className={`flex flex-col lg:flex-row gap-4 items-stretch min-h-[480px] transition-all duration-1000 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            style={{ transitionDelay: "150ms" }}
-          >
-            {[
-              {
-                id: 0,
-                num: "01",
-                title: "Regular Transparent Audits",
-                icon: ShieldCheck,
-                tag: "Quarterly UC Filings",
-                traditional: "Manual paper invoices, annual-only reporting, opaque receipts",
-                effortWay: "Quarterly Audited Utilization Certificates (UC) & real-time GIS logs",
-                desc: "Financial statements and field progress reports are audited quarterly and shared directly with partners on a fixed schedule.",
-                proof: "100% Statutory Schedule VII Verified",
-              },
-              {
-                id: 1,
-                num: "02",
-                title: "Digital GIS & Photo Logs",
-                icon: Globe2,
-                tag: "Geotagged Infrastructure",
-                traditional: "Fragmented physical binders & unverified verbal status claims",
-                effortWay: "Digital dashboard tracking every rupee, beneficiary, and GPS coordinate",
-                desc: "Every water reservoir, school facility, and agricultural plot is geotagged with timestamped photographic proof.",
-                proof: "100% Geotagged Field Infrastructure",
-              },
-              {
-                id: 2,
-                num: "03",
-                title: "Community Co-Governance",
-                icon: Handshake,
-                tag: "100% Local Ownership",
-                traditional: "Top-down decisions imposed from corporate offices without village consultation",
-                effortWay: "100% programs co-designed with SHG women leaders & village FPOs",
-                desc: "Village committees and SHG leaders co-create every initiative from day one, ensuring self-sustaining local governance.",
-                proof: "Self-Governing Village Cooperatives",
-              },
-              {
-                id: 3,
-                num: "04",
-                title: "Data & Satellite Telemetry",
-                icon: Search,
-                tag: "Real-Time Crop Telemetry",
-                traditional: "Guesswork implementation with slow feedback loops",
-                effortWay: "Real-time field telemetry & satellite crop monitoring",
-                desc: "Soil health, water table levels, and crop yields are continuously monitored via real-time ground sensors and satellite data.",
-                proof: "Field-Tested Grassroots Telemetry",
-              },
-              {
-                id: 4,
-                num: "05",
-                title: "27+ Years Sustained Legacy",
-                icon: Award,
-                tag: "Founded in 1999",
-                traditional: "Short-term one-off projects that collapse after field teams leave",
-                effortWay: "Continuous operation since 1999 with self-sustaining village institutions",
-                desc: "Built to thrive permanently. Our watershed and livelihood infrastructure remains fully active long after project completion.",
-                proof: "27 Years Unbroken Track Record",
-              },
-            ].map((pillar) => {
-              const PillarIcon = pillar.icon;
-              const isActive = activeWhyChooseTab === pillar.id;
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                  6 Strategic Pillars of{" "}
+                  <span className={`text-transparent bg-clip-text bg-gradient-to-r ${activeTheme.headerSpan} transition-all duration-700`}>
+                    EFFORT 2.0
+                  </span>
+                </h2>
 
-              return (
-                <div
-                  key={pillar.id}
-                  onClick={() => setActiveWhyChooseTab(pillar.id)}
-                  onMouseEnter={() => setActiveWhyChooseTab(pillar.id)}
-                  className={`group relative rounded-[36px] transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between p-6 sm:p-8 ${isActive
-                    ? "lg:flex-[3] bg-white/95 backdrop-blur-2xl border-2 border-emerald-500/40 shadow-[0_25px_60px_rgba(15,23,42,0.12)]"
-                    : "lg:flex-1 bg-white/70 backdrop-blur-xl border border-slate-300/80 hover:bg-white/90 hover:border-emerald-400/60 shadow-md"
-                    }`}
-                >
-                  {/* Top Accent Gradient Bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-2 transition-opacity duration-300 ${isActive ? "bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 opacity-100" : "bg-slate-300 opacity-40"}`} />
-
-                  {/* Top Row Header: Icon + Number */}
-                  <div className="flex items-center justify-between gap-4 relative z-10">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shrink-0 ${isActive
-                      ? "bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 text-white shadow-lg scale-110"
-                      : "bg-emerald-100/80 text-emerald-700 border border-emerald-300 group-hover:scale-105"
-                      }`}>
-                      <PillarIcon className="w-7 h-7" />
-                    </div>
-
-                    <span className={`text-2xl sm:text-3xl font-black transition-colors duration-300 ${isActive ? "text-emerald-600" : "text-slate-400 group-hover:text-emerald-600"}`}>
-                      {pillar.num}
-                    </span>
-                  </div>
-
-                  {/* ACTIVE EXPANDED CONTENT (SHOWS FULL DETAILS WHEN ACTIVE) */}
-                  {isActive ? (
-                    <div className="space-y-6 pt-6 relative z-10 animate-fade-in">
-                      <div>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/90 text-emerald-800 border border-emerald-300 text-[10px] font-black uppercase tracking-wider mb-2">
-                          {pillar.proof}
-                        </span>
-                        <h3 className="text-2xl font-black text-slate-900 leading-tight">
-                          {pillar.title}
-                        </h3>
-                      </div>
-
-                      <p className="text-slate-700 text-sm font-medium leading-relaxed">
-                        {pillar.desc}
-                      </p>
-
-                      {/* Side-by-Side Comparison Metric */}
-                      <div className="grid sm:grid-cols-2 gap-3 pt-2">
-                        <div className="bg-rose-50/90 backdrop-blur-md rounded-2xl p-4 border border-rose-200/80 space-y-1">
-                          <div className="flex items-center gap-1.5 text-[11px] font-bold text-rose-700 uppercase tracking-wider">
-                            <Minus className="w-3.5 h-3.5 text-rose-600" /> Traditional Way
-                          </div>
-                          <p className="text-xs text-rose-900/80 font-semibold leading-normal">
-                            {pillar.traditional}
-                          </p>
-                        </div>
-
-                        <div className="bg-emerald-50/90 backdrop-blur-md rounded-2xl p-4 border-2 border-emerald-300 space-y-1 shadow-sm">
-                          <div className="flex items-center gap-1.5 text-[11px] font-black text-emerald-800 uppercase tracking-wider">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Effort Standard
-                          </div>
-                          <p className="text-xs text-emerald-950 font-bold leading-normal">
-                            {pillar.effortWay}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    /* COLLAPSED INACTIVE STATE (CLEAN COMPACT VERTICAL PILLAR) */
-                    <div className="py-8 relative z-10 flex flex-col justify-end space-y-2">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                        Pillar {pillar.num}
-                      </span>
-                      <h3 className="text-lg font-black text-slate-800 group-hover:text-emerald-700 transition-colors leading-snug">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 font-medium line-clamp-2">
-                        {pillar.tag}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Bottom Footer Status Tag */}
-                  <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between text-xs font-bold text-slate-500 relative z-10">
-                    <span className="text-[11px] uppercase tracking-wider text-emerald-700">
-                      {isActive ? "Active Dock" : "Click to Inspect"}
-                    </span>
-                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? "text-emerald-600 translate-x-1" : "text-slate-400 group-hover:translate-x-1"}`} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* BOTTOM TRUST PROOF BAR (3-COLUMN HIGHLIGHTS) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-300/70">
-            {[
-              { label: "Statutory Verification", desc: "100% Schedule VII & UC Compliance", icon: ShieldCheck },
-              { label: "Geotagged Evidence", desc: "GIS map & photo logs for all works", icon: Globe2 },
-              { label: "Community Leadership", desc: "Self-sustaining SHG & FPO cooperatives", icon: Handshake },
-            ].map((item) => (
-              <div key={item.label} className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-2xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100/90 border border-emerald-300 text-emerald-700 flex items-center justify-center shrink-0">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-black text-slate-900">{item.label}</h4>
-                  <p className="text-xs text-slate-600 font-medium mt-0.5">{item.desc}</p>
-                </div>
+                <p className="text-stone-300 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+                  Anchored around six interrelated pillars balancing community-level impact with organizational strength, systems readiness, and institutional resilience.
+                </p>
               </div>
-            ))}
-          </div>
 
-          {/* CTA Action Button */}
-          <div className="text-center pt-2">
-            <a
-              href="/impact"
-              className="group inline-flex items-center gap-3 px-9 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-black text-xs uppercase tracking-wider shadow-[0_15px_40px_rgba(16,185,129,0.3)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.5)] hover:scale-[1.03] transition-all"
-            >
-              Explore Our Audited Impact &amp; Ground Results <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1.5 transition-transform duration-300" />
-            </a>
-          </div>
+              {/* EXPANDING 3D STAGE ACCORDION DECK (DESKTOP FLEX EXPANSION, MOBILE STACK) */}
+              <div
+                className={`flex flex-col lg:flex-row gap-4 items-stretch min-h-[480px] transition-all duration-1000 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                style={{ transitionDelay: "150ms" }}
+              >
+                {[
+                  {
+                    id: 0,
+                    num: "01",
+                    title: "Community-Led Resilience & Sustainable Development",
+                    collapsedTitle: "Community Resilience",
+                    icon: Users,
+                    tag: "Pillar 1 • Strategic Priority",
+                    philosophy: "Communities lead, institutions support, and EFFORT enables. Sustainable development is achieved when communities are empowered to shape their own futures.",
+                    desc: "Focuses on enabling communities to lead their own development through strengthened community-led planning, decision-making, and collective action. Emphasizes integrated approaches to resilience that encompass ecological, social, and economic dimensions.",
+                    target: "1,000–1,500 Community Institutions & 250,000–300,000 Households Engaged",
+                  },
+                  {
+                    id: 1,
+                    num: "02",
+                    title: "Sustainable Livelihoods & Youth Futures",
+                    collapsedTitle: "Sustainable Livelihoods",
+                    icon: Sprout,
+                    tag: "Pillar 2 • Strategic Priority",
+                    philosophy: "Livelihood security and youth opportunity are central to resilience over the plan period.",
+                    desc: "Focuses on strengthening livelihoods and positioning youth as key drivers of economic and social transformation. Enhances youth skills, employability, green livelihoods, and strengthens Farmer Producer Organizations (FPOs) linked directly to markets.",
+                    target: "400,000–500,000 Farmers, 25,000–40,000 Youth & 75–120 FPOs Strengthened",
+                  },
+                  {
+                    id: 2,
+                    num: "03",
+                    title: "Knowledge, Learning & Practice-Based Influence",
+                    collapsedTitle: "Knowledge & Learning",
+                    icon: Compass,
+                    tag: "Pillar 3 • Strategic Priority",
+                    philosophy: "Learning is not a support function but a strategic role that strengthens both internal practice and the wider ecosystem.",
+                    desc: "Focuses on establishing EFFORT as a learning-oriented organization and a credible source of practice-based knowledge. Systematic learning from field practice, documentation of community experiences, peer learning platforms, and contributing insights to policy dialogue.",
+                    target: "1–2 Knowledge Hubs & 100+ Practice Learning Products Developed",
+                  },
+                  {
+                    id: 3,
+                    num: "04",
+                    title: "Partnerships & Ecosystem Engagement",
+                    collapsedTitle: "Partnerships & Ecosystem",
+                    icon: Handshake,
+                    tag: "Pillar 4 • Strategic Priority",
+                    philosophy: "EFFORT’s future impact depends as much on who it works with as on what it does.",
+                    desc: "Focuses on building strong, value-aligned partnerships to enhance scale, effectiveness, and sustainability. Includes partnerships with government programs, civil society, CSR entities, academia, and local grassroots organizations guided by ethics and transparency.",
+                    target: "30–50 Institutional Partners Across 8–12 Indian States",
+                  },
+                  {
+                    id: 4,
+                    num: "05",
+                    title: "Organizational Capacity, Leadership & Governance",
+                    collapsedTitle: "Organizational Capacity",
+                    icon: ShieldCheck,
+                    tag: "Pillar 5 • Strategic Priority",
+                    philosophy: "Sustained programmatic impact requires strong institutions, capable leadership, and sound governance systems.",
+                    desc: "Focuses on strengthening EFFORT as a resilient and values-driven institution. Includes strengthening human resource systems, leadership development, second-line leadership pipelines, governance systems, Board effectiveness, compliance, and staff well-being.",
+                    target: "100–150 Skilled Staff Team & Second-Line Leadership Pipeline",
+                  },
+                  {
+                    id: 5,
+                    num: "06",
+                    title: "Systems, Digitalization & Institutional Sustainability",
+                    collapsedTitle: "Digital Systems & MIS",
+                    icon: Zap,
+                    tag: "Pillar 6 • Strategic Priority",
+                    philosophy: "Ensures EFFORT remains future-ready, efficient, transparent, and credible.",
+                    desc: "Focuses on strengthening systems, technology, and financial sustainability as key enablers of scale. Includes development of digital tools, MIS, and data systems, strengthening monitoring and reporting frameworks, resource mobilization, and institutional branding.",
+                    target: "Enterprise MIS, Real-Time MEL Systems & Diversified Funding Portfolio",
+                  },
+                ].map((pillar) => {
+                  const PillarIcon = pillar.icon;
+                  const isActive = activeWhyChooseTab === pillar.id;
 
-        </div>
-      </section>
+                  return (
+                    <div
+                      key={pillar.id}
+                      onClick={() => setActiveWhyChooseTab(pillar.id)}
+                      onMouseEnter={() => setActiveWhyChooseTab(pillar.id)}
+                      className={`group relative rounded-[32px] transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between p-5 sm:p-7 ${isActive
+                        ? `lg:flex-[3.5] ${activeTheme.activeCardBg}`
+                        : "lg:flex-1 bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 hover:border-white/40 shadow-lg text-slate-100"
+                        }`}
+                    >
+                      {/* Top Accent Gradient Bar */}
+                      <div className={`absolute top-0 left-0 right-0 h-2 transition-opacity duration-300 ${isActive ? `${activeTheme.accentLine} opacity-100` : "bg-white/30 opacity-40"}`} />
+
+                      {/* Top Row Header: Icon + Number */}
+                      <div className="flex items-center justify-between gap-3 relative z-10">
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shrink-0 ${isActive
+                          ? `bg-gradient-to-tr ${activeTheme.iconGrad} shadow-lg scale-110`
+                          : "bg-white/15 text-white border border-white/20 group-hover:scale-105"
+                          }`}>
+                          <PillarIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+                        </div>
+
+                        <span className={`text-xl sm:text-2xl font-black transition-colors duration-300 ${isActive ? activeTheme.iconText : "text-white/40 group-hover:text-white"}`}>
+                          {pillar.num}
+                        </span>
+                      </div>
+
+                      {/* ACTIVE EXPANDED CONTENT (SHOWS FULL DETAILS WHEN ACTIVE) */}
+                      {isActive ? (
+                        <div className="space-y-5 pt-5 relative z-10 animate-fade-in">
+                          <div>
+                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 border ${activeTheme.pillTag}`}>
+                              {pillar.tag}
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-black text-white leading-tight [word-break:break-word]">
+                              {pillar.title}
+                            </h3>
+                          </div>
+
+                          <p className="text-stone-300 text-xs sm:text-sm font-medium leading-relaxed">
+                            {pillar.desc}
+                          </p>
+
+                          {/* Philosophy Quote */}
+                          <div className={`backdrop-blur-md rounded-2xl p-4 border flex items-start gap-3 ${activeTheme.quoteBox}`}>
+                            <Quote className="w-4 h-4 shrink-0 mt-0.5" />
+                            <p className="text-xs font-semibold italic leading-relaxed">
+                              &ldquo;{pillar.philosophy}&rdquo;
+                            </p>
+                          </div>
+
+                          {/* Indicative Scale & Target Box */}
+                          <div className={`rounded-2xl p-3.5 border flex items-center gap-3 ${activeTheme.targetBox}`}>
+                            <Target className="w-4 h-4 shrink-0" />
+                            <div>
+                              <span className="text-[10px] font-black uppercase tracking-widest block opacity-90">INDICATIVE SCALE (BY 2030)</span>
+                              <span className="text-xs font-bold">{pillar.target}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        /* COLLAPSED INACTIVE STATE (CLEAN COMPACT VERTICAL PILLAR) */
+                        <div className="py-6 relative z-10 flex flex-col justify-end space-y-2 overflow-hidden">
+                          <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest shrink-0">
+                            Pillar {pillar.num}
+                          </span>
+                          <h3 className="text-xs sm:text-sm font-extrabold text-white group-hover:text-amber-300 transition-colors leading-snug tracking-tight [word-break:break-word]">
+                            {pillar.collapsedTitle}
+                          </h3>
+                          <p className="text-[11px] text-stone-300/80 font-medium line-clamp-1 truncate">
+                            {pillar.tag}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Bottom Footer Status Tag */}
+                      <div className="pt-3 border-t border-white/15 flex items-center justify-between text-xs font-bold text-stone-300 relative z-10 shrink-0">
+                        <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-amber-300 truncate">
+                          {isActive ? "Active Priority" : "Tap to Inspect"}
+                        </span>
+                        <ArrowRight className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-transform duration-300 ${isActive ? "text-amber-300 translate-x-1" : "text-white/40 group-hover:translate-x-1"}`} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* BOTTOM TRUST PROOF BAR (3-COLUMN HIGHLIGHTS) */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/15">
+                {[
+                  { label: "Community Ownership", desc: "Local leadership driving sustained change", icon: Users },
+                  { label: "Practice-Based Evidence", desc: "100+ Learning products & GIS telemetry logs", icon: Globe2 },
+                  { label: "Multi-State Alliances", desc: "30–50 Institutional Partners across 8–12 states", icon: Handshake },
+                ].map((item) => (
+                  <div key={item.label} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-white/40 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-white/15 border border-white/25 text-amber-300 flex items-center justify-center shrink-0">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-black text-white">{item.label}</h4>
+                      <p className="text-xs text-stone-300 font-medium mt-0.5">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </section>
+        );
+      })()}
 
       {/* --- OUR PARTNERS & RECOGNITION SECTION (TRUST NETWORK) --- */}
       <section ref={partnersRef} className="relative overflow-hidden bg-aurora py-16 lg:py-20">

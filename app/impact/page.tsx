@@ -32,22 +32,22 @@ export default function ImpactPage() {
   const [selectedCode, setSelectedCode] = useState<string>("IN-AP");
   const selectedState: StateData = IMPACT_STATES[selectedCode] ?? IMPACT_STATES["IN-AP"];
 
-  {/* Overall Impact Metrics (Matching PDF Presentation List: 50 Completed + 13 Ongoing = 63 Total) */}
+  {/* Overall Impact Metrics (65 Completed + 15 Ongoing = 80 Total) */}
   const statCards = [
-    { title: "63 Projects", subtitle: "Total Executed & Active", icon: Award, desc: "50 Completed + 13 Ongoing (1999–2026)" },
+    { title: "80 Projects", subtitle: "Total Executed & Active", icon: Award, desc: "65 Completed + 15 Ongoing (1999–2026)" },
     { title: "2.67 Lakh", subtitle: "Families Empowered", icon: Users, desc: "Farmers, Women, Children & Villagers Reached" },
     { title: "42 FPOs & 1,275 SHGs", subtitle: "Community Collectives", icon: TrendingUp, desc: "38,102 Farmer Shareholders & Women Members" },
     { title: "2,011 Children & 50 RO", subtitle: "Child & Health Impact", icon: HeartPulse, desc: "21 Child-Labour-Free Villages & 16,000 Families Safe Water" },
   ];
 
-  {/* 5 Comprehensive Strategic Impact Sectors (Summing to EXACTLY 64 Projects: 51 Completed + 13 Ongoing) */}
+  {/* 5 Comprehensive Strategic Impact Sectors (80 Total Projects: 65 Completed + 15 Ongoing) */}
   const impactDomains = [
     {
       id: "agri",
       title: "Sustainable Agriculture & Farmers' Prosperity",
       icon: Sprout,
-      totalCount: "35 Projects",
-      completedCount: "29 Completed",
+      totalCount: "39 Projects",
+      completedCount: "33 Completed",
       ongoingCount: "6 Active",
       stat: "1,68,500+ Farmers Capacitated",
       desc: "Integrated Pest Management (IPM), Direct Seeded Rice (DSR saving 35% water), crop diversification (20% cost reduction, 30-50% income growth), organic farming, mustard bee-pollination, and Rythu Bazaars direct market access.",
@@ -58,8 +58,8 @@ export default function ImpactPage() {
       id: "fpo",
       title: "Collectives, FPOs & Women Empowerment",
       icon: TrendingUp,
-      totalCount: "9 Projects",
-      completedCount: "6 Completed",
+      totalCount: "12 Projects",
+      completedCount: "9 Completed",
       ongoingCount: "3 Active",
       stat: "38,102 Collective Members",
       desc: "Promoted 42 Farmer Producer Organizations (23,352 farmer shareholders), 1,275 Women Self-Help Groups (14,750 women members), and 51 MACS Cooperatives enabling self-reliant micro-enterprises and sustainable micro-credit.",
@@ -70,9 +70,9 @@ export default function ImpactPage() {
       id: "nrm",
       title: "Natural Resource & Watershed Management",
       icon: Trees,
-      totalCount: "8 Projects",
-      completedCount: "5 Completed",
-      ongoingCount: "3 Active",
+      totalCount: "12 Projects",
+      completedCount: "8 Completed",
+      ongoingCount: "4 Active",
       stat: "528 Villages & 1,03,062 Acres",
       desc: "Comprehensive watershed development (NABARD WDF & IWMP), constructed 2,702 soil & water conservation structures (1.07 Cr m³/yr water harvested), created 3 Biodiversity Conservation Parks with 50,000 native flora species.",
       highlights: ["90 Watershed Projects (NABARD RSO)", "2,702 Water Harvesting Structures", "3 Biodiversity Conservation Parks"],
@@ -82,9 +82,9 @@ export default function ImpactPage() {
       id: "child",
       title: "Child Development, Education & Welfare",
       icon: GraduationCap,
-      totalCount: "6 Projects",
-      completedCount: "5 Completed",
-      ongoingCount: "1 Active",
+      totalCount: "8 Projects",
+      completedCount: "6 Completed",
+      ongoingCount: "2 Active",
       stat: "2,011 Rehabilitated Children",
       desc: "Eradicated child labour through NCLP Special Schools across 21 declared Child-Labour-Free villages. Distributed 1,000 bicycles to girl students, strengthened government school amenities, and provided school sanitation (SAHY).",
       highlights: ["21 Child-Labour-Free Villages Achieved", "1,000 Bicycles for Girl Students", "Special NCLP Child Labour Schools"],
@@ -94,8 +94,8 @@ export default function ImpactPage() {
       id: "health",
       title: "Community Health, WASH & Safe Drinking Water",
       icon: HeartPulse,
-      totalCount: "6 Projects",
-      completedCount: "6 Completed",
+      totalCount: "9 Projects",
+      completedCount: "9 Completed",
       ongoingCount: "0 Active",
       stat: "2,00,000+ Population Reached",
       desc: "Established 50 Community Reverse Osmosis (RO) Drinking Water Plants serving 16,000 families in fluoride-affected areas. Conducted AP Community Health Interventions (TB, Malaria, HIV/AIDS) and COVID-19 relief.",
@@ -123,7 +123,7 @@ export default function ImpactPage() {
           Our Impact & Verified <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Field Footprint</span>
         </h1>
         <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
-          Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT NGO has executed <strong>50 completed projects</strong> and <strong>13 active ongoing initiatives</strong> across 9 states, transforming 2.67 lakh rural lives across farming, women's collectives, child welfare, health & watershed development.
+          Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT NGO has executed <strong>65 completed projects</strong> and <strong>15 active ongoing initiatives</strong> across 9 states, transforming 2.67 lakh rural lives across farming, women's collectives, child welfare, health & watershed development.
         </p>
       </section>
 
@@ -256,7 +256,7 @@ export default function ImpactPage() {
                     href="/programs"
                     className="group w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-xs uppercase tracking-wider rounded-full hover:shadow-[0_15px_30px_-10px_rgba(5,150,105,0.5)] transition-all duration-300"
                   >
-                    View All 64 Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    View All 80 Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
                 </div>
               </div>
@@ -265,11 +265,11 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* --- COMPREHENSIVE PROJECT DOMAIN SECTORS (EXACT MATH: 51 COMPLETED + 13 ONGOING = 64 TOTAL) --- */}
+      {/* --- COMPREHENSIVE PROJECT DOMAIN SECTORS (65 COMPLETED + 15 ONGOING = 80 TOTAL) --- */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
-            <Layers className="w-3.5 h-3.5 text-[#c9a24a]" /> Full Spectrum of 64 Projects
+            <Layers className="w-3.5 h-3.5 text-[#c9a24a]" /> Full Spectrum of 80 Projects
           </span>
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-[#221c0c]">
             5 Strategic Intervention Sectors
@@ -326,7 +326,7 @@ export default function ImpactPage() {
             </div>
           ))}
 
-          {/* 51 Completed vs 13 Ongoing Portfolio Summary Box */}
+          {/* 65 Completed vs 15 Ongoing Portfolio Summary Box */}
           <div className="group relative rounded-[32px] p-7 bg-gradient-to-br from-[#1a140b] to-[#271d10] text-white border-2 border-[#d4af6a]/60 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8)] flex flex-col justify-between space-y-5">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -344,14 +344,14 @@ export default function ImpactPage() {
                   <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 flex items-center gap-1">
                     <CheckCircle className="w-3 h-3 text-emerald-400" /> Completed
                   </span>
-                  <p className="text-2xl font-black text-white mt-1">50 Projects</p>
+                  <p className="text-2xl font-black text-white mt-1">65 Projects</p>
                   <p className="text-[10px] text-stone-400 font-medium">Fully Executed</p>
                 </div>
                 <div className="p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800">
                   <span className="text-[10px] font-black uppercase tracking-wider text-amber-400 flex items-center gap-1">
                     <Clock className="w-3 h-3 text-amber-400" /> Active
                   </span>
-                  <p className="text-2xl font-black text-white mt-1">13 Projects</p>
+                  <p className="text-2xl font-black text-white mt-1">15 Projects</p>
                   <p className="text-[10px] text-stone-400 font-medium">In Field Progress</p>
                 </div>
               </div>
@@ -362,7 +362,7 @@ export default function ImpactPage() {
                 href="/programs"
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider hover:bg-amber-300 transition-colors"
               >
-                Browse All 63 Programs <ExternalLink className="w-3.5 h-3.5" />
+                Browse All 80 Programs <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>

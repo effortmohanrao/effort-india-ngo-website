@@ -62,6 +62,21 @@ export const completedProjects: Project[] = [
   { name: "Sustainability in Oil Seed Production — Tamil Nadu", beneficiaries: "Increasing production & productivity of oilseed crops and improving farmer livelihoods through capacity building", funder: "GIZ, Germany", category: AGRI },
   { name: "Promotion and Strengthening of Sustainable Integrated Ginger Cultivation", beneficiaries: "Increasing ginger productivity by 20% and net income of 750 farmers by 25% across 28 villages of Vizag district", funder: "GIZ, Germany", category: AGRI },
   { name: "Integrated Pest Management (IPM) in Chilli Cultivation", beneficiaries: "Sensitising 500 chilli farmers to produce residue-free chilli and develop marketing linkages", funder: "Iffco Kisan", category: AGRI },
+  { name: "Swagati HIV/AIDS Interventions Project", beneficiaries: "8 mandals of Markapur revenue division, covering 1,020 female sex workers", funder: "HLPPT", category: HEALTH },
+  { name: "Personal Protection Equipment Project", beneficiaries: "Supporting 50,000 farmers with PPE kits to safeguard them during the Covid-19 period", funder: "PHI Seeds India Private Limited", category: AGRI },
+  { name: "Honeybee Project in Mustard Cultivation", beneficiaries: "Supporting 5,000 mustard-cultivating farmers to improve yield", funder: "PHI Seeds India Limited", category: AGRI },
+  { name: "Capacity Building for Adoption of Technology (CAT) for Banana Farmers", beneficiaries: "Training 200 banana farmers to adopt new technologies in banana cultivation, Guntur district", funder: "NABARD", category: AGRI },
+  { name: "Skill Development Training for Rural Youth", beneficiaries: "Improving the livelihoods of 200 rural youth through identified vocational skills", funder: "NABARD", category: CHILD },
+  { name: "Ambulance for Benefit of Needy & Deserved Communities", beneficiaries: "Supporting deserving communities during the Covid-19 period", funder: "Mahindra and Mahindra Finance Limited", category: HEALTH },
+  { name: "Promotion of Rythu Bazaar at Khammam District", beneficiaries: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers, Telangana", funder: "Syngenta India Ltd", category: AGRI },
+  { name: "Campaign on Catch the Rain", beneficiaries: "Sensitising 1,000 farmers on the importance of rainwater harvesting", funder: "National Water Mission", category: NRM },
+  { name: "Livelihood Promotion of Youth", beneficiaries: "Improving the livelihoods of 100 youth members through a skill development programme", funder: "Mulpuri Foundation", category: CHILD },
+  { name: "Campaign on Black Thrips in Chilli Cultivation", beneficiaries: "Sensitising and capacitating 2,000 farmers on Black Thrips management in Prakasam and Guntur districts", funder: "CABI International", category: AGRI },
+  { name: "Tree Plantation Programme through Seed Balls", beneficiaries: "Improving greenery and protecting the environment through seed-ball broadcasting", funder: "Syngenta India Pvt Ltd", category: NRM },
+  { name: "Climate Literacy and Marine Litter Management Project", beneficiaries: "Educating 10,000 coastal community members on protecting coastal beaches", funder: "Academy of Gandhian Studies", category: NRM },
+  { name: "Well-Being out of Waste Management Programme", beneficiaries: "Educating children in 100 schools and communities in 100 villages on waste management", funder: "ITC, through Academy of Gandhian Studies", category: CHILD },
+  { name: "Livelihoods Promotion Project", beneficiaries: "Livelihood promotion of 30 women members through setting up a processing unit", funder: "Melania Foundation", category: CHILD },
+  { name: "Community Development Interventions", beneficiaries: "Supporting farming communities with safe drinking water through RO plants, school sanitary block promotion and tank renovation", funder: "Universal Leaf Tobacco Company", category: HEALTH },
 ];
 
 export const ongoingProjects: Project[] = [
@@ -78,6 +93,8 @@ export const ongoingProjects: Project[] = [
   { name: "Water Governance and Management Project", beneficiaries: "Developing 'Water Plus Villages' ensuring water security, ecological restoration and biodiversity protection", funder: "JSW Foundation", category: NRM },
   { name: "Climate Resilient Agriculture Integrating Natural Resource Management", beneficiaries: "Promoting climate-resilient agricultural approaches integrating NRM practices in the drought-prone villages of Kalujuvvalapadu and Nagireddyapalli, Prakasam district", funder: "NABARD", category: AGRI },
   { name: "Promotion of Sustainable Livelihoods of Women", beneficiaries: "Improving economic status of 275 women, enabling additional income through Income Generation Units", funder: "PMI", category: CHILD_ONGOING },
+  { name: "Sustainable Well-Being of Women", beneficiaries: "Women's empowerment and improved livelihoods through livelihood interventions", funder: "EKAMUSA and Orange Elephant", category: CHILD_ONGOING },
+  { name: "Carbon Sequestration Project", beneficiaries: "Reducing carbon through horticulture and timber species, promoting carbon credits", funder: "VARAHA", category: NRM },
 ];
 
 export const completedBreakdown = [

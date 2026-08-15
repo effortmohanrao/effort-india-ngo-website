@@ -7,6 +7,18 @@ import { TwitterXIcon, InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } 
 
 export default function Footer() {
   const pathname = usePathname();
+  const [logoUrl, setLogoUrl] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    fetch("/api/site/media?prefix=logo", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        const first = data.images?.[0];
+        if (first) setLogoUrl(first.url);
+      })
+      .catch(() => {});
+  }, []);
+
   if (pathname?.startsWith("/admin")) return null;
 
   const socialLinks = [
@@ -24,18 +36,28 @@ export default function Footer() {
         {/* Info Column */}
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-black text-base shadow-sm">
-              E
+            <div className="w-12 h-12 rounded-full bg-white border-2 border-white/90 flex items-center justify-center font-black text-emerald-700 shadow-md overflow-hidden p-1 shrink-0">
+              {logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={logoUrl} alt="EFFORT NGO logo" className="w-full h-full object-contain rounded-full" />
+              ) : (
+                <span className="text-xl font-extrabold text-emerald-700">E</span>
+              )}
             </div>
-            <span className="text-lg font-bold tracking-tight text-white">EFFORT</span>
+            <div>
+              <span className="text-xl font-black tracking-tight text-white block">EFFORT</span>
+              <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">EFFORT INDIA NGO</span>
+            </div>
           </div>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            Effort NGO is a registered charitable trust. We build sustainable, self-reliant models in education, healthcare, and livelihood skilling.
+          <p className="text-xs text-amber-200/90 leading-relaxed font-semibold italic">
+            "A Non-Profit Organisation Committed to Empower Rural Communities for Sustainable Development"
           </p>
-          <div className="text-xs space-y-1 font-mono text-slate-650">
-            <p>Registration No: 4893/2021</p>
-            <p>Section 80G: Unique ID AACTE8492DF20214</p>
-            <p>Section 12A: Unique ID AACTE8492DE20211</p>
+          <div className="text-xs space-y-1.5 text-slate-300 font-medium pt-1 border-t border-slate-800">
+            <p className="text-white font-bold">Central Office:</p>
+            <p>Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India</p>
+            <p className="pt-1"><strong className="text-emerald-400">Phone:</strong> +91 8404 - 271737</p>
+            <p><strong className="text-emerald-400">E-mail:</strong> effortap@gmail.com</p>
+            <p><strong className="text-emerald-400">Website:</strong> www.effortindia.org</p>
           </div>
 
           <div className="flex items-center gap-2 pt-2">

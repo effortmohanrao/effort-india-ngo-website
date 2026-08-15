@@ -176,7 +176,7 @@ export default function Programs() {
 
   const activeProjects = projectsTab === "completed" ? completedProjects : ongoingProjects;
   const activeBreakdown = projectsTab === "completed" ? completedBreakdown : ongoingBreakdown;
-  const activeTarget = projectsTab === "completed" ? 50 : 13;
+  const activeTarget = projectsTab === "completed" ? 65 : 15;
 
   useEffect(() => {
     function measure() {
@@ -295,13 +295,13 @@ export default function Programs() {
           </h1>
 
           <p className="text-[#5c523a] text-base sm:text-xl font-semibold leading-relaxed max-w-2xl mx-auto mt-6">
-            Twenty-seven years of documented, field-verified work — <strong className="text-emerald-950 font-black">50 completed initiatives</strong> &amp; <strong className="text-amber-950 font-black">13 active ongoing projects</strong> transforming <strong className="text-teal-950 font-black">2.67 Lakh+ families (2,67,000+ lives)</strong> across <strong className="text-slate-950 font-black">1,909 villages in 9 states</strong>.
+            Twenty-seven years of documented, field-verified work — <strong className="text-emerald-950 font-black">65 completed initiatives</strong> &amp; <strong className="text-amber-950 font-black">15 active ongoing projects</strong> transforming <strong className="text-teal-950 font-black">2.67 Lakh+ families (2,67,000+ lives)</strong> across <strong className="text-slate-950 font-black">1,909 villages in 9 states</strong>.
           </p>
 
           {/* Quick Highlight Metrics Pills Bar (Authentic Homepage Matrix Data) */}
           <div className="flex flex-wrap items-center justify-center gap-3.5 mt-10">
             <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/10 border-2 border-amber-400/60 text-amber-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-600 animate-spin" /> 63+ Total Projects (50 Completed + 13 Ongoing)
+              <Sparkles className="w-4 h-4 text-amber-600 animate-spin" /> 80+ Total Projects (65 Completed + 15 Ongoing)
             </span>
             <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-600/10 border-2 border-emerald-400/60 text-emerald-950 text-xs font-black uppercase tracking-wider shadow-md hover:scale-105 transition-transform flex items-center gap-2">
               🏆 2.67 Lakh+ Families (2,67,000+ Lives)
@@ -316,7 +316,7 @@ export default function Programs() {
         </div>
       </section>
 
-      {/* --- TOGGLE + HIGH-LEVEL HALF-CENTURY SHOWCASE --- */}
+      {/* --- TOGGLE + HIGH-LEVEL PROJECT COUNT SHOWCASE --- */}
       <section ref={showcaseRef} className="relative py-12 lg:py-16 overflow-hidden">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#fffdf8] via-[#fbf3db] to-[#fffdf8]" />
@@ -341,7 +341,7 @@ export default function Programs() {
                 projectsTab === "completed" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
               }`}
             >
-              Completed (50)
+              Completed (65)
             </button>
             <button
               ref={ongoingBtnRef}
@@ -353,7 +353,7 @@ export default function Programs() {
                 projectsTab === "ongoing" ? "text-[#221c0c]" : "text-[#7a6f55] hover:text-[#221c0c]"
               }`}
             >
-              Ongoing (13)
+              Ongoing (15)
             </button>
           </div>
 
@@ -361,11 +361,11 @@ export default function Programs() {
           <div className="relative flex flex-col items-center my-4">
             <CalendarFlipClock
               value={projectsCount}
-              label={projectsTab === "completed" ? "Half Century Milestone" : "Active & In Motion"}
+              label={projectsTab === "completed" ? "Field-Verified Milestone" : "Active & In Motion"}
             />
 
             <p className="text-[#221c0c] text-2xl sm:text-3xl font-black tracking-tight mt-8">
-              {projectsTab === "completed" ? "50 Completed Projects" : "13 Active Projects"}
+              {projectsTab === "completed" ? "65 Completed Projects" : "15 Active Projects"}
             </p>
             <p className="text-[#7a6f55] text-xs font-bold uppercase tracking-wider mt-1">
               {projectsTab === "completed"
