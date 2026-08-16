@@ -59,6 +59,24 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes maroon-cream-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-maroon-shimmer {
+  background: linear-gradient(110deg, #5c0d18 35%, #fdfbf7 50%, #e6c687 55%, #5c0d18 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: maroon-cream-shimmer 3.5s infinite linear;
+}
+
 
 @keyframes chapter-enter {
   from {

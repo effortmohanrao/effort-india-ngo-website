@@ -184,14 +184,31 @@ export default function Programs() {
   const activeBreakdown = projectsTab === "completed" ? completedBreakdown : ongoingBreakdown;
   const activeTarget = projectsTab === "completed" ? 65 : 15;
 
-  // --- Real-photo cover resolution: each project's own album first, else a
-  // rotating real photo from its category's fallback pool. Every card ends up
-  // with a genuine EFFORT field photo — none are project-specific claims when
-  // pulled from the fallback pool.
+  // --- Real-photo cover resolution: each project's own admin-uploaded cover
+  // first, then its shared photoFolder album, else a rotating real photo from
+  // its category's fallback pool. Every card ends up with a genuine EFFORT
+  // field photo — only the first two sources are project-specific claims.
+  const [projectCovers, setProjectCovers] = useState<Record<string, string>>({});
   const [folderCovers, setFolderCovers] = useState<Record<string, string>>({});
   const [categoryPools, setCategoryPools] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
+    const jobs: { key: string; prefix: string }[] = [];
+    completedProjects.forEach((_, i) => jobs.push({ key: `completed-${i}`, prefix: `programs/completed/p${i + 1}/cover` }));
+    ongoingProjects.forEach((_, i) => jobs.push({ key: `ongoing-${i}`, prefix: `programs/ongoing/p${i + 1}/cover` }));
+
+    Promise.all(
+      jobs.map((job) =>
+        fetch(`/api/site/media?prefix=${job.prefix}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [job.key, data.images?.[0]?.url ?? null] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [key, url] of entries) if (url) map[key] = url;
+      setProjectCovers(map);
+    });
+
     const allProjects = [...completedProjects, ...ongoingProjects];
     const folderJobs = [...new Set(allProjects.map((p) => p.photoFolder).filter(Boolean))] as string[];
     const folderStatus = new Map<string, "completed" | "ongoing">();
@@ -227,7 +244,9 @@ export default function Programs() {
     category === "Community Health" ? "health" :
     "child";
 
-  function resolveCover(project: Project, indexInCategory: number): string | null {
+  function resolveCover(project: Project, index: number, status: "completed" | "ongoing", indexInCategory: number): string | null {
+    const own = projectCovers[`${status}-${index}`];
+    if (own) return own;
     if (project.photoFolder && folderCovers[project.photoFolder]) return folderCovers[project.photoFolder];
     const pool = categoryPools[categorySlugFor(project.category)];
     if (pool && pool.length > 0) return pool[indexInCategory % pool.length];
@@ -505,7 +524,7 @@ export default function Programs() {
                     project={p}
                     index={i}
                     status={projectsTab}
-                    coverUrl={resolveCover(p, catIndex)}
+                    coverUrl={resolveCover(p, i, projectsTab, catIndex)}
                   />
                 );
               });

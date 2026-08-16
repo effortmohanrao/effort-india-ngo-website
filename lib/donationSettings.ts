@@ -36,7 +36,7 @@ export const defaultDonationSettings: DonationSettings = {
     accountNumber: "40102285992",
     ifsc: "SBIN0000691",
     branch: "New Delhi Main Branch, 11 Sansad Marg (Parliament Street), New Delhi 110001",
-    swiftCode: "",
+    swiftCode: "SBININBB104",
   },
   receiptEmail: "effortap@gmail.com",
   updatedAt: "",

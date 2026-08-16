@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ExternalLink, Sparkles } from "lucide-react";
+import { ExternalLink, Sparkles, Handshake, Quote } from "lucide-react";
 import HeroSectionPanel from "./HeroSectionPanel";
+import PartnershipsPanel from "./PartnershipsPanel";
+import TestimonialsPanel from "./TestimonialsPanel";
 
 type Section = {
   icon: typeof Sparkles;
@@ -14,6 +16,8 @@ type Section = {
 
 const sections: Section[] = [
   { icon: Sparkles, title: "Hero", desc: "Headline, subtext, call-to-action buttons, and the credibility strip.", managed: true },
+  { icon: Handshake, title: "Government & Institutional Partnerships", desc: "5 rotating category photos — Government, CSR, Educational, International, Foundations.", managed: true },
+  { icon: Quote, title: "Testimonials", desc: "12 real farmer testimonials — upload each person's photo.", managed: true },
 ];
 
 export default function HomePanel() {
@@ -21,6 +25,14 @@ export default function HomePanel() {
 
   if (openSection === "Hero") {
     return <HeroSectionPanel onBack={() => setOpenSection(null)} />;
+  }
+
+  if (openSection === "Government & Institutional Partnerships") {
+    return <PartnershipsPanel onBack={() => setOpenSection(null)} />;
+  }
+
+  if (openSection === "Testimonials") {
+    return <TestimonialsPanel onBack={() => setOpenSection(null)} />;
   }
 
   return (

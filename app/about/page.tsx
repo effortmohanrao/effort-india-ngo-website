@@ -577,6 +577,23 @@ const finaleStats: FinaleStat[] = [
 export default function About() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [heroImages, setHeroImages] = useState<{ key: string; url: string }[]>([]);
+  const [activeHeroImage, setActiveHeroImage] = useState(0);
+
+  useEffect(() => {
+    fetch("/api/site/media?prefix=about/hero", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => setHeroImages(data.images ?? []))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (heroImages.length < 2) return;
+    const id = setInterval(() => {
+      setActiveHeroImage((i) => (i + 1) % heroImages.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, [heroImages]);
 
   useEffect(() => {
     fetch("/api/site/media?prefix=logo", { cache: "no-store" })
@@ -863,19 +880,44 @@ export default function About() {
             >
               <div className="relative rounded-[36px] overflow-hidden border-2 border-emerald-400/30 bg-slate-900/60 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(0,0,0,0.6)] group">
 
-                {/* Main Cinematic Image */}
+                {/* Main Cinematic Image — rotates through admin-uploaded photos every ~3.5s */}
                 <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/10">
-                  <img
-                    src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200"
-                    alt="EFFORT NGO Rural Community Field Operations"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  />
+                  {heroImages.length > 0 ? (
+                    heroImages.map((img, i) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        key={img.key}
+                        src={img.url}
+                        alt="EFFORT NGO Rural Community Field Operations"
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-out ${i === activeHeroImage ? "opacity-100" : "opacity-0"}`}
+                      />
+                    ))
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200"
+                      alt="EFFORT NGO Rural Community Field Operations"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-85" />
 
                   {/* Laser Light Sweep */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-light-sweep" />
                   </div>
+
+                  {/* Slide position dots — only shown once real photos are uploaded */}
+                  {heroImages.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5">
+                      {heroImages.map((img, i) => (
+                        <span
+                          key={img.key}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${i === activeHeroImage ? "w-5 bg-emerald-400" : "w-1.5 bg-white/40"}`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Top Right Floating Pill Badge */}

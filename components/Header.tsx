@@ -261,12 +261,12 @@ export default function Header() {
                 </div>
               </div>
               <div>
-                <span className={`font-black tracking-tight bg-gradient-to-r from-emerald-900 via-emerald-700 to-amber-600 bg-clip-text text-transparent block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl sm:text-2xl"}`}>
+                <span className={`font-black tracking-tight animate-maroon-shimmer block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl sm:text-2xl"}`}>
                   EFFORT
                 </span>
-                <span className="relative text-[10px] sm:text-xs font-bold text-emerald-600 tracking-widest uppercase mt-1 block w-fit">
+                <span className="relative text-[10px] sm:text-xs font-bold text-[#8c1c2b] tracking-widest uppercase mt-1 block w-fit">
                   Empowering Futures
-                  <span className="absolute left-0 -bottom-0.5 h-px bg-emerald-500 w-0 group-hover:w-full transition-all duration-300" />
+                  <span className="absolute left-0 -bottom-0.5 h-px bg-[#8c1c2b] w-0 group-hover:w-full transition-all duration-300" />
                 </span>
               </div>
             </Link>

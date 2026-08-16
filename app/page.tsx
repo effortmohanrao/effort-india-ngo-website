@@ -13,6 +13,8 @@ import {
   Play,
   CheckCircle2,
   ShieldCheck,
+  Trees,
+  Coins,
   Calendar,
   Sparkles,
   MapPin,
@@ -225,64 +227,69 @@ const processSteps: ProcessStep[] = [
   {
     step: "01",
     badge: "Attitude & Skills",
-    topic: "Change the attitudes of rural communities and enhance the skills & Knowledge",
+    topic: "Change the attitudes of rural communities and enhance technical skills & Knowledge through regular capacity-building workshops, field demonstrations, and sustainable agriculture awareness.",
     icon: Lightbulb,
   },
   {
     step: "02",
     badge: "CBO & Planning",
-    topic: "Formation & Nurturing the Community Based Organisations and Participatory Programme Planning",
+    topic: "Formation & Nurturing of Community-Based Organisations (FPOs, SHGs, & User Groups) alongside grassroots Participatory Programme Planning for long-term community ownership.",
     icon: Users,
   },
   {
     step: "03",
     badge: "Resource Utilisation",
-    topic: "Optimum Utilisation of Local Resources",
+    topic: "Optimum Utilisation of Local Resources by mobilizing indigenous seed banks, natural soil organic carbon enrichment, rainwater harvesting structures, and community watershed management.",
     icon: Layers,
   },
   {
     step: "04",
     badge: "Monitoring",
-    topic: "Participatory Monitoring",
+    topic: "Participatory Monitoring & Real-Time Field Audits conducted directly with village development committees, digital record-keeping, geotagged evidence, and transparent progress tracking.",
     icon: LineChart,
   },
   {
     step: "05",
     badge: "Sustenance",
-    topic: "Measures for the sustenance of project Initiatives",
+    topic: "Implementation of measures for the long-term sustenance of project Initiatives, establishing community maintenance funds, institutional handovers, and self-reliant market linkages.",
     icon: ShieldCheck,
   },
 ];
 
 
-type PartnershipSlide = { title: string; icon: typeof Landmark; image: string; desc: string };
+type PartnershipSlide = { slug: string; title: string; icon: typeof Landmark; image: string; desc: string };
 
 const partnershipSlides: PartnershipSlide[] = [
   {
+    slug: "government",
     title: "Government",
     icon: Landmark,
     image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=900",
     desc: "Working alongside government departments on ground-level implementation and reporting.",
   },
   {
+    slug: "csr-partners",
     title: "CSR Partners",
     icon: Building2,
     image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=900",
     desc: "Delivering measurable, auditable outcomes for corporate CSR mandates.",
   },
   {
+    slug: "educational-institutions",
     title: "Educational & Research Institutions",
     icon: GraduationCap,
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=900",
     desc: "Collaborating with universities and colleges on research and field programs.",
   },
   {
+    slug: "international-organizations",
     title: "International Organizations",
     icon: Globe2,
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=900",
     desc: "Aligning with global development frameworks and cross-border initiatives.",
   },
   {
+    slug: "foundations",
     title: "Foundations",
     icon: Award,
     image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=900",
@@ -290,11 +297,13 @@ const partnershipSlides: PartnershipSlide[] = [
   },
 ];
 
-const partnershipStats: { label: string; value: string }[] = [
-  { label: "Operating States", value: "10 States" },
-  { label: "Districts Reached", value: "37 Districts" },
-  { label: "Villages Transformed", value: "1,909 Villages" },
-  { label: "Community Collectives", value: "1,368 Orgs" },
+const partnershipStats: { label: string; value: string; desc: string }[] = [
+  { label: "Operating States", value: "10 States", desc: "Across India" },
+  { label: "Districts Reached", value: "37 Districts", desc: "Field Operations" },
+  { label: "Villages Transformed", value: "1,909 Villages", desc: "Grassroots Coverage" },
+  { label: "Community Collectives", value: "1,368 Orgs", desc: "42 FPOs & 1,275 SHGs" },
+  { label: "Families & Lives Impacted", value: "2.67 Lakh+", desc: "Direct Beneficiaries" },
+  { label: "Total Field Projects", value: "80 Projects", desc: "65 Delivered & 15 Active" },
 ];
 
 const partnershipBadges: { label: string; icon: typeof ShieldCheck }[] = [
@@ -372,267 +381,135 @@ const csrAdvantageChips: { label: string; icon: typeof Eye }[] = [
   { label: "CSR Compliance", icon: ShieldCheck },
 ];
 
-type RealVoiceStory = {
+type VoiceStory = {
   id: string;
-  category: "all" | "beneficiary" | "csr" | "leader" | "volunteer";
-  categoryLabel: string;
-  badge: string;
+  slug: string;
   name: string;
   role: string;
-  organization?: string;
-  location: string;
-  title: string;
+  place: string;
   quote: string;
-  story: string;
-  fullStory: string;
-  avatar: string;
-  heroImage: string;
-  mediaType: "video" | "audio";
-  duration: string;
-  metrics: { label: string; value: string }[];
-  verifiedTag: string;
-  sdgTag: string;
-  rating: number;
 };
 
-const realVoiceStories: RealVoiceStory[] = [
+// Real farmer testimonials, sourced directly from EFFORT's own case-study and
+// testimonial documents (Testimonials.docx, DKA tesimonials.docx, DKA Success
+// stories.docx). Long-form case studies were condensed into short, quotable
+// excerpts; nothing here is invented.
+const realVoiceStories: VoiceStory[] = [
   {
     id: "story-1",
-    category: "beneficiary",
-    categoryLabel: "Women Entrepreneur",
-    badge: "SHG & FPO Leadership",
-    name: "Savita Devi",
-    role: "President, Mahila Tejaswini Self-Help Group",
-    location: "Prakasam District, Andhra Pradesh",
-    title: "From Single Sewing Machine to a 15-Artisan Rural Apparel Enterprise",
-    quote: "Effort NGO didn't just donate machinery — they taught us financial management, connected our SHG directly to regional buyers, and restored our independent household dignity.",
-    story: "Starting with a single sewing machine in her village dwelling, Savita participated in Effort NGO's intensive micro-enterprise capacity building program. Today, she leads a 15-woman tailoring collective supplying uniforms across 12 schools.",
-    fullStory: "Savita Devi lived in a small remote village in Prakasam district where seasonal agricultural labor was the only income source for women. In 2021, Effort NGO established a village-level Self-Help Group (SHG) micro-enterprise center equipped with high-speed industrial stitching equipment, financial management workshops, and direct market linkage partnerships.\n\nOver 18 months, Savita transformed from a hesitant learner into the elected President of a 15-member collective. The group now manages bulk contract orders for school uniforms and eco-friendly cloth bags across 12 nearby Gram Panchayats. All 15 member households have quadrupled their monthly savings, opened direct bank accounts, and eliminated dependence on high-interest local informal moneylenders.",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "video",
-    duration: "2:45 min video story",
-    metrics: [
-      { label: "Household Income Multiplier", value: "3.4x Growth" },
-      { label: "Women Artisans Employed", value: "15 Members" },
-      { label: "Institutional Credit Linked", value: "100% Active" }
-    ],
-    verifiedTag: "Grassroots SHG Leader",
-    sdgTag: "SDG 5: Gender Equality",
-    rating: 5
+    slug: "ambati-thasamma",
+    name: "Ambati Thasamma",
+    role: "Chilli Farmer",
+    place: "P. Bommalapuram, Dornala Mandal, Prakasam District",
+    quote: "By intercropping my chilli with tomato and cluster beans, I earned an extra ₹16,700 net profit — and improved my soil health at the same time.",
   },
   {
     id: "story-2",
-    category: "beneficiary",
-    categoryLabel: "Climate Farmer",
-    badge: "Water & Soil Conservation",
-    name: "Rameshwar Rao",
-    role: "Director, Rythu Bandhu Farmer Producer Org (FPO)",
-    location: "Nalgonda District, Telangana",
-    title: "Saving 10.75M m³ Groundwater Through DSR & Watershed Structures",
-    quote: "Adopting Direct Seeded Rice (DSR) and Integrated Pest Management under Effort NGO's guidance reduced our cultivation costs by 28% while recharging community wells across our entire watershed.",
-    story: "Facing recurring drought and rising chemical fertilizer costs, Rameshwar led 120 smallholders to build farm ponds, check dams, and adopt climate-resilient cropping techniques enabled by Effort NGO.",
-    fullStory: "In semi-arid Nalgonda district, declining water tables and erratic rainfall threatened smallholder paddy farming. Effort NGO's watershed team mobilized 528 villages to construct 2,702 water harvesting structures and conduct field schools on Direct Seeded Rice (DSR) and Integrated Pest Management (IPM).\n\nRameshwar Rao converted his 5-acre family farm into a model climate-smart demonstration plot. By replacing flood irrigation with DSR methods and utilizing farm pond water reserves, he reduced per-acre input costs by 28% while boosting grain yields by 22%. Today, his FPO includes 23,352 shareholder farmers sharing collective storage facilities and market negotiating power.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "video",
-    duration: "3:10 min documentary",
-    metrics: [
-      { label: "Ground Water Recharged", value: "35% Volume" },
-      { label: "Input Expense Drop", value: "28% Reduced" },
-      { label: "Farmers Capacitated", value: "1,685+ Trained" }
-    ],
-    verifiedTag: "FPO Board Representative",
-    sdgTag: "SDG 13: Climate Action",
-    rating: 5
+    slug: "u-ramaiah",
+    name: "U. Ramaiah",
+    role: "Dairy Farmer",
+    place: "Sanikavaram, Peddaraveedu Mandal, Prakasam District",
+    quote: "Growing my own COFS 31 fodder saved me ₹30,000 a year I used to spend buying dry grass, and selling the surplus seed gave me a whole new income stream.",
   },
   {
     id: "story-3",
-    category: "csr",
-    categoryLabel: "CSR Strategy Lead",
-    badge: "Statutory & Corporate Governance",
-    name: "Dr. Marcus Weber",
-    role: "Senior CSR Strategy Lead, Rural Development Division",
-    organization: "International CSR & Development Agency",
-    location: "Bengaluru & Global Head Office",
-    title: "100% Statutory Compliance & Auditable Field Execution",
-    quote: "Partnering with Effort NGO gives our corporate CSR committee complete trust. Their 27-year track record, quarterly Utilization Certificates (UC), and GIS geo-tagged field logs set a benchmark for ground governance.",
-    story: "Collaborating across Schedule VII CSR mandates, Effort NGO ensures corporate contributions map directly to auditable social outcomes, verified by independent third-party assessments.",
-    fullStory: "Executing high-scale corporate social responsibility mandates requires transparent governance, flawless legal compliance, and verifiable ground metrics. Over a 5-year partnership spanning 37 districts, Effort NGO executed multi-crore CSR initiatives aligned with NITI Aayog guidelines and Companies Act Schedule VII.\n\nEvery project milestone was backed by itemized financial utilization certificates (UC), independent impact audits, and live geo-tagged GIS field mapping. Dr. Weber's corporate oversight board commended Effort NGO for zero statutory non-compliance, immaculate audit reports, and deep community ownership.",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "audio",
-    duration: "1:50 min audio interview",
-    metrics: [
-      { label: "Statutory Audit Compliance", value: "100% Clean" },
-      { label: "Quarterly UC Delivery", value: "On-Time Filings" },
-      { label: "Field Service Track Record", value: "27 Years" }
-    ],
-    verifiedTag: "Audited CSR Partner",
-    sdgTag: "SDG 17: Partnerships",
-    rating: 5
+    slug: "srinivasa-reddy",
+    name: "Srinivasa Reddy",
+    role: "Chilli Farmer",
+    place: "P. Bommalapuram, Dornala Mandal, Prakasam District",
+    quote: "After thrips destroyed my chilli crop, EFFORT's IPM and intercropping training helped me rebuild — and earn more than I ever had before.",
   },
   {
     id: "story-4",
-    category: "leader",
-    categoryLabel: "Village Sarpanch",
-    badge: "Community Health & RO Water",
-    name: "Sunita Tai Shinde",
-    role: "Gram Panchayat Sarpanch",
-    location: "Osmanabad District, Maharashtra",
-    title: "Eradicating Waterborne Diseases Across 3 Gram Panchayats",
-    quote: "Before Effort NGO installed solar-powered RO water ATMs, high fluoride content caused widespread joint pain and child illness. Now 4,200 villagers drink 100% purified water daily.",
-    story: "Sunita worked with Effort NGO engineers to establish self-sustaining solar RO filtration plants operated and maintained by local youth collectives.",
-    fullStory: "High fluorosis levels and contaminated groundwater plagued rural hamlets in Osmanabad, leading to chronic gastrointestinal infections and school absenteeism. In 2022, Effort NGO partnered with the local Gram Panchayat to commission 50 community RO purification plants powered by dedicated solar arrays.\n\nUnder Sarpanch Sunita Tai's leadership, a village water user committee was trained to manage daily operations, maintenance funds, and automated RFID water card dispenses. Incidence of waterborne fluorosis dropped by 82% within one year, and user fee revenues now fully cover plant maintenance.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "video",
-    duration: "2:15 min video story",
-    metrics: [
-      { label: "Clean Water Beneficiaries", value: "4,200 Villagers" },
-      { label: "Waterborne Illness Drop", value: "-82% Reduction" },
-      { label: "Solar RO Plants Built", value: "50 Units" }
-    ],
-    verifiedTag: "Elected Village Leader",
-    sdgTag: "SDG 6: Clean Water",
-    rating: 5
+    slug: "ananthalakshmi",
+    name: "Ananthalakshmi",
+    role: "Dairy Farmer",
+    place: "Kothamallapuram, Bestavaripeta Mandal, Prakasam District",
+    quote: "I used to spend hours every day collecting grass for my buffaloes. Now it takes 10 minutes, and our milk income has grown by over ₹4,000 a month.",
   },
   {
     id: "story-5",
-    category: "volunteer",
-    categoryLabel: "Youth Volunteer",
-    badge: "Digital Education Fellow",
-    name: "Kavya Nair",
-    role: "Lead Educator & Digital Literacy Fellow",
-    location: "Anantapur District, Andhra Pradesh",
-    title: "Bringing Solar STEM Labs & Digital Literacy to Rural Classrooms",
-    quote: "Seeing rural children code their first animation on solar-powered tablets provided by Effort NGO is the most inspiring experience of my academic career.",
-    story: "Kavya spent 6 months teaching foundational computer literacy and STEM concepts across 14 rural government primary schools.",
-    fullStory: "Rural schools often lack computer labs, internet connectivity, and specialized STEM teachers. Through Effort NGO's Digital Classroom Fellowship, graduate volunteer Kavya Nair was deployed to remote schools equipped with mobile solar-powered computer kiosks and interactive digital curricula.\n\nOver two academic terms, Kavya conducted hands-on coding workshops, basic computer operation classes, and science experiment kits for over 850 primary school children. 94% of participating students passed basic digital literacy benchmarks, and school attendance rates rose by 26%.",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "video",
-    duration: "1:40 min volunteer story",
-    metrics: [
-      { label: "Students Digitally Trained", value: "850+ Children" },
-      { label: "Smart Labs Kiosks", value: "14 Schools" },
-      { label: "Volunteer Hours Logged", value: "320 Hours" }
-    ],
-    verifiedTag: "Youth Impact Fellow",
-    sdgTag: "SDG 4: Quality Education",
-    rating: 5
+    slug: "venkatesh",
+    name: "Venkatesh",
+    role: "Millet Farmer",
+    place: "Manekurthy Village",
+    quote: "My father grew millets but I never did — until EFFORT's team convinced me to try. Now I farm it on 2 acres with less investment and better health at home.",
   },
   {
     id: "story-6",
-    category: "beneficiary",
-    categoryLabel: "School Headmaster",
-    badge: "Child Education & Infrastructure",
-    name: "Rajesh Kumar Varma",
-    role: "Headmaster, Zilla Parishad High School",
-    location: "Mahbubnagar District, Telangana",
-    title: "Achieving Zero Dropouts & 98% Attendance in Village High School",
-    quote: "Effort NGO upgraded our school infrastructure, built modern sanitation blocks for girls, and provided midday nutrition. Our attendance jumped from 64% to 98%.",
-    story: "Through Effort NGO's holistic school transformation program, 340 children from marginalized farming families received free learning kits and modern science labs.",
-    fullStory: "Prior to intervention, ZPHS Mahbubnagar struggled with high dropout rates, especially among teenage girls who lacked access to clean sanitation facilities. Effort NGO stepped in with a holistic school rejuvenation package: constructing dual sanitation blocks with running water, installing a dedicated solar power backup, and equipping an 8-station digital science lab.\n\nHeadmaster Varma reported that girl child dropouts fell to zero within the first academic year. The school's overall Class X board examination pass rate reached an all-time high of 96%, earning regional recognition from the State Education Board.",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "audio",
-    duration: "2:05 min audio clip",
-    metrics: [
-      { label: "School Attendance Rate", value: "98% Peak" },
-      { label: "Girl Child Dropout Rate", value: "0% Zero" },
-      { label: "Board Exam Pass Rate", value: "96% High" }
-    ],
-    verifiedTag: "State School Administrator",
-    sdgTag: "SDG 4: Quality Education",
-    rating: 5
+    slug: "rameswaramma",
+    name: "Rameswaramma",
+    role: "Farmer",
+    place: "Hulibeedu Village",
+    quote: "I convinced my husband to try millets and pulses after seeing our neighbours succeed. We earned ₹70,000 in net returns that year, thanks to EFFORT and DKA.",
   },
   {
     id: "story-7",
-    category: "csr",
-    categoryLabel: "CSR Head",
-    badge: "Corporate Impact & ESG",
-    name: "Ananya Deshmukh",
-    role: "Head of CSR & ESG Initiatives",
-    organization: "Tech For Good Foundation",
-    location: "Mumbai & Pune, Maharashtra",
-    title: "Empowering 40 Village Schools with Solar Digital Labs",
-    quote: "Effort NGO's field rigor, weekly progress reporting, and zero statutory non-compliance allowed our CSR committee to scale digital literacy seamlessly.",
-    story: "Partnering across 40 remote village schools, Ananya's corporate foundation deployed solar computer labs with Effort NGO as the ground implementation partner.",
-    fullStory: "Implementing scalable digital education across drought-prone rural districts required bulletproof ground coordination. Effort NGO managed site surveys, solar panel installations, teacher training, and continuous technical support for 40 digital school labs.\n\nAnanya Deshmukh highlighted that Effort NGO's transparent fund utilization certificates and quarterly third-party impact assessments exceeded all internal corporate compliance standards.",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "video",
-    duration: "2:10 min CSR spotlight",
-    metrics: [
-      { label: "Digital Labs Deployed", value: "40 School Labs" },
-      { label: "Compliance Benchmark", value: "100% Audited" },
-      { label: "Students Benefited", value: "12,000+ Kids" }
-    ],
-    verifiedTag: "Verified Corporate CSR Lead",
-    sdgTag: "SDG 17: Partnerships",
-    rating: 5
+    slug: "sudhakar-reddy",
+    name: "Sudhakar Reddy",
+    role: "Farmer",
+    place: "Muddanageri Village",
+    quote: "After our borewell dried up, EFFORT's team helped us recharge it. With drip irrigation and IPM practices, we finally got out of debt.",
   },
   {
     id: "story-8",
-    category: "leader",
-    categoryLabel: "Sarpanch Leader",
-    badge: "Groundwater Conservation",
-    name: "Gurpreet Singh",
-    role: "Gram Panchayat Sarpanch",
-    location: "Bathinda District, Punjab",
-    title: "Restoring 14 Village Ponds & Groundwater Recharge",
-    quote: "Through Effort NGO's watershed engineering, our village borewells recharged by 18 feet. Farming families no longer migrate for winter water.",
-    story: "Gurpreet mobilized 1,200 villagers alongside Effort NGO hydrologists to desilt 14 community ponds and build rainwater injection wells.",
-    fullStory: "Declining water tables had severely impacted agriculture in Bathinda. Effort NGO partnered with Gurpreet's Gram Panchayat to construct recharge shafts and clean community ponds.\n\nWithin 14 months, static water levels in village wells rose by 18 feet, providing reliable irrigation for winter crops and securing clean livestock drinking water.",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "video",
-    duration: "2:30 min field interview",
-    metrics: [
-      { label: "Water Level Rise", value: "18 Feet Recharged" },
-      { label: "Ponds Restored", value: "14 Water Bodies" },
-      { label: "Farmland Irrigated", value: "1,800 Acres" }
-    ],
-    verifiedTag: "Panchayat Sarpanch",
-    sdgTag: "SDG 6: Clean Water",
-    rating: 5
+    slug: "marthamma",
+    name: "Marthamma",
+    role: "Farmer",
+    place: "Kuruvalli Village",
+    quote: "We recharged our borewell ourselves with EFFORT's technical guidance. Water discharge improved 100%, and it transformed our lives.",
   },
   {
     id: "story-9",
-    category: "volunteer",
-    categoryLabel: "Watershed Fellow",
-    badge: "Youth Rural Action",
-    name: "Aman Verma",
-    role: "Civil Engineering Youth Fellow",
-    location: "Solapur District, Maharashtra",
-    title: "Constructing 32 Check Dams with Local Youth Collectives",
-    quote: "Serving alongside Effort NGO engineers gave me hands-on civil experience while directly securing drinking water for 3,500 villagers.",
-    story: "Aman spent 8 months living in Solapur, coordinating youth volunteers to construct low-cost check dams ahead of the monsoon.",
-    fullStory: "Working in water-stressed Solapur, civil engineering graduate Aman Verma helped design community check dams using locally available stone and gabion structures.\n\nHis team completed 32 check dams across 4 Gram Panchayats, holding back monsoon runoff and supplying 3,500 villagers with clean well water through the dry summer months.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
-    heroImage: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000",
-    mediaType: "audio",
-    duration: "1:45 min youth interview",
-    metrics: [
-      { label: "Check Dams Built", value: "32 Structures" },
-      { label: "Volunteer Hours", value: "450 Hours" },
-      { label: "Villagers Served", value: "3,500 People" }
-    ],
-    verifiedTag: "Ground Impact Fellow",
-    sdgTag: "SDG 13: Climate Action",
-    rating: 5
-  }
+    slug: "kishtappa",
+    name: "Kishtappa",
+    role: "Farmer",
+    place: "Hathibelagal Village",
+    quote: "Applying tank silt to my fields cut my fertiliser costs by 60% and raised my yield by 30%.",
+  },
+  {
+    id: "story-10",
+    slug: "shekanna",
+    name: "Shekanna",
+    role: "Farmer",
+    place: "Hulebeedu Village",
+    quote: "After seeing tank silt work in a neighbour's field, I applied it myself — better soil, better moisture, and now I'm sharing it with other farmers too.",
+  },
+  {
+    id: "story-11",
+    slug: "n-mallaiah",
+    name: "N. Mallaiah",
+    role: "Chilli Farmer",
+    place: "Hulebeedu Village, Aluru Mandal",
+    quote: "Recharging my borewell and switching to chilli changed my life — from barely surviving on that land to nearly ₹10 lakh in net returns in a single season.",
+  },
+  {
+    id: "story-12",
+    slug: "shaiksha-vali",
+    name: "Shaiksha Vali",
+    role: "Farmer, Engineering Graduate",
+    place: "Hathi Belagal Village",
+    quote: "I left a ₹7 lakh software job in Bangalore to farm. Growing green manure crops before my main crop has already cut my fertiliser costs and improved my soil.",
+  },
 ];
 
 export default function Home() {
-  // Real Voices & Testimonials section states
-  const [voiceCategoryFilter, setVoiceCategoryFilter] = useState<string>("all");
+  // Real Voices & Testimonials section state
+  const [testimonialPhotos, setTestimonialPhotos] = useState<Record<string, string>>({});
 
-  const filteredStories = realVoiceStories.filter((s) => {
-    if (voiceCategoryFilter === "all") return true;
-    return s.category === voiceCategoryFilter;
-  });
+  useEffect(() => {
+    Promise.all(
+      realVoiceStories.map((s) =>
+        fetch(`/api/site/media?prefix=homepage/testimonials/${s.slug}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [s.slug, data.images?.[0]?.url] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [slug, url] of entries) if (url) map[slug] = url;
+      setTestimonialPhotos(map);
+    });
+  }, []);
 
 
   // Hero section states
@@ -678,6 +555,21 @@ export default function Home() {
   const [partnershipRef, partnershipVisible] = useScrollReveal<HTMLElement>();
   const [activeSlide, setActiveSlide] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
+  const [partnerSlideImages, setPartnerSlideImages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    Promise.all(
+      partnershipSlides.map((s) =>
+        fetch(`/api/site/media?prefix=homepage/partnerships/${s.slug}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [s.slug, data.images?.[0]?.url] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [slug, url] of entries) if (url) map[slug] = url;
+      setPartnerSlideImages(map);
+    });
+  }, []);
 
   // CSR Partnership Model section states
   const [csrRef, csrVisible] = useScrollReveal<HTMLElement>();
@@ -807,10 +699,10 @@ export default function Home() {
           </div>
         )}
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-16 lg:gap-10 items-center w-full">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-8 items-center w-full">
 
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 space-y-7">
+          <div className="lg:col-span-6 space-y-7">
 
             <div
               className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -901,8 +793,92 @@ export default function Home() {
 
           </div>
 
-          {/* Hero Right Area — Empty space so full-bleed background image shines through */}
-          <div className="lg:col-span-5 pointer-events-none" />
+          {/* Hero Right Area — Prestige Climate Tech Spotlight Showcase (Compact Box & Ultra Light Blur) */}
+          <div className="lg:col-span-5 relative z-20 mt-8 lg:mt-0 lg:ml-auto w-full flex justify-end">
+            <div className="group relative w-full max-w-md rounded-[30px] bg-gradient-to-br from-[#022c22]/85 via-[#064e3b]/80 to-[#042f2e]/85 backdrop-blur-xs border-2 border-amber-300 p-5 sm:p-5.5 shadow-[0_0_40px_rgba(16,185,129,0.35)] -translate-y-1 lg:translate-x-12 xl:translate-x-16 transition-all duration-500 overflow-hidden">
+              
+              {/* Top Glowing Laser Light-Beam Sweep */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-300 via-emerald-400 via-teal-300 to-amber-300 animate-pulse" />
+              
+              {/* Subtle Liquid Emerald & Gold Orbs in background */}
+              <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 bg-emerald-400/20 rounded-full blur-[90px]" />
+              <div className="pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 bg-amber-400/15 rounded-full blur-[90px]" />
+
+              <div className="relative space-y-5">
+                
+                {/* Header Showcase Badges */}
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-500/25 pb-3">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-400/20 border border-emerald-300/40 text-emerald-200 text-[11px] font-black uppercase tracking-wider shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: '6s' }} />
+                    <span>PRESTIGE CLIMATE FLAGSHIP</span>
+                  </div>
+
+                  <span className="px-3 py-1 rounded-full text-[10px] font-black text-slate-950 bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-300 uppercase tracking-widest shadow-[0_0_18px_rgba(251,191,36,0.6)]">
+                    EXCLUSIVE SHOWCASE
+                  </span>
+                </div>
+
+                {/* Card Title & Prominent VARAHA Highlight Badge */}
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug drop-shadow-md">
+                    Regenerative Agriculture &amp; Soil Carbon Credit Project
+                  </h3>
+
+                  {/* Prominent VARAHA Highlight Box */}
+                  <div className="mt-3 p-3 rounded-2xl bg-slate-950/60 border border-amber-300/50 flex items-center justify-between gap-3 shadow-inner">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400 to-emerald-400 text-slate-950 flex items-center justify-center font-black text-sm shadow-md shrink-0">
+                        V
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-amber-300/90">Global Climate Tech Partner</p>
+                        <p className="text-sm font-black text-white tracking-wide">VARAHA CLIMATE AG</p>
+                      </div>
+                    </div>
+                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase tracking-wider">
+                      VERIFIED TECH
+                    </span>
+                  </div>
+                </div>
+
+                {/* Key Pillars Checklist */}
+                <div className="space-y-2.5 pt-1">
+                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-emerald-100 font-bold">
+                    <Trees className="w-4.5 h-4.5 text-amber-300 shrink-0 mt-0.5" />
+                    <span><strong className="text-white">Soil Carbon Sequestration</strong> across smallholder farmlands</span>
+                  </div>
+                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-emerald-100 font-bold">
+                    <Coins className="w-4.5 h-4.5 text-amber-300 shrink-0 mt-0.5" />
+                    <span><strong className="text-white">Direct Carbon Credit Offsets &amp; Monetization</strong> for rural farmers</span>
+                  </div>
+                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-emerald-100 font-bold">
+                    <ShieldCheck className="w-4.5 h-4.5 text-amber-300 shrink-0 mt-0.5" />
+                    <span><strong className="text-white">Climate-Smart DSR &amp; IPDM</strong> regenerative farming techniques</span>
+                  </div>
+                </div>
+
+                {/* Mini 2-Column Metrics & Executive CTA */}
+                <div className="pt-3 border-t border-emerald-500/25 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="px-3.5 py-1.5 rounded-xl bg-slate-950/60 border border-emerald-400/30">
+                      <p className="text-[9px] uppercase font-black tracking-widest text-emerald-300">Target Coverage</p>
+                      <p className="text-base font-black text-amber-300">1.03 Lakh Acres</p>
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/programs"
+                    className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-300 text-slate-950 font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(251,191,36,0.6)] hover:scale-105 transition-all cursor-pointer"
+                  >
+                    <span>Explore Project</span>
+                    <ArrowUpRight className="w-4 h-4 text-slate-950" />
+                  </Link>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
 
         </div>
       </section>
@@ -1404,7 +1380,7 @@ export default function Home() {
       </section>
 
       {/* --- GOVERNMENT & INSTITUTIONAL PARTNERSHIPS SECTION (OPTION A: EXECUTIVE CHAMPAGNE/CREAM PALETTE) --- */}
-      <section ref={partnershipRef} className="relative overflow-hidden text-slate-900 py-16 lg:py-24 bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0]">
+      <section id="partnerships" ref={partnershipRef} className="relative overflow-hidden text-slate-900 py-16 lg:py-24 bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0]">
         {/* Soft Liquid Silk Ambient Halos */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] bg-gradient-to-bl from-amber-200/45 via-amber-100/30 to-transparent rounded-full blur-[140px] animate-liquid-drift-a" />
@@ -1434,11 +1410,12 @@ export default function Home() {
               </p>
 
               {/* Verified Institutional Reach Matrix */}
-              <div className="grid grid-cols-2 gap-3.5 mt-7">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mt-7">
                 {partnershipStats.map((stat) => (
-                  <div key={stat.label} className="bg-white/90 backdrop-blur-xl border border-amber-900/15 rounded-2xl p-4 shadow-[0_8px_25px_-8px_rgba(120,53,15,0.12)]">
-                    <p className="font-black text-2xl text-slate-900 tracking-tight">{stat.value}</p>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-amber-900/80 mt-1">{stat.label}</p>
+                  <div key={stat.label} className="bg-white/95 backdrop-blur-xl border border-amber-900/15 rounded-2xl p-4 shadow-[0_8px_25px_-8px_rgba(120,53,15,0.12)] hover:border-amber-500/50 hover:shadow-md transition-all">
+                    <p className="font-black text-xl sm:text-2xl text-slate-900 tracking-tight">{stat.value}</p>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-amber-900/90 mt-1">{stat.label}</p>
+                    <p className="text-[9px] font-bold text-slate-500 mt-0.5">{stat.desc}</p>
                   </div>
                 ))}
               </div>
@@ -1494,7 +1471,7 @@ export default function Home() {
                     <div key={activeSlide} className="animate-fade-in relative z-10">
                       <div className="grid sm:grid-cols-2 gap-6 items-center">
                         <div className="relative rounded-2xl overflow-hidden h-48 sm:h-56 border border-amber-900/15 shadow-sm">
-                          <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover" />
+                          <img src={partnerSlideImages[slide.slug] ?? slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover" />
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
                         </div>
                         <div>
@@ -1562,7 +1539,7 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#381116] border border-[#5B1D24] text-[#F7E4A3] text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-md">
               <Handshake className="w-3.5 h-3.5 text-amber-300" />
-              <span>CSR LIFECYCLE &amp; GOVERNANCE SUITE</span>
+              <span>CSR PARTNERSHIPS &amp; TRANSPARENT GOVERNANCE</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#2B0C10] leading-tight">
@@ -1570,7 +1547,7 @@ export default function Home() {
             </h2>
 
             <p className="text-[#522026] text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
-              Form CSR-1 approved, Section 80G tax deductible, and NITI Aayog DARPAN empaneled for transparent corporate CSR execution under Companies Act Schedule VII.
+              Fully registered with the government (Form CSR-1), Section 80G tax-exempt, and NITI Aayog DARPAN empaneled for simple, transparent corporate CSR partnerships.
             </p>
           </div>
 
@@ -1579,31 +1556,31 @@ export default function Home() {
             {[
               {
                 step: "01",
-                title: "Schedule VII Scoping",
-                desc: "Mapping corporate CSR mandates under Schedule VII, ensuring NITI Darpan & MCA CSR-1 alignment.",
+                title: "Legal CSR Alignment",
+                desc: "Matching your company's CSR goals with official government guidelines and NGO registration standards.",
                 icon: Briefcase,
-                tag: "Statutory Scoping",
+                tag: "Fully Compliant",
               },
               {
                 step: "02",
-                title: "Baseline & Co-Design",
-                desc: "Diagnostic field mapping across villages to build itemized logframes and auditable milestone deliverables.",
+                title: "Village Survey & Planning",
+                desc: "Conducting ground surveys in target villages to set clear targets, timelines, and measurable impact goals.",
                 icon: ClipboardList,
-                tag: "Ground Diagnostics",
+                tag: "Ground Surveys",
               },
               {
                 step: "03",
-                title: "Direct Field Execution",
-                desc: "Deploying experienced field leadership alongside FPOs, SHGs, and local community institutions.",
+                title: "Direct Village Execution",
+                desc: "Working directly on the ground with experienced team members, women self-help groups, and farmer cooperatives.",
                 icon: Users,
-                tag: "Direct Mobilization",
+                tag: "Direct Fieldwork",
               },
               {
                 step: "04",
-                title: "Auditable Governance",
-                desc: "Quarterly Utilization Certificate (UC) audits, geo-tagged GIS progress logs, and impact verification.",
+                title: "Transparent Reports & Audits",
+                desc: "Providing regular spending certificates, photo evidence, and verified progress reports to funding partners.",
                 icon: ShieldCheck,
-                tag: "100% Auditability",
+                tag: "Full Transparency",
               },
             ].map((card, i) => (
               <div
@@ -1640,21 +1617,21 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div>
                 <p className="text-xs font-black uppercase tracking-wider text-[#F7E4A3] flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Partner Governance Command Suite
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Clear Impact &amp; Project Tracking
                 </p>
-                <h3 className="text-xl sm:text-2xl font-black text-white mt-1">Real-Time Compliance &amp; Impact Analytics</h3>
+                <h3 className="text-xl sm:text-2xl font-black text-white mt-1">Real-Time Progress &amp; Audited Reports</h3>
               </div>
               <span className="text-[10px] font-black uppercase tracking-wider text-[#2B0C10] bg-[#F7E4A3] px-3 py-1.5 rounded-full font-mono border border-[#D4AF6A] shadow-sm">
-                Auditable Standards
+                Highest Standards
               </span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { label: "Statutory Schedule VII Auditability", value: "100%", sub: "Form CSR-1 Approved" },
-                { label: "Audited Utilization Certificates", value: "Quarterly", sub: "UC Filings Delivered" },
-                { label: "Geo-Tagged GIS Field Logs", value: "Verified", sub: "Photo & Map Proof" },
-                { label: "Corporate Governance Standard", value: "Zero-Tolerance", sub: "Clean Track Record" },
+                { label: "Legal CSR Registration", value: "100%", sub: "Form CSR-1 Registered" },
+                { label: "Financial Spending Reports", value: "Quarterly", sub: "Timely Audit Updates" },
+                { label: "Field Photo & Map Proof", value: "Verified", sub: "Photo & Location Proof" },
+                { label: "Clean Track Record", value: "100%", sub: "Zero-Tolerance Policy" },
               ].map((item) => (
                 <div key={item.label} className="bg-[#1C0709]/90 border border-[#D4AF6A]/35 rounded-2xl p-4 shadow-sm">
                   <p className="text-xl sm:text-2xl font-black text-[#F7E4A3]">{item.value}</p>
@@ -1685,7 +1662,7 @@ export default function Home() {
       </section>
 
       {/* --- REAL VOICES, IMPACT & TESTIMONIALS (WARM SUNSET CRIMSON & ORANGE GLASSMORPHISM WITH HIGHLIGHTED CIRCLE AVATARS) --- */}
-      <section ref={storyRef} className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-br from-[#2E0A12] via-[#4A1019] via-[#380A12] to-[#1D040A] text-white border-t border-rose-500/20">
+      <section id="voices" ref={storyRef} className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-br from-[#2E0A12] via-[#4A1019] via-[#380A12] to-[#1D040A] text-white border-t border-rose-500/20">
         {/* Soft Glowing Liquid Ambient Glows & Dynamic Mesh */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[-10%] right-[10%] w-[650px] h-[650px] bg-rose-500/20 rounded-full blur-[170px] animate-liquid-drift-a" />
@@ -1712,43 +1689,17 @@ export default function Home() {
             </h2>
 
             <p className="text-rose-100/80 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
-              Direct field testimony from smallholder farmers, women entrepreneurs, village Sarpanches, and corporate CSR partners across 1,909 villages.
+              Direct field testimony from the farmers EFFORT works alongside every day, in their own words.
             </p>
           </div>
 
-          {/* Category Filters Bar (Continuous Live Ticker badge removed as requested!) */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 pb-4 border-b border-rose-500/20">
-            {[
-              { id: "all", label: "All Stories", count: realVoiceStories.length },
-              { id: "beneficiary", label: "Women & Farmers", count: realVoiceStories.filter(s => s.category === "beneficiary").length },
-              { id: "csr", label: "CSR Partners", count: realVoiceStories.filter(s => s.category === "csr").length },
-              { id: "leader", label: "Village Leaders", count: realVoiceStories.filter(s => s.category === "leader").length },
-              { id: "volunteer", label: "Youth Fellows", count: realVoiceStories.filter(s => s.category === "volunteer").length },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setVoiceCategoryFilter(tab.id)}
-                className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer ${voiceCategoryFilter === tab.id
-                  ? "bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-black shadow-[0_4px_25px_rgba(245,158,11,0.4)] scale-105 border border-amber-300"
-                  : "bg-white/10 backdrop-blur-md border border-white/15 text-rose-100 hover:bg-white/20 hover:text-white"
-                  }`}
-              >
-                <span>{tab.label}</span>
-                <span className={`px-2 py-0.5 rounded-full text-[10px] ${voiceCategoryFilter === tab.id ? "bg-slate-950 text-amber-300 font-black" : "bg-white/15 text-amber-200"}`}>
-                  {tab.count}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* TESTIMONIALS RENDERING TRACK (DYNAMIC FLEX OR SUNSET MARQUEE) */}
-          {filteredStories.length < 3 ? (
-            /* Centered Stationary Layout for Categories with 1 or 2 Stories */
-            <div className="flex flex-wrap justify-center gap-6 py-4">
-              {filteredStories.map((story) => (
+          {/* Continuous Marquee of Real Farmer Testimonials */}
+          <div className="overflow-hidden w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+            <div className="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused] transform-gpu will-change-transform cursor-grab active:cursor-grabbing">
+              {[...realVoiceStories, ...realVoiceStories, ...realVoiceStories].map((story, i) => (
                 <div
-                  key={story.id}
-                  className="w-[330px] sm:w-[390px] lg:w-[420px] shrink-0 bg-white/10 backdrop-blur-xl border border-white/20 hover:border-amber-400/80 rounded-[36px] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between space-y-6 relative overflow-hidden group"
+                  key={`${story.id}-${i}`}
+                  className="w-[300px] sm:w-[350px] shrink-0 bg-white/10 backdrop-blur-xl border border-white/20 hover:border-amber-400/80 rounded-[36px] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
                 >
                   {/* Accent Top Gradient Line */}
                   <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500" />
@@ -1756,168 +1707,44 @@ export default function Home() {
                   {/* Background Watermark Quote Mark */}
                   <Quote className="w-16 h-16 text-rose-300/10 absolute top-4 right-4 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
 
-                  {/* HIGH-LIGHTED CIRCULAR PROFILE HEADER */}
                   <div className="space-y-5 relative z-10">
                     <div className="flex items-center gap-4">
-                      {/* Highlighted Circle Avatar Container */}
-                      <div className="relative shrink-0">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-500 shadow-xl group-hover:scale-105 transition-transform duration-300">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-500 shadow-xl group-hover:scale-105 transition-transform duration-300 shrink-0">
+                        {testimonialPhotos[story.slug] ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
-                            src={story.avatar}
+                            src={testimonialPhotos[story.slug]}
                             alt={story.name}
                             className="w-full h-full rounded-full object-cover border-2 border-slate-950 shadow-inner"
                           />
-                        </div>
-                        <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center text-xs font-black shadow-md border-2 border-slate-950">
-                          ✓
-                        </span>
+                        ) : (
+                          <div className="w-full h-full rounded-full bg-slate-900 border-2 border-slate-950 flex items-center justify-center text-amber-300 font-black text-lg">
+                            {story.name.charAt(0)}
+                          </div>
+                        )}
                       </div>
 
-                      {/* Author Details & Rating */}
                       <div className="space-y-1 min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-2">
-                          <h4 className="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition-colors truncate">
-                            {story.name}
-                          </h4>
-                          <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[9px] font-black uppercase tracking-wider shrink-0">
-                            {story.categoryLabel}
-                          </span>
-                        </div>
-
+                        <h4 className="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition-colors truncate">
+                          {story.name}
+                        </h4>
                         <p className="text-xs font-extrabold text-amber-300 truncate">{story.role}</p>
-
-                        <div className="flex items-center justify-between text-xs pt-0.5">
-                          <div className="flex items-center text-amber-400 gap-0.5">
-                            {[...Array(story.rating)].map((_, r) => (
-                              <Star key={r} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                            ))}
-                          </div>
-
-                          <span className="text-[11px] font-bold text-rose-200/80 flex items-center gap-1">
-                            <MapPin className="w-3 h-3 text-amber-400" /> {story.location}
-                          </span>
-                        </div>
+                        <span className="text-[11px] font-bold text-rose-200/80 flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-amber-400 shrink-0" /> <span className="truncate">{story.place}</span>
+                        </span>
                       </div>
                     </div>
 
-                    {/* SINGLE PROMINENT SUNSET GLASS QUOTE BOX */}
+                    {/* Quote Box */}
                     <div className="bg-black/35 backdrop-blur-md border-l-4 border-amber-400 rounded-r-2xl p-5 border-t border-b border-r border-white/10 shadow-inner">
                       <p className="text-amber-100 font-extrabold italic text-sm sm:text-base leading-relaxed">
                         &ldquo;{story.quote}&rdquo;
                       </p>
                     </div>
                   </div>
-
-                  {/* Impact Metrics Row */}
-                  <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 relative z-10">
-                    {story.metrics.map((m) => (
-                      <div key={m.label} className="bg-white/5 border border-white/15 rounded-xl p-2.5 text-center">
-                        <p className="text-sm sm:text-base font-black text-amber-300">{m.value}</p>
-                        <p className="text-[9px] font-bold text-rose-100/80 mt-0.5 leading-tight">{m.label}</p>
-                      </div>
-                    ))}
-                  </div>
-
                 </div>
               ))}
             </div>
-          ) : (
-            /* Continuous Smooth Marquee Ticker Track for 3+ Stories */
-            <div className="overflow-hidden w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
-              <div className="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused] transform-gpu will-change-transform cursor-grab active:cursor-grabbing">
-                {[...filteredStories, ...filteredStories, ...filteredStories].map((story, i) => (
-                  <div
-                    key={`${story.id}-${i}`}
-                    className="w-[330px] sm:w-[390px] lg:w-[420px] shrink-0 bg-white/10 backdrop-blur-xl border border-white/20 hover:border-amber-400/80 rounded-[36px] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between space-y-6 relative overflow-hidden group"
-                  >
-                    {/* Accent Top Gradient Line */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500" />
-
-                    {/* Background Watermark Quote Mark */}
-                    <Quote className="w-16 h-16 text-rose-300/10 absolute top-4 right-4 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-
-                    {/* HIGH-LIGHTED CIRCULAR PROFILE HEADER */}
-                    <div className="space-y-5 relative z-10">
-                      <div className="flex items-center gap-4">
-                        {/* Highlighted Circle Avatar Container */}
-                        <div className="relative shrink-0">
-                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-500 shadow-xl group-hover:scale-105 transition-transform duration-300">
-                            <img
-                              src={story.avatar}
-                              alt={story.name}
-                              className="w-full h-full rounded-full object-cover border-2 border-slate-950 shadow-inner"
-                            />
-                          </div>
-                          <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center text-xs font-black shadow-md border-2 border-slate-950">
-                            ✓
-                          </span>
-                        </div>
-
-                        {/* Author Details & Rating */}
-                        <div className="space-y-1 min-w-0 flex-1">
-                          <div className="flex items-center justify-between gap-2">
-                            <h4 className="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition-colors truncate">
-                              {story.name}
-                            </h4>
-                            <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[9px] font-black uppercase tracking-wider shrink-0">
-                              {story.categoryLabel}
-                            </span>
-                          </div>
-
-                          <p className="text-xs font-extrabold text-amber-300 truncate">{story.role}</p>
-
-                          <div className="flex items-center justify-between text-xs pt-0.5">
-                            <div className="flex items-center text-amber-400 gap-0.5">
-                              {[...Array(story.rating)].map((_, r) => (
-                                <Star key={r} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                              ))}
-                            </div>
-
-                            <span className="text-[11px] font-bold text-rose-200/80 flex items-center gap-1">
-                              <MapPin className="w-3 h-3 text-amber-400" /> {story.location}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* SINGLE PROMINENT SUNSET GLASS QUOTE BOX */}
-                      <div className="bg-black/35 backdrop-blur-md border-l-4 border-amber-400 rounded-r-2xl p-5 border-t border-b border-r border-white/10 shadow-inner">
-                        <p className="text-amber-100 font-extrabold italic text-sm sm:text-base leading-relaxed">
-                          &ldquo;{story.quote}&rdquo;
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Impact Metrics Row */}
-                    <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 relative z-10">
-                      {story.metrics.map((m) => (
-                        <div key={m.label} className="bg-white/5 border border-white/15 rounded-xl p-2.5 text-center">
-                          <p className="text-sm sm:text-base font-black text-amber-300">{m.value}</p>
-                          <p className="text-[9px] font-bold text-rose-100/80 mt-0.5 leading-tight">{m.label}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* COMMUNITY TRUST & SATISFACTION STRIP */}
-          <div className="pt-6 border-t border-rose-500/20 grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
-            {[
-              { label: "Community Satisfaction Score", value: "4.96 / 5.0", detail: "Audited across 1,909 Villages" },
-              { label: "Field Records Verified", value: "100%", detail: "Statutory & GIS Tagged" },
-              { label: "Continuous Ground Service", value: "27 Years", detail: "Active Since 1999" },
-              { label: "Direct Lives Impacted", value: "2.67 Lakh", detail: "Families Transformed" },
-            ].map((stat) => (
-              <div key={stat.label} className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 shadow-lg">
-                <p className="text-xl sm:text-2xl font-black text-amber-300">{stat.value}</p>
-                <p className="text-xs font-bold text-white mt-1">{stat.label}</p>
-                <p className="text-[10px] text-rose-200/70 font-semibold mt-0.5">{stat.detail}</p>
-              </div>
-            ))}
           </div>
 
         </div>

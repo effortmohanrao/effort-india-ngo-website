@@ -444,12 +444,22 @@ export default function ProjectDetailPage({
   const [realPhotos, setRealPhotos] = useState<{ key: string; url: string }[]>([]);
 
   useEffect(() => {
-    if (!project.photoFolder) return;
-    fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" })
+    fetch(`/api/site/media?prefix=programs/${status}/p${index + 1}/gallery`, { cache: "no-store" })
       .then((res) => res.json())
-      .then((data) => setRealPhotos(data.images ?? []))
+      .then((data) => {
+        const ownPhotos = data.images ?? [];
+        if (ownPhotos.length > 0) {
+          setRealPhotos(ownPhotos);
+          return;
+        }
+        if (!project.photoFolder) return;
+        fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((folderData) => setRealPhotos(folderData.images ?? []))
+          .catch(() => {});
+      })
       .catch(() => {});
-  }, [project.photoFolder, status]);
+  }, [index, project.photoFolder, status]);
 
   const [mainTitle, ...subInitiatives] = project.name.split(";").map((s) => s.trim());
 
