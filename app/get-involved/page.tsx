@@ -75,37 +75,37 @@ export default function GetInvolved() {
     "Event Management & Logistics",
   ];
 
-  {/* CSR High-Level Sponsorship Opportunities (from CSR Portal) */}
+  {/* Possible Collaboration — real EFFORT collaboration packages, as published to funding partners */}
   const csrSponsorOptions = [
     {
-      title: "Educate a Village Primary School",
-      desc: "Equip smart TVs, digital curriculums, school amenities, and clean drinking water units for 200+ rural students.",
-      budget: "₹3.5 Lakhs / Village School",
-      badge: "Child Education",
+      title: "Land & Water Conservation",
+      desc: "Convert farmland into productive land by adopting soil, water and vegetative conservation measures with sustainable agricultural practices. Minimum project size is 50 hectares (US $11,250 • 1 year • 50 farmers benefited); maximum is 1,000 hectares (US $2,25,000 • 3 years • 800–1,000 farmers benefited).",
+      budget: "US $225 / Hectare",
+      badge: "Sustainable Agriculture",
     },
     {
-      title: "Deploy a Mobile Diagnostic Health Clinic",
-      desc: "Fund a primary care diagnostic van, medical kits, nurse, driver, and free medicines for a full year.",
-      budget: "₹12.0 Lakhs / Year",
-      badge: "Healthcare Access",
+      title: "SMART — Sustainable Management of Agriculture for Rural Transformation",
+      desc: "Minimum project size is 20–100 farmers in a village over 1 year. Maximum is 100–3,000 farmers over 3 years.",
+      budget: "US $75 / Farmer",
+      badge: "SMART Agriculture",
     },
     {
-      title: "Women Tailoring SHG Collective Hub",
-      desc: "Equip 15 sewing machines, build training space, and fund micro-grants for SC/ST women self-help groups.",
-      budget: "₹2.0 Lakhs / Collective",
-      badge: "Women Livelihoods",
-    },
-    {
-      title: "Construct Village RO Clean Water Plant",
-      desc: "Build a community Reverse Osmosis (RO) drinking water plant providing fluoride-free water to 1,000 families.",
-      budget: "₹5.0 Lakhs / RO Plant",
+      title: "Reverse Osmosis Plant for Safe Drinking Water",
+      desc: "Provides safe drinking water to around 1,000 families (5,000 people) in a fluoride-affected village. Total project cost is US $7,000 — the village community mobilizes US $1,000 and donors fund the remaining US $6,000.",
+      budget: "US $6,000 / Village",
       badge: "Water & WASH",
     },
     {
-      title: "Direct Seeded Rice (DSR) & Water Governance",
-      desc: "Promote resource-conserving DSR rice farming across 500 acres, saving 35% ground water and boosting farmer net incomes.",
-      budget: "₹8.0 Lakhs / 500 Acres",
-      badge: "Climate Agriculture",
+      title: "Healthy & Child Friendly Schools",
+      desc: "Facilitates the amenities needed to ensure school education for all children. Total project cost is US $10,000 — the village community mobilizes US $1,000 and donors fund the remaining US $9,000.",
+      budget: "US $9,000 / School",
+      badge: "Child Education",
+    },
+    {
+      title: "Child Sponsorship",
+      desc: "Gives a needy or deserving child the opportunity to continue their education. Sponsorship covers education, food and clothing for one child for one year.",
+      budget: "US $500 / Child / Year",
+      badge: "Child Welfare",
     },
   ];
 
@@ -397,16 +397,19 @@ export default function GetInvolved() {
         {/* PATHWAY CONTENT A: CORPORATE CSR COMMAND CENTER & SPONSORSHIP OPPORTUNITIES */}
         {activePathway === "csr" && (
           <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
-            <div className="space-y-2 border-b border-[#e5d4a1] pb-6 flex flex-wrap items-center justify-between gap-4">
-              <div>
+            <div className="space-y-3 border-b border-[#e5d4a1] pb-6">
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs font-black uppercase text-purple-900">
-                  <Building2 className="w-3.5 h-3.5 text-purple-600" /> High-Level Corporate CSR Hub
+                  <Building2 className="w-3.5 h-3.5 text-purple-600" /> Possible Collaboration
                 </span>
-                <h2 className="text-3xl font-black text-[#221c0c] mt-1">CSR Sponsorship Opportunities & Execution</h2>
+                <span className="px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-black">
+                  Form CSR-1 ID: CSR00034988
+                </span>
               </div>
-              <span className="px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-black">
-                Form CSR-1 ID: CSR00034988
-              </span>
+              <h2 className="text-3xl font-black text-[#221c0c]">CSR Sponsorship Opportunities & Execution</h2>
+              <p className="text-xs sm:text-sm text-[#5b6a60] font-medium leading-relaxed max-w-3xl">
+                We have many more ideas to transform the lives of farming communities and need support from Individuals, Organisations, Funding Agencies and Corporate Companies. We invite you to join us and make a difference in the lives of rural India. Your support and collaboration can be extended to:
+              </p>
             </div>
 
             {/* High-Level Sponsorship Opportunities Grid */}
@@ -432,6 +435,10 @@ export default function GetInvolved() {
                 </div>
               ))}
             </div>
+
+            <p className="text-[11px] text-[#8a6a1f] font-bold text-center pt-2">
+              EFFORT is registered under the Societies Registration Act XXI of 1860, and registered with the Ministry of Home Affairs, Government of India under the FCRA Act.
+            </p>
 
             {/* 3-Phase Execution Process */}
             <div className="grid sm:grid-cols-3 gap-6 pt-4 border-t border-[#e5d4a1]">

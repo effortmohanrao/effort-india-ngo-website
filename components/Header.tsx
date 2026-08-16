@@ -27,8 +27,6 @@ import {
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 
-type Ripple = { id: number; x: number; y: number };
-
 // Translucent Glass Liquid Bubbles Floating Array
 const glassBubbles = [
   { left: 6, top: 20, width: 22, height: 22, color: "border-amber-400/40 bg-amber-400/10 shadow-[inset_0_2px_6px_rgba(251,191,36,0.4)]", delay: 0.2, duration: 6 },
@@ -54,7 +52,6 @@ export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isDonateHover, setIsDonateHover] = useState(false);
   const [magnet, setMagnet] = useState({ x: 0, y: 0 });
-  const [ripples, setRipples] = useState<Ripple[]>([]);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const pathname = usePathname();
 
@@ -131,13 +128,7 @@ export default function Header() {
     setIsDonateHover(false);
   };
 
-  const handleDonateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const id = Date.now();
-    setRipples((prev) => [...prev, { id, x: e.clientX - rect.left, y: e.clientY - rect.top }]);
-    setTimeout(() => {
-      setRipples((prev) => prev.filter((r) => r.id !== id));
-    }, 650);
+  const handleDonateClick = () => {
     setIsDonateModalOpen(true);
   };
 
@@ -321,13 +312,14 @@ export default function Header() {
             {/* CTA + Utility Cluster */}
             <div className="hidden sm:flex items-center gap-3">
               {/* High-Impact 3D Glowing "Donate Now" Executive CTA */}
-              <Link
-                href="/donate"
+              <button
+                type="button"
+                onClick={handleDonateClick}
                 onMouseMove={handleDonateMouseMove}
                 onMouseEnter={() => setIsDonateHover(true)}
                 onMouseLeave={handleDonateMouseLeave}
                 style={{ transform: `translate(${magnet.x}px, ${magnet.y - (isDonateHover ? 2 : 0)}px) scale(${isDonateHover ? 1.06 : 1})` }}
-                className="relative overflow-hidden px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-amber-500 via-emerald-600 via-teal-600 to-amber-500 bg-[length:200%_200%] animate-gradient-border-flow text-white font-extrabold text-xs sm:text-sm shadow-[0_8px_30px_rgba(245,158,11,0.45),0_0_20px_rgba(16,185,129,0.35)] flex items-center gap-2.5 transition-all duration-300 group/donate border-2 border-white/40 hover:border-white hover:shadow-[0_12px_40px_rgba(245,158,11,0.6),0_0_30px_rgba(16,185,129,0.5)]"
+                className="relative overflow-hidden px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-amber-500 via-emerald-600 via-teal-600 to-amber-500 bg-[length:200%_200%] animate-gradient-border-flow text-white font-extrabold text-xs sm:text-sm shadow-[0_8px_30px_rgba(245,158,11,0.45),0_0_20px_rgba(16,185,129,0.35)] flex items-center gap-2.5 transition-all duration-300 group/donate border-2 border-white/40 hover:border-white hover:shadow-[0_12px_40px_rgba(245,158,11,0.6),0_0_30px_rgba(16,185,129,0.5)] cursor-pointer"
               >
                 {/* Continuous Shimmer Light Sweep */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/donate:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
@@ -346,7 +338,7 @@ export default function Header() {
                 </span>
 
                 <ArrowRight className={`w-4 h-4 text-amber-200 relative transition-transform duration-300 ${isDonateHover ? "translate-x-1" : ""}`} />
-              </Link>
+              </button>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -391,13 +383,16 @@ export default function Header() {
               ))}
 
               <div className="pt-4 flex flex-col gap-2 border-t border-slate-100">
-                <Link
-                  href="/donate"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsDonateModalOpen(true);
+                  }}
                   className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold shadow-md hover:from-emerald-700 hover:to-emerald-800 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Heart className="w-4 h-4 fill-white" /> Donate Now
-                </Link>
+                </button>
               </div>
             </div>
           )}

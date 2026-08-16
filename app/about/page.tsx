@@ -48,7 +48,7 @@ import {
   Camera,
   Droplets
 } from "lucide-react";
-import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
+import { InstagramIcon, FacebookIcon, LinkedinIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 import Effort20Roadmap from "@/components/Effort20Roadmap";
 
 
@@ -406,67 +406,69 @@ const coreValues: { title: string; icon: typeof ShieldCheck; desc: string; radiu
 ];
 
 const founderProfile = {
-  name: "Sri D. Sudhakar",
-  title: "Founder & Executive Director, EFFORT NGO",
-  image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
+  slug: "jv-mohan-rao",
+  name: "V. Mohan Rao",
+  title: "Executive Director, EFFORT NGO",
   quote:
-    "For over 27 years since registering EFFORT in 1999 under Society Registration 340/1999, our core directive has remained clear: true development is achieved when rural communities possess self-sustaining institutions. By co-designing programs alongside FPOs, SHGs, and corporate partners, we transform grassroots potential into lasting socio-economic resilience.",
-  badges: ["27+ Years Grassroots Service", "FPO & SHG Governance Leader", "CSR Strategy & Statutory Compliance"],
-  socials: {
-    linkedin: "https://linkedin.com",
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
-  },
-  galleryImages: [
-    { title: "Watershed & Water Ingestion Project", url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=400" },
-    { title: "Community FPO Farmers Training", url: "https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&q=80&w=400" },
-    { title: "SHG Women Governance Leadership", url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" },
-    { title: "Corporate CSR Partner Summit", url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=400" },
-    { title: "Field Operations Across 1,909 Villages", url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400" },
-    { title: "Climate Smart Agriculture Field Demo", url: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=400" },
-  ],
+    "Postgraduate in Sociology, with a Diploma in Social Development from St. Francis Xavier University, Canada, and recipient of an Honorary Doctor of Philosophy specializing in Environmental and Sustainable Development from Kennedy University, Paris, France. 40 years of experience in the field of Social Development, with expertise in planning, designing, monitoring and evaluating sustainable development initiatives.",
+  badges: ["40 Years in Social Development", "PhD (Hon.), Kennedy University, Paris", "Diploma in Social Development, Canada"],
 };
 
 type LeadershipMember = {
+  slug: string;
   name: string;
   role: string;
-  image: string;
   intro: string;
-  socials: {
-    linkedin: string;
-    instagram: string;
-    facebook: string;
-  };
 };
 
 const leadershipTeam: LeadershipMember[] = [
   {
-    name: "K. Rajeshwari",
-    role: "Director – Women Empowerment & SHG Governance",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
-    intro: "Oversees 1,275 Self-Help Groups (SHGs) and 51 MACS Cooperatives across 10 operating states, pioneering micro-enterprise leadership for 14,750+ women.",
-    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+    slug: "bala-subramanian",
+    name: "Bala Subramanian",
+    role: "President, EFFORT",
+    intro: "M.Sc (Ag), PhD — retired Professor, TNAU, and Director, Centre for Plant Molecular Biology, Tamil Nadu Agricultural University. Expert in Sustainable Agriculture, guiding EFFORT's Sustainable Agriculture Team.",
   },
   {
-    name: "Dr. P. Venkateswarlu",
-    role: "Chief Operating Officer & Field Operations",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600",
-    intro: "Leads field implementation teams across 1,909 villages and 37 districts, driving 65 completed and 15 active multi-year development projects.",
-    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+    slug: "veeranjaneyulu",
+    name: "Danda Veeranjaneyulu",
+    role: "Executive Committee Member",
+    intro: "Progressive Farmer and recipient of the Best Farmer Award from the Chief Minister of Andhra Pradesh. Maintains model sustainable agriculture farms and guides EFFORT's Sustainable Agriculture Team.",
   },
   {
-    name: "M. Anitha Rao",
-    role: "Head of Corporate CSR & Statutory Alliances",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600",
-    intro: "Manages CSR Schedule VII partnerships with NABARD, GIZ, Reliance Foundation, and Corteva, ensuring 100% auditable Utilization Certificates (UC).",
-    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+    slug: "y-m-krishna",
+    name: "Y. M. Krishna",
+    role: "Capacity Building",
+    intro: "Graduate in Commerce and Law, with a Diploma in Social Development from St. Francis Xavier University, Canada. 35 years of experience in Social Development, expert in Human Resource and Community Development. Leads staff and CBO capacity-building programmes.",
   },
   {
-    name: "S. Chandra Sekhar",
-    role: "Lead Agronomist & Watershed Infrastructure",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600",
-    intro: "Directs climate-smart farming, Direct Seeded Rice (DSR) demos, and 2,702 water harvesting structures empowering 1,68,500+ smallholder farmers.",
-    socials: { linkedin: "https://linkedin.com", instagram: "https://instagram.com", facebook: "https://facebook.com" },
+    slug: "anuradha",
+    name: "J. Anuradha",
+    role: "Lead – Community Based Organisation",
+    intro: "Postgraduate in Sociology with 35 years of experience in Social Development. Expert in Social Mobilisation and the promotion & strengthening of Community Based Organisations (CBOs).",
+  },
+  {
+    slug: "vijaya-kumari",
+    name: "B. Vijaya Kumari",
+    role: "Gender, Equity & Water Governance",
+    intro: "Postgraduate in M.Sc Resource Management and MA Social Work. 28 years of experience in Social Development, expert in Gender, Equity, Social Inclusion and Water Governance & Community-Led Management.",
+  },
+  {
+    slug: "annapurna",
+    name: "B. Annapurna",
+    role: "Finance",
+    intro: "Postgraduate in MBA Finance with 33 years of experience in Finance Management.",
+  },
+  {
+    slug: "hanumantha-rao",
+    name: "B. Hanumantha Rao",
+    role: "Lead, Water Governance & Management",
+    intro: "Graduate in Civil Engineering with 30 years of rich experience in Water & Soil Conservation Projects.",
+  },
+  {
+    slug: "mohan-reddy",
+    name: "M. V. Mohan Reddy",
+    role: "Lead, IT & Digital Platforms",
+    intro: "Graduate in Computer Science and Postgraduate in Human Rights & Duties, with strong expertise in IT skills.",
   },
 ];
 
@@ -644,6 +646,31 @@ export default function About() {
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
   const [leadershipRef, leadershipVisible] = useScrollReveal<HTMLElement>();
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+
+  const [teamPhotos, setTeamPhotos] = useState<Record<string, string>>({});
+  const [teamSocials, setTeamSocials] = useState<Record<string, { linkedin?: string; instagram?: string; facebook?: string; twitter?: string }>>({});
+  useEffect(() => {
+    const slugs = [founderProfile.slug, ...leadershipTeam.map((m) => m.slug)];
+    Promise.all(
+      slugs.map((slug) =>
+        fetch(`/api/site/media?prefix=about/team/${slug}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [slug, data.images?.[0]?.url] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [slug, url] of entries) if (url) map[slug] = url;
+      setTeamPhotos(map);
+    });
+
+    fetch("/api/site/team-settings", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => setTeamSocials(data.socials ?? {}))
+      .catch(() => {});
+  }, []);
+
+  const teamTrackRef = useRef<HTMLDivElement>(null);
+  const teamDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
   const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
@@ -1537,12 +1564,17 @@ export default function About() {
 
                 {/* COLUMN 1 (Left 3 cols): Executive Portrait & Social Dock */}
                 <div className="lg:col-span-3 flex flex-col items-center text-center space-y-3.5 border-b lg:border-b-0 lg:border-r border-emerald-500/20 pb-6 lg:pb-0 lg:pr-6">
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] group/img">
-                    <img
-                      src={founderProfile.image}
-                      alt={founderProfile.name}
-                      className="w-full h-full object-cover group-hover/img:scale-104 transition-transform duration-700 ease-out"
-                    />
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] group/img bg-emerald-900 flex items-center justify-center">
+                    {teamPhotos[founderProfile.slug] ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={teamPhotos[founderProfile.slug]}
+                        alt={founderProfile.name}
+                        className="w-full h-full object-cover group-hover/img:scale-104 transition-transform duration-700 ease-out"
+                      />
+                    ) : (
+                      <span className="text-5xl font-black text-emerald-300">{founderProfile.name.charAt(0)}</span>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-60" />
                   </div>
 
@@ -1551,36 +1583,35 @@ export default function About() {
                     <p className="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 mt-0.5">{founderProfile.title}</p>
                   </div>
 
-                  {/* Official Social Dock */}
-                  <div className="flex items-center gap-2.5 pt-0.5">
-                    <a
-                      href={founderProfile.socials.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="LinkedIn Profile"
-                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon"
-                    >
-                      <LinkedinIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
-                    </a>
-                    <a
-                      href={founderProfile.socials.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Instagram Profile"
-                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon"
-                    >
-                      <InstagramIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
-                    </a>
-                    <a
-                      href={founderProfile.socials.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Facebook Profile"
-                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon"
-                    >
-                      <FacebookIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
-                    </a>
-                  </div>
+                  {/* Official Social Dock — only platforms the admin has actually filled in are shown */}
+                  {(() => {
+                    const s = teamSocials[founderProfile.slug];
+                    if (!s || (!s.linkedin && !s.instagram && !s.facebook && !s.twitter)) return null;
+                    return (
+                      <div className="flex items-center gap-2.5 pt-0.5">
+                        {s.linkedin && (
+                          <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <LinkedinIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          </a>
+                        )}
+                        {s.instagram && (
+                          <a href={s.instagram} target="_blank" rel="noopener noreferrer" title="Instagram Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <InstagramIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          </a>
+                        )}
+                        {s.facebook && (
+                          <a href={s.facebook} target="_blank" rel="noopener noreferrer" title="Facebook Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <FacebookIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          </a>
+                        )}
+                        {s.twitter && (
+                          <a href={s.twitter} target="_blank" rel="noopener noreferrer" title="X (Twitter) Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <TwitterXIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          </a>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 {/* COLUMN 2 (Middle 5 cols): Executive Statement & Proven Track Record Badges */}
@@ -1604,18 +1635,12 @@ export default function About() {
 
                   {/* Credentials Badges */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
-                    <div className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                      <span>27-YEAR PROVEN TRACK RECORD</span>
-                    </div>
-                    <div className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                      <span>FPO &amp; SHG GOVERNANCE LEADER</span>
-                    </div>
-                    <div className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                      <span>CSR STATUTORY COMPLIANCE</span>
-                    </div>
+                    {founderProfile.badges.map((badge) => (
+                      <div key={badge} className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                        <span>{badge.toUpperCase()}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -1704,74 +1729,91 @@ export default function About() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {leadershipTeam.map((member, idx) => (
-                <div
-                  key={member.name}
-                  onMouseEnter={() => setHoveredCardIndex(idx)}
-                  onMouseLeave={() => setHoveredCardIndex(null)}
-                  className="bg-white/95 backdrop-blur-xl border border-emerald-900/15 rounded-3xl p-6 flex flex-col justify-between space-y-5 shadow-md hover:border-emerald-600 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group"
-                >
-                  <div className="space-y-4">
-                    <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-700 shadow-md">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
+            {/* Continuous Automatic Horizontal Marquee Track (Infinite Live Scrolling) */}
+            <div className="relative overflow-hidden py-2 group/marquee">
+              {/* Fade masks on left & right edges */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#FAF7F2] to-transparent z-10" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#FAF7F2] to-transparent z-10" />
+
+              <div className="flex w-max gap-6 animate-marquee-scroll py-4">
+                {[...leadershipTeam, ...leadershipTeam].map((member, idx) => {
+                  const s = teamSocials[member.slug];
+                  const hasSocials = s && (s.linkedin || s.instagram || s.facebook || s.twitter);
+                  return (
+                    <div
+                      key={`${member.slug}-${idx}`}
+                      className="bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[32px] p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-[0_15px_40px_-15px_rgba(16,185,129,0.12)] hover:border-amber-400 hover:shadow-[0_25px_60px_-15px_rgba(245,158,11,0.35)] hover:-translate-y-2.5 transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[310px] relative overflow-hidden"
+                    >
+                      {/* Top glowing laser line */}
+                      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-emerald-500 to-teal-400 group-hover/card:h-2 transition-all" />
+
+                      <div className="space-y-4">
+                        {/* Large, HD Crisp Profile Image Frame */}
+                        <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden border-2 border-emerald-700/60 shadow-md bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center">
+                          {teamPhotos[member.slug] ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={teamPhotos[member.slug]}
+                              alt={member.name}
+                              className="w-full h-full object-cover object-top group-hover/card:scale-108 transition-transform duration-700"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-4 text-center">
+                              <UserCircle2 className="w-16 h-16 text-emerald-400 mb-1" />
+                              <span className="text-sm font-black text-amber-300">{member.name}</span>
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
+                        </div>
+
+                        <div>
+                          <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover/card:text-emerald-900 transition-colors leading-tight">
+                            {member.name}
+                          </h4>
+                          <span className="mt-1.5 inline-block text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100/90 text-emerald-900 border border-emerald-300 shadow-xs">
+                            {member.role}
+                          </span>
+                        </div>
+
+                        <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-3">
+                          {member.intro}
+                        </p>
+                      </div>
+
+                      {hasSocials && (
+                        <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-amber-900">CONNECT</span>
+
+                          <div className="flex items-center gap-2">
+                            {s.linkedin && (
+                              <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title={`${member.name} LinkedIn`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <LinkedinIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {s.instagram && (
+                              <a href={s.instagram} target="_blank" rel="noopener noreferrer" title={`${member.name} Instagram`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <InstagramIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {s.facebook && (
+                              <a href={s.facebook} target="_blank" rel="noopener noreferrer" title={`${member.name} Facebook`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <FacebookIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {s.twitter && (
+                              <a href={s.twitter} target="_blank" rel="noopener noreferrer" title={`${member.name} X`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <TwitterXIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
-
-                    <div>
-                      <h4 className="text-base font-black text-slate-900">{member.name}</h4>
-                      <p className="text-[11px] font-extrabold uppercase tracking-wide text-emerald-800 mt-0.5 leading-snug">
-                        {member.role}
-                      </p>
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {member.intro}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">CONNECT</span>
-
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={member.socials.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={`${member.name} LinkedIn`}
-                        className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-50 hover:scale-110 transition-all"
-                      >
-                        <LinkedinIcon className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href={member.socials.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={`${member.name} Instagram`}
-                        className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-50 hover:scale-110 transition-all"
-                      >
-                        <InstagramIcon className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href={member.socials.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={`${member.name} Facebook`}
-                        className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-50 hover:scale-110 transition-all"
-                      >
-                        <FacebookIcon className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  );
+                })}
+              </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -2227,7 +2269,7 @@ export default function About() {
               {logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={logoUrl}
+                  src={logoUrl || undefined}
                   alt="EFFORT NGO official logo"
                   className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-300"
                 />
