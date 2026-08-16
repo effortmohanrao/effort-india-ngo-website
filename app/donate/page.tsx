@@ -24,8 +24,83 @@ import {
   Smartphone,
   Loader2,
   Sparkles,
+  Zap,
 } from "lucide-react";
 import { defaultDonationSettings, type DonationSettings, type BankAccount } from "@/lib/donationSettings";
+
+// Possible Collaboration — real EFFORT collaboration packages, as published to funding partners.
+// Single source of truth for this data (an earlier duplicate array here had drifted out of
+// sync with what actually rendered — consolidated back into one list).
+const collaborationOptions = [
+  {
+    id: "land-water",
+    title: "Land & Water Conservation",
+    badge: "Sustainable Agriculture",
+    budget: "US $225 / Hectare",
+    subText: "Min: 50 Hectares ($11,250, 1 yr) • Max: 1,000 Hectares ($2,25,000, 3 yrs)",
+    desc: "Convert farmland into productive land by adopting soil, water and vegetative conservation measures with sustainable agricultural practices.",
+    impactMetric: "50 to 1,000 Farmers",
+    duration: "1 to 3 Years",
+    icon: Sprout,
+    accent: "emerald",
+  },
+  {
+    id: "smart-agri",
+    title: "SMART — Sustainable Management of Agriculture for Rural Transformation",
+    badge: "SMART Agriculture",
+    budget: "US $75 / Farmer",
+    subText: "Village Unit: 20–100 Farmers, 1 yr • Cluster: up to 3,000 Farmers, 3 yrs",
+    desc: "Equips farmers with climate-resilient practices and sustainable cultivation techniques, scaling from a single village to a multi-year cluster programme.",
+    impactMetric: "20 to 3,000 Farmers",
+    duration: "1 to 3 Years",
+    icon: Zap,
+    accent: "amber",
+  },
+  {
+    id: "ro-plant",
+    title: "Reverse Osmosis Plant for Safe Drinking Water",
+    badge: "Water & WASH",
+    budget: "US $6,000 / Village",
+    subText: "Total $7,000 — village mobilizes $1,000, donor funds $6,000",
+    desc: "Provides safe, fluoride-free drinking water to around 1,000 families (5,000 people) in an affected village.",
+    impactMetric: "1,000 Families",
+    duration: "Permanent Asset",
+    icon: Droplets,
+    accent: "sky",
+  },
+  {
+    id: "child-school",
+    title: "Healthy & Child Friendly Schools",
+    badge: "Child Education",
+    budget: "US $9,000 / School",
+    subText: "Total $10,000 — village mobilizes $1,000, donor funds $9,000",
+    desc: "Facilitates the amenities needed to ensure school education for all children, upgrading water, sanitation and learning infrastructure.",
+    impactMetric: "Whole School Community",
+    duration: "Permanent Upgrade",
+    icon: GraduationCap,
+    accent: "indigo",
+  },
+  {
+    id: "child-sponsor",
+    title: "Child Sponsorship",
+    badge: "Child Welfare",
+    budget: "US $500 / Child / Year",
+    subText: "Full-year academic and living support per child",
+    desc: "Gives a needy or deserving child the opportunity to continue their education — covering education, food and clothing for one year.",
+    impactMetric: "1 Child, Full Year",
+    duration: "1 Year",
+    icon: Heart,
+    accent: "rose",
+  },
+];
+
+const COLLAB_ACCENT: Record<string, { bar: string; iconBg: string; iconText: string; badgeBg: string; badgeText: string }> = {
+  emerald: { bar: "bg-emerald-400", iconBg: "bg-emerald-50", iconText: "text-emerald-700", badgeBg: "bg-emerald-100", badgeText: "text-emerald-800" },
+  amber: { bar: "bg-amber-400", iconBg: "bg-amber-50", iconText: "text-amber-700", badgeBg: "bg-amber-100", badgeText: "text-amber-800" },
+  sky: { bar: "bg-sky-400", iconBg: "bg-sky-50", iconText: "text-sky-700", badgeBg: "bg-sky-100", badgeText: "text-sky-800" },
+  indigo: { bar: "bg-indigo-400", iconBg: "bg-indigo-50", iconText: "text-indigo-700", badgeBg: "bg-indigo-100", badgeText: "text-indigo-800" },
+  rose: { bar: "bg-rose-400", iconBg: "bg-rose-50", iconText: "text-rose-700", badgeBg: "bg-rose-100", badgeText: "text-rose-800" },
+};
 
 function UnionBankLogo() {
   return (
@@ -307,15 +382,104 @@ export default function DonatePage() {
             <Users className="w-6 h-6 text-emerald-700 shrink-0" />
             <div>
               <p className="font-bold text-sm text-slate-900">Giving as an organisation, corporate or funding agency?</p>
-              <p className="text-xs text-slate-600 font-medium">See our structured collaboration packages — from land conservation to school infrastructure.</p>
+              <p className="text-xs text-slate-600 font-medium">See our structured collaboration packages below — from land conservation to school infrastructure.</p>
             </div>
           </div>
-          <Link
-            href="/get-involved"
+          <a
+            href="#collaboration"
             className="shrink-0 px-6 py-3 rounded-full bg-amber-400 text-slate-950 text-xs font-black uppercase tracking-wider hover:bg-amber-300 transition-all shadow-md whitespace-nowrap"
           >
             View Collaboration Options
-          </Link>
+          </a>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 3B. POSSIBLE COLLABORATION — institutional & corporate packages */}
+      {/* ========================================================================= */}
+      <section id="collaboration" className="py-16 lg:py-20 bg-gradient-to-b from-[#fdfaf4] via-[#faf3e0] to-[#fdfaf4] border-y border-amber-900/15">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+              <Sparkles className="w-3.5 h-3.5" /> Possible Collaboration
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Structured Ways to Partner With Us</h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              EFFORT invites Individuals, Organisations, Funding Agencies and Corporate Companies to co-create sustainable impact. Every package is community co-funded and Section 80G / FCRA compliant.
+            </p>
+          </div>
+
+          {/* Collaboration Packages Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {collaborationOptions.map((pkg) => {
+              const PkgIcon = pkg.icon;
+              const a = COLLAB_ACCENT[pkg.accent];
+              return (
+                <div
+                  key={pkg.id}
+                  className="relative bg-white border border-amber-900/15 rounded-3xl p-6 flex flex-col justify-between gap-5 shadow-[0_20px_45px_-25px_rgba(120,90,40,0.25)] hover:-translate-y-1 hover:border-amber-400/60 hover:shadow-[0_28px_55px_-20px_rgba(120,90,40,0.3)] transition-all duration-300 overflow-hidden"
+                >
+                  <span className={`absolute top-0 left-0 w-full h-1 ${a.bar}`} />
+
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className={`text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full ${a.badgeBg} ${a.badgeText}`}>
+                        {pkg.badge}
+                      </span>
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${a.iconBg}`}>
+                        <PkgIcon className={`w-4.5 h-4.5 ${a.iconText}`} />
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-base font-black text-slate-900 leading-snug">{pkg.title}</h3>
+                      <p className="text-lg font-black text-[#a3711f] font-mono mt-1">{pkg.budget}</p>
+                      <p className="text-[10px] text-slate-450 font-bold mt-0.5">{pkg.subText}</p>
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed">{pkg.desc}</p>
+                  </div>
+
+                  <div className="space-y-3 pt-3 border-t border-amber-900/10">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500 font-bold">
+                      <span>{pkg.impactMetric}</span>
+                      <span>{pkg.duration}</span>
+                    </div>
+                    <a
+                      href={`mailto:effortap@gmail.com?subject=Collaboration%20Enquiry%20-%20${encodeURIComponent(pkg.title)}`}
+                      className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md hover:bg-amber-800 transition-all"
+                    >
+                      Sponsor This Package <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Statutory Trust Strip */}
+          <div className="p-5 rounded-2xl bg-white border border-amber-900/15 text-center space-y-2 max-w-3xl mx-auto shadow-xs">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase text-slate-700">
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-amber-700" /> Societies Act 1860 (Reg. 340/1999)</span>
+              <span className="flex items-center gap-1.5"><FileCheck className="w-3.5 h-3.5 text-amber-700" /> MHA FCRA Approved</span>
+              <span className="flex items-center gap-1.5"><Award className="w-3.5 h-3.5 text-amber-700" /> 80G Tax Exempt</span>
+            </div>
+            <p className="text-xs text-slate-500">
+              EFFORT provides statutory audit reports and utilization certificates for all institutional partner contributions.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <a
+              href="mailto:effortap@gmail.com?subject=Custom%20Collaboration%20Proposal"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-xs uppercase tracking-wider shadow-md hover:bg-amber-800 transition-all"
+            >
+              <Mail className="w-4 h-4" /> Request a Custom Proposal <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
         </div>
       </section>
 
@@ -454,7 +618,7 @@ export default function DonatePage() {
           </div>
 
           <p className="text-[11px] text-slate-500 font-medium">
-            © {new Date().getFullYear()} EFFORT INDIA NGO. All Rights Reserved. Section 80G &amp; FCRA Registered.
+            © {new Date().getFullYear()} EFFORT. All Rights Reserved. Section 80G &amp; FCRA Registered.
           </p>
         </div>
       </footer>

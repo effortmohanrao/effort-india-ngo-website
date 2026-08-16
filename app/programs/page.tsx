@@ -21,6 +21,15 @@ import {
 } from "./data";
 import CalendarFlipClock from "@/components/CalendarFlipClock";
 
+// Module-level cache (survives component remounts within the same page session — e.g.
+// clicking into a project and back — so the card grid never re-flashes blank covers while
+// re-fetching the same ~90 image lookups it already has).
+let coverCache: {
+  projectCovers: Record<string, string>;
+  folderCovers: Record<string, string>;
+  categoryPools: Record<string, string[]>;
+} | null = null;
+
 function useScrollReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
   const [visible, setVisible] = useState(false);
@@ -99,6 +108,10 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
     <Link
       ref={cardRef}
       href={`/programs/${status}/${index + 1}`}
+      onClick={() => {
+        sessionStorage.setItem("programs-scroll-y", String(window.scrollY));
+        sessionStorage.setItem("programs-scroll-tab", status);
+      }}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       className="group relative flex flex-col rounded-[26px] bg-white border border-[#e7ddc8] shadow-[0_20px_45px_-30px_rgba(120,90,40,0.35)] hover:shadow-[0_30px_60px_-25px_rgba(180,130,40,0.35)] transition-shadow duration-500 overflow-hidden"
@@ -176,6 +189,23 @@ export default function Programs() {
   const [projectsCount, setProjectsCount] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  // Restore scroll position (and active tab) when returning from a project's detail page,
+  // instead of landing back at the top of the list.
+  useEffect(() => {
+    const savedY = sessionStorage.getItem("programs-scroll-y");
+    const savedTab = sessionStorage.getItem("programs-scroll-tab");
+    if (savedY === null) return;
+    if (savedTab === "completed" || savedTab === "ongoing") setProjectsTab(savedTab);
+    sessionStorage.removeItem("programs-scroll-y");
+    sessionStorage.removeItem("programs-scroll-tab");
+    const targetY = parseInt(savedY, 10);
+    // Runs after Next's own post-navigation scroll-to-top, which otherwise wins the race.
+    // No cleanup here on purpose: React Strict Mode's dev-only double-invoke would cancel
+    // this timer on the phantom cleanup pass, and the second effect pass is always a no-op
+    // (sessionStorage was already cleared by the first pass), so nothing would ever fire.
+    setTimeout(() => window.scrollTo({ top: targetY, left: 0, behavior: "instant" }), 60);
+  }, []);
+
   const completedBtnRef = useRef<HTMLButtonElement>(null);
   const ongoingBtnRef = useRef<HTMLButtonElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
@@ -188,16 +218,18 @@ export default function Programs() {
   // first, then its shared photoFolder album, else a rotating real photo from
   // its category's fallback pool. Every card ends up with a genuine EFFORT
   // field photo — only the first two sources are project-specific claims.
-  const [projectCovers, setProjectCovers] = useState<Record<string, string>>({});
-  const [folderCovers, setFolderCovers] = useState<Record<string, string>>({});
-  const [categoryPools, setCategoryPools] = useState<Record<string, string[]>>({});
+  const [projectCovers, setProjectCovers] = useState<Record<string, string>>(coverCache?.projectCovers ?? {});
+  const [folderCovers, setFolderCovers] = useState<Record<string, string>>(coverCache?.folderCovers ?? {});
+  const [categoryPools, setCategoryPools] = useState<Record<string, string[]>>(coverCache?.categoryPools ?? {});
 
   useEffect(() => {
+    if (coverCache) return; // already fetched this session — reuse cached data, no re-fetch, no flicker
+
     const jobs: { key: string; prefix: string }[] = [];
     completedProjects.forEach((_, i) => jobs.push({ key: `completed-${i}`, prefix: `programs/completed/p${i + 1}/cover` }));
     ongoingProjects.forEach((_, i) => jobs.push({ key: `ongoing-${i}`, prefix: `programs/ongoing/p${i + 1}/cover` }));
 
-    Promise.all(
+    const projectCoversPromise = Promise.all(
       jobs.map((job) =>
         fetch(`/api/site/media?prefix=${job.prefix}`, { cache: "no-store" })
           .then((res) => res.json())
@@ -207,6 +239,7 @@ export default function Programs() {
       const map: Record<string, string> = {};
       for (const [key, url] of entries) if (url) map[key] = url;
       setProjectCovers(map);
+      return map;
     });
 
     const allProjects = [...completedProjects, ...ongoingProjects];
@@ -216,7 +249,7 @@ export default function Programs() {
       if (p.photoFolder) folderStatus.set(p.photoFolder, completedProjects.includes(p) ? "completed" : "ongoing");
     }
 
-    Promise.all(
+    const folderCoversPromise = Promise.all(
       folderJobs.map((folder) =>
         fetch(`/api/site/media?prefix=programs/${folderStatus.get(folder)}/${folder}`, { cache: "no-store" })
           .then((res) => res.json())
@@ -226,16 +259,27 @@ export default function Programs() {
       const map: Record<string, string> = {};
       for (const [folder, url] of entries) if (url) map[folder] = url;
       setFolderCovers(map);
+      return map;
     });
 
     const categorySlugs = ["agriculture", "nrm", "health", "child"];
-    Promise.all(
+    const categoryPoolsPromise = Promise.all(
       categorySlugs.map((slug) =>
         fetch(`/api/site/media?prefix=programs/category-covers/${slug}`, { cache: "no-store" })
           .then((res) => res.json())
           .then((data) => [slug, (data.images ?? []).map((i: { url: string }) => i.url)] as const)
       )
-    ).then((entries) => setCategoryPools(Object.fromEntries(entries)));
+    ).then((entries) => {
+      const map = Object.fromEntries(entries);
+      setCategoryPools(map);
+      return map;
+    });
+
+    Promise.all([projectCoversPromise, folderCoversPromise, categoryPoolsPromise]).then(
+      ([projectCovers, folderCovers, categoryPools]) => {
+        coverCache = { projectCovers, folderCovers, categoryPools };
+      }
+    );
   }, []);
 
   const categorySlugFor = (category: string) =>

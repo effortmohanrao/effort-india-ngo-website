@@ -369,9 +369,16 @@ export default function Header() {
                 <Link
                   href="/donate"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold shadow-md hover:from-emerald-700 hover:to-emerald-800 flex items-center justify-center gap-2 cursor-pointer"
+                  className="relative overflow-hidden w-full py-3.5 rounded-full bg-gradient-to-r from-amber-500 via-emerald-600 via-teal-600 to-amber-500 bg-[length:200%_200%] animate-gradient-border-flow text-white font-extrabold text-sm shadow-[0_8px_30px_rgba(245,158,11,0.45),0_0_20px_rgba(16,185,129,0.35)] flex items-center justify-center gap-2.5 border-2 border-white/40 cursor-pointer"
                 >
-                  <Heart className="w-4 h-4 fill-white" /> Donate Now
+                  <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shrink-0 shadow-inner">
+                    <Heart className="w-3.5 h-3.5 fill-amber-300 text-amber-300 animate-pulse" />
+                  </div>
+                  <span className="font-black tracking-wide text-white drop-shadow-sm">Donate Now</span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/40 border border-amber-300/40 text-[9px] font-black uppercase text-amber-200 tracking-wider">
+                    80G Tax Free
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-amber-200" />
                 </Link>
               </div>
             </div>

@@ -2,7 +2,7 @@
 
 import React, { use, useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   Landmark,
@@ -36,6 +36,15 @@ import {
   ChevronRight,
   Check,
   BookOpen,
+  PawPrint,
+  TreePine,
+  Coins,
+  Recycle,
+  Store,
+  GraduationCap,
+  CloudRain,
+  Bug,
+  QrCode,
 } from "lucide-react";
 import {
   Project,
@@ -47,7 +56,31 @@ import {
   extractVillageCount,
   findFieldStory,
 } from "../../data";
-import { getProjectContent } from "../../projectContent";
+import { getProjectContent, type PillarIconKey } from "../../projectContent";
+
+const PILLAR_ICON: Record<PillarIconKey, typeof Tractor> = {
+  tractor: Tractor,
+  users: Users,
+  leaf: Leaf,
+  droplets: Droplets,
+  trending: TrendingUp,
+  handshake: Handshake,
+  heartPulse: HeartPulse,
+  baby: Baby,
+  shield: ShieldCheck,
+  sprout: Sprout,
+  trees: TreePine,
+  coins: Coins,
+  recycle: Recycle,
+  store: Store,
+  graduationCap: GraduationCap,
+  cloudRain: CloudRain,
+  bug: Bug,
+  qrCode: QrCode,
+  book: BookOpen,
+  paw: PawPrint,
+  briefcase: Briefcase,
+};
 
 function getList(status: string): Project[] | null {
   if (status === "completed") return completedProjects;
@@ -397,8 +430,10 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
 
               <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-bold text-[#5b6a60]">
                 <span>Stage 1: Mobilization</span>
-                <span>Stage 2: Execution</span>
-                <span className="text-emerald-700 font-black">100% Verified</span>
+                <span>{isCompleted ? "Stage 2: Execution" : "Stage 2: Ongoing Execution"}</span>
+                <span className={`font-black ${isCompleted ? "text-emerald-700" : "text-amber-700"}`}>
+                  {isCompleted ? "100% Verified" : "In Progress"}
+                </span>
               </div>
             </div>
           </div>
@@ -424,6 +459,14 @@ export default function ProjectDetailPage({
   params: Promise<{ status: string; id: string }>;
 }) {
   const { status, id } = use(params);
+  const router = useRouter();
+  const handleBack = () => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/programs");
+    }
+  };
   const list = getList(status);
   const index = parseInt(id, 10) - 1;
   const project = list && Number.isInteger(index) ? list[index] : undefined;
@@ -502,9 +545,10 @@ export default function ProjectDetailPage({
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_440px] gap-12 items-start">
           <div>
-            <Link
-              href="/programs"
-              className="group relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-[#d4af6a]/60 text-xs font-black uppercase tracking-wider text-[#7a5a18] shadow-[0_10px_25px_-8px_rgba(212,175,106,0.4)] hover:bg-white hover:border-[#b88c30] hover:text-[#5a3f0e] hover:shadow-[0_15px_30px_-5px_rgba(212,175,106,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 overflow-hidden"
+            <button
+              type="button"
+              onClick={handleBack}
+              className="group relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-[#d4af6a]/60 text-xs font-black uppercase tracking-wider text-[#7a5a18] shadow-[0_10px_25px_-8px_rgba(212,175,106,0.4)] hover:bg-white hover:border-[#b88c30] hover:text-[#5a3f0e] hover:shadow-[0_15px_30px_-5px_rgba(212,175,106,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 overflow-hidden cursor-pointer"
             >
               <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-amber-100/50 via-white/80 to-amber-100/50" />
               <div className="w-6 h-6 rounded-full bg-amber-100/80 border border-[#d4af6a]/50 flex items-center justify-center shrink-0 group-hover:bg-amber-500 transition-colors duration-300 relative z-10 shadow-sm">
@@ -512,7 +556,7 @@ export default function ProjectDetailPage({
               </div>
               <span className="relative z-10">Back to Programs</span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse relative z-10 ml-0.5 shadow-[0_0_6px_#10b981]" />
-            </Link>
+            </button>
 
             <div className="flex flex-wrap gap-2 mb-5">
               <span
@@ -669,7 +713,7 @@ export default function ProjectDetailPage({
                   </p>
                   <div className="pt-2 flex flex-wrap gap-2">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
-                      <Check className="w-3.5 h-3.5" /> Target Group Covered
+                      <Check className="w-3.5 h-3.5" /> {isCompleted ? "Target Group Covered" : "Target Group Identified"}
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">
                       <Check className="w-3.5 h-3.5" /> Verified Field Baseline
@@ -846,16 +890,21 @@ export default function ProjectDetailPage({
                       </h4>
                     </div>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">
-                    <Check className="w-3.5 h-3.5" /> Stage Completed
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold w-fit ${
+                    isCompleted ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"
+                  }`}>
+                    {isCompleted ? <Check className="w-3.5 h-3.5" /> : <Compass className="w-3.5 h-3.5" />}
+                    {isCompleted ? "Stage Completed" : "Field Blueprint"}
                   </span>
                 </div>
 
                 <div className="grid sm:grid-cols-3 gap-4">
                   {content.blueprintStages[activeStage]?.items.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white/70 border border-white shadow-sm">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
-                        ✓
+                      <div className={`w-5 h-5 rounded-full text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 ${
+                        isCompleted ? "bg-emerald-500" : "bg-amber-500"
+                      }`}>
+                        {isCompleted ? "✓" : "•"}
                       </div>
                       <p className="text-xs font-medium text-[#3f4d47] leading-relaxed">{item}</p>
                     </div>
@@ -871,12 +920,14 @@ export default function ProjectDetailPage({
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#e7ddc8] text-[#a3711f] text-xs font-bold uppercase tracking-wider">
                 <Leaf className="w-3.5 h-3.5" /> Transformation Pillars
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#221c0c]">What This Project Achieved In Practice</h3>
+              <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#221c0c]">
+                {isCompleted ? "What This Project Achieved In Practice" : "What This Project Is Working Toward"}
+              </h3>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {content.impactPillars.map((h, idx) => {
-                const HIcon = idx === 0 ? Tractor : idx === 1 ? Users : idx === 2 ? Globe2 : idx === 3 ? Droplets : idx === 4 ? TrendingUp : Handshake;
+                const HIcon = PILLAR_ICON[h.icon];
                 const a = ACCENT[h.color];
                 return (
                   <div
@@ -1076,12 +1127,13 @@ export default function ProjectDetailPage({
       {/* --- BACK TO PROGRAMS FOOTER NAV --- */}
       <section className="relative overflow-hidden py-16">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Link
-            href="/programs"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#221c0c] text-white font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#3a2f16] transition-all duration-300 shadow-xl hover:scale-105"
+          <button
+            type="button"
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#221c0c] text-white font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#3a2f16] transition-all duration-300 shadow-xl hover:scale-105 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-[#d4af6a]" /> Back to All Programs
-          </Link>
+          </button>
         </div>
       </section>
     </div>

@@ -464,12 +464,6 @@ const leadershipTeam: LeadershipMember[] = [
     role: "Lead, Water Governance & Management",
     intro: "Graduate in Civil Engineering with 30 years of rich experience in Water & Soil Conservation Projects.",
   },
-  {
-    slug: "jv-mohan-rao",
-    name: "J. V. Mohan Rao",
-    role: "Executive Director & Founder",
-    intro: "Postgraduate in Sociology with a Diploma in Social Development from St. Francis Xavier University, Canada, & PhD (Hon.) from Kennedy University, Paris. 40 years of experience in Social Development.",
-  },
 ];
 
 type PhilosophyNote = {

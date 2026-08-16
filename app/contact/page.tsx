@@ -26,6 +26,8 @@ import {
 export default function Contact() {
   const [activeOffice, setActiveOffice] = useState<"hq" | "prakasam" | "guntur" | "hyderabad">("hq");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
@@ -51,9 +53,23 @@ export default function Contact() {
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "contact", ...formData }),
+      });
+      if (!res.ok) throw new Error((await res.json()).error || "Failed to send.");
+      setFormSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to send. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   {/* Offices Data */}
@@ -333,11 +349,16 @@ export default function Contact() {
                   />
                 </div>
 
+                {submitError && (
+                  <p className="text-xs font-bold text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{submitError}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full bg-[#221c0c] hover:bg-black text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  disabled={submitting}
+                  className="w-full py-4 rounded-full bg-[#221c0c] hover:bg-black text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                 >
-                  <Send className="w-4 h-4 text-amber-400" /> Send Message To EFFORT Team
+                  <Send className="w-4 h-4 text-amber-400" /> {submitting ? "Sending..." : "Send Message To EFFORT Team"}
                 </button>
               </form>
             )}

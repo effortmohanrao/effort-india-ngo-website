@@ -98,7 +98,7 @@ export const ongoingProjects: Project[] = [
   { name: "Climate Resilient Agriculture Integrating Natural Resource Management", beneficiaries: "Promoting climate-resilient agricultural approaches integrating NRM practices in the drought-prone villages of Kalujuvvalapadu and Nagireddyapalli, Prakasam district", funder: "NABARD", category: AGRI },
   { name: "Promotion of Sustainable Livelihoods of Women", beneficiaries: "Improving economic status of 275 women, enabling additional income through Income Generation Units", funder: "PMI", category: CHILD_ONGOING },
   { name: "Sustainable Well-Being of Women", beneficiaries: "Women's empowerment and improved livelihoods through livelihood interventions", funder: "EKAMUSA and Orange Elephant", category: CHILD_ONGOING, photoFolder: "sustainable-wellbeing-women" },
-  { name: "Carbon Sequestration Project", beneficiaries: "Reducing carbon through horticulture and timber species, promoting carbon credits", funder: "VARAHA", category: NRM },
+  { name: "Carbon Sequestration Project", beneficiaries: "Reducing carbon through horticulture and timber species across 500 acres, promoting carbon credits", funder: "VARAHA", category: NRM },
 ];
 
 export const completedBreakdown = [
