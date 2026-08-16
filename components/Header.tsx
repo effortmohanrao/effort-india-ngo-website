@@ -261,7 +261,7 @@ export default function Header() {
                 </div>
               </div>
               <div>
-                <span className={`font-extrabold tracking-tight text-slate-900 block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl sm:text-2xl"}`}>
+                <span className={`font-black tracking-tight bg-gradient-to-r from-emerald-900 via-emerald-700 to-amber-600 bg-clip-text text-transparent block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl sm:text-2xl"}`}>
                   EFFORT
                 </span>
                 <span className="relative text-[10px] sm:text-xs font-bold text-emerald-600 tracking-widest uppercase mt-1 block w-fit">
