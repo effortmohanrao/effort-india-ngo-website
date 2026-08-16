@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Heart,
@@ -12,7 +12,6 @@ import {
   Sprout,
   Droplets,
   ArrowRight,
-  HelpCircle,
   MapPin,
   Lock,
   FileCheck,
@@ -20,11 +19,98 @@ import {
   GraduationCap,
   Users,
   CheckCircle2,
+  Copy,
+  Check,
+  Smartphone,
+  Loader2,
+  Sparkles,
 } from "lucide-react";
-import DonateModal from "@/components/DonateModal";
+import { defaultDonationSettings, type DonationSettings, type BankAccount } from "@/lib/donationSettings";
+
+function UnionBankLogo() {
+  return (
+    <div className="w-11 h-11 rounded-xl bg-[#003366] text-white flex flex-col items-center justify-center border-2 border-amber-400 shadow-md shrink-0 p-0.5">
+      <span className="text-[10px] font-black tracking-tight leading-none text-amber-300 font-mono">UBI</span>
+      <span className="text-[8px] font-bold text-white tracking-widest leading-none mt-0.5">BANK</span>
+    </div>
+  );
+}
+
+function SBIBankLogo() {
+  return (
+    <div className="w-11 h-11 rounded-xl bg-[#280071] text-white flex items-center justify-center border-2 border-sky-400 shadow-md shrink-0">
+      <div className="w-6 h-6 rounded-full bg-[#00a3e0] flex items-center justify-center relative shadow-inner">
+        <div className="w-1.5 h-2.5 bg-[#280071] rounded-t-full absolute bottom-0" />
+      </div>
+    </div>
+  );
+}
+
+function CopyRow({ label, value, mono = true }: { label: string; value: string; mono?: boolean }) {
+  const [copied, setCopied] = useState(false);
+  if (!value) return null;
+
+  return (
+    <div className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-400/60 transition-all group">
+      <div className="min-w-0">
+        <p className="text-[10px] font-black uppercase tracking-wider text-slate-500">{label}</p>
+        <p className={`text-xs sm:text-sm text-slate-900 truncate mt-0.5 ${mono ? "font-mono font-bold" : "font-bold"}`}>{value}</p>
+      </div>
+      <button
+        type="button"
+        onClick={() => {
+          navigator.clipboard.writeText(value);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        }}
+        className="shrink-0 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-extrabold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
+      >
+        {copied ? (
+          <>
+            <Check className="w-3.5 h-3.5" /> Copied
+          </>
+        ) : (
+          <>
+            <Copy className="w-3.5 h-3.5" /> Copy
+          </>
+        )}
+      </button>
+    </div>
+  );
+}
 
 export default function DonatePage() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [giveTab, setGiveTab] = useState<"india" | "abroad">("india");
+  const [settings, setSettings] = useState<DonationSettings>(defaultDonationSettings);
+  const [qrUrl, setQrUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    Promise.all([
+      fetch("/api/site/donation-settings", { cache: "no-store" }).then((r) => r.json()).catch(() => defaultDonationSettings),
+      fetch("/api/site/media?prefix=donation-qr", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
+    ])
+      .then(([settingsData, mediaData]) => {
+        if (settingsData && settingsData.domesticBank) setSettings(settingsData);
+        setQrUrl(mediaData.images?.[0]?.url ?? null);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  function BankDetail({ account, type }: { account: BankAccount; type: "domestic" | "fcra" }) {
+    const isDomestic = type === "domestic";
+    return (
+      <div className="space-y-2">
+        <CopyRow label="Bank Name" value={account.bankName} mono={false} />
+        <CopyRow label="Account Beneficiary" value={account.accountName} mono={false} />
+        <CopyRow label="Account Number" value={account.accountNumber} />
+        <CopyRow label="IFSC Code" value={account.ifsc} />
+        <CopyRow label="Branch" value={account.branch} mono={false} />
+        {!isDomestic && account.swiftCode && <CopyRow label="SWIFT / BIC Code" value={account.swiftCode} />}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0] text-slate-900 selection:bg-amber-400 selection:text-slate-950 font-sans">
@@ -32,10 +118,25 @@ export default function DonatePage() {
       {/* ========================================================================= */}
       {/* 1. HERO SECTION */}
       {/* ========================================================================= */}
-      <section className="relative py-20 lg:py-24 bg-gradient-to-r from-[#381116] via-[#5c0d18] to-[#381116] text-white border-b-4 border-amber-400 shadow-xl overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-[#2A0B0E] via-[#5c0d18] to-[#381116] text-white border-b-4 border-amber-400 shadow-xl overflow-hidden">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] bg-amber-200/20 rounded-full blur-[140px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[-5%] w-[550px] h-[550px] bg-rose-200/15 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute -top-24 -left-20 w-[560px] h-[560px] bg-amber-300/20 rounded-full blur-[150px] animate-liquid-drift-a" />
+          <div className="absolute top-1/3 -right-20 w-[520px] h-[520px] bg-rose-400/15 rounded-full blur-[150px] animate-liquid-drift-b" />
+          <div className="absolute -bottom-24 left-1/3 w-[460px] h-[460px] bg-orange-300/15 rounded-full blur-[140px] animate-liquid-drift-c" />
+          {Array.from({ length: 16 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-amber-300/60 shadow-[0_0_8px_#fbbf24] animate-dust-float"
+              style={{
+                width: 3 + (i % 4) * 2,
+                height: 3 + (i % 4) * 2,
+                left: `${(i * 6.1) % 100}%`,
+                top: `${(i * 8.7) % 100}%`,
+                animationDelay: `${(i % 8) * 0.5}s`,
+                animationDuration: `${6 + (i % 5)}s`,
+              }}
+            />
+          ))}
           <div className="absolute inset-0 bg-noise opacity-15" />
         </div>
 
@@ -54,18 +155,11 @@ export default function DonatePage() {
           </p>
 
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
+            <a
+              href="#give"
               className="px-9 py-4 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-black text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(251,191,36,0.35)] hover:scale-105 transition-all flex items-center gap-2 cursor-pointer"
             >
-              <Heart className="w-4 h-4 fill-slate-950" /> DONATE NOW
-            </button>
-            <a
-              href="#ways-to-give"
-              className="px-9 py-4 rounded-full bg-white/10 border border-white/30 text-white font-black text-sm uppercase tracking-wider hover:bg-white/20 transition-all flex items-center gap-2"
-            >
-              Ways To Give <ArrowDown className="w-4 h-4" />
+              <Heart className="w-4 h-4 fill-slate-950" /> DONATE NOW <ArrowDown className="w-4 h-4" />
             </a>
           </div>
 
@@ -91,59 +185,122 @@ export default function DonatePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. WAYS TO GIVE */}
+      {/* 3. GIVE — INDIA / ABROAD TOGGLE PANEL */}
       {/* ========================================================================= */}
-      <section id="ways-to-give" className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section id="give" className="py-16 lg:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-[10px] font-black uppercase tracking-[0.25em] text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-            WAYS TO GIVE
+            OFFICIAL DONATION DETAILS
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">CHOOSE HOW YOU&apos;D LIKE TO HELP</h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">WHERE ARE YOU GIVING FROM?</h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
-          <div className="p-7 rounded-[28px] bg-white border-2 border-amber-300/80 shadow-lg space-y-3">
-            <span className="text-2xl">🇮🇳</span>
-            <h3 className="text-lg font-black text-slate-900">Giving from India</h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-medium">
-              Scan our UPI QR code, pay via any UPI app, or transfer directly to our Union Bank account. All domestic donations are eligible for tax exemption under Section 80G.
-            </p>
+        {/* Segmented Toggle */}
+        <div className="flex justify-center">
+          <div className="inline-flex p-1.5 rounded-full bg-white border-2 border-amber-200 shadow-md">
             <button
               type="button"
-              onClick={() => setModalOpen(true)}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-xs uppercase tracking-wider shadow-md hover:bg-amber-800 transition-all cursor-pointer flex items-center justify-center gap-2"
+              onClick={() => setGiveTab("india")}
+              className={`px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                giveTab === "india"
+                  ? "bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
             >
-              View UPI &amp; Bank Details <ArrowRight className="w-3.5 h-3.5" />
+              🇮🇳 India (INR)
             </button>
-          </div>
-
-          <div className="p-7 rounded-[28px] bg-white border-2 border-sky-300/80 shadow-lg space-y-3">
-            <span className="text-2xl">🌍</span>
-            <h3 className="text-lg font-black text-slate-900">Giving from Abroad</h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-medium">
-              Under Ministry of Home Affairs (MHA) FCRA regulations, all international &amp; NRI foreign contributions must be sent by bank wire to our designated State Bank of India, New Delhi account.
-            </p>
             <button
               type="button"
-              onClick={() => setModalOpen(true)}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-sky-700 via-indigo-800 to-sky-900 text-white font-black text-xs uppercase tracking-wider shadow-md hover:bg-sky-800 transition-all cursor-pointer flex items-center justify-center gap-2"
+              onClick={() => setGiveTab("abroad")}
+              className={`px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                giveTab === "abroad"
+                  ? "bg-gradient-to-r from-sky-700 via-indigo-800 to-sky-900 text-white shadow-lg"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
             >
-              View SWIFT Wire Details <ArrowRight className="w-3.5 h-3.5" />
+              🌍 Abroad (FCRA)
             </button>
           </div>
         </div>
 
-        <div className="p-6 rounded-[28px] bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <Mail className="w-6 h-6 text-amber-400 shrink-0" />
-            <div>
-              <p className="font-bold text-sm text-white">Already donated?</p>
-              <p className="text-xs text-slate-300 font-medium">
-                Email your transaction reference / screenshot to <a href="mailto:effortap@gmail.com" className="text-amber-300 font-bold underline">effortap@gmail.com</a> for your official 80G receipt.
-              </p>
+        {loading ? (
+          <div className="p-16 flex flex-col items-center justify-center gap-3 text-sm text-slate-500">
+            <Loader2 className="w-6 h-6 animate-spin text-amber-700" />
+            <span className="font-bold">Loading verified bank details...</span>
+          </div>
+        ) : (
+          <div className="rounded-[36px] bg-white border-2 border-amber-300/70 shadow-xl p-6 sm:p-10 animate-fade-in">
+            {giveTab === "india" ? (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-5 border-b border-amber-100">
+                  <UnionBankLogo />
+                  <div>
+                    <h3 className="text-lg font-black text-slate-900">{settings.domesticBank.bankName}</h3>
+                    <p className="text-xs font-bold text-amber-800 uppercase tracking-wider">Domestic Transfer &bull; 80G Tax Exempt</p>
+                  </div>
+                </div>
+
+                {/* UPI QR */}
+                <div className="rounded-2xl border-2 border-amber-200 bg-amber-50/50 p-5 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+                  {qrUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={qrUrl} alt="UPI QR code to donate to EFFORT NGO" className="w-40 h-40 object-contain rounded-xl border-2 border-amber-300 shadow-md shrink-0 bg-white p-1.5" />
+                  ) : (
+                    <div className="w-40 h-40 rounded-xl border-2 border-dashed border-amber-300 bg-white flex items-center justify-center text-[10px] text-amber-800 font-bold text-center px-3 shrink-0">
+                      Scan with any UPI App (GPay / PhonePe / Paytm / BHIM)
+                    </div>
+                  )}
+                  <div className="space-y-2">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/80 px-2.5 py-0.5 rounded-full">
+                      <Smartphone className="w-3 h-3 text-amber-900" /> Instant UPI Payment
+                    </span>
+                    <h4 className="text-base font-black text-slate-900">Scan the QR or use NEFT/RTGS Transfer</h4>
+                    <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                      All domestic donations are eligible for tax exemption under Section 80G of the Income Tax Act.
+                    </p>
+                    {settings.upiId && <div className="max-w-xs"><CopyRow label="Official UPI ID" value={settings.upiId} /></div>}
+                  </div>
+                </div>
+
+                <BankDetail account={settings.domesticBank} type="domestic" />
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-5 border-b border-sky-100">
+                  <SBIBankLogo />
+                  <div>
+                    <h3 className="text-lg font-black text-slate-900">{settings.fcraBank.bankName}</h3>
+                    <p className="text-xs font-bold text-sky-800 uppercase tracking-wider">New Delhi Main Branch &bull; MHA FCRA Approved</p>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl bg-sky-50 border-2 border-sky-200 p-4 text-xs text-sky-900 leading-relaxed flex gap-3 shadow-xs">
+                  <ShieldCheck className="w-5 h-5 shrink-0 text-sky-600 mt-0.5" />
+                  <div>
+                    <h5 className="font-black text-xs text-sky-950 uppercase tracking-wider">MHA FCRA Government Statutory Requirement</h5>
+                    <p className="mt-1 text-sky-800 font-medium">
+                      Under Ministry of Home Affairs (MHA) regulations, all international &amp; NRI foreign contributions must be routed through this designated State Bank of India (SBI) New Delhi Main Branch account.
+                    </p>
+                  </div>
+                </div>
+
+                <BankDetail account={settings.fcraBank} type="fcra" />
+              </div>
+            )}
+
+            {/* Tax Receipt Note */}
+            <div className="mt-6 rounded-2xl bg-slate-900 text-white p-4 text-xs leading-relaxed flex items-center gap-3 shadow-lg">
+              <Mail className="w-5 h-5 text-amber-400 shrink-0" />
+              <div>
+                <p className="font-bold text-slate-200">Need your 80G Tax Exemption Receipt?</p>
+                <p className="text-[11px] text-slate-400 font-medium">
+                  Email your transaction reference / screenshot to{" "}
+                  <a href={`mailto:${settings.receiptEmail}`} className="text-amber-300 font-bold underline">{settings.receiptEmail}</a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="p-6 rounded-[28px] bg-white border border-amber-900/15 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3 text-center sm:text-left">
@@ -301,8 +458,6 @@ export default function DonatePage() {
           </p>
         </div>
       </footer>
-
-      <DonateModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

@@ -1633,14 +1633,58 @@ export default function About() {
                     </p>
                   </div>
 
-                  {/* Credentials Badges */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {founderProfile.badges.map((badge) => (
-                      <div key={badge} className="px-3 py-1.5 rounded-lg bg-emerald-900/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-bold flex items-center gap-1.5">
-                        <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                        <span>{badge.toUpperCase()}</span>
+                  {/* EXECUTIVE DIRECTOR DISTINCTIONS & HONORS MATRIX */}
+                  <div className="pt-2 space-y-2">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-300 flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                      OFFICIAL CREDENTIALS &amp; GLOBAL DISTINCTIONS
+                    </span>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      
+                      {/* HIGHLIGHT 1: 40 YEARS FIELD LEADERSHIP */}
+                      <div className="relative bg-gradient-to-br from-amber-500/30 via-amber-950/70 to-slate-950 border-2 border-amber-400/80 rounded-2xl p-3.5 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:border-amber-300 hover:scale-[1.03] transition-all group/cred">
+                        <div className="flex items-center justify-between gap-1 mb-1">
+                          <span className="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase tracking-wider shadow-xs">
+                            40+ YEARS
+                          </span>
+                          <Award className="w-4 h-4 text-amber-300 group-hover/cred:rotate-12 transition-transform" />
+                        </div>
+                        <h4 className="text-xs font-black text-white leading-tight mt-1">Social Development Leader</h4>
+                        <p className="text-[10px] text-amber-200/90 font-medium leading-snug mt-0.5">
+                          4 Decades of Field Execution &amp; Planning across 9 Indian States
+                        </p>
                       </div>
-                    ))}
+
+                      {/* HIGHLIGHT 2: PHD (HON.), PARIS FRANCE */}
+                      <div className="relative bg-gradient-to-br from-cyan-500/30 via-cyan-950/70 to-slate-950 border-2 border-cyan-400/80 rounded-2xl p-3.5 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:border-cyan-300 hover:scale-[1.03] transition-all group/cred">
+                        <div className="flex items-center justify-between gap-1 mb-1">
+                          <span className="px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[9px] font-black uppercase tracking-wider shadow-xs">
+                            PHD (HON.) &bull; PARIS
+                          </span>
+                          <GraduationCap className="w-4 h-4 text-cyan-300 group-hover/cred:rotate-12 transition-transform" />
+                        </div>
+                        <h4 className="text-xs font-black text-white leading-tight mt-1">Sustainable Development</h4>
+                        <p className="text-[10px] text-cyan-200/90 font-medium leading-snug mt-0.5">
+                          Honorary Doctorate from Kennedy University, Paris, France
+                        </p>
+                      </div>
+
+                      {/* HIGHLIGHT 3: DIPLOMA, ST. FX CANADA */}
+                      <div className="relative bg-gradient-to-br from-emerald-500/30 via-emerald-950/70 to-slate-950 border-2 border-emerald-400/80 rounded-2xl p-3.5 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:border-emerald-300 hover:scale-[1.03] transition-all group/cred">
+                        <div className="flex items-center justify-between gap-1 mb-1">
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-400 text-slate-950 text-[9px] font-black uppercase tracking-wider shadow-xs">
+                            DIPLOMA &bull; CANADA
+                          </span>
+                          <Globe2 className="w-4 h-4 text-emerald-300 group-hover/cred:rotate-12 transition-transform" />
+                        </div>
+                        <h4 className="text-xs font-black text-white leading-tight mt-1">Social Development</h4>
+                        <p className="text-[10px] text-emerald-200/90 font-medium leading-snug mt-0.5">
+                          Diploma from St. Francis Xavier University, Canada
+                        </p>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
 
