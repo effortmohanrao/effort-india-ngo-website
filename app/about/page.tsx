@@ -407,7 +407,7 @@ const coreValues: { title: string; icon: typeof ShieldCheck; desc: string; radiu
 
 const founderProfile = {
   slug: "jv-mohan-rao",
-  name: "V. Mohan Rao",
+  name: "J. V. Mohan Rao",
   title: "Executive Director, EFFORT NGO",
   quote:
     "Postgraduate in Sociology, with a Diploma in Social Development from St. Francis Xavier University, Canada, and recipient of an Honorary Doctor of Philosophy specializing in Environmental and Sustainable Development from Kennedy University, Paris, France. 40 years of experience in the field of Social Development, with expertise in planning, designing, monitoring and evaluating sustainable development initiatives.",
@@ -454,7 +454,7 @@ const leadershipTeam: LeadershipMember[] = [
   },
   {
     slug: "annapurna",
-    name: "B. Annapurna",
+    name: "P. Annapurna",
     role: "Finance",
     intro: "Postgraduate in MBA Finance with 33 years of experience in Finance Management.",
   },
@@ -465,10 +465,10 @@ const leadershipTeam: LeadershipMember[] = [
     intro: "Graduate in Civil Engineering with 30 years of rich experience in Water & Soil Conservation Projects.",
   },
   {
-    slug: "mohan-reddy",
-    name: "M. V. Mohan Reddy",
-    role: "Lead, IT & Digital Platforms",
-    intro: "Graduate in Computer Science and Postgraduate in Human Rights & Duties, with strong expertise in IT skills.",
+    slug: "jv-mohan-rao",
+    name: "J. V. Mohan Rao",
+    role: "Executive Director & Founder",
+    intro: "Postgraduate in Sociology with a Diploma in Social Development from St. Francis Xavier University, Canada, & PhD (Hon.) from Kennedy University, Paris. 40 years of experience in Social Development.",
   },
 ];
 
