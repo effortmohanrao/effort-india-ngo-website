@@ -17,4 +17,5 @@ export const adminPages: AdminPage[] = [
   { id: "careers", label: "Careers", href: "/careers" },
   { id: "news", label: "News & Media", href: "/news" },
   { id: "donate", label: "Donate", href: "/donate" },
+  { id: "admin-access", label: "Admin Access", href: "/admin" },
 ];

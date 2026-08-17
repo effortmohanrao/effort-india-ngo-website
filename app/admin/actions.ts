@@ -10,17 +10,17 @@ export async function loginAction(_prevState: LoginState, formData: FormData): P
   const username = String(formData.get("username") ?? "").trim();
   const password = String(formData.get("password") ?? "");
 
-  if (!checkCredentials(username, password)) {
+  if (!(await checkCredentials(username, password))) {
     return { error: "Incorrect username or password." };
   }
 
   const cookieStore = await cookies();
-  cookieStore.set(ADMIN_COOKIE_NAME, createSessionValue(), {
+  cookieStore.set(ADMIN_COOKIE_NAME, createSessionValue(username), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: 60 * 60 * 24,
   });
 
   redirect("/admin");

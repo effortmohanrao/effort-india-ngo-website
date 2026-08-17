@@ -1,67 +1,76 @@
 "use client";
 
 import { useActionState } from "react";
-import { ShieldCheck, Lock, User, LogIn } from "lucide-react";
+import { ShieldCheck, Lock, User, LogIn, Sparkles } from "lucide-react";
 import { loginAction } from "../actions";
 
 export default function AdminLoginPage() {
   const [state, formAction, pending] = useActionState(loginAction, undefined);
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-950 px-4">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center gap-2 mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white font-black text-xl shadow-lg">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#0b1712] px-4 relative overflow-hidden">
+      {/* Ambient brand glows */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-[-15%] right-[-10%] w-[500px] h-[500px] rounded-full bg-emerald-600/25 blur-[140px]" />
+        <div className="absolute bottom-[-15%] left-[-10%] w-[500px] h-[500px] rounded-full bg-amber-500/15 blur-[140px]" />
+        <div className="bg-noise absolute inset-0 opacity-[0.08]" />
+      </div>
+
+      <div className="w-full max-w-sm relative z-10">
+        <div className="flex flex-col items-center gap-3 mb-8 text-center">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white font-black text-2xl shadow-[0_8px_30px_rgba(16,185,129,0.4)] border border-emerald-400/40">
             E
           </div>
-          <h1 className="text-white font-bold text-lg">EFFORT Admin Panel</h1>
-          <p className="text-slate-500 text-xs flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5" /> Staff access only
-          </p>
+          <div>
+            <h1 className="text-white font-black text-xl tracking-tight">EFFORT Admin Panel</h1>
+            <p className="text-emerald-200/60 text-xs font-semibold flex items-center justify-center gap-1.5 mt-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Private staff access only
+            </p>
+          </div>
         </div>
 
         <form
           action={formAction}
-          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 shadow-2xl"
+          className="bg-white/[0.04] backdrop-blur-2xl border border-white/10 rounded-3xl p-7 space-y-5 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.6)]"
         >
           <div className="space-y-1.5">
-            <label htmlFor="username" className="text-xs font-semibold text-slate-400">
+            <label htmlFor="username" className="text-xs font-bold text-emerald-100/70 uppercase tracking-wider">
               Username
             </label>
             <div className="relative">
-              <User className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <User className="w-4 h-4 text-emerald-400/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 id="username"
                 name="username"
                 type="text"
                 autoComplete="username"
                 required
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white placeholder-slate-600 outline-hidden focus:border-emerald-600 transition-colors"
+                className="w-full bg-black/30 border border-white/10 rounded-xl pl-10 pr-3 py-3 text-sm text-white placeholder-white/25 outline-hidden focus:border-emerald-500/70 focus:bg-black/40 transition-colors"
                 placeholder="admin"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="password" className="text-xs font-semibold text-slate-400">
+            <label htmlFor="password" className="text-xs font-bold text-emerald-100/70 uppercase tracking-wider">
               Password
             </label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Lock className="w-4 h-4 text-emerald-400/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
                 required
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white placeholder-slate-600 outline-hidden focus:border-emerald-600 transition-colors"
+                className="w-full bg-black/30 border border-white/10 rounded-xl pl-10 pr-3 py-3 text-sm text-white placeholder-white/25 outline-hidden focus:border-emerald-500/70 focus:bg-black/40 transition-colors"
                 placeholder="••••••••"
               />
             </div>
           </div>
 
           {state?.error && (
-            <p className="text-xs font-semibold text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-lg px-3 py-2">
+            <p className="text-xs font-semibold text-rose-300 bg-rose-500/10 border border-rose-500/30 rounded-xl px-3.5 py-2.5">
               {state.error}
             </p>
           )}
@@ -69,12 +78,16 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={pending}
-            className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 text-white font-bold text-sm rounded-xl py-2.5 transition-colors cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 disabled:opacity-60 text-white font-black text-sm rounded-xl py-3.5 shadow-[0_10px_25px_-8px_rgba(16,185,129,0.5)] transition-all cursor-pointer"
           >
             <LogIn className="w-4 h-4" />
             {pending ? "Signing in..." : "Sign In"}
           </button>
         </form>
+
+        <p className="text-center text-[11px] text-white/25 font-medium mt-6 flex items-center justify-center gap-1.5">
+          <Sparkles className="w-3 h-3 text-amber-400/60" /> This area is private and not indexed for public access
+        </p>
       </div>
     </div>
   );

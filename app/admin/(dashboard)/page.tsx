@@ -10,8 +10,9 @@ import DonatePanel from "@/components/admin/DonatePanel";
 import ProgramsPanel from "@/components/admin/ProgramsPanel";
 import AboutPanel from "@/components/admin/AboutPanel";
 import ComingSoonPanel from "@/components/admin/ComingSoonPanel";
+import StaffAccountsPanel from "@/components/admin/StaffAccountsPanel";
 import { adminPages } from "@/components/admin/adminPages";
-import { logoutAction } from "./actions";
+import { logoutAction } from "../actions";
 
 export default function AdminPage() {
   const [activeId, setActiveId] = useState(adminPages[0].id);
@@ -30,10 +31,10 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-[#fcfaf4] text-slate-800 font-sans">
-      
+
       {/* EXECUTIVE HIGH-LOOK ADMIN TOP BAR */}
       <div className="relative bg-gradient-to-r from-slate-950 via-emerald-950 to-slate-950 text-white border-b-2 border-amber-500/40 shadow-lg overflow-hidden">
-        
+
         {/* Shimmer Light Sweeps */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 left-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-[90px] animate-liquid-drift-a" />
@@ -42,7 +43,7 @@ export default function AdminPage() {
         </div>
 
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
-          
+
           {/* Logo & Brand Details */}
           <div className="flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-full bg-white border-2 border-white/90 shadow-md flex items-center justify-center font-black text-emerald-800 overflow-hidden p-1 shrink-0">
@@ -102,6 +103,8 @@ export default function AdminPage() {
           <ProgramsPanel />
         ) : activeId === "about" ? (
           <AboutPanel />
+        ) : activeId === "admin-access" ? (
+          <StaffAccountsPanel />
         ) : (
           <ComingSoonPanel page={activePage} />
         )}
