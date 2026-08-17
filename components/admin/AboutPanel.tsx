@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, ExternalLink, ImageIcon, Users } from "lucide-react";
+import { ChevronLeft, ExternalLink, ImageIcon, Users, Handshake } from "lucide-react";
 import MediaSlotManager from "./MediaSlotManager";
 import TeamPanel from "./TeamPanel";
+import { partnerCategories } from "@/lib/partners";
 
 type Section = {
   id: string;
@@ -15,8 +16,63 @@ type Section = {
 
 const sections: Section[] = [
   { id: "hero", icon: ImageIcon, title: "Hero Section", desc: "Rotating cover photos shown top-right of the About page. Changes every ~3.5 seconds — upload as many as you like." },
+  { id: "partners", icon: Handshake, title: "Partner Logos", desc: "Real logos shown in the scrolling \"Organizations That Believe In Our Mission\" section." },
   { id: "team", icon: Users, title: "Meet Our Team", desc: "Photo and social links for each of the 9 leadership team members." },
 ];
+
+function PartnerLogosPanel({ onBack }: { onBack: () => void }) {
+  return (
+    <div className="p-6">
+      <button
+        type="button"
+        onClick={onBack}
+        className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-emerald-700 mb-4 cursor-pointer"
+      >
+        <ChevronLeft className="w-3.5 h-3.5" /> Back to About Us sections
+      </button>
+
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="text-lg font-bold text-slate-800">About Page — Partner Logos</h2>
+          <p className="text-xs text-slate-500 mt-0.5">
+            One logo per organization. Upload or replace any of these and it updates the live page immediately.
+          </p>
+        </div>
+        <Link
+          href="/about#partners"
+          target="_blank"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 shrink-0"
+        >
+          View live page <ExternalLink className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
+      <div className="space-y-6">
+        {partnerCategories.map((cat) => (
+          <div key={cat.title} className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800 mb-3">{cat.title}</p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+              {cat.partners.map((p) =>
+                p.slug ? (
+                  <div key={p.slug} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                    <p className="text-xs font-bold text-slate-700 mb-2 truncate" title={p.name}>{p.name}</p>
+                    <MediaSlotManager prefix={`about/partner-logos/${p.slug}`} label={p.name} />
+                  </div>
+                ) : (
+                  <div key={p.name} className="rounded-xl border border-dashed border-slate-200 bg-slate-50/60 p-3 flex items-center">
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      <b className="text-slate-500">{p.name}</b> — shown as text only on the live page (not a funding/CSR partner logo).
+                    </p>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function SubPanel({ title, desc, livePath, prefix, label, onBack }: { title: string; desc: string; livePath: string; prefix: string; label: string; onBack: () => void }) {
   return (
@@ -62,6 +118,10 @@ export default function AboutPanel() {
         onBack={() => setOpenSection(null)}
       />
     );
+  }
+
+  if (openSection === "partners") {
+    return <PartnerLogosPanel onBack={() => setOpenSection(null)} />;
   }
 
   if (openSection === "team") {

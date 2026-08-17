@@ -860,29 +860,6 @@ body {
   animation: smoke-drift-c 11s ease-in-out infinite;
 }
 
-@keyframes marquee-track-x {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.partner-track {
-  animation: marquee-track-x 34s linear infinite;
-}
-
-.partner-track-reverse {
-  animation: marquee-track-x 40s linear infinite reverse;
-}
-
-.partner-row:hover .partner-track,
-.partner-row:hover .partner-track-reverse {
-  animation-play-state: paused;
-}
-
 @keyframes glass-glow-pulse {
 
   0%,

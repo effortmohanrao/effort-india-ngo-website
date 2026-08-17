@@ -51,6 +51,7 @@ import {
 import { InstagramIcon, FacebookIcon, LinkedinIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 import Effort20Roadmap from "@/components/Effort20Roadmap";
 import { programAlbums } from "@/lib/programAlbums";
+import { partnerCategories, ALL_PARTNER_SLUGS } from "@/lib/partners";
 
 
 function useScrollReveal<T extends HTMLElement>() {
@@ -512,53 +513,15 @@ const smartPanels: SmartPanel[] = [
   { title: "Long-Term Sustainability", icon: TreePine, detail: "Continuous operation since our 1999 founding.", kind: "stat", target: 27, suffix: "+", label: "Years of Service" },
 ];
 
-type PartnerZone = {
-  title: string;
-  icon: typeof Globe2;
-  accent: string;
-  names: string[];
-};
-
-const partnerZones: PartnerZone[] = [
-  {
-    title: "International Development Partners",
-    icon: Globe2,
-    accent: "#5eead4",
-    names: [
-      "German Cooperation (GIZ)",
-      "Great Place To Work",
-      "IDH – Sustainable Trade Initiative",
-      "Fairtrade Foundation",
-      "DKA Austria",
-      "CropLife International",
-      "EKAM USA",
-      "PGNF",
-    ],
-  },
-  {
-    title: "Corporate & CSR Partners",
-    icon: Building2,
-    accent: "#c4b5fd",
-    names: [
-      "Godfrey Phillips India Ltd.",
-      "JSW Foundation",
-      "Reliance Foundation",
-      "Azim Premji Foundation",
-      "Syngenta",
-      "Universal Corporation",
-      "Corteva Agriscience",
-      "ITC Limited",
-      "CropLife India",
-      "Bayer",
-    ],
-  },
-  {
-    title: "Government & Institutional Partners",
-    icon: Landmark,
-    accent: "#fcd34d",
-    names: ["NABARD", "Government of Andhra Pradesh", "Spices Board India", "Bala Vikasa", "AGS"],
-  },
+// Icon/accent pairing is page-specific styling; the partner data itself (names, slugs, grouping)
+// lives in lib/partners.ts, shared with the admin panel so both stay in sync.
+const ZONE_STYLE: { icon: typeof Globe2; accent: string }[] = [
+  { icon: Globe2, accent: "#5eead4" },
+  { icon: Building2, accent: "#c4b5fd" },
+  { icon: Landmark, accent: "#fcd34d" },
 ];
+
+const partnerZones = partnerCategories.map((cat, i) => ({ ...cat, ...ZONE_STYLE[i] }));
 
 const finaleHeadlineLines = ["Together We Can Create", "A Better Tomorrow"];
 
@@ -672,6 +635,22 @@ export default function About() {
   const [activeWhyChooseTab, setActiveWhyChooseTab] = useState(0);
   const [statValues, setStatValues] = useState<(number | null)[]>(() => smartPanels.map((p) => (p.kind === "stat" ? 0 : null)));
   const [partnersRef, partnersVisible] = useScrollReveal<HTMLElement>();
+  const [partnerLogos, setPartnerLogos] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    // Each partner logo lives in its own folder (about/partner-logos/{slug}/) — same convention
+    // the admin panel's upload tool uses everywhere else on the site, so what an admin uploads
+    // there is exactly what shows up here, with nothing to keep in sync by hand.
+    Promise.all(
+      ALL_PARTNER_SLUGS.map((slug) =>
+        fetch(`/api/site/media?prefix=about/partner-logos/${slug}`, { cache: "no-store" })
+          .then((r) => r.json())
+          .then((data) => [slug, data.images?.[0]?.url ?? null] as const)
+      )
+    )
+      .then((entries) => setPartnerLogos(Object.fromEntries(entries.filter(([, url]) => url))))
+      .catch(() => {});
+  }, []);
   const [galleryHeaderRef, galleryHeaderVisible] = useScrollReveal<HTMLDivElement>();
   const galleryStripRef = useRef<HTMLDivElement>(null);
   const [galleryScrollPct, setGalleryScrollPct] = useState(0);
@@ -1915,52 +1894,66 @@ export default function About() {
                   return (
                     <div
                       key={`${member.slug}-${idx}`}
-                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-2.5 hover:shadow-2xl transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[310px] relative overflow-hidden"
+                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[44px] rounded-tl-[16px] p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-3 hover:shadow-[0_30px_70px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 group/card shrink-0 w-[295px] sm:w-[325px] relative overflow-hidden text-center"
                       style={{
                         borderColor: theme.accent,
-                        boxShadow: `0 15px 40px -15px ${theme.accent}35`,
+                        boxShadow: `0 20px 50px -15px ${theme.accent}40`,
                       }}
                     >
                       {/* Top Rotating Laser Border Highlight Track */}
                       <div
-                        className={`absolute top-0 left-0 right-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
+                        className={`absolute top-0 left-0 right-0 h-2 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
                       />
 
+                      {/* Top Right Executive Star Insignia Badge */}
+                      <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white/90 border border-amber-400 shadow-md flex items-center justify-center text-amber-600">
+                        <Sparkles className="w-4 h-4 animate-spin" style={{ animationDuration: "12s" }} />
+                      </div>
+
                       {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
-                      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[32px] opacity-75 group-hover/card:opacity-100 transition-opacity duration-500">
-                        <div className={`absolute -top-10 -right-10 w-44 h-44 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-amber-200/30 blur-2xl animate-liquid-drift-b" />
+                      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[44px] opacity-75 group-hover/card:opacity-100 transition-opacity duration-500">
+                        <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
+                        <div className="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-amber-200/30 blur-2xl animate-liquid-drift-b" />
                       </div>
 
                       <div className="space-y-4 relative z-10">
-                        {/* Large, HD Crisp Profile Image Frame */}
-                        <div
-                          className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden border-2 shadow-md bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center"
-                          style={{ borderColor: theme.accent }}
-                        >
-                          {teamPhotos[member.slug] ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={teamPhotos[member.slug]}
-                              alt={member.name}
-                              className={`w-full h-full object-cover group-hover/card:scale-108 transition-transform duration-700 ${
-                                member.slug === "hanumantha-rao" ? "object-[center_10%]" : "object-top"
-                              }`}
-                            />
-                          ) : (
-                            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-4 text-center">
-                              <UserCircle2 className="w-16 h-16 text-emerald-400 mb-1" />
-                              <span className="text-sm font-black text-amber-300">{member.name}</span>
-                            </div>
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
+                        {/* A+ LUXURY CIRCULAR PRECISION MEDALLION PORTRAIT FRAME */}
+                        <div className="relative w-44 h-44 mx-auto my-1 flex items-center justify-center">
+                          {/* Outer Dashed Rotating Gold Ring */}
+                          <div
+                            className="absolute -inset-2.5 rounded-full border-2 border-dashed opacity-60 animate-gyro-cw pointer-events-none"
+                            style={{ borderColor: theme.accent }}
+                          />
+
+                          {/* Solid Circular Gold Medallion Core Frame */}
+                          <div
+                            className="relative w-44 h-44 rounded-full overflow-hidden border-4 shadow-xl bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center group-hover/card:scale-105 transition-transform duration-500"
+                            style={{ borderColor: theme.accent }}
+                          >
+                            {teamPhotos[member.slug] ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                src={teamPhotos[member.slug]}
+                                alt={member.name}
+                                className={`w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 ${
+                                  member.slug === "hanumantha-rao" ? "object-[center_10%]" : "object-top"
+                                }`}
+                              />
+                            ) : (
+                              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-4 text-center">
+                                <UserCircle2 className="w-16 h-16 text-emerald-400 mb-1" />
+                                <span className="text-sm font-black text-amber-300">{member.name}</span>
+                              </div>
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
+                          </div>
                         </div>
 
                         <div>
-                          <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover/card:text-amber-950 transition-colors leading-tight">
+                          <h4 className="text-lg sm:text-xl font-serif italic font-black text-slate-900 group-hover/card:text-amber-950 transition-colors leading-tight">
                             {member.name}
                           </h4>
-                          <span className={`mt-1.5 inline-block text-[10px] px-2.5 py-1 rounded-full uppercase ${theme.badge}`}>
+                          <span className={`mt-2 inline-block text-[10px] px-3 py-1 rounded-full uppercase ${theme.badge}`}>
                             {member.role}
                           </span>
                         </div>
@@ -2424,7 +2417,7 @@ export default function About() {
       })()}
 
       {/* --- OUR PARTNERS & RECOGNITION SECTION (TRUST NETWORK) --- */}
-      <section ref={partnersRef} className="relative overflow-hidden bg-aurora py-16 lg:py-20">
+      <section id="partners" ref={partnersRef} className="relative overflow-hidden bg-aurora py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -left-16 w-[420px] h-[420px] rounded-full bg-emerald-500/25 blur-[110px] animate-smoke-a" />
           <div className="absolute top-1/3 -right-20 w-[460px] h-[460px] rounded-full bg-fuchsia-500/20 blur-[120px] animate-smoke-b" />
@@ -2472,40 +2465,58 @@ export default function About() {
             </div>
           </div>
 
-          {/* Three partnership marquee zones */}
-          <div className="space-y-8">
+          {/* Three partnership logo walls — static grids, sized for real logos to actually read */}
+          <div className="space-y-10">
             {partnerZones.map((zone, zi) => {
               const ZoneIcon = zone.icon;
-              const loop = [...zone.names, ...zone.names];
               return (
                 <div
                   key={zone.title}
-                  className={`partner-row transition-all duration-700 ${partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  className={`transition-all duration-700 ${partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                     }`}
                   style={{ transitionDelay: `${350 + zi * 150}ms` }}
                 >
-                  <div className="flex items-center gap-2 mb-4 px-1">
-                    <ZoneIcon className="w-4 h-4" style={{ color: zone.accent }} />
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-white/70">{zone.title}</p>
+                  <div className="flex items-center gap-2.5 mb-4 px-1">
+                    <span
+                      className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${zone.accent}22` }}
+                    >
+                      <ZoneIcon className="w-4 h-4" style={{ color: zone.accent }} />
+                    </span>
+                    <p className="text-xs font-bold uppercase tracking-wide text-white/80">{zone.title}</p>
+                    <span className="h-px flex-1 bg-white/10" />
+                    <span className="text-[10px] font-semibold text-white/40">{zone.partners.length} Partners</span>
                   </div>
 
-                  <div className="relative overflow-hidden">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b1120] to-transparent z-10" />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0b1120] to-transparent z-10" />
-                    <div className={`flex w-max gap-4 ${zi % 2 === 0 ? "partner-track" : "partner-track-reverse"}`}>
-                      {loop.map((name, i) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    {zone.partners.map((partner) => {
+                      const logoSrc = partner.slug ? partnerLogos[partner.slug] : undefined;
+                      return (
                         <div
-                          key={`${name}-${i}`}
-                          className="group shrink-0 w-52 h-20 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 hover:bg-white/14 hover:border-white/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center px-4"
+                          key={partner.name}
+                          className="group rounded-2xl bg-white border border-white/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center gap-2 px-4 py-6 min-h-36"
+                          title={partner.name}
                         >
-                          <span
-                            className="text-sm font-bold text-white/85 text-center leading-snug group-hover:text-white transition-colors duration-300"
-                          >
-                            {name}
+                          {logoSrc ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={logoSrc}
+                              alt={partner.name}
+                              className={`max-w-full object-contain transition-transform duration-300 group-hover:scale-105 ${
+                                partner.slug === "gptw" ? "max-h-24" : "max-h-16"
+                              }`}
+                            />
+                          ) : (
+                            <span className="text-sm font-bold text-[#0b1120] text-center leading-snug">
+                              {partner.name}
+                            </span>
+                          )}
+                          <span className="text-[10px] font-semibold text-slate-500 text-center leading-tight line-clamp-2">
+                            {partner.name}
                           </span>
                         </div>
-                      ))}
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
               );
