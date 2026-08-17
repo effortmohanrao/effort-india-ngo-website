@@ -13,20 +13,12 @@ import {
   Award,
   Users,
   Send,
-  Building2,
-  FileCheck2,
   Globe2,
-  Zap,
-  Check,
-  ChevronRight,
-  Heart,
   BadgeCheck,
-  BookOpen,
+  BellRing,
 } from "lucide-react";
 
 export default function Careers() {
-  const [activeRoleFilter, setActiveRoleFilter] = useState("all");
-  const [selectedJob, setSelectedJob] = useState<any | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -37,7 +29,7 @@ export default function Careers() {
     email: "",
     phone: "",
     college: "",
-    role: "University Rural Immersion Fellow",
+    role: "General Interest / Future Openings",
     portfolio: "",
     statement: "",
   });
@@ -61,99 +53,6 @@ export default function Careers() {
     }
   };
 
-  {/* Job & Internship Openings Dataset */}
-  const jobOpenings = [
-    {
-      id: "intern-fellow",
-      category: "internship",
-      title: "University Rural Immersion Fellow",
-      type: "Internship & Fellowship (3-6 Months)",
-      location: "Ongole HQ & Prakasam Field Hub, Andhra Pradesh",
-      stipend: "₹12,000 / month Stipend + Field Travel",
-      desc: "Designed for social work (MSW), agriculture, and public policy students. Conduct baseline surveys, document FPO success stories, and facilitate SHG micro-enterprise workshops.",
-      requirements: [
-        "Enrolled in or graduate of MSW, B.Sc Ag, MA Social Work, or Public Policy",
-        "Passionate about grassroots rural development & community mobilization",
-        "Official TISS & Academic Empaneled Internship Certificate provided",
-      ],
-      badge: "Youth Fellowship",
-    },
-    {
-      id: "gis-analyst",
-      category: "research",
-      title: "Watershed & GIS Mapping Analyst",
-      type: "Full-Time / Research Fellowship",
-      location: "Central Data Hub, Ongole, Andhra Pradesh",
-      stipend: "₹3.6L – ₹4.8L / year",
-      desc: "Map check-dams, percolation tanks, and groundwater recharge points using GIS & satellite imagery. Prepare spatial impact reports for NABARD and corporate CSR funders.",
-      requirements: [
-        "Degree in Geoinformatics, Civil Engineering, Hydrology, or Remote Sensing",
-        "Proficiency in QGIS / ArcGIS and spatial data analytics",
-        "1-2 years experience in natural resource mapping preferred",
-      ],
-      badge: "Research & Tech",
-    },
-    {
-      id: "ipm-officer",
-      category: "field",
-      title: "Sustainable Agriculture & IPM Field Officer",
-      type: "Full-Time Field Role",
-      location: "Guntur & Palnadu Districts, Andhra Pradesh",
-      stipend: "₹3.2L – ₹4.5L / year + Field Allowances",
-      desc: "Lead farmer field schools (FFS) on Integrated Pest Management (IPM), Non-Pesticidal Management (NPM), and Direct Seeded Rice (DSR) cultivation across smallholder habitations.",
-      requirements: [
-        "B.Sc / M.Sc in Agriculture, Agronomy, or Horticulture",
-        "Fluency in Telugu & willingness to stay in rural project blocks",
-        "Prior experience with FPOs or seed production collectives",
-      ],
-      badge: "Ground Field Leader",
-    },
-    {
-      id: "fpo-[#221c0c]",
-      category: "management",
-      title: "FPO Business Development Associate",
-      type: "Full-Time Corporate Role",
-      location: "Hyderabad / Vijayawada Liaison Office",
-      stipend: "₹3.5L – ₹5.0L / year",
-      desc: "Facilitate market linkages, organic spice processing, and institutional buyback agreements for 42 Farmer Producer Organizations (FPOs) representing 38,102 smallholders.",
-      requirements: [
-        "MBA in Agribusiness Management or Rural Management (IRMA/TISS/MANAGE)",
-        "Strong negotiation skills with commodity buyers and corporate retail chains",
-        "1-3 years experience in agri-commodity supply chains",
-      ],
-      badge: "Agri-Business",
-    },
-    {
-      id: "child-officer",
-      category: "field",
-      title: "Child Rights & Education Program Officer",
-      type: "Full-Time Field Role",
-      location: "Prakasam & Guntur Districts",
-      stipend: "₹3.0L – ₹4.2L / year",
-      desc: "Supervise residential bridge schools for former child labourers, coordinate girl student bicycle distribution, and strengthen Community Child Protection Committees.",
-      requirements: [
-        "Degree in Development Studies, Education, or Sociology",
-        "Strong passion for child welfare & education access",
-        "Excellent documentation and field team management capabilities",
-      ],
-      badge: "Child Welfare",
-    },
-  ];
-
-  const roleCategories = [
-    { label: "⚡ All Opportunities", val: "all" },
-    { label: "🎓 University Fellowships & Internships", val: "internship" },
-    { label: "🌾 On-Ground Field Roles", val: "field" },
-    { label: "📊 Research & GIS Mapping", val: "research" },
-    { label: "🏢 Management & FPO Leads", val: "management" },
-  ];
-
-  const filteredJobs = roleCategories.find((c) => c.val === activeRoleFilter)
-    ? activeRoleFilter === "all"
-      ? jobOpenings
-      : jobOpenings.filter((j) => j.category === activeRoleFilter)
-    : jobOpenings;
-
   return (
     <div className="min-h-screen bg-[#fcf8f0] text-[#221c0c] relative overflow-hidden">
       {/* Dynamic Ambient Glow Lines */}
@@ -172,7 +71,7 @@ export default function Careers() {
           Shape the Future of Rural India: <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Purpose-Driven Careers</span>
         </h1>
         <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
-          Turn your academic passion into ground reality. Apply for university fellowships, student internships with stipend, or full-time field roles with EFFORT NGO across 10 operational states.
+          Turn your academic passion into ground reality. University fellowships, student internships, and full-time field roles with EFFORT NGO across 10 operational states — opening soon.
         </p>
 
         {/* Quick Jump Pills */}
@@ -181,7 +80,7 @@ export default function Careers() {
             href="#job-openings"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
           >
-            Explore 5 Open Roles <ArrowRight className="w-4 h-4" />
+            See Current Status <ArrowRight className="w-4 h-4" />
           </a>
           <a
             href="#why-join"
@@ -237,88 +136,25 @@ export default function Careers() {
         </div>
       </section>
 
-      {/* --- OPEN ROLES EXPLORER SECTION --- */}
-      <section id="job-openings" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+      {/* --- COMING SOON NOTICE --- */}
+      <section id="job-openings" className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center rounded-[36px] p-10 sm:p-14 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-sm space-y-5">
+          <div className="w-16 h-16 rounded-2xl bg-amber-50 border-2 border-amber-200 text-amber-700 flex items-center justify-center mx-auto">
+            <BellRing className="w-7 h-7" />
+          </div>
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black uppercase tracking-[0.2em] text-emerald-900 shadow-xs">
-            <Briefcase className="w-4 h-4 text-emerald-600" /> Active Career & Internship Openings
+            <Briefcase className="w-4 h-4 text-emerald-600" /> Careers Portal
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#221c0c]">Current Opportunities</h2>
-        </div>
-
-        {/* Role Category Selector Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-10">
-          {roleCategories.map((cat) => {
-            const isSelected = activeRoleFilter === cat.val;
-            return (
-              <button
-                key={cat.val}
-                onClick={() => setActiveRoleFilter(cat.val)}
-                className={`px-5 py-3 rounded-full text-xs font-black tracking-wide transition-all cursor-pointer ${
-                  isSelected
-                    ? "bg-[#221c0c] text-[#f7e4a3] border-2 border-[#d4af6a] shadow-lg scale-105"
-                    : "bg-white/90 border border-[#e5d4a1] text-[#5a461e] hover:bg-white"
-                }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Job Cards Grid */}
-        <div className="space-y-4">
-          {filteredJobs.map((job) => (
-            <div
-              key={job.id}
-              className="p-6 sm:p-8 rounded-[32px] bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-sm hover:shadow-xl hover:border-[#d4af6a] transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
-            >
-              <div className="space-y-3 max-w-3xl">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-black text-[10px] uppercase tracking-wider">
-                    {job.badge}
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold text-[10px] uppercase">
-                    {job.type}
-                  </span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-black text-[#221c0c] leading-snug">{job.title}</h3>
-
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#8a6a1f] font-bold">
-                  <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-emerald-600" /> {job.location}</span>
-                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-amber-600" /> {job.stipend}</span>
-                </div>
-
-                <p className="text-xs sm:text-sm text-[#5b6a60] font-medium leading-relaxed">{job.desc}</p>
-
-                <div className="pt-2">
-                  <span className="text-[11px] font-black uppercase text-[#221c0c]">Key Pre-requisites:</span>
-                  <ul className="mt-1 space-y-1">
-                    {job.requirements.map((req, i) => (
-                      <li key={i} className="flex items-center gap-2 text-xs text-stone-600 font-medium">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>{req}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="shrink-0 self-stretch md:self-auto flex flex-col justify-center">
-                <a
-                  href="#application-form"
-                  onClick={() => {
-                    setSelectedJob(job);
-                    setFormData((prev) => ({ ...prev, role: job.title }));
-                  }}
-                  className="w-full md:w-auto px-6 py-3.5 rounded-full bg-[#221c0c] hover:bg-black text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center gap-2"
-                >
-                  Apply For This Role <ArrowRight className="w-4 h-4 text-amber-400" />
-                </a>
-              </div>
-            </div>
-          ))}
+          <h2 className="text-3xl sm:text-4xl font-black text-[#221c0c]">No Open Positions Right Now</h2>
+          <p className="text-sm sm:text-base text-[#5b6a60] font-medium max-w-xl mx-auto leading-relaxed">
+            We&apos;re not hiring for fellowships, internships, or field roles at the moment — new openings are coming soon. Register your interest below and we&apos;ll reach out the moment a role opens up.
+          </p>
+          <a
+            href="#application-form"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#221c0c] hover:bg-black text-[#f7e4a3] border border-[#d4af6a] font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
+          >
+            Register Your Interest <ArrowRight className="w-4 h-4 text-amber-400" />
+          </a>
         </div>
       </section>
 
@@ -330,10 +166,10 @@ export default function Careers() {
               <Send className="w-3.5 h-3.5 text-amber-700" /> Direct HR Candidate Uplink
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-[#221c0c]">
-              Submit Your Career / Internship Application
+              Register Your Interest
             </h2>
             <p className="text-sm text-[#5b6a60] font-medium max-w-xl mx-auto">
-              Fill in your contact details below and our HR recruitment coordinator will reach out within 3–5 working days.
+              No roles are open right now, but tell us a bit about yourself and we&apos;ll reach out as soon as a fellowship, internship, or field role matching your interest opens up.
             </p>
           </div>
 
@@ -342,19 +178,16 @@ export default function Careers() {
               <div className="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-md">
                 <BadgeCheck className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-black text-emerald-950">Application Received!</h3>
+              <h3 className="text-2xl font-black text-emerald-950">Interest Registered!</h3>
               <p className="text-sm text-emerald-800 font-medium max-w-md mx-auto">
-                Thank you for applying for <strong>{formData.role}</strong> at EFFORT NGO. Your application has been logged with reference ID.
+                Thank you for your interest in EFFORT NGO. We&apos;ve saved your details and will reach out as soon as a matching role opens.
               </p>
-              <div className="p-3 rounded-2xl bg-white border border-emerald-200 text-xs font-mono font-bold text-emerald-900 inline-block">
-                Candidate Ref: EFFORT-HR-{Math.floor(100000 + Math.random() * 900000)}
-              </div>
               <div>
                 <button
                   onClick={() => setFormSubmitted(false)}
                   className="px-6 py-2.5 rounded-full bg-emerald-700 text-white font-black text-xs uppercase tracking-wider hover:bg-emerald-800"
                 >
-                  Submit Another Application
+                  Submit Another Response
                 </button>
               </div>
             </div>
@@ -420,18 +253,18 @@ export default function Careers() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#221c0c] mb-2">
-                    Target Role Applied For *
+                    Area of Interest *
                   </label>
                   <select
                     value={formData.role}
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl bg-stone-50 border-2 border-stone-200 text-sm font-medium text-[#221c0c] focus:outline-none focus:border-[#d4af6a] transition-colors"
                   >
-                    <option value="University Rural Immersion Fellow">University Rural Immersion Fellow (Stipend)</option>
-                    <option value="Watershed & GIS Mapping Analyst">Watershed & GIS Mapping Analyst</option>
-                    <option value="Sustainable Agriculture & IPM Field Officer">Sustainable Agriculture & IPM Field Officer</option>
-                    <option value="FPO Business Development Associate">FPO Business Development Associate</option>
-                    <option value="Child Rights & Education Program Officer">Child Rights & Education Program Officer</option>
+                    <option value="General Interest / Future Openings">General Interest / Future Openings</option>
+                    <option value="University Fellowship / Internship">University Fellowship / Internship</option>
+                    <option value="Field & Ground Program Roles">Field & Ground Program Roles</option>
+                    <option value="Research, GIS & Data Roles">Research, GIS & Data Roles</option>
+                    <option value="Management & Administration">Management & Administration</option>
                   </select>
                 </div>
                 <div>

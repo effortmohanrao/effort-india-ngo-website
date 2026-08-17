@@ -23,6 +23,7 @@ import {
   Moon,
   Globe,
   ArrowRight,
+  Lock,
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 
@@ -92,8 +93,8 @@ export default function Header() {
   ];
 
   const moreLinks = [
-    { name: "Careers & Internships", href: "/careers", icon: Briefcase, desc: "Ground job openings & student roles" },
-    { name: "News & Media Blog", href: "/news", icon: Newspaper, desc: "Field journals, releases & galleries" },
+    { name: "Careers & Internships", href: "/careers", icon: Briefcase, desc: "Ground job openings & student roles", locked: true },
+    { name: "News & Media Blog", href: "/news", icon: Newspaper, desc: "Field journals, releases & galleries", locked: true },
   ];
 
   const socialLinks = [
@@ -278,15 +279,31 @@ export default function Header() {
                 {isDropdownOpen && (
                   <div className="absolute right-0 top-full pt-3 w-80 z-[9999]">
                     <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/50 rounded-2xl p-4 shadow-2xl space-y-1 animate-fade-in shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
-                      {moreLinks.map((subLink) => (
-                        <Link key={subLink.name} href={subLink.href} className="flex gap-3 items-start p-2.5 rounded-xl hover:bg-emerald-50/80 transition-colors group/item">
-                          <subLink.icon className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                          <div>
-                            <span className="text-xs font-bold text-slate-900 block group-hover/item:text-emerald-700">{subLink.name}</span>
-                            <span className="text-[10px] text-slate-450 block mt-0.5 leading-relaxed">{subLink.desc}</span>
+                      {moreLinks.map((subLink) =>
+                        subLink.locked ? (
+                          <div
+                            key={subLink.name}
+                            title="Coming soon"
+                            className="flex gap-3 items-start p-2.5 rounded-xl opacity-60 cursor-not-allowed select-none"
+                          >
+                            <subLink.icon className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                            <div className="flex-1">
+                              <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
+                                {subLink.name} <Lock className="w-3 h-3 text-slate-400" />
+                              </span>
+                              <span className="text-[10px] text-slate-400 block mt-0.5 leading-relaxed">Coming soon</span>
+                            </div>
                           </div>
-                        </Link>
-                      ))}
+                        ) : (
+                          <Link key={subLink.name} href={subLink.href} className="flex gap-3 items-start p-2.5 rounded-xl hover:bg-emerald-50/80 transition-colors group/item">
+                            <subLink.icon className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                            <div>
+                              <span className="text-xs font-bold text-slate-900 block group-hover/item:text-emerald-700">{subLink.name}</span>
+                              <span className="text-[10px] text-slate-450 block mt-0.5 leading-relaxed">{subLink.desc}</span>
+                            </div>
+                          </Link>
+                        )
+                      )}
                     </div>
                   </div>
                 )}
@@ -354,16 +371,25 @@ export default function Header() {
               })}
 
               <div className="font-bold text-[10px] text-slate-400 uppercase tracking-wider px-3 pt-4 mb-1 border-t border-slate-100">Additional Resources</div>
-              {moreLinks.map((subLink) => (
-                <Link
-                  key={subLink.name}
-                  href={subLink.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-xl text-slate-705 hover:bg-slate-50 font-semibold text-sm transition-all"
-                >
-                  {subLink.name}
-                </Link>
-              ))}
+              {moreLinks.map((subLink) =>
+                subLink.locked ? (
+                  <div
+                    key={subLink.name}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-slate-400 font-semibold text-sm opacity-60 cursor-not-allowed select-none"
+                  >
+                    {subLink.name} <Lock className="w-3.5 h-3.5" />
+                  </div>
+                ) : (
+                  <Link
+                    key={subLink.name}
+                    href={subLink.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 rounded-xl text-slate-705 hover:bg-slate-50 font-semibold text-sm transition-all"
+                  >
+                    {subLink.name}
+                  </Link>
+                )
+              )}
 
               <div className="pt-4 flex flex-col gap-2 border-t border-slate-100">
                 <Link
