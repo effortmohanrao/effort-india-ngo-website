@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { ExternalLink, ChevronLeft, ChevronRight, CheckCircle2, CircleDashed, Circle } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight, CheckCircle2, CircleDashed, Circle, ImageOff } from "lucide-react";
 import Link from "next/link";
 import MediaSlotManager from "./MediaSlotManager";
 import { completedProjects, ongoingProjects, type Project } from "@/app/programs/data";
@@ -13,7 +13,7 @@ const GALLERY_TARGET = 6;
 
 const ALBUM_BY_FOLDER = Object.fromEntries(programAlbums.map((a) => [a.folder, a]));
 
-type PhotoStatus = { hasCover: boolean; galleryCount: number; source: "own" | "gallery"; folderLabel?: string };
+type PhotoStatus = { hasCover: boolean; galleryCount: number; source: "own" | "gallery"; folderLabel?: string; coverUrl?: string };
 
 function statusBadge(s: PhotoStatus | undefined) {
   const hasCover = s?.hasCover ?? false;
@@ -141,7 +141,8 @@ function ProjectList({
   return (
     <div className="space-y-1.5">
       {projects.map((p, i) => {
-        const badge = statusBadge(statuses[`${status}-${i}`]);
+        const status_ = statuses[`${status}-${i}`];
+        const badge = statusBadge(status_);
         const BadgeIcon = badge.icon;
         return (
           <button
@@ -150,8 +151,16 @@ function ProjectList({
             onClick={() => onSelect(i)}
             className="w-full text-left flex items-center gap-3 rounded-xl border border-slate-200 bg-white hover:border-emerald-300 hover:shadow-sm px-4 py-3 transition-all cursor-pointer group"
           >
-            <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">
-              {i + 1}
+            <span className="relative w-12 h-12 rounded-lg overflow-hidden bg-slate-100 border border-slate-200 shrink-0 flex items-center justify-center">
+              {status_?.coverUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={status_.coverUrl} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <ImageOff className="w-4.5 h-4.5 text-slate-300" />
+              )}
+              <span className="absolute bottom-0 right-0 w-4 h-4 rounded-tl-md bg-slate-900/70 text-white text-[9px] font-bold flex items-center justify-center leading-none">
+                {i + 1}
+              </span>
             </span>
             <span
               title={badge.title}
@@ -175,10 +184,10 @@ async function fetchOneStatus(status: StatusTab, index: number, project: Project
   if (project.photoFolder) {
     const album = ALBUM_BY_FOLDER[project.photoFolder];
     const res = await fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" }).then((r) => r.json());
-    const count = (res.images ?? []).length;
+    const images = res.images ?? [];
     return [
       `${status}-${index}`,
-      { hasCover: count > 0, galleryCount: count, source: "gallery", folderLabel: album?.label ?? project.photoFolder },
+      { hasCover: images.length > 0, galleryCount: images.length, source: "gallery", folderLabel: album?.label ?? project.photoFolder, coverUrl: images[0]?.url },
     ];
   }
 
@@ -187,9 +196,10 @@ async function fetchOneStatus(status: StatusTab, index: number, project: Project
     fetch(`/api/site/media?prefix=${base}/cover`, { cache: "no-store" }).then((r) => r.json()),
     fetch(`/api/site/media?prefix=${base}/gallery`, { cache: "no-store" }).then((r) => r.json()),
   ]);
+  const coverImages = coverRes.images ?? [];
   return [
     `${status}-${index}`,
-    { hasCover: (coverRes.images ?? []).length > 0, galleryCount: (galleryRes.images ?? []).length, source: "own" },
+    { hasCover: coverImages.length > 0, galleryCount: (galleryRes.images ?? []).length, source: "own", coverUrl: coverImages[0]?.url },
   ];
 }
 
