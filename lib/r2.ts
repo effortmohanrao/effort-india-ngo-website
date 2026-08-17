@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand, DeleteObjectCommand, ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand, DeleteObjectCommand, ListObjectsV2Command, GetObjectCommand, CopyObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const r2 = new S3Client({
@@ -29,6 +29,19 @@ export async function uploadToR2(key: string, body: Buffer | Uint8Array, content
 
 export async function deleteFromR2(key: string) {
   await r2.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));
+}
+
+// Copies an existing object to a new key within the same bucket — used to set an already-uploaded
+// gallery photo as a project's cover without re-uploading the file (no duplicate storage).
+export async function copyInR2(sourceKey: string, destKey: string) {
+  await r2.send(
+    new CopyObjectCommand({
+      Bucket: BUCKET,
+      CopySource: encodeURIComponent(`${BUCKET}/${sourceKey}`),
+      Key: destKey,
+    })
+  );
+  return publicUrlFor(destKey);
 }
 
 export async function listR2Objects(prefix?: string) {

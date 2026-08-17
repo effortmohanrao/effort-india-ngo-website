@@ -64,6 +64,29 @@ function ProjectDetail({
   onBack: () => void;
 }) {
   const base = `programs/${status}/p${index + 1}`;
+  const [coverKey, setCoverKey] = useState<string | undefined>(undefined);
+  const [coverVersion, setCoverVersion] = useState(0);
+
+  useEffect(() => {
+    fetch(`/api/site/media?prefix=${base}/cover`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => setCoverKey(data.images?.[0]?.key))
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [base, coverVersion]);
+
+  async function handleSetCover(img: { key: string; url: string }) {
+    const res = await fetch("/api/admin/media/set-cover", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sourceKey: img.key, coverPrefix: `${base}/cover` }),
+    });
+    if (res.ok) {
+      const result = await res.json();
+      setCoverKey(result.key);
+      setCoverVersion((v) => v + 1);
+    }
+  }
 
   return (
     <div className="p-6 max-w-3xl">
@@ -98,28 +121,53 @@ function ProjectDetail({
             <p className="text-sm font-bold text-sky-900 mb-1">📷 Synced from the main Gallery page</p>
             <p className="text-[11px] text-sky-800 leading-relaxed">
               This project already has real photos in the Gallery album <b>&quot;{ALBUM_BY_FOLDER[project.photoFolder]?.label ?? project.photoFolder}&quot;</b> —
-              those same photos are shown automatically here and on the project&apos;s live page. No separate upload needed.
-              Add or remove photos below and it updates both places at once (nothing gets duplicated).
+              those same photos show automatically in the gallery section below and on the project&apos;s live page. Add or remove
+              photos there and it updates both places at once (nothing gets duplicated).
             </p>
           </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800 mb-1">Cover Image</p>
+            <p className="text-[11px] text-slate-450 mb-3">
+              Shown as this project&apos;s thumbnail everywhere it&apos;s listed. Upload one directly here, or use
+              <b> &quot;Set as Cover&quot;</b> on any photo in the gallery below — no need to upload the same picture twice.
+            </p>
+            <MediaSlotManager key={coverVersion} prefix={`${base}/cover`} label="Cover Image" />
+          </div>
+
           <div className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800 mb-1">Gallery Images (Shared Album)</p>
-            <p className="text-[11px] text-slate-450 mb-3">The first image here doubles as this project&apos;s cover thumbnail. Aim for 6+.</p>
-            <MediaSlotManager prefix={`programs/${status}/${project.photoFolder}`} label="Gallery Images" multiple />
+            <p className="text-[11px] text-slate-450 mb-3">Shown on this project&apos;s case-study page and the main Gallery page.</p>
+            <MediaSlotManager
+              prefix={`programs/${status}/${project.photoFolder}`}
+              label="Gallery Images"
+              multiple
+              onSetCover={handleSetCover}
+              coverKey={coverKey}
+            />
           </div>
         </div>
       ) : (
         <div className="space-y-6">
           <div className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800 mb-1">Cover Image</p>
-            <p className="text-[11px] text-slate-450 mb-3">Shown as this project&apos;s thumbnail everywhere it&apos;s listed. One image only.</p>
-            <MediaSlotManager prefix={`${base}/cover`} label="Cover Image" />
+            <p className="text-[11px] text-slate-450 mb-3">
+              Shown as this project&apos;s thumbnail everywhere it&apos;s listed. Upload one directly here, or use
+              <b> &quot;Set as Cover&quot;</b> on any photo in the gallery below — no need to upload the same picture twice.
+            </p>
+            <MediaSlotManager key={coverVersion} prefix={`${base}/cover`} label="Cover Image" />
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800 mb-1">Gallery Images</p>
             <p className="text-[11px] text-slate-450 mb-3">Shown on this project&apos;s case-study page. Aim for 6 for a complete gallery — upload as many as you have.</p>
-            <MediaSlotManager prefix={`${base}/gallery`} label="Gallery Images" multiple />
+            <MediaSlotManager
+              prefix={`${base}/gallery`}
+              label="Gallery Images"
+              multiple
+              onSetCover={handleSetCover}
+              coverKey={coverKey}
+            />
           </div>
         </div>
       )}
@@ -181,17 +229,28 @@ function ProjectList({
 }
 
 async function fetchOneStatus(status: StatusTab, index: number, project: Project): Promise<[string, PhotoStatus]> {
+  const base = `programs/${status}/p${index + 1}`;
+
   if (project.photoFolder) {
     const album = ALBUM_BY_FOLDER[project.photoFolder];
-    const res = await fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" }).then((r) => r.json());
-    const images = res.images ?? [];
+    const [coverRes, galleryRes] = await Promise.all([
+      fetch(`/api/site/media?prefix=${base}/cover`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" }).then((r) => r.json()),
+    ]);
+    const coverImages = coverRes.images ?? [];
+    const galleryImages = galleryRes.images ?? [];
     return [
       `${status}-${index}`,
-      { hasCover: images.length > 0, galleryCount: images.length, source: "gallery", folderLabel: album?.label ?? project.photoFolder, coverUrl: images[0]?.url },
+      {
+        hasCover: coverImages.length > 0,
+        galleryCount: galleryImages.length,
+        source: "gallery",
+        folderLabel: album?.label ?? project.photoFolder,
+        coverUrl: coverImages[0]?.url ?? galleryImages[0]?.url,
+      },
     ];
   }
 
-  const base = `programs/${status}/p${index + 1}`;
   const [coverRes, galleryRes] = await Promise.all([
     fetch(`/api/site/media?prefix=${base}/cover`, { cache: "no-store" }).then((r) => r.json()),
     fetch(`/api/site/media?prefix=${base}/gallery`, { cache: "no-store" }).then((r) => r.json()),

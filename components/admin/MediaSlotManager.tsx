@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ImagePlus, Trash2, RefreshCw, Loader2 } from "lucide-react";
+import { ImagePlus, Trash2, RefreshCw, Loader2, Star } from "lucide-react";
 
 type MediaImage = { key: string; url: string };
 
@@ -9,9 +9,11 @@ type Props = {
   prefix: string; // e.g. "homepage/hero-section" or "logo" -> stored under website/{prefix}/
   label: string;
   multiple?: boolean; // true = "Add another image" allowed. false = single slot, upload = first image, then only Replace/Delete.
+  onSetCover?: (image: MediaImage) => Promise<void> | void; // when provided, each thumbnail gets a "Set as Cover" action
+  coverKey?: string; // key of the image currently set as cover, if any — highlighted instead of showing the action
 };
 
-export default function MediaSlotManager({ prefix, label, multiple = false }: Props) {
+export default function MediaSlotManager({ prefix, label, multiple = false, onSetCover, coverKey }: Props) {
   const [images, setImages] = useState<MediaImage[]>([]);
   const [loading, setLoading] = useState(true);
   const [busyKey, setBusyKey] = useState<string | null>(null); // "new" while uploading a fresh image, or a key while that image is busy
@@ -81,6 +83,16 @@ export default function MediaSlotManager({ prefix, label, multiple = false }: Pr
     }
   }
 
+  async function handleSetCover(img: MediaImage) {
+    if (!onSetCover) return;
+    setBusyKey(img.key);
+    try {
+      await onSetCover(img);
+    } finally {
+      setBusyKey(null);
+    }
+  }
+
   const showAddButton = multiple || images.length === 0;
 
   if (loading) {
@@ -94,40 +106,59 @@ export default function MediaSlotManager({ prefix, label, multiple = false }: Pr
   return (
     <div className="space-y-4">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-        {images.map((img) => (
-          <div key={img.key} className="rounded-2xl border border-slate-200 bg-white overflow-hidden group relative">
-            <div className="aspect-video bg-slate-100 relative">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.url} alt="" className="w-full h-full object-cover" />
-              {busyKey === img.key && (
-                <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
-                  <Loader2 className="w-5 h-5 animate-spin text-emerald-600" />
-                </div>
-              )}
+        {images.map((img) => {
+          const isCover = onSetCover && coverKey === img.key;
+          return (
+            <div key={img.key} className={`rounded-2xl border bg-white overflow-hidden group relative ${isCover ? "border-amber-400 ring-2 ring-amber-300" : "border-slate-200"}`}>
+              <div className="aspect-video bg-slate-100 relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.url} alt="" className="w-full h-full object-cover" />
+                {isCover && (
+                  <span className="absolute top-2 left-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold shadow-sm">
+                    <Star className="w-3 h-3 fill-white" /> Cover
+                  </span>
+                )}
+                {busyKey === img.key && (
+                  <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
+                    <Loader2 className="w-5 h-5 animate-spin text-emerald-600" />
+                  </div>
+                )}
+              </div>
+              <div className="p-2.5 flex items-center gap-2 flex-wrap">
+                {onSetCover && !isCover && (
+                  <button
+                    type="button"
+                    disabled={busyKey !== null}
+                    onClick={() => handleSetCover(img)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold text-amber-700 hover:text-white bg-amber-50 hover:bg-amber-600 border border-amber-200 hover:border-amber-600 rounded-lg px-2.5 py-1.5 transition-colors disabled:opacity-50 cursor-pointer"
+                  >
+                    <Star className="w-3.5 h-3.5" /> Set as Cover
+                  </button>
+                )}
+                <button
+                  type="button"
+                  title="Replace"
+                  disabled={busyKey !== null}
+                  onClick={() => {
+                    replaceTargetKey.current = img.key;
+                    replaceInputRef.current?.click();
+                  }}
+                  className={`${onSetCover ? "" : "flex-1"} inline-flex items-center justify-center gap-1.5 text-xs font-bold text-slate-600 hover:text-emerald-700 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-lg px-2.5 py-1.5 transition-colors disabled:opacity-50 cursor-pointer`}
+                >
+                  <RefreshCw className="w-3.5 h-3.5" /> {onSetCover ? "" : "Replace"}
+                </button>
+                <button
+                  type="button"
+                  disabled={busyKey !== null}
+                  onClick={() => handleDelete(img.key)}
+                  className="inline-flex items-center justify-center gap-1.5 text-xs font-bold text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-200 hover:border-red-600 rounded-lg px-2.5 py-1.5 transition-colors disabled:opacity-50 cursor-pointer"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
-            <div className="p-2.5 flex items-center gap-2">
-              <button
-                type="button"
-                disabled={busyKey !== null}
-                onClick={() => {
-                  replaceTargetKey.current = img.key;
-                  replaceInputRef.current?.click();
-                }}
-                className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold text-slate-600 hover:text-emerald-700 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-lg px-2.5 py-1.5 transition-colors disabled:opacity-50 cursor-pointer"
-              >
-                <RefreshCw className="w-3.5 h-3.5" /> Replace
-              </button>
-              <button
-                type="button"
-                disabled={busyKey !== null}
-                onClick={() => handleDelete(img.key)}
-                className="inline-flex items-center justify-center gap-1.5 text-xs font-bold text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-200 hover:border-red-600 rounded-lg px-2.5 py-1.5 transition-colors disabled:opacity-50 cursor-pointer"
-              >
-                <Trash2 className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        ))}
+          );
+        })}
 
         {showAddButton && (
           <button
