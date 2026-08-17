@@ -50,6 +50,7 @@ import {
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 import Effort20Roadmap from "@/components/Effort20Roadmap";
+import { programAlbums } from "@/lib/programAlbums";
 
 
 function useScrollReveal<T extends HTMLElement>() {
@@ -178,12 +179,12 @@ const chapterWorldsData = [
     cardStyle: "bg-slate-900/90 border-cyan-500/40 shadow-2xl text-slate-50",
     headerTextColor: "text-slate-50",
     subtitleColor: "text-cyan-300 font-sans font-black",
-    phaseBadge: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-black",
+    phaseBadge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs",
     storyBoxStyle: "bg-slate-800/80 border-cyan-600/40 text-slate-100",
     milestoneTextColor: "text-slate-100",
     milestoneCheckColor: "#38bdf8",
     navBtnStyle: "bg-slate-800 hover:bg-slate-700 text-cyan-200 font-bold border-cyan-600/50",
-    accentColor: "#38bdf8",
+    accentColor: "#0284c7",
     headingFont: "font-sans font-black tracking-tight",
     desc: "EFFORT recorded massive growth, expanding from 50 to 405 villages across 6 districts of Andhra Pradesh. Reached 1,50,000 small, marginal farmers and landless agricultural labourers with focus on Natural Resource Management, while providing technical support to 16 partner grassroots NGOs.",
     archivalMarks: [
@@ -205,12 +206,12 @@ const chapterWorldsData = [
     cardStyle: "bg-zinc-900/90 border-lime-500/40 shadow-2xl text-zinc-50",
     headerTextColor: "text-zinc-50",
     subtitleColor: "text-[#a3e635] font-mono font-black",
-    phaseBadge: "bg-lime-500/20 text-[#a3e635] border-lime-500/40 font-black",
+    phaseBadge: "bg-emerald-100 text-emerald-950 border-emerald-400 font-extrabold shadow-2xs",
     storyBoxStyle: "bg-zinc-800/80 border-lime-600/40 text-zinc-100",
     milestoneTextColor: "text-zinc-100",
     milestoneCheckColor: "#a3e635",
     navBtnStyle: "bg-zinc-800 hover:bg-zinc-700 text-lime-300 font-bold border-lime-600/50",
-    accentColor: "#a3e635",
+    accentColor: "#059669",
     headingFont: "font-mono font-black tracking-tight",
     desc: "A remarkable milestone phase: EFFORT transformed from a single-state organization into a 6-state multi-regional entity, empowering 2 lakh farm families. Built strategic alliances with international funding agencies, corporate CSR partners, government departments, and CBBOs.",
     archivalMarks: [
@@ -232,7 +233,7 @@ const chapterWorldsData = [
     cardStyle: "bg-rose-950/90 border-amber-500/40 shadow-2xl text-amber-50",
     headerTextColor: "text-amber-50",
     subtitleColor: "text-amber-300 font-serif font-black",
-    phaseBadge: "bg-amber-500/20 text-amber-300 border-amber-500/40 font-black",
+    phaseBadge: "bg-yellow-100 text-yellow-950 border-yellow-400 font-extrabold shadow-2xs",
     storyBoxStyle: "bg-rose-900/70 border-amber-500/30 text-amber-100",
     milestoneTextColor: "text-amber-100",
     milestoneCheckColor: "#fbbf24",
@@ -580,7 +581,7 @@ export default function About() {
     fetch("/api/site/media?prefix=about/hero", { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => setHeroImages(data.images ?? []))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   useEffect(() => {
@@ -598,7 +599,7 @@ export default function About() {
         const first = data.images?.[0];
         if (first) setLogoUrl(first.url);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
   const journeyTrackRef = useRef<HTMLDivElement>(null);
@@ -660,7 +661,7 @@ export default function About() {
     fetch("/api/site/team-settings", { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => setTeamSocials(data.socials ?? {}))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const teamTrackRef = useRef<HTMLDivElement>(null);
@@ -679,10 +680,17 @@ export default function About() {
   const [galleryImages, setGalleryImages] = useState<{ key: string; url: string }[]>([]);
 
   useEffect(() => {
-    fetch("/api/site/media?prefix=about/gallery", { cache: "no-store" })
-      .then((res) => res.json())
-      .then((data) => setGalleryImages(data.images ?? []))
-      .catch(() => {});
+    // Reuses real project photos already uploaded to the main Gallery page (2 per album)
+    // instead of requiring a separate upload here — same photos, no duplicate storage.
+    Promise.all(
+      programAlbums.map((a) =>
+        fetch(`/api/site/media?prefix=programs/${a.status}/${a.folder}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => (data.images ?? []).slice(0, 2))
+      )
+    )
+      .then((groups) => setGalleryImages(groups.flat()))
+      .catch(() => { });
   }, []);
 
   useEffect(() => {
@@ -899,10 +907,18 @@ export default function About() {
                 }`}
               style={{ transitionDelay: "250ms" }}
             >
-              <div className="relative rounded-[36px] overflow-hidden border-2 border-emerald-400/30 bg-slate-900/60 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(0,0,0,0.6)] group">
+              <div className="relative rounded-[36px] overflow-hidden border-2 border-amber-400/50 bg-slate-900/80 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(251,191,36,0.25)] hover:border-amber-300 transition-all duration-500 group">
 
-                {/* Main Cinematic Image — rotates through admin-uploaded photos every ~3.5s */}
-                <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/10">
+                {/* Top Right Floating Neon Live Tag */}
+                <div className="absolute top-7 right-7 z-20 bg-slate-950/85 backdrop-blur-xl border border-amber-400/50 rounded-full px-3.5 py-1.5 shadow-2xl flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">
+                    LIVE FIELD OPERATIONS
+                  </span>
+                </div>
+
+                {/* Main Cinematic Image Frame */}
+                <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/15 bg-slate-950">
                   {heroImages.length > 0 ? (
                     heroImages.map((img, i) => (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -910,7 +926,7 @@ export default function About() {
                         key={img.key}
                         src={img.url}
                         alt="EFFORT NGO Rural Community Field Operations"
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-out ${i === activeHeroImage ? "opacity-100" : "opacity-0"}`}
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-out ${i === activeHeroImage ? "opacity-100 scale-105" : "opacity-0 scale-100"}`}
                       />
                     ))
                   ) : (
@@ -928,40 +944,45 @@ export default function About() {
                     <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-light-sweep" />
                   </div>
 
-                  {/* Slide position dots — only shown once real photos are uploaded */}
-                  {heroImages.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5">
-                      {heroImages.map((img, i) => (
-                        <span
-                          key={img.key}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${i === activeHeroImage ? "w-5 bg-emerald-400" : "w-1.5 bg-white/40"}`}
-                        />
-                      ))}
+                  {/* Bottom Floating Interactive Album Dock & Controls */}
+                  <div className="absolute bottom-5 left-5 right-5 z-20 bg-slate-950/85 backdrop-blur-2xl border border-white/20 rounded-2xl p-3.5 shadow-2xl flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-8 h-8 rounded-xl bg-amber-400/20 border border-amber-400/40 text-amber-300 flex items-center justify-center shrink-0">
+                        <Camera className="w-4 h-4" />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 block truncate">
+                          FIELD ARCHIVE ALBUM
+                        </span>
+                        <span className="text-[11px] font-bold text-slate-200 block truncate">
+                          1,859 Villages &bull; 9 Indian States Impact
+                        </span>
+                      </div>
                     </div>
-                  )}
-                </div>
 
-                {/* Top Right Floating Pill Badge */}
-                <div className="absolute top-8 right-8 z-10 animate-breathing-shadow bg-slate-950/90 backdrop-blur-xl border border-amber-400/40 rounded-2xl px-4 py-2 shadow-2xl">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                    <span>27 YEARS FIELD EXCELLENCE</span>
-                  </span>
-                </div>
-
-                {/* Bottom Left Floating Glassmorphic Impact Overlay */}
-                <div className="absolute bottom-8 left-8 right-8 z-10 bg-slate-950/90 backdrop-blur-2xl border border-emerald-500/40 rounded-2xl p-4 shadow-2xl space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">
-                      COMMUNITY INSTITUTIONS
-                    </span>
-                    <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-bold">
-                      ACTIVE IN FIELD
-                    </span>
+                    {/* Previous & Next Manual Interactive Navigation Buttons */}
+                    {heroImages.length > 1 && (
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => setActiveHeroImage((i) => (i - 1 + heroImages.length) % heroImages.length)}
+                          className="w-8 h-8 rounded-xl bg-white/10 hover:bg-amber-400 hover:text-slate-950 border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer"
+                          title="Previous Photo"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveHeroImage((i) => (i + 1) % heroImages.length)}
+                          className="w-8 h-8 rounded-xl bg-white/10 hover:bg-amber-400 hover:text-slate-950 border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer"
+                          title="Next Photo"
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-xs font-semibold text-slate-200 leading-snug">
-                    Governance models carried forward by 1,275 SHGs &amp; 51 MACS Women Cooperatives across 37 districts.
-                  </p>
+
                 </div>
 
               </div>
@@ -980,19 +1001,39 @@ export default function About() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section Header */}
+          {/* Center-Aligned Luxury Cinematic Animated Section Header */}
           <div
-            className={`max-w-2xl mb-14 lg:mb-16 space-y-4 transition-all duration-700 ${storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`text-center max-w-4xl mx-auto flex flex-col items-center space-y-4 mb-8 lg:mb-10 relative transition-all duration-1000 ${storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#d4af6a]/40 text-[#a3803f] text-xs font-bold uppercase tracking-widest shadow-sm">
-              <BookOpen className="w-3.5 h-3.5" /> The EFFORT Archive
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-stone-900 leading-tight">
-              1999 to 2030 — <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a3803f] via-[#c99a4a] to-violet-500">One Continuous Line</span>
+            {/* Ambient Golden Glow Aura Behind Title */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[130px] bg-gradient-to-r from-amber-400/20 via-yellow-300/30 to-emerald-400/20 rounded-full blur-3xl animate-pulse pointer-events-none -z-10" />
+
+            {/* Animated Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border-2 border-[#d4af37]/60 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.3em] shadow-md backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-spin" style={{ animationDuration: "8s" }} />
+              <span>THE EFFORT ARCHIVE</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-ping" />
+            </div>
+
+            {/* Luxurious Cinematic Title */}
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight text-stone-900 leading-tight font-serif">
+              1999 to 2030 &mdash;{" "}
+              <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#8a6a1f] via-[#d4af37] via-amber-600 to-[#059669] drop-shadow-md">
+                One Continuous Line
+              </span>
             </h2>
-            <p className="text-stone-500 text-sm sm:text-base leading-relaxed">
-              Twenty-seven years of documented history, presented as one set — flowing down into the five-year roadmap that takes EFFORT to 2030.
+
+            {/* Delicate Gold Decorative Line Divider */}
+            <div className="flex items-center justify-center gap-3 py-1">
+              <span className="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+              <span className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse" />
+              <span className="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+            </div>
+
+            {/* Subtitle */}
+            <p className="text-stone-700 text-xs sm:text-sm font-semibold max-w-2xl leading-relaxed">
+              Twenty-seven years of documented history, presented as one set &mdash; flowing down into the five-year roadmap that takes EFFORT to 2030.
             </p>
           </div>
 
@@ -1046,18 +1087,74 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* Card */}
-                <div className="rounded-[22px] border border-stone-200 bg-white p-5 h-[300px] flex flex-col shadow-[0_8px_24px_-16px_rgba(60,45,20,0.25)] group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_-20px_rgba(60,45,20,0.35)] transition-all duration-300">
-                  <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: chapter.accentColor }}>
-                    {chapter.era} &middot; {chapter.phase}
-                  </p>
-                  <h3 className="text-lg font-black text-stone-900 mt-1.5 leading-snug">{chapter.title}</h3>
-                  <p className="text-xs text-stone-500 mt-2 leading-relaxed line-clamp-4 flex-1">{chapter.desc}</p>
-                  <div className="pt-3 mt-3 border-t border-stone-100 space-y-1.5">
+                {/* Unique Era Glassmorphic Card with Dynamic Liquid Mesh & Laser Accent */}
+                <div
+                  className="rounded-[26px] border-2 bg-white/95 backdrop-blur-xl p-5 sm:p-6 h-[320px] flex flex-col justify-between relative overflow-hidden shadow-lg hover:-translate-y-2.5 hover:shadow-2xl transition-all duration-500 cursor-pointer group/card"
+                  style={{
+                    borderColor: chapter.accentColor,
+                    boxShadow: `0 12px 35px -10px ${chapter.accentColor}25`,
+                  }}
+                >
+                  {/* Top Rotating Laser Border Highlight */}
+                  <div
+                    className="absolute top-0 inset-x-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer"
+                    style={{
+                      backgroundImage: `linear-gradient(90deg, ${chapter.accentColor} 0%, #fbbf24 50%, ${chapter.accentColor} 100%)`,
+                    }}
+                  />
+
+                  {/* UNIQUE DUAL LIQUID MESH BLOBS INSIDE THIS ERA CARD */}
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[26px] opacity-75 group-hover/card:opacity-100 transition-opacity duration-500">
+                    <div
+                      className={`absolute -top-8 -right-8 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${idx === 0
+                          ? "bg-amber-400/35 animate-liquid-drift-a"
+                          : idx === 1
+                            ? "bg-orange-400/40 animate-liquid-drift-b"
+                            : idx === 2
+                              ? "bg-cyan-400/35 animate-liquid-drift-c"
+                              : idx === 3
+                                ? "bg-emerald-400/40 animate-liquid-drift-a"
+                                : "bg-yellow-400/45 animate-liquid-drift-b"
+                        }`}
+                    />
+                    <div
+                      className={`absolute -bottom-8 -left-8 w-36 h-36 rounded-full blur-2xl transition-transform duration-1000 ${idx === 0
+                          ? "bg-orange-200/40 animate-liquid-drift-b"
+                          : idx === 1
+                            ? "bg-rose-200/40 animate-liquid-drift-c"
+                            : idx === 2
+                              ? "bg-sky-200/35 animate-liquid-drift-a"
+                              : idx === 3
+                                ? "bg-lime-200/40 animate-liquid-drift-b"
+                                : "bg-amber-200/40 animate-liquid-drift-c"
+                        }`}
+                    />
+                  </div>
+
+                  {/* Card Content Container */}
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border shadow-2xs ${chapter.phaseBadge}`}>
+                        {chapter.era} &middot; {chapter.phase}
+                      </span>
+                      <div className="w-3 h-3 rounded-full scale-110 shadow-sm animate-pulse" style={{ backgroundColor: chapter.accentColor }} />
+                    </div>
+
+                    <h3 className="text-lg font-black text-stone-900 leading-snug group-hover/card:text-amber-950 transition-colors">
+                      {chapter.title}
+                    </h3>
+
+                    <p className="text-xs text-stone-600 font-medium mt-2 leading-relaxed line-clamp-3">
+                      {chapter.desc}
+                    </p>
+                  </div>
+
+                  {/* Archival Bullet Points */}
+                  <div className="relative z-10 pt-3 border-t border-stone-200/80 space-y-1.5">
                     {chapter.archivalMarks.slice(0, 2).map((mark) => (
-                      <div key={mark} className="flex items-start gap-1.5">
-                        <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: chapter.accentColor }} />
-                        <span className="text-[10px] text-stone-600 leading-snug line-clamp-2">{mark}</span>
+                      <div key={mark} className="flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full mt-1 shrink-0" style={{ backgroundColor: chapter.accentColor }} />
+                        <span className="text-[10px] text-stone-700 font-semibold leading-snug line-clamp-2">{mark}</span>
                       </div>
                     ))}
                   </div>
@@ -1066,28 +1163,52 @@ export default function About() {
             ))}
           </div>
 
-          {/* Row 1 nudge controls + progress */}
-          <div className="flex items-center gap-4 mt-2">
-            <button
-              type="button"
-              onClick={() => journeyTrackRef.current?.scrollBy({ left: -340, behavior: "smooth" })}
-              className="w-9 h-9 rounded-full bg-white hover:bg-stone-50 border border-stone-200 flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-sm"
-            >
-              <ChevronLeft className="w-4 h-4 text-stone-600" />
-            </button>
-            <div className="flex-1 h-1 rounded-full bg-stone-200 overflow-hidden">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[#a3803f] to-[#d4af6a] transition-[width] duration-150 ease-out"
-                style={{ width: `${Math.max(journeyScrollPct * 100, 6)}%` }}
-              />
+          {/* High-Attraction Executive Archive Navigation Console */}
+          <div className="mt-6 p-4 sm:p-5 rounded-3xl bg-white/90 backdrop-blur-xl border-2 border-[#d4af6a]/50 shadow-[0_15px_35px_-10px_rgba(180,130,50,0.2)] space-y-3">
+
+            {/* Instruction Callout Label */}
+            <div className="flex items-center justify-between gap-2 px-1">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8a6a1f] flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
+                EXPLORE THE 27-YEAR EFFORT ARCHIVE (1999–2030)
+              </span>
+              <span className="text-[10px] font-bold text-stone-500 hidden sm:inline-block">
+                SWIPE OR CLICK BUTTONS TO SLIDE ERAS
+              </span>
             </div>
-            <button
-              type="button"
-              onClick={() => journeyTrackRef.current?.scrollBy({ left: 340, behavior: "smooth" })}
-              className="w-9 h-9 rounded-full bg-white hover:bg-stone-50 border border-stone-200 flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-sm"
-            >
-              <ChevronRight className="w-4 h-4 text-stone-600" />
-            </button>
+
+            {/* Control Console: Previous Button + Glowing Progress Bar + Next Button */}
+            <div className="flex items-center gap-3 sm:gap-4">
+
+              {/* PREVIOUS ERA BUTTON */}
+              <button
+                type="button"
+                onClick={() => journeyTrackRef.current?.scrollBy({ left: -340, behavior: "smooth" })}
+                className="group px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#2c241c] via-[#423629] to-[#2c241c] text-white font-black text-[11px] uppercase tracking-wider shadow-md hover:shadow-lg hover:scale-105 transition-all cursor-pointer shrink-0 flex items-center gap-2 border border-[#d4af6a]/40"
+              >
+                <ChevronLeft className="w-4 h-4 text-amber-400 group-hover:-translate-x-1 transition-transform" />
+                <span className="hidden sm:inline">PREVIOUS ERA</span>
+              </button>
+
+              {/* GLOWING AMBER TIMELINE GAUGE */}
+              <div className="flex-1 h-3 rounded-full bg-stone-200/90 border border-[#d4af6a]/40 overflow-hidden shadow-inner p-0.5 relative">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-[#a3803f] via-[#c99a4a] to-[#f5b942] shadow-[0_0_12px_rgba(245,185,66,0.8)] transition-[width] duration-200 ease-out"
+                  style={{ width: `${Math.max(journeyScrollPct * 100, 8)}%` }}
+                />
+              </div>
+
+              {/* NEXT ERA BUTTON */}
+              <button
+                type="button"
+                onClick={() => journeyTrackRef.current?.scrollBy({ left: 340, behavior: "smooth" })}
+                className="group px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-slate-950 font-black text-[11px] uppercase tracking-wider shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.5)] hover:scale-105 transition-all cursor-pointer shrink-0 flex items-center gap-2"
+              >
+                <span className="hidden sm:inline">NEXT ERA</span>
+                <ChevronRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+            </div>
           </div>
         </div>
       </section>
@@ -1635,7 +1756,7 @@ export default function About() {
                     </span>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                      
+
                       {/* HIGHLIGHT 1: 40 YEARS FIELD LEADERSHIP */}
                       <div className="relative bg-gradient-to-br from-amber-500/30 via-amber-950/70 to-slate-950 border-2 border-amber-400/80 rounded-2xl p-3.5 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:border-amber-300 hover:scale-[1.03] transition-all group/cred">
                         <div className="flex items-center justify-between gap-1 mb-1">
@@ -1777,23 +1898,54 @@ export default function About() {
                 {[...leadershipTeam, ...leadershipTeam].map((member, idx) => {
                   const s = teamSocials[member.slug];
                   const hasSocials = s && (s.linkedin || s.instagram || s.facebook || s.twitter);
+
+                  // Distinct Color Palette per Leader
+                  const memberThemes: Record<string, { accent: string; badge: string; shimmer: string; liquid: string }> = {
+                    "bala-subramanian": { accent: "#d97706", badge: "bg-amber-100 text-amber-950 border-amber-400 font-extrabold shadow-2xs", shimmer: "from-amber-500 via-yellow-300 to-amber-500", liquid: "bg-amber-300/40 animate-liquid-drift-a" },
+                    "veeranjaneyulu": { accent: "#059669", badge: "bg-emerald-100 text-emerald-950 border-emerald-400 font-extrabold shadow-2xs", shimmer: "from-emerald-500 via-teal-300 to-emerald-500", liquid: "bg-emerald-300/40 animate-liquid-drift-b" },
+                    "y-m-krishna": { accent: "#4f46e5", badge: "bg-indigo-100 text-indigo-950 border-indigo-400 font-extrabold shadow-2xs", shimmer: "from-indigo-500 via-violet-300 to-indigo-500", liquid: "bg-indigo-400/40 animate-liquid-drift-c" },
+                    "anuradha": { accent: "#e11d48", badge: "bg-rose-100 text-rose-950 border-rose-400 font-extrabold shadow-2xs", shimmer: "from-rose-500 via-pink-300 to-rose-500", liquid: "bg-rose-300/40 animate-liquid-drift-a" },
+                    "vijaya-kumari": { accent: "#0284c7", badge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs", shimmer: "from-cyan-500 via-sky-300 to-teal-400", liquid: "bg-cyan-300/40 animate-liquid-drift-b" },
+                    "annapurna": { accent: "#b45309", badge: "bg-yellow-100 text-yellow-950 border-yellow-400 font-extrabold shadow-2xs", shimmer: "from-yellow-500 via-amber-300 to-yellow-500", liquid: "bg-yellow-300/40 animate-liquid-drift-c" },
+                    "hanumantha-rao": { accent: "#0d9488", badge: "bg-teal-100 text-teal-950 border-teal-400 font-extrabold shadow-2xs", shimmer: "from-teal-500 via-emerald-300 to-teal-500", liquid: "bg-teal-300/40 animate-liquid-drift-a" },
+                  };
+
+                  const theme = memberThemes[member.slug] || memberThemes["bala-subramanian"];
+
                   return (
                     <div
                       key={`${member.slug}-${idx}`}
-                      className="bg-white/95 backdrop-blur-2xl border-2 border-emerald-900/15 rounded-[32px] p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-[0_15px_40px_-15px_rgba(16,185,129,0.12)] hover:border-amber-400 hover:shadow-[0_25px_60px_-15px_rgba(245,158,11,0.35)] hover:-translate-y-2.5 transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[310px] relative overflow-hidden"
+                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-2.5 hover:shadow-2xl transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[310px] relative overflow-hidden"
+                      style={{
+                        borderColor: theme.accent,
+                        boxShadow: `0 15px 40px -15px ${theme.accent}35`,
+                      }}
                     >
-                      {/* Top glowing laser line */}
-                      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-emerald-500 to-teal-400 group-hover/card:h-2 transition-all" />
+                      {/* Top Rotating Laser Border Highlight Track */}
+                      <div
+                        className={`absolute top-0 left-0 right-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
+                      />
 
-                      <div className="space-y-4">
+                      {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
+                      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[32px] opacity-75 group-hover/card:opacity-100 transition-opacity duration-500">
+                        <div className={`absolute -top-10 -right-10 w-44 h-44 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
+                        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-amber-200/30 blur-2xl animate-liquid-drift-b" />
+                      </div>
+
+                      <div className="space-y-4 relative z-10">
                         {/* Large, HD Crisp Profile Image Frame */}
-                        <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden border-2 border-emerald-700/60 shadow-md bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center">
+                        <div
+                          className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden border-2 shadow-md bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center"
+                          style={{ borderColor: theme.accent }}
+                        >
                           {teamPhotos[member.slug] ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
                               src={teamPhotos[member.slug]}
                               alt={member.name}
-                              className="w-full h-full object-cover object-top group-hover/card:scale-108 transition-transform duration-700"
+                              className={`w-full h-full object-cover group-hover/card:scale-108 transition-transform duration-700 ${
+                                member.slug === "hanumantha-rao" ? "object-[center_10%]" : "object-top"
+                              }`}
                             />
                           ) : (
                             <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-4 text-center">
@@ -1805,22 +1957,22 @@ export default function About() {
                         </div>
 
                         <div>
-                          <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover/card:text-emerald-900 transition-colors leading-tight">
+                          <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover/card:text-amber-950 transition-colors leading-tight">
                             {member.name}
                           </h4>
-                          <span className="mt-1.5 inline-block text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100/90 text-emerald-900 border border-emerald-300 shadow-xs">
+                          <span className={`mt-1.5 inline-block text-[10px] px-2.5 py-1 rounded-full uppercase ${theme.badge}`}>
                             {member.role}
                           </span>
                         </div>
 
-                        <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-3">
+                        <p className="text-xs text-slate-700 leading-relaxed font-semibold line-clamp-3">
                           {member.intro}
                         </p>
                       </div>
 
                       {hasSocials && (
-                        <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-amber-900">CONNECT</span>
+                        <div className="pt-3 border-t border-slate-200 flex items-center justify-between relative z-10">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-slate-900">CONNECT</span>
 
                           <div className="flex items-center gap-2">
                             {s.linkedin && (

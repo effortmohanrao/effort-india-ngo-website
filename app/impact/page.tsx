@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   Globe,
@@ -33,30 +33,6 @@ import CategorizedImpactLedger from "@/components/CategorizedImpactLedger";
 export default function ImpactPage() {
   const [selectedCode, setSelectedCode] = useState<string>("IN-AP");
   const selectedState: StateData = IMPACT_STATES[selectedCode] ?? IMPACT_STATES["IN-AP"];
-  const [statePhotos, setStatePhotos] = useState<{ key: string; url: string }[]>([]);
-
-  useEffect(() => {
-    const folders = selectedState.photoFolders ?? [];
-    if (folders.length === 0) {
-      setStatePhotos([]);
-      return;
-    }
-    let cancelled = false;
-    Promise.all(
-      folders.map((f) =>
-        fetch(`/api/site/media?prefix=programs/${f.status}/${f.folder}`, { cache: "no-store" })
-          .then((res) => res.json())
-          .then((data) => data.images?.[0] ?? null)
-      )
-    ).then((covers) => {
-      if (!cancelled) setStatePhotos(covers.filter(Boolean));
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [selectedState]);
-
-
 
   {/* 5 Comprehensive Strategic Impact Sectors (80 Total Projects: 65 Completed + 15 Ongoing) */}
   const impactDomains = [
@@ -216,23 +192,6 @@ export default function ImpactPage() {
                 <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50/90 to-emerald-50/90 border border-[#d4af6a]/50 shadow-xs space-y-1.5">
                   <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f]">Flagship Project</span>
                   <p className="text-sm font-black text-[#221c0c] leading-snug">{selectedState.flagshipProject}</p>
-                </div>
-
-                {/* Real Field Photos for this state */}
-                <div className="space-y-2">
-                  <span className="text-xs font-black uppercase tracking-wider text-[#221c0c]">Field Photos</span>
-                  {statePhotos.length > 0 ? (
-                    <div className="grid grid-cols-4 gap-2">
-                      {statePhotos.slice(0, 8).map((p) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img key={p.key} src={p.url} alt="" className="w-full aspect-square object-cover rounded-xl border border-[#e5d4a1]" />
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-xs text-[#8a7a5a] italic bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5">
-                      No field photos on file for this state yet.
-                    </p>
-                  )}
                 </div>
 
                 {/* Stat Numbers Grid */}
@@ -410,7 +369,6 @@ export default function ImpactPage() {
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> FCRA Registered</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> NITI Aayog Darpan ID</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> MCA Form CSR-1</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Social Stock Exchange Listed</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> TISS Empaneled</span>
           </div>
         </div>

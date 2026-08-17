@@ -1598,6 +1598,49 @@ body {
   animation: journey-rail-shimmer 3.5s linear infinite;
 }
 
+/* Multi-Ring Acceleration / Deceleration Gearing Rotation */
+@keyframes gyro-accelerated-cw {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(180deg);
+  }
+  60% {
+    transform: rotate(240deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gyro-accelerated-ccw {
+  0% {
+    transform: rotate(360deg);
+  }
+  35% {
+    transform: rotate(120deg);
+  }
+  70% {
+    transform: rotate(60deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-gyro-cw {
+  animation: gyro-accelerated-cw 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-gyro-ccw {
+  animation: gyro-accelerated-ccw 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-gyro-cw-fast {
+  animation: gyro-accelerated-cw 2.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
 @keyframes journey-divider-glow {
   0%, 100% {
     opacity: 0.35;
@@ -1703,6 +1746,36 @@ body {
 }
 
 .animate-stat-count-glow {
-  animation: stat-count-glow 3s ease-in-out infinite;
+  animation: stat-count-glow 2.5s ease-in-out infinite;
 }
 
+/* Firecracker Fireworks Blast Animation */
+@keyframes firecracker-burst {
+  0% {
+    transform: scale(0.1) rotate(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #fbbf24);
+  }
+  50% {
+    transform: scale(1.4) rotate(180deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px #f59e0b);
+  }
+  100% {
+    transform: scale(2.2) rotate(360deg);
+    opacity: 0;
+    filter: drop-shadow(0 0 2px #34d399);
+  }
+}
+
+.animate-firecracker-1 {
+  animation: firecracker-burst 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.animate-firecracker-2 {
+  animation: firecracker-burst 3.1s cubic-bezier(0.25, 1, 0.5, 1) infinite 0.7s;
+}
+
+.animate-firecracker-3 {
+  animation: firecracker-burst 2.7s cubic-bezier(0.25, 1, 0.5, 1) infinite 1.4s;
+}

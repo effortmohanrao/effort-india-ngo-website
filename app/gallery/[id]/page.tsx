@@ -26,6 +26,23 @@ export default function DedicatedAlbumPage({ params }: { params: Promise<{ id: s
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const touchStartX = React.useRef<number | null>(null);
+
+  const goPrev = () => setActiveIndex((i) => (i === null ? null : i > 0 ? i - 1 : photos.length - 1));
+  const goNext = () => setActiveIndex((i) => (i === null ? null : i < photos.length - 1 ? i + 1 : 0));
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) goPrev();
+      else goNext();
+    }
+    touchStartX.current = null;
+  };
 
   useEffect(() => {
     if (!album) return;
@@ -40,8 +57,8 @@ export default function DedicatedAlbumPage({ params }: { params: Promise<{ id: s
     if (activeIndex === null) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setActiveIndex(null);
-      if (e.key === "ArrowLeft") setActiveIndex((i) => (i === null ? null : i > 0 ? i - 1 : photos.length - 1));
-      if (e.key === "ArrowRight") setActiveIndex((i) => (i === null ? null : i < photos.length - 1 ? i + 1 : 0));
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -209,22 +226,31 @@ export default function DedicatedAlbumPage({ params }: { params: Promise<{ id: s
             </button>
           </div>
 
-          <div className="relative flex-1 flex items-center justify-center">
+          <div
+            className="relative flex-1 flex items-center justify-center touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={photos[activeIndex].url} alt="" className="max-h-full max-w-full object-contain" />
+            <img src={photos[activeIndex].url} alt="" className="max-h-full max-w-full object-contain" draggable={false} />
 
             <button
-              onClick={() => setActiveIndex((i) => (i === null ? null : i > 0 ? i - 1 : photos.length - 1))}
-              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer"
+              onClick={goPrev}
+              className="hidden sm:flex absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white items-center justify-center transition-all cursor-pointer"
             >
               <ChevronLeft className="w-7 h-7" />
             </button>
             <button
-              onClick={() => setActiveIndex((i) => (i === null ? null : i < photos.length - 1 ? i + 1 : 0))}
-              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer"
+              onClick={goNext}
+              className="hidden sm:flex absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white items-center justify-center transition-all cursor-pointer"
             >
               <ChevronRight className="w-7 h-7" />
             </button>
+            <div className="sm:hidden absolute bottom-6 inset-x-0 flex justify-center">
+              <span className="px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-[11px] font-bold">
+                Swipe to browse
+              </span>
+            </div>
           </div>
         </div>
       )}

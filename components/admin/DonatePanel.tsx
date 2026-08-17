@@ -136,6 +136,11 @@ export default function DonatePanel() {
         value={settings.domesticBank}
         onChange={(next) => setSettings({ ...settings, domesticBank: next })}
       />
+      <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-2 -mt-3">
+        <label className="block text-[10px] font-bold text-slate-400 uppercase">Union Bank of India — Logo</label>
+        <p className="text-[11px] text-slate-450">Shown next to the domestic account details on the Donate page.</p>
+        <MediaSlotManager prefix="bank-logos/union-bank" label="Union Bank of India Logo" />
+      </div>
 
       {/* FCRA bank */}
       <BankFields
@@ -144,6 +149,11 @@ export default function DonatePanel() {
         onChange={(next) => setSettings({ ...settings, fcraBank: next })}
         showSwift
       />
+      <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-2 -mt-3">
+        <label className="block text-[10px] font-bold text-slate-400 uppercase">State Bank of India — Logo</label>
+        <p className="text-[11px] text-slate-450">Shown next to the FCRA account details on the Donate page.</p>
+        <MediaSlotManager prefix="bank-logos/sbi" label="State Bank of India Logo" />
+      </div>
 
       {/* Receipt email */}
       <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-3.5">

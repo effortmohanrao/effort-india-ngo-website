@@ -102,21 +102,58 @@ const COLLAB_ACCENT: Record<string, { bar: string; iconBg: string; iconText: str
   rose: { bar: "bg-rose-400", iconBg: "bg-rose-50", iconText: "text-rose-700", badgeBg: "bg-rose-100", badgeText: "text-rose-800" },
 };
 
-function UnionBankLogo() {
+function UnionBankLogo({ logoUrl }: { logoUrl?: string | null }) {
+  if (logoUrl) {
+    return (
+      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border-3 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] shrink-0 p-2 overflow-hidden flex items-center justify-center group hover:scale-105 transition-all">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoUrl} alt="Union Bank of India" className="w-full h-full object-contain" />
+      </div>
+    );
+  }
   return (
-    <div className="w-11 h-11 rounded-xl bg-[#003366] text-white flex flex-col items-center justify-center border-2 border-amber-400 shadow-md shrink-0 p-0.5">
-      <span className="text-[10px] font-black tracking-tight leading-none text-amber-300 font-mono">UBI</span>
-      <span className="text-[8px] font-bold text-white tracking-widest leading-none mt-0.5">BANK</span>
+    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-b from-[#ffffff] via-[#f8fafc] to-[#e2e8f0] border-3 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] shrink-0 p-2 flex flex-col items-center justify-center text-center relative overflow-hidden group hover:scale-105 transition-all select-none">
+      {/* Red & Blue Union Bank Interlocking U Vector Icon */}
+      <div className="flex items-center justify-center gap-0.5 relative z-10">
+        <div className="w-6 h-9 sm:w-7 sm:h-10 rounded-b-xl border-3 border-red-600 bg-red-600/10 flex items-center justify-center shadow-xs">
+          <span className="text-[10px] sm:text-xs font-black text-red-600 font-sans">U</span>
+        </div>
+        <div className="w-6 h-9 sm:w-7 sm:h-10 rounded-t-xl border-3 border-[#003366] bg-[#003366]/10 flex items-center justify-center shadow-xs -ml-2.5">
+          <span className="text-[10px] sm:text-xs font-black text-[#003366] font-sans">B</span>
+        </div>
+      </div>
+      <div className="mt-1 text-center relative z-10">
+        <span className="text-[10px] sm:text-[11px] font-black tracking-tight leading-none text-[#003366] block font-sans">
+          Union Bank
+        </span>
+        <span className="text-[8px] sm:text-[9px] font-bold text-red-600 tracking-wider leading-none block mt-0.5 uppercase">
+          of India
+        </span>
+      </div>
     </div>
   );
 }
 
-function SBIBankLogo() {
-  return (
-    <div className="w-11 h-11 rounded-xl bg-[#280071] text-white flex items-center justify-center border-2 border-sky-400 shadow-md shrink-0">
-      <div className="w-6 h-6 rounded-full bg-[#00a3e0] flex items-center justify-center relative shadow-inner">
-        <div className="w-1.5 h-2.5 bg-[#280071] rounded-t-full absolute bottom-0" />
+function SBIBankLogo({ logoUrl }: { logoUrl?: string | null }) {
+  if (logoUrl) {
+    return (
+      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border-3 border-sky-400 shadow-[0_0_25px_rgba(56,189,248,0.35)] shrink-0 p-2 overflow-hidden flex items-center justify-center group hover:scale-105 transition-all">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoUrl} alt="State Bank of India" className="w-full h-full object-contain" />
       </div>
+    );
+  }
+  return (
+    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-b from-[#280071] to-[#120038] text-white flex flex-col items-center justify-center border-3 border-sky-400 shadow-[0_0_25px_rgba(56,189,248,0.35)] shrink-0 p-2 relative overflow-hidden group hover:scale-105 transition-all select-none">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00a3e0] flex items-center justify-center relative shadow-[0_0_15px_rgba(0,163,224,0.6)]">
+        <div className="w-2.5 h-4 bg-[#280071] rounded-t-full absolute bottom-0" />
+      </div>
+      <span className="text-[10px] sm:text-[11px] font-black tracking-widest leading-none text-sky-300 mt-1 font-mono uppercase">
+        SBI
+      </span>
+      <span className="text-[7px] sm:text-[8px] font-bold text-slate-300 tracking-wider leading-none mt-0.5 uppercase">
+        State Bank
+      </span>
     </div>
   );
 }
@@ -154,10 +191,35 @@ function CopyRow({ label, value, mono = true }: { label: string; value: string; 
   );
 }
 
+function IndiaFlagIcon({ className = "w-5 h-3.5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 30 20" className={`${className} rounded-[2px] shrink-0 shadow-sm ring-1 ring-black/10`} aria-hidden="true">
+      <rect width="30" height="20" fill="#fff" />
+      <rect width="30" height="6.67" fill="#FF9933" />
+      <rect y="13.33" width="30" height="6.67" fill="#138808" />
+      <circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" strokeWidth="0.35" />
+      <circle cx="15" cy="10" r="0.4" fill="#000080" />
+      {Array.from({ length: 24 }).map((_, i) => (
+        <line
+          key={i}
+          x1="15"
+          y1="10"
+          x2={(15 + 2.6 * Math.cos((i * Math.PI) / 12)).toFixed(3)}
+          y2={(10 + 2.6 * Math.sin((i * Math.PI) / 12)).toFixed(3)}
+          stroke="#000080"
+          strokeWidth="0.15"
+        />
+      ))}
+    </svg>
+  );
+}
+
 export default function DonatePage() {
   const [giveTab, setGiveTab] = useState<"india" | "abroad">("india");
   const [settings, setSettings] = useState<DonationSettings>(defaultDonationSettings);
   const [qrUrl, setQrUrl] = useState<string | null>(null);
+  const [unionBankLogoUrl, setUnionBankLogoUrl] = useState<string | null>(null);
+  const [sbiLogoUrl, setSbiLogoUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -165,10 +227,14 @@ export default function DonatePage() {
     Promise.all([
       fetch("/api/site/donation-settings", { cache: "no-store" }).then((r) => r.json()).catch(() => defaultDonationSettings),
       fetch("/api/site/media?prefix=donation-qr", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
+      fetch("/api/site/media?prefix=bank-logos/union-bank", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
+      fetch("/api/site/media?prefix=bank-logos/sbi", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
     ])
-      .then(([settingsData, mediaData]) => {
+      .then(([settingsData, mediaData, unionLogoData, sbiLogoData]) => {
         if (settingsData && settingsData.domesticBank) setSettings(settingsData);
         setQrUrl(mediaData.images?.[0]?.url ?? null);
+        setUnionBankLogoUrl(unionLogoData.images?.[0]?.url ?? null);
+        setSbiLogoUrl(sbiLogoData.images?.[0]?.url ?? null);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -272,26 +338,25 @@ export default function DonatePage() {
 
         {/* Segmented Toggle */}
         <div className="flex justify-center">
-          <div className="inline-flex p-1.5 rounded-full bg-white border-2 border-amber-200 shadow-md">
+          <div className="inline-flex w-full max-w-md p-1.5 rounded-full bg-white border-2 border-amber-200 shadow-md">
             <button
               type="button"
               onClick={() => setGiveTab("india")}
-              className={`px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                giveTab === "india"
-                  ? "bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg"
+              className={`flex-1 px-4 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${giveTab === "india"
+                  ? "bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg scale-[1.02]"
                   : "text-slate-600 hover:text-slate-900"
-              }`}
+                }`}
             >
-              🇮🇳 India (INR)
+              <IndiaFlagIcon />
+              India (INR)
             </button>
             <button
               type="button"
               onClick={() => setGiveTab("abroad")}
-              className={`px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                giveTab === "abroad"
-                  ? "bg-gradient-to-r from-sky-700 via-indigo-800 to-sky-900 text-white shadow-lg"
+              className={`flex-1 px-4 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${giveTab === "abroad"
+                  ? "bg-gradient-to-r from-sky-700 via-indigo-800 to-sky-900 text-white shadow-lg scale-[1.02]"
                   : "text-slate-600 hover:text-slate-900"
-              }`}
+                }`}
             >
               🌍 Abroad (FCRA)
             </button>
@@ -307,45 +372,43 @@ export default function DonatePage() {
           <div className="rounded-[36px] bg-white border-2 border-amber-300/70 shadow-xl p-6 sm:p-10 animate-fade-in">
             {giveTab === "india" ? (
               <div className="space-y-6">
-                <div className="flex items-center gap-3 pb-5 border-b border-amber-100">
-                  <UnionBankLogo />
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 pb-5 border-b border-amber-100">
+                  <UnionBankLogo logoUrl={unionBankLogoUrl} />
                   <div>
-                    <h3 className="text-lg font-black text-slate-900">{settings.domesticBank.bankName}</h3>
-                    <p className="text-xs font-bold text-amber-800 uppercase tracking-wider">Domestic Transfer &bull; 80G Tax Exempt</p>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">{settings.domesticBank.bankName}</h3>
+                    <p className="text-xs font-bold text-amber-800 uppercase tracking-wider mt-1">Official Domestic Transfer Partner &bull; Sec 80G Tax Exempt</p>
                   </div>
                 </div>
 
-                {/* UPI QR */}
-                <div className="rounded-2xl border-2 border-amber-200 bg-amber-50/50 p-5 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
-                  {qrUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={qrUrl} alt="UPI QR code to donate to EFFORT NGO" className="w-40 h-40 object-contain rounded-xl border-2 border-amber-300 shadow-md shrink-0 bg-white p-1.5" />
-                  ) : (
-                    <div className="w-40 h-40 rounded-xl border-2 border-dashed border-amber-300 bg-white flex items-center justify-center text-[10px] text-amber-800 font-bold text-center px-3 shrink-0">
-                      Scan with any UPI App (GPay / PhonePe / Paytm / BHIM)
+                {/* UPI QR — only shown once a real QR/UPI ID is on file, so the page never implies a scan option that doesn't exist yet */}
+                {(qrUrl || settings.upiId) && (
+                  <div className="rounded-2xl border-2 border-amber-200 bg-amber-50/50 p-5 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+                    {qrUrl && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={qrUrl} alt="UPI QR code to donate to EFFORT NGO" className="w-40 h-40 object-contain rounded-xl border-2 border-amber-300 shadow-md shrink-0 bg-white p-1.5" />
+                    )}
+                    <div className="space-y-2">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/80 px-2.5 py-0.5 rounded-full">
+                        <Smartphone className="w-3 h-3 text-amber-900" /> Instant UPI Payment
+                      </span>
+                      <h4 className="text-base font-black text-slate-900">Scan the QR or use NEFT/RTGS Transfer</h4>
+                      <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                        All domestic donations are eligible for tax exemption under Section 80G of the Income Tax Act.
+                      </p>
+                      {settings.upiId && <div className="max-w-xs"><CopyRow label="Official UPI ID" value={settings.upiId} /></div>}
                     </div>
-                  )}
-                  <div className="space-y-2">
-                    <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/80 px-2.5 py-0.5 rounded-full">
-                      <Smartphone className="w-3 h-3 text-amber-900" /> Instant UPI Payment
-                    </span>
-                    <h4 className="text-base font-black text-slate-900">Scan the QR or use NEFT/RTGS Transfer</h4>
-                    <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                      All domestic donations are eligible for tax exemption under Section 80G of the Income Tax Act.
-                    </p>
-                    {settings.upiId && <div className="max-w-xs"><CopyRow label="Official UPI ID" value={settings.upiId} /></div>}
                   </div>
-                </div>
+                )}
 
                 <BankDetail account={settings.domesticBank} type="domestic" />
               </div>
             ) : (
               <div className="space-y-6">
-                <div className="flex items-center gap-3 pb-5 border-b border-sky-100">
-                  <SBIBankLogo />
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 pb-5 border-b border-sky-100">
+                  <SBIBankLogo logoUrl={sbiLogoUrl} />
                   <div>
-                    <h3 className="text-lg font-black text-slate-900">{settings.fcraBank.bankName}</h3>
-                    <p className="text-xs font-bold text-sky-800 uppercase tracking-wider">New Delhi Main Branch &bull; MHA FCRA Approved</p>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">{settings.fcraBank.bankName}</h3>
+                    <p className="text-xs font-bold text-sky-800 uppercase tracking-wider mt-1">New Delhi Main Branch &bull; Designated MHA FCRA Approved</p>
                   </div>
                 </div>
 

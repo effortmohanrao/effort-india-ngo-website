@@ -2,6 +2,8 @@
 // Used by both the admin "Our Programs" photo panel and the public Gallery page,
 // so the two never drift out of sync. Each folder maps to website/programs/{status}/{folder}/
 // in Cloudflare R2 — only albums with real, matched photographs appear here.
+export type AlbumCategory = "agriculture" | "nrm" | "health" | "child";
+
 export type ProgramAlbum = {
   folder: string;
   status: "completed" | "ongoing";
@@ -9,10 +11,31 @@ export type ProgramAlbum = {
   location: string;
   year: string;
   desc: string;
+  category: AlbumCategory;
   covers: string[]; // project name(s) this album's photos illustrate
 };
 
 export const programAlbums: ProgramAlbum[] = [
+  {
+    folder: "azim-premji-climate-resilient",
+    status: "ongoing",
+    label: "Climate-Resilient Farming (Azim Premji Foundation)",
+    location: "24 Villages, Prakasam District, Andhra Pradesh",
+    year: "2024–2025",
+    desc: "Improving livelihoods of 1,904 small & marginal farmers and 1,435 landless agricultural labourers through climate-resilient integrated farming systems and resource conservation.",
+    category: "agriculture",
+    covers: ["Integrated Climate-Resilient Farming Systems for Sustainable Livelihoods and Water Conservation"],
+  },
+  {
+    folder: "varaha-carbon-sequestration",
+    status: "ongoing",
+    label: "Carbon Sequestration Project (VARAHA)",
+    location: "500 Acres, Andhra Pradesh",
+    year: "2025–2026",
+    desc: "Reducing carbon through horticulture and timber species plantation, promoting verified carbon credits — one of EFFORT's rare carbon-credit-exclusive projects.",
+    category: "nrm",
+    covers: ["Carbon Sequestration Project"],
+  },
   {
     folder: "reliance-foundation",
     status: "ongoing",
@@ -20,6 +43,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Prakasam District, Andhra Pradesh",
     year: "2024–2025",
     desc: "Building resilient communities with the strength to overcome social, educational, health, environmental and economic hardships.",
+    category: "agriculture",
     covers: ["Improving Self-Reliance and Resilience of Rural Communities in Prakasam District"],
   },
   {
@@ -29,6 +53,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "150 villages, Andhra Pradesh",
     year: "2023–2025",
     desc: "Sensitising and organising small & marginal farmers to address farmer-related issues.",
+    category: "agriculture",
     covers: ["Promotion & Strengthening of Farmers Producer Organisations"],
   },
   {
@@ -38,6 +63,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Andhra Pradesh",
     year: "2023–2025",
     desc: "Creating biodiversity parks to boost ecosystems and promote soil, water and native flora conservation.",
+    category: "nrm",
     covers: ["Promotion of Bio-diversity Conservation Park and Water Harvesting Structures"],
   },
   {
@@ -47,6 +73,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Aluru Mandal, Kurnool District",
     year: "2023–2025",
     desc: "Climate-resilient agro-ecological approaches across 5 villages, covering 250 small & marginal farmers.",
+    category: "nrm",
     covers: ["Promotion of Climate Resilient Farming through Effective Natural Resource Management"],
   },
   {
@@ -56,6 +83,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Andhra Pradesh",
     year: "2023–2025",
     desc: "Developing 'Water Plus Villages' ensuring water security, ecological restoration and biodiversity protection.",
+    category: "nrm",
     covers: ["Water Governance and Management Project"],
   },
   {
@@ -65,6 +93,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "South India",
     year: "2023–2025",
     desc: "Increasing farming incomes through better price discovery and stabilised yields of red chillies.",
+    category: "agriculture",
     covers: ["Integrated Agri Extension Project in Chilli Value Chain"],
   },
   {
@@ -74,6 +103,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Prakasam District, Andhra Pradesh",
     year: "2023–2025",
     desc: "Providing amenities and infrastructure in government schools to ensure 100% school education.",
+    category: "child",
     covers: ["Strengthening Amenities in Government Schools"],
   },
   {
@@ -83,24 +113,58 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Andhra Pradesh",
     year: "2023–2025",
     desc: "Women's empowerment and improved livelihoods through livelihood interventions.",
+    category: "child",
     covers: ["Sustainable Well-Being of Women"],
   },
   {
-    folder: "nabard-programs",
+    folder: "nabard-sri-paddy",
     status: "completed",
-    label: "NABARD-Funded Programs",
+    label: "SRI Paddy Pilot Project (NABARD)",
+    location: "16 Villages, Andhra Pradesh",
+    year: "1999–2023",
+    desc: "Educating 400 farmers across 16 villages on System of Rice Intensification (SRI) paddy cultivation, covering 400 acres of demonstration plots.",
+    category: "agriculture",
+    covers: ["Pilot Project on SRI Paddy"],
+  },
+  {
+    folder: "nabard-tribal-dev-fund",
+    status: "completed",
+    label: "Tribal Development Fund — Wadi Approach (NABARD)",
     location: "Andhra Pradesh",
     year: "1999–2023",
-    desc: "Field photographs spanning seven NABARD-funded initiatives — Farmers Associations, SRI Paddy, Watershed Development, NRM, Tribal Development, Banana CAT and Rural Youth Skilling.",
-    covers: [
-      "Promotion of Farmers Associations",
-      "Pilot Project on SRI Paddy",
-      "Watershed Development Fund Projects",
-      "Umbrella Programme for NRM",
-      "Tribal Development Fund Project",
-      "Banana Farmers CAT",
-      "Skill Development for Rural Youth",
-    ],
+    desc: "Promoting sustainable livelihoods for 1,000 tribal families through horticulture crops via the Wadi approach.",
+    category: "agriculture",
+    covers: ["Tribal Development Fund Project"],
+  },
+  {
+    folder: "nabard-watershed-dev-fund",
+    status: "completed",
+    label: "Watershed Development Fund (NABARD)",
+    location: "3 Districts, Andhra Pradesh",
+    year: "1999–2023",
+    desc: "90 watershed projects addressing farmer distress across 3 districts of Andhra Pradesh, with EFFORT acting as Regional Support Organisation (RSO).",
+    category: "agriculture",
+    covers: ["Watershed Development Fund Projects Addressing Farmer Distress"],
+  },
+  {
+    folder: "nabard-umbrella-nrm",
+    status: "completed",
+    label: "Umbrella Programme for NRM (NABARD)",
+    location: "13 Villages, Andhra Pradesh",
+    year: "1999–2023",
+    desc: "Sustainable livelihoods for rural poor dependent on natural resources across 13 villages, covering 500 families.",
+    category: "nrm",
+    covers: ["Umbrella Programme for Natural Resource Management"],
+  },
+  {
+    folder: "nabard-farmer-clubs",
+    status: "completed",
+    label: "Farmer Clubs (NABARD)",
+    location: "Andhra Pradesh",
+    year: "1999–2023",
+    desc: "NABARD Farmer Club formation, building grassroots farmer collectives for knowledge-sharing and collective bargaining.",
+    category: "agriculture",
+    covers: ["NABARD Farmer Clubs"],
   },
   {
     folder: "spices-board-ipm-chilli",
@@ -109,6 +173,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Prakasam & Guntur Districts, Andhra Pradesh",
     year: "1999–2023",
     desc: "Integrated Pest Management, Vermi Compost promotion, post-harvest technologies and organic farming capacity building for chilli-growing farmers.",
+    category: "agriculture",
     covers: ["Integrated Pest Management in Chilli / Vermi Compost / Organic Farming"],
   },
   {
@@ -118,6 +183,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Andhra Pradesh",
     year: "1999–2023",
     desc: "Reducing incidence of TB, HIV/AIDS, Malaria, Filaria and Leprosy across 12 villages.",
+    category: "health",
     covers: ["Andhra Pradesh Community Health Intervention Project"],
   },
   {
@@ -127,6 +193,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Markapur Revenue Division, Andhra Pradesh",
     year: "1999–2023",
     desc: "HIV/AIDS interventions across 8 mandals of Markapur revenue division.",
+    category: "health",
     covers: ["Swagati HIV/AIDS Interventions Project"],
   },
   {
@@ -136,6 +203,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Jaganadhapuram",
     year: "1999–2023",
     desc: "Conservation of natural resources for promotion of livelihoods through a watershed approach.",
+    category: "nrm",
     covers: ["Conservation of Natural Resources for Promotion of Livelihoods through Watershed Approach"],
   },
   {
@@ -145,6 +213,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Punjab, Haryana, Madhya Pradesh, Uttar Pradesh",
     year: "1999–2023",
     desc: "Enhancing skills & knowledge of 1,00,000 paddy-cultivating farmers on DSR practices.",
+    category: "agriculture",
     covers: ["Spreading Happiness through Sustainable Rice Farming (DSR)"],
   },
   {
@@ -154,6 +223,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "4 states of India",
     year: "1999–2023",
     desc: "Improving mustard crop productivity for farmers through beekeeping and bee pollination.",
+    category: "agriculture",
     covers: [
       "Improving Crop Productivity of Mustard through Bee Pollination (Corteva)",
       "Honeybee Project in Mustard Cultivation (PHI Seeds)",
@@ -166,6 +236,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Vizag District, Andhra Pradesh",
     year: "1999–2023",
     desc: "Increasing ginger productivity by 20% and net income of 750 farmers by 25% across 28 villages.",
+    category: "agriculture",
     covers: ["Promotion and Strengthening of Sustainable Integrated Ginger Cultivation"],
   },
   {
@@ -175,6 +246,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Andhra Pradesh",
     year: "1999–2023",
     desc: "Sensitising 500 chilli farmers to produce residue-free chilli and develop marketing linkages.",
+    category: "agriculture",
     covers: ["Integrated Pest Management (IPM) in Chilli Cultivation"],
   },
   {
@@ -184,6 +256,7 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Khammam District, Telangana & Andhra Pradesh",
     year: "1999–2023",
     desc: "Marketing infrastructure enabling small & marginal farmers to sell produce directly to customers.",
+    category: "agriculture",
     covers: ["Promotion of Wayside Market", "Promotion of Rythu Bazaar at Khammam District"],
   },
   {
@@ -193,6 +266,14 @@ export const programAlbums: ProgramAlbum[] = [
     location: "Andhra Pradesh",
     year: "1999–2023",
     desc: "Supporting farming communities with safe drinking water through RO plants, school sanitary block promotion and tank renovation.",
+    category: "health",
     covers: ["Community Development Interventions"],
   },
 ];
+
+export const ALBUM_CATEGORY_LABELS: Record<AlbumCategory, string> = {
+  agriculture: "Agriculture",
+  nrm: "Environment & Water",
+  health: "Health & WASH",
+  child: "Child & Women",
+};

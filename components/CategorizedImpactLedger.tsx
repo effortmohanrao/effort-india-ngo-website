@@ -96,7 +96,7 @@ export const officialPDFImpactCategories: ImpactCategory[] = [
       { value: "15,000+", label: "WOMEN SHG MEMBERS", desc: "Women empowered via micro-enterprises", icon: Heart },
       { value: "51", label: "COOPERATIVE SOCIETIES", desc: "Mutually Aided Cooperative Societies", icon: Building2 },
       { value: "17,000+", label: "COOPERATIVE MEMBERS", desc: "Women members in MACS cooperatives", icon: Users },
-      { value: "40", label: "FPOs PROMOTED", desc: "FPOs with 25,000 Farmer Shareholders", icon: Briefcase },
+      { value: "42", label: "FPOs PROMOTED", desc: "FPOs with 23,352 Farmer Shareholders", icon: Briefcase },
     ]
   },
   {
@@ -121,7 +121,7 @@ export const officialPDFImpactCategories: ImpactCategory[] = [
     accentColor: "#e6c687",
     counters: [
       { value: "2,011", label: "CHILD LABOURERS REHABILITATED", desc: "Rescued from child labour & admitted to schools", icon: GraduationCap },
-      { value: "367", label: "GIRL CHILDREN RESCUED", desc: "Girl children rehabilitated & educated", icon: Heart },
+      { value: "1,067", label: "GIRL CHILDREN RESCUED", desc: "Girl children rehabilitated & educated", icon: Heart },
       { value: "21", label: "CHILD-LABOUR-FREE VILLAGES", desc: "Villages with 100% elementary education", icon: CheckCircle2 },
       { value: "1,000", label: "GIRL STUDENT BICYCLES", desc: "Bicycles distributed to girl students", icon: Bike },
       { value: "1.50 Lakh+", label: "WASH & HEALTH OUTREACH", desc: "Population reached with health education", icon: Activity },

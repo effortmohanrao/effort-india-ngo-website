@@ -5,12 +5,15 @@ import { ExternalLink, ChevronLeft, ChevronRight, CheckCircle2, CircleDashed, Ci
 import Link from "next/link";
 import MediaSlotManager from "./MediaSlotManager";
 import { completedProjects, ongoingProjects, type Project } from "@/app/programs/data";
+import { programAlbums } from "@/lib/programAlbums";
 
 type StatusTab = "completed" | "ongoing";
 
 const GALLERY_TARGET = 6;
 
-type PhotoStatus = { hasCover: boolean; galleryCount: number };
+const ALBUM_BY_FOLDER = Object.fromEntries(programAlbums.map((a) => [a.folder, a]));
+
+type PhotoStatus = { hasCover: boolean; galleryCount: number; source: "own" | "gallery"; folderLabel?: string };
 
 function statusBadge(s: PhotoStatus | undefined) {
   const hasCover = s?.hasCover ?? false;
@@ -18,6 +21,13 @@ function statusBadge(s: PhotoStatus | undefined) {
   const isComplete = hasCover && galleryCount >= GALLERY_TARGET;
   const isStarted = hasCover || galleryCount > 0;
 
+  if (isComplete && s?.source === "gallery") {
+    return {
+      icon: CheckCircle2,
+      classes: "bg-sky-50 border-sky-300 text-sky-600",
+      title: `Complete — synced from Gallery album "${s.folderLabel}" (${galleryCount} photos)`,
+    };
+  }
   if (isComplete) {
     return {
       icon: CheckCircle2,
@@ -29,7 +39,10 @@ function statusBadge(s: PhotoStatus | undefined) {
     return {
       icon: CircleDashed,
       classes: "bg-amber-50 border-amber-300 text-amber-600",
-      title: `In progress — ${hasCover ? "cover done" : "no cover yet"}, ${galleryCount}/${GALLERY_TARGET} gallery photos`,
+      title:
+        s?.source === "gallery"
+          ? `Linked to Gallery album "${s.folderLabel}" — only ${galleryCount}/${GALLERY_TARGET} photos there so far`
+          : `In progress — ${hasCover ? "cover done" : "no cover yet"}, ${galleryCount}/${GALLERY_TARGET} gallery photos`,
     };
   }
   return {
@@ -79,19 +92,37 @@ function ProjectDetail({
         </Link>
       </div>
 
-      <div className="space-y-6">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <p className="text-sm font-bold text-slate-800 mb-1">Cover Image</p>
-          <p className="text-[11px] text-slate-450 mb-3">Shown as this project&apos;s thumbnail everywhere it&apos;s listed. One image only.</p>
-          <MediaSlotManager prefix={`${base}/cover`} label="Cover Image" />
+      {project.photoFolder ? (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4">
+            <p className="text-sm font-bold text-sky-900 mb-1">📷 Synced from the main Gallery page</p>
+            <p className="text-[11px] text-sky-800 leading-relaxed">
+              This project already has real photos in the Gallery album <b>&quot;{ALBUM_BY_FOLDER[project.photoFolder]?.label ?? project.photoFolder}&quot;</b> —
+              those same photos are shown automatically here and on the project&apos;s live page. No separate upload needed.
+              Add or remove photos below and it updates both places at once (nothing gets duplicated).
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800 mb-1">Gallery Images (Shared Album)</p>
+            <p className="text-[11px] text-slate-450 mb-3">The first image here doubles as this project&apos;s cover thumbnail. Aim for 6+.</p>
+            <MediaSlotManager prefix={`programs/${status}/${project.photoFolder}`} label="Gallery Images" multiple />
+          </div>
         </div>
+      ) : (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800 mb-1">Cover Image</p>
+            <p className="text-[11px] text-slate-450 mb-3">Shown as this project&apos;s thumbnail everywhere it&apos;s listed. One image only.</p>
+            <MediaSlotManager prefix={`${base}/cover`} label="Cover Image" />
+          </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <p className="text-sm font-bold text-slate-800 mb-1">Gallery Images</p>
-          <p className="text-[11px] text-slate-450 mb-3">Shown on this project&apos;s case-study page. Aim for 6 for a complete gallery — upload as many as you have.</p>
-          <MediaSlotManager prefix={`${base}/gallery`} label="Gallery Images" multiple />
+          <div className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800 mb-1">Gallery Images</p>
+            <p className="text-[11px] text-slate-450 mb-3">Shown on this project&apos;s case-study page. Aim for 6 for a complete gallery — upload as many as you have.</p>
+            <MediaSlotManager prefix={`${base}/gallery`} label="Gallery Images" multiple />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -140,7 +171,17 @@ function ProjectList({
   );
 }
 
-async function fetchOneStatus(status: StatusTab, index: number): Promise<[string, PhotoStatus]> {
+async function fetchOneStatus(status: StatusTab, index: number, project: Project): Promise<[string, PhotoStatus]> {
+  if (project.photoFolder) {
+    const album = ALBUM_BY_FOLDER[project.photoFolder];
+    const res = await fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" }).then((r) => r.json());
+    const count = (res.images ?? []).length;
+    return [
+      `${status}-${index}`,
+      { hasCover: count > 0, galleryCount: count, source: "gallery", folderLabel: album?.label ?? project.photoFolder },
+    ];
+  }
+
   const base = `programs/${status}/p${index + 1}`;
   const [coverRes, galleryRes] = await Promise.all([
     fetch(`/api/site/media?prefix=${base}/cover`, { cache: "no-store" }).then((r) => r.json()),
@@ -148,7 +189,7 @@ async function fetchOneStatus(status: StatusTab, index: number): Promise<[string
   ]);
   return [
     `${status}-${index}`,
-    { hasCover: (coverRes.images ?? []).length > 0, galleryCount: (galleryRes.images ?? []).length },
+    { hasCover: (coverRes.images ?? []).length > 0, galleryCount: (galleryRes.images ?? []).length, source: "own" },
   ];
 }
 
@@ -159,8 +200,8 @@ export default function ProgramsPanel() {
 
   const refreshStatuses = useCallback(() => {
     const jobs = [
-      ...completedProjects.map((_, i) => fetchOneStatus("completed", i)),
-      ...ongoingProjects.map((_, i) => fetchOneStatus("ongoing", i)),
+      ...completedProjects.map((p, i) => fetchOneStatus("completed", i, p)),
+      ...ongoingProjects.map((p, i) => fetchOneStatus("ongoing", i, p)),
     ];
     Promise.all(jobs).then((entries) => {
       setStatuses(Object.fromEntries(entries));

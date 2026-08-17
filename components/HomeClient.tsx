@@ -158,16 +158,6 @@ const complianceCards: {
       details: "Registration certificate under Rule 4(2) of Companies (CSR Policy) Rules for executing corporate CSR initiatives under Schedule VII."
     },
     {
-      id: "sse",
-      icon: TrendingUp,
-      title: "Social Stock Exchange (SSE)",
-      number: "SSE Listed & Approved Social Enterprise",
-      status: "Active & Verified",
-      category: "csr",
-      authority: "SEBI & National Stock Exchange (NSE)",
-      details: "Registered Social Enterprise (SPO) on the Social Stock Exchange framework enabling auditable public social impact funding."
-    },
-    {
       id: "tiss",
       icon: Award,
       title: "TISS Hub Certificate",
@@ -185,7 +175,6 @@ const complianceTrustStrip = [
   { icon: Globe2, label: "FCRA Renewal Active" },
   { icon: Fingerprint, label: "NITI Aayog Darpan ID" },
   { icon: Building2, label: "MCA CSR-1 Approved" },
-  { icon: TrendingUp, label: "SSE Approved" },
   { icon: Award, label: "TISS Empaneled" },
 ];
 

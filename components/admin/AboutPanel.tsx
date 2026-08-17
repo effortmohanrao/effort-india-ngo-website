@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, ExternalLink, ImageIcon, GalleryHorizontal, Users } from "lucide-react";
+import { ChevronLeft, ExternalLink, ImageIcon, Users } from "lucide-react";
 import MediaSlotManager from "./MediaSlotManager";
 import TeamPanel from "./TeamPanel";
 
@@ -15,7 +15,6 @@ type Section = {
 
 const sections: Section[] = [
   { id: "hero", icon: ImageIcon, title: "Hero Section", desc: "Rotating cover photos shown top-right of the About page. Changes every ~3.5 seconds — upload as many as you like." },
-  { id: "gallery", icon: GalleryHorizontal, title: "Journey Gallery", desc: "Photos shown in the \"Our Journey Through Images\" strip further down the page." },
   { id: "team", icon: Users, title: "Meet Our Team", desc: "Photo and social links for each of the 9 leadership team members." },
 ];
 
@@ -60,19 +59,6 @@ export default function AboutPanel() {
         livePath="/about"
         prefix="about/hero"
         label="Hero Rotation Images"
-        onBack={() => setOpenSection(null)}
-      />
-    );
-  }
-
-  if (openSection === "gallery") {
-    return (
-      <SubPanel
-        title="About Page — Journey Gallery"
-        desc="Photos shown in the &quot;Our Journey Through Images&quot; strip further down the page."
-        livePath="/about#journey"
-        prefix="about/gallery"
-        label="Journey Gallery Images"
         onBack={() => setOpenSection(null)}
       />
     );

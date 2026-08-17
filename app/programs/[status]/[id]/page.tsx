@@ -487,20 +487,18 @@ export default function ProjectDetailPage({
   const [realPhotos, setRealPhotos] = useState<{ key: string; url: string }[]>([]);
 
   useEffect(() => {
+    // A linked Gallery album (project.photoFolder) is the shared, richer source of truth —
+    // it wins whenever set, so this project's own p{N}/gallery uploads never end up duplicating it.
+    if (project.photoFolder) {
+      fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" })
+        .then((res) => res.json())
+        .then((data) => setRealPhotos(data.images ?? []))
+        .catch(() => {});
+      return;
+    }
     fetch(`/api/site/media?prefix=programs/${status}/p${index + 1}/gallery`, { cache: "no-store" })
       .then((res) => res.json())
-      .then((data) => {
-        const ownPhotos = data.images ?? [];
-        if (ownPhotos.length > 0) {
-          setRealPhotos(ownPhotos);
-          return;
-        }
-        if (!project.photoFolder) return;
-        fetch(`/api/site/media?prefix=programs/${status}/${project.photoFolder}`, { cache: "no-store" })
-          .then((res) => res.json())
-          .then((folderData) => setRealPhotos(folderData.images ?? []))
-          .catch(() => {});
-      })
+      .then((data) => setRealPhotos(data.images ?? []))
       .catch(() => {});
   }, [index, project.photoFolder, status]);
 

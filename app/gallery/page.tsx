@@ -2,14 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Sparkles, MapPin, Layers, ArrowRight, Loader2 } from "lucide-react";
-import { programAlbums } from "@/lib/programAlbums";
+import { Sparkles, MapPin, Layers, ArrowRight, Loader2, Filter } from "lucide-react";
+import { programAlbums, ALBUM_CATEGORY_LABELS, type AlbumCategory } from "@/lib/programAlbums";
 
 type LiveAlbum = { coverUrl: string | null; count: number };
 
 export default function GalleryPage() {
   const [live, setLive] = useState<Record<string, LiveAlbum>>({});
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<AlbumCategory | "all">("all");
 
   useEffect(() => {
     Promise.all(
@@ -25,6 +26,9 @@ export default function GalleryPage() {
   }, []);
 
   const totalPhotos = Object.values(live).reduce((n, a) => n + a.count, 0);
+  const visibleAlbums = programAlbums.filter(
+    (a) => (activeCategory === "all" || a.category === activeCategory) && (live[a.folder]?.count ?? 0) > 0
+  );
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen pt-28 pb-24 relative overflow-hidden">
@@ -60,15 +64,38 @@ export default function GalleryPage() {
           </p>
         </div>
 
+        {/* CATEGORY FILTER CHIPS */}
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-black uppercase tracking-wider text-slate-500">
+            <Filter className="w-3.5 h-3.5" /> Browse by:
+          </span>
+          {(["all", "agriculture", "nrm", "health", "child"] as const).map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wide transition-all duration-300 cursor-pointer border ${
+                activeCategory === cat
+                  ? "bg-slate-900 text-white border-slate-900 shadow-md scale-105"
+                  : "bg-white/80 backdrop-blur-md border-slate-300 text-slate-600 hover:bg-white hover:border-slate-400"
+              }`}
+            >
+              {cat === "all" ? "All Projects" : ALBUM_CATEGORY_LABELS[cat]}
+            </button>
+          ))}
+        </div>
+
         {loading ? (
           <div className="flex items-center justify-center gap-2 text-slate-500 text-sm py-16">
             <Loader2 className="w-5 h-5 animate-spin" /> Loading albums...
           </div>
+        ) : visibleAlbums.length === 0 ? (
+          <div className="text-center text-slate-500 text-sm py-16">
+            No albums with photos on file for this category yet.
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {programAlbums.map((album) => {
-              const info = live[album.folder];
-              if (!info || info.count === 0) return null;
+            {visibleAlbums.map((album) => {
+              const info = live[album.folder]!;
               return (
                 <Link
                   key={album.folder}

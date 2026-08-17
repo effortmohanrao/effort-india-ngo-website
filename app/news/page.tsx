@@ -37,7 +37,7 @@ export default function News() {
     "💧 50 RO Water Purification Plants now active, serving 16,000 rural families",
     "🌾 42 FPOs & 1,275 SHGs reach 38,102 active farmer & women shareholders",
     "🚲 1,000 Bicycles distributed to high school girl students in remote habitations",
-    "📜 EFFORT NGO listed on Social Stock Exchange (SSE) & TISS Empaneled",
+    "📜 EFFORT NGO is TISS National Hub Empaneled",
   ];
 
   {/* News & Field Stories Dataset */}
@@ -108,10 +108,10 @@ Key Achievements:
       id: 4,
       category: "csr",
       categoryName: "Corporate CSR Releases",
-      title: "EFFORT NGO Lists on Social Stock Exchange (SSE) & Receives MCA CSR-1 Approval",
+      title: "EFFORT NGO Receives MCA CSR-1 Approval",
       subtitle: "Official statutory update: MCA Registration ID CSR00034988 active for corporate Schedule VII project partnerships.",
-      desc: "EFFORT NGO achieves listing on India's Social Stock Exchange (SSE) and completes MCA Form CSR-1 registration, empowering corporate partners to execute auditable CSR interventions under Section 80G and 12AB exemptions.",
-      fullContent: `EFFORT NGO has officially been listed on the Social Stock Exchange (SSE) and holds active MCA Form CSR-1 Registration (ID: CSR00034988). Corporate CSR leads can now partner for turnkey Schedule VII interventions in Sustainable Agriculture, Water Security, Women SHGs, and Rural Education with complete quarterly impact evaluation reports.`,
+      desc: "EFFORT NGO completes MCA Form CSR-1 registration, empowering corporate partners to execute auditable CSR interventions under Section 80G and 12AB exemptions.",
+      fullContent: `EFFORT NGO holds active MCA Form CSR-1 Registration (ID: CSR00034988). Corporate CSR leads can now partner for turnkey Schedule VII interventions in Sustainable Agriculture, Water Security, Women SHGs, and Rural Education with complete quarterly impact evaluation reports.`,
       date: "May 2026",
       author: "Head of Corporate Alliances",
       readTime: "3 min read",
@@ -443,7 +443,7 @@ Key Achievements:
             EFFORT NGO Statutory Registration Credentials
           </h3>
           <p className="text-sm sm:text-base text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
-            EFFORT NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, Social Stock Exchange (SSE) listing, and TISS National Hub Empanlement.
+            EFFORT NGO maintains active Society Registration (340/1999), Section 80G Tax Exemption, Section 12AB Registration, FCRA Renewal, MCA Form CSR-1 Approval (CSR00034988), NITI Aayog DARPAN ID, and TISS National Hub Empanlement.
           </p>
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-black text-[#d4af6a] border-t border-[#d4af6a]/30">
@@ -453,7 +453,6 @@ Key Achievements:
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> FCRA Registered</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> NITI Aayog Darpan ID</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> MCA Form CSR-1</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> SSE Listed</span>
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> TISS Empaneled</span>
           </div>
         </div>
