@@ -175,7 +175,7 @@ export default function DedicatedAlbumPage({ params }: { params: Promise<{ id: s
                 >
                   <div className="relative h-64 overflow-hidden bg-slate-950">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photo.url} alt={`${album.label} — photo ${index + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                    <img src={photo.url} alt={`${album.label} — photo ${index + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                     <span className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/90 text-slate-900 flex items-center justify-center font-black text-xs shadow-sm">
                       {index + 1}

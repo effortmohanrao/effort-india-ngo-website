@@ -125,7 +125,7 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
       <div className="relative h-32 bg-gradient-to-br from-[#faf3e3] to-[#f1e6cc] flex items-center justify-center overflow-hidden">
         {coverUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={coverUrl} alt={project.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <img src={coverUrl} alt={project.name} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
         ) : (
           <FolderOpen className="w-8 h-8 text-[#c9a24a]/40 group-hover:scale-110 group-hover:text-[#c9a24a]/60 transition-all duration-500" />
         )}

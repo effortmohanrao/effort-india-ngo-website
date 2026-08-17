@@ -108,6 +108,8 @@ export default function GalleryPage() {
                       <img
                         src={info.coverUrl}
                         alt={album.label}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
                     )}
