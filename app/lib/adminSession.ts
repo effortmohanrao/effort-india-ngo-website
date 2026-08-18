@@ -41,11 +41,11 @@ export function createSessionValue(username: string) {
   return `${username}.${sign(username, secret)}`;
 }
 
-// Verifies the cookie carries a signature only our server could have produced
-// (minted at login, after a real password check against admin_users) — it does
-// NOT re-check the username still exists, so a removed staff account stays valid
-// until its cookie expires (see maxAge in app/admin/actions.ts).
-export function isValidSessionValue(value: string | undefined | null) {
+// Verifies the cookie's signature (only our server could have produced it, minted
+// at login after a real password check) AND that the username it names still has
+// an admin_users row — so renaming/removing an account invalidates old sessions
+// for it immediately, on the very next request, not just after the cookie expires.
+export async function isValidSessionValue(value: string | undefined | null): Promise<boolean> {
   const secret = process.env.ADMIN_SESSION_SECRET;
   if (!value || !secret) return false;
 
@@ -56,7 +56,11 @@ export function isValidSessionValue(value: string | undefined | null) {
   if (!username || !signature) return false;
 
   const expected = sign(username, secret);
-  return safeEqual(signature, expected);
+  if (!safeEqual(signature, expected)) return false;
+
+  const supabase = getSupabaseAdmin();
+  const { data } = await supabase.from("admin_users").select("username").eq("username", username).maybeSingle();
+  return !!data;
 }
 
 export function getSessionUsername(value: string | undefined | null): string | null {

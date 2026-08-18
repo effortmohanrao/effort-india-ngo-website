@@ -31,6 +31,7 @@ export default function AdminLoginPage() {
 
         <form
           action={formAction}
+          autoComplete="off"
           className="bg-white/[0.04] backdrop-blur-2xl border border-white/10 rounded-3xl p-7 space-y-5 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.6)]"
         >
           <div className="space-y-1.5">
@@ -43,7 +44,10 @@ export default function AdminLoginPage() {
                 id="username"
                 name="username"
                 type="text"
-                autoComplete="username"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
                 required
                 className="w-full bg-black/30 border border-white/10 rounded-xl pl-10 pr-3 py-3 text-sm text-white placeholder-white/25 outline-hidden focus:border-emerald-500/70 focus:bg-black/40 transition-colors"
                 placeholder="admin"
@@ -61,7 +65,7 @@ export default function AdminLoginPage() {
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 required
                 className="w-full bg-black/30 border border-white/10 rounded-xl pl-10 pr-3 py-3 text-sm text-white placeholder-white/25 outline-hidden focus:border-emerald-500/70 focus:bg-black/40 transition-colors"
                 placeholder="••••••••"

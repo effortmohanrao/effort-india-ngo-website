@@ -147,10 +147,10 @@ const pillarsData = [
 ];
 
 const impactStatsData = [
-  { value: "4L–5L", label: "Farmers Supported", detail: "Climate-resilient agriculture & watershed security", accent: "border-emerald-300 text-emerald-950 bg-emerald-50/60" },
-  { value: "25K–40K", label: "Youth Engaged", detail: "Skills, green jobs & rural entrepreneurship", accent: "border-amber-300 text-amber-950 bg-amber-50/60" },
-  { value: "75–120", label: "FPOs & Collectives", detail: "Community ownership & market linkages", accent: "border-teal-300 text-teal-950 bg-teal-50/60" },
-  { value: "8–12", label: "States", detail: "Pan-India ecosystem collaboration across 9 operational hubs", accent: "border-indigo-300 text-indigo-950 bg-indigo-50/60" },
+  { value: "4L–5L", label: "Farmers Supported", detail: "Climate-resilient agriculture & watershed security", accent: "border-emerald-300 text-emerald-950 bg-gradient-to-br from-emerald-50 via-white to-emerald-50/60", topBorder: "from-emerald-500 via-teal-300 to-emerald-500", glow: "shadow-[0_4px_15px_-5px_rgba(5,150,105,0.2)]" },
+  { value: "25K–40K", label: "Youth Engaged", detail: "Skills, green jobs & rural entrepreneurship", accent: "border-amber-300 text-amber-950 bg-gradient-to-br from-amber-50 via-white to-amber-50/60", topBorder: "from-amber-500 via-yellow-300 to-amber-500", glow: "shadow-[0_4px_15px_-5px_rgba(217,119,6,0.2)]" },
+  { value: "75–120", label: "FPOs & Collectives", detail: "Community ownership & market linkages", accent: "border-teal-300 text-teal-950 bg-gradient-to-br from-teal-50 via-white to-teal-50/60", topBorder: "from-teal-500 via-emerald-300 to-teal-500", glow: "shadow-[0_4px_15px_-5px_rgba(13,148,136,0.2)]" },
+  { value: "8–12", label: "States", detail: "Pan-India ecosystem collaboration across 9 operational hubs", accent: "border-indigo-300 text-indigo-950 bg-gradient-to-br from-indigo-50 via-white to-indigo-50/60", topBorder: "from-indigo-500 via-violet-300 to-indigo-500", glow: "shadow-[0_4px_15px_-5px_rgba(79,70,229,0.2)]" },
 ];
 
 export default function Effort20Roadmap() {
@@ -692,36 +692,40 @@ export default function Effort20Roadmap() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="relative rounded-[32px] border-2 border-amber-300/80 bg-white/95 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 shadow-xl overflow-hidden">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-100">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-amber-950 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+          <div className="relative rounded-[28px] border-2 border-amber-300/80 bg-white/95 backdrop-blur-2xl px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-5 shadow-lg overflow-hidden">
+            {/* Ultra-Compact Header Ribbon */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-amber-900/10">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-amber-950 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300 shrink-0">
                   TARGET IMPACT BY 2030
                 </span>
-                <h4 className="text-xl sm:text-2xl font-black text-slate-900 mt-2">
+                <h4 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
                   Quantifiable Strategic Outcomes
                 </h4>
               </div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-slate-800 bg-amber-50 border border-amber-200 rounded-full px-4 py-2 self-start sm:self-auto shadow-xs">
-                <Target className="w-4 h-4 text-amber-700 animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-amber-950 bg-amber-50 border border-amber-300/80 rounded-full px-3 py-1 self-start sm:self-auto shadow-2xs">
+                <Target className="w-3.5 h-3.5 text-amber-700 animate-pulse" />
                 <span>EFFORT 2.0 Master Metrics</span>
               </div>
             </div>
 
-            {/* Bottom Horizontal Stat Bar displaying 4 Bold Metric Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Ultra-Sleek 4-Metric Grid Dock */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {impactStatsData.map((stat) => (
                 <div
                   key={stat.label}
-                  className={`group relative rounded-2xl border-2 p-5 sm:p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${stat.accent}`}
+                  className={`group relative rounded-2xl border-2 p-3.5 sm:p-4 text-center transition-all duration-300 hover:-translate-y-1 overflow-hidden ${stat.accent} ${stat.glow}`}
                 >
-                  <p className="text-3xl sm:text-4xl lg:text-5xl font-black font-mono tracking-tight text-slate-900">
+                  {/* Top Shimmer Highlight Bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.topBorder}`} />
+
+                  <p className="text-2xl sm:text-3xl lg:text-3xl font-black font-mono tracking-tight text-slate-900 leading-none">
                     {stat.value}
                   </p>
-                  <p className="text-xs font-black uppercase tracking-wider text-slate-900 mt-2">
+                  <p className="text-[11px] font-black uppercase tracking-wider text-slate-900 mt-1.5">
                     {stat.label}
                   </p>
-                  <p className="text-[10px] text-slate-600 font-medium mt-1 leading-snug line-clamp-2">
+                  <p className="text-[10px] text-slate-600 font-semibold mt-0.5 leading-snug line-clamp-1">
                     {stat.detail}
                   </p>
                 </div>

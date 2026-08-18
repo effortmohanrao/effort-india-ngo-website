@@ -7,7 +7,7 @@ import { hashPassword } from "@/lib/passwordHash";
 async function requireSession() {
   const cookieStore = await cookies();
   const session = cookieStore.get(ADMIN_COOKIE_NAME)?.value;
-  if (!isValidSessionValue(session)) return null;
+  if (!(await isValidSessionValue(session))) return null;
   return getSessionUsername(session);
 }
 

@@ -6,7 +6,7 @@ import { deleteFromR2 } from "@/lib/r2";
 export async function POST(req: NextRequest) {
   const cookieStore = await cookies();
   const session = cookieStore.get(ADMIN_COOKIE_NAME)?.value;
-  if (!isValidSessionValue(session)) {
+  if (!(await isValidSessionValue(session))) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
