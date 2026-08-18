@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ShieldCheck, UserPlus, Trash2, KeyRound, Loader2 } from "lucide-react";
+import TwoFactorSetup from "./TwoFactorSetup";
 
 type Account = {
   username: string;
@@ -85,6 +86,8 @@ export default function StaffAccountsPanel() {
           panel, can ever show a password back to you once it&apos;s set.
         </p>
       </div>
+
+      <TwoFactorSetup />
 
       {/* Add new account */}
       <form onSubmit={handleAdd} className="bg-white/95 border border-amber-900/15 rounded-2xl p-5 space-y-3 max-w-lg shadow-sm">
