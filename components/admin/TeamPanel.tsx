@@ -9,7 +9,7 @@ const people = [
   { slug: "jv-mohan-rao", name: "V. Mohan Rao", role: "Executive Director" },
   { slug: "bala-subramanian", name: "Bala Subramanian", role: "President, EFFORT" },
   { slug: "veeranjaneyulu", name: "Danda Veeranjaneyulu", role: "Executive Committee Member" },
-  { slug: "y-m-krishna", name: "Y. M. Krishna", role: "Capacity Building" },
+  { slug: "y-m-krishna", name: "Y. Murali Krishna", role: "Capacity Building" },
   { slug: "anuradha", name: "J. Anuradha", role: "Lead – Community Based Organisation" },
   { slug: "vijaya-kumari", name: "B. Vijaya Kumari", role: "Gender, Equity & Water Governance" },
   { slug: "annapurna", name: "B. Annapurna", role: "Finance" },

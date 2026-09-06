@@ -1756,3 +1756,13 @@ body {
 .animate-firecracker-3 {
   animation: firecracker-burst 2.7s cubic-bezier(0.25, 1, 0.5, 1) infinite 1.4s;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

@@ -542,6 +542,39 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
   }, []);
   const [selectedComplianceDoc, setSelectedComplianceDoc] = useState<(typeof complianceCards)[0] | null>(null);
 
+  // Mobile compliance horizontal rail controls & view mode
+  const complianceRailRef = useRef<HTMLDivElement>(null);
+  const [complianceMobileView, setComplianceMobileView] = useState<"carousel" | "grid">("carousel");
+  const [activeComplianceIndex, setActiveComplianceIndex] = useState(0);
+
+  const scrollCompliance = (direction: "left" | "right") => {
+    if (!complianceRailRef.current) return;
+    const container = complianceRailRef.current;
+    const card = container.firstElementChild as HTMLElement | null;
+    const cardWidth = card ? card.offsetWidth + 14 : 290;
+    container.scrollBy({
+      left: direction === "left" ? -cardWidth : cardWidth,
+      behavior: "smooth",
+    });
+  };
+
+  const handleComplianceScroll = () => {
+    if (!complianceRailRef.current) return;
+    const container = complianceRailRef.current;
+    const card = container.firstElementChild as HTMLElement | null;
+    const cardWidth = card ? card.offsetWidth + 14 : 290;
+    const idx = Math.round(container.scrollLeft / cardWidth);
+    setActiveComplianceIndex(Math.max(0, idx));
+  };
+
+  const handleComplianceFilterChange = (key: "all" | "govt" | "tax" | "csr") => {
+    setComplianceFilter(key);
+    setActiveComplianceIndex(0);
+    if (complianceRailRef.current) {
+      complianceRailRef.current.scrollTo({ left: 0, behavior: "smooth" });
+    }
+  };
+
   // Impact section states (re-triggers count-up animation on every scroll into view)
   const [impactRef, impactVisible] = useReentryScrollReveal<HTMLElement>();
   const [impactValues, setImpactValues] = useState(() => impactStats.map(() => 0));
@@ -1169,7 +1202,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
             {/* MIDDLE FILTER BAR: CATEGORY SELECTION TABS & LIVE RECORD COUNT BADGE */}
             <div className="bg-white/90 backdrop-blur-md border border-amber-900/15 rounded-2xl p-3 sm:p-4 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+              <div className="flex overflow-x-auto no-scrollbar items-center gap-2 w-full md:w-auto pb-1 -mx-1 px-1 md:mx-0 md:px-0 md:flex-wrap">
                 {[
                   { key: "all", label: `ALL RECORDS (${complianceCards.length})` },
                   {
@@ -1193,8 +1226,8 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                 ].map((tab) => (
                   <button
                     key={tab.key}
-                    onClick={() => setComplianceFilter(tab.key as typeof complianceFilter)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    onClick={() => handleComplianceFilterChange(tab.key as typeof complianceFilter)}
+                    className={`shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap ${
                       complianceFilter === tab.key
                         ? "bg-gradient-to-r from-amber-700 to-amber-800 text-white font-black shadow-md scale-105"
                         : "bg-amber-50/70 text-slate-700 border border-amber-900/10 hover:bg-amber-100 hover:text-amber-900 shadow-xs"
@@ -1205,12 +1238,12 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                 ))}
               </div>
 
-              <div className="shrink-0 flex items-center gap-2">
+              <div className="shrink-0 flex items-center justify-between w-full md:w-auto gap-2">
                 <span className="text-[11px] font-black tracking-[0.2em] text-amber-900 uppercase hidden lg:inline-flex items-center gap-1.5 mr-2">
                   <span className="w-2 h-2 rounded-full bg-amber-600 animate-ping" />
                   STATUS: ACTIVE
                 </span>
-                <span className="text-xs font-black tracking-wider text-amber-900 bg-amber-100/90 border border-amber-300/80 px-4 py-1.5 rounded-full font-mono shadow-sm">
+                <span className="text-xs font-black tracking-wider text-amber-900 bg-amber-100/90 border border-amber-300/80 px-3 sm:px-4 py-1.5 rounded-full font-mono shadow-sm">
                   {String(
                     complianceCards.filter(
                       (c) => complianceFilter === "all" || c.category === complianceFilter
@@ -1218,18 +1251,107 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                   ).padStart(2, "0")}{" "}
                   VERIFIED RECORDS
                 </span>
+
+                {/* Mobile View Switcher (sm:hidden) */}
+                <div className="flex sm:hidden items-center bg-amber-100/90 p-0.5 rounded-xl border border-amber-300/80 shadow-xs">
+                  <button
+                    onClick={() => setComplianceMobileView("carousel")}
+                    className={`px-2.5 py-1 text-[10px] font-black uppercase rounded-lg transition-all ${
+                      complianceMobileView === "carousel"
+                        ? "bg-amber-700 text-white shadow-xs"
+                        : "text-amber-900 hover:text-amber-950"
+                    }`}
+                  >
+                    Slide
+                  </button>
+                  <button
+                    onClick={() => setComplianceMobileView("grid")}
+                    className={`px-2.5 py-1 text-[10px] font-black uppercase rounded-lg transition-all ${
+                      complianceMobileView === "grid"
+                        ? "bg-amber-700 text-white shadow-xs"
+                        : "text-amber-900 hover:text-amber-950"
+                    }`}
+                  >
+                    Grid
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* BOTTOM HORIZONTAL 4-COLUMN RESPONSIVE CARD GRID */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Mobile swipe helper & Arrow navigation strip (sm:hidden) */}
+            {complianceMobileView === "carousel" && (
+              <div className="flex sm:hidden items-center justify-between px-1 py-0.5 text-amber-900 font-bold">
+                <div className="flex items-center gap-1.5 text-[11px] text-amber-900/90 font-extrabold">
+                  <span className="inline-block animate-pulse text-amber-700">&larr;</span>
+                  <span>Swipe certificates</span>
+                  <span className="inline-block animate-pulse text-amber-700">&rarr;</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => scrollCompliance("left")}
+                    disabled={activeComplianceIndex === 0}
+                    className="w-7 h-7 rounded-full bg-white/95 border border-amber-300 shadow-sm flex items-center justify-center text-amber-800 disabled:opacity-30 active:scale-95"
+                    aria-label="Previous certificate"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <span className="font-mono text-[11px] font-black text-amber-900 min-w-[36px] text-center">
+                    {String(
+                      Math.min(
+                        activeComplianceIndex + 1,
+                        complianceCards.filter(
+                          (c) => complianceFilter === "all" || c.category === complianceFilter
+                        ).length
+                      )
+                    ).padStart(2, "0")}{" "}
+                    /{" "}
+                    {String(
+                      complianceCards.filter(
+                        (c) => complianceFilter === "all" || c.category === complianceFilter
+                      ).length
+                    ).padStart(2, "0")}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => scrollCompliance("right")}
+                    disabled={
+                      activeComplianceIndex >=
+                      complianceCards.filter(
+                        (c) => complianceFilter === "all" || c.category === complianceFilter
+                      ).length -
+                        1
+                    }
+                    className="w-7 h-7 rounded-full bg-white/95 border border-amber-300 shadow-sm flex items-center justify-center text-amber-800 disabled:opacity-30 active:scale-95"
+                    aria-label="Next certificate"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* RESPONSIVE CERTIFICATES: Touch Snap Carousel on Mobile, 4-Col Grid on Desktop */}
+            <div
+              ref={complianceRailRef}
+              onScroll={handleComplianceScroll}
+              className={
+                complianceMobileView === "carousel"
+                  ? "flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory no-scrollbar pb-2 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0"
+                  : "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4"
+              }
+            >
               {complianceCards
                 .filter((card) => complianceFilter === "all" || card.category === complianceFilter)
                 .map((card, i) => {
                   return (
                     <div
                       key={card.id}
-                      className="bg-white/95 backdrop-blur-xl rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between border border-amber-900/15 shadow-[0_10px_30px_-10px_rgba(120,53,15,0.12)] opacity-100 scale-100 hover:border-amber-500/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group/card min-h-[170px]"
+                      className={`bg-white/95 backdrop-blur-xl rounded-2xl relative overflow-hidden flex flex-col justify-between border border-amber-900/15 shadow-[0_10px_30px_-10px_rgba(120,53,15,0.12)] opacity-100 scale-100 hover:border-amber-500/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group/card ${
+                        complianceMobileView === "carousel"
+                          ? "w-[84vw] max-w-[305px] shrink-0 snap-center sm:w-auto sm:shrink p-5 min-h-[170px]"
+                          : "p-3.5 sm:p-5 min-h-[155px] sm:min-h-[170px]"
+                      }`}
                       style={{ transitionDelay: `${30 + i * 30}ms` }}
                     >
                       {/* Top glowing edge accent line */}
@@ -1239,17 +1361,17 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                         {/* High-Contrast Icon Box & Status Badge */}
                         <div className="flex items-start justify-between mb-3">
                           {card.id === "gptw" && gptwLogoUrl ? (
-                            <div className="w-10 h-10 rounded-xl bg-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform overflow-hidden p-1">
+                            <div className="w-10 h-10 rounded-xl bg-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform overflow-hidden p-1 shrink-0">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img src={gptwLogoUrl} alt="Great Place To Work Certified" className="w-full h-full object-contain" />
                             </div>
                           ) : (
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform shrink-0">
                               <card.icon className="w-5 h-5 text-white" />
                             </div>
                           )}
 
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                             <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Active
                           </span>
                         </div>
@@ -1263,17 +1385,43 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                         </p>
                       </div>
 
-                        {/* Verification Status Indicator */}
-                        <div className="mt-4 pt-2.5 border-t border-amber-100 flex items-center justify-between text-[10px] font-mono text-amber-900/80">
-                          <span className="tracking-wider font-semibold">STATUS &rarr; VERIFIED</span>
-                          <span className="font-black flex items-center gap-1 text-amber-800">
-                            <ShieldCheck className="w-3 h-3 text-amber-700" /> OFFICIAL
-                          </span>
-                        </div>
+                      {/* Verification Status Indicator */}
+                      <div className="mt-4 pt-2.5 border-t border-amber-100 flex items-center justify-between text-[10px] font-mono text-amber-900/80">
+                        <span className="tracking-wider font-semibold">STATUS &rarr; VERIFIED</span>
+                        <span className="font-black flex items-center gap-1 text-amber-800">
+                          <ShieldCheck className="w-3 h-3 text-amber-700" /> OFFICIAL
+                        </span>
                       </div>
-                    );
-                  })}
+                    </div>
+                  );
+                })}
             </div>
+
+            {/* Mobile Carousel Page Dots (sm:hidden) */}
+            {complianceMobileView === "carousel" && (
+              <div className="flex sm:hidden items-center justify-center gap-1.5 pt-1">
+                {complianceCards
+                  .filter((card) => complianceFilter === "all" || card.category === complianceFilter)
+                  .map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => {
+                        if (complianceRailRef.current) {
+                          const card = complianceRailRef.current.firstElementChild as HTMLElement | null;
+                          const width = card ? card.offsetWidth + 14 : 290;
+                          complianceRailRef.current.scrollTo({ left: idx * width, behavior: "smooth" });
+                          setActiveComplianceIndex(idx);
+                        }
+                      }}
+                      aria-label={`Go to certificate ${idx + 1}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === activeComplianceIndex ? "w-6 bg-amber-700" : "w-1.5 bg-amber-300/80"
+                      }`}
+                    />
+                  ))}
+              </div>
+            )}
           </div>
 
           {/* BOTTOM TRUST STRIP: Continuous Horizontal Scrolling Marquee */}
@@ -1328,9 +1476,14 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             </p>
           </div>
 
+          {/* Mobile swipe indicator */}
+          <div className="flex sm:hidden items-center justify-center gap-1.5 text-cyan-300 text-[11px] font-black uppercase tracking-wider mb-2">
+            <span>&larr; Swipe 5 Execution Phases &rarr;</span>
+          </div>
+
           {/* 5 Glassmorphism Strategic Execution Cards */}
           <div
-            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5 transition-all duration-700 ${howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`flex sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory no-scrollbar pb-3 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 transition-all duration-700 ${howWeWorkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             style={{ transitionDelay: "150ms" }}
           >
@@ -1339,7 +1492,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               return (
                 <div
                   key={step.step}
-                  className="group relative rounded-3xl bg-slate-900/90 backdrop-blur-2xl border-2 border-cyan-400/80 p-5 sm:p-6 shadow-[0_0_30px_rgba(6,182,212,0.35)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-400 flex flex-col justify-between overflow-hidden"
+                  className="w-[82vw] max-w-[285px] shrink-0 snap-center sm:w-auto sm:shrink group relative rounded-3xl bg-slate-900/90 backdrop-blur-2xl border-2 border-cyan-400/80 p-5 sm:p-6 shadow-[0_0_30px_rgba(6,182,212,0.35)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-400 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Permanent top edge glow bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 opacity-100" />
@@ -1568,8 +1721,13 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             </p>
           </div>
 
+          {/* Mobile swipe indicator */}
+          <div className="flex sm:hidden items-center justify-center gap-1.5 text-[#6B1F27] text-[11px] font-black uppercase tracking-wider mb-2">
+            <span>&larr; Swipe 4 CSR Partnership Stages &rarr;</span>
+          </div>
+
           {/* Horizontal 4-Stage CSR Execution Lifecycle Cards Grid (FILLED WITH SOLID MAROON) */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory no-scrollbar pb-3 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 mb-8 sm:mb-12">
             {[
               {
                 step: "01",
@@ -1602,7 +1760,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             ].map((card, i) => (
               <div
                 key={card.step}
-                className={`bg-gradient-to-b from-[#381116] via-[#2D0D11] to-[#22090B] border-2 border-[#D4AF6A]/40 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between space-y-4 shadow-[0_15px_40px_-15px_rgba(56,17,22,0.4)] hover:border-[#F7E4A3] hover:shadow-[0_20px_50px_-15px_rgba(56,17,22,0.6)] hover:-translate-y-1 transition-all duration-500 ${csrVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                className={`w-[82vw] max-w-[295px] shrink-0 snap-center sm:w-auto sm:shrink bg-gradient-to-b from-[#381116] via-[#2D0D11] to-[#22090B] border-2 border-[#D4AF6A]/40 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between space-y-4 shadow-[0_15px_40px_-15px_rgba(56,17,22,0.4)] hover:border-[#F7E4A3] hover:shadow-[0_20px_50px_-15px_rgba(56,17,22,0.6)] hover:-translate-y-1 transition-all duration-500 ${csrVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
                 style={{ transitionDelay: `${i * 120}ms` }}
               >

@@ -438,7 +438,7 @@ const leadershipTeam: LeadershipMember[] = [
   },
   {
     slug: "y-m-krishna",
-    name: "Y. M. Krishna",
+    name: "Y. Murali Krishna",
     role: "Capacity Building",
     intro: "Graduate in Commerce and Law, with a Diploma in Social Development from St. Francis Xavier University, Canada. 35 years of experience in Social Development, expert in Human Resource and Community Development. Leads staff and CBO capacity-building programmes.",
   },
@@ -1888,18 +1888,68 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   const s = teamSocials[member.slug];
                   const hasSocials = s && (s.linkedin || s.instagram || s.facebook || s.twitter);
 
-                  // Distinct Color Palette per Leader
-                  const memberThemes: Record<string, { accent: string; badge: string; shimmer: string; liquid: string }> = {
-                    "bala-subramanian": { accent: "#d97706", badge: "bg-amber-100 text-amber-950 border-amber-400 font-extrabold shadow-2xs", shimmer: "from-amber-500 via-yellow-300 to-amber-500", liquid: "bg-amber-300/40 animate-liquid-drift-a" },
-                    "veeranjaneyulu": { accent: "#059669", badge: "bg-emerald-100 text-emerald-950 border-emerald-400 font-extrabold shadow-2xs", shimmer: "from-emerald-500 via-teal-300 to-emerald-500", liquid: "bg-emerald-300/40 animate-liquid-drift-b" },
-                    "y-m-krishna": { accent: "#4f46e5", badge: "bg-indigo-100 text-indigo-950 border-indigo-400 font-extrabold shadow-2xs", shimmer: "from-indigo-500 via-violet-300 to-indigo-500", liquid: "bg-indigo-400/40 animate-liquid-drift-c" },
-                    "anuradha": { accent: "#e11d48", badge: "bg-rose-100 text-rose-950 border-rose-400 font-extrabold shadow-2xs", shimmer: "from-rose-500 via-pink-300 to-rose-500", liquid: "bg-rose-300/40 animate-liquid-drift-a" },
-                    "vijaya-kumari": { accent: "#0284c7", badge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs", shimmer: "from-cyan-500 via-sky-300 to-teal-400", liquid: "bg-cyan-300/40 animate-liquid-drift-b" },
-                    "annapurna": { accent: "#b45309", badge: "bg-yellow-100 text-yellow-950 border-yellow-400 font-extrabold shadow-2xs", shimmer: "from-yellow-500 via-amber-300 to-yellow-500", liquid: "bg-yellow-300/40 animate-liquid-drift-c" },
-                    "hanumantha-rao": { accent: "#0d9488", badge: "bg-teal-100 text-teal-950 border-teal-400 font-extrabold shadow-2xs", shimmer: "from-teal-500 via-emerald-300 to-teal-500", liquid: "bg-teal-300/40 animate-liquid-drift-a" },
+                  // Distinct Domain-Specific Icon & Color Palette per Leader
+                  const memberThemes: Record<string, { accent: string; badge: string; shimmer: string; liquid: string; icon: React.ElementType; label: string }> = {
+                    "bala-subramanian": {
+                      accent: "#d97706",
+                      badge: "bg-amber-100 text-amber-950 border-amber-400 font-extrabold shadow-2xs",
+                      shimmer: "from-amber-500 via-yellow-300 to-amber-500",
+                      liquid: "bg-amber-300/40 animate-liquid-drift-a",
+                      icon: GraduationCap,
+                      label: "Agronomy Science",
+                    },
+                    "veeranjaneyulu": {
+                      accent: "#059669",
+                      badge: "bg-emerald-100 text-emerald-950 border-emerald-400 font-extrabold shadow-2xs",
+                      shimmer: "from-emerald-500 via-teal-300 to-emerald-500",
+                      liquid: "bg-emerald-300/40 animate-liquid-drift-b",
+                      icon: Wheat,
+                      label: "Sustainable Agriculture",
+                    },
+                    "y-m-krishna": {
+                      accent: "#4f46e5",
+                      badge: "bg-indigo-100 text-indigo-950 border-indigo-400 font-extrabold shadow-2xs",
+                      shimmer: "from-indigo-500 via-violet-300 to-indigo-500",
+                      liquid: "bg-indigo-400/40 animate-liquid-drift-c",
+                      icon: BookOpen,
+                      label: "Capacity Building & Training",
+                    },
+                    "anuradha": {
+                      accent: "#e11d48",
+                      badge: "bg-rose-100 text-rose-950 border-rose-400 font-extrabold shadow-2xs",
+                      shimmer: "from-rose-500 via-pink-300 to-rose-500",
+                      liquid: "bg-rose-300/40 animate-liquid-drift-a",
+                      icon: Users2,
+                      label: "Community Organizations (CBOs)",
+                    },
+                    "vijaya-kumari": {
+                      accent: "#0284c7",
+                      badge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs",
+                      shimmer: "from-cyan-500 via-sky-300 to-teal-400",
+                      liquid: "bg-cyan-300/40 animate-liquid-drift-b",
+                      icon: Scale,
+                      label: "Gender & Social Equity",
+                    },
+                    "annapurna": {
+                      accent: "#b45309",
+                      badge: "bg-yellow-100 text-yellow-950 border-yellow-400 font-extrabold shadow-2xs",
+                      shimmer: "from-yellow-500 via-amber-300 to-yellow-500",
+                      liquid: "bg-yellow-300/40 animate-liquid-drift-c",
+                      icon: Landmark,
+                      label: "Finance Management",
+                    },
+                    "hanumantha-rao": {
+                      accent: "#0d9488",
+                      badge: "bg-teal-100 text-teal-950 border-teal-400 font-extrabold shadow-2xs",
+                      shimmer: "from-teal-500 via-emerald-300 to-teal-500",
+                      liquid: "bg-teal-300/40 animate-liquid-drift-a",
+                      icon: Droplets,
+                      label: "Water & Soil Conservation",
+                    },
                   };
 
                   const theme = memberThemes[member.slug] || memberThemes["bala-subramanian"];
+                  const RoleIcon = theme.icon;
 
                   return (
                     <div
@@ -1915,9 +1965,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                         className={`absolute top-0 left-0 right-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
                       />
 
-                      {/* Top Right Executive Star Insignia Badge */}
-                      <div className="absolute top-3.5 right-3.5 z-20 w-7 h-7 rounded-full bg-white/90 border border-amber-400 shadow-xs flex items-center justify-center text-amber-600">
-                        <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "12s" }} />
+                      {/* Top Right Role-Specific Insignia Badge */}
+                      <div
+                        className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-white/95 border shadow-sm flex items-center justify-center transition-transform group-hover/card:scale-110"
+                        style={{ borderColor: theme.accent, color: theme.accent }}
+                        title={theme.label}
+                      >
+                        <RoleIcon className="w-4 h-4" />
                       </div>
 
                       {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
