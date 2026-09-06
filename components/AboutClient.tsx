@@ -1904,7 +1904,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   return (
                     <div
                       key={`${member.slug}-${idx}`}
-                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[275px] sm:w-[295px] h-[385px] sm:h-[400px] relative overflow-hidden text-center cursor-pointer"
+                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[315px] min-h-[440px] relative overflow-hidden text-center"
                       style={{
                         borderColor: theme.accent,
                         boxShadow: `0 15px 35px -10px ${theme.accent}30`,
@@ -1926,7 +1926,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                         <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-amber-200/25 blur-2xl animate-liquid-drift-b" />
                       </div>
 
-                      {/* DEFAULT COMPACT CARD VIEW */}
+                      {/* CARD CONTENT WITH FULL UNCLIPPED TEXT */}
                       <div className="space-y-3 relative z-10">
                         {/* LUXURY CIRCULAR PRECISION MEDALLION PORTRAIT FRAME */}
                         <div className="relative w-32 h-32 mx-auto my-0.5 flex items-center justify-center">
@@ -1969,71 +1969,42 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                           </span>
                         </div>
 
-                        {/* Clean 3-line preview */}
-                        <p className="text-xs text-slate-700 leading-relaxed font-semibold line-clamp-3">
-                          {member.intro}
-                        </p>
+                        {/* FULL UNCLIPPED TEXT RIGHT HERE ON THE CARD */}
+                        <div className="pt-0.5">
+                          <p className="text-xs text-slate-700 leading-relaxed font-semibold">
+                            {member.intro}
+                          </p>
+                        </div>
                       </div>
 
-                      {/* Bottom Quick Indicator */}
-                      <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between relative z-10 text-[10px] font-bold text-slate-500">
-                        <span>Leadership Team</span>
-                        <span className="text-amber-800 font-extrabold flex items-center gap-0.5">
-                          Hover for bio &rarr;
-                        </span>
-                      </div>
+                      {hasSocials && (
+                        <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between relative z-10 mt-auto">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-slate-800">CONNECT</span>
 
-                      {/* HOVER 'READ MORE' FULL BIO GLASSMORPHIC OVERLAY */}
-                      <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl p-5 sm:p-6 flex flex-col justify-between text-left text-white opacity-0 group-hover/card:opacity-100 transition-all duration-300 pointer-events-none group-hover/card:pointer-events-auto z-30">
-                        <div className="space-y-2.5">
-                          <div className="flex items-center justify-between">
-                            <span className={`text-[9px] px-2.5 py-0.5 rounded-full uppercase font-black ${theme.badge}`}>
-                              {member.role}
-                            </span>
-                            <span className="text-[10px] font-bold text-amber-300 flex items-center gap-1">
-                              <Sparkles className="w-3 h-3 text-amber-400" /> Full Profile
-                            </span>
-                          </div>
-
-                          <h4 className="text-base sm:text-lg font-serif italic font-black text-white leading-snug">
-                            {member.name}
-                          </h4>
-
-                          <div className="max-h-[220px] overflow-y-auto pr-1">
-                            <p className="text-xs text-slate-200 leading-relaxed font-medium">
-                              {member.intro}
-                            </p>
+                          <div className="flex items-center gap-2">
+                            {s.linkedin && (
+                              <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title={`${member.name} LinkedIn`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <LinkedinIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {s.instagram && (
+                              <a href={s.instagram} target="_blank" rel="noopener noreferrer" title={`${member.name} Instagram`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <InstagramIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {s.facebook && (
+                              <a href={s.facebook} target="_blank" rel="noopener noreferrer" title={`${member.name} Facebook`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <FacebookIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {s.twitter && (
+                              <a href={s.twitter} target="_blank" rel="noopener noreferrer" title={`${member.name} X`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
+                                <TwitterXIcon className="w-3.5 h-3.5" />
+                              </a>
+                            )}
                           </div>
                         </div>
-
-                        {hasSocials && (
-                          <div className="pt-2.5 border-t border-white/15 flex items-center justify-between mt-auto">
-                            <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">CONNECT</span>
-                            <div className="flex items-center gap-2">
-                              {s.linkedin && (
-                                <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title={`${member.name} LinkedIn`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
-                                  <LinkedinIcon className="w-3.5 h-3.5" />
-                                </a>
-                              )}
-                              {s.instagram && (
-                                <a href={s.instagram} target="_blank" rel="noopener noreferrer" title={`${member.name} Instagram`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
-                                  <InstagramIcon className="w-3.5 h-3.5" />
-                                </a>
-                              )}
-                              {s.facebook && (
-                                <a href={s.facebook} target="_blank" rel="noopener noreferrer" title={`${member.name} Facebook`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
-                                  <FacebookIcon className="w-3.5 h-3.5" />
-                                </a>
-                              )}
-                              {s.twitter && (
-                                <a href={s.twitter} target="_blank" rel="noopener noreferrer" title={`${member.name} X`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
-                                  <TwitterXIcon className="w-3.5 h-3.5" />
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
                   );
                 })}
