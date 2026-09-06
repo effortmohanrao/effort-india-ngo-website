@@ -79,9 +79,9 @@ function useScrollReveal<T extends HTMLElement>() {
 const aboutHeroLines = ["Building Hope.", "Creating Change.", "Transforming Communities."];
 
 const aboutHeroPanels: { icon: typeof Globe2; label: string; value: string }[] = [
-  { icon: Globe2, label: "Communities Served", value: "120+" },
-  { icon: Heart, label: "Lives Impacted", value: "15,000+" },
-  { icon: Handshake, label: "Partnerships", value: "Coming Soon" },
+  { icon: Globe2, label: "Villages Transformed", value: "1,909+" },
+  { icon: Heart, label: "Families Impacted", value: "2.67 Lakh+" },
+  { icon: Handshake, label: "Projects Completed & Active", value: "65 + 15" },
   { icon: Star, label: "Years of Service", value: "27+" },
 ];
 
@@ -229,7 +229,7 @@ const chapterWorldsData = [
     phase: "05 / PAN-INDIA",
     worldName: "THE PAN-INDIA ERA",
     title: "THE PAN-INDIA ERA",
-    subtitle: "9 States, 1,859 Villages & 2.50 Lakh Farm Families",
+    subtitle: "10 States, 1,909 Villages & 2.67 Lakh Farm Families",
     bgClass: "bg-[#2b0814]",
     cardStyle: "bg-rose-950/90 border-amber-500/40 shadow-2xl text-amber-50",
     headerTextColor: "text-amber-50",
@@ -241,10 +241,10 @@ const chapterWorldsData = [
     navBtnStyle: "bg-rose-900 hover:bg-rose-800 text-amber-200 font-bold border-amber-500/40",
     accentColor: "#fbbf24",
     headingFont: "font-serif font-black tracking-tight",
-    desc: "EFFORT established itself as a national PAN-India organization, working across 9 Indian states and reaching 2.50 lakh farm families in 1,859 villages with sustainable agriculture, women-led MACS cooperatives, and watershed development.",
+    desc: "EFFORT established itself as a national PAN-India organization, working across 10 Indian states and reaching 2.67 lakh farm families in 1,909 villages with sustainable agriculture, women-led MACS cooperatives, and watershed development.",
     archivalMarks: [
-      "National Footprint: 9 Indian States & 1,859 Villages",
-      "Community Scale: 2,50,000 Farm Families Actively Reached",
+      "National Footprint: 10 Indian States & 1,909 Villages",
+      "Community Scale: 2,67,000 Farm Families Actively Reached",
       "Institutional Strength: Sustainable Agriculture, FPOs & Watershed Networks"
     ],
     icon: Globe2,
@@ -509,7 +509,7 @@ const smartPanels: SmartPanel[] = [
   { title: "Digital Record-Keeping", icon: BarChart3, detail: "Program data tracked digitally alongside field documentation.", kind: "seal" },
   { title: "Community Participation", icon: Handshake, detail: "Programs co-designed with the people they serve.", kind: "seal" },
   { title: "Data-Based Decisions", icon: Search, detail: "Every program adjustment is backed by field data.", kind: "seal" },
-  { title: "Measurable Impact", icon: CheckCircle2, detail: "Lives directly supported through our programs.", kind: "stat", target: 15000, suffix: "+", label: "Lives Impacted" },
+  { title: "Measurable Impact", icon: CheckCircle2, detail: "Lives directly supported through our programs.", kind: "stat", target: 267000, suffix: "+", label: "Lives Impacted" },
   { title: "Long-Term Sustainability", icon: TreePine, detail: "Continuous operation since our 1999 founding.", kind: "stat", target: 27, suffix: "+", label: "Years of Service" },
 ];
 
@@ -528,10 +528,10 @@ const finaleHeadlineLines = ["Together We Can Create", "A Better Tomorrow"];
 type FinaleStat = { value: number; suffix: string; label: string };
 
 const finaleStats: FinaleStat[] = [
-  { value: 120, suffix: "+", label: "Communities" },
+  { value: 1909, suffix: "+", label: "Villages Transformed" },
   { value: 27, suffix: "+", label: "Years of Service" },
-  { value: 15000, suffix: "+", label: "Lives Impacted" },
-  { value: 20, suffix: "+", label: "Partners" },
+  { value: 267000, suffix: "+", label: "Lives Impacted" },
+  { value: 80, suffix: "+", label: "Completed & Active Projects" },
 ];
 
 export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageUrl: string | null }) {
@@ -567,6 +567,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       .catch(() => { });
   }, []);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
+  const [selectedEraIndex, setSelectedEraIndex] = useState(0);
   const journeyTrackRef = useRef<HTMLDivElement>(null);
   const [journeyScrollPct, setJourneyScrollPct] = useState(0);
   const journeyDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
@@ -890,14 +891,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             >
               <div className="relative rounded-[36px] overflow-hidden border-2 border-amber-400/50 bg-slate-900/80 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(251,191,36,0.25)] hover:border-amber-300 transition-all duration-500 group">
 
-                {/* Top Right Floating Neon Live Tag */}
-                <div className="absolute top-7 right-7 z-20 bg-slate-950/85 backdrop-blur-xl border border-amber-400/50 rounded-full px-3.5 py-1.5 shadow-2xl flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">
-                    LIVE FIELD OPERATIONS
-                  </span>
-                </div>
-
                 {/* Main Cinematic Image Frame */}
                 <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/15 bg-slate-950">
                   {heroImages.length > 0 ? (
@@ -936,7 +929,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                           FIELD ARCHIVE ALBUM
                         </span>
                         <span className="text-[11px] font-bold text-slate-200 block truncate">
-                          1,859 Villages &bull; 9 Indian States Impact
+                          1,909 Villages &bull; 10 Indian States Impact
                         </span>
                       </div>
                     </div>
@@ -1018,178 +1011,193 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             </p>
           </div>
 
-          {/* ============ ROW 1: HISTORY, 1999 → 2025 (kept as one set) ============ */}
-          <div
-            className={`flex items-center gap-3 mb-5 transition-all duration-700 ${storyVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
-              }`}
-          >
-            <span className="text-[11px] font-black uppercase tracking-widest text-[#a3803f] bg-[#a3803f]/10 border border-[#a3803f]/20 rounded-full px-3 py-1">
-              1999 → 2025
-            </span>
-            <h3 className="text-sm font-bold text-stone-500">The Founding Years — One Continuous Set</h3>
+          {/* ============ INTERACTIVE ERA TIMELINE STEPPER ============ */}
+          <div className="mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 p-2.5 rounded-2xl bg-white/90 backdrop-blur-md border border-amber-900/10 shadow-md max-w-5xl mx-auto">
+              {chapterWorldsData.map((chapter, idx) => {
+                const Icon = chapter.icon;
+                const isSelected = selectedEraIndex === idx;
+                return (
+                  <button
+                    key={chapter.id}
+                    type="button"
+                    onClick={() => setSelectedEraIndex(idx)}
+                    className={`flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-slate-950 text-white shadow-lg scale-105"
+                        : "bg-stone-100/90 text-stone-700 hover:bg-stone-200/90 hover:text-stone-900"
+                    }`}
+                  >
+                    <span
+                      className="w-2.5 h-2.5 rounded-full shrink-0"
+                      style={{ backgroundColor: chapter.accentColor }}
+                    />
+                    <span>{chapter.era}</span>
+                    <span className="hidden md:inline text-[10px] font-bold opacity-80">
+                      &bull; {chapter.phase.split("/")[1]?.trim() || chapter.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div
-            ref={journeyTrackRef}
-            className="relative flex gap-0 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing select-none pb-8"
-            onMouseDown={(e) => {
-              const track = journeyTrackRef.current;
-              if (!track) return;
-              journeyDrag.current = { active: true, startX: e.clientX, startScroll: track.scrollLeft };
-            }}
-            onMouseMove={(e) => {
-              const track = journeyTrackRef.current;
-              if (!track || !journeyDrag.current.active) return;
-              track.scrollLeft = journeyDrag.current.startScroll - (e.clientX - journeyDrag.current.startX);
-            }}
-            onMouseUp={() => (journeyDrag.current.active = false)}
-            onMouseLeave={() => (journeyDrag.current.active = false)}
-          >
-            {chapterWorldsData.map((chapter, idx) => (
+          {/* ============ FEATURED SPOTLIGHT ERA SHOWCASE CARD ============ */}
+          {(() => {
+            const chapter = chapterWorldsData[selectedEraIndex];
+            const Icon = chapter.icon;
+            return (
               <div
                 key={chapter.id}
-                className={`group relative shrink-0 w-[280px] sm:w-[320px] px-3 first:pl-0 transition-all duration-700 ease-out ${storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
-                style={{ transitionDelay: storyVisible ? `${idx * 110}ms` : "0ms" }}
+                className="rounded-3xl border-2 bg-white/95 backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden transition-all duration-500 mb-8"
+                style={{
+                  borderColor: chapter.accentColor,
+                  boxShadow: `0 20px 50px -15px ${chapter.accentColor}35`,
+                }}
               >
-                {/* Rail line + node */}
-                <div className="relative h-10 flex items-center">
-                  <div
-                    className="absolute inset-x-0 h-[3px] top-1/2 -translate-y-1/2 animate-journey-rail-shimmer"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${idx === 0 ? "transparent" : chapterWorldsData[idx - 1].accentColor} 0%, ${chapter.accentColor} 50%, ${chapter.accentColor}66 100%)`,
-                    }}
-                  />
-                  <div
-                    className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center border-4 border-[#faf7f1] shadow-md mx-auto animate-journey-node-pulse group-hover:scale-125 transition-transform duration-300"
-                    style={{ backgroundColor: chapter.accentColor }}
-                  >
-                    <chapter.icon className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-
-                {/* Unique Era Glassmorphic Card with Dynamic Liquid Mesh & Laser Accent */}
+                {/* Decorative Accent Background Glow */}
                 <div
-                  className="rounded-[26px] border-2 bg-white/95 backdrop-blur-xl p-5 sm:p-6 h-[320px] flex flex-col justify-between relative overflow-hidden shadow-lg hover:-translate-y-2.5 hover:shadow-2xl transition-all duration-500 cursor-pointer group/card"
-                  style={{
-                    borderColor: chapter.accentColor,
-                    boxShadow: `0 12px 35px -10px ${chapter.accentColor}25`,
-                  }}
-                >
-                  {/* Top Rotating Laser Border Highlight */}
-                  <div
-                    className="absolute top-0 inset-x-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${chapter.accentColor} 0%, #fbbf24 50%, ${chapter.accentColor} 100%)`,
-                    }}
-                  />
+                  className="absolute -top-20 -right-20 w-80 h-80 rounded-full blur-3xl opacity-20 pointer-events-none"
+                  style={{ backgroundColor: chapter.accentColor }}
+                />
 
-                  {/* UNIQUE DUAL LIQUID MESH BLOBS INSIDE THIS ERA CARD */}
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[26px] opacity-75 group-hover/card:opacity-100 transition-opacity duration-500">
-                    <div
-                      className={`absolute -top-8 -right-8 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${idx === 0
-                          ? "bg-amber-400/35 animate-liquid-drift-a"
-                          : idx === 1
-                            ? "bg-orange-400/40 animate-liquid-drift-b"
-                            : idx === 2
-                              ? "bg-cyan-400/35 animate-liquid-drift-c"
-                              : idx === 3
-                                ? "bg-emerald-400/40 animate-liquid-drift-a"
-                                : "bg-yellow-400/45 animate-liquid-drift-b"
-                        }`}
-                    />
-                    <div
-                      className={`absolute -bottom-8 -left-8 w-36 h-36 rounded-full blur-2xl transition-transform duration-1000 ${idx === 0
-                          ? "bg-orange-200/40 animate-liquid-drift-b"
-                          : idx === 1
-                            ? "bg-rose-200/40 animate-liquid-drift-c"
-                            : idx === 2
-                              ? "bg-sky-200/35 animate-liquid-drift-a"
-                              : idx === 3
-                                ? "bg-lime-200/40 animate-liquid-drift-b"
-                                : "bg-amber-200/40 animate-liquid-drift-c"
-                        }`}
-                    />
-                  </div>
-
-                  {/* Card Content Container */}
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border shadow-2xs ${chapter.phaseBadge}`}>
+                <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+                  {/* Left 7 cols: Narrative & Milestones */}
+                  <div className="lg:col-span-7 space-y-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${chapter.phaseBadge}`}>
                         {chapter.era} &middot; {chapter.phase}
                       </span>
-                      <div className="w-3 h-3 rounded-full scale-110 shadow-sm animate-pulse" style={{ backgroundColor: chapter.accentColor }} />
+                      <span className="text-xs font-bold text-stone-600 flex items-center gap-1.5">
+                        <Icon className="w-4 h-4" style={{ color: chapter.accentColor }} />
+                        {chapter.worldName}
+                      </span>
                     </div>
 
-                    <h3 className="text-lg font-black text-stone-900 leading-snug group-hover/card:text-amber-950 transition-colors">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-900 leading-tight">
                       {chapter.title}
                     </h3>
 
-                    <p className="text-xs text-stone-600 font-medium mt-2 leading-relaxed line-clamp-3">
+                    <p className="text-sm sm:text-base font-bold text-amber-950/80">
+                      {chapter.subtitle}
+                    </p>
+
+                    <p className="text-stone-700 text-sm sm:text-base leading-relaxed">
                       {chapter.desc}
                     </p>
+
+                    {/* Archival Milestone Points */}
+                    <div className="pt-2 space-y-2">
+                      <p className="text-[11px] font-black uppercase tracking-wider text-stone-500">
+                        Documented Archival Milestones:
+                      </p>
+                      <div className="space-y-2">
+                        {chapter.archivalMarks.map((mark) => (
+                          <div key={mark} className="flex items-start gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-semibold text-stone-800">
+                            <span className="w-2 h-2 rounded-full mt-1 shrink-0" style={{ backgroundColor: chapter.accentColor }} />
+                            <span>{mark}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Archival Bullet Points */}
-                  <div className="relative z-10 pt-3 border-t border-stone-200/80 space-y-1.5">
-                    {chapter.archivalMarks.slice(0, 2).map((mark) => (
-                      <div key={mark} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full mt-1 shrink-0" style={{ backgroundColor: chapter.accentColor }} />
-                        <span className="text-[10px] text-stone-700 font-semibold leading-snug line-clamp-2">{mark}</span>
+                  {/* Right 5 cols: Archival Imagery & Quick Phase Switcher */}
+                  <div className="lg:col-span-5 space-y-4">
+                    <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border-2 border-stone-200 shadow-md">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={chapter.image}
+                        alt={chapter.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 block">
+                          Phase Documentation
+                        </span>
+                        <span className="text-xs font-bold block truncate text-slate-100">
+                          {chapter.subtitle}
+                        </span>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Navigation Controls */}
+                    <div className="flex items-center justify-between gap-3 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedEraIndex((prev) => (prev - 1 + chapterWorldsData.length) % chapterWorldsData.length)}
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold transition-all cursor-pointer border border-stone-200"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>Previous Phase</span>
+                      </button>
+
+                      <span className="text-xs font-black text-stone-600 px-2">
+                        {selectedEraIndex + 1} / {chapterWorldsData.length}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedEraIndex((prev) => (prev + 1) % chapterWorldsData.length)}
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all cursor-pointer shadow-md"
+                      >
+                        <span>Next Phase</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })()}
 
-          {/* High-Attraction Executive Archive Navigation Console */}
-          <div className="mt-6 p-4 sm:p-5 rounded-3xl bg-white/90 backdrop-blur-xl border-2 border-[#d4af6a]/50 shadow-[0_15px_35px_-10px_rgba(180,130,50,0.2)] space-y-3">
+          {/* ============ COMPLETE 5-ERA CHRONOLOGICAL OVERVIEW GRID ============ */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+            {chapterWorldsData.map((chapter, idx) => {
+              const Icon = chapter.icon;
+              const isSelected = selectedEraIndex === idx;
+              return (
+                <button
+                  key={chapter.id}
+                  type="button"
+                  onClick={() => setSelectedEraIndex(idx)}
+                  className={`text-left rounded-2xl p-4 transition-all duration-300 cursor-pointer border-2 relative overflow-hidden flex flex-col justify-between h-[190px] ${
+                    isSelected
+                      ? "bg-white shadow-xl -translate-y-1"
+                      : "bg-white/70 hover:bg-white hover:shadow-md border-stone-200/80"
+                  }`}
+                  style={{
+                    borderColor: isSelected ? chapter.accentColor : undefined,
+                  }}
+                >
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border ${chapter.phaseBadge}`}>
+                        {chapter.era}
+                      </span>
+                      <Icon className="w-4 h-4" style={{ color: chapter.accentColor }} />
+                    </div>
+                    <h4 className="text-xs font-black text-stone-900 line-clamp-1 mt-1">
+                      {chapter.title}
+                    </h4>
+                    <p className="text-[11px] font-bold text-amber-900/80 line-clamp-2">
+                      {chapter.subtitle}
+                    </p>
+                  </div>
 
-            {/* Instruction Callout Label */}
-            <div className="flex items-center justify-between gap-2 px-1">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8a6a1f] flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
-                EXPLORE THE 27-YEAR EFFORT ARCHIVE (1999–2030)
-              </span>
-              <span className="text-[10px] font-bold text-stone-500 hidden sm:inline-block">
-                SWIPE OR CLICK BUTTONS TO SLIDE ERAS
-              </span>
-            </div>
-
-            {/* Control Console: Previous Button + Glowing Progress Bar + Next Button */}
-            <div className="flex items-center gap-3 sm:gap-4">
-
-              {/* PREVIOUS ERA BUTTON */}
-              <button
-                type="button"
-                onClick={() => journeyTrackRef.current?.scrollBy({ left: -340, behavior: "smooth" })}
-                className="group px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#2c241c] via-[#423629] to-[#2c241c] text-white font-black text-[11px] uppercase tracking-wider shadow-md hover:shadow-lg hover:scale-105 transition-all cursor-pointer shrink-0 flex items-center gap-2 border border-[#d4af6a]/40"
-              >
-                <ChevronLeft className="w-4 h-4 text-amber-400 group-hover:-translate-x-1 transition-transform" />
-                <span className="hidden sm:inline">PREVIOUS ERA</span>
-              </button>
-
-              {/* GLOWING AMBER TIMELINE GAUGE */}
-              <div className="flex-1 h-3 rounded-full bg-stone-200/90 border border-[#d4af6a]/40 overflow-hidden shadow-inner p-0.5 relative">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#a3803f] via-[#c99a4a] to-[#f5b942] shadow-[0_0_12px_rgba(245,185,66,0.8)] transition-[width] duration-200 ease-out"
-                  style={{ width: `${Math.max(journeyScrollPct * 100, 8)}%` }}
-                />
-              </div>
-
-              {/* NEXT ERA BUTTON */}
-              <button
-                type="button"
-                onClick={() => journeyTrackRef.current?.scrollBy({ left: 340, behavior: "smooth" })}
-                className="group px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-slate-950 font-black text-[11px] uppercase tracking-wider shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.5)] hover:scale-105 transition-all cursor-pointer shrink-0 flex items-center gap-2"
-              >
-                <span className="hidden sm:inline">NEXT ERA</span>
-                <ChevronRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-            </div>
+                  <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-[10px] font-bold">
+                    <span className="text-stone-500">Phase 0{idx + 1}</span>
+                    <span
+                      className="font-black flex items-center gap-0.5"
+                      style={{ color: chapter.accentColor }}
+                    >
+                      {isSelected ? "Active View" : "Click to view"} &rarr;
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1869,13 +1877,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               </p>
             </div>
 
-            {/* Continuous Automatic Horizontal Marquee Track (Infinite Live Scrolling) */}
+            {/* Continuous Automatic Horizontal Marquee Track (Infinite Live Scrolling with Hover Pause) */}
             <div className="relative overflow-hidden py-2 group/marquee">
               {/* Fade masks on left & right edges */}
               <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#FAF7F2] to-transparent z-10" />
               <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#FAF7F2] to-transparent z-10" />
 
-              <div className="flex w-max gap-6 animate-marquee-scroll py-4">
+              <div className="flex w-max gap-6 animate-marquee-scroll py-4 hover:[animation-play-state:paused] group-hover/marquee:[animation-play-state:paused]">
                 {[...leadershipTeam, ...leadershipTeam].map((member, idx) => {
                   const s = teamSocials[member.slug];
                   const hasSocials = s && (s.linkedin || s.instagram || s.facebook || s.twitter);
@@ -1896,40 +1904,41 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   return (
                     <div
                       key={`${member.slug}-${idx}`}
-                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[44px] rounded-tl-[16px] p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-3 hover:shadow-[0_30px_70px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 group/card shrink-0 w-[295px] sm:w-[325px] relative overflow-hidden text-center"
+                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[275px] sm:w-[295px] h-[385px] sm:h-[400px] relative overflow-hidden text-center cursor-pointer"
                       style={{
                         borderColor: theme.accent,
-                        boxShadow: `0 20px 50px -15px ${theme.accent}40`,
+                        boxShadow: `0 15px 35px -10px ${theme.accent}30`,
                       }}
                     >
                       {/* Top Rotating Laser Border Highlight Track */}
                       <div
-                        className={`absolute top-0 left-0 right-0 h-2 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
+                        className={`absolute top-0 left-0 right-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
                       />
 
                       {/* Top Right Executive Star Insignia Badge */}
-                      <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white/90 border border-amber-400 shadow-md flex items-center justify-center text-amber-600">
-                        <Sparkles className="w-4 h-4 animate-spin" style={{ animationDuration: "12s" }} />
+                      <div className="absolute top-3.5 right-3.5 z-20 w-7 h-7 rounded-full bg-white/90 border border-amber-400 shadow-xs flex items-center justify-center text-amber-600">
+                        <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "12s" }} />
                       </div>
 
                       {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
-                      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[44px] opacity-75 group-hover/card:opacity-100 transition-opacity duration-500">
-                        <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
-                        <div className="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-amber-200/30 blur-2xl animate-liquid-drift-b" />
+                      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[32px] opacity-60 group-hover/card:opacity-100 transition-opacity duration-500">
+                        <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
+                        <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-amber-200/25 blur-2xl animate-liquid-drift-b" />
                       </div>
 
-                      <div className="space-y-4 relative z-10">
-                        {/* A+ LUXURY CIRCULAR PRECISION MEDALLION PORTRAIT FRAME */}
-                        <div className="relative w-44 h-44 mx-auto my-1 flex items-center justify-center">
-                          {/* Outer Dashed Rotating Gold Ring */}
+                      {/* DEFAULT COMPACT CARD VIEW */}
+                      <div className="space-y-3 relative z-10">
+                        {/* LUXURY CIRCULAR PRECISION MEDALLION PORTRAIT FRAME */}
+                        <div className="relative w-32 h-32 mx-auto my-0.5 flex items-center justify-center">
+                          {/* Outer Dashed Rotating Ring */}
                           <div
-                            className="absolute -inset-2.5 rounded-full border-2 border-dashed opacity-60 animate-gyro-cw pointer-events-none"
+                            className="absolute -inset-2 rounded-full border-2 border-dashed opacity-50 animate-gyro-cw pointer-events-none"
                             style={{ borderColor: theme.accent }}
                           />
 
-                          {/* Solid Circular Gold Medallion Core Frame */}
+                          {/* Solid Circular Medallion Core Frame */}
                           <div
-                            className="relative w-44 h-44 rounded-full overflow-hidden border-4 shadow-xl bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center group-hover/card:scale-105 transition-transform duration-500"
+                            className="relative w-32 h-32 rounded-full overflow-hidden border-3 shadow-lg bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center group-hover/card:scale-105 transition-transform duration-500"
                             style={{ borderColor: theme.accent }}
                           >
                             {teamPhotos[member.slug] ? (
@@ -1942,9 +1951,9 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                                 }`}
                               />
                             ) : (
-                              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-4 text-center">
-                                <UserCircle2 className="w-16 h-16 text-emerald-400 mb-1" />
-                                <span className="text-sm font-black text-amber-300">{member.name}</span>
+                              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-3 text-center">
+                                <UserCircle2 className="w-12 h-12 text-emerald-400 mb-1" />
+                                <span className="text-xs font-black text-amber-300">{member.name}</span>
                               </div>
                             )}
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
@@ -1952,47 +1961,79 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                         </div>
 
                         <div>
-                          <h4 className="text-lg sm:text-xl font-serif italic font-black text-slate-900 group-hover/card:text-amber-950 transition-colors leading-tight">
+                          <h4 className="text-base sm:text-lg font-serif italic font-black text-slate-900 group-hover/card:text-amber-950 transition-colors leading-tight truncate">
                             {member.name}
                           </h4>
-                          <span className={`mt-2 inline-block text-[10px] px-3 py-1 rounded-full uppercase ${theme.badge}`}>
+                          <span className={`mt-1 inline-block text-[9px] px-2.5 py-0.5 rounded-full uppercase ${theme.badge}`}>
                             {member.role}
                           </span>
                         </div>
 
+                        {/* Clean 3-line preview */}
                         <p className="text-xs text-slate-700 leading-relaxed font-semibold line-clamp-3">
                           {member.intro}
                         </p>
                       </div>
 
-                      {hasSocials && (
-                        <div className="pt-3 border-t border-slate-200 flex items-center justify-between relative z-10">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-slate-900">CONNECT</span>
+                      {/* Bottom Quick Indicator */}
+                      <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between relative z-10 text-[10px] font-bold text-slate-500">
+                        <span>Leadership Team</span>
+                        <span className="text-amber-800 font-extrabold flex items-center gap-0.5">
+                          Hover for bio &rarr;
+                        </span>
+                      </div>
 
-                          <div className="flex items-center gap-2">
-                            {s.linkedin && (
-                              <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title={`${member.name} LinkedIn`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <LinkedinIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            {s.instagram && (
-                              <a href={s.instagram} target="_blank" rel="noopener noreferrer" title={`${member.name} Instagram`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <InstagramIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            {s.facebook && (
-                              <a href={s.facebook} target="_blank" rel="noopener noreferrer" title={`${member.name} Facebook`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <FacebookIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            {s.twitter && (
-                              <a href={s.twitter} target="_blank" rel="noopener noreferrer" title={`${member.name} X`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <TwitterXIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
+                      {/* HOVER 'READ MORE' FULL BIO GLASSMORPHIC OVERLAY */}
+                      <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl p-5 sm:p-6 flex flex-col justify-between text-left text-white opacity-0 group-hover/card:opacity-100 transition-all duration-300 pointer-events-none group-hover/card:pointer-events-auto z-30">
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between">
+                            <span className={`text-[9px] px-2.5 py-0.5 rounded-full uppercase font-black ${theme.badge}`}>
+                              {member.role}
+                            </span>
+                            <span className="text-[10px] font-bold text-amber-300 flex items-center gap-1">
+                              <Sparkles className="w-3 h-3 text-amber-400" /> Full Profile
+                            </span>
+                          </div>
+
+                          <h4 className="text-base sm:text-lg font-serif italic font-black text-white leading-snug">
+                            {member.name}
+                          </h4>
+
+                          <div className="max-h-[220px] overflow-y-auto pr-1">
+                            <p className="text-xs text-slate-200 leading-relaxed font-medium">
+                              {member.intro}
+                            </p>
                           </div>
                         </div>
-                      )}
+
+                        {hasSocials && (
+                          <div className="pt-2.5 border-t border-white/15 flex items-center justify-between mt-auto">
+                            <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">CONNECT</span>
+                            <div className="flex items-center gap-2">
+                              {s.linkedin && (
+                                <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title={`${member.name} LinkedIn`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
+                                  <LinkedinIcon className="w-3.5 h-3.5" />
+                                </a>
+                              )}
+                              {s.instagram && (
+                                <a href={s.instagram} target="_blank" rel="noopener noreferrer" title={`${member.name} Instagram`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
+                                  <InstagramIcon className="w-3.5 h-3.5" />
+                                </a>
+                              )}
+                              {s.facebook && (
+                                <a href={s.facebook} target="_blank" rel="noopener noreferrer" title={`${member.name} Facebook`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
+                                  <FacebookIcon className="w-3.5 h-3.5" />
+                                </a>
+                              )}
+                              {s.twitter && (
+                                <a href={s.twitter} target="_blank" rel="noopener noreferrer" title={`${member.name} X`} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition-all">
+                                  <TwitterXIcon className="w-3.5 h-3.5" />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })}
