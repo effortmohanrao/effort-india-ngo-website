@@ -46,7 +46,12 @@ import {
   Stethoscope,
   Leaf,
   Camera,
-  Droplets
+  Droplets,
+  Flame,
+  Network,
+  Rocket,
+  Crown,
+  Play
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 import Effort20Roadmap from "@/components/Effort20Roadmap";
@@ -139,7 +144,7 @@ const chapterWorldsData = [
       "Foundational Focus: Community Participation, Livelihoods & Demand Generation"
     ],
     rootConcepts: ["AGRICULTURE", "COMMUNITY", "LIVELIHOODS", "FOOD SECURITY", "DEVELOPMENT"],
-    icon: BookOpen,
+    icon: Flame,
     image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1200",
   },
   {
@@ -166,7 +171,7 @@ const chapterWorldsData = [
       "Farmer Reach: 20,000 Farmers Integrated into Sustainable Agriculture",
       "Institutional Support: Government-backed Women & Child Development Projects"
     ],
-    icon: TrendingUp,
+    icon: Network,
     image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200",
   },
   {
@@ -193,7 +198,7 @@ const chapterWorldsData = [
       "Target Community: 1,50,000 Small/Marginal Farmers & Landless Labourers",
       "Grassroots Ecosystem: Supported 16 Partner NGOs in Natural Resource Management"
     ],
-    icon: Compass,
+    icon: Rocket,
     image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200",
   },
   {
@@ -220,7 +225,7 @@ const chapterWorldsData = [
       "Impact Scale: 2,00,000 Farm Families Empowered Across States",
       "Strategic Alliances: International Agencies, Corporate CSR, Govt & CBBOs"
     ],
-    icon: Award,
+    icon: Crown,
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200",
   },
   {
@@ -567,37 +572,12 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       .catch(() => { });
   }, []);
   const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
-  const [selectedEraIndex, setSelectedEraIndex] = useState(0);
-  const journeyTrackRef = useRef<HTMLDivElement>(null);
-  const [journeyScrollPct, setJourneyScrollPct] = useState(0);
+  const [activeEraIndex, setActiveEraIndex] = useState(0);
+  const journeyMarqueeRef = useRef<HTMLDivElement>(null);
   const journeyDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
-  const journeyTrackRef2 = useRef<HTMLDivElement>(null);
-  const [journeyScrollPct2, setJourneyScrollPct2] = useState(0);
-  const journeyDrag2 = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
-
-  useEffect(() => {
-    const track = journeyTrackRef.current;
-    const track2 = journeyTrackRef2.current;
-    if (!track && !track2) return;
-    function updatePct() {
-      if (!track) return;
-      const max = track.scrollWidth - track.clientWidth;
-      setJourneyScrollPct(max > 0 ? track.scrollLeft / max : 0);
-    }
-    function updatePct2() {
-      if (!track2) return;
-      const max = track2.scrollWidth - track2.clientWidth;
-      setJourneyScrollPct2(max > 0 ? track2.scrollLeft / max : 0);
-    }
-    updatePct();
-    updatePct2();
-    track?.addEventListener("scroll", updatePct, { passive: true });
-    track2?.addEventListener("scroll", updatePct2, { passive: true });
-    return () => {
-      track?.removeEventListener("scroll", updatePct);
-      track2?.removeEventListener("scroll", updatePct2);
-    };
-  }, []);
+  const [journeyPaused, setJourneyPaused] = useState(false);
+  const [journeyScrollPct, setJourneyScrollPct] = useState(0);
+  const [journeyHovered, setJourneyHovered] = useState<number | null>(null);
 
   const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
   const [vmRef, vmVisible] = useScrollReveal<HTMLElement>();
@@ -652,7 +632,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       )
     )
       .then((entries) => setPartnerLogos(Object.fromEntries(entries.filter(([, url]) => url))))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
   const [galleryHeaderRef, galleryHeaderVisible] = useScrollReveal<HTMLDivElement>();
   const galleryStripRef = useRef<HTMLDivElement>(null);
@@ -697,13 +677,14 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     const strip = galleryStripRef.current;
     if (!strip) return;
     let raf = 0;
+    const scrollSpeed = 2.2;
     function drift() {
       raf = requestAnimationFrame(drift);
       const el = galleryStripRef.current;
       if (!el || galleryPaused || galleryDrag.current.active) return;
       const max = el.scrollWidth - el.clientWidth;
       if (max <= 0) return;
-      el.scrollLeft = el.scrollLeft >= max - 1 ? 0 : el.scrollLeft + 0.6;
+      el.scrollLeft = el.scrollLeft >= max - scrollSpeed ? 0 : el.scrollLeft + scrollSpeed;
     }
     raf = requestAnimationFrame(drift);
     return () => cancelAnimationFrame(raf);
@@ -715,11 +696,41 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     function onWheel(e: WheelEvent) {
       if (!strip) return;
       e.preventDefault();
-      strip.scrollLeft += e.deltaY;
+      strip.scrollLeft += e.deltaY * 1.5;
     }
     strip.addEventListener("wheel", onWheel, { passive: false });
     return () => strip.removeEventListener("wheel", onWheel);
   }, []);
+
+  // Journey marquee auto-scroll
+  useEffect(() => {
+    const strip = journeyMarqueeRef.current;
+    if (!strip) return;
+    function updatePct() {
+      if (!strip) return;
+      const max = strip.scrollWidth - strip.clientWidth;
+      setJourneyScrollPct(max > 0 ? strip.scrollLeft / max : 0);
+    }
+    updatePct();
+    strip.addEventListener("scroll", updatePct, { passive: true });
+    return () => strip.removeEventListener("scroll", updatePct);
+  }, []);
+
+  useEffect(() => {
+    const strip = journeyMarqueeRef.current;
+    if (!strip) return;
+    let raf = 0;
+    function drift() {
+      raf = requestAnimationFrame(drift);
+      const el = journeyMarqueeRef.current;
+      if (!el || journeyPaused || journeyDrag.current.active) return;
+      const max = el.scrollWidth - el.clientWidth;
+      if (max <= 0) return;
+      el.scrollLeft = el.scrollLeft >= max - 1 ? 0 : el.scrollLeft + 0.5;
+    }
+    raf = requestAnimationFrame(drift);
+    return () => cancelAnimationFrame(raf);
+  }, [journeyPaused]);
 
   const [finaleRef, finaleVisible] = useScrollReveal<HTMLElement>();
   const [finaleStatValues, setFinaleStatValues] = useState<number[]>(() => finaleStats.map(() => 0));
@@ -966,238 +977,167 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
         </div>
       </section>
 
-      {/* --- THE JOURNEY: 1999 TO EFFORT 2.0 (TWO-TIER ARCHIVE RAIL, LIGHT PALETTE) --- */}
-      <section id="journey" ref={storyRef} className="relative overflow-hidden bg-gradient-to-b from-[#faf7f1] via-[#f7f2e8] to-[#faf7f1] py-20 lg:py-28 text-stone-900">
+      {/* --- OUR JOURNEY: 1999 TO 2025 (JOURNEY CAROUSEL - 3D PERSPECTIVE ROTATION) --- */}
+      <section id="journey" ref={storyRef} className="relative overflow-hidden bg-[#f6f9f7] py-16 lg:py-20 text-slate-900">
+        {/* Subtle background texture */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#8a7550_1px,transparent_1px)] [background-size:26px_26px]" />
-          <div className="absolute top-[-10%] left-[8%] w-[420px] h-[420px] bg-[#d4af6a]/10 rounded-full blur-[140px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[8%] w-[420px] h-[420px] bg-violet-300/15 rounded-full blur-[140px] animate-liquid-drift-b" />
+          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#065f46_1px,transparent_1px)] [background-size:28px_28px]" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Center-Aligned Luxury Cinematic Animated Section Header */}
-          <div
-            className={`text-center max-w-4xl mx-auto flex flex-col items-center space-y-4 mb-8 lg:mb-10 relative transition-all duration-1000 ${storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-          >
-            {/* Ambient Golden Glow Aura Behind Title */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[130px] bg-gradient-to-r from-amber-400/20 via-yellow-300/30 to-emerald-400/20 rounded-full blur-3xl animate-pulse pointer-events-none -z-10" />
-
-            {/* Animated Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border-2 border-[#d4af37]/60 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.3em] shadow-md backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-spin" style={{ animationDuration: "8s" }} />
-              <span>THE EFFORT ARCHIVE</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-ping" />
-            </div>
-
-            {/* Luxurious Cinematic Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight text-stone-900 leading-tight font-serif">
-              1999 to 2030 &mdash;{" "}
-              <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#8a6a1f] via-[#d4af37] via-amber-600 to-[#059669] drop-shadow-md">
-                One Continuous Line
-              </span>
+          {/* Compact Editorial Header */}
+          <div className={`max-w-3xl transition-all duration-1000 ${storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-700 flex items-center gap-3">
+              <span className="inline-block w-10 h-[2px] bg-emerald-600" />
+              Our Journey Since 1999
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.1] mt-4">
+              Twenty-Seven Years of Growth
             </h2>
-
-            {/* Delicate Gold Decorative Line Divider */}
-            <div className="flex items-center justify-center gap-3 py-1">
-              <span className="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
-              <span className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse" />
-              <span className="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
-            </div>
-
-            {/* Subtitle */}
-            <p className="text-stone-700 text-xs sm:text-sm font-semibold max-w-2xl leading-relaxed">
-              Twenty-seven years of documented history, presented as one set &mdash; flowing down into the five-year roadmap that takes EFFORT to 2030.
+            <p className="text-slate-500 text-sm sm:text-base leading-relaxed mt-3 max-w-2xl">
+              Five documented chapters of growth — from 10 villages in Prakasam District to 1,909 villages across 10 Indian states — laying the foundations for EFFORT 2.0.
             </p>
           </div>
 
-          {/* ============ INTERACTIVE ERA TIMELINE STEPPER ============ */}
-          <div className="mb-8">
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 p-2.5 rounded-2xl bg-white/90 backdrop-blur-md border border-amber-900/10 shadow-md max-w-5xl mx-auto">
-              {chapterWorldsData.map((chapter, idx) => {
-                const Icon = chapter.icon;
-                const isSelected = selectedEraIndex === idx;
-                return (
-                  <button
+          {/* JOURNEY CAROUSEL - 3D Perspective Rotating Cards */}
+          <div className="mt-12">
+            <div className="relative flex items-center justify-center">
+              {/* Central Glow */}
+              <div className="absolute w-[500px] h-[500px] rounded-full bg-emerald-200/20 blur-[100px] animate-pulse pointer-events-none" />
+
+              {/* 3D Carousel Cards */}
+              <div className="relative flex items-center justify-center gap-4 sm:gap-6">
+                {chapterWorldsData.map((chapter, idx) => {
+                  const Icon = chapter.icon;
+                  const isActive = activeEraIndex === idx;
+                  const offset = (idx - activeEraIndex + chapterWorldsData.length) % chapterWorldsData.length;
+                  const isLeft = offset > 2;
+                  const distance = Math.min(offset, chapterWorldsData.length - offset);
+                  const scale = isActive ? 1 : distance === 1 ? 0.85 : 0.7;
+                  const opacity = isActive ? 1 : distance === 1 ? 0.6 : 0.3;
+                  const zIndex = isActive ? 30 : distance === 1 ? 20 : 10;
+                  const translateX = isActive ? 0 : isLeft ? -distance * 40 : distance * 40;
+                  const translateY = isActive ? 0 : distance * 8;
+
+                  return (
+                    <div
+                      key={chapter.id}
+                      onClick={() => setActiveEraIndex(idx)}
+                      className={`relative rounded-[24px] overflow-hidden transition-all duration-700 cursor-pointer ${isActive ? "shadow-2xl" : "hover:shadow-xl"}`}
+                      style={{
+                        width: isActive ? "320px" : "240px",
+                        height: isActive ? "400px" : "300px",
+                        transform: `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
+                        opacity,
+                        zIndex,
+                        boxShadow: isActive ? `0 30px 80px -20px ${chapter.accentColor}60` : undefined,
+                        border: `2px solid ${chapter.accentColor}${isActive ? "80" : "30"}`,
+                      }}
+                    >
+                      {/* Card Background Image */}
+                      <div className="absolute inset-0 overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={chapter.image}
+                          alt={chapter.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+                      </div>
+
+                      {/* Era Badge */}
+                      <div className="absolute top-4 left-4">
+                        <span
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border shadow-lg backdrop-blur-md"
+                          style={{ backgroundColor: `${chapter.accentColor}25`, borderColor: chapter.accentColor, color: chapter.accentColor }}
+                        >
+                          <Icon className="w-3 h-3" />
+                          {chapter.era}
+                        </span>
+                      </div>
+
+                      {/* Giant Number */}
+                      <span
+                        className="absolute -top-2 right-2 text-[80px] font-black tracking-tighter opacity-20 select-none pointer-events-none"
+                        style={{ color: chapter.accentColor }}
+                      >
+                        0{idx + 1}
+                      </span>
+
+                      {/* Card Content */}
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <h3 className="text-white font-black text-lg leading-tight">{chapter.title}</h3>
+                        <p className="text-white/70 text-xs font-bold mt-1">{chapter.subtitle}</p>
+                        {isActive && (
+                          <div className="mt-3 space-y-2 animate-fade-in">
+                            <p className="text-white/80 text-xs leading-relaxed line-clamp-2">{chapter.desc}</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {chapter.archivalMarks.slice(0, 2).map((mark) => (
+                                <span
+                                  key={mark}
+                                  className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-[9px] font-semibold"
+                                >
+                                  <span className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: chapter.accentColor }} />
+                                  {mark}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Navigation Controls */}
+            <div className="flex items-center justify-between mt-8">
+              <button
+                type="button"
+                onClick={() => setActiveEraIndex((prev) => (prev - 1 + chapterWorldsData.length) % chapterWorldsData.length)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-bold hover:border-emerald-400 hover:text-emerald-700 transition-all cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                Previous
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                {chapterWorldsData.map((chapter, idx) => (
+                  <span
                     key={chapter.id}
-                    type="button"
-                    onClick={() => setSelectedEraIndex(idx)}
-                    className={`flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
-                      isSelected
-                        ? "bg-slate-950 text-white shadow-lg scale-105"
-                        : "bg-stone-100/90 text-stone-700 hover:bg-stone-200/90 hover:text-stone-900"
-                    }`}
-                  >
-                    <span
-                      className="w-2.5 h-2.5 rounded-full shrink-0"
-                      style={{ backgroundColor: chapter.accentColor }}
-                    />
-                    <span>{chapter.era}</span>
-                    <span className="hidden md:inline text-[10px] font-bold opacity-80">
-                      &bull; {chapter.phase.split("/")[1]?.trim() || chapter.title}
-                    </span>
-                  </button>
-                );
-              })}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeEraIndex ? "w-8" : "w-1.5 bg-slate-300"}`}
+                    style={idx === activeEraIndex ? { backgroundColor: chapter.accentColor } : undefined}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveEraIndex((prev) => (prev + 1) % chapterWorldsData.length)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-bold hover:border-emerald-400 hover:text-emerald-700 transition-all cursor-pointer"
+              >
+                Next
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
 
-          {/* ============ FEATURED SPOTLIGHT ERA SHOWCASE CARD ============ */}
-          {(() => {
-            const chapter = chapterWorldsData[selectedEraIndex];
-            const Icon = chapter.icon;
-            return (
-              <div
-                key={chapter.id}
-                className="rounded-3xl border-2 bg-white/95 backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden transition-all duration-500 mb-8"
-                style={{
-                  borderColor: chapter.accentColor,
-                  boxShadow: `0 20px 50px -15px ${chapter.accentColor}35`,
-                }}
-              >
-                {/* Decorative Accent Background Glow */}
-                <div
-                  className="absolute -top-20 -right-20 w-80 h-80 rounded-full blur-3xl opacity-20 pointer-events-none"
-                  style={{ backgroundColor: chapter.accentColor }}
-                />
-
-                <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-                  {/* Left 7 cols: Narrative & Milestones */}
-                  <div className="lg:col-span-7 space-y-4">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${chapter.phaseBadge}`}>
-                        {chapter.era} &middot; {chapter.phase}
-                      </span>
-                      <span className="text-xs font-bold text-stone-600 flex items-center gap-1.5">
-                        <Icon className="w-4 h-4" style={{ color: chapter.accentColor }} />
-                        {chapter.worldName}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-900 leading-tight">
-                      {chapter.title}
-                    </h3>
-
-                    <p className="text-sm sm:text-base font-bold text-amber-950/80">
-                      {chapter.subtitle}
-                    </p>
-
-                    <p className="text-stone-700 text-sm sm:text-base leading-relaxed">
-                      {chapter.desc}
-                    </p>
-
-                    {/* Archival Milestone Points */}
-                    <div className="pt-2 space-y-2">
-                      <p className="text-[11px] font-black uppercase tracking-wider text-stone-500">
-                        Documented Archival Milestones:
-                      </p>
-                      <div className="space-y-2">
-                        {chapter.archivalMarks.map((mark) => (
-                          <div key={mark} className="flex items-start gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-semibold text-stone-800">
-                            <span className="w-2 h-2 rounded-full mt-1 shrink-0" style={{ backgroundColor: chapter.accentColor }} />
-                            <span>{mark}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right 5 cols: Archival Imagery & Quick Phase Switcher */}
-                  <div className="lg:col-span-5 space-y-4">
-                    <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border-2 border-stone-200 shadow-md">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={chapter.image}
-                        alt={chapter.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4 text-white">
-                        <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 block">
-                          Phase Documentation
-                        </span>
-                        <span className="text-xs font-bold block truncate text-slate-100">
-                          {chapter.subtitle}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Navigation Controls */}
-                    <div className="flex items-center justify-between gap-3 pt-1">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedEraIndex((prev) => (prev - 1 + chapterWorldsData.length) % chapterWorldsData.length)}
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold transition-all cursor-pointer border border-stone-200"
-                      >
-                        <ChevronLeft className="w-4 h-4" />
-                        <span>Previous Phase</span>
-                      </button>
-
-                      <span className="text-xs font-black text-stone-600 px-2">
-                        {selectedEraIndex + 1} / {chapterWorldsData.length}
-                      </span>
-
-                      <button
-                        type="button"
-                        onClick={() => setSelectedEraIndex((prev) => (prev + 1) % chapterWorldsData.length)}
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all cursor-pointer shadow-md"
-                      >
-                        <span>Next Phase</span>
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+          {/* Transition to EFFORT 2.0 */}
+          <div className="flex items-center justify-center gap-4 mt-10 pt-6 border-t border-slate-200">
+            <span className="h-px w-12 bg-gradient-to-r from-transparent to-emerald-500" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center animate-pulse">
+                <Play className="w-4 h-4 text-white" />
               </div>
-            );
-          })()}
-
-          {/* ============ COMPLETE 5-ERA CHRONOLOGICAL OVERVIEW GRID ============ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-            {chapterWorldsData.map((chapter, idx) => {
-              const Icon = chapter.icon;
-              const isSelected = selectedEraIndex === idx;
-              return (
-                <button
-                  key={chapter.id}
-                  type="button"
-                  onClick={() => setSelectedEraIndex(idx)}
-                  className={`text-left rounded-2xl p-4 transition-all duration-300 cursor-pointer border-2 relative overflow-hidden flex flex-col justify-between h-[190px] ${
-                    isSelected
-                      ? "bg-white shadow-xl -translate-y-1"
-                      : "bg-white/70 hover:bg-white hover:shadow-md border-stone-200/80"
-                  }`}
-                  style={{
-                    borderColor: isSelected ? chapter.accentColor : undefined,
-                  }}
-                >
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border ${chapter.phaseBadge}`}>
-                        {chapter.era}
-                      </span>
-                      <Icon className="w-4 h-4" style={{ color: chapter.accentColor }} />
-                    </div>
-                    <h4 className="text-xs font-black text-stone-900 line-clamp-1 mt-1">
-                      {chapter.title}
-                    </h4>
-                    <p className="text-[11px] font-bold text-amber-900/80 line-clamp-2">
-                      {chapter.subtitle}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-[10px] font-bold">
-                    <span className="text-stone-500">Phase 0{idx + 1}</span>
-                    <span
-                      className="font-black flex items-center gap-0.5"
-                      style={{ color: chapter.accentColor }}
-                    >
-                      {isSelected ? "Active View" : "Click to view"} &rarr;
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
+              <div>
+                <p className="text-xs font-black tracking-[0.25em] text-emerald-700 uppercase">Next Chapter</p>
+                <p className="text-[10px] font-bold text-slate-400">EFFORT 2.0 &middot; 2026 → 2030</p>
+              </div>
+            </div>
+            <span className="h-px w-12 bg-gradient-to-l from-transparent to-emerald-500" />
           </div>
         </div>
       </section>
@@ -2000,9 +1940,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               <img
                                 src={teamPhotos[member.slug]}
                                 alt={member.name}
-                                className={`w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 ${
-                                  member.slug === "hanumantha-rao" ? "object-[center_10%]" : "object-top"
-                                }`}
+                                className={`w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 ${member.slug === "hanumantha-rao" ? "object-[center_10%]" : "object-top"
+                                  }`}
                               />
                             ) : (
                               <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-3 text-center">
@@ -2572,9 +2511,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               alt={partner.name}
                               loading="lazy"
                               decoding="async"
-                              className={`max-w-full object-contain transition-transform duration-300 group-hover:scale-105 ${
-                                partner.slug === "gptw" ? "max-h-24" : "max-h-16"
-                              }`}
+                              className={`max-w-full object-contain transition-transform duration-300 group-hover:scale-105 ${partner.slug === "gptw" ? "max-h-24" : "max-h-16"
+                                }`}
                             />
                           ) : (
                             <span className="text-sm font-bold text-[#0b1120] text-center leading-snug">
@@ -2689,13 +2627,35 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             )}
           </div>
 
-          <div className="max-w-xs mx-auto mt-6 px-4">
-            <div className="h-[3px] rounded-full bg-white/50 overflow-hidden">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-6 px-4">
+            <button
+              onClick={() => {
+                if (galleryStripRef.current) {
+                  galleryStripRef.current.scrollBy({ left: -450, behavior: "smooth" });
+                }
+              }}
+              className="p-2 sm:p-2.5 rounded-full bg-white/80 border border-[#d4af6a]/50 text-[#8a5a2a] hover:bg-white hover:scale-110 shadow-sm transition-all cursor-pointer"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+            <div className="w-44 sm:w-64 h-[4px] rounded-full bg-white/60 overflow-hidden shadow-inner">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#d4af6a] to-[#b6813f] transition-[width] duration-150 ease-out"
                 style={{ width: `${Math.max(galleryScrollPct * 100, 8)}%` }}
               />
             </div>
+            <button
+              onClick={() => {
+                if (galleryStripRef.current) {
+                  galleryStripRef.current.scrollBy({ left: 450, behavior: "smooth" });
+                }
+              }}
+              className="p-2 sm:p-2.5 rounded-full bg-white/80 border border-[#d4af6a]/50 text-[#8a5a2a] hover:bg-white hover:scale-110 shadow-sm transition-all cursor-pointer"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
           </div>
 
           <div className="text-center mt-8">
