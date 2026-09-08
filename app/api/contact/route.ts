@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const NOTIFY_EMAIL = "effortap@gmail.com";
-const FROM_EMAIL = "EFFORT Website <onboarding@resend.dev>";
+const FROM_EMAIL = "EFFORT Website <notifications@effortindia.org>";
 
 type FormType = "contact" | "careers" | "get-involved";
 
