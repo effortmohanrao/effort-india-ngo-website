@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | EFFORT",
   },
   description:
-    "EFFORT is a premier non-profit organization (Reg. 340/1999) empowering rural communities across 9 Indian states through sustainable agriculture, watershed management, women SHGs, and 80G/FCRA compliant CSR partnerships.",
+    "EFFORT — Effort (A Society for the Development of Agriculture and Youth) — is a registered non-profit (Reg. 340/1999) empowering rural communities across 9 Indian states through sustainable agriculture, watershed management, women SHGs, and 80G/FCRA compliant CSR partnerships.",
   keywords: [
     "EFFORT NGO",
     "EFFORT",
@@ -87,8 +87,8 @@ export const metadata: Metadata = {
 const jsonLdSchema = {
   "@context": "https://schema.org",
   "@type": "NGO",
-  name: "EFFORT NGO (Society for Emancipation and Fraternal Organization for Rural Transformation)",
-  alternateName: "EFFORT India NGO",
+  name: "Effort (A Society for the Development of Agriculture and Youth)",
+  alternateName: ["EFFORT", "EFFORT NGO", "EFFORT India"],
   url: "https://www.effortindia.org",
   logo: "https://www.effortindia.org/logo.png",
   foundingDate: "1999",

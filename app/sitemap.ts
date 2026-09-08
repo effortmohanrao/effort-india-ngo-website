@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/gallery",
     "/news",
     "/privacy",
+    "/domain-ownership",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({

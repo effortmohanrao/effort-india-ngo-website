@@ -52,7 +52,8 @@ export default function PrivacyTerms() {
 
           <Section id="who-we-are" title="1. Who we are">
             <p>
-              This website (effortindia.org) is operated by EFFORT, a non-profit society registered under the
+              This website (effortindia.org) is the official website of Effort (A Society for the
+              Development of Agriculture and Youth), also known as EFFORT, a non-profit society registered under the
               Societies Registration Act XXI of 1860 (Reg. No. 340/1999), Section 80G tax-exempt and FCRA
               approved, headquartered at Martur, Bapatla District, Andhra Pradesh, India.
             </p>

@@ -47,14 +47,10 @@ import {
   Leaf,
   Camera,
   Droplets,
-  Flame,
-  Network,
-  Rocket,
-  Crown,
-  Play
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 import Effort20Roadmap from "@/components/Effort20Roadmap";
+import JourneyTimeline from "@/components/JourneyTimeline";
 import { programAlbums } from "@/lib/programAlbums";
 import { partnerCategories, ALL_PARTNER_SLUGS } from "@/lib/partners";
 
@@ -118,144 +114,6 @@ const identityBadges: { label: string; icon: typeof Eye }[] = [
   { label: "Empowerment", icon: Star },
 ];
 
-const chapterWorldsData = [
-  {
-    id: "1999",
-    era: "1999",
-    phase: "01 / ORIGIN",
-    worldName: "THE ORIGIN",
-    title: "THE BEGINNING",
-    subtitle: "Where Rooted Belief Began in 10 Villages",
-    bgClass: "bg-[#fdfbf7]",
-    cardStyle: "bg-white/95 border-amber-900/20 shadow-2xl text-stone-900",
-    headerTextColor: "text-stone-950",
-    subtitleColor: "text-amber-950 font-serif",
-    phaseBadge: "bg-amber-100 text-amber-950 border-amber-300 font-black",
-    storyBoxStyle: "bg-amber-50/90 border-amber-200/90 text-stone-800",
-    milestoneTextColor: "text-stone-800",
-    milestoneCheckColor: "#b45309",
-    navBtnStyle: "bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold border-amber-300",
-    accentColor: "#b45309",
-    headingFont: "font-serif",
-    desc: "EFFORT was founded in 1999 around the core conviction that agricultural development is central to poverty eradication, food security, demand generation, and overall development. The journey began in 10 pioneer villages in Prakasam District, Andhra Pradesh.",
-    archivalMarks: [
-      "Founded 1999: Agricultural Empowerment = Poverty Eradication & Food Security",
-      "Pioneer Field Roots: Started in 10 Villages in Prakasam District, Andhra Pradesh",
-      "Foundational Focus: Community Participation, Livelihoods & Demand Generation"
-    ],
-    rootConcepts: ["AGRICULTURE", "COMMUNITY", "LIVELIHOODS", "FOOD SECURITY", "DEVELOPMENT"],
-    icon: Flame,
-    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    id: "2000-2009",
-    era: "2000–2009",
-    phase: "02 / FOUNDATION",
-    worldName: "BUILDING THE FOUNDATION",
-    title: "BUILDING THE FOUNDATION",
-    subtitle: "10 → 50 Villages & 20,000 Farmers",
-    bgClass: "bg-[#f5eade]",
-    cardStyle: "bg-white/95 border-orange-900/20 shadow-2xl text-stone-900",
-    headerTextColor: "text-stone-950",
-    subtitleColor: "text-orange-950 font-sans font-black",
-    phaseBadge: "bg-orange-100 text-orange-950 border-orange-300 font-black",
-    storyBoxStyle: "bg-orange-50/90 border-orange-200 text-stone-800",
-    milestoneTextColor: "text-stone-800",
-    milestoneCheckColor: "#ea580c",
-    navBtnStyle: "bg-orange-100 hover:bg-orange-200 text-orange-950 font-bold border-orange-300",
-    accentColor: "#ea580c",
-    headingFont: "font-sans font-black tracking-tight",
-    desc: "EFFORT expanded its grassroots work from 10 to 50 villages across Prakasam and Guntur districts, reaching 20,000 farmers. Facilitated Sustainable Agriculture, Women & Child Development projects with structural support from government agencies.",
-    archivalMarks: [
-      "Geographic Expansion: 10 Villages → 50 Villages (Prakasam & Guntur Districts)",
-      "Farmer Reach: 20,000 Farmers Integrated into Sustainable Agriculture",
-      "Institutional Support: Government-backed Women & Child Development Projects"
-    ],
-    icon: Network,
-    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    id: "2009-2016",
-    era: "2009–2016",
-    phase: "03 / EXPANSION",
-    worldName: "THE EXPANSION ENGINE",
-    title: "THE EXPANSION ENGINE",
-    subtitle: "405 Villages Across 6 Districts & 16 Grassroots NGOs",
-    bgClass: "bg-[#0a1638]",
-    cardStyle: "bg-slate-900/90 border-cyan-500/40 shadow-2xl text-slate-50",
-    headerTextColor: "text-slate-50",
-    subtitleColor: "text-cyan-300 font-sans font-black",
-    phaseBadge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs",
-    storyBoxStyle: "bg-slate-800/80 border-cyan-600/40 text-slate-100",
-    milestoneTextColor: "text-slate-100",
-    milestoneCheckColor: "#38bdf8",
-    navBtnStyle: "bg-slate-800 hover:bg-slate-700 text-cyan-200 font-bold border-cyan-600/50",
-    accentColor: "#0284c7",
-    headingFont: "font-sans font-black tracking-tight",
-    desc: "EFFORT recorded massive growth, expanding from 50 to 405 villages across 6 districts of Andhra Pradesh. Reached 1,50,000 small, marginal farmers and landless agricultural labourers with focus on Natural Resource Management, while providing technical support to 16 partner grassroots NGOs.",
-    archivalMarks: [
-      "Expansive Scale: 50 → 405 Villages Across 6 Districts of Andhra Pradesh",
-      "Target Community: 1,50,000 Small/Marginal Farmers & Landless Labourers",
-      "Grassroots Ecosystem: Supported 16 Partner NGOs in Natural Resource Management"
-    ],
-    icon: Rocket,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    id: "2016-2022",
-    era: "2016–2022",
-    phase: "04 / TRANSFORMATION",
-    worldName: "MULTI-STATE TRANSFORMATION",
-    title: "MULTI-STATE TRANSFORMATION",
-    subtitle: "From 1 State to 6 Indian States & 2 Lakh Farm Families",
-    bgClass: "bg-[#121619]",
-    cardStyle: "bg-zinc-900/90 border-lime-500/40 shadow-2xl text-zinc-50",
-    headerTextColor: "text-zinc-50",
-    subtitleColor: "text-[#a3e635] font-mono font-black",
-    phaseBadge: "bg-emerald-100 text-emerald-950 border-emerald-400 font-extrabold shadow-2xs",
-    storyBoxStyle: "bg-zinc-800/80 border-lime-600/40 text-zinc-100",
-    milestoneTextColor: "text-zinc-100",
-    milestoneCheckColor: "#a3e635",
-    navBtnStyle: "bg-zinc-800 hover:bg-zinc-700 text-lime-300 font-bold border-lime-600/50",
-    accentColor: "#059669",
-    headingFont: "font-mono font-black tracking-tight",
-    desc: "A remarkable milestone phase: EFFORT transformed from a single-state organization into a 6-state multi-regional entity, empowering 2 lakh farm families. Built strategic alliances with international funding agencies, corporate CSR partners, government departments, and CBBOs.",
-    archivalMarks: [
-      "Multi-State Leap: Expanded from 1 State → 6 Indian States",
-      "Impact Scale: 2,00,000 Farm Families Empowered Across States",
-      "Strategic Alliances: International Agencies, Corporate CSR, Govt & CBBOs"
-    ],
-    icon: Crown,
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    id: "2022-2025",
-    era: "2022–2025",
-    phase: "05 / PAN-INDIA",
-    worldName: "THE PAN-INDIA ERA",
-    title: "THE PAN-INDIA ERA",
-    subtitle: "10 States, 1,909 Villages & 2.67 Lakh Farm Families",
-    bgClass: "bg-[#2b0814]",
-    cardStyle: "bg-rose-950/90 border-amber-500/40 shadow-2xl text-amber-50",
-    headerTextColor: "text-amber-50",
-    subtitleColor: "text-amber-300 font-serif font-black",
-    phaseBadge: "bg-yellow-100 text-yellow-950 border-yellow-400 font-extrabold shadow-2xs",
-    storyBoxStyle: "bg-rose-900/70 border-amber-500/30 text-amber-100",
-    milestoneTextColor: "text-amber-100",
-    milestoneCheckColor: "#fbbf24",
-    navBtnStyle: "bg-rose-900 hover:bg-rose-800 text-amber-200 font-bold border-amber-500/40",
-    accentColor: "#fbbf24",
-    headingFont: "font-serif font-black tracking-tight",
-    desc: "EFFORT established itself as a national PAN-India organization, working across 10 Indian states and reaching 2.67 lakh farm families in 1,909 villages with sustainable agriculture, women-led MACS cooperatives, and watershed development.",
-    archivalMarks: [
-      "National Footprint: 10 Indian States & 1,909 Villages",
-      "Community Scale: 2,67,000 Farm Families Actively Reached",
-      "Institutional Strength: Sustainable Agriculture, FPOs & Watershed Networks"
-    ],
-    icon: Globe2,
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1200",
-  },
-];
 
 // Real content from EFFORT's Strategic Plan 2026-2030 document (5-Year Phased Roadmap, Section 8)
 type StrategicPhase = {
@@ -571,14 +429,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       })
       .catch(() => { });
   }, []);
-  const [storyRef, storyVisible] = useScrollReveal<HTMLElement>();
-  const [activeEraIndex, setActiveEraIndex] = useState(0);
-  const journeyMarqueeRef = useRef<HTMLDivElement>(null);
-  const journeyDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
-  const [journeyPaused, setJourneyPaused] = useState(false);
-  const [journeyScrollPct, setJourneyScrollPct] = useState(0);
-  const [journeyHovered, setJourneyHovered] = useState<number | null>(null);
-
   const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
   const [vmRef, vmVisible] = useScrollReveal<HTMLElement>();
   const [activeVMSlide, setActiveVMSlide] = useState(0);
@@ -701,36 +551,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     strip.addEventListener("wheel", onWheel, { passive: false });
     return () => strip.removeEventListener("wheel", onWheel);
   }, []);
-
-  // Journey marquee auto-scroll
-  useEffect(() => {
-    const strip = journeyMarqueeRef.current;
-    if (!strip) return;
-    function updatePct() {
-      if (!strip) return;
-      const max = strip.scrollWidth - strip.clientWidth;
-      setJourneyScrollPct(max > 0 ? strip.scrollLeft / max : 0);
-    }
-    updatePct();
-    strip.addEventListener("scroll", updatePct, { passive: true });
-    return () => strip.removeEventListener("scroll", updatePct);
-  }, []);
-
-  useEffect(() => {
-    const strip = journeyMarqueeRef.current;
-    if (!strip) return;
-    let raf = 0;
-    function drift() {
-      raf = requestAnimationFrame(drift);
-      const el = journeyMarqueeRef.current;
-      if (!el || journeyPaused || journeyDrag.current.active) return;
-      const max = el.scrollWidth - el.clientWidth;
-      if (max <= 0) return;
-      el.scrollLeft = el.scrollLeft >= max - 1 ? 0 : el.scrollLeft + 0.5;
-    }
-    raf = requestAnimationFrame(drift);
-    return () => cancelAnimationFrame(raf);
-  }, [journeyPaused]);
 
   const [finaleRef, finaleVisible] = useScrollReveal<HTMLElement>();
   const [finaleStatValues, setFinaleStatValues] = useState<number[]>(() => finaleStats.map(() => 0));
@@ -977,170 +797,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
         </div>
       </section>
 
-      {/* --- OUR JOURNEY: 1999 TO 2025 (JOURNEY CAROUSEL - 3D PERSPECTIVE ROTATION) --- */}
-      <section id="journey" ref={storyRef} className="relative overflow-hidden bg-[#f6f9f7] py-16 lg:py-20 text-slate-900">
-        {/* Subtle background texture */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#065f46_1px,transparent_1px)] [background-size:28px_28px]" />
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Compact Editorial Header */}
-          <div className={`max-w-3xl transition-all duration-1000 ${storyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-700 flex items-center gap-3">
-              <span className="inline-block w-10 h-[2px] bg-emerald-600" />
-              Our Journey Since 1999
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.1] mt-4">
-              Twenty-Seven Years of Growth
-            </h2>
-            <p className="text-slate-500 text-sm sm:text-base leading-relaxed mt-3 max-w-2xl">
-              Five documented chapters of growth — from 10 villages in Prakasam District to 1,909 villages across 10 Indian states — laying the foundations for EFFORT 2.0.
-            </p>
-          </div>
-
-          {/* JOURNEY CAROUSEL - 3D Perspective Rotating Cards */}
-          <div className="mt-12">
-            <div className="relative flex items-center justify-center">
-              {/* Central Glow */}
-              <div className="absolute w-[500px] h-[500px] rounded-full bg-emerald-200/20 blur-[100px] animate-pulse pointer-events-none" />
-
-              {/* 3D Carousel Cards */}
-              <div className="relative flex items-center justify-center gap-4 sm:gap-6">
-                {chapterWorldsData.map((chapter, idx) => {
-                  const Icon = chapter.icon;
-                  const isActive = activeEraIndex === idx;
-                  const offset = (idx - activeEraIndex + chapterWorldsData.length) % chapterWorldsData.length;
-                  const isLeft = offset > 2;
-                  const distance = Math.min(offset, chapterWorldsData.length - offset);
-                  const scale = isActive ? 1 : distance === 1 ? 0.85 : 0.7;
-                  const opacity = isActive ? 1 : distance === 1 ? 0.6 : 0.3;
-                  const zIndex = isActive ? 30 : distance === 1 ? 20 : 10;
-                  const translateX = isActive ? 0 : isLeft ? -distance * 40 : distance * 40;
-                  const translateY = isActive ? 0 : distance * 8;
-
-                  return (
-                    <div
-                      key={chapter.id}
-                      onClick={() => setActiveEraIndex(idx)}
-                      className={`relative rounded-[24px] overflow-hidden transition-all duration-700 cursor-pointer ${isActive ? "shadow-2xl" : "hover:shadow-xl"}`}
-                      style={{
-                        width: isActive ? "320px" : "240px",
-                        height: isActive ? "400px" : "300px",
-                        transform: `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
-                        opacity,
-                        zIndex,
-                        boxShadow: isActive ? `0 30px 80px -20px ${chapter.accentColor}60` : undefined,
-                        border: `2px solid ${chapter.accentColor}${isActive ? "80" : "30"}`,
-                      }}
-                    >
-                      {/* Card Background Image */}
-                      <div className="absolute inset-0 overflow-hidden">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={chapter.image}
-                          alt={chapter.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
-                      </div>
-
-                      {/* Era Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border shadow-lg backdrop-blur-md"
-                          style={{ backgroundColor: `${chapter.accentColor}25`, borderColor: chapter.accentColor, color: chapter.accentColor }}
-                        >
-                          <Icon className="w-3 h-3" />
-                          {chapter.era}
-                        </span>
-                      </div>
-
-                      {/* Giant Number */}
-                      <span
-                        className="absolute -top-2 right-2 text-[80px] font-black tracking-tighter opacity-20 select-none pointer-events-none"
-                        style={{ color: chapter.accentColor }}
-                      >
-                        0{idx + 1}
-                      </span>
-
-                      {/* Card Content */}
-                      <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <h3 className="text-white font-black text-lg leading-tight">{chapter.title}</h3>
-                        <p className="text-white/70 text-xs font-bold mt-1">{chapter.subtitle}</p>
-                        {isActive && (
-                          <div className="mt-3 space-y-2 animate-fade-in">
-                            <p className="text-white/80 text-xs leading-relaxed line-clamp-2">{chapter.desc}</p>
-                            <div className="flex flex-wrap gap-1.5">
-                              {chapter.archivalMarks.slice(0, 2).map((mark) => (
-                                <span
-                                  key={mark}
-                                  className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-[9px] font-semibold"
-                                >
-                                  <span className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: chapter.accentColor }} />
-                                  {mark}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Navigation Controls */}
-            <div className="flex items-center justify-between mt-8">
-              <button
-                type="button"
-                onClick={() => setActiveEraIndex((prev) => (prev - 1 + chapterWorldsData.length) % chapterWorldsData.length)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-bold hover:border-emerald-400 hover:text-emerald-700 transition-all cursor-pointer"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" />
-                Previous
-              </button>
-
-              <div className="flex items-center gap-1.5">
-                {chapterWorldsData.map((chapter, idx) => (
-                  <span
-                    key={chapter.id}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeEraIndex ? "w-8" : "w-1.5 bg-slate-300"}`}
-                    style={idx === activeEraIndex ? { backgroundColor: chapter.accentColor } : undefined}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setActiveEraIndex((prev) => (prev + 1) % chapterWorldsData.length)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-bold hover:border-emerald-400 hover:text-emerald-700 transition-all cursor-pointer"
-              >
-                Next
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Transition to EFFORT 2.0 */}
-          <div className="flex items-center justify-center gap-4 mt-10 pt-6 border-t border-slate-200">
-            <span className="h-px w-12 bg-gradient-to-r from-transparent to-emerald-500" />
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center animate-pulse">
-                <Play className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <p className="text-xs font-black tracking-[0.25em] text-emerald-700 uppercase">Next Chapter</p>
-                <p className="text-[10px] font-bold text-slate-400">EFFORT 2.0 &middot; 2026 → 2030</p>
-              </div>
-            </div>
-            <span className="h-px w-12 bg-gradient-to-l from-transparent to-emerald-500" />
-          </div>
-        </div>
-      </section>
+      <JourneyTimeline />
 
       {/* --- EFFORT 2.0 STRATEGIC ROADMAP (HIGH-END CINEMATIC NGO ROADMAP UI) --- */}
       <Effort20Roadmap />

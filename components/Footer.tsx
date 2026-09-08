@@ -50,7 +50,9 @@ export default function Footer() {
               </div>
               <div>
                 <span className="text-xl font-black tracking-tight text-white block">EFFORT</span>
-                <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">EFFORT NGO</span>
+                <span className="text-[10px] font-semibold text-amber-400/90 block leading-snug normal-case tracking-normal">
+                  Effort (A Society for the Development of Agriculture and Youth)
+                </span>
               </div>
             </div>
             
@@ -157,11 +159,11 @@ export default function Footer() {
 
       {/* Footer Bottom Credits */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4 font-medium">
-        <p>© {new Date().getFullYear()} EFFORT. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Effort (A Society for the Development of Agriculture and Youth). All rights reserved.</p>
         <div className="flex flex-wrap gap-6 font-semibold">
           <Link href="/privacy#privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
           <Link href="/privacy#terms" className="hover:text-slate-300 transition-colors">Terms &amp; Conditions</Link>
-          <Link href="#" className="hover:text-slate-300 transition-colors">Tax Exemption Policy</Link>
+          <Link href="/domain-ownership" className="hover:text-slate-300 transition-colors">Domain ownership</Link>
           <Link href="/impact" className="hover:text-slate-300 transition-colors">GIS Coverage Map</Link>
         </div>
       </div>

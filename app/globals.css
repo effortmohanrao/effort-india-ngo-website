@@ -1647,6 +1647,29 @@ body {
   animation: journey-two-shine 3.2s ease-in-out infinite;
 }
 
+/* --- Our Journey since 1999: field-path timeline --- */
+.effort-journey-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.effort-journey-track::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes effort-journey-node {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(15, 107, 76, 0.35); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(15, 107, 76, 0); }
+}
+.animate-effort-journey-node {
+  animation: effort-journey-node 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-effort-journey-node {
+    animation: none;
+  }
+}
+
 /* --- EFFORT 2.0 Strategic Roadmap Animations --- */
 @keyframes halo-spin {
   0% {

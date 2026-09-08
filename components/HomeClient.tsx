@@ -105,7 +105,7 @@ const complianceCards: {
       status: "Active & Verified",
       category: "govt",
       authority: "Registrar of Societies, Govt of Andhra Pradesh",
-      details: "Registered under Societies Registration Act XXI of 1860 with Reg. No. 340/1999. Fully compliant with annual filings, statutory reporting, and public audit standards."
+      details: "Effort (A Society for the Development of Agriculture and Youth) is registered under Societies Registration Act XXI of 1860 with Reg. No. 340/1999. Official website: effortindia.org. Fully compliant with annual filings, statutory reporting, and public audit standards."
     },
     {
       id: "80g",
