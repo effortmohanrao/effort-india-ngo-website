@@ -10,10 +10,11 @@ const people = [
   { slug: "bala-subramanian", name: "Bala Subramanian", role: "President, EFFORT" },
   { slug: "veeranjaneyulu", name: "Danda Veeranjaneyulu", role: "Executive Committee Member" },
   { slug: "y-m-krishna", name: "Y. Murali Krishna", role: "Capacity Building" },
-  { slug: "anuradha", name: "J. Anuradha", role: "Lead – Community Based Organisation" },
   { slug: "vijaya-kumari", name: "B. Vijaya Kumari", role: "Gender, Equity & Water Governance" },
-  { slug: "annapurna", name: "B. Annapurna", role: "Finance" },
   { slug: "hanumantha-rao", name: "B. Hanumantha Rao", role: "Lead, Water Governance & Management" },
+  { slug: "koteswara-rao", name: "T. Koteswara Rao", role: "Project Coordinator" },
+  { slug: "bhanodaya", name: "J. Bhanodaya", role: "Project Coordinator" },
+  { slug: "nitish-reddy", name: "B. Nitish Reddy", role: "Project Coordinator" },
   { slug: "mohan-reddy", name: "M. V. Mohan Reddy", role: "Lead, IT & Digital Platforms" },
 ];
 

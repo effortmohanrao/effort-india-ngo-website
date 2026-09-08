@@ -306,28 +306,34 @@ const leadershipTeam: LeadershipMember[] = [
     intro: "Graduate in Commerce and Law, with a Diploma in Social Development from St. Francis Xavier University, Canada. 35 years of experience in Social Development, expert in Human Resource and Community Development. Leads staff and CBO capacity-building programmes.",
   },
   {
-    slug: "anuradha",
-    name: "J. Anuradha",
-    role: "Lead – Community Based Organisation",
-    intro: "Postgraduate in Sociology with 35 years of experience in Social Development. Expert in Social Mobilisation and the promotion & strengthening of Community Based Organisations (CBOs).",
-  },
-  {
     slug: "vijaya-kumari",
     name: "B. Vijaya Kumari",
     role: "Gender, Equity & Water Governance",
     intro: "Postgraduate in M.Sc Resource Management and MA Social Work. 28 years of experience in Social Development, expert in Gender, Equity, Social Inclusion and Water Governance & Community-Led Management.",
   },
   {
-    slug: "annapurna",
-    name: "P. Annapurna",
-    role: "Finance",
-    intro: "Postgraduate in MBA Finance with 33 years of experience in Finance Management.",
-  },
-  {
     slug: "hanumantha-rao",
     name: "B. Hanumantha Rao",
     role: "Lead, Water Governance & Management",
     intro: "Graduate in Civil Engineering with 30 years of rich experience in Water & Soil Conservation Projects.",
+  },
+  {
+    slug: "koteswara-rao",
+    name: "T. Koteswara Rao",
+    role: "Project Coordinator",
+    intro: "Post graduate in MBA Finance. 25 Years of experience in the field of Social Development. Expertise in Community Led Management Projects and Institutional Building.",
+  },
+  {
+    slug: "bhanodaya",
+    name: "J. Bhanodaya",
+    role: "Project Coordinator",
+    intro: "Postgraduate in Sociology. 20 years of experience in the field of Social Development initiatives. Expertise in Community Mobilisation, Sustainable Agriculture and Institutional Building.",
+  },
+  {
+    slug: "nitish-reddy",
+    name: "B. Nitish Reddy",
+    role: "Project Coordinator",
+    intro: "Post Graduate in Agri Business Management. Expertise in Climate Resilient Farming Projects, Reporting and Documentation.",
   },
 ];
 

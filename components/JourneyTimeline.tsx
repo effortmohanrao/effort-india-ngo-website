@@ -179,7 +179,8 @@ export default function JourneyTimeline() {
     const track = trackRef.current;
     if (!card || !track) return;
     pauseForInteraction();
-    track.scrollTo({ left: card.offsetLeft - 24, behavior: reduceMotion.current ? "auto" : "smooth" });
+    const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+    track.scrollTo({ left: target, behavior: reduceMotion.current ? "auto" : "smooth" });
     setActive(next);
   }, [pauseForInteraction]);
 
@@ -211,12 +212,13 @@ export default function JourneyTimeline() {
       const max = track.scrollWidth - track.clientWidth;
       setScrollPct(max > 0 ? track.scrollLeft / max : 0);
 
-      const mid = track.scrollLeft + track.clientWidth * 0.38;
+      const center = track.scrollLeft + track.clientWidth / 2;
       let nearest = 0;
       let best = Infinity;
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
-        const dist = Math.abs(card.offsetLeft - mid + card.offsetWidth * 0.35);
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(cardCenter - center);
         if (dist < best) {
           best = dist;
           nearest = i;
@@ -241,7 +243,7 @@ export default function JourneyTimeline() {
       const atStart = track.scrollLeft <= 2;
       if ((goingRight && atEnd) || (!goingRight && atStart)) return;
       e.preventDefault();
-      track.scrollLeft += e.deltaY;
+      track.scrollLeft += e.deltaY * 1.2;
     };
     track.addEventListener("wheel", onWheel, { passive: false });
     return () => track.removeEventListener("wheel", onWheel);
@@ -255,7 +257,8 @@ export default function JourneyTimeline() {
         const card = cardRefs.current[next];
         const track = trackRef.current;
         if (card && track) {
-          track.scrollTo({ left: card.offsetLeft - 24, behavior: "smooth" });
+          const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+          track.scrollTo({ left: target, behavior: "smooth" });
         }
         return next;
       });
@@ -431,7 +434,11 @@ export default function JourneyTimeline() {
       {/* Horizontal path */}
       <div
         ref={trackRef}
-        className="effort-journey-track relative z-10 flex gap-5 sm:gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory touch-pan-x px-4 sm:px-6 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))] pb-4 cursor-grab active:cursor-grabbing"
+        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory touch-pan-x pb-8 pt-3 cursor-grab active:cursor-grabbing"
+        style={{
+          paddingLeft: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
+          paddingRight: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
+        }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
@@ -466,14 +473,14 @@ export default function JourneyTimeline() {
                 if (drag.current.moved) return;
                 goTo(idx);
               }}
-              className={`snap-start shrink-0 w-[min(88vw,38rem)] sm:w-[min(80vw,42rem)] rounded-[28px] overflow-hidden bg-[#fbf8f1] border transition-all duration-500 select-none ${
+              className={`snap-center shrink-0 w-[min(90vw,50rem)] rounded-[32px] overflow-hidden bg-[#fbf8f1] border transition-all duration-700 ease-out select-none ${
                 isActive
-                  ? "border-[#1c1910]/15 shadow-[0_28px_60px_-28px_rgba(28,25,16,0.45)]"
-                  : "border-[#1c1910]/10 opacity-75 hover:opacity-100"
+                  ? "scale-100 opacity-100 border-[#1c1910]/20 shadow-[0_32px_70px_-25px_rgba(28,25,16,0.45)] z-20"
+                  : "scale-[0.93] opacity-60 hover:opacity-85 border-[#1c1910]/10 z-10 cursor-pointer"
               }`}
               style={{
-                transform: isActive ? "translateY(0)" : "translateY(8px)",
-                boxShadow: isActive ? `0 28px 60px -28px ${chapter.accent}66` : undefined,
+                transform: isActive ? "scale(1) translateY(0)" : "scale(0.93) translateY(4px)",
+                boxShadow: isActive ? `0 32px 70px -25px ${chapter.accent}66` : undefined,
               }}
             >
               <div className="grid sm:grid-cols-[0.92fr_1.08fr] min-h-[22rem]">
