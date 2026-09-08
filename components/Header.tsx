@@ -25,7 +25,7 @@ import {
   ArrowRight,
   Lock,
 } from "lucide-react";
-import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
+import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
 
 // Translucent Glass Liquid Bubbles Floating Array
 const glassBubbles = [
@@ -101,6 +101,7 @@ export default function Header() {
     { Icon: InstagramIcon, href: "https://www.instagram.com/effortap", label: "Instagram" },
     { Icon: FacebookIcon, href: "https://www.facebook.com/EFFORTORGANISATIONINDIA/", label: "Facebook" },
     { Icon: LinkedinIcon, href: "https://www.linkedin.com/in/effort-organisation-381246ab", label: "LinkedIn" },
+    { Icon: YoutubeIcon, href: "https://youtube.com/@effortap8403", label: "YouTube" },
   ];
 
   const handleDonateMouseMove = (e: React.MouseEvent<HTMLElement>) => {

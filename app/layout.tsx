@@ -121,6 +121,7 @@ const jsonLdSchema = {
     "https://www.linkedin.com/in/effort-organisation-381246ab",
     "https://www.facebook.com/EFFORTORGANISATIONINDIA/",
     "https://www.instagram.com/effortap",
+    "https://youtube.com/@effortap8403",
   ],
 };
 
