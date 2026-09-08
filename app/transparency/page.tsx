@@ -1,20 +1,15 @@
-"use client";
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+export const metadata: Metadata = {
+  title: "Transparency, Statutory Filings & Governance | EFFORT NGO",
+  description:
+    "Official statutory filings, Section 80G, 12A, FCRA approvals, NITI Aayog DARPAN credentials, and financial audit transparency for EFFORT (A Society for the Development of Agriculture and Youth).",
+  alternates: {
+    canonical: "https://www.effortindia.org/transparency",
+  },
+};
 
-export default function Transparency() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/#trust-section");
-  }, [router]);
-
-  return (
-    <div className="min-h-screen bg-[#faf7f2] flex items-center justify-center p-8">
-      <div className="text-center space-y-3">
-        <p className="text-sm font-bold text-amber-900">Redirecting to Verified Trust &amp; Compliance Registry...</p>
-      </div>
-    </div>
-  );
+export default function TransparencyPage() {
+  redirect("/#trust-section");
 }

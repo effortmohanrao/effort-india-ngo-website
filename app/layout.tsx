@@ -81,12 +81,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.effortindia.org",
   },
+  verification: {
+    google: "3E61Jyy-5XWnCz-Qr2RkbqiKo26LDeTxGUhGWGeLAJw",
+  },
 };
 
 // JSON-LD Structured Data Schema for Official NGO Trust Verification
-const jsonLdSchema = {
-  "@context": "https://schema.org",
-  "@type": "NGO",
+const jsonLdSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
   name: "Effort (A Society for the Development of Agriculture and Youth)",
   alternateName: ["EFFORT", "EFFORT NGO", "EFFORT India"],
   url: "https://www.effortindia.org",
@@ -123,7 +127,15 @@ const jsonLdSchema = {
     "https://www.instagram.com/effortap",
     "https://youtube.com/@effortap8403",
   ],
-};
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "EFFORT NGO",
+    url: "https://www.effortindia.org",
+    description: "27 years of proven field impact empowering 2.50+ Lakh farm families across 9 states in sustainable agriculture.",
+  },
+];
 
 export default function RootLayout({
   children,
