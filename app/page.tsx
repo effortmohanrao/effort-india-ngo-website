@@ -8,9 +8,6 @@ import { listR2Objects, publicUrlFor } from "@/lib/r2";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Home",
-  description:
-    "EFFORT — a registered non-profit (Reg. 340/1999) empowering rural communities across 9 Indian states through sustainable agriculture, watershed management, women SHGs, and 80G/FCRA compliant CSR partnerships. 27 years of proven field impact.",
   alternates: { canonical: "https://www.effortindia.org" },
 };
 
