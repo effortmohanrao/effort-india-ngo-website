@@ -118,7 +118,9 @@ const jsonLdSchema = {
   taxID: "Section 80G Tax Exempt",
   vatID: "FCRA Approved: 40102285992",
   sameAs: [
-    "https://github.com/effortmohanrao/effort-india-ngo-website",
+    "https://www.linkedin.com/in/effort-organisation-381246ab",
+    "https://www.facebook.com/EFFORTORGANISATIONINDIA/",
+    "https://www.instagram.com/effortap",
   ],
 };
 

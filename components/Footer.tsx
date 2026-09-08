@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MapPin, ExternalLink, ShieldCheck, Compass } from "lucide-react";
-import { TwitterXIcon, InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
+import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -23,11 +23,9 @@ export default function Footer() {
   if (pathname?.startsWith("/admin")) return null;
 
   const socialLinks = [
-    { Icon: TwitterXIcon, href: "https://twitter.com", label: "X / Twitter" },
-    { Icon: InstagramIcon, href: "#", label: "Instagram" },
-    { Icon: FacebookIcon, href: "#", label: "Facebook" },
-    { Icon: LinkedinIcon, href: "#", label: "LinkedIn" },
-    { Icon: YoutubeIcon, href: "#", label: "YouTube" },
+    { Icon: InstagramIcon, href: "https://www.instagram.com/effortap", label: "Instagram" },
+    { Icon: FacebookIcon, href: "https://www.facebook.com/EFFORTORGANISATIONINDIA/", label: "Facebook" },
+    { Icon: LinkedinIcon, href: "https://www.linkedin.com/in/effort-organisation-381246ab", label: "LinkedIn" },
   ];
 
   return (

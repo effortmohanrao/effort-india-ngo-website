@@ -1491,7 +1491,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   const s = teamSocials[member.slug];
                   const hasSocials = s && (s.linkedin || s.instagram || s.facebook || s.twitter);
 
-                  // Distinct Domain-Specific Icon & Color Palette per Leader
+                  // Distinct Domain-Specific Icon & Color Palette per Leader (Unique color for every profile)
                   const memberThemes: Record<string, { accent: string; badge: string; shimmer: string; liquid: string; icon: React.ElementType; label: string }> = {
                     "bala-subramanian": {
                       accent: "#d97706",
@@ -1517,14 +1517,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       icon: BookOpen,
                       label: "Capacity Building & Training",
                     },
-                    "anuradha": {
-                      accent: "#e11d48",
-                      badge: "bg-rose-100 text-rose-950 border-rose-400 font-extrabold shadow-2xs",
-                      shimmer: "from-rose-500 via-pink-300 to-rose-500",
-                      liquid: "bg-rose-300/40 animate-liquid-drift-a",
-                      icon: Users2,
-                      label: "Community Organizations (CBOs)",
-                    },
                     "vijaya-kumari": {
                       accent: "#0284c7",
                       badge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs",
@@ -1533,14 +1525,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       icon: Scale,
                       label: "Gender & Social Equity",
                     },
-                    "annapurna": {
-                      accent: "#b45309",
-                      badge: "bg-yellow-100 text-yellow-950 border-yellow-400 font-extrabold shadow-2xs",
-                      shimmer: "from-yellow-500 via-amber-300 to-yellow-500",
-                      liquid: "bg-yellow-300/40 animate-liquid-drift-c",
-                      icon: Landmark,
-                      label: "Finance Management",
-                    },
                     "hanumantha-rao": {
                       accent: "#0d9488",
                       badge: "bg-teal-100 text-teal-950 border-teal-400 font-extrabold shadow-2xs",
@@ -1548,6 +1532,30 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       liquid: "bg-teal-300/40 animate-liquid-drift-a",
                       icon: Droplets,
                       label: "Water & Soil Conservation",
+                    },
+                    "koteswara-rao": {
+                      accent: "#7c3aed",
+                      badge: "bg-purple-100 text-purple-950 border-purple-400 font-extrabold shadow-2xs",
+                      shimmer: "from-purple-600 via-fuchsia-400 to-purple-600",
+                      liquid: "bg-purple-300/40 animate-liquid-drift-c",
+                      icon: Landmark,
+                      label: "Institutional Building & Finance",
+                    },
+                    "bhanodaya": {
+                      accent: "#e11d48",
+                      badge: "bg-rose-100 text-rose-950 border-rose-400 font-extrabold shadow-2xs",
+                      shimmer: "from-rose-500 via-pink-300 to-rose-500",
+                      liquid: "bg-rose-300/40 animate-liquid-drift-a",
+                      icon: Users2,
+                      label: "Community Mobilisation",
+                    },
+                    "nitish-reddy": {
+                      accent: "#ea580c",
+                      badge: "bg-orange-100 text-orange-950 border-orange-400 font-extrabold shadow-2xs",
+                      shimmer: "from-orange-500 via-amber-300 to-orange-500",
+                      liquid: "bg-orange-300/40 animate-liquid-drift-b",
+                      icon: Sprout,
+                      label: "Climate Resilient Farming",
                     },
                   };
 
@@ -1587,12 +1595,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       <div className="space-y-3 relative z-10">
                         {/* LUXURY CIRCULAR PRECISION MEDALLION PORTRAIT FRAME */}
                         <div className="relative w-32 h-32 mx-auto my-0.5 flex items-center justify-center">
-                          {/* Outer Dashed Rotating Ring */}
-                          <div
-                            className="absolute -inset-2 rounded-full border-2 border-dashed opacity-50 animate-gyro-cw pointer-events-none"
-                            style={{ borderColor: theme.accent }}
-                          />
-
                           {/* Solid Circular Medallion Core Frame */}
                           <div
                             className="relative w-32 h-32 rounded-full overflow-hidden border-3 shadow-lg bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center group-hover/card:scale-105 transition-transform duration-500"
