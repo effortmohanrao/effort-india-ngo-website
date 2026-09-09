@@ -170,7 +170,7 @@ export default function Effort20Roadmap() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🎇 CROSSETTE SPLIT CRACKER SIMULATOR (Exact user-provided HTML5 Canvas logic!)
+  // 🎇 5-CRACKER HORIZONTAL CELEBRATION BARRAGE (1 Left, 2 Middle, 2 Right in a clean line wave)
   useEffect(() => {
     const canvas = crossetteCanvasRef.current;
     if (!canvas) return;
@@ -178,178 +178,372 @@ export default function Effort20Roadmap() {
     if (!ctx) return;
 
     let animFrameId: number;
-    let autoInterval: NodeJS.Timeout;
-    let rockets: any[] = [];
-    let particles: any[] = [];
+    let nextTimer: NodeJS.Timeout | null = null;
+    let barrageTimers: NodeJS.Timeout[] = [];
+    let isPageVisible = true;
+    let isSequenceWaiting = false;
 
-    const colors = ["#ff3366", "#ffd700", "#00f0ff", "#33ff99", "#ff00ff", "#ff9900", "#ffffff"];
+    // 10 distinct festive celebratory palettes (Vibrant, Radiant & High-End)
+    const PALETTES = [
+      { name: "gold", colors: ["#FFE082", "#FFD54F", "#FFCA28", "#FFB300", "#FFFFFF"] },
+      { name: "emerald", colors: ["#00E676", "#69F0AE", "#00C853", "#B9F6CA", "#FFFFFF"] },
+      { name: "saffron-amber", colors: ["#FF9100", "#FFB74D", "#FF6D00", "#FFE0B2", "#FFFFFF"] },
+      { name: "ruby-crimson", colors: ["#FF1744", "#FF5252", "#FF8A80", "#FFCDD2", "#FFFFFF"] },
+      { name: "royal-purple", colors: ["#D500F9", "#E040FB", "#EA80FC", "#F3E5F5", "#FFFFFF"] },
+      { name: "cyan-azure", colors: ["#00E5FF", "#18FFFF", "#84FFFF", "#E0F7FA", "#FFFFFF"] },
+      { name: "champagne", colors: ["#FFF9C4", "#FFF59D", "#FFF176", "#FFEE58", "#FFFFFF"] },
+      { name: "coral-tangerine", colors: ["#FF6E40", "#FF3D00", "#FF9E80", "#FFCCBC", "#FFFFFF"] },
+      { name: "lime-vitality", colors: ["#76FF03", "#B2FF59", "#64DD17", "#CCFF90", "#FFFFFF"] },
+      { name: "starlight-diamond", colors: ["#FFFFFF", "#E2E8F0", "#CBD5E1", "#FFFBEB", "#FEF3C7"] },
+    ];
+
+    // Desktop: 10 crackers in 10 different colors across the wide horizontal box
+    const DESKTOP_SPECS = [
+      { xRatio: 0.08, yRatio: 0.23, paletteIdx: 0, delay: 0 },    // 1. Far Left (Gold)
+      { xRatio: 0.17, yRatio: 0.18, paletteIdx: 1, delay: 65 },   // 2. Left (Emerald)
+      { xRatio: 0.27, yRatio: 0.25, paletteIdx: 2, delay: 130 },  // 3. Left-Center (Saffron Amber)
+      { xRatio: 0.37, yRatio: 0.17, paletteIdx: 3, delay: 195 },  // 4. Center-Left (Ruby Crimson)
+      { xRatio: 0.47, yRatio: 0.24, paletteIdx: 4, delay: 260 },  // 5. Center (Royal Purple)
+      { xRatio: 0.57, yRatio: 0.16, paletteIdx: 5, delay: 325 },  // 6. Center-Right (Cyan Azure)
+      { xRatio: 0.67, yRatio: 0.22, paletteIdx: 6, delay: 390 },  // 7. Right-Center (Champagne)
+      { xRatio: 0.77, yRatio: 0.17, paletteIdx: 7, delay: 455 },  // 8. Right (Coral Tangerine)
+      { xRatio: 0.86, yRatio: 0.25, paletteIdx: 8, delay: 520 },  // 9. Far Right (Lime Vitality)
+      { xRatio: 0.93, yRatio: 0.19, paletteIdx: 9, delay: 585 },  // 10. Outer Edge (Starlight Diamond)
+    ];
+
+    // Mobile: 3 crackers (Left, Middle, Right) perfectly sized for narrower mobile cards
+    const MOBILE_SPECS = [
+      { xRatio: 0.18, yRatio: 0.22, paletteIdx: 0, delay: 0 },    // 1. Left (Imperial Gold)
+      { xRatio: 0.50, yRatio: 0.17, paletteIdx: 1, delay: 120 },  // 2. Middle (Emerald Green)
+      { xRatio: 0.82, yRatio: 0.22, paletteIdx: 5, delay: 240 },  // 3. Right (Cyan Azure)
+    ];
+
+    interface Spark {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      color: string;
+      alpha: number;
+      decay: number;
+      size: number;
+      gravity: number;
+      friction: number;
+      twinkle: boolean;
+      tail: { x: number; y: number }[];
+    }
+
+    interface Rocket {
+      x: number;
+      y: number;
+      targetY: number;
+      vx: number;
+      vy: number;
+      color: string;
+      trail: { x: number; y: number }[];
+      palette: string[];
+      alive: boolean;
+    }
+
+    interface BlastFlash {
+      x: number;
+      y: number;
+      radius: number;
+      alpha: number;
+      color: string;
+    }
+
+    let rockets: Rocket[] = [];
+    let sparks: Spark[] = [];
+    let flashes: BlastFlash[] = [];
 
     const resize = () => {
       if (!canvas.parentElement) return;
-      canvas.width = canvas.parentElement.clientWidth;
-      canvas.height = canvas.parentElement.clientHeight;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener("resize", resize);
 
-    class CrossetteParticle {
-      x: number; y: number; color: string; vx: number; vy: number;
-      friction = 0.95; gravity = 0.06; alpha = 1.0;
-      decay: number; size: number; isSubChild: boolean; hasSplit = false;
-      trail: { x: number; y: number; alpha: number }[] = [];
-      maxTrail: number;
+    const getCanvasCssWidth = () => (canvas.parentElement ? canvas.parentElement.clientWidth : 800);
+    const getCanvasCssHeight = () => (canvas.parentElement ? canvas.parentElement.clientHeight : 300);
 
-      constructor(x: number, y: number, color: string, vx: number, vy: number, isSubChild = false) {
-        this.x = x; this.y = y; this.color = color; this.vx = vx; this.vy = vy;
-        this.isSubChild = isSubChild;
-        this.decay = isSubChild ? 0.025 : 0.012;
-        this.size = isSubChild ? 1.5 : 2.8;
-        this.maxTrail = isSubChild ? 4 : 8;
+    function createBlast(x: number, y: number, palette: string[]) {
+      // 1. Initial bright flash illumination
+      flashes.push({
+        x,
+        y,
+        radius: 9,
+        alpha: 0.75,
+        color: palette[0] || "#FFE082",
+      });
+
+      // 2. Realistic cracker burst (crisp spark count: 14-16 sparks per cracker)
+      const sparkCount = Math.floor(Math.random() * 3) + 14;
+      for (let i = 0; i < sparkCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 2.8 + 1.8;
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        sparks.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color,
+          alpha: 1.0,
+          decay: 0.022 + Math.random() * 0.008, // cleans up in ~1.1s
+          size: Math.random() * 1.3 + 1.1,
+          gravity: 0.065,
+          friction: 0.962,
+          twinkle: Math.random() > 0.35,
+          tail: [],
+        });
       }
 
-      update() {
-        this.trail.push({ x: this.x, y: this.y, alpha: this.alpha });
-        if (this.trail.length > this.maxTrail) this.trail.shift();
+      // 3. Crackling micro-embers
+      const crackleCount = 5;
+      for (let i = 0; i < crackleCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 1.6 + 0.5;
+        sparks.push({
+          x: x + (Math.random() - 0.5) * 6,
+          y: y + (Math.random() - 0.5) * 6,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color: "#FFFFFF",
+          alpha: 0.9,
+          decay: 0.045 + Math.random() * 0.02,
+          size: 0.85,
+          gravity: 0.04,
+          friction: 0.94,
+          twinkle: true,
+          tail: [],
+        });
+      }
+    }
 
-        this.vx *= this.friction;
-        this.vy *= this.friction;
-        this.vy += this.gravity;
-        this.x += this.vx;
-        this.y += this.vy;
-        this.alpha -= this.decay;
+    function clearBarrageTimers() {
+      barrageTimers.forEach(clearTimeout);
+      barrageTimers = [];
+    }
 
-        // Crossette 4-way Split (+ pattern) at 50% opacity
-        if (!this.isSubChild && !this.hasSplit && this.alpha <= 0.52) {
-          this.hasSplit = true;
-          const splitSpeed = 3.5;
-          const angles = [0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2];
-          for (let a of angles) {
-            particles.push(new CrossetteParticle(
-              this.x, this.y, this.color,
-              Math.cos(a) * splitSpeed, Math.sin(a) * splitSpeed,
-              true
-            ));
-          }
+    function launchCrackerBarrage() {
+      if (!isPageVisible) return;
+      if (rockets.length > 0 || sparks.length > 0) return; // Strict: only when canvas is completely finished!
+
+      clearBarrageTimers();
+
+      const w = getCanvasCssWidth();
+      const h = getCanvasCssHeight();
+
+      // Responsive selection: 3 crackers on mobile screens (<640px), 10 on desktop
+      const isMobile = w < 640;
+      const specs = isMobile ? MOBILE_SPECS : DESKTOP_SPECS;
+
+      specs.forEach((spec, idx) => {
+        const timer = setTimeout(() => {
+          if (!isPageVisible) return;
+
+          const tx = w * (spec.xRatio + (Math.random() - 0.5) * 0.025);
+          const ty = h * (spec.yRatio + (Math.random() - 0.5) * 0.035);
+          const startX = tx + (Math.random() - 0.5) * 8;
+          const startY = h * 0.72; // Safe mid-lower altitude (zero bottom border marks!)
+          const dx = tx - startX;
+          const dy = ty - startY;
+          const dist = Math.hypot(dx, dy) || 1;
+          const speed = 7.8 + (idx % 2 === 0 ? 0.3 : -0.2);
+
+          const paletteObj = PALETTES[spec.paletteIdx % PALETTES.length];
+
+          rockets.push({
+            x: startX,
+            y: startY,
+            targetY: ty,
+            vx: (dx / dist) * speed,
+            vy: (dy / dist) * speed,
+            color: paletteObj.colors[0],
+            palette: paletteObj.colors,
+            trail: [],
+            alive: true,
+          });
+        }, spec.delay);
+
+        barrageTimers.push(timer);
+      });
+    }
+
+    function render() {
+      if (!ctx || !canvas) return;
+      const w = getCanvasCssWidth();
+      const h = getCanvasCssHeight();
+
+      // Clean wipe: ensures NO ghost lines, dirty sticks, or messy build-up ever occurs!
+      ctx.clearRect(0, 0, w, h);
+
+      // 1. Draw blast flashes
+      for (let i = flashes.length - 1; i >= 0; i--) {
+        const f = flashes[i];
+        f.radius += 2.0;
+        f.alpha -= 0.15;
+        if (f.alpha <= 0) {
+          flashes.splice(i, 1);
+          continue;
         }
-      }
-
-      draw() {
-        if (this.alpha <= 0 || !ctx) return;
         ctx.save();
-        ctx.globalAlpha = this.alpha;
-        if (this.trail.length > 1) {
-          ctx.beginPath();
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = this.size * 0.9;
-          for (let i = 0; i < this.trail.length - 1; i++) {
-            ctx.moveTo(this.trail[i].x, this.trail[i].y);
-            ctx.lineTo(this.trail[i + 1].x, this.trail[i + 1].y);
-          }
-          ctx.stroke();
-        }
-        ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+        ctx.fillStyle = f.color;
+        ctx.globalAlpha = Math.max(0, f.alpha * 0.35);
         ctx.fill();
         ctx.restore();
       }
-    }
 
-    function createCrossetteExplosion(x: number, y: number, color: string) {
-      const primaryStars = 20;
-      for (let i = 0; i < primaryStars; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 5.5 + 2.5;
-        particles.push(new CrossetteParticle(
-          x, y, color, Math.cos(angle) * speed, Math.sin(angle) * speed, false
-        ));
-      }
-    }
+      // 2. Update and draw rockets
+      for (let i = rockets.length - 1; i >= 0; i--) {
+        const r = rockets[i];
+        r.trail.push({ x: r.x, y: r.y });
+        if (r.trail.length > 5) r.trail.shift();
 
-    class Rocket {
-      x: number; y: number; targetX: number; targetY: number; color: string;
-      vx: number; vy: number; trail: { x: number; y: number }[] = []; alive = true;
+        r.x += r.vx;
+        r.y += r.vy;
 
-      constructor(startX: number, startY: number, targetX: number, targetY: number, color: string) {
-        this.x = startX; this.y = startY; this.targetX = targetX; this.targetY = targetY; this.color = color;
-        const dx = targetX - startX;
-        const dy = targetY - startY;
-        const dist = Math.hypot(dx, dy);
-        const speed = 14;
-        this.vx = (dx / dist) * speed;
-        this.vy = (dy / dist) * speed;
-      }
+        // Draw ascending golden sizzle trail
+        ctx.save();
+        if (r.trail.length > 1) {
+          for (let t = 0; t < r.trail.length - 1; t++) {
+            const ratio = (t + 1) / r.trail.length;
+            ctx.strokeStyle = r.color;
+            ctx.globalAlpha = ratio * 0.55;
+            ctx.lineWidth = ratio * 1.8;
+            ctx.beginPath();
+            ctx.moveTo(r.trail[t].x, r.trail[t].y);
+            ctx.lineTo(r.trail[t + 1].x, r.trail[t + 1].y);
+            ctx.stroke();
+          }
+        }
 
-      update() {
-        this.trail.push({ x: this.x, y: this.y });
-        if (this.trail.length > 7) this.trail.shift();
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.vy < 0 && this.y <= this.targetY) {
-          this.alive = false;
-          createCrossetteExplosion(this.x, this.y, this.color);
+        // Draw glowing rocket tip
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, 2.0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Rocket blast trigger: reaches apex or target height
+        if (r.y <= r.targetY || r.vy >= 0) {
+          r.alive = false;
+          createBlast(r.x, r.y, r.palette);
+          rockets.splice(i, 1);
         }
       }
 
-      draw() {
-        if (!ctx) return;
-        if (this.trail.length > 1) {
+      // 3. Update and draw sparks
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+
+        s.tail.push({ x: s.x, y: s.y });
+        if (s.tail.length > 3) s.tail.shift();
+
+        s.vx *= s.friction;
+        s.vy *= s.friction;
+        s.vy += s.gravity;
+        s.x += s.vx;
+        s.y += s.vy;
+        s.alpha -= s.decay;
+
+        // Dissolve sparks smoothly before touching the bottom border
+        if (s.y > h - 40) {
+          s.alpha -= 0.08;
+        }
+        if (s.y >= h - 14 || s.alpha <= 0) {
+          sparks.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        let displayAlpha = s.alpha;
+        if (s.twinkle && Math.random() > 0.4) {
+          displayAlpha = s.alpha * 0.35;
+        }
+        ctx.globalAlpha = Math.max(0, Math.min(1, displayAlpha));
+
+        if (s.tail.length > 1) {
+          ctx.strokeStyle = s.color;
+          ctx.lineWidth = s.size * 0.7;
           ctx.beginPath();
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = 2.5;
-          for (let i = 0; i < this.trail.length - 1; i++) {
-            ctx.moveTo(this.trail[i].x, this.trail[i].y);
-            ctx.lineTo(this.trail[i + 1].x, this.trail[i + 1].y);
-          }
+          ctx.moveTo(s.tail[0].x, s.tail[0].y);
+          ctx.lineTo(s.x, s.y);
           ctx.stroke();
         }
-        ctx.fillStyle = "#ffffff";
+
+        ctx.fillStyle = s.color;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
       }
+
+      // 4. Sequential Barrage Controller:
+      // Once all 5 crackers have completely blasted and all sparks have vanished:
+      if (
+        isPageVisible &&
+        !isSequenceWaiting &&
+        rockets.length === 0 &&
+        sparks.length === 0 &&
+        flashes.length === 0
+      ) {
+        isSequenceWaiting = true;
+        nextTimer = setTimeout(() => {
+          isSequenceWaiting = false;
+          launchCrackerBarrage();
+        }, 1800); // 1.8s calm pause after full completion before next 5-cracker wave
+      }
+
+      animFrameId = requestAnimationFrame(render);
     }
 
-    function launchCrossetteAt(targetX: number, targetY: number) {
-      if (!canvas) return;
-      const startX = targetX + (Math.random() - 0.5) * 40;
-      const startY = canvas.height;
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      rockets.push(new Rocket(startX, startY, targetX, targetY, color));
-    }
+    render();
 
-    function renderLoop() {
-      if (!ctx || !canvas) return;
-      ctx.fillStyle = "rgba(18, 13, 6, 0.25)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Start first cracker wave shortly after mount
+    const initialTimer = setTimeout(() => {
+      launchCrackerBarrage();
+    }, 600);
 
-      for (let i = rockets.length - 1; i >= 0; i--) {
-        rockets[i].update();
-        rockets[i].draw();
-        if (!rockets[i].alive) rockets.splice(i, 1);
+    // Handle visibility changes so crackers NEVER queue up in background tabs
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        isPageVisible = false;
+        rockets = [];
+        sparks = [];
+        flashes = [];
+        isSequenceWaiting = false;
+        clearBarrageTimers();
+        if (nextTimer) clearTimeout(nextTimer);
+      } else {
+        isPageVisible = true;
+        rockets = [];
+        sparks = [];
+        flashes = [];
+        isSequenceWaiting = false;
+        clearBarrageTimers();
+        if (nextTimer) clearTimeout(nextTimer);
+        nextTimer = setTimeout(() => {
+          launchCrackerBarrage();
+        }, 500);
       }
-      for (let i = particles.length - 1; i >= 0; i--) {
-        particles[i].update();
-        particles[i].draw();
-        if (particles[i].alpha <= 0) particles.splice(i, 1);
-      }
-      animFrameId = requestAnimationFrame(renderLoop);
-    }
-
-    renderLoop();
-
-    // Initial launch + auto-fire loop every 1.5s
-    launchCrossetteAt(canvas.width * 0.5, canvas.height * 0.35);
-    autoInterval = setInterval(() => {
-      const tx = Math.random() * canvas.width;
-      const ty = canvas.height * 0.15 + Math.random() * canvas.height * 0.45;
-      launchCrossetteAt(tx, ty);
-    }, 1500);
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       cancelAnimationFrame(animFrameId);
-      clearInterval(autoInterval);
+      clearBarrageTimers();
+      if (nextTimer) clearTimeout(nextTimer);
+      clearTimeout(initialTimer);
     };
   }, []);
 
@@ -396,24 +590,27 @@ export default function Effort20Roadmap() {
         <div
           className="rounded-[36px] border-2 border-[#f59e0b]/70 bg-gradient-to-r from-[#120d06] via-[#22170a] to-[#0f0a04] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_-20px_rgba(245,158,11,0.35)] relative overflow-hidden text-amber-50"
         >
-          {/* HTML5 CROSSETTE SPLIT CRACKER CANVAS SIMULATION BACKGROUND ONLY */}
+          {/* HTML5 CELEBRATION CRACKER BLAST SIMULATION BACKGROUND */}
           <canvas
             ref={crossetteCanvasRef}
             className="absolute inset-0 w-full h-full pointer-events-none z-0 rounded-[36px]"
           />
 
+          {/* Pristine bottom vignette shield: ensures zero clipped debris or cut-offs on the bottom border */}
+          <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#120d06] via-[#120d06]/60 to-transparent pointer-events-none z-1 rounded-b-[36px]" />
+
           <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
             
-            {/* Top-Left Section: Precision Tech Circular Emblem Medallion */}
-            <div className="lg:col-span-4 relative flex items-center justify-center py-4">
-              <div className="absolute w-52 h-52 sm:w-60 sm:h-60 rounded-full border-4 border-dashed border-[#f59e0b]/70 animate-gyro-cw pointer-events-none" />
-              <div className="absolute w-44 h-44 sm:w-52 sm:h-52 rounded-full border-2 border-dotted border-amber-300/80 animate-gyro-ccw pointer-events-none" />
+            {/* Top-Left Section: Precision Tech Circular Emblem Medallion (Proportionately scaled to avoid border clipping) */}
+            <div className="lg:col-span-4 relative flex items-center justify-center py-2">
+              <div className="absolute w-40 h-40 sm:w-44 sm:h-44 lg:w-48 lg:h-48 rounded-full border-3 border-dashed border-[#f59e0b]/60 animate-gyro-cw pointer-events-none" />
+              <div className="absolute w-34 h-34 sm:w-38 sm:h-38 lg:w-40 lg:h-40 rounded-full border-2 border-dotted border-amber-300/70 animate-gyro-ccw pointer-events-none" />
 
-              <div className="relative z-10 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-gradient-to-b from-[#1c1409] via-[#2e1e0b] to-[#140d04] border-4 border-[#f59e0b] shadow-[0_0_40px_rgba(245,158,11,0.6)] flex flex-col items-center justify-center gap-1 select-none">
-                <span className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] font-mono">
+              <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-gradient-to-b from-[#1c1409] via-[#2e1e0b] to-[#140d04] border-4 border-[#f59e0b] shadow-[0_0_35px_rgba(245,158,11,0.5)] flex flex-col items-center justify-center gap-1 select-none">
+                <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] font-mono">
                   2.0
                 </span>
-                <div className="px-3 py-0.5 rounded-full bg-black/80 border border-[#f59e0b] text-[#f59e0b] text-[9px] font-black uppercase tracking-widest shadow-xs">
+                <div className="px-2.5 py-0.5 rounded-full bg-black/80 border border-[#f59e0b] text-[#f59e0b] text-[8px] sm:text-[9px] font-black uppercase tracking-widest shadow-xs">
                   STRATEGIC
                 </div>
               </div>
