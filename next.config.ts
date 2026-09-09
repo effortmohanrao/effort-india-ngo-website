@@ -64,6 +64,46 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/human-resources",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/human-resources/:path*",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/human_resources",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/human_resources/:path*",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/community-health",
+        destination: "/impact",
+        permanent: true,
+      },
+      {
+        source: "/community-health/:path*",
+        destination: "/impact",
+        permanent: true,
+      },
+      {
+        source: "/community_health",
+        destination: "/impact",
+        permanent: true,
+      },
+      {
+        source: "/community_health/:path*",
+        destination: "/impact",
+        permanent: true,
+      },
+      {
         source: "/index.html",
         destination: "/",
         permanent: true,
