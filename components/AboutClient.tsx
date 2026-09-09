@@ -209,20 +209,20 @@ const memoryCards = [
   { year: "Ongoing", achievement: "Multi-Sector Programs", desc: "Education, healthcare, livelihoods, environment.", icon: Sprout },
 ];
 
-const visionMissionSlides: { label: string; icon: typeof Eye; title: string; desc: string; image: string }[] = [
+const visionMissionSlides: { slug: string; label: string; icon: typeof Eye; title: string; desc: string }[] = [
   {
+    slug: "vision",
     label: "Vision",
     icon: Eye,
     title: "Empowered Communities Building Resilient Futures",
     desc: "Empowered communities building resilient, inclusive, and sustainable futures — where communities are empowered to make informed decisions, manage their resources sustainably, and respond effectively to challenges.",
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1000",
   },
   {
+    slug: "mission",
     label: "Mission",
     icon: Target,
     title: "Sustainably Managing Resources & Empowering Youth",
     desc: "To enable communities to sustainably manage natural resources, strengthen youth skills and livelihoods, and function as a community-based knowledge-sharing and learning centre that fosters experiential learning, shared solutions, and improved well-being.",
-    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
@@ -522,6 +522,21 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       .then((res) => res.json())
       .then((data) => setTeamSocials(data.socials ?? {}))
       .catch(() => { });
+  }, []);
+
+  const [visionMissionImages, setVisionMissionImages] = useState<Record<string, string>>({});
+  useEffect(() => {
+    Promise.all(
+      visionMissionSlides.map((s) =>
+        fetch(`/api/site/media?prefix=about/${s.slug}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [s.slug, data.images?.[0]?.url] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [slug, url] of entries) if (url) map[slug] = url;
+      setVisionMissionImages(map);
+    });
   }, []);
 
   const teamTrackRef = useRef<HTMLDivElement>(null);
@@ -904,10 +919,16 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 {(() => {
                   const slide = visionMissionSlides[activeVMSlide];
                   const SlideIcon = slide.icon;
+                  const slideImage = visionMissionImages[slide.slug];
                   return (
                     <div key={activeVMSlide} className="animate-fade-in relative z-10 flex items-center gap-6">
-                      <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-amber-400/25 shrink-0">
-                        <img src={slide.image} alt={slide.label} className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-amber-400/25 shrink-0 bg-white/5 flex items-center justify-center">
+                        {slideImage ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={slideImage} alt={slide.label} className="absolute inset-0 w-full h-full object-cover" />
+                        ) : (
+                          <SlideIcon className="w-8 h-8 text-amber-400/40" />
+                        )}
                       </div>
                       <div>
                         <SlideIcon className="w-5 h-5 text-amber-400 mb-2" />

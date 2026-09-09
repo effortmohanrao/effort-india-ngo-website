@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, ExternalLink, ImageIcon, Users, Handshake } from "lucide-react";
+import { ChevronLeft, ExternalLink, ImageIcon, Users, Handshake, Eye, Target } from "lucide-react";
 import MediaSlotManager from "./MediaSlotManager";
 import TeamPanel from "./TeamPanel";
 import { partnerCategories } from "@/lib/partners";
@@ -16,9 +16,55 @@ type Section = {
 
 const sections: Section[] = [
   { id: "hero", icon: ImageIcon, title: "Hero Section", desc: "Rotating cover photos shown top-right of the About page. Changes every ~3.5 seconds — upload as many as you like." },
+  { id: "vision-mission", icon: Eye, title: "Vision & Mission", desc: "One photo each for the Vision and Mission slider on the About page." },
   { id: "partners", icon: Handshake, title: "Partner Logos", desc: "Real logos shown in the scrolling \"Organizations That Believe In Our Mission\" section." },
   { id: "team", icon: Users, title: "Meet Our Team", desc: "Photo and social links for each of the 9 leadership team members." },
 ];
+
+function VisionMissionPanel({ onBack }: { onBack: () => void }) {
+  return (
+    <div className="p-6">
+      <button
+        type="button"
+        onClick={onBack}
+        className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-emerald-700 mb-4 cursor-pointer"
+      >
+        <ChevronLeft className="w-3.5 h-3.5" /> Back to About Us sections
+      </button>
+
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="text-lg font-bold text-slate-800">About Page — Vision &amp; Mission</h2>
+          <p className="text-xs text-slate-500 mt-0.5">
+            One photo each, shown in the circular frame on the Vision/Mission slider. Uploading a new one replaces the old.
+          </p>
+        </div>
+        <Link
+          href="/about#vision-mission"
+          target="_blank"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 shrink-0"
+        >
+          View live page <ExternalLink className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-1.5">
+            <Eye className="w-4 h-4 text-emerald-600" /> Vision
+          </p>
+          <MediaSlotManager prefix="about/vision" label="Vision photo" />
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-1.5">
+            <Target className="w-4 h-4 text-emerald-600" /> Mission
+          </p>
+          <MediaSlotManager prefix="about/mission" label="Mission photo" />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function PartnerLogosPanel({ onBack }: { onBack: () => void }) {
   return (
@@ -118,6 +164,10 @@ export default function AboutPanel() {
         onBack={() => setOpenSection(null)}
       />
     );
+  }
+
+  if (openSection === "vision-mission") {
+    return <VisionMissionPanel onBack={() => setOpenSection(null)} />;
   }
 
   if (openSection === "partners") {
