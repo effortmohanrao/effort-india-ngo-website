@@ -32,10 +32,10 @@ const journeyChapters = [
 ];
 
 const directorAwardsAdmin = [
-  { id: 1, title: "National Social Impact Leadership Award" },
-  { id: 2, title: "Honorary Doctorate in Sustainable Development" },
-  { id: 3, title: "Diploma in Social Development Distinction" },
-  { id: 4, title: "Lifetime Rural & Tribal Upliftment Award" },
+  { id: 1, title: "1. State Govt. Recognition Award (Presented by Hon'ble CM Sri N. Chandrababu Naidu)" },
+  { id: 2, title: "2. Prakasam District Administration Independence Day Merit Award" },
+  { id: 3, title: "3. Rotary International District 3150 Vocational Excellence Award" },
+  { id: 4, title: "4. Kennedy University Honorary Ph.D. in Environmental & Sustainable Development" },
 ];
 
 function JourneyTimelinePanel({ onBack }: { onBack: () => void }) {

@@ -292,35 +292,35 @@ export type DirectorAward = {
 export const directorAwards: DirectorAward[] = [
   {
     id: 1,
-    title: "National Social Impact Leadership Award",
-    organization: "Ministry of Social Justice & Empowerment",
-    year: "National Honor",
-    badge: "National Award",
-    description: "Conferred for four decades of grassroots development execution, community institutions, and tribal welfare excellence across 1,909 villages.",
+    title: "State Government Recognition Award",
+    organization: "Government of Andhra Pradesh (Hon'ble CM Sri N. Chandrababu Naidu)",
+    year: "State Honor",
+    badge: "State Govt. Award",
+    description: "Conferred by the Hon'ble Chief Minister of Andhra Pradesh, Sri N. Chandrababu Naidu, in recognition of exemplary public service, watershed management, and rural community empowerment.",
   },
   {
     id: 2,
-    title: "Honorary Doctorate in Sustainable Development",
-    organization: "Kennedy University, Paris, France",
-    year: "Paris, France",
-    badge: "Ph.D. Citation",
-    description: "Awarded in Paris for pioneering community-led watershed management, women empowerment, and long-term sustainable rural livelihoods.",
+    title: "District Administration Merit Award",
+    organization: "District Administration, Prakasam District",
+    year: "Independence Day Honor",
+    badge: "District Merit Award",
+    description: "Awarded by the Prakasam District Administration on the occasion of Independence Day in recognition of distinguished community service and rural development leadership.",
   },
   {
     id: 3,
-    title: "Diploma in Social Development Distinction",
-    organization: "St. Francis Xavier University, Canada",
-    year: "Canada Citation",
-    badge: "Global Diploma",
-    description: "Distinguished international recognition for exemplary dedication to grassroots social transformation and participatory development.",
+    title: "Vocational Excellence Award",
+    organization: "Rotary International District 3150",
+    year: "District 3150",
+    badge: "Vocational Excellence",
+    description: "Honored with the prestigious Vocational Excellence Award by Rotary International District 3150 for outstanding vocational dedication, social ethics, and transformative grassroots impact.",
   },
   {
     id: 4,
-    title: "Lifetime Rural & Tribal Upliftment Award",
-    organization: "State NGO Leadership Summit",
-    year: "State Recognition",
-    badge: "State Award",
-    description: "Honored for zero-tolerance transparency, transformative tribal education, and empowering over 100,000 underprivileged families.",
+    title: "Honorary Ph.D. in Environmental & Sustainable Development",
+    organization: "Kennedy University",
+    year: "Honorary Doctorate",
+    badge: "Ph.D. Citation",
+    description: "Conferred with an Honorary Doctor of Philosophy (Ph.D.) specializing in Environmental and Sustainable Development for pioneering four decades of sustainable natural resource management.",
   },
 ];
 
@@ -461,14 +461,17 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     initialHeroImageUrl ? [{ key: "initial", url: initialHeroImageUrl }] : []
   );
   const [activeHeroImage, setActiveHeroImage] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
   const [activeAwardIndex, setActiveAwardIndex] = useState(0);
+  const [awardPaused, setAwardPaused] = useState(false);
 
   useEffect(() => {
+    if (awardPaused) return;
     const timer = setInterval(() => {
       setActiveAwardIndex((prev) => (prev + 1) % directorAwards.length);
     }, 2000);
     return () => clearInterval(timer);
-  }, []);
+  }, [awardPaused]);
 
   useEffect(() => {
     fetch("/api/site/media?prefix=about/hero", { cache: "no-store" })
@@ -478,12 +481,12 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
   }, []);
 
   useEffect(() => {
-    if (heroImages.length < 2) return;
+    if (heroImages.length < 2 || heroPaused) return;
     const id = setInterval(() => {
       setActiveHeroImage((i) => (i + 1) % heroImages.length);
     }, 3500);
     return () => clearInterval(id);
-  }, [heroImages]);
+  }, [heroImages, heroPaused]);
 
   useEffect(() => {
     fetch("/api/site/media?prefix=logo", { cache: "no-store" })
@@ -803,7 +806,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 }`}
               style={{ transitionDelay: "250ms" }}
             >
-              <div className="relative rounded-[36px] overflow-hidden border-2 border-amber-400/50 bg-slate-900/80 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(251,191,36,0.25)] hover:border-amber-300 transition-all duration-500 group">
+              <div
+                onMouseEnter={() => setHeroPaused(true)}
+                onMouseLeave={() => setHeroPaused(false)}
+                className="relative rounded-[36px] overflow-hidden border-2 border-amber-400/50 bg-slate-900/80 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(251,191,36,0.25)] hover:border-amber-300 transition-all duration-500 group"
+              >
 
                 {/* Main Cinematic Image Frame */}
                 <div className="relative h-[420px] sm:h-[460px] rounded-[28px] overflow-hidden border border-white/15 bg-slate-950">
@@ -1539,7 +1546,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 </div>
 
                 {/* COLUMN 3 (Right 4 cols): Director's Honors & Awards Showcase (Major Dynamic Display) */}
-                <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]">
+                <div
+                  onMouseEnter={() => setAwardPaused(true)}
+                  onMouseLeave={() => setAwardPaused(false)}
+                  className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]"
+                >
 
                   {/* Cyber Light Sweep & Ambient Neon Orbs */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent animate-light-sweep pointer-events-none" />
@@ -1558,10 +1569,17 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                         </span>
                       </div>
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-full bg-amber-950/90 border border-amber-500/40 text-amber-300 text-[9px] font-black uppercase tracking-wider flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                      <span>{activeAwardIndex + 1} / {directorAwards.length}</span>
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {awardPaused && (
+                        <span className="px-2 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[8px] font-black uppercase tracking-wider animate-pulse">
+                          PAUSED
+                        </span>
+                      )}
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-950/90 border border-amber-500/40 text-amber-300 text-[9px] font-black uppercase tracking-wider flex items-center gap-1">
+                        <span className={`w-1.5 h-1.5 rounded-full bg-amber-400 ${awardPaused ? "" : "animate-ping"}`} />
+                        <span>{activeAwardIndex + 1} / {directorAwards.length}</span>
+                      </span>
+                    </div>
                   </div>
 
                   {/* FULL MAJOR DISPLAY: ONE PROMINENT FEATURED IMAGE WITH 2-SECOND DYNAMIC TRANSITION */}
@@ -1586,13 +1604,19 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-slate-900">
-                              <Trophy className="w-14 h-14 text-amber-400/25" />
+                            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-900 p-6 text-center relative overflow-hidden">
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.15)_0%,transparent_65%)]" />
+                              <div className="w-16 h-16 rounded-2xl bg-amber-400/15 border-2 border-amber-400/40 flex items-center justify-center text-amber-400 mb-2 shadow-[0_0_25px_rgba(245,158,11,0.25)] relative z-10">
+                                <Trophy className="w-8 h-8" />
+                              </div>
+                              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-300 relative z-10 mb-1">
+                                Official Award Photograph
+                              </span>
+                              <span className="text-[10px] text-slate-300 font-medium max-w-[240px] relative z-10">
+                                Felicitation &amp; Honor Archive
+                              </span>
                             </div>
                           )}
-
-                          {/* Gradient Overlays for High-End Cinematic Contrast */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent" />
 
                           {/* Top Floating Badge */}
                           <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
@@ -1605,8 +1629,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                             </span>
                           </div>
 
-                          {/* Bottom Floating Title & Organization Banner */}
-                          <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 z-20 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent space-y-1">
+                          {/* Bottom Floating Title & Organization Card */}
+                          <div className="absolute bottom-3 inset-x-3 p-3.5 z-20 bg-slate-950/85 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl space-y-1">
                             <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 block">
                               {award.organization}
                             </span>
