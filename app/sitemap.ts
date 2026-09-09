@@ -5,16 +5,16 @@ import { programAlbums } from "@/lib/programAlbums";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.effortindia.org";
 
+  // "/csr" and "/transparency" are intentionally excluded — both are permanent-redirect
+  // stubs (to /get-involved and /#trust-section), not real indexable destinations.
   const routes = [
     "",
     "/about",
     "/impact",
     "/donate",
     "/programs",
-    "/csr",
     "/get-involved",
     "/contact",
-    "/transparency",
     "/careers",
     "/gallery",
     "/news",
