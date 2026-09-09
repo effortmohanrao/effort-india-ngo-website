@@ -546,18 +546,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     return () => cancelAnimationFrame(raf);
   }, [galleryPaused]);
 
-  useEffect(() => {
-    const strip = galleryStripRef.current;
-    if (!strip) return;
-    function onWheel(e: WheelEvent) {
-      if (!strip) return;
-      e.preventDefault();
-      strip.scrollLeft += e.deltaY * 1.5;
-    }
-    strip.addEventListener("wheel", onWheel, { passive: false });
-    return () => strip.removeEventListener("wheel", onWheel);
-  }, []);
-
   const [finaleRef, finaleVisible] = useScrollReveal<HTMLElement>();
   const [finaleStatValues, setFinaleStatValues] = useState<number[]>(() => finaleStats.map(() => 0));
   const [finaleParallax, setFinaleParallax] = useState({ x: 0, y: 0 });

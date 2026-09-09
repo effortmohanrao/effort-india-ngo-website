@@ -233,23 +233,6 @@ export default function JourneyTimeline() {
   }, []);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
-      const max = track.scrollWidth - track.clientWidth;
-      const goingRight = e.deltaY > 0;
-      const atEnd = track.scrollLeft >= max - 2;
-      const atStart = track.scrollLeft <= 2;
-      if ((goingRight && atEnd) || (!goingRight && atStart)) return;
-      e.preventDefault();
-      track.scrollLeft += e.deltaY * 1.2;
-    };
-    track.addEventListener("wheel", onWheel, { passive: false });
-    return () => track.removeEventListener("wheel", onWheel);
-  }, []);
-
-  useEffect(() => {
     if (!inView || paused || reduceMotion.current) return;
     const id = window.setInterval(() => {
       setActive((prev) => {
@@ -434,7 +417,7 @@ export default function JourneyTimeline() {
       {/* Horizontal path */}
       <div
         ref={trackRef}
-        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory touch-pan-x pb-8 pt-3 cursor-grab active:cursor-grabbing"
+        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory touch-auto pb-8 pt-3 cursor-grab active:cursor-grabbing"
         style={{
           paddingLeft: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
           paddingRight: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",

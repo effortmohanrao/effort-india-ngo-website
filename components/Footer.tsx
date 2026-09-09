@@ -50,7 +50,7 @@ export default function Footer() {
               <div>
                 <span className="text-xl font-black tracking-tight text-white block">EFFORT</span>
                 <span className="text-[10px] font-semibold text-amber-400/90 block leading-snug normal-case tracking-normal">
-                  Effort (A Society for the Development of Agriculture and Youth)
+                  (A Society for the Development of Agriculture and Youth)
                 </span>
               </div>
             </div>
