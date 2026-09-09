@@ -53,7 +53,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
   // labels like "Child, Women Development & Livelihoods" or "Community Health" also cover
   // projects (women's-livelihood, NREGA entitlements) that have nothing to do with children
   // or health, so trusting the category alone mis-tags those.
-  const isOrchard = searchText.includes("orchard") || (searchText.includes("climate resilient") && searchText.includes("fairtrade"));
+  const isOrchard = (searchText.includes("climate resilient") && searchText.includes("fairtrade")) || searchText.includes("climate resilient farming");
   const isCarbon = searchText.includes("carbon sequestration") || searchText.includes("carbon credit");
   const isEnviro = searchText.includes("waste management") || searchText.includes("marine litter") || searchText.includes("climate literacy");
   const isChilli = searchText.includes("chilli") || searchText.includes("chilly");
@@ -100,7 +100,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
 
   // Determine Primary Project Focus Subject
   let subject = "Sustainable Rural Development";
-  if (isOrchard) subject = "Climate-Resilient Organic Orchards & Sustainable Agriculture";
+  if (isOrchard) subject = "Climate-Resilient Farming & Sustainable Agriculture";
   else if (isCarbon) subject = "Horticulture & Timber Carbon Credit Project";
   else if (isEnviro) subject = "Environmental Awareness & Waste Management";
   else if (isChilli && isTech) subject = "Blockchain Chilli Traceability & Market Linkages";
@@ -146,7 +146,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     youth: "limited local livelihood and vocational skill opportunities for rural youth",
     nrm: "climate variability, drought vulnerability, and natural resource degradation",
     ipm: "unsafe and excessive pesticide use among farming households",
-    orchard: "climate volatility, erratic weather affecting fruit and spice yields, and limited adoption of organic resilience agronomy",
+    orchard: "climate variability, unseasonal rainfall affecting crop yields, high input costs, and limited adoption of agro-ecological resilience methods",
     generic: "crop productivity, pest resistance, soil degradation, and market price discovery",
   };
   const regionalNeedText = `In the targeted eco-regions of ${location}, rural households faced critical bottlenecks in ${bottleneckByTopic[topicKey]}. EFFORT deployed structured, on-ground field solutions to build long-term community resilience.`;
@@ -170,7 +170,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     youth: "Build self-sustaining community-based mentorship networks for trained youth.",
     nrm: "Build self-sustaining community institutions to maintain resilient practices post-completion.",
     ipm: "Build self-sustaining farmer-to-farmer training networks on responsible pesticide use.",
-    orchard: "Build self-sustaining farmer collectives to maintain climate-resilient organic orchard practices and Fairtrade compliance.",
+    orchard: "Build self-sustaining farmer collectives to maintain climate-resilient farming practices and Fairtrade compliance.",
     generic: "Build self-sustaining Community-Based Organisations (CBOs) to maintain assets post-completion.",
   };
   const coreObjectivePoints = [
@@ -187,14 +187,14 @@ export function getProjectContent(project: Project): ProjectContentDetails {
              isChild ? "Educational & Skill Enrichment" :
              isVet ? "Mobile Veterinary Doorstep Care" :
              isTech ? "Digital Traceability & Market Tech" :
-             isOrchard ? "Organic Orchard Agronomy & Field Schools" :
+             isOrchard ? "Climate-Resilient Agronomy & Field Schools" :
              "Farmer Capacity Building & Demos",
       desc: isWater ? "Constructed water harvesting structures, de-silted traditional community tanks, and established soil moisture conservation plots." :
             isHealth ? "Organized mobile clinics, distributed hospital sanitation kits, and conducted grassroots disease prevention campaigns." :
             isChild ? "Established learning centers, provided school sanitation facilities, and conducted child rights sensitisation." :
             isVet ? "Deployed mobile veterinary vans with issue-tracking software for real-time livestock diagnostic support." :
             isTech ? "Implemented QR code traceability, virtualized stock management, and linked farmers directly to market buyers." :
-            isOrchard ? "Trained small-scale fruit and spice growers on integrated organic canopy management, bio-inputs, and climate-adaptive cultivation protocols." :
+            isOrchard ? "Trained small-scale farmers and producers on integrated agro-ecological practices, organic bio-inputs, and climate-adaptive cultivation protocols." :
             "Established hands-on demonstration plots, trained farmers on IPM/IDM protocols, and provided vermi-compost units."
     },
     {
@@ -208,12 +208,12 @@ export function getProjectContent(project: Project): ProjectContentDetails {
             isPaddy ? "Promoted SRI paddy line planting and DSR seed drill techniques, reducing water consumption by up to 35%." :
             isHealth ? "Constructed village sanitation facilities and educated households on WASH hygiene practices." :
             isChild ? "Rehabilitated child laborers into formal government schools with necessary educational kits and nutritional support." :
-            isOrchard ? "Supplied certified organic manures, microbial cultures, neem formulations, and basin moisture conservation tools to protect orchards against climate stress." :
+            isOrchard ? "Supplied certified organic manures, bio-fertilizers, microbial cultures, and moisture conservation tools to protect crops against climate stress." :
             "Supplied high-quality seeds, bio-pesticides, and essential agricultural tools to marginal farmers."
     },
     {
       title: isOrchard ? "Fairtrade Standards & Market Linkages" : "Market Linkages & Sustainability",
-      desc: isOrchard ? `Connected smallholder orchard producers directly to Fairtrade ethical certification channels, sustainable supply networks, and premium institutional buyers.` :
+      desc: isOrchard ? `Connected smallholder producer groups directly to Fairtrade ethical certification channels, sustainable supply networks, and premium institutional buyers.` :
             `Connected beneficiary groups directly to statutory schemes, ${project.funder} network support, and institutional commodity buyers for sustained economic independence.`
     }
   ];
@@ -320,9 +320,9 @@ export function getProjectContent(project: Project): ProjectContentDetails {
       `Finalized the IPM and responsible pesticide-use training curriculum.`,
     ],
     orchard: [
-      `Surveyed organic fruit and spice orchard clusters, soil moisture levels, and climate vulnerability factors across ${location}.`,
-      `Formed smallholder farmer interest groups and enrolled participating orchard growers.`,
-      `Finalized climate-resilient organic agronomic benchmarks and soil improvement schedules with ${project.funder}.`,
+      `Surveyed target agricultural clusters, soil moisture levels, and climate vulnerability factors across ${location}.`,
+      `Formed smallholder farmer interest groups and enrolled participating farming families.`,
+      `Finalized climate-resilient agronomic benchmarks and soil improvement schedules with ${project.funder}.`,
     ],
     generic: [
       `Conducted baseline agricultural and soil health surveys in ${villageCount ? `${villageCount} target villages` : location}.`,
@@ -423,9 +423,9 @@ export function getProjectContent(project: Project): ProjectContentDetails {
       `Distributed IPM kits and pesticide-safety training materials.`,
     ],
     orchard: [
-      `Conducted hands-on Farmer Field Schools on organic canopy management, pruning, and integrated biological pest defense.`,
-      `Demonstrated soil moisture conservation, multi-tier intercropping, and green manuring in model orchards.`,
-      `Trained producers on Fairtrade environmental criteria, organic documentation, and traceability compliance.`,
+      `Conducted hands-on Farmer Field Schools on climate-resilient agronomy, soil health, and integrated biological pest defense.`,
+      `Demonstrated soil moisture conservation, multi-tier intercropping, and green manuring in demonstration plots.`,
+      `Trained producers on Fairtrade environmental criteria, sustainable documentation, and traceability compliance.`,
     ],
     generic: [
       `Organized practical Farmer Field Schools directly on selected demo plots.`,
@@ -527,8 +527,8 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     ],
     orchard: [
       `Supplied certified bio-fertilizers, neem formulations, and organic soil conditioners to participating growers.`,
-      `Established climate-adaptive demo orchards displaying moisture preservation and soil biological regeneration.`,
-      `Conducted periodic organic residue testing and orchard productivity assessments across target clusters.`,
+      `Established climate-adaptive demo plots displaying moisture preservation and soil biological regeneration.`,
+      `Conducted periodic organic residue testing and crop productivity assessments across target clusters.`,
     ],
     generic: [
       `Installed unit-level bio-input kits or drip irrigation sets across demo plots.`,
@@ -631,7 +631,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     orchard: [
       `Consolidated farmer interest groups into self-managed organic producer collectives and committees.`,
       `Facilitated premium market linkages with Fairtrade certified buyers and value-addition supply chains.`,
-      `Transferred long-term orchard stewardship and peer-learning management to community leaders.`,
+      `Transferred long-term climate-resilient farming stewardship and peer-learning management to community leaders.`,
     ],
     generic: [
       `Established formal buyer linkages with ${project.funder} and commercial aggregators.`,
@@ -664,7 +664,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     youth: "Youth Skills Survey",
     nrm: "NRM & Drought Vulnerability Survey",
     ipm: "Pesticide Use Baseline Survey",
-    orchard: "Agro-Ecological & Orchard Baseline Survey",
+    orchard: "Agro-Ecological & Climate Baseline Survey",
     generic: "Baseline & Farmer Selection",
   };
   const stage2TitleByTopic: Record<TopicKey, string> = {
@@ -686,7 +686,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     youth: "Vocational Skills Training",
     nrm: "Climate-Resilient Field Schools",
     ipm: "IPM Field Schools",
-    orchard: "Climate-Resilient Orchard Field Schools",
+    orchard: "Climate-Resilient Field Schools",
     generic: "Field Schools & Demos",
   };
   const stage3TitleByTopic: Record<TopicKey, string> = {
@@ -752,7 +752,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     youth: "Hands-on vocational skills training conducted directly with enrolled youth.",
     nrm: "Hands-on climate-resilient Farmer Field Schools conducted directly in project villages.",
     ipm: "Hands-on IPM Field Schools conducted directly with farmer groups.",
-    orchard: "Intensive hands-on field schools educating orchard farmers on organic agronomy and climate mitigation.",
+    orchard: "Intensive hands-on field schools educating farmers on climate-resilient agronomy and drought mitigation.",
     generic: "Hands-on training sessions and practical demonstrations conducted directly in project villages.",
   };
   const stage3DescByTopic: Record<TopicKey, string> = {
@@ -774,7 +774,7 @@ export function getProjectContent(project: Project): ProjectContentDetails {
     youth: "Deploying vocational placement and self-employment support for trained youth.",
     nrm: "Deploying climate-resilient farming practices across demonstration villages.",
     ipm: "Deploying IPM traps and pesticide-safety demonstrations across target villages.",
-    orchard: "Distribution of organic bio-inputs and establishment of climate-resilient demonstration orchards.",
+    orchard: "Distribution of organic bio-inputs and establishment of climate-resilient demonstration farms.",
     generic: "Deploying technical assets, infrastructure, or bio-inputs across target communities.",
   };
   const stage4DescByTopic: Record<TopicKey, string> = {
@@ -987,12 +987,12 @@ export function getProjectContent(project: Project): ProjectContentDetails {
       { icon: "handshake", title: "Community Ownership", text: "Transferred IPM and pesticide-safety training ownership to farmer leaders.", color: "violet" },
     ],
     orchard: [
-      { icon: "trees", title: "Orchard Climate Resilience", text: "Enhanced fruit and spice orchard survival and yields through soil mulching, canopy management, and micro-climate buffers.", color: "emerald" },
-      { icon: "leaf", title: "100% Organic Soil Health", text: "Restored soil organic carbon and microbial vitality using on-farm bio-compost and zero synthetic chemicals.", color: "teal" },
+      { icon: "cloudRain", title: "Climate-Resilient Agriculture", text: "Enhanced crop survival and yields through soil mulching, adaptive cropping, and natural resource conservation.", color: "emerald" },
+      { icon: "leaf", title: "100% Soil Health Restoration", text: "Restored soil organic carbon and microbial vitality using on-farm bio-compost and zero synthetic chemicals.", color: "teal" },
       { icon: "coins", title: "Stable Producer Incomes", text: "Shielded smallholders from seasonal yield shocks and price fluctuations through Fairtrade market linkages.", color: "amber" },
-      { icon: "droplets", title: "Water Conservation", text: "Conserved critical orchard moisture using tree basin mulching, rainwater percolation, and micro-irrigation.", color: "sky" },
+      { icon: "droplets", title: "Water Conservation", text: "Conserved critical soil moisture using contour trenches, percolation basins, and efficient water management.", color: "sky" },
       { icon: "shield", title: "Fairtrade Standards Compliance", text: "Empowered small-scale producers with verified ethical trade compliance and sustainable environmental stewardship.", color: "violet" },
-      { icon: "users", title: "Farmer Collectives", text: "Organized grower collectives to independently manage aggregation, organic certification, and peer extension.", color: "emerald" },
+      { icon: "users", title: "Farmer Collectives", text: "Organized grower collectives to independently manage aggregation, certification, and peer-to-peer extension.", color: "emerald" },
     ],
     generic: [
       { icon: "tractor", title: "Improved Yields", text: "Adoption of improved practices leading to higher crop yields and better produce quality.", color: "emerald" },
