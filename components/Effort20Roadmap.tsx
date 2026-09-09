@@ -39,7 +39,7 @@ const phasesData: Phase[] = [
   {
     id: "phase-1",
     phaseLabel: "PHASE I",
-    years: "2024–2027",
+    years: "2026–2027",
     title: "Foundation, Consolidation & Transition",
     focus: "Strengthening foundations and consolidating learning before the next phase of growth.",
     highlights: [
@@ -157,7 +157,7 @@ export default function Effort20Roadmap() {
   const [activeNodeIndex, setActiveNodeIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
   const crossetteCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -370,7 +370,7 @@ export default function Effort20Roadmap() {
     <section
       ref={sectionRef}
       id="roadmap"
-      className="relative overflow-hidden bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0] py-20 lg:py-28 text-slate-900 selection:bg-amber-400 selection:text-slate-950 font-sans"
+      className="relative overflow-hidden bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0] pt-2 pb-14 sm:pt-6 sm:pb-20 lg:py-28 text-slate-900 selection:bg-amber-400 selection:text-slate-950 font-sans"
     >
       {/* --- GEOMETRIC MANDALA & SACRED LINE ART BACKGROUND --- */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -394,9 +394,7 @@ export default function Effort20Roadmap() {
         {/* HERO FEATURE: CINEMATIC BLOCKBUSTER TRAILER CONTAINER WITH SPARKS */}
         {/* ========================================================================= */}
         <div
-          className={`rounded-[36px] border-2 border-[#f59e0b]/70 bg-gradient-to-r from-[#120d06] via-[#22170a] to-[#0f0a04] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_-20px_rgba(245,158,11,0.35)] relative overflow-hidden text-amber-50 transition-all duration-1000 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className="rounded-[36px] border-2 border-[#f59e0b]/70 bg-gradient-to-r from-[#120d06] via-[#22170a] to-[#0f0a04] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_-20px_rgba(245,158,11,0.35)] relative overflow-hidden text-amber-50"
         >
           {/* HTML5 CROSSETTE SPLIT CRACKER CANVAS SIMULATION BACKGROUND ONLY */}
           <canvas
@@ -425,7 +423,7 @@ export default function Effort20Roadmap() {
             <div className="lg:col-span-8 space-y-4 text-left">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-xs font-black uppercase tracking-[0.3em] shadow-md backdrop-blur-md">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" style={{ animationDuration: "8s" }} />
-                <span>EFFORT 2.0 &middot; STRATEGIC ROADMAP (2024–2030)</span>
+                <span>EFFORT 2.0 &middot; STRATEGIC ROADMAP (2026–2030)</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase font-serif drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)]">
@@ -447,16 +445,12 @@ export default function Effort20Roadmap() {
         {/* ========================================================================= */}
         {/* PHASE TIMELINE: Sleek Horizontal Glassmorphism Timeline Bar */}
         {/* ========================================================================= */}
-        <div
-          className={`transition-all duration-1000 delay-200 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div>
           {/* Timeline Sub-header */}
           <div className="flex items-center justify-between mb-8 pb-3 border-b border-amber-900/15">
             <div className="flex items-center gap-2.5">
               <span className="text-[11px] font-black uppercase tracking-widest text-amber-950 bg-amber-100 border border-amber-300 rounded-full px-3.5 py-1">
-                2024 → 2030
+                2026 → 2030
               </span>
               <h3 className="text-sm font-black text-slate-900">Three Primary Phases — Horizontal Roadmap</h3>
             </div>

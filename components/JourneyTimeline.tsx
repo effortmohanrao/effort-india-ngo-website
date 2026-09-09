@@ -130,21 +130,21 @@ const chapters: JourneyChapter[] = [
     pin: "2022",
     shortTitle: "Pan-India",
     indexLabel: "05",
-    title: "The Pan-India Era",
-    subtitle: "10 states, 1,909 villages & 2.67 lakh farm families",
-    desc: "EFFORT established itself as a national PAN-India organization, working across 10 Indian states and reaching 2.67 lakh farm families in 1,909 villages with sustainable agriculture, women-led MACS cooperatives, and watershed development.",
+    title: "National Expansion & PAN-India Footprint",
+    subtitle: "9 states, 1,859 villages & 2.50 lakh farm families",
+    desc: "EFFORT became a PAN-India organization working across 9 Indian states (both Southern and Northern), covering 2.50 Lakh farm families in 1,859 villages with sustainable agriculture, community collectives, and natural resource management.",
     marks: [
-      "National footprint: 10 Indian states & 1,909 villages",
-      "2,67,000 farm families actively reached",
-      "Sustainable agriculture, FPOs and watershed networks",
+      "PAN-India footprint: 9 Indian states (Southern & Northern)",
+      "2,50,000 farm families actively covered",
+      "Field impact in 1,859 villages with grassroots resilience",
     ],
     accent: "#a16207",
     icon: Globe2,
     image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1200",
     stats: [
-      { label: "Villages", value: "1,909" },
-      { label: "Families", value: "2.67 Lakh" },
-      { label: "Footprint", value: "10 States" },
+      { label: "Villages", value: "1,859" },
+      { label: "Families", value: "2.50 Lakh" },
+      { label: "Footprint", value: "9 States" },
     ],
   },
 ];
@@ -282,7 +282,7 @@ export default function JourneyTimeline() {
     <section
       id="journey"
       ref={sectionRef}
-      className="relative overflow-hidden py-16 lg:py-24 text-[#1c1910]"
+      className="relative overflow-hidden pt-12 pb-6 sm:pt-16 sm:pb-10 lg:pt-24 lg:pb-16 text-[#1c1910]"
       style={{
         background:
           "radial-gradient(ellipse at 12% 0%, rgba(15,107,76,0.08), transparent 42%), radial-gradient(ellipse at 88% 100%, rgba(180,83,9,0.07), transparent 46%), linear-gradient(180deg, #f7f3ea 0%, #efe6d4 100%)",
@@ -559,7 +559,7 @@ export default function JourneyTimeline() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mt-10 pt-6 border-t border-[#1c1910]/10">
+        <div className="flex items-center justify-center gap-4 mt-6 pt-4 sm:mt-8 sm:pt-6 border-t border-[#1c1910]/10">
           <span className="h-px w-12 bg-gradient-to-r from-transparent to-emerald-700/70" />
           <div className="text-center">
             <p className="text-[10px] font-black tracking-[0.28em] text-emerald-800 uppercase">The path continues</p>
