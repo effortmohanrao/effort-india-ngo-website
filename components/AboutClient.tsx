@@ -380,6 +380,12 @@ const leadershipTeam: LeadershipMember[] = [
     role: "Project Coordinator",
     intro: "Post Graduate in Agri Business Management. Expertise in Climate Resilient Farming Projects, Reporting and Documentation.",
   },
+  {
+    slug: "mohan-reddy",
+    name: "M. V. Mohan Reddy",
+    role: "Lead, IT & Digital Platforms",
+    intro: "Graduate in Computer Science and Post Graduate in Human Rights & Duties. Expertise in IT Skills.",
+  },
 ];
 
 type PhilosophyNote = {
