@@ -47,6 +47,7 @@ import {
   Leaf,
   Camera,
   Droplets,
+  Trophy,
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, TwitterXIcon } from "@/components/icons/SocialIcons";
 import Effort20Roadmap from "@/components/Effort20Roadmap";
@@ -279,6 +280,55 @@ const founderProfile = {
   badges: ["40 Years in Social Development", "PhD (Hon.), Kennedy University, Paris", "Diploma in Social Development, Canada"],
 };
 
+export type DirectorAward = {
+  id: number;
+  title: string;
+  organization: string;
+  year: string;
+  image: string;
+  badge: string;
+  description: string;
+};
+
+export const directorAwards: DirectorAward[] = [
+  {
+    id: 1,
+    title: "National Social Impact Leadership Award",
+    organization: "Ministry of Social Justice & Empowerment",
+    year: "National Honor",
+    image: "/awards/award-1.jpg",
+    badge: "National Award",
+    description: "Conferred for four decades of grassroots development execution, community institutions, and tribal welfare excellence across 1,909 villages.",
+  },
+  {
+    id: 2,
+    title: "Honorary Doctorate in Sustainable Development",
+    organization: "Kennedy University, Paris, France",
+    year: "Paris, France",
+    image: "/awards/award-2.jpg",
+    badge: "Ph.D. Citation",
+    description: "Awarded in Paris for pioneering community-led watershed management, women empowerment, and long-term sustainable rural livelihoods.",
+  },
+  {
+    id: 3,
+    title: "Diploma in Social Development Distinction",
+    organization: "St. Francis Xavier University, Canada",
+    year: "Canada Citation",
+    image: "/awards/award-3.jpg",
+    badge: "Global Diploma",
+    description: "Distinguished international recognition for exemplary dedication to grassroots social transformation and participatory development.",
+  },
+  {
+    id: 4,
+    title: "Lifetime Rural & Tribal Upliftment Award",
+    organization: "State NGO Leadership Summit",
+    year: "State Recognition",
+    image: "/awards/award-4.jpg",
+    badge: "State Award",
+    description: "Honored for zero-tolerance transparency, transformative tribal education, and empowering over 100,000 underprivileged families.",
+  },
+];
+
 type LeadershipMember = {
   slug: string;
   name: string;
@@ -410,6 +460,14 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     initialHeroImageUrl ? [{ key: "initial", url: initialHeroImageUrl }] : []
   );
   const [activeHeroImage, setActiveHeroImage] = useState(0);
+  const [activeAwardIndex, setActiveAwardIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveAwardIndex((prev) => (prev + 1) % directorAwards.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     fetch("/api/site/media?prefix=about/hero", { cache: "no-store" })
@@ -1255,11 +1313,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" style={{ animationDelay: "2.5s" }} />
               <div className="bg-noise absolute inset-0 opacity-20 pointer-events-none" />
 
-              <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+              <div className="grid lg:grid-cols-12 gap-8 items-start relative z-10">
 
-                {/* COLUMN 1 (Left 3 cols): Executive Portrait & Social Dock */}
+                {/* COLUMN 1 (Left 3 cols): Executive Portrait, Social Dock & Proven Track Record HUD */}
                 <div className="lg:col-span-3 flex flex-col items-center text-center space-y-3.5 border-b lg:border-b-0 lg:border-r border-emerald-500/20 pb-6 lg:pb-0 lg:pr-6">
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border-4 border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] group/img bg-emerald-900 flex items-center justify-center">
+                  <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-[28px] overflow-hidden border-4 border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] group/img bg-emerald-900 flex items-center justify-center">
                     {teamPhotos[founderProfile.slug] ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -1278,35 +1336,95 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                     <p className="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 mt-0.5">{founderProfile.title}</p>
                   </div>
 
-                  {/* Official Social Dock — only platforms the admin has actually filled in are shown */}
+                  {/* Official Social Dock */}
                   {(() => {
                     const s = teamSocials[founderProfile.slug];
                     if (!s || (!s.linkedin && !s.instagram && !s.facebook && !s.twitter)) return null;
                     return (
-                      <div className="flex items-center gap-2.5 pt-0.5">
+                      <div className="flex items-center gap-2 pt-0.5">
                         {s.linkedin && (
-                          <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
-                            <LinkedinIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-8 h-8 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <LinkedinIcon className="w-4 h-4 text-white group-hover/icon:scale-110 transition-transform" />
                           </a>
                         )}
                         {s.instagram && (
-                          <a href={s.instagram} target="_blank" rel="noopener noreferrer" title="Instagram Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
-                            <InstagramIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          <a href={s.instagram} target="_blank" rel="noopener noreferrer" title="Instagram Profile" className="w-8 h-8 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <InstagramIcon className="w-4 h-4 text-white group-hover/icon:scale-110 transition-transform" />
                           </a>
                         )}
                         {s.facebook && (
-                          <a href={s.facebook} target="_blank" rel="noopener noreferrer" title="Facebook Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
-                            <FacebookIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          <a href={s.facebook} target="_blank" rel="noopener noreferrer" title="Facebook Profile" className="w-8 h-8 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <FacebookIcon className="w-4 h-4 text-white group-hover/icon:scale-110 transition-transform" />
                           </a>
                         )}
                         {s.twitter && (
-                          <a href={s.twitter} target="_blank" rel="noopener noreferrer" title="X (Twitter) Profile" className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
-                            <TwitterXIcon className="w-4.5 h-4.5 text-white group-hover/icon:scale-110 transition-transform" />
+                          <a href={s.twitter} target="_blank" rel="noopener noreferrer" title="X (Twitter) Profile" className="w-8 h-8 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shadow-xs hover:bg-emerald-600 hover:border-emerald-400 hover:-translate-y-1 transition-all group/icon">
+                            <TwitterXIcon className="w-4 h-4 text-white group-hover/icon:scale-110 transition-transform" />
                           </a>
                         )}
                       </div>
                     );
                   })()}
+
+                  {/* PROVEN TRACK RECORD HUD — MOVED BELOW DIRECTOR PROFILE */}
+                  <div className="w-full bg-slate-950/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-2xl p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] space-y-3 relative group/hud overflow-hidden text-white mt-1">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
+                    
+                    {/* Top HUD Status Bar */}
+                    <div className="flex items-center justify-between border-b border-white/10 pb-2 relative z-10">
+                      <div className="flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-300">
+                          Our Track Record
+                        </span>
+                      </div>
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[8px] font-extrabold uppercase tracking-wider flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                        <span>LIVE</span>
+                      </span>
+                    </div>
+
+                    {/* Graphic Animated Digits Grid */}
+                    <div className="grid grid-cols-2 gap-2 relative z-10">
+                      {/* DIGIT 1: 65+ (COMPLETED PROJECTS) */}
+                      <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(16,185,129,0.2)]">
+                        <span className="text-[8px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
+                          <Award className="w-2.5 h-2.5 text-amber-400" /> COMPLETED
+                        </span>
+                        <div className="text-3xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_15px_rgba(16,185,129,0.7)] animate-hero-bob">
+                          65<span className="text-lg text-emerald-400 font-sans">+</span>
+                        </div>
+                        <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">
+                          PROJECTS
+                        </span>
+                      </div>
+
+                      {/* DIGIT 2: 15 (ACTIVE ONGOING PROJECTS) */}
+                      <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                        <span className="text-[8px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" /> ONGOING
+                        </span>
+                        <div className="text-3xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.7)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
+                          15
+                        </div>
+                        <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">
+                          PROJECTS
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bottom HUD Ticker & Interactive Link */}
+                    <a
+                      href="/programs"
+                      className="relative z-10 flex items-center justify-between px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-900 to-teal-900 border border-emerald-500/40 hover:border-emerald-400 text-white text-[10px] font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)] group/btn"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                        <span>EXPLORE 80 PROJECTS</span>
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    </a>
+                  </div>
                 </div>
 
                 {/* COLUMN 2 (Middle 5 cols): Executive Statement & Proven Track Record Badges */}
@@ -1383,73 +1501,104 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   </div>
                 </div>
 
-                {/* COLUMN 3 (Right 4 cols): Embedded Hollywood Graphic Animated Digits HUD Box */}
-                <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-emerald-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] space-y-4 relative group/hud overflow-hidden text-white">
+                {/* COLUMN 3 (Right 4 cols): Director's Honors & Awards Showcase (Major Dynamic Display) */}
+                <div className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]">
 
-                  {/* Hollywood Cyber Light Sweep & Ambient Neon Orbs */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
-                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-400/20 rounded-full blur-2xl pointer-events-none group-hover/hud:scale-150 transition-transform duration-1000" />
+                  {/* Cyber Light Sweep & Ambient Neon Orbs */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent animate-light-sweep pointer-events-none" />
+                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-400/20 rounded-full blur-2xl pointer-events-none group-hover/awards:scale-150 transition-transform duration-1000" />
 
-                  {/* Top HUD Status Bar */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5 relative z-10">
+                  {/* Top Header */}
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5 relative z-20">
+                    <div className="flex items-center gap-2">
+                      <Trophy className="w-4 h-4 text-amber-400 animate-pulse" />
+                      <div>
+                        <span className="text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 block leading-tight">
+                          Director's Awards &amp; Honors
+                        </span>
+                        <span className="text-[9px] text-slate-400 font-semibold block">
+                          National &amp; Global Recognitions
+                        </span>
+                      </div>
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-950/90 border border-amber-500/40 text-amber-300 text-[9px] font-black uppercase tracking-wider flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                      <span>{activeAwardIndex + 1} / {directorAwards.length}</span>
+                    </span>
+                  </div>
+
+                  {/* FULL MAJOR DISPLAY: ONE PROMINENT FEATURED IMAGE WITH 2-SECOND DYNAMIC TRANSITION */}
+                  <div className="relative flex-1 w-full min-h-[340px] sm:min-h-[380px] rounded-2xl overflow-hidden border-2 border-amber-400/40 shadow-2xl bg-emerald-950">
+                    {directorAwards.map((award, idx) => {
+                      const isActive = activeAwardIndex === idx;
+                      return (
+                        <div
+                          key={award.id}
+                          className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                            isActive
+                              ? "opacity-100 z-10 scale-100 pointer-events-auto"
+                              : "opacity-0 z-0 scale-105 pointer-events-none"
+                          }`}
+                        >
+                          {/* Full Major Award Photo */}
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={award.image}
+                            alt={award.title}
+                            className="w-full h-full object-cover"
+                          />
+
+                          {/* Gradient Overlays for High-End Cinematic Contrast */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent" />
+
+                          {/* Top Floating Badge */}
+                          <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
+                            <span className="px-3 py-1 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                              <Award className="w-3.5 h-3.5" />
+                              <span>{award.badge}</span>
+                            </span>
+                            <span className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
+                              {award.year}
+                            </span>
+                          </div>
+
+                          {/* Bottom Floating Title & Organization Banner */}
+                          <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 z-20 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent space-y-1">
+                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 block">
+                              {award.organization}
+                            </span>
+                            <h4 className="text-sm sm:text-base font-black text-white leading-snug drop-shadow-md">
+                              {award.title}
+                            </h4>
+                            <p className="text-[11px] text-slate-300 line-clamp-2 leading-relaxed pt-0.5">
+                              {award.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Bottom Progress Bars & Quick Navigation */}
+                  <div className="pt-1 relative z-20 flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-300">
-                        Our Track Record
-                      </span>
+                      {directorAwards.map((award, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveAwardIndex(idx)}
+                          className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                            activeAwardIndex === idx
+                              ? "w-8 bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.8)]"
+                              : "w-2.5 bg-white/25 hover:bg-white/50"
+                          }`}
+                          aria-label={`View award ${idx + 1}`}
+                        />
+                      ))}
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                      <span>LIVE METRICS</span>
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
+                      Verified Honors
                     </span>
                   </div>
-
-                  {/* HOLLYWOOD-LEVEL GRAPHIC ANIMATED DIGITS GRID */}
-                  <div className="grid grid-cols-2 gap-3 relative z-10">
-
-                    {/* DIGIT 1: 65 (COMPLETED PROJECTS) */}
-                    <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
-                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-400 rounded-tr-md opacity-80" />
-                      <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
-                        <Award className="w-3 h-3 text-amber-400" /> TRACK RECORD
-                      </span>
-                      <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_20px_rgba(16,185,129,0.8)] animate-hero-bob">
-                        65<span className="text-xl text-emerald-400 font-sans">+</span>
-                      </div>
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">
-                        COMPLETED
-                      </span>
-                    </div>
-
-                    {/* DIGIT 2: 15 (ACTIVE ONGOING PROJECTS) */}
-                    <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-3 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)]">
-                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-amber-400 rounded-tr-md opacity-80" />
-                      <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                        <span>LIVE</span>
-                      </span>
-                      <div className="text-4xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.8)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
-                        15
-                      </div>
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">
-                        ACTIVE ONGOING
-                      </span>
-                    </div>
-
-                  </div>
-
-                  {/* Bottom HUD Ticker & Interactive Link */}
-                  <a
-                    href="/programs"
-                    className="relative z-10 flex items-center justify-between px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-900 to-teal-900 border border-emerald-500/40 hover:border-emerald-400 text-white text-[11px] font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)] group/btn"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <Building2 className="w-3.5 h-3.5 text-amber-400" />
-                      <span>EXPLORE 80 PROJECTS</span>
-                    </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                  </a>
-
                 </div>
 
               </div>

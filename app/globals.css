@@ -364,18 +364,18 @@ body {
 
   0%,
   100% {
-    color: rgba(6, 95, 70, 0.08);
-    text-shadow: 0 0 40px rgba(6, 95, 70, 0.12);
+    color: rgba(6, 95, 70, 0.18);
+    text-shadow: 0 0 40px rgba(6, 95, 70, 0.18);
   }
 
   33% {
-    color: rgba(217, 119, 6, 0.09);
-    text-shadow: 0 0 55px rgba(217, 119, 6, 0.15);
+    color: rgba(217, 119, 6, 0.19);
+    text-shadow: 0 0 55px rgba(217, 119, 6, 0.20);
   }
 
   66% {
-    color: rgba(13, 148, 136, 0.09);
-    text-shadow: 0 0 45px rgba(13, 148, 136, 0.14);
+    color: rgba(13, 148, 136, 0.19);
+    text-shadow: 0 0 45px rgba(13, 148, 136, 0.20);
   }
 }
 

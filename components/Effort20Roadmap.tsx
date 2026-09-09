@@ -160,14 +160,51 @@ export default function Effort20Roadmap() {
   const [inView, setInView] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
   const crossetteCanvasRef = useRef<HTMLCanvasElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const isInteractingRef = useRef(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // 3-Second Automatic Phase Node Rotation Engine
+  const handleSelectPhase = (idx: number) => {
+    setActiveNodeIndex(idx);
+    isInteractingRef.current = true;
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 8000);
+
+    if (cardsContainerRef.current) {
+      const container = cardsContainerRef.current;
+      const cardEl = container.children[idx] as HTMLElement | undefined;
+      if (cardEl) {
+        const targetLeft = cardEl.offsetLeft - container.offsetLeft - 16;
+        container.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+      }
+    }
+  };
+
+  // Automatic Phase Node Rotation Engine (paused when user interacts)
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveNodeIndex((prev) => (prev + 1) % phasesData.length);
-    }, 3000);
+      if (!isInteractingRef.current) {
+        setActiveNodeIndex((prev) => {
+          const next = (prev + 1) % phasesData.length;
+          if (cardsContainerRef.current && typeof window !== "undefined" && window.innerWidth < 1024) {
+            const container = cardsContainerRef.current;
+            const cardEl = container.children[next] as HTMLElement | undefined;
+            if (cardEl) {
+              const targetLeft = cardEl.offsetLeft - container.offsetLeft - 16;
+              container.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+            }
+          }
+          return next;
+        });
+      }
+    }, 4500);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    };
   }, []);
 
   // 🎇 5-CRACKER HORIZONTAL CELEBRATION BARRAGE (1 Left, 2 Middle, 2 Right in a clean line wave)
@@ -680,7 +717,7 @@ export default function Effort20Roadmap() {
                 return (
                   <button
                     key={phase.id}
-                    onClick={() => setActiveNodeIndex(idx)}
+                    onClick={() => handleSelectPhase(idx)}
                     className="group flex flex-col items-center text-center cursor-pointer focus:outline-none"
                   >
                     {/* Rotating Precision Tech Rings with Icon Inside (Replacing Square Boxes!) */}
@@ -717,8 +754,34 @@ export default function Effort20Roadmap() {
             </div>
           </div>
 
-          {/* 3 Horizontal Phase Cards Side-by-Side (With Distinct Liquid Flow Backdrops!) */}
-          <div className="grid lg:grid-cols-3 gap-6">
+          {/* 3 Horizontal Phase Cards: Swipeable Snap-Carousel on Mobile/Tablet, 3-Column Grid on Desktop */}
+          <div
+            ref={cardsContainerRef}
+            onTouchStart={() => {
+              isInteractingRef.current = true;
+              if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+              pauseTimeoutRef.current = setTimeout(() => {
+                isInteractingRef.current = false;
+              }, 8000);
+            }}
+            onScroll={() => {
+              if (!cardsContainerRef.current) return;
+              const container = cardsContainerRef.current;
+              const scrollLeft = container.scrollLeft;
+              const firstChild = container.children[0] as HTMLElement | undefined;
+              const cardWidth = firstChild ? firstChild.offsetWidth + 16 : container.clientWidth * 0.86;
+              if (cardWidth > 0) {
+                const newIdx = Math.min(
+                  phasesData.length - 1,
+                  Math.max(0, Math.round(scrollLeft / cardWidth))
+                );
+                if (newIdx !== activeNodeIndex) {
+                  setActiveNodeIndex(newIdx);
+                }
+              }
+            }}
+            className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
+          >
             {phasesData.map((phase, idx) => {
               const isHovered = hoveredCard === idx;
               const isActiveNode = activeNodeIndex === idx;
@@ -728,10 +791,10 @@ export default function Effort20Roadmap() {
                   key={phase.id}
                   onMouseEnter={() => setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => setActiveNodeIndex(idx)}
-                  className={`group relative rounded-[28px] p-6 sm:p-8 flex flex-col justify-between bg-white/95 backdrop-blur-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden ${
+                  onClick={() => handleSelectPhase(idx)}
+                  className={`group relative rounded-[28px] p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-white/95 backdrop-blur-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden w-[86vw] max-w-[390px] shrink-0 snap-center lg:w-auto lg:max-w-none lg:shrink ${
                     isHovered
-                      ? "-translate-y-3 scale-[1.02] z-20"
+                      ? "-translate-y-2 lg:-translate-y-3 scale-[1.01] lg:scale-[1.02] z-20"
                       : "z-10"
                   }`}
                   style={{
@@ -809,6 +872,27 @@ export default function Effort20Roadmap() {
               );
             })}
           </div>
+
+          {/* Mobile Swipe Indicators & Phase Tracker */}
+          <div className="flex lg:hidden flex-col items-center justify-center gap-2 mt-3">
+            <div className="flex items-center gap-2">
+              {phasesData.map((phase, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleSelectPhase(i)}
+                  className={`h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                    activeNodeIndex === i
+                      ? "w-8 bg-amber-500 shadow-xs"
+                      : "w-2.5 bg-amber-900/20 hover:bg-amber-900/40"
+                  }`}
+                  aria-label={`Go to ${phase.phaseLabel}`}
+                />
+              ))}
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+              Swipe horizontally &middot; Phase {activeNodeIndex + 1} of {phasesData.length}
+            </span>
+          </div>
         </div>
 
 
@@ -832,8 +916,8 @@ export default function Effort20Roadmap() {
             </p>
           </div>
 
-          {/* Clean 2x3 Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Clean Responsive Grid (Compact on mobile) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
             {pillarsData.map((pillar, idx) => {
               const IconComponent = pillar.icon;
               const isHovered = hoveredPillar === idx;
@@ -843,7 +927,7 @@ export default function Effort20Roadmap() {
                   key={pillar.num}
                   onMouseEnter={() => setHoveredPillar(idx)}
                   onMouseLeave={() => setHoveredPillar(null)}
-                  className={`group relative rounded-2xl border-2 p-6 backdrop-blur-xl transition-all duration-300 flex items-start gap-4 overflow-hidden bg-white/90 shadow-xs hover:shadow-xl ${
+                  className={`group relative rounded-2xl border-2 p-4 sm:p-6 backdrop-blur-xl transition-all duration-300 flex items-start gap-3.5 sm:gap-4 overflow-hidden bg-white/90 shadow-xs hover:shadow-xl ${
                     isHovered ? "border-amber-400 -translate-y-1.5" : "border-slate-200"
                   }`}
                 >
