@@ -27,7 +27,6 @@ type JourneyChapter = {
   marks: string[];
   accent: string;
   icon: typeof Flame;
-  image: string;
   stats: { label: string; value: string }[];
 };
 
@@ -48,7 +47,6 @@ const chapters: JourneyChapter[] = [
     ],
     accent: "#b45309",
     icon: Flame,
-    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1200",
     stats: [
       { label: "Villages", value: "10" },
       { label: "Farmers", value: "Founding" },
@@ -71,7 +69,6 @@ const chapters: JourneyChapter[] = [
     ],
     accent: "#c2410c",
     icon: Network,
-    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200",
     stats: [
       { label: "Villages", value: "50" },
       { label: "Farmers", value: "20,000" },
@@ -94,7 +91,6 @@ const chapters: JourneyChapter[] = [
     ],
     accent: "#0f766e",
     icon: Rocket,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200",
     stats: [
       { label: "Villages", value: "405" },
       { label: "Farmers", value: "1.50 Lakh" },
@@ -117,7 +113,6 @@ const chapters: JourneyChapter[] = [
     ],
     accent: "#047857",
     icon: Crown,
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200",
     stats: [
       { label: "States", value: "6" },
       { label: "Families", value: "2.00 Lakh" },
@@ -140,7 +135,6 @@ const chapters: JourneyChapter[] = [
     ],
     accent: "#a16207",
     icon: Globe2,
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1200",
     stats: [
       { label: "Villages", value: "1,859" },
       { label: "Families", value: "2.50 Lakh" },
@@ -163,6 +157,21 @@ export default function JourneyTimeline() {
   const [headerVisible, setHeaderVisible] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
   const reduceMotion = useRef(false);
+  const [chapterImages, setChapterImages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    Promise.all(
+      chapters.map((c) =>
+        fetch(`/api/site/media?prefix=about/journey/${c.id}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [c.id, data.images?.[0]?.url] as const)
+      )
+    ).then((entries) => {
+      const map: Record<string, string> = {};
+      for (const [id, url] of entries) if (url) map[id] = url;
+      setChapterImages(map);
+    });
+  }, []);
 
   const pauseForInteraction = useCallback((sticky = false) => {
     setPaused(true);
@@ -467,16 +476,22 @@ export default function JourneyTimeline() {
               }}
             >
               <div className="grid sm:grid-cols-[0.92fr_1.08fr] min-h-[22rem]">
-                <div className="relative h-48 sm:h-auto min-h-[13.5rem] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={chapter.image}
-                    alt=""
-                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${
-                      isActive ? "scale-105" : "scale-100"
-                    }`}
-                    draggable={false}
-                  />
+                <div className="relative h-48 sm:h-auto min-h-[13.5rem] overflow-hidden bg-[#1c1910]">
+                  {chapterImages[chapter.id] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={chapterImages[chapter.id]}
+                      alt=""
+                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${
+                        isActive ? "scale-105" : "scale-100"
+                      }`}
+                      draggable={false}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Icon className="w-12 h-12 text-white/15" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
                   <div
                     className="absolute top-0 left-0 w-1.5 h-full"

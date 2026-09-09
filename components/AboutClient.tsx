@@ -285,7 +285,6 @@ export type DirectorAward = {
   title: string;
   organization: string;
   year: string;
-  image: string;
   badge: string;
   description: string;
 };
@@ -296,7 +295,6 @@ export const directorAwards: DirectorAward[] = [
     title: "National Social Impact Leadership Award",
     organization: "Ministry of Social Justice & Empowerment",
     year: "National Honor",
-    image: "/awards/award-1.jpg",
     badge: "National Award",
     description: "Conferred for four decades of grassroots development execution, community institutions, and tribal welfare excellence across 1,909 villages.",
   },
@@ -305,7 +303,6 @@ export const directorAwards: DirectorAward[] = [
     title: "Honorary Doctorate in Sustainable Development",
     organization: "Kennedy University, Paris, France",
     year: "Paris, France",
-    image: "/awards/award-2.jpg",
     badge: "Ph.D. Citation",
     description: "Awarded in Paris for pioneering community-led watershed management, women empowerment, and long-term sustainable rural livelihoods.",
   },
@@ -314,7 +311,6 @@ export const directorAwards: DirectorAward[] = [
     title: "Diploma in Social Development Distinction",
     organization: "St. Francis Xavier University, Canada",
     year: "Canada Citation",
-    image: "/awards/award-3.jpg",
     badge: "Global Diploma",
     description: "Distinguished international recognition for exemplary dedication to grassroots social transformation and participatory development.",
   },
@@ -323,7 +319,6 @@ export const directorAwards: DirectorAward[] = [
     title: "Lifetime Rural & Tribal Upliftment Award",
     organization: "State NGO Leadership Summit",
     year: "State Recognition",
-    image: "/awards/award-4.jpg",
     badge: "State Award",
     description: "Honored for zero-tolerance transparency, transformative tribal education, and empowering over 100,000 underprivileged families.",
   },
@@ -536,6 +531,21 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       const map: Record<string, string> = {};
       for (const [slug, url] of entries) if (url) map[slug] = url;
       setVisionMissionImages(map);
+    });
+  }, []);
+
+  const [awardImages, setAwardImages] = useState<Record<number, string>>({});
+  useEffect(() => {
+    Promise.all(
+      directorAwards.map((a) =>
+        fetch(`/api/site/media?prefix=about/awards/${a.id}`, { cache: "no-store" })
+          .then((res) => res.json())
+          .then((data) => [a.id, data.images?.[0]?.url] as const)
+      )
+    ).then((entries) => {
+      const map: Record<number, string> = {};
+      for (const [id, url] of entries) if (url) map[id] = url;
+      setAwardImages(map);
     });
   }, []);
 
@@ -1562,12 +1572,18 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                           }`}
                         >
                           {/* Full Major Award Photo */}
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={award.image}
-                            alt={award.title}
-                            className="w-full h-full object-cover"
-                          />
+                          {awardImages[award.id] ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={awardImages[award.id]}
+                              alt={award.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-slate-900">
+                              <Trophy className="w-14 h-14 text-amber-400/25" />
+                            </div>
+                          )}
 
                           {/* Gradient Overlays for High-End Cinematic Contrast */}
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent" />

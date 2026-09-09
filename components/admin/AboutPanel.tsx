@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, ExternalLink, ImageIcon, Users, Handshake, Eye, Target } from "lucide-react";
+import { ChevronLeft, ExternalLink, ImageIcon, Users, Handshake, Eye, Target, Milestone, Trophy } from "lucide-react";
 import MediaSlotManager from "./MediaSlotManager";
 import TeamPanel from "./TeamPanel";
 import { partnerCategories } from "@/lib/partners";
@@ -17,9 +17,105 @@ type Section = {
 const sections: Section[] = [
   { id: "hero", icon: ImageIcon, title: "Hero Section", desc: "Rotating cover photos shown top-right of the About page. Changes every ~3.5 seconds — upload as many as you like." },
   { id: "vision-mission", icon: Eye, title: "Vision & Mission", desc: "One photo each for the Vision and Mission slider on the About page." },
+  { id: "journey", icon: Milestone, title: "Our Journey Timeline", desc: "One photo per era on the horizontal 1999–2025 roadmap." },
+  { id: "awards", icon: Trophy, title: "Director's Awards & Honors", desc: "One photo per award in the Director's Awards showcase." },
   { id: "partners", icon: Handshake, title: "Partner Logos", desc: "Real logos shown in the scrolling \"Organizations That Believe In Our Mission\" section." },
   { id: "team", icon: Users, title: "Meet Our Team", desc: "Photo and social links for each of the 9 leadership team members." },
 ];
+
+const journeyChapters = [
+  { id: "1999", era: "1999", title: "The Beginning" },
+  { id: "2000-2009", era: "2000–2009", title: "Building the Foundation" },
+  { id: "2009-2016", era: "2009–2016", title: "The Expansion Engine" },
+  { id: "2016-2022", era: "2016–2022", title: "Multi-State Transformation" },
+  { id: "2022-2025", era: "2022–2025", title: "National Expansion & PAN-India Footprint" },
+];
+
+const directorAwardsAdmin = [
+  { id: 1, title: "National Social Impact Leadership Award" },
+  { id: 2, title: "Honorary Doctorate in Sustainable Development" },
+  { id: 3, title: "Diploma in Social Development Distinction" },
+  { id: 4, title: "Lifetime Rural & Tribal Upliftment Award" },
+];
+
+function JourneyTimelinePanel({ onBack }: { onBack: () => void }) {
+  return (
+    <div className="p-6">
+      <button
+        type="button"
+        onClick={onBack}
+        className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-emerald-700 mb-4 cursor-pointer"
+      >
+        <ChevronLeft className="w-3.5 h-3.5" /> Back to About Us sections
+      </button>
+
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="text-lg font-bold text-slate-800">About Page — Our Journey Timeline</h2>
+          <p className="text-xs text-slate-500 mt-0.5">
+            One photo per era, shown on the horizontal 1999–2025 roadmap. Uploading a new one replaces the old.
+          </p>
+        </div>
+        <Link
+          href="/about#journey"
+          target="_blank"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 shrink-0"
+        >
+          View live page <ExternalLink className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
+      <div className="space-y-4">
+        {journeyChapters.map((c) => (
+          <div key={c.id} className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800">{c.era}</p>
+            <p className="text-xs text-slate-500 mb-3">{c.title}</p>
+            <MediaSlotManager prefix={`about/journey/${c.id}`} label={`${c.era} photo`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DirectorAwardsPanel({ onBack }: { onBack: () => void }) {
+  return (
+    <div className="p-6">
+      <button
+        type="button"
+        onClick={onBack}
+        className="inline-flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-emerald-700 mb-4 cursor-pointer"
+      >
+        <ChevronLeft className="w-3.5 h-3.5" /> Back to About Us sections
+      </button>
+
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="text-lg font-bold text-slate-800">About Page — Director&apos;s Awards &amp; Honors</h2>
+          <p className="text-xs text-slate-500 mt-0.5">
+            One real photo per award (certificate, medal, or ceremony photo). Uploading a new one replaces the old.
+          </p>
+        </div>
+        <Link
+          href="/about#leadership"
+          target="_blank"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 shrink-0"
+        >
+          View live page <ExternalLink className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
+      <div className="space-y-4">
+        {directorAwardsAdmin.map((a) => (
+          <div key={a.id} className="rounded-2xl border border-slate-200 bg-white p-4">
+            <p className="text-sm font-bold text-slate-800 mb-3">{a.title}</p>
+            <MediaSlotManager prefix={`about/awards/${a.id}`} label={`${a.title} photo`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function VisionMissionPanel({ onBack }: { onBack: () => void }) {
   return (
@@ -168,6 +264,14 @@ export default function AboutPanel() {
 
   if (openSection === "vision-mission") {
     return <VisionMissionPanel onBack={() => setOpenSection(null)} />;
+  }
+
+  if (openSection === "journey") {
+    return <JourneyTimelinePanel onBack={() => setOpenSection(null)} />;
+  }
+
+  if (openSection === "awards") {
+    return <DirectorAwardsPanel onBack={() => setOpenSection(null)} />;
   }
 
   if (openSection === "partners") {
