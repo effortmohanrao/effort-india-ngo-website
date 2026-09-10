@@ -24,7 +24,6 @@ import {
 } from "lucide-react";
 
 export default function ContactClient() {
-  const [activeOffice, setActiveOffice] = useState<"hq" | "prakasam">("hq");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -72,29 +71,17 @@ export default function ContactClient() {
     }
   };
 
-  {/* Offices Data */}
-  const officeLocations = {
-    hq: {
-      title: "EFFORT Central Administrative Office",
-      district: "Martur, Bapatla District, Andhra Pradesh",
-      address: "Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India.",
-      phone: "+91 99599 00081",
-      email: "effortap@gmail.com",
-      website: "www.effortindia.org",
-      head: "Central Administrative Office Desk",
-      landmark: "G.T. Road, Martur",
-      type: "Central Office & Registered Society Headquarters",
-    },
-    prakasam: {
-      title: "Prakasam Watershed & IPM Field Hub",
-      district: "Podili / Markapur Region, Andhra Pradesh",
-      address: "Watershed Field Intervention Center, Main Road, Podili, Prakasam District, Andhra Pradesh - 523240.",
-      phone: "+91 99599 00081",
-      email: "effortap@gmail.com",
-      head: "Senior Project Officer (NRM & Watersheds)",
-      landmark: "Opposite Agricultural Extension Office",
-      type: "Watershed, Check-Dam & DSR Demonstration Hub",
-    },
+  {/* Headquarters Office Data */}
+  const hqOffice = {
+    title: "EFFORT Central Administrative Office",
+    district: "Martur, Bapatla District, Andhra Pradesh",
+    address: "Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India.",
+    phone: "+91 99599 00081",
+    email: "effortap@gmail.com",
+    website: "www.effortindia.org",
+    head: "Central Administrative Office Desk",
+    landmark: "G.T. Road, Martur",
+    type: "Central Office & Registered Society Headquarters",
   };
 
   return (
@@ -349,79 +336,49 @@ export default function ContactClient() {
             <div className="rounded-[36px] p-6 sm:p-8 bg-gradient-to-b from-[#1a140b] to-[#120e08] text-white border-2 border-[#d4af6a]/60 shadow-2xl space-y-6">
               <div className="flex items-center justify-between border-b border-[#d4af6a]/30 pb-4">
                 <div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400">Field & Admin Locations</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400">Headquarters Address</span>
                   <h3 className="text-xl font-black text-[#f7e4a3]">EFFORT Office Directory</h3>
                 </div>
                 <Building2 className="w-6 h-6 text-amber-400" />
               </div>
 
-              {/* Location Switcher Tabs */}
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => setActiveOffice("hq")}
-                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
-                    activeOffice === "hq"
-                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
-                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
-                  }`}
-                >
-                  🏛️ Headquarters (AP)
-                </button>
+              {/* Headquarters Office Detail View */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-4">
+                <div>
+                  <span className="text-[10px] font-black uppercase text-amber-400">{hqOffice.type}</span>
+                  <h4 className="text-lg font-black text-white">{hqOffice.title}</h4>
+                  <p className="text-xs text-stone-400 font-medium mt-0.5">{hqOffice.district}</p>
+                </div>
 
-                <button
-                  onClick={() => setActiveOffice("prakasam")}
-                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
-                    activeOffice === "prakasam"
-                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
-                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
-                  }`}
-                >
-                  🌾 Prakasam Field Hub
-                </button>
-              </div>
-
-              {/* Selected Office Detail View */}
-              {(() => {
-                const selectedOffice = officeLocations[activeOffice];
-                return (
-                  <div className="p-5 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-4 animate-fade-in">
-                    <div>
-                      <span className="text-[10px] font-black uppercase text-amber-400">{selectedOffice.type}</span>
-                      <h4 className="text-lg font-black text-white">{selectedOffice.title}</h4>
-                      <p className="text-xs text-stone-400 font-medium mt-0.5">{selectedOffice.district}</p>
-                    </div>
-
-                    <div className="space-y-2 text-xs text-stone-300 leading-relaxed font-medium pt-2 border-t border-stone-800">
-                      <div className="flex gap-2">
-                        <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                        <span>{selectedOffice.address}</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{selectedOffice.phone}</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                        <span>{selectedOffice.email}</span>
-                      </div>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400">
-                      <span className="font-bold text-amber-300 block">Lead Coordinator:</span>
-                      {selectedOffice.head} ({selectedOffice.landmark})
-                    </div>
-
-                    <a
-                      href={`https://maps.google.com/?q=${encodeURIComponent(selectedOffice.address)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 rounded-xl bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:bg-amber-300 transition-colors"
-                    >
-                      Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                <div className="space-y-2.5 text-xs text-stone-300 leading-relaxed font-medium pt-2 border-t border-stone-800">
+                  <div className="flex gap-2">
+                    <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <span>{hqOffice.address}</span>
                   </div>
-                );
-              })()}
+                  <div className="flex gap-2">
+                    <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>{hqOffice.phone}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                    <span>{hqOffice.email}</span>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400">
+                  <span className="font-bold text-amber-300 block">Lead Coordinator:</span>
+                  {hqOffice.head} ({hqOffice.landmark})
+                </div>
+
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(hqOffice.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 rounded-xl bg-[#d4af6a] text-slate-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:bg-amber-300 transition-colors shadow-md"
+                >
+                  Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
 
             </div>
 
