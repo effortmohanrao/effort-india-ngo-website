@@ -182,31 +182,6 @@ export default function Effort20Roadmap() {
     }
   };
 
-  // Automatic Phase Node Rotation Engine (paused when user interacts)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isInteractingRef.current) {
-        setActiveNodeIndex((prev) => {
-          const next = (prev + 1) % phasesData.length;
-          if (cardsContainerRef.current && typeof window !== "undefined" && window.innerWidth < 1024) {
-            const container = cardsContainerRef.current;
-            const cardEl = container.children[next] as HTMLElement | undefined;
-            if (cardEl) {
-              const targetLeft = cardEl.offsetLeft - container.offsetLeft - 16;
-              container.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
-            }
-          }
-          return next;
-        });
-      }
-    }, 4500);
-
-    return () => {
-      clearInterval(interval);
-      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
-    };
-  }, []);
-
   // 🎇 5-CRACKER HORIZONTAL CELEBRATION BARRAGE (1 Left, 2 Middle, 2 Right in a clean line wave)
   useEffect(() => {
     const canvas = crossetteCanvasRef.current;
@@ -780,7 +755,8 @@ export default function Effort20Roadmap() {
                 }
               }
             }}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
+            className="flex overflow-x-auto snap-x snap-proximity touch-pan-y overscroll-x-contain gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
+            style={{ touchAction: "pan-y" }}
           >
             {phasesData.map((phase, idx) => {
               const isHovered = hoveredCard === idx;

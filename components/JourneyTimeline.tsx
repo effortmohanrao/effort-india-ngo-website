@@ -150,10 +150,7 @@ export default function JourneyTimeline() {
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
-  const idleTimer = useRef<number | null>(null);
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [inView, setInView] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
   const reduceMotion = useRef(false);
@@ -173,44 +170,20 @@ export default function JourneyTimeline() {
     });
   }, []);
 
-  const pauseForInteraction = useCallback((sticky = false) => {
-    setPaused(true);
-    if (idleTimer.current) window.clearTimeout(idleTimer.current);
-    idleTimer.current = null;
-    if (!sticky) {
-      idleTimer.current = window.setTimeout(() => setPaused(false), 9000);
-    }
-  }, []);
-
   const goTo = useCallback((index: number) => {
     const next = (index + chapters.length) % chapters.length;
     const card = cardRefs.current[next];
     const track = trackRef.current;
     if (!card || !track) return;
-    pauseForInteraction();
     const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
     track.scrollTo({ left: target, behavior: reduceMotion.current ? "auto" : "smooth" });
     setActive(next);
-  }, [pauseForInteraction]);
+  }, []);
 
   useEffect(() => {
     reduceMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const t = setTimeout(() => setHeaderVisible(true), 80);
-    return () => {
-      clearTimeout(t);
-      if (idleTimer.current) window.clearTimeout(idleTimer.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.25 }
-    );
-    io.observe(section);
-    return () => io.disconnect();
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
@@ -241,29 +214,11 @@ export default function JourneyTimeline() {
     return () => track.removeEventListener("scroll", update);
   }, []);
 
-  useEffect(() => {
-    if (!inView || paused || reduceMotion.current) return;
-    const id = window.setInterval(() => {
-      setActive((prev) => {
-        const next = (prev + 1) % chapters.length;
-        const card = cardRefs.current[next];
-        const track = trackRef.current;
-        if (card && track) {
-          const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-          track.scrollTo({ left: target, behavior: "smooth" });
-        }
-        return next;
-      });
-    }, 6500);
-    return () => window.clearInterval(id);
-  }, [inView, paused]);
-
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const track = trackRef.current;
     if (!track || e.pointerType === "touch") return;
     drag.current = { active: true, startX: e.clientX, startScroll: track.scrollLeft, moved: false };
     track.setPointerCapture(e.pointerId);
-    pauseForInteraction();
   };
 
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -295,12 +250,6 @@ export default function JourneyTimeline() {
       style={{
         background:
           "radial-gradient(ellipse at 12% 0%, rgba(15,107,76,0.08), transparent 42%), radial-gradient(ellipse at 88% 100%, rgba(180,83,9,0.07), transparent 46%), linear-gradient(180deg, #f7f3ea 0%, #efe6d4 100%)",
-      }}
-      onMouseEnter={() => pauseForInteraction(true)}
-      onMouseLeave={() => {
-        if (idleTimer.current) window.clearTimeout(idleTimer.current);
-        idleTimer.current = null;
-        setPaused(false);
       }}
     >
       <div
@@ -426,16 +375,16 @@ export default function JourneyTimeline() {
       {/* Horizontal path */}
       <div
         ref={trackRef}
-        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory touch-auto pb-8 pt-3 cursor-grab active:cursor-grabbing"
+        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-visible snap-x snap-proximity overscroll-x-contain touch-pan-y pb-8 pt-3 cursor-grab active:cursor-grabbing scrollbar-none"
         style={{
           paddingLeft: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
           paddingRight: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
+          touchAction: "pan-y",
         }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        onTouchStart={() => pauseForInteraction()}
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") {
             e.preventDefault();

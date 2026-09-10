@@ -624,8 +624,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
   useEffect(() => {
     const strip = galleryStripRef.current;
     if (!strip) return;
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
     let raf = 0;
-    const scrollSpeed = 2.2;
+    const scrollSpeed = 1.8;
     function drift() {
       raf = requestAnimationFrame(drift);
       const el = galleryStripRef.current;
@@ -682,7 +685,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
 
   return (
-    <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-hidden">
+    <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-x-clip">
 
       {/* Liquid background gradients */}
       <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-100/35 rounded-full blur-[100px] -z-10 animate-pulse"></div>
@@ -2460,7 +2463,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
           <div
             ref={galleryStripRef}
-            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none"
+            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none touch-pan-y overscroll-x-contain"
+            style={{ touchAction: "pan-y" }}
             onMouseEnter={() => setGalleryPaused(true)}
             onMouseLeave={() => {
               setGalleryPaused(false);
