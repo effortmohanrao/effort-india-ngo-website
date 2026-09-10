@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 export default function ContactClient() {
-  const [activeOffice, setActiveOffice] = useState<"hq" | "prakasam" | "guntur" | "hyderabad">("hq");
+  const [activeOffice, setActiveOffice] = useState<"hq" | "prakasam">("hq");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -94,26 +94,6 @@ export default function ContactClient() {
       head: "Senior Project Officer (NRM & Watersheds)",
       landmark: "Opposite Agricultural Extension Office",
       type: "Watershed, Check-Dam & DSR Demonstration Hub",
-    },
-    guntur: {
-      title: "Guntur & Palnadu FPO Operations Hub",
-      district: "Guntur District, Andhra Pradesh",
-      address: "FPO Farmer Facilitation Desk, Collectorate Road, Guntur, Andhra Pradesh - 522004.",
-      phone: "+91 99599 00081",
-      email: "effortap@gmail.com",
-      head: "FPO & Spices Board Project Manager",
-      landmark: "Near District Agriculture Office",
-      type: "Farmer Producer Organizations (FPOs) & SHG Training Hub",
-    },
-    hyderabad: {
-      title: "CSR Alliances & Institutional Desk",
-      district: "Hyderabad / Vijayawada CSR Liaison",
-      address: "Corporate Liaison Office, Jubliee Hills / MG Road Vijayawada Desk, Andhra Pradesh & Telangana.",
-      phone: "+91 99599 00081",
-      email: "effortap@gmail.com",
-      head: "Head of Corporate Partnerships & MoUs",
-      landmark: "Corporate CSR Consultation Center",
-      type: "CSR Partnerships, Form CSR-1 & University MoUs",
     },
   };
 
@@ -397,28 +377,6 @@ export default function ContactClient() {
                   }`}
                 >
                   🌾 Prakasam Field Hub
-                </button>
-
-                <button
-                  onClick={() => setActiveOffice("guntur")}
-                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
-                    activeOffice === "guntur"
-                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
-                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
-                  }`}
-                >
-                  👩‍🌾 Guntur FPO Desk
-                </button>
-
-                <button
-                  onClick={() => setActiveOffice("hyderabad")}
-                  className={`p-3 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
-                    activeOffice === "hyderabad"
-                      ? "bg-[#d4af6a] text-slate-950 font-black shadow-md"
-                      : "bg-stone-900 border border-stone-800 text-stone-300 hover:bg-stone-800"
-                  }`}
-                >
-                  🏢 CSR Alliances Desk
                 </button>
               </div>
 
