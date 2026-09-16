@@ -51,6 +51,8 @@ export default function DomainOwnershipPage() {
             <dd>EFFORT</dd>
             <dt className="font-bold text-[#221c0c]">Registration</dt>
             <dd>Societies Registration Act XXI of 1860 — Reg. No. 340/1999</dd>
+            <dt className="font-bold text-[#221c0c]">Google Charity ID</dt>
+            <dd className="font-semibold text-emerald-800">010330140</dd>
             <dt className="font-bold text-[#221c0c]">Registered office</dt>
             <dd>Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., Andhra Pradesh, India</dd>
             <dt className="font-bold text-[#221c0c]">Official website</dt>
@@ -59,11 +61,22 @@ export default function DomainOwnershipPage() {
                 https://www.effortindia.org
               </a>
             </dd>
-            <dt className="font-bold text-[#221c0c]">Email</dt>
+            <dt className="font-bold text-[#221c0c]">Official Email</dt>
             <dd>effortap@gmail.com</dd>
+            <dt className="font-bold text-[#221c0c]">Authorized Admin</dt>
+            <dd className="font-semibold text-emerald-800">mohanreddymaareddy29@gmail.com</dd>
             <dt className="font-bold text-[#221c0c]">Phone</dt>
             <dd>+91 99599 00081</dd>
+            <dt className="font-bold text-[#221c0c]">Tax &amp; Statutory Status</dt>
+            <dd>Section 12AB &amp; 80G Tax-Exempt, MCA Form CSR-1 (CSR00034988), NITI Aayog DARPAN registered</dd>
           </dl>
+        </section>
+
+        <section className="rounded-2xl border-2 border-emerald-600/30 bg-emerald-50/60 p-6 space-y-2">
+          <h2 className="text-base font-black text-emerald-950">Google Workspace for Nonprofits Authorization</h2>
+          <p className="text-emerald-900 leading-relaxed text-sm">
+            This statement confirms that the domain <strong className="text-emerald-950">effortindia.org</strong> (including <strong className="text-emerald-950">www.effortindia.org</strong>) is the sole official web property owned, operated, and controlled by <strong className="text-emerald-950">Effort (A Society for the Development of Agriculture and Youth)</strong> (Charity ID: <strong className="text-emerald-950">010330140</strong>). Google Workspace for Nonprofits activation for this domain is explicitly authorized and requested under administrator account <strong className="text-emerald-950">mohanreddymaareddy29@gmail.com</strong>.
+          </p>
         </section>
 
         <p>
