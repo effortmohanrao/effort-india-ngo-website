@@ -168,6 +168,16 @@ const complianceCards: {
       details: "Empaneled NGO partner audited for high governance, operational capability, and financial transparency by the TISS National CSR Hub."
     },
     {
+      id: "google-nonprofit",
+      icon: ShieldCheck,
+      title: "Google for Nonprofits",
+      number: "Google Charity ID: 010330140",
+      status: "Active & Verified",
+      category: "govt",
+      authority: "Google for Nonprofits & Goodera",
+      details: "Officially verified nonprofit organization under Google for Nonprofits (Charity ID: 010330140) with authorized primary domain effortindia.org."
+    },
+    {
       id: "gptw",
       icon: Award,
       title: "Great Place To Work Certified",
@@ -181,6 +191,7 @@ const complianceCards: {
 
 const complianceTrustStrip = [
   { icon: ShieldCheck, label: "Society Reg. 340/1999" },
+  { icon: ShieldCheck, label: "Google Charity ID: 010330140" },
   { icon: ShieldCheck, label: "80G & 12AB Certified" },
   { icon: Globe2, label: "FCRA Renewal Active" },
   { icon: Fingerprint, label: "NITI Aayog Darpan ID" },

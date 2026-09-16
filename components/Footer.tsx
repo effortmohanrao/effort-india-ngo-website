@@ -65,7 +65,9 @@ export default function Footer() {
               </p>
               <p className="text-slate-400 leading-relaxed">Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India</p>
               <p className="pt-1"><strong className="text-emerald-400">Phone:</strong> +91 99599 00081</p>
-              <p><strong className="text-emerald-400">E-mail:</strong> effortap@gmail.com</p>
+              <p><strong className="text-emerald-400">Official E-mail:</strong> effortap@gmail.com</p>
+              <p><strong className="text-emerald-400">Google Charity ID:</strong> 010330140</p>
+              <p><strong className="text-emerald-400">Society Reg. No:</strong> 340/1999</p>
             </div>
 
             <div className="flex items-center gap-2 pt-2">
@@ -143,12 +145,13 @@ export default function Footer() {
             </div>
 
             {/* Tax Exemption & Statutory Compliance Badges */}
-            <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between gap-2 text-[10px] text-slate-400 font-bold">
+            <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-400 font-bold">
               <span className="flex items-center gap-1 text-emerald-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Section 80G Tax Exempt
               </span>
               <span className="text-amber-300">CSR-1 Registered</span>
-              <span className="text-slate-300">NITI Aayog DARPAN</span>
+              <span className="text-slate-300">DARPAN Registered</span>
+              <span className="text-emerald-400 font-bold">Charity ID: 010330140</span>
             </div>
           </div>
 
@@ -158,7 +161,7 @@ export default function Footer() {
 
       {/* Footer Bottom Credits */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4 font-medium">
-        <p>© {new Date().getFullYear()} Effort (A Society for the Development of Agriculture and Youth). All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Effort (A Society for the Development of Agriculture and Youth) • Society Reg. 340/1999 • Google Charity ID: 010330140</p>
         <div className="flex flex-wrap gap-6 font-semibold">
           <Link href="/privacy#privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
           <Link href="/privacy#terms" className="hover:text-slate-300 transition-colors">Terms &amp; Conditions</Link>
