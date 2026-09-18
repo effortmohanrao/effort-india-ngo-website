@@ -8,9 +8,10 @@ type Props = {
   pages: AdminPage[];
   activeId: string;
   onSelect: (id: string) => void;
+  badges?: Record<string, number>;
 };
 
-export default function AdminTabs({ pages, activeId, onSelect }: Props) {
+export default function AdminTabs({ pages, activeId, onSelect, badges }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -57,6 +58,7 @@ export default function AdminTabs({ pages, activeId, onSelect }: Props) {
         >
           {pages.map((page) => {
             const isActive = page.id === activeId;
+            const badgeCount = badges?.[page.id] ?? 0;
             return (
               <button
                 key={page.id}
@@ -69,6 +71,11 @@ export default function AdminTabs({ pages, activeId, onSelect }: Props) {
                 }`}
               >
                 {page.label}
+                {badgeCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-black border-2 border-white animate-pulse">
+                    {badgeCount}
+                  </span>
+                )}
               </button>
             );
           })}

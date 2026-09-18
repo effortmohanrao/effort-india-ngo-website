@@ -6,6 +6,7 @@ export type AdminPage = {
 
 export const adminPages: AdminPage[] = [
   { id: "home", label: "Home", href: "/" },
+  { id: "submissions", label: "Form Submissions", href: "/" },
   { id: "branding", label: "Branding", href: "/" },
   { id: "about", label: "About Us", href: "/about" },
   { id: "programs", label: "Our Programs", href: "/programs" },

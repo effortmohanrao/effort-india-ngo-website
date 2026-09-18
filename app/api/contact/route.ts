@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 const NOTIFY_EMAIL = "effortap@gmail.com";
 const FROM_EMAIL = "EFFORT Website <notifications@effortindia.org>";
@@ -68,6 +69,21 @@ export async function POST(request: Request) {
   }
   if (!payload.name || !payload.email) {
     return NextResponse.json({ error: "Name and email are required." }, { status: 400 });
+  }
+
+  // Persist every submission so it always shows up in the admin panel, even if the
+  // notification email below has a transient failure. Best-effort — a DB hiccup must
+  // never block a real visitor's form submission.
+  try {
+    const supabase = getSupabaseAdmin();
+    await supabase.from("form_submissions").insert({
+      form_type: payload.formType,
+      name: String(payload.name),
+      email: String(payload.email),
+      data: payload,
+    });
+  } catch (err) {
+    console.error("Failed to save form submission:", err);
   }
 
   const apiKey = process.env.RESEND_API_KEY;

@@ -11,12 +11,14 @@ import ProgramsPanel from "@/components/admin/ProgramsPanel";
 import AboutPanel from "@/components/admin/AboutPanel";
 import ComingSoonPanel from "@/components/admin/ComingSoonPanel";
 import StaffAccountsPanel from "@/components/admin/StaffAccountsPanel";
+import FormSubmissionsPanel from "@/components/admin/FormSubmissionsPanel";
 import { adminPages } from "@/components/admin/adminPages";
 import { logoutAction } from "../actions";
 
 export default function AdminPage() {
   const [activeId, setActiveId] = useState(adminPages[0].id);
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [unreadSubmissions, setUnreadSubmissions] = useState(0);
   const activePage = adminPages.find((page) => page.id === activeId) ?? adminPages[0];
 
   useEffect(() => {
@@ -28,6 +30,21 @@ export default function AdminPage() {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    const loadUnreadCount = () => {
+      fetch("/api/admin/form-submissions", { cache: "no-store" })
+        .then((res) => res.json())
+        .then((data) => {
+          const list: { is_read: boolean }[] = data.submissions ?? [];
+          setUnreadSubmissions(list.filter((s) => !s.is_read).length);
+        })
+        .catch(() => {});
+    };
+    loadUnreadCount();
+    const interval = setInterval(loadUnreadCount, 60000);
+    return () => clearInterval(interval);
+  }, [activeId]);
 
   return (
     <div className="min-h-screen bg-[#fcfaf4] text-slate-800 font-sans">
@@ -89,12 +106,14 @@ export default function AdminPage() {
       </div>
 
       {/* HORIZONTAL PAGE TABS STRIP */}
-      <AdminTabs pages={adminPages} activeId={activeId} onSelect={setActiveId} />
+      <AdminTabs pages={adminPages} activeId={activeId} onSelect={setActiveId} badges={{ submissions: unreadSubmissions }} />
 
       {/* MAIN CONTENT AREA */}
       <main className="max-w-[1440px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {activeId === "home" ? (
           <HomePanel />
+        ) : activeId === "submissions" ? (
+          <FormSubmissionsPanel />
         ) : activeId === "branding" ? (
           <BrandingPanel />
         ) : activeId === "donate" ? (
