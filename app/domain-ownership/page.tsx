@@ -62,9 +62,7 @@ export default function DomainOwnershipPage() {
               </a>
             </dd>
             <dt className="font-bold text-[#221c0c]">Official Domain Email</dt>
-            <dd className="font-semibold text-emerald-800">contact@effortindia.org</dd>
-            <dt className="font-bold text-[#221c0c]">Registered Secretariat Desk</dt>
-            <dd>effortap@gmail.com (Historical registered society desk since 1999)</dd>
+            <dd className="font-semibold text-emerald-800">contact@effortindia.org / info@effortindia.org</dd>
             <dt className="font-bold text-[#221c0c]">Authorized Admin</dt>
             <dd className="font-semibold text-emerald-800">mohanreddymaareddy29@gmail.com</dd>
             <dt className="font-bold text-[#221c0c]">Phone</dt>

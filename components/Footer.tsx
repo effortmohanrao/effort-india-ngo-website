@@ -65,8 +65,8 @@ export default function Footer() {
               </p>
               <p className="text-slate-400 leading-relaxed">Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India</p>
               <p className="pt-1"><strong className="text-emerald-400">Phone:</strong> +91 99599 00081</p>
-              <p><strong className="text-emerald-400">Domain Email:</strong> contact@effortindia.org</p>
-              <p><strong className="text-emerald-400">Registered Desk:</strong> effortap@gmail.com</p>
+              <p><strong className="text-emerald-400">Official Email:</strong> contact@effortindia.org</p>
+              <p><strong className="text-emerald-400">Enquiries:</strong> info@effortindia.org</p>
               <p><strong className="text-emerald-400">Google Charity ID:</strong> 010330140</p>
               <p><strong className="text-emerald-400">Society Reg. No:</strong> 340/1999</p>
             </div>

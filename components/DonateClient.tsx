@@ -511,7 +511,7 @@ export default function DonateClient() {
                       <span>{pkg.duration}</span>
                     </div>
                     <a
-                      href={`mailto:effortap@gmail.com?subject=Collaboration%20Enquiry%20-%20${encodeURIComponent(pkg.title)}`}
+                      href={`mailto:contact@effortindia.org?subject=Collaboration%20Enquiry%20-%20${encodeURIComponent(pkg.title)}`}
                       className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md hover:bg-amber-800 transition-all"
                     >
                       Sponsor This Package <ArrowRight className="w-3.5 h-3.5" />
@@ -536,7 +536,7 @@ export default function DonateClient() {
 
           <div className="text-center">
             <a
-              href="mailto:effortap@gmail.com?subject=Custom%20Collaboration%20Proposal"
+              href="mailto:contact@effortindia.org?subject=Custom%20Collaboration%20Proposal"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-xs uppercase tracking-wider shadow-md hover:bg-amber-800 transition-all"
             >
               <Mail className="w-4 h-4" /> Request a Custom Proposal <ArrowRight className="w-4 h-4" />
@@ -642,7 +642,7 @@ export default function DonateClient() {
           <div className="p-5 rounded-2xl bg-white border border-amber-900/15 space-y-2 shadow-xs">
             <Mail className="w-5 h-5 text-amber-800 mx-auto" />
             <p className="text-xs font-bold text-slate-500">Official Email</p>
-            <p className="text-xs font-black text-slate-900">effortap@gmail.com</p>
+            <p className="text-xs font-black text-slate-900">contact@effortindia.org</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-white border border-amber-900/15 space-y-2 shadow-xs">
@@ -659,7 +659,7 @@ export default function DonateClient() {
         </div>
 
         <a
-          href="mailto:effortap@gmail.com"
+          href="mailto:contact@effortindia.org"
           className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md"
         >
           CONTACT DONATION SUPPORT <Mail className="w-4 h-4 text-amber-400" />

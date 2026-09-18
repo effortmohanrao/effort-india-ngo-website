@@ -275,35 +275,35 @@ const partnershipSlides: PartnershipSlide[] = [
     slug: "government",
     title: "Government",
     icon: Landmark,
-    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=900",
     desc: "Working alongside government departments on ground-level implementation and reporting.",
   },
   {
     slug: "csr-partners",
     title: "CSR Partners",
     icon: Building2,
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=900",
     desc: "Delivering measurable, auditable outcomes for corporate CSR mandates.",
   },
   {
     slug: "educational-institutions",
     title: "Educational & Research Institutions",
     icon: GraduationCap,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=900",
     desc: "Collaborating with universities and colleges on research and field programs.",
   },
   {
     slug: "international-organizations",
     title: "International Organizations",
     icon: Globe2,
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=900",
     desc: "Aligning with global development frameworks and cross-border initiatives.",
   },
   {
     slug: "foundations",
     title: "Foundations",
     icon: Award,
-    image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=900",
     desc: "Partnering with grant-making foundations on long-term, outcome-driven funding.",
   },
 ];
@@ -348,35 +348,35 @@ const csrSlides: CsrSlide[] = [
     step: "01",
     title: "Corporate Requirement",
     icon: Briefcase,
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=900",
     desc: "We start by understanding your CSR mandate, budget, and focus areas under Schedule VII.",
   },
   {
     step: "02",
     title: "Project Planning",
     icon: ClipboardList,
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=900",
     desc: "A joint proposal is built with clear timelines, budgets, and measurable outcomes.",
   },
   {
     step: "03",
     title: "Implementation",
     icon: Users,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=900",
     desc: "Our field teams execute directly in the community, with your brand visible throughout.",
   },
   {
     step: "04",
     title: "Monitoring",
     icon: LineChart,
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=900",
     desc: "Progress is tracked against agreed milestones, not assumptions.",
   },
   {
     step: "05",
     title: "Impact Report",
     icon: FileText,
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=900",
+    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=900",
     desc: "A documented report is delivered for your CSR compliance and board reporting.",
   },
 ];
@@ -1097,22 +1097,38 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                     </p>
                   </div>
 
-                  {/* Framed Official Certificate Document Image */}
-                  <div className="relative rounded-2xl overflow-hidden border border-amber-400/40 shadow-xl bg-[#140608] max-w-xl">
-                    <img
-                      src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200"
-                      alt="Official registration documents"
-                      className="w-full h-36 sm:h-44 object-cover brightness-95 hover:scale-105 transition-transform duration-700"
-                    />
-                    {/* Floating Documented / Verified indicator badge */}
-                    <div className="absolute top-3 right-3 z-20 bg-[#19070a]/90 backdrop-blur-md border border-amber-400/50 text-amber-200 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
-                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                      <span>DOCUMENTED / VERIFIED</span>
+                  {/* Framed Official Certificate Document Card */}
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-xl bg-gradient-to-br from-[#1c0a0d] via-[#140608] to-[#240c10] p-4 sm:p-5 max-w-xl space-y-2.5">
+                    <div className="flex items-center justify-between border-b border-amber-400/20 pb-2">
+                      <div className="flex items-center gap-2">
+                        <Building2 className="w-4 h-4 text-amber-400" />
+                        <span className="text-[11px] font-black uppercase tracking-wider text-amber-300">Govt. of Andhra Pradesh • Reg. No. 340/1999</span>
+                      </div>
+                      <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-400/30 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider">
+                        Active &amp; Compliant
+                      </span>
                     </div>
 
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#140608] via-[#140608]/80 to-transparent p-3 flex items-center justify-between text-xs">
-                      <span className="text-white font-bold truncate">Government Statutory License Credentials</span>
-                      <span className="text-amber-300 font-mono text-[10px] font-bold shrink-0">REGISTRATIONS: 8 ACTIVE</span>
+                    <div className="space-y-1">
+                      <p className="text-xs font-black text-white">Effort (A Society for the Development of Agriculture and Youth)</p>
+                      <p className="text-[11px] text-amber-100/80 leading-relaxed font-normal">
+                        Registered under the Societies Registration Act XXI of 1860 • HQ: Srujana, #9-240, G.T. Road, Martur - 523 301, Bapatla Dist., Andhra Pradesh
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2 pt-2 border-t border-amber-400/20 text-[10px]">
+                      <div className="bg-white/5 rounded-lg p-1.5 text-center">
+                        <span className="text-amber-400/80 block font-bold">Charity ID</span>
+                        <span className="font-mono text-white font-black">010330140</span>
+                      </div>
+                      <div className="bg-white/5 rounded-lg p-1.5 text-center">
+                        <span className="text-amber-400/80 block font-bold">CSR-1 Reg.</span>
+                        <span className="font-mono text-white font-black">CSR00034988</span>
+                      </div>
+                      <div className="bg-white/5 rounded-lg p-1.5 text-center">
+                        <span className="text-amber-400/80 block font-bold">Tax Status</span>
+                        <span className="font-mono text-white font-black">80G / 12AB</span>
+                      </div>
                     </div>
                   </div>
                 </div>

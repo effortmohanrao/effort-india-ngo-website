@@ -145,8 +145,8 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            <a href="mailto:effortap@gmail.com" className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
-              <Mail className="w-3.5 h-3.5 text-amber-400" /> effortap@gmail.com
+            <a href="mailto:contact@effortindia.org" className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail className="w-3.5 h-3.5 text-amber-400" /> contact@effortindia.org
             </a>
             <a href="tel:+919959900081" className="hidden md:flex items-center gap-1.5 hover:text-white transition-colors">
               <Phone className="w-3.5 h-3.5 text-emerald-400" /> +91 99599 00081

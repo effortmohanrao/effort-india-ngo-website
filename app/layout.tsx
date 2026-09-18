@@ -115,7 +115,7 @@ const jsonLdSchema = [
     "@type": "ContactPoint",
     telephone: "+91-99599-00081",
     contactType: "Donor Support & Secretariat",
-    email: "effortap@gmail.com",
+    email: "contact@effortindia.org",
     areaServed: "IN",
     availableLanguage: ["English", "Telugu", "Hindi"],
   },

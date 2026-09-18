@@ -75,7 +75,7 @@ export default function PrivacyTerms() {
           <Section id="how-we-use" title="3. How we use it">
             <p>
               Submitting one of these forms sends its contents directly by email to EFFORT&apos;s central desk
-              (effortap@gmail.com) so our team can respond to your enquiry, application, or partnership request.
+              (contact@effortindia.org) so our team can respond to your enquiry, application, or partnership request.
               That email is the only place your submission goes — this website does not save form
               submissions in any database. We use your details solely to respond to you; we do not sell,
               rent, or share them with third parties, and we won&apos;t add you to any mailing list without asking first.
@@ -88,7 +88,7 @@ export default function PrivacyTerms() {
               credentials. The Donate page simply displays EFFORT&apos;s official bank account (domestic)
               and FCRA account (international) details so you can transfer funds directly through your own
               bank or UPI app. To request a Section 80G tax-exemption receipt, you email your transaction
-              reference or screenshot to effortap@gmail.com — that email is handled the same way as any
+              reference or screenshot to contact@effortindia.org — that email is handled the same way as any
               other enquiry (see Section 3).
             </p>
           </Section>
@@ -105,13 +105,13 @@ export default function PrivacyTerms() {
           <Section id="your-rights" title="6. Your choices">
             <p>
               Since we only hold what you send us by email to respond to your own enquiry, you can ask us at
-              any time to tell you what we have, or to delete it, by writing to effortap@gmail.com.
+              any time to tell you what we have, or to delete it, by writing to contact@effortindia.org.
             </p>
           </Section>
 
           <Section id="privacy-contact" title="7. Contact us about privacy">
             <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
-              <span className="flex items-center gap-2"><Mail className="w-4 h-4 text-amber-700" /> effortap@gmail.com</span>
+              <span className="flex items-center gap-2"><Mail className="w-4 h-4 text-amber-700" /> contact@effortindia.org</span>
               <span className="flex items-center gap-2"><Phone className="w-4 h-4 text-amber-700" /> +91 99599 00081</span>
               <span className="flex items-center gap-2"><MapPin className="w-4 h-4 text-amber-700" /> Martur, Bapatla District, Andhra Pradesh</span>
             </div>
@@ -137,7 +137,7 @@ export default function PrivacyTerms() {
               Project details, statistics, and photographs describe EFFORT&apos;s real, ongoing field work.
               Ongoing projects are labelled as such and are updated as they progress; figures are refreshed
               periodically and may not reflect the latest field data at every moment. If you spot something
-              that looks out of date, please tell us at effortap@gmail.com.
+              that looks out of date, please tell us at contact@effortindia.org.
             </p>
           </Section>
 

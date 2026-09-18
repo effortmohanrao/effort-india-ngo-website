@@ -41,7 +41,7 @@ export default function ContactClient() {
   });
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("effortap@gmail.com");
+    navigator.clipboard.writeText("contact@effortindia.org");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -77,7 +77,7 @@ export default function ContactClient() {
     district: "Martur, Bapatla District, Andhra Pradesh",
     address: "Srujana, # 9-240, G.T. Road, MARTUR - 523 301, Bapatla Dist., A.P. India.",
     phone: "+91 99599 00081",
-    email: "effortap@gmail.com",
+    email: "contact@effortindia.org",
     website: "www.effortindia.org",
     head: "Central Administrative Office Desk",
     landmark: "G.T. Road, Martur",
@@ -141,7 +141,7 @@ export default function ContactClient() {
             <div>
               <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700">Official Email Inboxes</span>
               <p className="text-base font-black text-[#221c0c] mt-0.5 truncate">contact@effortindia.org</p>
-              <p className="text-xs font-semibold text-[#5b6a60] mt-0.5">Desk: effortap@gmail.com</p>
+              <p className="text-xs font-semibold text-[#5b6a60] mt-0.5">Enquiries: info@effortindia.org</p>
             </div>
             <button
               onClick={handleCopyEmail}
