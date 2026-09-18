@@ -44,7 +44,7 @@ const glassBubbles = [
 ];
 
 export default function Header() {
-  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [logoUrl, setLogoUrl] = useState<string>("/logo.png");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -223,16 +223,12 @@ export default function Header() {
                     isScrolled ? "w-11 h-11" : "w-14 h-14 sm:w-16 sm:h-16"
                   }`}
                 >
-                  {logoUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={logoUrl}
-                      alt="EFFORT NGO logo"
-                      className="w-full h-full object-contain rounded-full filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
-                    />
-                  ) : (
-                    <span className="text-xl sm:text-2xl font-black text-emerald-700">E</span>
-                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={logoUrl || "/logo.png"}
+                    alt="EFFORT NGO logo"
+                    className="w-full h-full object-contain rounded-full filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
               </div>
               <div>

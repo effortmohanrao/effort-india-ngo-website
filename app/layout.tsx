@@ -148,7 +148,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${plusJakartaSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col bg-slate-50 text-slate-800 font-sans">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans overflow-x-hidden">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}

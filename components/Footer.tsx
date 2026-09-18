@@ -8,7 +8,7 @@ import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/compon
 
 export default function Footer() {
   const pathname = usePathname();
-  const [logoUrl, setLogoUrl] = React.useState<string | null>(null);
+  const [logoUrl, setLogoUrl] = React.useState<string>("/logo.png");
 
   React.useEffect(() => {
     fetch("/api/site/media?prefix=logo", { cache: "no-store" })
