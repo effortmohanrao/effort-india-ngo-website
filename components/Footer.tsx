@@ -40,12 +40,8 @@ export default function Footer() {
           <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-white border-2 border-white/90 flex items-center justify-center font-black text-emerald-700 shadow-md overflow-hidden p-1 shrink-0">
-                {logoUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={logoUrl} alt="EFFORT NGO logo" className="w-full h-full object-contain rounded-full" />
-                ) : (
-                  <span className="text-xl font-extrabold text-emerald-700">E</span>
-                )}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={logoUrl || "/logo.png"} alt="EFFORT NGO logo" className="w-full h-full object-contain rounded-full" />
               </div>
               <div>
                 <span className="text-xl font-black tracking-tight text-white block">EFFORT</span>

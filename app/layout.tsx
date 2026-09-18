@@ -145,16 +145,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${plusJakartaSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <head>
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-slate-50 text-slate-800 font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
-      </head>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-800 font-sans">
         <Header />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
