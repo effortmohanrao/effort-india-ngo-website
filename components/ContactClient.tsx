@@ -139,9 +139,9 @@ export default function ContactClient() {
               <Mail className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700">Official Email Desk</span>
-              <p className="text-base font-black text-[#221c0c] mt-0.5 truncate">effortap@gmail.com</p>
-              <p className="text-[11px] text-[#5b6a60] font-medium mt-0.5">www.effortindia.org</p>
+              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700">Official Email Inboxes</span>
+              <p className="text-base font-black text-[#221c0c] mt-0.5 truncate">contact@effortindia.org</p>
+              <p className="text-xs font-semibold text-[#5b6a60] mt-0.5">Desk: effortap@gmail.com</p>
             </div>
             <button
               onClick={handleCopyEmail}

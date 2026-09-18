@@ -61,8 +61,10 @@ export default function DomainOwnershipPage() {
                 https://www.effortindia.org
               </a>
             </dd>
-            <dt className="font-bold text-[#221c0c]">Official Email</dt>
-            <dd>effortap@gmail.com</dd>
+            <dt className="font-bold text-[#221c0c]">Official Domain Email</dt>
+            <dd className="font-semibold text-emerald-800">contact@effortindia.org</dd>
+            <dt className="font-bold text-[#221c0c]">Registered Secretariat Desk</dt>
+            <dd>effortap@gmail.com (Historical registered society desk since 1999)</dd>
             <dt className="font-bold text-[#221c0c]">Authorized Admin</dt>
             <dd className="font-semibold text-emerald-800">mohanreddymaareddy29@gmail.com</dd>
             <dt className="font-bold text-[#221c0c]">Phone</dt>
@@ -72,10 +74,13 @@ export default function DomainOwnershipPage() {
           </dl>
         </section>
 
-        <section className="rounded-2xl border-2 border-emerald-600/30 bg-emerald-50/60 p-6 space-y-2">
-          <h2 className="text-base font-black text-emerald-950">Google Workspace for Nonprofits Authorization</h2>
+        <section className="rounded-2xl border-2 border-emerald-600/30 bg-emerald-50/60 p-6 space-y-3">
+          <h2 className="text-base font-black text-emerald-950">Google Workspace for Nonprofits Authorization &amp; Email Transition</h2>
           <p className="text-emerald-900 leading-relaxed text-sm">
-            This statement confirms that the domain <strong className="text-emerald-950">effortindia.org</strong> (including <strong className="text-emerald-950">www.effortindia.org</strong>) is the sole official web property owned, operated, and controlled by <strong className="text-emerald-950">Effort (A Society for the Development of Agriculture and Youth)</strong> (Charity ID: <strong className="text-emerald-950">010330140</strong>). Google Workspace for Nonprofits activation for this domain is explicitly authorized and requested under administrator account <strong className="text-emerald-950">mohanreddymaareddy29@gmail.com</strong>.
+            This statement confirms that the domain <strong className="text-emerald-950">effortindia.org</strong> (including <strong className="text-emerald-950">www.effortindia.org</strong>) is the sole official web property owned, operated, and controlled by <strong className="text-emerald-950">Effort (A Society for the Development of Agriculture and Youth)</strong> (Charity ID: <strong className="text-emerald-950">010330140</strong>).
+          </p>
+          <p className="text-emerald-900 leading-relaxed text-sm">
+            This website is a custom-engineered official platform representing our 27 years of community development across 1,909 villages in India. The application for Google Workspace for Nonprofits is made specifically to transition our organization from our historical registered desk email (effortap@gmail.com) to official domain-based inboxes (contact@effortindia.org / info@effortindia.org). This request is explicitly authorized under administrator account <strong className="text-emerald-950">mohanreddymaareddy29@gmail.com</strong>.
           </p>
         </section>
 
