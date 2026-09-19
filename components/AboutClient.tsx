@@ -1277,7 +1277,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       </section>
 
       {/* --- LEADERSHIP & GOVERNANCE ECOSYSTEM (INTERACTIVE LEADERSHIP CONSTELLATION) --- */}
-      <section
+      <section data-keep-motion
         ref={leadershipRef}
         id="leadership"
         onMouseMove={(e) => {
@@ -1297,6 +1297,16 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
           <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#065f46_1.5px,transparent_1.5px),linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] [background-size:24px_24px,12px_12px,12px_12px]" />
 
+          <div
+            className="absolute top-[-10%] left-[8%] w-[750px] h-[750px] bg-emerald-300/30 rounded-full blur-[160px] animate-breathe-pulse transition-transform duration-1000 ease-out"
+            style={{ transform: `translate(${mousePos.x * 24}px, ${mousePos.y * 24}px)` }}
+          />
+          <div
+            className="absolute bottom-[-10%] right-[5%] w-[700px] h-[700px] bg-amber-300/25 rounded-full blur-[150px] animate-breathe-pulse transition-transform duration-1000 ease-out"
+            style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)`, animationDelay: "2.5s" }}
+          />
+
+          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-16">
@@ -1306,13 +1316,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`text-center max-w-3xl mx-auto mb-10 space-y-3 transition-all duration-700 ${leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
               <Users className="w-3.5 h-3.5 text-emerald-700" />
               <span>LEADERSHIP &amp; GOVERNANCE</span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.1]">
-              Leadership That Inspires <span className=" text-emerald-900 font-serif italic">Ground Action</span>
+              Leadership That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-900 via-teal-800 to-amber-700 font-serif italic">Ground Action</span>
             </h2>
 
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium max-w-2xl mx-auto">
@@ -1325,9 +1335,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`transition-all duration-1000 ${leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
           >
-            <div className="relative bg-gradient-to-br from-[#064e3b] via-[#022c22] to-[#0c1f17] text-white border-2 border-emerald-500/50 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_30px_90px_rgba(6,95,70,0.45)] hover:border-emerald-400 transition-all group overflow-hidden">
+            <div className="relative bg-gradient-to-br from-[#064e3b] via-[#022c22] to-[#0c1f17] text-white backdrop-blur-2xl border-2 border-emerald-500/50 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_30px_90px_rgba(6,95,70,0.45)] hover:border-emerald-400 transition-all group overflow-hidden">
 
               {/* Dynamic Colorful Background Animations (Breathing Aurora Orbs & Laser Sweep) */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
+              <div className="absolute -top-24 -left-24 w-80 h-80 bg-emerald-400/25 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" style={{ animationDelay: "2.5s" }} />
+              <div className="bg-noise absolute inset-0 opacity-20 pointer-events-none" />
 
               <div className="grid lg:grid-cols-12 gap-8 items-start relative z-10">
 
@@ -1383,7 +1397,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   })()}
 
                   {/* PROVEN TRACK RECORD HUD — MOVED BELOW DIRECTOR PROFILE */}
-                  <div className="w-full bg-slate-950/90 border-2 border-emerald-400/40 rounded-2xl p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] space-y-3 relative group/hud overflow-hidden text-white mt-1">
+                  <div className="w-full bg-slate-950/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-2xl p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] space-y-3 relative group/hud overflow-hidden text-white mt-1">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
                     
                     {/* Top HUD Status Bar */}
                     <div className="flex items-center justify-between border-b border-white/10 pb-2 relative z-10">
@@ -1402,11 +1417,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                     {/* Graphic Animated Digits Grid */}
                     <div className="grid grid-cols-2 gap-2 relative z-10">
                       {/* DIGIT 1: 65+ (COMPLETED PROJECTS) */}
-                      <div className="relative bg-white/5 border border-emerald-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(16,185,129,0.2)]">
+                      <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(16,185,129,0.2)]">
                         <span className="text-[8px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
                           <Award className="w-2.5 h-2.5 text-amber-400" /> COMPLETED
                         </span>
-                        <div className="text-3xl font-black font-mono tracking-tighter text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.7)] animate-hero-bob">
+                        <div className="text-3xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_15px_rgba(16,185,129,0.7)] animate-hero-bob">
                           65<span className="text-lg text-emerald-400 font-sans">+</span>
                         </div>
                         <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">
@@ -1415,11 +1430,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       </div>
 
                       {/* DIGIT 2: 15 (ACTIVE ONGOING PROJECTS) */}
-                      <div className="relative bg-white/5 border border-amber-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                      <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)]">
                         <span className="text-[8px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" /> ONGOING
                         </span>
-                        <div className="text-3xl font-black font-mono tracking-tighter text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.7)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
+                        <div className="text-3xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.7)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
                           15
                         </div>
                         <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">
@@ -1451,7 +1466,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                     <span>27-YEAR PROVEN FIELD TRACK RECORD</span>
                   </div>
 
-                  <div className="relative bg-emerald-950/70 border-l-4 border-amber-400 rounded-r-2xl p-5 shadow-inner">
+                  <div className="relative bg-emerald-950/70 border-l-4 border-amber-400 rounded-r-2xl p-5 shadow-inner backdrop-blur-md">
                     <Quote className="w-6 h-6 text-amber-400/30 absolute top-3.5 right-3.5" />
                     <p className="text-emerald-100 text-xs sm:text-sm font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
@@ -1520,10 +1535,12 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 <div
                   onMouseEnter={() => setAwardPaused(true)}
                   onMouseLeave={() => setAwardPaused(false)}
-                  className="lg:col-span-4 bg-slate-950/95 border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]"
+                  className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]"
                 >
 
                   {/* Cyber Light Sweep & Ambient Neon Orbs */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent animate-light-sweep pointer-events-none" />
+                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-400/20 rounded-full blur-2xl pointer-events-none group-hover/awards:scale-150 transition-transform duration-1000" />
 
                   {/* Top Header */}
                   <div className="flex items-center justify-between border-b border-white/10 pb-2.5 relative z-20">
@@ -1593,13 +1610,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               <Award className="w-3.5 h-3.5" />
                               <span>{award.badge}</span>
                             </span>
-                            <span className="px-2.5 py-1 rounded-full bg-slate-950/80 border border-white/20 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
+                            <span className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
                               {award.year}
                             </span>
                           </div>
 
                           {/* Bottom Floating Title & Organization Card */}
-                          <div className="absolute bottom-3 inset-x-3 p-3.5 z-20 bg-slate-950/85 rounded-2xl border border-white/20 shadow-2xl space-y-1">
+                          <div className="absolute bottom-3 inset-x-3 p-3.5 z-20 bg-slate-950/85 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl space-y-1">
                             <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 block">
                               {award.organization}
                             </span>
@@ -1738,7 +1755,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   return (
                     <div
                       key={`${member.slug}-${idx}`}
-                      className="bg-white/95 border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[315px] min-h-[440px] relative overflow-hidden text-center"
+                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[315px] min-h-[440px] relative overflow-hidden text-center"
                       style={{
                         borderColor: theme.accent,
                         boxShadow: `0 15px 35px -10px ${theme.accent}30`,
@@ -1760,6 +1777,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
                       {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
                       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[32px] opacity-60 group-hover/card:opacity-100 transition-opacity duration-500">
+                        <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
+                        <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-amber-200/25 blur-2xl animate-liquid-drift-b" />
                       </div>
 
                       {/* CARD CONTENT WITH FULL UNCLIPPED TEXT */}
@@ -1785,6 +1804,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                                 <span className="text-xs font-black text-amber-300">{member.name}</span>
                               </div>
                             )}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
                           </div>
                         </div>
 
