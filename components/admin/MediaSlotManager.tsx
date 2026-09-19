@@ -3,17 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import { ImagePlus, Trash2, RefreshCw, Loader2, Star } from "lucide-react";
 
-type MediaImage = { key: string; url: string };
+type MediaImage = { key: string; url: string; size?: number };
+
+const LARGE_BYTES = 3 * 1024 * 1024;
+
+function formatSize(bytes: number) {
+  return bytes >= 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+}
 
 type Props = {
   prefix: string; // e.g. "homepage/hero-section" or "logo" -> stored under website/{prefix}/
   label: string;
+  hint?: string; // plain-language note: where this image appears on the site + best size
   multiple?: boolean; // true = "Add another image" allowed. false = single slot, upload = first image, then only Replace/Delete.
   onSetCover?: (image: MediaImage) => Promise<void> | void; // when provided, each thumbnail gets a "Set as Cover" action
   coverKey?: string; // key of the image currently set as cover, if any — highlighted instead of showing the action
 };
 
-export default function MediaSlotManager({ prefix, label, multiple = false, onSetCover, coverKey }: Props) {
+export default function MediaSlotManager({ prefix, label, hint, multiple = false, onSetCover, coverKey }: Props) {
   const [images, setImages] = useState<MediaImage[]>([]);
   const [loading, setLoading] = useState(true);
   const [busyKey, setBusyKey] = useState<string | null>(null); // "new" while uploading a fresh image, or a key while that image is busy
@@ -105,6 +112,7 @@ export default function MediaSlotManager({ prefix, label, multiple = false, onSe
 
   return (
     <div className="space-y-4">
+      {hint && <p className="text-[11px] leading-snug text-slate-500 -mb-1">{hint}</p>}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
         {images.map((img) => {
           const isCover = onSetCover && coverKey === img.key;
@@ -118,6 +126,14 @@ export default function MediaSlotManager({ prefix, label, multiple = false, onSe
                     <Star className="w-3 h-3 fill-white" /> Cover
                   </span>
                 )}
+                {img.size ? (
+                  <span
+                    className={`absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm ${img.size > LARGE_BYTES ? "bg-amber-500 text-white" : "bg-white/90 text-slate-600"}`}
+                    title={img.size > LARGE_BYTES ? "Large file — the page will load slowly. Replace with a smaller photo." : undefined}
+                  >
+                    {img.size > LARGE_BYTES ? "Large · " : ""}{formatSize(img.size)}
+                  </span>
+                ) : null}
                 {busyKey === img.key && (
                   <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
                     <Loader2 className="w-5 h-5 animate-spin text-emerald-600" />

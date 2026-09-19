@@ -126,7 +126,7 @@ export default function DonatePanel() {
           <p className="text-[11px] text-slate-450 mb-2">
             Generate a &quot;receive money&quot; QR for this account in your UPI app, screenshot it, and upload it here.
           </p>
-          <MediaSlotManager prefix="donation-qr" label="UPI QR Code" />
+          <MediaSlotManager prefix="donation-qr" label="UPI QR Code" hint="Donate page → UPI section. Upload the QR image as-is; it must stay sharp and scannable." />
         </div>
       </div>
 
@@ -139,7 +139,7 @@ export default function DonatePanel() {
       <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-2 -mt-3">
         <label className="block text-[10px] font-bold text-slate-400 uppercase">Union Bank of India — Logo</label>
         <p className="text-[11px] text-slate-450">Shown next to the domestic account details on the Donate page.</p>
-        <MediaSlotManager prefix="bank-logos/union-bank" label="Union Bank of India Logo" />
+        <MediaSlotManager prefix="bank-logos/union-bank" label="Union Bank of India Logo" hint="Donate page → Indian bank account card. Small logo, transparent PNG." />
       </div>
 
       {/* FCRA bank */}
@@ -152,7 +152,7 @@ export default function DonatePanel() {
       <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-2 -mt-3">
         <label className="block text-[10px] font-bold text-slate-400 uppercase">State Bank of India — Logo</label>
         <p className="text-[11px] text-slate-450">Shown next to the FCRA account details on the Donate page.</p>
-        <MediaSlotManager prefix="bank-logos/sbi" label="State Bank of India Logo" />
+        <MediaSlotManager prefix="bank-logos/sbi" label="State Bank of India Logo" hint="Donate page → foreign-donation (FCRA) account card. Small logo, transparent PNG." />
       </div>
 
       {/* Receipt email */}

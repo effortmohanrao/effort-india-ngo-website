@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   const images = objects
     .filter((o) => o.Key)
     .sort((a, b) => (a.Key! < b.Key! ? -1 : 1))
-    .map((o) => ({ key: o.Key!, url: publicUrlFor(o.Key!) }));
+    .map((o) => ({ key: o.Key!, url: publicUrlFor(o.Key!), size: o.Size ?? 0 }));
 
   return NextResponse.json({ images });
 }

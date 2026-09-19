@@ -48,7 +48,7 @@ function CertificationsPanel({ onBack }: { onBack: () => void }) {
       <div className="rounded-2xl border border-slate-200 bg-white p-4">
         <p className="text-sm font-bold text-slate-800 mb-1">Great Place To Work — Badge</p>
         <p className="text-[11px] text-slate-450 mb-3">Replace anytime the certification is renewed for a new year.</p>
-        <MediaSlotManager prefix="homepage/certifications/gptw" label="Great Place To Work Badge" />
+        <MediaSlotManager prefix="homepage/certifications/gptw" label="Great Place To Work Badge" hint="Home page → Trust section badge. Transparent PNG, square." />
       </div>
     </div>
   );

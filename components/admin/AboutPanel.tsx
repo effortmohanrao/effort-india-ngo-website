@@ -70,7 +70,7 @@ function JourneyTimelinePanel({ onBack }: { onBack: () => void }) {
           <div key={c.id} className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800">{c.era}</p>
             <p className="text-xs text-slate-500 mb-3">{c.title}</p>
-            <MediaSlotManager prefix={`about/journey/${c.id}`} label={`${c.era} photo`} />
+            <MediaSlotManager prefix={`about/journey/${c.id}`} label={`${c.era} photo`} hint="About page → Our Journey timeline. Shown as the photo for this stage. Use one landscape photo (about 1600×900)." />
           </div>
         ))}
       </div>
@@ -109,7 +109,7 @@ function DirectorAwardsPanel({ onBack }: { onBack: () => void }) {
         {directorAwardsAdmin.map((a) => (
           <div key={a.id} className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800 mb-3">{a.title}</p>
-            <MediaSlotManager prefix={`about/awards/${a.id}`} label={`${a.title} photo`} />
+            <MediaSlotManager prefix={`about/awards/${a.id}`} label={`${a.title} photo`} hint="About page → Director's Awards. One photo per award; landscape works best." />
           </div>
         ))}
       </div>
@@ -149,13 +149,13 @@ function VisionMissionPanel({ onBack }: { onBack: () => void }) {
           <p className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-1.5">
             <Eye className="w-4 h-4 text-emerald-600" /> Vision
           </p>
-          <MediaSlotManager prefix="about/vision" label="Vision photo" />
+          <MediaSlotManager prefix="about/vision" label="Vision photo" hint="About page → Vision & Mission, left slide. One landscape photo (about 1600×900)." />
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-4">
           <p className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-1.5">
             <Target className="w-4 h-4 text-emerald-600" /> Mission
           </p>
-          <MediaSlotManager prefix="about/mission" label="Mission photo" />
+          <MediaSlotManager prefix="about/mission" label="Mission photo" hint="About page → Vision & Mission, right slide. One landscape photo (about 1600×900)." />
         </div>
       </div>
     </div>
@@ -198,7 +198,7 @@ function PartnerLogosPanel({ onBack }: { onBack: () => void }) {
                 p.slug ? (
                   <div key={p.slug} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                     <p className="text-xs font-bold text-slate-700 mb-2 truncate" title={p.name}>{p.name}</p>
-                    <MediaSlotManager prefix={`about/partner-logos/${p.slug}`} label={p.name} />
+                    <MediaSlotManager prefix={`about/partner-logos/${p.slug}`} label={p.name} hint="About page → Partners & Recognition. One logo, square or wide, transparent PNG is best." />
                   </div>
                 ) : (
                   <div key={p.name} className="rounded-xl border border-dashed border-slate-200 bg-slate-50/60 p-3 flex items-center">
@@ -241,7 +241,7 @@ function SubPanel({ title, desc, livePath, prefix, label, onBack }: { title: str
         </Link>
       </div>
 
-      <MediaSlotManager prefix={prefix} label={label} multiple />
+      <MediaSlotManager prefix={prefix} label={label} multiple hint="About page → top banner photo strip. You can add several; landscape photos work best." />
     </div>
   );
 }

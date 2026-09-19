@@ -50,7 +50,7 @@ export default function TestimonialsPanel({ onBack }: { onBack: () => void }) {
           <div key={p.slug} className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800">{p.name}</p>
             <p className="text-[11px] text-slate-450 mb-3">{p.role}</p>
-            <MediaSlotManager prefix={`homepage/testimonials/${p.slug}`} label={`${p.name}'s photo`} />
+            <MediaSlotManager prefix={`homepage/testimonials/${p.slug}`} label={`${p.name}'s photo`} hint="Home page → Real Voices testimonials, shown in a circle. Face in the centre." />
           </div>
         ))}
       </div>

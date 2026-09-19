@@ -17,7 +17,7 @@ export default function HeroSectionPanel({ onBack }: { onBack: () => void }) {
         Upload, replace, or delete the images shown in the homepage hero. Changes go live immediately.
       </p>
 
-      <MediaSlotManager prefix="homepage/hero-section" label="Hero Section Images" multiple />
+      <MediaSlotManager prefix="homepage/hero-section" label="Hero Section Images" multiple hint="Home page → big banner at the very top. Add several and they rotate. Landscape, at least 1600×900." />
     </div>
   );
 }

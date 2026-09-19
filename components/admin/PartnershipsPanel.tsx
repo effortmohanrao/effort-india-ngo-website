@@ -41,7 +41,7 @@ export default function PartnershipsPanel({ onBack }: { onBack: () => void }) {
         {categories.map((cat) => (
           <div key={cat.slug} className="rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-bold text-slate-800 mb-3">{cat.title}</p>
-            <MediaSlotManager prefix={`homepage/partnerships/${cat.slug}`} label={cat.title} />
+            <MediaSlotManager prefix={`homepage/partnerships/${cat.slug}`} label={cat.title} hint="Home page → Government & Institutional Partnerships. Shown for this partner group." />
           </div>
         ))}
       </div>

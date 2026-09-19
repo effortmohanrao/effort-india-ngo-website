@@ -108,7 +108,7 @@ export default function TeamPanel({ onBack }: { onBack: () => void }) {
                   <p className="text-[11px] text-slate-450">{p.role}</p>
                 </div>
 
-                <MediaSlotManager prefix={`about/team/${p.slug}`} label={`${p.name}'s photo`} />
+                <MediaSlotManager prefix={`about/team/${p.slug}`} label={`${p.name}'s photo`} hint="About page → Meet Our Team, shown in a circle. Use a head-and-shoulders photo with the face in the centre." />
 
                 <div className="grid sm:grid-cols-2 gap-3 pt-2 border-t border-slate-100">
                   <SocialField label="LinkedIn" value={s.linkedin ?? ""} onChange={(v) => updateField(p.slug, "linkedin", v)} />

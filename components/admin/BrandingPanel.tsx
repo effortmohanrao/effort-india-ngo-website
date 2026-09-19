@@ -9,7 +9,7 @@ export default function BrandingPanel() {
       </p>
 
       <div className="max-w-xs">
-        <MediaSlotManager prefix="logo" label="Site Logo" multiple={false} />
+        <MediaSlotManager prefix="logo" label="Site Logo" multiple={false} hint="Shown in the header and footer of every page. Square PNG with transparent background, at least 400×400." />
       </div>
     </div>
   );
