@@ -108,7 +108,7 @@ export default function CalendarFlipClock({
   return (
     <div className="flex flex-col items-center">
       {/* Calendar Card Housing */}
-      <div className="relative flex items-center justify-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-[36px] bg-[#1a150d]/90 backdrop-blur-2xl border-2 border-[#d4af6a]/60 shadow-[0_25px_60px_-20px_rgba(212,175,106,0.4)]">
+      <div className="relative flex items-center justify-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-[36px] bg-[#1a150d]/90 border-2 border-[#d4af6a]/60 shadow-[0_25px_60px_-20px_rgba(212,175,106,0.4)]">
         {/* Decorative Top Calendar Binding Header */}
         <div className="absolute -top-3 inset-x-12 h-2.5 bg-gradient-to-r from-[#d4af6a] via-[#f7e4a3] to-[#d4af6a] rounded-full shadow-md z-40" />
 

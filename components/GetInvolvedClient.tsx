@@ -217,9 +217,6 @@ export default function GetInvolvedClient() {
     <div className="min-h-screen bg-[#fcf8f0] text-[#221c0c] relative overflow-hidden">
       {/* Dynamic Ambient Glow Lines */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full bg-amber-200/40 blur-[150px]" />
-        <div className="absolute top-1/3 left-10 w-[600px] h-[600px] rounded-full bg-emerald-200/30 blur-[150px]" />
-        <div className="absolute inset-0 bg-noise opacity-[0.18]" />
       </div>
 
       {/* --- SECTION 1: SPLIT DUAL-ACTION HERO GATEWAY --- */}
@@ -227,12 +224,12 @@ export default function GetInvolvedClient() {
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Bold Action Intro */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
               <Building className="w-3.5 h-3.5 text-[#c9a24a]" /> Corporate CSR & Engagement Portal
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#221c0c] leading-[1.1]">
-              Get Involved: <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Corporate CSR & Field Partnerships</span>
+              Get Involved: <span className=" text-amber-600">Corporate CSR & Field Partnerships</span>
             </h1>
 
             <p className="text-base sm:text-lg text-[#5b6a60] font-medium leading-relaxed">
@@ -240,7 +237,7 @@ export default function GetInvolvedClient() {
             </p>
 
             {/* Impact Metric Bar */}
-            <div className="grid grid-cols-3 gap-3 p-4 rounded-3xl bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-xs">
+            <div className="grid grid-cols-3 gap-3 p-4 rounded-3xl bg-white/90 border-2 border-[#e5d4a1] shadow-xs">
               <div>
                 <p className="text-xl font-black text-metallic-gold">2.67 Lakh</p>
                 <p className="text-[10px] font-black uppercase text-[#221c0c]">Families Empowered</p>
@@ -266,7 +263,7 @@ export default function GetInvolvedClient() {
               className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
                 activePathway === "csr"
                   ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
-                  : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
+                  : "bg-white/90 border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
               }`}
             >
               <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center mb-3">
@@ -285,7 +282,7 @@ export default function GetInvolvedClient() {
               className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
                 activePathway === "mou"
                   ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
-                  : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
+                  : "bg-white/90 border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
               }`}
             >
               <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center mb-3">
@@ -304,7 +301,7 @@ export default function GetInvolvedClient() {
               className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
                 activePathway === "volunteer"
                   ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
-                  : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
+                  : "bg-white/90 border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
               }`}
             >
               <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center mb-3">
@@ -323,7 +320,7 @@ export default function GetInvolvedClient() {
               className={`p-6 rounded-[28px] border-2 text-left transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-1.5 ${
                 activePathway === "giving"
                   ? "bg-[#221c0c] text-[#f7e4a3] border-[#d4af6a] scale-102"
-                  : "bg-white/90 backdrop-blur-md border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
+                  : "bg-white/90 border-[#e5d4a1] text-[#221c0c] hover:border-[#d4af6a]"
               }`}
             >
               <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 text-sky-700 flex items-center justify-center mb-3">
@@ -412,7 +409,7 @@ export default function GetInvolvedClient() {
 
         {/* PATHWAY CONTENT A: CORPORATE CSR COMMAND CENTER & SPONSORSHIP OPPORTUNITIES */}
         {activePathway === "csr" && (
-          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
+          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
             <div className="space-y-3 border-b border-[#e5d4a1] pb-6">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs font-black uppercase text-purple-900">
@@ -481,7 +478,7 @@ export default function GetInvolvedClient() {
 
         {/* PATHWAY CONTENT B: MOU & STRATEGIC ALLIANCES MODULE */}
         {activePathway === "mou" && (
-          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
+          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
             <div className="space-y-2 border-b border-[#e5d4a1] pb-6">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black uppercase text-emerald-900">
                 <Handshake className="w-3.5 h-3.5 text-emerald-600" /> Institutional Collaboration Portal
@@ -530,7 +527,7 @@ export default function GetInvolvedClient() {
 
         {/* PATHWAY CONTENT C: VOLUNTEER MODULE */}
         {activePathway === "volunteer" && (
-          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
+          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5d4a1] pb-6">
               <div className="space-y-1">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-xs font-black uppercase text-amber-900">
@@ -607,7 +604,7 @@ export default function GetInvolvedClient() {
 
         {/* PATHWAY CONTENT D: ADOPT AN IMPACT CAUSE MODULE */}
         {activePathway === "giving" && (
-          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
+          <div className="rounded-[36px] p-8 sm:p-10 bg-white/90 border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8 animate-fade-in">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5d4a1] pb-6">
               <div className="space-y-1">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 border border-sky-300 text-xs font-black uppercase text-sky-900">
@@ -649,7 +646,7 @@ export default function GetInvolvedClient() {
 
       {/* --- SECTION 3: HIGH-LEVEL DYNAMIC CORPORATE & GENERAL ACTION FORM --- */}
       <section id="application-form" className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="rounded-[40px] p-8 sm:p-12 bg-white/95 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_30px_70px_-20px_rgba(180,140,40,0.25)] space-y-8">
+        <div className="rounded-[40px] p-8 sm:p-12 bg-white/95 border-2 border-[#e5d4a1] shadow-[0_30px_70px_-20px_rgba(180,140,40,0.25)] space-y-8">
           <div className="text-center space-y-3">
             <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-100 border border-amber-300 text-xs font-black uppercase tracking-wider text-amber-900">
               <Send className="w-3.5 h-3.5 text-amber-700" /> Direct Collaboration Inquiry

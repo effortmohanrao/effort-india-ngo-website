@@ -102,19 +102,15 @@ export default function ImpactClient() {
     <div className="min-h-screen bg-[#fdfaf4] text-[#221c0c] relative overflow-hidden">
       {/* Background Liquid Aurora */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/3 w-[600px] h-[600px] rounded-full bg-amber-100/50 blur-[130px] animate-liquid-drift-a" />
-        <div className="absolute top-1/2 right-10 w-[550px] h-[550px] rounded-full bg-emerald-100/40 blur-[130px] animate-liquid-drift-b" />
-        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] rounded-full bg-sky-100/30 blur-[130px]" />
-        <div className="absolute inset-0 bg-noise opacity-[0.2]" />
       </div>
 
       {/* --- HERO BANNER --- */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center space-y-6">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[#c9a24a]" /> 27 Years of Journey (1999 – 2026)
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#221c0c] max-w-4xl mx-auto leading-[1.12]">
-          Our Impact & Verified <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Field Footprint</span>
+          Our Impact & Verified <span className=" text-emerald-600">Field Footprint</span>
         </h1>
         <p className="text-base sm:text-lg text-[#5b6a60] max-w-3xl mx-auto font-medium leading-relaxed">
           Founded in 1999 in Martur, Prakasam District, Andhra Pradesh — EFFORT NGO has executed <strong>65 completed projects</strong> and <strong>15 active ongoing initiatives</strong> across 10 states, transforming 2.67 lakh rural lives across <strong>Sustainable Agriculture</strong>, <strong>Natural Resource Management</strong>, <strong>Community Collectives</strong>, <strong>Livelihoods</strong>, and <strong>Social Development Initiatives</strong>.
@@ -153,7 +149,7 @@ export default function ImpactClient() {
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black tracking-wide transition-all duration-300 cursor-pointer ${
                     isSelected
                       ? "bg-[#221c0c] text-[#f7e4a3] border-2 border-[#d4af6a] shadow-md scale-105"
-                      : "bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[#5a461e] hover:bg-white hover:border-[#d4af6a]"
+                      : "bg-white/80 border border-[#d4af6a]/50 text-[#5a461e] hover:bg-white hover:border-[#d4af6a]"
                   }`}
                 >
                   <MapPin className={`w-3.5 h-3.5 ${isSelected ? "text-emerald-400" : "text-[#c9a24a]"}`} />
@@ -175,7 +171,7 @@ export default function ImpactClient() {
 
             {/* Right: Dynamic Selected State Dashboard Card */}
             <div className="lg:col-span-5">
-              <div className="rounded-[32px] p-6 sm:p-8 bg-white/90 backdrop-blur-xl border-2 border-[#e5d4a1] shadow-[0_20px_50px_-15px_rgba(180,140,40,0.2)] space-y-6">
+              <div className="rounded-[32px] p-6 sm:p-8 bg-white/90 border-2 border-[#e5d4a1] shadow-[0_20px_50px_-15px_rgba(180,140,40,0.2)] space-y-6">
                 {/* Header */}
                 <div className="space-y-3 pb-4 border-b border-[#e5d4a1]">
                   <div className="flex items-center justify-between">
@@ -248,7 +244,7 @@ export default function ImpactClient() {
       {/* --- COMPREHENSIVE PROJECT DOMAIN SECTORS (65 COMPLETED + 15 ONGOING = 80 TOTAL) --- */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 border border-[#d4af6a]/50 text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
             <Layers className="w-3.5 h-3.5 text-[#c9a24a]" /> Full Spectrum of 80 Projects
           </span>
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-[#221c0c]">
@@ -263,7 +259,7 @@ export default function ImpactClient() {
           {impactDomains.map((domain) => (
             <div
               key={domain.id}
-              className="group relative rounded-[32px] p-7 bg-white/85 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_20px_50px_-20px_rgba(120,90,30,0.2)] hover:-translate-y-1.5 hover:border-[#d4af6a] hover:shadow-[0_30px_65px_-20px_rgba(180,140,40,0.35)] transition-all duration-500 flex flex-col justify-between space-y-5 overflow-hidden"
+              className="group relative rounded-[32px] p-7 bg-white/85 border-2 border-[#e5d4a1] shadow-[0_20px_50px_-20px_rgba(120,90,30,0.2)] hover:-translate-y-1.5 hover:border-[#d4af6a] hover:shadow-[0_30px_65px_-20px_rgba(180,140,40,0.35)] transition-all duration-500 flex flex-col justify-between space-y-5 overflow-hidden"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">

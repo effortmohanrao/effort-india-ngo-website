@@ -21,11 +21,9 @@ export default function PrivacyTerms() {
       {/* Page Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1409] via-[#2a200d] to-[#151007] text-white py-14 lg:py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[150px]" />
-          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-300 text-xs font-bold uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Trust &amp; Legal
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">Privacy Policy &amp; Terms</h1>

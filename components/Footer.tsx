@@ -135,7 +135,7 @@ export default function Footer() {
               />
 
               {/* Map Floating Top Badge */}
-              <div className="pointer-events-none absolute top-2.5 left-2.5 bg-slate-950/90 backdrop-blur-md border border-emerald-400/50 rounded-full px-3 py-1 text-[10px] font-black text-white flex items-center gap-1.5 shadow-md">
+              <div className="pointer-events-none absolute top-2.5 left-2.5 bg-slate-950/90 border border-emerald-400/50 rounded-full px-3 py-1 text-[10px] font-black text-white flex items-center gap-1.5 shadow-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                 <span>Central HQ: X4H2+53C, Martur, A.P.</span>
               </div>

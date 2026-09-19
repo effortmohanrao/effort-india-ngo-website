@@ -746,9 +746,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
         ) : (
           /* Soft mesh background fallback when no background image is uploaded */
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute -top-24 left-[5%] w-[420px] h-[420px] bg-emerald-200/40 rounded-full blur-[110px] animate-liquid-drift-a" />
-            <div className="absolute top-1/3 right-[-8%] w-[380px] h-[380px] bg-sky-200/40 rounded-full blur-[110px] animate-liquid-drift-b" />
-            <div className="absolute bottom-[-12%] left-[28%] w-[320px] h-[320px] bg-amber-100/50 rounded-full blur-[100px] animate-liquid-drift-c" />
             <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#065f46_1px,transparent_1px)] [background-size:26px_26px]" />
           </div>
         )}
@@ -759,7 +756,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
           <div className="lg:col-span-6 space-y-7">
 
             <div
-              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider shadow-lg transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Together We Create Lasting Impact
@@ -771,7 +768,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                   <span
                     className={`inline-block transition-all duration-700 ease-out ${
                       line.accent
-                        ? "bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]"
+                        ? "text-emerald-400 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]"
                         : "text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]"
                     } ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[110%]"}`}
                     style={{ transitionDelay: `${150 + i * 140}ms` }}
@@ -807,19 +804,12 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                 className="relative overflow-hidden px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 text-white font-bold text-base shadow-[0_10px_30px_-8px_rgba(16,185,129,0.55)] transition-transform duration-200 ease-out flex items-center justify-center gap-2"
               >
                 <span className="absolute inset-0 bg-gradient-to-tr from-white/25 via-transparent to-transparent pointer-events-none" />
-                {ctaRipples.map((r) => (
-                  <span
-                    key={r.id}
-                    className="absolute rounded-full bg-white/40 animate-ripple pointer-events-none"
-                    style={{ left: r.x - 6, top: r.y - 6, width: 12, height: 12 }}
-                  />
-                ))}
                 <span className="relative">Explore Our Programs</span>
                 <ArrowRight className={`w-5 h-5 relative transition-transform duration-300 ${ctaHover ? "translate-x-1" : ""}`} />
               </a>
               <Link
                 href="/get-involved"
-                className="group px-8 py-4 rounded-full bg-slate-900/70 hover:bg-slate-800/80 backdrop-blur-md border border-white/30 hover:border-white text-white font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5"
+                className="group px-8 py-4 rounded-full bg-slate-900/70 hover:bg-slate-800/80 border border-white/30 hover:border-white text-white font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5"
               >
                 <Play className="w-4 h-4 fill-emerald-400 text-emerald-400 group-hover:rotate-12 transition-transform duration-300" />
                 Become a Volunteer
@@ -835,7 +825,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               {heroCredibility.map((item) => (
                 <span
                   key={item.label}
-                  className="inline-flex items-center gap-2 bg-slate-900/70 backdrop-blur-xl border border-white/20 rounded-full pl-2.5 pr-4.5 py-2 shadow-xl text-slate-100"
+                  className="inline-flex items-center gap-2 bg-slate-900/70 border border-white/20 rounded-full pl-2.5 pr-4.5 py-2 shadow-xl text-slate-100"
                 >
                   <span className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                     <item.icon className="w-3.5 h-3.5" />
@@ -849,14 +839,12 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
           {/* Hero Right Area — Prestige Climate Tech Spotlight Showcase (Compact Box & Ultra Light Blur) */}
           <div className="lg:col-span-5 relative z-20 mt-8 lg:mt-0 lg:ml-auto w-full flex justify-end">
-            <div className="group relative w-full max-w-md rounded-[30px] bg-gradient-to-br from-[#022c22]/85 via-[#064e3b]/80 to-[#042f2e]/85 backdrop-blur-xs border-2 border-amber-300 p-5 sm:p-5.5 shadow-[0_0_40px_rgba(16,185,129,0.35)] -translate-y-1 lg:translate-x-12 xl:translate-x-16 transition-all duration-500 overflow-hidden">
+            <div className="group relative w-full max-w-md rounded-[30px] bg-gradient-to-br from-[#022c22]/85 via-[#064e3b]/80 to-[#042f2e]/85 border-2 border-amber-300 p-5 sm:p-5.5 shadow-[0_0_40px_rgba(16,185,129,0.35)] -translate-y-1 lg:translate-x-12 xl:translate-x-16 transition-all duration-500 overflow-hidden">
               
               {/* Top Glowing Laser Light-Beam Sweep */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-300 via-emerald-400 via-teal-300 to-amber-300 animate-pulse" />
               
               {/* Subtle Liquid Emerald & Gold Orbs in background */}
-              <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 bg-emerald-400/20 rounded-full blur-[90px]" />
-              <div className="pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 bg-amber-400/15 rounded-full blur-[90px]" />
 
               <div className="relative space-y-5">
                 
@@ -941,9 +929,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
       {/* --- IMPACT SECTION (dark editorial) --- */}
       <section ref={impactRef} className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-emerald-950 to-slate-950 py-10 lg:py-14">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[160px]" />
-          <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[140px]" />
-          <div className="bg-noise absolute inset-0" />
         </div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -952,7 +937,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             className={`text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-2 transition-all duration-700 ${impactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/5 backdrop-blur-md border border-amber-300/20 text-amber-200 text-xs font-bold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/5 border border-amber-300/20 text-amber-200 text-xs font-bold uppercase tracking-wider">
               Our Reach
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
@@ -969,7 +954,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               }`}
           >
             <p
-              className={`text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight bg-gradient-to-b from-white via-emerald-100 to-emerald-300 bg-clip-text text-transparent ${impactBounce ? "animate-count-bounce" : ""
+              className={`text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white ${impactBounce ? "animate-count-bounce" : ""
                 }`}
             >
               {Math.round(impactValues[1]).toLocaleString("en-IN")}+
@@ -1029,16 +1014,12 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
         {/* Soft Liquid Silk Aurora Morphing Glow Bands (Option 2) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* Top-Left: Warm Champagne Gold Aurora Silk Band */}
-          <div className="absolute -top-36 -left-32 w-[720px] h-[720px] bg-gradient-to-br from-amber-200/50 via-amber-300/30 to-orange-200/20 rounded-full blur-[140px] animate-aurora-silk-1" />
 
           {/* Top-Right: Soft Rose & Amber Gold Aurora Silk Band */}
-          <div className="absolute top-1/4 -right-36 w-[760px] h-[760px] bg-gradient-to-bl from-rose-200/45 via-amber-200/30 to-yellow-100/25 rounded-full blur-[160px] animate-aurora-silk-2" />
 
           {/* Bottom-Left: Soft Warm Cream Aurora Silk Band */}
-          <div className="absolute -bottom-36 left-1/4 w-[680px] h-[680px] bg-gradient-to-tr from-amber-300/35 via-amber-100/25 to-rose-100/20 rounded-full blur-[150px] animate-aurora-silk-3" />
 
           {/* Center Ambient Warm Breathing Core */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[820px] h-[820px] bg-gradient-radial from-amber-200/25 via-orange-100/15 to-transparent rounded-full blur-[170px] animate-halo-breathe pointer-events-none" />
         </div>
 
         <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1059,7 +1040,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
             {/* Single Line Title */}
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-tight md:whitespace-nowrap">
-              Built on <span className="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 bg-clip-text text-transparent">Transparency</span>, Backed by <span className="bg-gradient-to-r from-amber-800 via-rose-800 to-amber-950 bg-clip-text text-transparent">Compliance</span>
+              Built on <span className="text-amber-700">Transparency</span>, Backed by <span className="text-amber-800">Compliance</span>
             </h2>
 
             {/* Subtitle Balanced in Exactly 3 Lines */}
@@ -1079,7 +1060,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             <div className="bg-gradient-to-br from-[#2D1014] via-[#1E090C] to-[#250B0E] text-white border-2 border-amber-500/40 rounded-[32px] shadow-[0_25px_60px_-15px_rgba(45,16,20,0.4)] p-6 sm:p-8 relative overflow-hidden">
               
               {/* Top ambient gold light glow */}
-              <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 bg-amber-500/15 rounded-full blur-[100px]" />
 
               <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
 
@@ -1139,8 +1119,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
                     {/* Shifting breathing cream & amber radial light halos */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-amber-400/20 rounded-full blur-[70px] animate-liquid-drift-a" />
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-[#faf5ee]/15 rounded-full blur-[50px] animate-liquid-drift-b" />
                     </div>
 
                     {/* HIGH-IMPACT 3D HOLOGRAPHIC ENGINE ASSEMBLY */}
@@ -1148,7 +1126,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
                       {/* Outer Pulsing Radar Aura Rings */}
                       <div className="absolute inset-0 rounded-full border-2 border-amber-400/30 animate-ping opacity-30" style={{ animationDuration: '3.5s' }} />
-                      <div className="absolute -inset-3 rounded-full border border-amber-300/20 animate-halo-breathe" />
 
                       {/* Dual Orbiting Glowing Light Nodes */}
                       <div className="absolute inset-0 animate-[orbit-rotate_6s_linear_infinite] pointer-events-none">
@@ -1206,8 +1183,8 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                       </svg>
 
                       {/* Center 3D Glass Badge Disc: 100% & COMPLIANCE */}
-                      <div className="absolute w-28 h-28 sm:w-30 sm:h-30 rounded-full bg-gradient-to-br from-[#3b1518]/95 via-[#22090b]/98 to-[#160506]/95 border-2 border-amber-300/80 shadow-[0_0_35px_rgba(245,158,11,0.5)] backdrop-blur-xl flex flex-col items-center justify-center pointer-events-none p-2 text-center overflow-hidden">
-                        <span className="text-3xl sm:text-[32px] font-black bg-gradient-to-b from-white via-amber-100 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(253,230,138,0.9)] tracking-tight leading-none">
+                      <div className="absolute w-28 h-28 sm:w-30 sm:h-30 rounded-full bg-gradient-to-br from-[#3b1518]/95 via-[#22090b]/98 to-[#160506]/95 border-2 border-amber-300/80 shadow-[0_0_35px_rgba(245,158,11,0.5)] flex flex-col items-center justify-center pointer-events-none p-2 text-center overflow-hidden">
+                        <span className="text-3xl sm:text-[32px] font-black text-white drop-shadow-[0_0_15px_rgba(253,230,138,0.9)] tracking-tight leading-none">
                           {Math.round(trustScore)}%
                         </span>
                         <span className="text-[9px] sm:text-[10px] font-black text-[#fde68a] uppercase tracking-[0.2em] mt-1 drop-shadow-sm">
@@ -1229,7 +1206,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             </div>
 
             {/* MIDDLE FILTER BAR: CATEGORY SELECTION TABS & LIVE RECORD COUNT BADGE */}
-            <div className="bg-white/90 backdrop-blur-md border border-amber-900/15 rounded-2xl p-3 sm:p-4 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
+            <div className="bg-white/90 border border-amber-900/15 rounded-2xl p-3 sm:p-4 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
               <div className="flex overflow-x-auto no-scrollbar items-center gap-2 w-full md:w-auto pb-1 -mx-1 px-1 md:mx-0 md:px-0 md:flex-wrap">
                 {[
                   { key: "all", label: `ALL RECORDS (${complianceCards.length})` },
@@ -1375,7 +1352,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                   return (
                     <div
                       key={card.id}
-                      className={`bg-white/95 backdrop-blur-xl rounded-2xl relative overflow-hidden flex flex-col justify-between border border-amber-900/15 shadow-[0_10px_30px_-10px_rgba(120,53,15,0.12)] opacity-100 scale-100 hover:border-amber-500/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group/card ${
+                      className={`bg-white/95 rounded-2xl relative overflow-hidden flex flex-col justify-between border border-amber-900/15 shadow-[0_10px_30px_-10px_rgba(120,53,15,0.12)] opacity-100 scale-100 hover:border-amber-500/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group/card ${
                         complianceMobileView === "carousel"
                           ? "w-[84vw] max-w-[305px] shrink-0 snap-center sm:w-auto sm:shrink p-5 min-h-[170px]"
                           : "p-3.5 sm:p-5 min-h-[155px] sm:min-h-[170px]"
@@ -1454,7 +1431,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
           {/* BOTTOM TRUST STRIP: Continuous Horizontal Scrolling Marquee */}
           <div
-            className={`mt-6 relative overflow-hidden rounded-2xl bg-white/90 backdrop-blur-xl border border-amber-900/15 shadow-md py-3 px-2 transition-all duration-700 ${trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`mt-6 relative overflow-hidden rounded-2xl bg-white/90 border border-amber-900/15 shadow-md py-3 px-2 transition-all duration-700 ${trustVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             style={{ transitionDelay: "700ms" }}
           >
@@ -1479,11 +1456,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
       <section ref={howWeWorkRef} className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 py-20 lg:py-28 text-white">
         {/* Soft Mesh Glowing Aurora Backdrop */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-[10%] w-[520px] h-[520px] bg-cyan-500/15 rounded-full blur-[150px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[160px] animate-liquid-drift-b" />
-          <div className="absolute top-[40%] left-[45%] w-[380px] h-[380px] bg-amber-400/10 rounded-full blur-[140px] animate-liquid-drift-c" />
           <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#38bdf8_1.2px,transparent_1.2px)] [background-size:28px_28px]" />
-          <div className="bg-noise absolute inset-0" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1497,7 +1470,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Strategic Execution Engine
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              How Effort Delivers <span className="bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 bg-clip-text text-transparent">Auditable Social Impact</span>
+              How Effort Delivers <span className="text-cyan-300">Auditable Social Impact</span>
             </h2>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
               Every initiative follows a disciplined, 5-phase execution model — bridging ground-level community diagnostics with corporate CSR compliance and self-sustaining local governance.
@@ -1520,7 +1493,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               return (
                 <div
                   key={step.step}
-                  className="w-[82vw] max-w-[285px] shrink-0 snap-center sm:w-auto sm:shrink group relative rounded-3xl bg-slate-900/90 backdrop-blur-2xl border-2 border-cyan-400/80 p-5 sm:p-6 shadow-[0_0_30px_rgba(6,182,212,0.35)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-400 flex flex-col justify-between overflow-hidden"
+                  className="w-[82vw] max-w-[285px] shrink-0 snap-center sm:w-auto sm:shrink group relative rounded-3xl bg-slate-900/90 border-2 border-cyan-400/80 p-5 sm:p-6 shadow-[0_0_30px_rgba(6,182,212,0.35)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-400 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Permanent top edge glow bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 opacity-100" />
@@ -1566,7 +1539,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                 key={chip.label}
                 className="p-[1.5px] rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 hover:shadow-[0_0_20px_-4px_rgba(6,182,212,0.5)] transition-shadow"
               >
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 backdrop-blur-md hover:bg-slate-900 transition-colors text-white">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 hover:bg-slate-900 transition-colors text-white">
                   <chip.icon className="w-4 h-4 text-cyan-400" />
                   <span className="text-xs font-bold text-slate-200">{chip.label}</span>
                 </div>
@@ -1581,9 +1554,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
       <section id="partnerships" ref={partnershipRef} className="relative overflow-hidden text-slate-900 py-16 lg:py-24 bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0]">
         {/* Soft Liquid Silk Ambient Halos */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] bg-gradient-to-bl from-amber-200/45 via-amber-100/30 to-transparent rounded-full blur-[140px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[-5%] w-[550px] h-[550px] bg-gradient-to-tr from-rose-100/40 via-amber-100/25 to-transparent rounded-full blur-[140px] animate-liquid-drift-b" />
-          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1600,7 +1570,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 mt-4 leading-tight">
-                Building Strong Partnerships For <span className="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-950 bg-clip-text text-transparent">Sustainable Development</span>
+                Building Strong Partnerships For <span className="text-amber-700">Sustainable Development</span>
               </h2>
 
               <p className="text-slate-700 text-sm sm:text-base leading-relaxed mt-4 font-medium">
@@ -1610,7 +1580,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               {/* Verified Institutional Reach Matrix */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mt-7">
                 {partnershipStats.map((stat) => (
-                  <div key={stat.label} className="bg-white/95 backdrop-blur-xl border border-amber-900/15 rounded-2xl p-4 shadow-[0_8px_25px_-8px_rgba(120,53,15,0.12)] hover:border-amber-500/50 hover:shadow-md transition-all">
+                  <div key={stat.label} className="bg-white/95 border border-amber-900/15 rounded-2xl p-4 shadow-[0_8px_25px_-8px_rgba(120,53,15,0.12)] hover:border-amber-500/50 hover:shadow-md transition-all">
                     <p className="font-black text-xl sm:text-2xl text-slate-900 tracking-tight">{stat.value}</p>
                     <p className="text-[10px] font-black uppercase tracking-wider text-amber-900/90 mt-1">{stat.label}</p>
                     <p className="text-[9px] font-bold text-slate-500 mt-0.5">{stat.desc}</p>
@@ -1627,7 +1597,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                 </Link>
                 <a
                   href="#trust-section"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/90 backdrop-blur-md border border-amber-900/20 text-slate-800 font-bold text-xs uppercase tracking-wider hover:bg-amber-50 hover:text-amber-900 transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/90 border border-amber-900/20 text-slate-800 font-bold text-xs uppercase tracking-wider hover:bg-amber-50 hover:text-amber-900 transition-all shadow-xs"
                 >
                   <ShieldCheck className="w-4 h-4 text-amber-700" /> View Statutory Credentials
                 </a>
@@ -1645,7 +1615,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                 {partnershipBadges.map((badge) => (
                   <span
                     key={badge.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-amber-900/15 text-[11px] font-bold text-slate-800 shadow-xs hover:border-amber-500 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 border border-amber-900/15 text-[11px] font-bold text-slate-800 shadow-xs hover:border-amber-500 transition-colors"
                   >
                     <badge.icon className="w-3.5 h-3.5 text-amber-700" /> {badge.label}
                   </span>
@@ -1654,12 +1624,11 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
 
               {/* High-Contrast Light Glass Carousel Card */}
               <div
-                className="group relative bg-white/95 backdrop-blur-2xl border-2 border-amber-900/15 rounded-[34px] p-6 sm:p-8 shadow-[0_20px_50px_-15px_rgba(120,53,15,0.15)] overflow-hidden"
+                className="group relative bg-white/95 border-2 border-amber-900/15 rounded-[34px] p-6 sm:p-8 shadow-[0_20px_50px_-15px_rgba(120,53,15,0.15)] overflow-hidden"
                 onMouseEnter={() => setCarouselPaused(true)}
                 onMouseLeave={() => setCarouselPaused(false)}
               >
                 <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent animate-light-sweep" />
                 </div>
 
                 {(() => {
@@ -1723,9 +1692,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
       <section ref={csrRef} className="relative overflow-hidden text-[#2B0C10] py-16 lg:py-24 bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0]">
         {/* Soft Liquid Glowing Ambient Halos */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] left-1/3 w-[700px] h-[700px] bg-amber-200/30 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-rose-200/25 rounded-full blur-[150px] animate-liquid-drift-b" />
-          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1741,7 +1707,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#2B0C10] leading-tight">
-              Transforming Corporate Responsibility Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A141A] via-[#6B1F27] to-[#80242E]">Verified Social Impact</span>
+              Transforming Corporate Responsibility Into <span className=" text-[#4A141A]">Verified Social Impact</span>
             </h2>
 
             <p className="text-[#522026] text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
@@ -1868,10 +1834,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
       <section id="voices" ref={storyRef} className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-br from-[#2E0A12] via-[#4A1019] via-[#380A12] to-[#1D040A] text-white border-t border-rose-500/20">
         {/* Soft Glowing Liquid Ambient Glows & Dynamic Mesh */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[10%] w-[650px] h-[650px] bg-rose-500/20 rounded-full blur-[170px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[5%] w-[550px] h-[550px] bg-amber-500/25 rounded-full blur-[160px] animate-liquid-drift-b" />
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-orange-500/20 rounded-full blur-[180px] animate-aurora-silk-1" />
-          <div className="bg-noise absolute inset-0 opacity-15" />
           <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:24px_24px]" />
         </div>
 
@@ -1888,7 +1850,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Real Stories of <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300">Dignity, Impact &amp; Trust</span>
+              Real Stories of <span className=" text-amber-300">Dignity, Impact &amp; Trust</span>
             </h2>
 
             <p className="text-rose-100/80 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
@@ -1902,7 +1864,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               {[...realVoiceStories, ...realVoiceStories, ...realVoiceStories].map((story, i) => (
                 <div
                   key={`${story.id}-${i}`}
-                  className="w-[300px] sm:w-[350px] shrink-0 bg-white/10 backdrop-blur-xl border border-white/20 hover:border-amber-400/80 rounded-[36px] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
+                  className="w-[300px] sm:w-[350px] shrink-0 bg-white/10 border border-white/20 hover:border-amber-400/80 rounded-[36px] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
                 >
                   {/* Accent Top Gradient Line */}
                   <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500" />
@@ -1939,7 +1901,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                     </div>
 
                     {/* Quote Box */}
-                    <div className="bg-black/35 backdrop-blur-md border-l-4 border-amber-400 rounded-r-2xl p-5 border-t border-b border-r border-white/10 shadow-inner">
+                    <div className="bg-black/35 border-l-4 border-amber-400 rounded-r-2xl p-5 border-t border-b border-r border-white/10 shadow-inner">
                       <p className="text-amber-100 font-extrabold italic text-sm sm:text-base leading-relaxed">
                         &ldquo;{story.quote}&rdquo;
                       </p>

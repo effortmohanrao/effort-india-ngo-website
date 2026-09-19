@@ -90,18 +90,15 @@ export default function ContactClient() {
       {/* Page Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1409] via-[#2a200d] to-[#151007] text-white py-16 lg:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-amber-500/15 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] animate-liquid-drift-b" />
-          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md shadow-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-300 text-xs font-bold uppercase tracking-widest shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Ground Action Helpline &amp; Central Desk
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-md">
-            Contact <span className="bg-gradient-to-r from-amber-300 via-emerald-300 to-teal-200 bg-clip-text text-transparent">EFFORT NGO</span>
+            Contact <span className="text-amber-300">EFFORT NGO</span>
           </h1>
 
           <p className="text-amber-100/90 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
@@ -115,7 +112,7 @@ export default function ContactClient() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Phone Card */}
-          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+          <div className="p-6 rounded-[28px] bg-white/90 border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
             <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center">
               <Phone className="w-5 h-5" />
             </div>
@@ -134,7 +131,7 @@ export default function ContactClient() {
           </div>
 
           {/* Email Card */}
-          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+          <div className="p-6 rounded-[28px] bg-white/90 border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
             <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center">
               <Mail className="w-5 h-5" />
             </div>
@@ -153,7 +150,7 @@ export default function ContactClient() {
           </div>
 
           {/* Central Office Card */}
-          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+          <div className="p-6 rounded-[28px] bg-white/90 border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
             <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 text-sky-700 flex items-center justify-center">
               <MapPin className="w-5 h-5" />
             </div>
@@ -171,7 +168,7 @@ export default function ContactClient() {
           </div>
 
           {/* Working Hours Card */}
-          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
+          <div className="p-6 rounded-[28px] bg-white/90 border-2 border-[#e5d4a1] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all space-y-3">
             <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center">
               <Clock className="w-5 h-5" />
             </div>
@@ -193,7 +190,7 @@ export default function ContactClient() {
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: High-Level Interactive Inquiry Form (7 cols) */}
-          <div className="lg:col-span-7 rounded-[40px] p-8 sm:p-10 bg-white/95 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8">
+          <div className="lg:col-span-7 rounded-[40px] p-8 sm:p-10 bg-white/95 border-2 border-[#e5d4a1] shadow-[0_25px_60px_-15px_rgba(180,140,40,0.2)] space-y-8">
             <div className="space-y-2 border-b border-[#e5d4a1] pb-6">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-xs font-black uppercase tracking-wider text-amber-900">
                 <MessageSquare className="w-3.5 h-3.5 text-amber-700" /> Send Us a Direct Message

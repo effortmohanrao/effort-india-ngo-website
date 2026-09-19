@@ -1789,3 +1789,49 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* ── Calm mode ─────────────────────────────────────────────────────────────
+   Decorative ambient motion (drifting blobs, shimmer sweeps, spinning rings,
+   floating particles, glowing pulses) is switched off site-wide. Functional
+   motion (fade-in, marquee tickers, hover transitions, draw-in) is kept. */
+[class*="animate-liquid-drift"],
+[class*="animate-aurora-silk"],
+[class*="animate-smoke"],
+[class*="animate-halo"],
+.animate-glass-bubble,
+.animate-float-rising-bubble,
+.animate-light-sweep,
+.animate-gradient-border-flow,
+.animate-gyro-cw,
+.animate-gyro-ccw,
+.animate-journey-rail-shimmer,
+.animate-breathe-pulse,
+.animate-breathe-numeric,
+.animate-breathe-color,
+.animate-breathing-shadow,
+.animate-maroon-shimmer,
+.animate-indian-tricolor-breathe,
+.animate-dust-float,
+.animate-electric-current,
+.animate-ray-rotate,
+.animate-effort-journey-node,
+.animate-card-data-pulse,
+.animate-ping,
+.animate-bounce,
+[class*="orbit-rotate"],
+[class*="orbit-counter"] {
+  animation: none !important;
+}
+.bg-noise {
+  display: none !important;
+}
+.animate-hero-bob,
+.animate-glass-glow,
+.animate-ribbon-flow,
+.bg-aurora,
+.bg-aurora-light,
+.bg-pearl-aurora,
+.text-metallic-gold,
+.text-success-gradient {
+  animation: none !important;
+}

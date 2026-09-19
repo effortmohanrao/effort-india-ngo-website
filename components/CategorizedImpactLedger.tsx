@@ -150,11 +150,9 @@ export default function CategorizedImpactLedger() {
     <div className="mt-8 space-y-6 relative">
       
       {/* Cream & Maroon Ambient Lighting Background Glow */}
-      <div className="pointer-events-none absolute -top-16 left-1/4 w-[450px] h-[450px] bg-[#8c1c2b]/20 rounded-full blur-[130px]" />
-      <div className="pointer-events-none absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-[#e6c687]/10 rounded-full blur-[130px]" />
 
       {/* Cream & Maroon Tab Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-2 p-2.5 rounded-2xl bg-[#1c0407]/90 border border-[#8c1c2b]/40 backdrop-blur-2xl max-w-5xl mx-auto shadow-2xl">
+      <div className="flex flex-wrap items-center justify-center gap-2 p-2.5 rounded-2xl bg-[#1c0407]/90 border border-[#8c1c2b]/40 max-w-5xl mx-auto shadow-2xl">
         {officialPDFImpactCategories.map((c, i) => {
           const TabIcon = c.icon;
           const isActive = selectedTab === c.id;
@@ -178,7 +176,7 @@ export default function CategorizedImpactLedger() {
 
       {/* Selected Category View ONLY (Cream & Maroon Theme, Compact Boxes with Specific Icons) */}
       <div className="animate-fade-in">
-        <div className="rounded-[28px] border border-[#8c1c2b]/40 bg-gradient-to-br from-[#2a080c] via-[#1f0508] to-[#140305] backdrop-blur-2xl overflow-hidden shadow-2xl">
+        <div className="rounded-[28px] border border-[#8c1c2b]/40 bg-gradient-to-br from-[#2a080c] via-[#1f0508] to-[#140305] overflow-hidden shadow-2xl">
           
           {/* Header Banner */}
           <div className="p-4 sm:p-5 bg-gradient-to-r from-[#3b0910] via-[#2a080c] to-[#3b0910] border-b border-[#8c1c2b]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">

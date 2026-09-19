@@ -27,22 +27,6 @@ import {
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
 
-// Translucent Glass Liquid Bubbles Floating Array
-const glassBubbles = [
-  { left: 6, top: 20, width: 22, height: 22, color: "border-amber-400/40 bg-amber-400/10 shadow-[inset_0_2px_6px_rgba(251,191,36,0.4)]", delay: 0.2, duration: 6 },
-  { left: 18, top: 45, width: 16, height: 16, color: "border-white/60 bg-white/15 shadow-[inset_0_2px_5px_rgba(255,255,255,0.7)]", delay: 1.1, duration: 7 },
-  { left: 28, top: 15, width: 28, height: 28, color: "border-emerald-400/40 bg-emerald-400/10 shadow-[inset_0_2px_6px_rgba(52,211,153,0.4)]", delay: 0.7, duration: 5.5 },
-  { left: 42, top: 50, width: 18, height: 18, color: "border-blue-400/35 bg-blue-500/10 shadow-[inset_0_2px_5px_rgba(96,165,250,0.4)]", delay: 2.3, duration: 6.8 },
-  { left: 55, top: 25, width: 24, height: 24, color: "border-amber-300/45 bg-amber-300/15 shadow-[inset_0_2px_6px_rgba(252,211,77,0.5)]", delay: 1.5, duration: 7.2 },
-  { left: 68, top: 40, width: 14, height: 14, color: "border-white/70 bg-white/20 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)]", delay: 0.4, duration: 5.8 },
-  { left: 78, top: 18, width: 30, height: 30, color: "border-emerald-400/45 bg-emerald-400/10 shadow-[inset_0_2px_8px_rgba(16,185,129,0.45)]", delay: 1.9, duration: 6.5 },
-  { left: 88, top: 55, width: 20, height: 20, color: "border-amber-400/40 bg-amber-400/10 shadow-[inset_0_2px_5px_rgba(245,158,11,0.4)]", delay: 2.8, duration: 7.5 },
-  { left: 12, top: 60, width: 20, height: 20, color: "border-emerald-300/40 bg-emerald-300/10 shadow-[inset_0_2px_5px_rgba(110,231,183,0.4)]", delay: 3.1, duration: 6.2 },
-  { left: 34, top: 65, width: 14, height: 14, color: "border-white/60 bg-white/15 shadow-[inset_0_2px_4px_rgba(255,255,255,0.7)]", delay: 1.6, duration: 5.2 },
-  { left: 62, top: 68, width: 26, height: 26, color: "border-amber-400/35 bg-amber-400/10 shadow-[inset_0_2px_6px_rgba(251,191,36,0.35)]", delay: 2.5, duration: 6.7 },
-  { left: 93, top: 22, width: 16, height: 16, color: "border-emerald-400/50 bg-emerald-400/15 shadow-[inset_0_2px_5px_rgba(52,211,153,0.5)]", delay: 0.9, duration: 5.9 },
-];
-
 export default function Header() {
   const [logoUrl, setLogoUrl] = useState<string>("/logo.png");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,8 +34,6 @@ export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isDonateHover, setIsDonateHover] = useState(false);
-  const [magnet, setMagnet] = useState({ x: 0, y: 0 });
   const pathname = usePathname();
 
   const searchRef = useRef<HTMLDivElement>(null);
@@ -104,29 +86,12 @@ export default function Header() {
     { Icon: YoutubeIcon, href: "https://youtube.com/@effortap8403", label: "YouTube" },
   ];
 
-  const handleDonateMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
-    setMagnet({ x, y });
-  };
-
-  const handleDonateMouseLeave = () => {
-    setMagnet({ x: 0, y: 0 });
-    setIsDonateHover(false);
-  };
-
   if (pathname?.startsWith("/admin")) return null;
 
   return (
     <>
       {/* --- TOP INFORMATION BAR --- */}
-      <div className="relative bg-gradient-to-r from-emerald-950 via-emerald-900 to-slate-950 text-emerald-100 border-b border-emerald-800/40">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-liquid-ribbon opacity-30 blur-2xl mix-blend-screen" />
-          <div className="absolute inset-0 bg-liquid-ribbon opacity-20 mix-blend-screen" />
-          <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-light-sweep" />
-        </div>
+      <div className="relative bg-emerald-950 text-emerald-100 border-b border-emerald-800/40">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[42px] flex items-center justify-between text-[11px] sm:text-xs">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <span className="flex items-center gap-1.5 whitespace-nowrap shrink-0">
@@ -138,8 +103,8 @@ export default function Header() {
             <span className="hidden md:flex items-center gap-1.5 whitespace-nowrap">
               <Award className="w-3.5 h-3.5 text-amber-400" /> 80G / 12A Exemption
             </span>
-            <span className="hidden lg:block w-px h-3 bg-emerald-700/60" />
-            <span className="hidden lg:flex items-center gap-1.5 whitespace-nowrap">
+            <span className="hidden xl:block w-px h-3 bg-emerald-700/60" />
+            <span className="hidden xl:flex items-center gap-1.5 whitespace-nowrap">
               <Landmark className="w-3.5 h-3.5 text-amber-400" /> CSR Registration: CSR00034988
             </span>
           </div>
@@ -172,54 +137,22 @@ export default function Header() {
       <div className={`sticky top-0 z-[100] transition-all duration-500 px-2 sm:px-4 lg:px-6 ${isScrolled ? "pt-2" : "pt-4"}`}>
         
         {/* Official Indian Flag Tricolor (Saffron, White, India Green) 4-Side Boundary Wrapper */}
-        <div className="relative max-w-[1440px] mx-auto rounded-[30px] p-[2.5px] bg-gradient-to-r from-[#F58220] via-white via-[#138808] via-[#000080] to-[#F58220] animate-indian-tricolor-breathe">
-
-          {/* Animated 4-Side Laser Light-Sweep Beam Lines (Tricolor Saffron & Green) */}
-          <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden rounded-[30px]">
-            {/* Top Border Saffron & White Laser Sweep */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 via-white to-transparent animate-light-sweep" />
-            {/* Bottom Border Green & Navy Laser Sweep */}
-            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 via-blue-900 to-transparent animate-light-sweep" style={{ animationDelay: '2s' }} />
-          </div>
+        <div className="relative max-w-[1440px] mx-auto rounded-[30px] border border-slate-200 bg-white shadow-sm">
 
           <header
             className={`relative rounded-[28px] border-0 transition-all duration-500 ${
               isScrolled
-                ? "bg-white/92 backdrop-blur-[35px] py-2.5"
-                : "bg-white/80 backdrop-blur-[28px] py-4"
+                ? "bg-white py-2.5"
+                : "bg-white py-4"
             }`}
           >
-          {/* Ambient background effects — Floating Translucent Liquid Glass Bubbles */}
-          <div className="pointer-events-none absolute inset-0 rounded-[28px] overflow-hidden">
-            <div className="absolute -top-10 left-16 w-44 h-44 bg-amber-400/20 rounded-full blur-[60px]" />
-            <div className="absolute -bottom-10 right-24 w-40 h-40 bg-emerald-500/20 rounded-full blur-[55px]" />
-            <div className="absolute inset-0 bg-noise opacity-10" />
-            
-            {/* Translucent Glass Bubbles floating upwards inside the header */}
-            {glassBubbles.map((b, i) => (
-              <div
-                key={i}
-                className={`absolute rounded-full border backdrop-blur-[1px] animate-glass-bubble ${b.color}`}
-                style={{
-                  left: `${b.left}%`,
-                  top: `${b.top}%`,
-                  width: `${b.width}px`,
-                  height: `${b.height}px`,
-                  animationDuration: `${b.duration}s`,
-                  animationDelay: `${b.delay}s`,
-                }}
-              />
-            ))}
-          </div>
-
           <div className="relative px-4 sm:px-6 flex items-center justify-between gap-3 sm:gap-4">
 
             {/* Prominent Circular Executive Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="relative">
-                <div className="absolute inset-0 bg-emerald-400/40 blur-xl rounded-full scale-125 group-hover:scale-150 transition-transform duration-500" />
                 <div
-                  className={`relative rounded-full bg-white backdrop-blur-md border-2 border-white shadow-md flex items-center justify-center font-extrabold text-emerald-700 transition-all duration-500 overflow-hidden p-1 ${
+                  className={`relative rounded-full bg-white border-2 border-white shadow-md flex items-center justify-center font-extrabold text-emerald-700 transition-all duration-500 overflow-hidden p-1 ${
                     isScrolled ? "w-11 h-11" : "w-14 h-14 sm:w-16 sm:h-16"
                   }`}
                 >
@@ -232,7 +165,7 @@ export default function Header() {
                 </div>
               </div>
               <div>
-                <span className={`font-black tracking-tight animate-maroon-shimmer block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl sm:text-2xl"}`}>
+                <span className={`font-black tracking-tight block leading-none transition-all duration-500 ${isScrolled ? "text-base" : "text-xl sm:text-2xl"}`}>
                   EFFORT
                 </span>
                 <span className="relative text-[10px] sm:text-xs font-bold text-[#8c1c2b] tracking-widest uppercase mt-1 block w-fit">
@@ -273,7 +206,7 @@ export default function Header() {
 
                 {isDropdownOpen && (
                   <div className="absolute right-0 top-full pt-3 w-80 z-[9999]">
-                    <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/50 rounded-2xl p-4 shadow-2xl space-y-1 animate-fade-in shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+                    <div className="bg-white/95 border border-slate-200/50 rounded-2xl p-4 shadow-2xl space-y-1 animate-fade-in shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
                       {moreLinks.map((subLink) =>
                         subLink.locked ? (
                           <div
@@ -310,36 +243,29 @@ export default function Header() {
               {/* High-Impact 3D Glowing "Donate Now" Executive CTA */}
               <Link
                 href="/donate"
-                onMouseMove={handleDonateMouseMove}
-                onMouseEnter={() => setIsDonateHover(true)}
-                onMouseLeave={handleDonateMouseLeave}
-                style={{ transform: `translate(${magnet.x}px, ${magnet.y - (isDonateHover ? 2 : 0)}px) scale(${isDonateHover ? 1.06 : 1})` }}
-                className="relative overflow-hidden px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-amber-500 via-emerald-600 via-teal-600 to-amber-500 bg-[length:200%_200%] animate-gradient-border-flow text-white font-extrabold text-xs sm:text-sm shadow-[0_8px_30px_rgba(245,158,11,0.45),0_0_20px_rgba(16,185,129,0.35)] flex items-center gap-2.5 transition-all duration-300 group/donate border-2 border-white/40 hover:border-white hover:shadow-[0_12px_40px_rgba(245,158,11,0.6),0_0_30px_rgba(16,185,129,0.5)]"
+                className="relative overflow-hidden px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm shadow-sm flex items-center gap-2.5 transition-all duration-300 group/donate"
               >
-                {/* Continuous Shimmer Light Sweep */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/donate:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
-                <span className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent pointer-events-none" />
                 
                 {/* Pulsing Glowing Heart Container */}
                 <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shrink-0 shadow-inner group-hover/donate:scale-110 transition-transform">
-                  <Heart className="w-3.5 h-3.5 fill-amber-300 text-amber-300 animate-pulse" />
+                  <Heart className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
                 </div>
 
                 <span className="relative font-black tracking-wide text-white drop-shadow-sm">Donate Now</span>
 
                 {/* 80G Tax Exemption Pill */}
-                <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/40 border border-amber-300/40 text-[9px] font-black uppercase text-amber-200 tracking-wider backdrop-blur-xs">
+                <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/40 border border-amber-300/40 text-[9px] font-black uppercase text-amber-200 tracking-wider">
                   80G Tax Free
                 </span>
 
-                <ArrowRight className={`w-4 h-4 text-amber-200 relative transition-transform duration-300 ${isDonateHover ? "translate-x-1" : ""}`} />
+                <ArrowRight className={`w-4 h-4 text-amber-200 relative transition-transform duration-300 `} />
               </Link>
             </div>
 
             {/* Mobile Menu Trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full bg-white/60 backdrop-blur-md border border-white/60 shadow-sm flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors focus:outline-hidden cursor-pointer"
+              className="lg:hidden w-10 h-10 rounded-full bg-white/60 border border-white/60 shadow-sm flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors focus:outline-hidden cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -347,7 +273,7 @@ export default function Header() {
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden relative mt-4 mx-5 bg-white/90 backdrop-blur-2xl border border-white/60 rounded-3xl px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[75vh] overflow-y-auto animate-fade-in">
+            <div className="lg:hidden relative mt-4 mx-5 bg-white border border-slate-200 rounded-3xl px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[75vh] overflow-y-auto animate-fade-in">
               <div className="font-bold text-[10px] text-slate-400 uppercase tracking-wider px-3 mb-1">Main Pages</div>
               {mainLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -390,10 +316,10 @@ export default function Header() {
                 <Link
                   href="/donate"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="relative overflow-hidden w-full py-3.5 rounded-full bg-gradient-to-r from-amber-500 via-emerald-600 via-teal-600 to-amber-500 bg-[length:200%_200%] animate-gradient-border-flow text-white font-extrabold text-sm shadow-[0_8px_30px_rgba(245,158,11,0.45),0_0_20px_rgba(16,185,129,0.35)] flex items-center justify-center gap-2.5 border-2 border-white/40 cursor-pointer"
+                  className="relative overflow-hidden w-full py-3.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-sm shadow-sm flex items-center justify-center gap-2.5 border-2 border-white/40 cursor-pointer"
                 >
                   <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shrink-0 shadow-inner">
-                    <Heart className="w-3.5 h-3.5 fill-amber-300 text-amber-300 animate-pulse" />
+                    <Heart className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
                   </div>
                   <span className="font-black tracking-wide text-white drop-shadow-sm">Donate Now</span>
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/40 border border-amber-300/40 text-[9px] font-black uppercase text-amber-200 tracking-wider">

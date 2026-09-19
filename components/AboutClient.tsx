@@ -687,20 +687,12 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
   return (
     <div className="bg-slate-50 text-slate-800 min-h-screen py-12 relative overflow-x-clip">
 
-      {/* Liquid background gradients */}
-      <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-100/35 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-      <div className="absolute bottom-[20%] left-[-15%] w-[500px] h-[500px] bg-amber-100/25 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-
       {/* --- SECTION 1: ULTRA-PREMIUM EXECUTIVE ABOUT US HERO BANNER --- */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#064e3b] to-slate-900 text-white -mt-12 pt-16 pb-20 lg:pt-24 lg:pb-32 shadow-2xl border-b border-emerald-500/20">
 
         {/* Dynamic Background Atmosphere (Silk Orbs, Dot Matrix & Laser Sweep) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-500/20 rounded-full blur-[150px] animate-breathe-pulse" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-amber-500/15 rounded-full blur-[150px] animate-breathe-pulse" style={{ animationDelay: "3s" }} />
-          <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-teal-500/15 rounded-full blur-[130px] animate-breathe-pulse" style={{ animationDelay: "1.5s" }} />
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(rgba(255,255,255,0.25)_1.5px,transparent_1.5px)] [background-size:28px_28px]" />
-          <div className="bg-noise absolute inset-0 opacity-20" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -711,7 +703,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
               {/* Micro Registration Pill Badge */}
               <div
-                className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(16,185,129,0.25)] transition-all duration-700 ${heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -721,7 +713,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
               {/* Main Executive Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">
+                <span className="block text-emerald-300">
                   Building Hope.
                 </span>
                 <span className="block text-white">
@@ -777,7 +769,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 </a>
                 <a
                   href="#leadership"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm hover:bg-white/20 hover:border-emerald-400 transition-all"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 border border-white/20 text-white font-bold text-sm hover:bg-white/20 hover:border-emerald-400 transition-all"
                 >
                   <Users className="w-4 h-4 text-amber-300" />
                   <span>Meet Our Leadership Team</span>
@@ -812,7 +804,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               <div
                 onMouseEnter={() => setHeroPaused(true)}
                 onMouseLeave={() => setHeroPaused(false)}
-                className="relative rounded-[36px] overflow-hidden border-2 border-amber-400/50 bg-slate-900/80 backdrop-blur-2xl p-4 shadow-[0_30px_90px_rgba(251,191,36,0.25)] hover:border-amber-300 transition-all duration-500 group"
+                className="relative rounded-[36px] overflow-hidden border-2 border-amber-400/50 bg-slate-900/80 p-4 shadow-[0_30px_90px_rgba(251,191,36,0.25)] hover:border-amber-300 transition-all duration-500 group"
               >
 
                 {/* Main Cinematic Image Frame */}
@@ -839,11 +831,10 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
                   {/* Laser Light Sweep */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-light-sweep" />
                   </div>
 
                   {/* Bottom Floating Interactive Album Dock & Controls */}
-                  <div className="absolute bottom-5 left-5 right-5 z-20 bg-slate-950/85 backdrop-blur-2xl border border-white/20 rounded-2xl p-3.5 shadow-2xl flex items-center justify-between gap-3">
+                  <div className="absolute bottom-5 left-5 right-5 z-20 bg-slate-950/85 border border-white/20 rounded-2xl p-3.5 shadow-2xl flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div className="w-8 h-8 rounded-xl bg-amber-400/20 border border-amber-400/40 text-amber-300 flex items-center justify-center shrink-0">
                         <Camera className="w-4 h-4" />
@@ -899,10 +890,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       {/* --- VISION & MISSION SECTION (EDITORIAL, GRAPHITE & GOLD) --- */}
       <section ref={vmRef} className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-neutral-900 to-zinc-950 py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-25%] right-[10%] w-[460px] h-[460px] bg-amber-500/10 rounded-full blur-[160px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-25%] left-[5%] w-[360px] h-[360px] bg-amber-700/10 rounded-full blur-[150px] animate-liquid-drift-b" />
           <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(115deg,transparent_48%,rgba(251,191,36,0.06)_50%,transparent_52%)]" />
-          <div className="bg-noise absolute inset-0 opacity-60" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -937,7 +925,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               onMouseEnter={() => setVmPaused(true)}
               onMouseLeave={() => setVmPaused(false)}
             >
-              <div className="relative bg-white/[0.03] backdrop-blur-[35px] border border-amber-400/15 rounded-[36px] p-7 sm:p-9 animate-breathing-shadow overflow-hidden">
+              <div className="relative bg-white/[0.03] border border-amber-400/15 rounded-[36px] p-7 sm:p-9 overflow-hidden">
                 <span className="pointer-events-none absolute -top-6 right-2 text-[130px] font-black leading-none select-none animate-breathe-numeric">
                   0{activeVMSlide + 1}
                 </span>
@@ -1005,10 +993,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       <section ref={valuesRef} className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-[#0b3d2e] to-slate-950 py-20 lg:py-28 text-white border-t border-emerald-400/30">
         {/* Soft Glowing Liquid Mixed Ambient Glows & Dynamic Mesh */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[15%] w-[650px] h-[650px] bg-emerald-500/25 rounded-full blur-[170px] animate-liquid-drift-a" />
-          <div className="absolute bottom-[-10%] left-[10%] w-[550px] h-[550px] bg-amber-500/25 rounded-full blur-[160px] animate-liquid-drift-b" />
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[450px] h-[450px] bg-teal-500/20 rounded-full blur-[180px] animate-aurora-silk-1" />
-          <div className="bg-noise absolute inset-0 opacity-15" />
           <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]" />
         </div>
 
@@ -1024,7 +1008,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             </span>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              The Unshakable Values That <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">Drive Every Ground Decision</span>
+              The Unshakable Values That <span className=" text-emerald-300">Drive Every Ground Decision</span>
             </h2>
 
             <p className="text-emerald-100/90 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
@@ -1045,10 +1029,9 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               {/* Glowing Ambient Rings */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-emerald-400/30 pointer-events-none animate-pulse" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-amber-400/20 pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full bg-emerald-500/20 blur-[70px] pointer-events-none" />
 
               {/* Center Stationary Glass Emblem Core */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-[#052e22]/95 via-[#064e3b]/95 to-[#022c1c]/95 backdrop-blur-2xl border-2 border-emerald-400/80 z-20 flex flex-col items-center justify-center text-center shadow-[0_0_60px_rgba(16,185,129,0.5)] overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-[#052e22]/95 via-[#064e3b]/95 to-[#022c1c]/95 border-2 border-emerald-400/80 z-20 flex flex-col items-center justify-center text-center shadow-[0_0_60px_rgba(16,185,129,0.5)] overflow-hidden">
                 <div className="absolute inset-2 rounded-full border border-emerald-400/30" />
                 <Gem className="w-8 h-8 text-emerald-300 mb-1 animate-bounce" />
                 <p className="text-[11px] font-black uppercase tracking-widest text-emerald-300 relative z-10 leading-tight">
@@ -1119,7 +1102,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                           >
                             <button
                               onClick={() => setHoveredValue(i)}
-                              className={`group w-28 h-28 sm:w-32 sm:h-32 rounded-3xl backdrop-blur-2xl border-2 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center text-center ${isSelected
+                              className={`group w-28 h-28 sm:w-32 sm:h-32 rounded-3xl border-2 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center text-center ${isSelected
                                 ? "border-emerald-300 bg-slate-900/95 scale-110 z-30 shadow-[0_0_40px_rgba(16,185,129,0.8)]"
                                 : "bg-white/10 border-emerald-400/40 hover:border-emerald-300 hover:bg-slate-900/80 hover:scale-105"
                                 }`}
@@ -1212,7 +1195,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 return (
                   <div
                     key={activeIndex}
-                    className="animate-card-data-pulse bg-slate-950/85 backdrop-blur-2xl border-2 border-emerald-400/80 rounded-[36px] p-7 sm:p-9 shadow-[0_25px_60px_rgba(16,185,129,0.35)] space-y-6 relative overflow-hidden group"
+                    className=" bg-slate-950/85 border-2 border-emerald-400/80 rounded-[36px] p-7 sm:p-9 shadow-[0_25px_60px_rgba(16,185,129,0.35)] space-y-6 relative overflow-hidden group"
                   >
                     {/* Top Accent Gradient Bar */}
                     <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-400" />
@@ -1245,7 +1228,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                     </div>
 
                     {/* Statutory Verification Tag */}
-                    <div className="bg-black/60 backdrop-blur-md rounded-2xl p-4 border border-emerald-400/20 relative z-10 space-y-1 shadow-inner">
+                    <div className="bg-black/60 rounded-2xl p-4 border border-emerald-400/20 relative z-10 space-y-1 shadow-inner">
                       <div className="flex items-center gap-2 text-xs font-bold text-emerald-300">
                         <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>Statutory Verification</span>
@@ -1278,7 +1261,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               { label: "Statutory Accountability", desc: "Quarterly Utilization Certificates and GIS logs", icon: ShieldCheck },
               { label: "Self-Sustaining Impact", desc: "Local institutions designed to thrive permanently", icon: Sprout },
             ].map((item) => (
-              <div key={item.label} className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-emerald-400/60 transition-all">
+              <div key={item.label} className="bg-white/10 border border-white/15 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-emerald-400/60 transition-all">
                 <div className="w-12 h-12 rounded-xl bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
                   <item.icon className="w-6 h-6" />
                 </div>
@@ -1314,16 +1297,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
           <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#065f46_1.5px,transparent_1.5px),linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] [background-size:24px_24px,12px_12px,12px_12px]" />
 
-          <div
-            className="absolute top-[-10%] left-[8%] w-[750px] h-[750px] bg-emerald-300/30 rounded-full blur-[160px] animate-breathe-pulse transition-transform duration-1000 ease-out"
-            style={{ transform: `translate(${mousePos.x * 24}px, ${mousePos.y * 24}px)` }}
-          />
-          <div
-            className="absolute bottom-[-10%] right-[5%] w-[700px] h-[700px] bg-amber-300/25 rounded-full blur-[150px] animate-breathe-pulse transition-transform duration-1000 ease-out"
-            style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)`, animationDelay: "2.5s" }}
-          />
-
-          <div className="bg-noise absolute inset-0 opacity-15" />
         </div>
 
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-16">
@@ -1333,13 +1306,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`text-center max-w-3xl mx-auto mb-10 space-y-3 transition-all duration-700 ${leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 border border-emerald-700/30 text-emerald-900 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-xs">
               <Users className="w-3.5 h-3.5 text-emerald-700" />
               <span>LEADERSHIP &amp; GOVERNANCE</span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.1]">
-              Leadership That Inspires <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-900 via-teal-800 to-amber-700 font-serif italic">Ground Action</span>
+              Leadership That Inspires <span className=" text-emerald-900 font-serif italic">Ground Action</span>
             </h2>
 
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium max-w-2xl mx-auto">
@@ -1352,13 +1325,9 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`transition-all duration-1000 ${leadershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
           >
-            <div className="relative bg-gradient-to-br from-[#064e3b] via-[#022c22] to-[#0c1f17] text-white backdrop-blur-2xl border-2 border-emerald-500/50 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_30px_90px_rgba(6,95,70,0.45)] hover:border-emerald-400 transition-all group overflow-hidden">
+            <div className="relative bg-gradient-to-br from-[#064e3b] via-[#022c22] to-[#0c1f17] text-white border-2 border-emerald-500/50 rounded-[40px] p-6 sm:p-8 lg:p-10 shadow-[0_30px_90px_rgba(6,95,70,0.45)] hover:border-emerald-400 transition-all group overflow-hidden">
 
               {/* Dynamic Colorful Background Animations (Breathing Aurora Orbs & Laser Sweep) */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
-              <div className="absolute -top-24 -left-24 w-80 h-80 bg-emerald-400/25 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" />
-              <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-breathe-pulse pointer-events-none" style={{ animationDelay: "2.5s" }} />
-              <div className="bg-noise absolute inset-0 opacity-20 pointer-events-none" />
 
               <div className="grid lg:grid-cols-12 gap-8 items-start relative z-10">
 
@@ -1414,8 +1383,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   })()}
 
                   {/* PROVEN TRACK RECORD HUD — MOVED BELOW DIRECTOR PROFILE */}
-                  <div className="w-full bg-slate-950/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-2xl p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] space-y-3 relative group/hud overflow-hidden text-white mt-1">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent animate-light-sweep pointer-events-none" />
+                  <div className="w-full bg-slate-950/90 border-2 border-emerald-400/40 rounded-2xl p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] space-y-3 relative group/hud overflow-hidden text-white mt-1">
                     
                     {/* Top HUD Status Bar */}
                     <div className="flex items-center justify-between border-b border-white/10 pb-2 relative z-10">
@@ -1434,11 +1402,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                     {/* Graphic Animated Digits Grid */}
                     <div className="grid grid-cols-2 gap-2 relative z-10">
                       {/* DIGIT 1: 65+ (COMPLETED PROJECTS) */}
-                      <div className="relative bg-white/5 backdrop-blur-md border border-emerald-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(16,185,129,0.2)]">
+                      <div className="relative bg-white/5 border border-emerald-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-emerald-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(16,185,129,0.2)]">
                         <span className="text-[8px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
                           <Award className="w-2.5 h-2.5 text-amber-400" /> COMPLETED
                         </span>
-                        <div className="text-3xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 drop-shadow-[0_0_15px_rgba(16,185,129,0.7)] animate-hero-bob">
+                        <div className="text-3xl font-black font-mono tracking-tighter text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.7)] animate-hero-bob">
                           65<span className="text-lg text-emerald-400 font-sans">+</span>
                         </div>
                         <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">
@@ -1447,11 +1415,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       </div>
 
                       {/* DIGIT 2: 15 (ACTIVE ONGOING PROJECTS) */}
-                      <div className="relative bg-white/5 backdrop-blur-md border border-amber-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                      <div className="relative bg-white/5 border border-amber-500/30 rounded-xl p-2.5 flex flex-col items-center justify-center text-center space-y-0.5 group/card hover:border-amber-400 hover:bg-white/10 transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)]">
                         <span className="text-[8px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" /> ONGOING
                         </span>
-                        <div className="text-3xl font-black font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.7)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
+                        <div className="text-3xl font-black font-mono tracking-tighter text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.7)] animate-hero-bob" style={{ animationDelay: "1.5s" }}>
                           15
                         </div>
                         <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">
@@ -1483,7 +1451,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                     <span>27-YEAR PROVEN FIELD TRACK RECORD</span>
                   </div>
 
-                  <div className="relative bg-emerald-950/70 border-l-4 border-amber-400 rounded-r-2xl p-5 shadow-inner backdrop-blur-md">
+                  <div className="relative bg-emerald-950/70 border-l-4 border-amber-400 rounded-r-2xl p-5 shadow-inner">
                     <Quote className="w-6 h-6 text-amber-400/30 absolute top-3.5 right-3.5" />
                     <p className="text-emerald-100 text-xs sm:text-sm font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
@@ -1552,12 +1520,10 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 <div
                   onMouseEnter={() => setAwardPaused(true)}
                   onMouseLeave={() => setAwardPaused(false)}
-                  className="lg:col-span-4 bg-slate-950/95 backdrop-blur-2xl border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]"
+                  className="lg:col-span-4 bg-slate-950/95 border-2 border-amber-400/40 rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between space-y-3 relative group/awards overflow-hidden text-white min-h-[460px] lg:min-h-[500px]"
                 >
 
                   {/* Cyber Light Sweep & Ambient Neon Orbs */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent animate-light-sweep pointer-events-none" />
-                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-400/20 rounded-full blur-2xl pointer-events-none group-hover/awards:scale-150 transition-transform duration-1000" />
 
                   {/* Top Header */}
                   <div className="flex items-center justify-between border-b border-white/10 pb-2.5 relative z-20">
@@ -1627,13 +1593,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               <Award className="w-3.5 h-3.5" />
                               <span>{award.badge}</span>
                             </span>
-                            <span className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
+                            <span className="px-2.5 py-1 rounded-full bg-slate-950/80 border border-white/20 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
                               {award.year}
                             </span>
                           </div>
 
                           {/* Bottom Floating Title & Organization Card */}
-                          <div className="absolute bottom-3 inset-x-3 p-3.5 z-20 bg-slate-950/85 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl space-y-1">
+                          <div className="absolute bottom-3 inset-x-3 p-3.5 z-20 bg-slate-950/85 rounded-2xl border border-white/20 shadow-2xl space-y-1">
                             <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 block">
                               {award.organization}
                             </span>
@@ -1772,7 +1738,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   return (
                     <div
                       key={`${member.slug}-${idx}`}
-                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[315px] min-h-[440px] relative overflow-hidden text-center"
+                      className="bg-white/95 border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[315px] min-h-[440px] relative overflow-hidden text-center"
                       style={{
                         borderColor: theme.accent,
                         boxShadow: `0 15px 35px -10px ${theme.accent}30`,
@@ -1794,8 +1760,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
                       {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
                       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[32px] opacity-60 group-hover/card:opacity-100 transition-opacity duration-500">
-                        <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
-                        <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-amber-200/25 blur-2xl animate-liquid-drift-b" />
                       </div>
 
                       {/* CARD CONTENT WITH FULL UNCLIPPED TEXT */}
@@ -1821,7 +1785,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                                 <span className="text-xs font-black text-amber-300">{member.name}</span>
                               </div>
                             )}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
                           </div>
                         </div>
 
@@ -1883,7 +1846,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       <section ref={philosophyRef} className="relative overflow-hidden bg-[#f6f0e4] py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.5] bg-[linear-gradient(rgba(107,101,96,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(107,101,96,0.06)_1px,transparent_1px)] [background-size:40px_40px]" />
-          <div className="absolute inset-0 bg-noise opacity-[0.5]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1993,7 +1955,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             bgGrad: "from-[#03241b] via-[#06382b] to-[#041d16]",
             glowA: "bg-emerald-500/25",
             glowB: "bg-teal-500/20",
-            headerSpan: "from-emerald-300 via-teal-200 to-amber-300",
+            headerSpan: "text-emerald-300",
             pillTag: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40",
             iconGrad: "from-emerald-400 to-teal-500 text-slate-950",
             activeCardBg: "bg-slate-950/90 border-emerald-400/80 shadow-[0_0_50px_rgba(52,211,153,0.35)] text-slate-100",
@@ -2006,7 +1968,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             bgGrad: "from-[#291402] via-[#3a1d04] to-[#1c0d01]",
             glowA: "bg-amber-500/25",
             glowB: "bg-yellow-500/20",
-            headerSpan: "from-amber-300 via-yellow-200 to-amber-400",
+            headerSpan: "text-amber-300",
             pillTag: "bg-amber-500/20 text-amber-300 border-amber-400/40",
             iconGrad: "from-amber-400 to-yellow-500 text-slate-950",
             activeCardBg: "bg-slate-950/90 border-amber-400/80 shadow-[0_0_50px_rgba(251,191,36,0.35)] text-slate-100",
@@ -2019,7 +1981,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             bgGrad: "from-[#03242b] via-[#0a3542] to-[#03191f]",
             glowA: "bg-cyan-500/25",
             glowB: "bg-sky-500/20",
-            headerSpan: "from-cyan-300 via-sky-200 to-teal-300",
+            headerSpan: "text-cyan-300",
             pillTag: "bg-cyan-500/20 text-cyan-300 border-cyan-400/40",
             iconGrad: "from-cyan-400 to-sky-500 text-slate-950",
             activeCardBg: "bg-slate-950/90 border-cyan-400/80 shadow-[0_0_50px_rgba(56,189,248,0.35)] text-slate-100",
@@ -2032,7 +1994,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             bgGrad: "from-[#110f36] via-[#1e1b4b] to-[#0a0824]",
             glowA: "bg-indigo-500/25",
             glowB: "bg-blue-500/20",
-            headerSpan: "from-indigo-300 via-blue-200 to-sky-300",
+            headerSpan: "text-indigo-300",
             pillTag: "bg-indigo-500/20 text-indigo-300 border-indigo-400/40",
             iconGrad: "from-indigo-400 to-blue-500 text-slate-950",
             activeCardBg: "bg-slate-950/90 border-indigo-400/80 shadow-[0_0_50px_rgba(129,140,248,0.35)] text-slate-100",
@@ -2045,7 +2007,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             bgGrad: "from-[#2b030d] via-[#4c0519] to-[#1c0107]",
             glowA: "bg-rose-500/25",
             glowB: "bg-pink-500/20",
-            headerSpan: "from-rose-300 via-pink-200 to-rose-400",
+            headerSpan: "text-rose-300",
             pillTag: "bg-rose-500/20 text-rose-300 border-rose-400/40",
             iconGrad: "from-rose-400 to-pink-500 text-slate-950",
             activeCardBg: "bg-slate-950/90 border-rose-400/80 shadow-[0_0_50px_rgba(251,113,133,0.35)] text-slate-100",
@@ -2058,7 +2020,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             bgGrad: "from-[#1d0736] via-[#3b0764] to-[#130324]",
             glowA: "bg-purple-500/25",
             glowB: "bg-fuchsia-500/20",
-            headerSpan: "from-purple-300 via-fuchsia-200 to-violet-300",
+            headerSpan: "text-purple-300",
             pillTag: "bg-purple-500/20 text-purple-300 border-purple-400/40",
             iconGrad: "from-purple-400 to-fuchsia-500 text-slate-950",
             activeCardBg: "bg-slate-950/90 border-purple-400/80 shadow-[0_0_50px_rgba(192,132,252,0.35)] text-slate-100",
@@ -2078,9 +2040,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
           >
             {/* Dynamic Liquid Ambient Glow Orbs & Light Mesh */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className={`absolute top-[-10%] left-[-10%] w-[650px] h-[650px] ${activeTheme.glowA} rounded-full blur-[170px] animate-pulse transition-colors duration-1000`} />
-              <div className={`absolute bottom-[-10%] right-[-10%] w-[650px] h-[650px] ${activeTheme.glowB} rounded-full blur-[160px] animate-pulse transition-colors duration-1000`} style={{ animationDelay: "2s" }} />
-              <div className="bg-noise absolute inset-0 opacity-20" />
               <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:28px_28px]" />
             </div>
 
@@ -2091,13 +2050,13 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${compareVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                   }`}
               >
-                <span className={`inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full backdrop-blur-md border ${activeTheme.pillTag} text-xs font-black uppercase tracking-widest shadow-md transition-colors duration-700`}>
+                <span className={`inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full border ${activeTheme.pillTag} text-xs font-black uppercase tracking-widest shadow-md transition-colors duration-700`}>
                   <Sparkles className="w-3.5 h-3.5" /> STRATEGIC FRAMEWORK 2026–2030
                 </span>
 
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
                   6 Strategic Pillars of{" "}
-                  <span className={`text-transparent bg-clip-text bg-gradient-to-r ${activeTheme.headerSpan} transition-all duration-700`}>
+                  <span className={`${activeTheme.headerSpan} transition-all duration-700`}>
                     EFFORT 2.0
                   </span>
                 </h2>
@@ -2191,7 +2150,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       onMouseEnter={() => setActiveWhyChooseTab(pillar.id)}
                       className={`group relative rounded-[32px] transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between p-5 sm:p-7 ${isActive
                         ? `lg:flex-[3.5] ${activeTheme.activeCardBg}`
-                        : "lg:flex-1 bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 hover:border-white/40 shadow-lg text-slate-100"
+                        : "lg:flex-1 bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/40 shadow-lg text-slate-100"
                         }`}
                     >
                       {/* Top Accent Gradient Bar */}
@@ -2228,7 +2187,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                           </p>
 
                           {/* Philosophy Quote */}
-                          <div className={`backdrop-blur-md rounded-2xl p-4 border flex items-start gap-3 ${activeTheme.quoteBox}`}>
+                          <div className={` rounded-2xl p-4 border flex items-start gap-3 ${activeTheme.quoteBox}`}>
                             <Quote className="w-4 h-4 shrink-0 mt-0.5" />
                             <p className="text-xs font-semibold italic leading-relaxed">
                               &ldquo;{pillar.philosophy}&rdquo;
@@ -2278,7 +2237,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   { label: "Practice-Based Evidence", desc: "100+ Learning products & GIS telemetry logs", icon: Globe2 },
                   { label: "Multi-State Alliances", desc: "30–50 Institutional Partners across 8–12 states", icon: Handshake },
                 ].map((item) => (
-                  <div key={item.label} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-white/40 transition-all">
+                  <div key={item.label} className="bg-white/10 border border-white/20 rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:border-white/40 transition-all">
                     <div className="w-12 h-12 rounded-xl bg-white/15 border border-white/25 text-amber-300 flex items-center justify-center shrink-0">
                       <item.icon className="w-6 h-6" />
                     </div>
@@ -2298,10 +2257,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       {/* --- OUR PARTNERS & RECOGNITION SECTION (TRUST NETWORK) --- */}
       <section id="partners" ref={partnersRef} className="relative overflow-hidden bg-aurora py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-24 -left-16 w-[420px] h-[420px] rounded-full bg-emerald-500/25 blur-[110px] animate-smoke-a" />
-          <div className="absolute top-1/3 -right-20 w-[460px] h-[460px] rounded-full bg-fuchsia-500/20 blur-[120px] animate-smoke-b" />
-          <div className="absolute -bottom-28 left-1/3 w-[400px] h-[400px] rounded-full bg-cyan-500/20 blur-[110px] animate-smoke-c" />
-          <div className="absolute inset-0 bg-noise opacity-[0.08]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -2310,7 +2265,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`text-center max-w-2xl mx-auto mb-12 space-y-3 transition-all duration-700 ${partnersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 text-xs font-bold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/80 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Trusted Worldwide
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
@@ -2326,7 +2281,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`flex justify-center mb-6 transition-all duration-1000 ${partnersVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
               }`}
           >
-            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-white backdrop-blur-xl border-4 border-amber-300/80 p-2.5 flex items-center justify-center animate-glass-glow shadow-[0_0_35px_rgba(251,191,36,0.4)] overflow-hidden group">
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-white border-4 border-amber-300/80 p-2.5 flex items-center justify-center animate-glass-glow shadow-[0_0_35px_rgba(251,191,36,0.4)] overflow-hidden group">
               <div className="absolute -inset-3 rounded-full border border-white/20" />
               {logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -2410,7 +2365,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
           >
             <a
               href="/get-involved"
-              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/10 backdrop-blur-md text-white font-bold text-sm border border-white/25 hover:bg-white hover:text-[#0b1120] transition-colors duration-300 rounded-full"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/10 text-white font-bold text-sm border border-white/25 hover:bg-white hover:text-[#0b1120] transition-colors duration-300 rounded-full"
             >
               Become Our Partner <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
             </a>
@@ -2422,26 +2377,12 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
       <section className="relative overflow-hidden bg-aurora-light py-16 lg:py-24">
         {/* Continuous Rising Floating Bubbles & Fireworks Blasting Bursts Backdrop */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-          <div className="absolute -top-20 -left-10 w-[480px] h-[480px] rounded-full bg-amber-300/30 blur-[110px] animate-liquid-drift-a" />
-          <div className="absolute top-1/3 -right-16 w-[520px] h-[520px] rounded-full bg-emerald-300/30 blur-[120px] animate-liquid-drift-b" />
-          <div className="absolute -bottom-24 left-1/3 w-[460px] h-[460px] rounded-full bg-rose-300/30 blur-[110px] animate-liquid-drift-c" />
-          <div className="absolute inset-0 bg-noise opacity-[0.3]" />
 
           {/* Continuous Rising Translucent Bubbles */}
           <div className="absolute inset-0">
-            <div className="absolute bottom-0 left-[8%] w-10 h-10 rounded-full bg-amber-400/25 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0s", animationDuration: "6.5s" }} />
-            <div className="absolute bottom-0 left-[22%] w-16 h-16 rounded-full bg-emerald-400/25 border border-emerald-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.2s", animationDuration: "8s" }} />
-            <div className="absolute bottom-0 left-[38%] w-12 h-12 rounded-full bg-rose-400/25 border border-rose-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "2.5s", animationDuration: "7s" }} />
-            <div className="absolute bottom-0 left-[55%] w-20 h-20 rounded-full bg-purple-400/20 border border-purple-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0.8s", animationDuration: "9.5s" }} />
-            <div className="absolute bottom-0 left-[70%] w-14 h-14 rounded-full bg-cyan-400/25 border border-cyan-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "3.2s", animationDuration: "7.5s" }} />
-            <div className="absolute bottom-0 left-[88%] w-18 h-18 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.8s", animationDuration: "8.5s" }} />
           </div>
 
           {/* Celebratory Fireworks / Starburst Energy Blasting Nodes */}
-          <div className="absolute top-[15%] left-[15%] w-32 h-32 rounded-full bg-gradient-to-r from-amber-400/40 via-rose-400/30 to-purple-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "0s" }} />
-          <div className="absolute top-[25%] right-[18%] w-40 h-40 rounded-full bg-gradient-to-r from-emerald-400/40 via-teal-400/30 to-cyan-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "2.2s" }} />
-          <div className="absolute bottom-[20%] left-[30%] w-36 h-36 rounded-full bg-gradient-to-r from-rose-400/40 via-purple-400/30 to-indigo-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "1.1s" }} />
-          <div className="absolute bottom-[25%] right-[25%] w-44 h-44 rounded-full bg-gradient-to-r from-amber-400/40 via-emerald-400/30 to-teal-400/40 blur-xl animate-fireworks-blast" style={{ animationDelay: "3.4s" }} />
         </div>
 
         <div className="relative z-10">
@@ -2450,7 +2391,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             className={`max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 space-y-3 transition-all duration-700 ${galleryHeaderVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-white/80 text-[#9a6b3f] text-xs font-black uppercase tracking-wider shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-white/80 text-[#9a6b3f] text-xs font-black uppercase tracking-wider shadow-sm">
               <Camera className="w-3.5 h-3.5 text-amber-600 animate-bounce" /> Our Journey Through Images
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#2b2723]">
@@ -2490,7 +2431,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
               galleryImages.map((img) => (
                 <div
                   key={img.key}
-                  className="group relative w-72 sm:w-80 h-48 sm:h-52 rounded-[28px] overflow-hidden bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500"
+                  className="group relative w-72 sm:w-80 h-48 sm:h-52 rounded-[28px] overflow-hidden bg-white/50 border border-white/70 shadow-[0_25px_50px_-25px_rgba(120,90,60,0.3)] hover:-translate-y-2 hover:scale-105 hover:shadow-[0_35px_65px_-25px_rgba(180,130,70,0.4)] hover:border-[#d4af6a] transition-all duration-500"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={img.url} alt="EFFORT NGO field photo" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -2534,7 +2475,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
           <div className="text-center mt-8">
             <a
               href="/gallery"
-              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/70 backdrop-blur-md text-[#2b2723] font-black text-sm border border-[#d4af6a] hover:bg-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 bg-white/70 text-[#2b2723] font-black text-sm border border-[#d4af6a] hover:bg-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full"
             >
               View Complete Gallery <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300 text-amber-700" />
             </a>
@@ -2570,7 +2511,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                 "conic-gradient(from 0deg, transparent 0deg, rgba(245,185,66,0.6) 6deg, transparent 18deg, transparent 160deg, rgba(255,138,101,0.5) 172deg, transparent 184deg, transparent 360deg)",
             }}
           />
-          <div className="absolute inset-0 bg-noise opacity-[0.35]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_380px] gap-12 lg:gap-16 items-center py-20">

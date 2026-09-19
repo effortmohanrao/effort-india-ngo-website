@@ -92,9 +92,6 @@ export default function AlbumDetailClient({
     <div className="bg-[#FAF8F5] min-h-screen pt-24 pb-28 relative overflow-hidden">
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-[-10%] right-[-10%] w-[750px] h-[750px] bg-amber-200/40 rounded-full blur-[180px] animate-liquid-drift-a" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[750px] h-[750px] bg-emerald-200/40 rounded-full blur-[170px] animate-liquid-drift-b" />
-        <div className="bg-noise absolute inset-0 opacity-10" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
@@ -102,7 +99,7 @@ export default function AlbumDetailClient({
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-300/80 text-slate-800 text-xs font-black uppercase tracking-wider shadow-sm hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all cursor-pointer group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 border border-slate-300/80 text-slate-800 text-xs font-black uppercase tracking-wider shadow-sm hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all cursor-pointer group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Back To All Field Albums</span>
@@ -124,7 +121,7 @@ export default function AlbumDetailClient({
           </div>
 
           <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10 space-y-3 z-10">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-emerald-900 text-xs font-black uppercase tracking-widest shadow-md">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 text-emerald-900 text-xs font-black uppercase tracking-widest shadow-md">
               <Sparkles className="w-4 h-4 text-amber-600" /> {album.status === "ongoing" ? "Ongoing Project" : "Completed Project"}
             </span>
 

@@ -447,7 +447,7 @@ export default function JourneyTimeline() {
                     style={{ backgroundColor: chapter.accent }}
                   />
                   <span
-                    className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black tracking-[0.18em] uppercase text-white backdrop-blur-md border border-white/25"
+                    className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black tracking-[0.18em] uppercase text-white border border-white/25"
                     style={{ backgroundColor: `${chapter.accent}cc` }}
                   >
                     <Icon className="w-3 h-3" />

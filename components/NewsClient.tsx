@@ -161,9 +161,6 @@ Key Achievements:
     <div className="min-h-screen bg-[#fcf8f0] text-[#221c0c] relative overflow-hidden">
       {/* Background Liquid Ambient Aurora */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full bg-amber-200/40 blur-[150px]" />
-        <div className="absolute top-1/3 left-10 w-[600px] h-[600px] rounded-full bg-emerald-200/30 blur-[150px]" />
-        <div className="absolute inset-0 bg-noise opacity-[0.18]" />
       </div>
 
       {/* --- LIVE BREAKING FIELD NEWS TICKER --- */}
@@ -188,11 +185,11 @@ Key Achievements:
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#e5d4a1]">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border-2 border-[#e5d4a1] text-xs font-black uppercase tracking-[0.2em] text-[#8a6a1f] shadow-sm">
               <Newspaper className="w-3.5 h-3.5 text-[#c9a24a]" /> EFFORT Field Journal & Newsroom
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#221c0c] leading-tight">
-              Ground Dispatches & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-700 to-teal-700">Trending Impact Stories</span>
+              Ground Dispatches & <span className=" text-amber-600">Trending Impact Stories</span>
             </h1>
             <p className="text-sm sm:text-base text-[#5b6a60] font-medium max-w-2xl">
               Real-time updates, field case studies, statutory press releases, and scientific agricultural dispatches directly from EFFORT's 10 operational Indian states.
@@ -219,7 +216,7 @@ Key Achievements:
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div
           onClick={() => setSelectedArticle(featuredStory)}
-          className="rounded-[40px] p-6 sm:p-10 bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_30px_70px_-20px_rgba(180,140,40,0.2)] grid lg:grid-cols-12 gap-8 items-center cursor-pointer hover:border-[#d4af6a] transition-all group"
+          className="rounded-[40px] p-6 sm:p-10 bg-white/90 border-2 border-[#e5d4a1] shadow-[0_30px_70px_-20px_rgba(180,140,40,0.2)] grid lg:grid-cols-12 gap-8 items-center cursor-pointer hover:border-[#d4af6a] transition-all group"
         >
           <div className="lg:col-span-7 space-y-4">
             <div className="flex flex-wrap items-center gap-3">
@@ -267,7 +264,7 @@ Key Achievements:
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 text-white text-xs font-bold bg-black/60 backdrop-blur-md px-3 py-1 rounded-full">
+            <div className="absolute bottom-4 left-4 text-white text-xs font-bold bg-black/60 px-3 py-1 rounded-full">
               📅 Published: {featuredStory.date}
             </div>
           </div>
@@ -309,7 +306,7 @@ Key Achievements:
               <div
                 key={item.id}
                 onClick={() => setSelectedArticle(item)}
-                className="bg-white/90 backdrop-blur-xl border-2 border-[#e5d4a1] rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group"
+                className="bg-white/90 border-2 border-[#e5d4a1] rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group"
               >
                 <div>
                   <div className="aspect-video relative overflow-hidden bg-stone-100">
@@ -318,7 +315,7 @@ Key Achievements:
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 left-4 bg-[#221c0c]/80 backdrop-blur-md text-[#f7e4a3] border border-[#d4af6a]/50 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
+                    <div className="absolute top-4 left-4 bg-[#221c0c]/80 text-[#f7e4a3] border border-[#d4af6a]/50 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
                       {item.categoryName}
                     </div>
                   </div>
@@ -353,7 +350,7 @@ Key Achievements:
 
       {/* --- ARTICLE READER POPUP MODAL --- */}
       {selectedArticle && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
           <div className="bg-white rounded-[36px] border-2 border-[#e5d4a1] max-w-3xl w-full p-6 sm:p-10 shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto my-auto">
             <button
               onClick={() => setSelectedArticle(null)}

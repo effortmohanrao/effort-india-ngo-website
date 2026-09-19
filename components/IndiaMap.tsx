@@ -221,7 +221,7 @@ export default function IndiaMap({ selectedStateCode, onSelectState, variant = "
       className={`relative w-full aspect-[1000/1136] rounded-[32px] border-2 p-4 sm:p-6 select-none flex flex-col justify-between transition-all duration-300 ${
         isLight
           ? "bg-[#fcf8f0] border-[#e5d4a1] shadow-[0_20px_50px_-15px_rgba(180,140,40,0.15)]"
-          : "bg-[#141009]/95 backdrop-blur-2xl border-[#d4af6a]/50 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]"
+          : "bg-[#141009]/95 border-[#d4af6a]/50 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]"
       }`}
     >
       {/* Background Soft Glow */}
@@ -313,8 +313,8 @@ export default function IndiaMap({ selectedStateCode, onSelectState, variant = "
       {hoveredState && (
         <div className={`absolute bottom-4 left-4 right-4 z-30 p-3.5 rounded-2xl border shadow-2xl flex items-center justify-between animate-fade-in-up ${
           isLight
-            ? "bg-white/95 backdrop-blur-xl border-[#d4af6a] text-[#221c0c]"
-            : "bg-[#1f1910]/95 backdrop-blur-xl border-[#d4af6a]/80 text-[#f7e4a3]"
+            ? "bg-white/95 border-[#d4af6a] text-[#221c0c]"
+            : "bg-[#1f1910]/95 border-[#d4af6a]/80 text-[#f7e4a3]"
         }`}>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center shrink-0">

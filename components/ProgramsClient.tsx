@@ -138,7 +138,7 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
           {status === "completed" ? "Completed" : "Ongoing"}
         </span>
         {stat && (
-          <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/85 backdrop-blur-sm text-[9px] font-bold uppercase tracking-wide text-[#6b4f1d]">
+          <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/85 text-[9px] font-bold uppercase tracking-wide text-[#6b4f1d]">
             {stat.value} {stat.unit}
           </span>
         )}
@@ -172,9 +172,7 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
       <div className="relative h-[3px] bg-[#f1e6cc] overflow-hidden">
         {status === "completed" ? (
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500" />
-        ) : (
-          <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-light-sweep" />
-        )}
+        ) : null}
       </div>
     </Link>
   );
@@ -337,16 +335,9 @@ export default function ProgramsClient() {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* Liquid Aurora Mesh Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#fffdf8] via-[#faf2db] to-[#f4e6b8]" />
-          <div className="absolute -top-24 -left-20 w-[520px] h-[520px] rounded-full bg-amber-200/50 blur-[130px] animate-liquid-drift-a" />
-          <div className="absolute top-1/3 -right-20 w-[480px] h-[480px] rounded-full bg-emerald-200/40 blur-[120px] animate-liquid-drift-b" />
-          <div className="absolute -bottom-24 left-1/3 w-[450px] h-[450px] rounded-full bg-sky-200/40 blur-[120px] animate-liquid-drift-c" />
 
           {/* Continuous Rising Translucent Bubbles */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute bottom-0 left-[10%] w-12 h-12 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0s", animationDuration: "7s" }} />
-            <div className="absolute bottom-0 left-[30%] w-16 h-16 rounded-full bg-emerald-400/20 border border-emerald-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.5s", animationDuration: "8.5s" }} />
-            <div className="absolute bottom-0 left-[55%] w-20 h-20 rounded-full bg-sky-400/20 border border-sky-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0.8s", animationDuration: "9s" }} />
-            <div className="absolute bottom-0 left-[80%] w-14 h-14 rounded-full bg-purple-400/20 border border-purple-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "2.8s", animationDuration: "7.5s" }} />
           </div>
 
           {/* Frosted Geometric Mesh Overlay */}
@@ -376,22 +367,6 @@ export default function ProgramsClient() {
             <path d="M -50 540 C 320 440, 520 640, 820 520 S 1150 440, 1300 580" fill="none" stroke="url(#waveGrad2)" strokeWidth="2" strokeDasharray="10 18" className="animate-ribbon-flow" style={{ animationDuration: "12s" }} />
           </svg>
 
-          {/* 20 Animated Floating Gold Dust Particles */}
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-amber-400/60 shadow-[0_0_8px_#d4af6a] animate-dust-float"
-              style={{
-                width: 3 + (i % 4) * 2,
-                height: 3 + (i % 4) * 2,
-                left: `${(i * 5.2) % 100}%`,
-                top: `${(i * 9.3) % 100}%`,
-                animationDelay: `${(i % 8) * 0.45}s`,
-                animationDuration: `${5.5 + (i % 5)}s`,
-              }}
-            />
-          ))}
-          <div className="absolute inset-0 bg-noise opacity-[0.25]" />
         </div>
 
         <div
@@ -399,13 +374,13 @@ export default function ProgramsClient() {
             heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border-2 border-[#d4af6a]/60 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.25em] mb-6 shadow-md hover:scale-105 transition-transform">
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 border-2 border-[#d4af6a]/60 text-[#8a6a1f] text-xs font-black uppercase tracking-[0.25em] mb-6 shadow-md hover:scale-105 transition-transform">
             <Sparkles className="w-4 h-4 text-[#d4af6a] animate-bounce" /> 27+ Years Field Leadership (1999–2026)
           </span>
           
           {/* RADIANT ANIMATED MULTI-COLOR GRADIENT HEADLINE */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] space-y-2">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">
+            <span className="block text-emerald-600">
               2.67 Lakh+ Families Empowered.
             </span>
             <span className="block text-metallic-gold drop-shadow-md">
@@ -439,13 +414,11 @@ export default function ProgramsClient() {
       <section ref={showcaseRef} className="relative py-12 lg:py-16 overflow-hidden">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#fffdf8] via-[#fbf3db] to-[#fffdf8]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-amber-200/30 blur-[130px] animate-liquid-drift-a" />
-          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Segmented Frosted Glass Toggle */}
-          <div className="relative inline-flex p-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-[#e5d4a1] shadow-[0_15px_35px_-15px_rgba(180,140,40,0.35)] mb-12">
+          <div className="relative inline-flex p-1.5 rounded-full bg-white/80 border border-[#e5d4a1] shadow-[0_15px_35px_-15px_rgba(180,140,40,0.35)] mb-12">
             <div
               className="absolute top-1.5 bottom-1.5 rounded-full bg-gradient-to-br from-[#ebd488] via-[#d4af6a] to-[#b88c30] shadow-md transition-elastic"
               style={{ left: indicator.left, width: indicator.width, transitionDuration: "550ms" }}
@@ -498,7 +471,7 @@ export default function ProgramsClient() {
             {activeBreakdown.map((b) => (
               <div
                 key={b.label}
-                className="px-5 py-2.5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-sm text-center hover:scale-105 transition-transform"
+                className="px-5 py-2.5 rounded-2xl bg-white/70 border border-white/90 shadow-sm text-center hover:scale-105 transition-transform"
               >
                 <span className="text-[#221c0c] font-black text-sm">{b.count}</span>{" "}
                 <span className="text-[#7a6f55] text-xs font-medium">{b.label}</span>

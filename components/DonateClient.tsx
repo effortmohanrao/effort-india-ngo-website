@@ -261,24 +261,6 @@ export default function DonateClient() {
       {/* ========================================================================= */}
       <section className="relative py-24 lg:py-32 bg-gradient-to-br from-[#2A0B0E] via-[#5c0d18] to-[#381116] text-white border-b-4 border-amber-400 shadow-xl overflow-hidden">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-24 -left-20 w-[560px] h-[560px] bg-amber-300/20 rounded-full blur-[150px] animate-liquid-drift-a" />
-          <div className="absolute top-1/3 -right-20 w-[520px] h-[520px] bg-rose-400/15 rounded-full blur-[150px] animate-liquid-drift-b" />
-          <div className="absolute -bottom-24 left-1/3 w-[460px] h-[460px] bg-orange-300/15 rounded-full blur-[140px] animate-liquid-drift-c" />
-          {Array.from({ length: 16 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-amber-300/60 shadow-[0_0_8px_#fbbf24] animate-dust-float"
-              style={{
-                width: 3 + (i % 4) * 2,
-                height: 3 + (i % 4) * 2,
-                left: `${(i * 6.1) % 100}%`,
-                top: `${(i * 8.7) % 100}%`,
-                animationDelay: `${(i % 8) * 0.5}s`,
-                animationDuration: `${6 + (i % 5)}s`,
-              }}
-            />
-          ))}
-          <div className="absolute inset-0 bg-noise opacity-15" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
@@ -288,7 +270,7 @@ export default function DonateClient() {
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none drop-shadow-md">
-            SUPPORT THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F7E4A3] via-amber-200 to-amber-400">JOURNEY</span>
+            SUPPORT THE <span className=" text-[#F7E4A3]">JOURNEY</span>
           </h1>
 
           <p className="text-lg sm:text-2xl text-[#F5E5C9] font-semibold max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
@@ -313,7 +295,7 @@ export default function DonateClient() {
       {/* ========================================================================= */}
       {/* 2. TRUST STRIP */}
       {/* ========================================================================= */}
-      <section className="bg-white/90 border-b border-amber-900/15 py-4 backdrop-blur-md shadow-xs">
+      <section className="bg-white/90 border-b border-amber-900/15 py-4 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-4 text-center sm:text-left text-xs font-black uppercase tracking-widest text-slate-800">
             <div className="flex items-center gap-2 mx-auto sm:mx-0"><ShieldCheck className="w-4 h-4 text-amber-700" /><span>REGISTERED NGO</span></div>

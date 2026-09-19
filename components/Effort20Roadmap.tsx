@@ -159,7 +159,6 @@ export default function Effort20Roadmap() {
   const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
   const [inView, setInView] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const crossetteCanvasRef = useRef<HTMLCanvasElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const isInteractingRef = useRef(false);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -181,383 +180,6 @@ export default function Effort20Roadmap() {
       }
     }
   };
-
-  // 🎇 5-CRACKER HORIZONTAL CELEBRATION BARRAGE (1 Left, 2 Middle, 2 Right in a clean line wave)
-  useEffect(() => {
-    const canvas = crossetteCanvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animFrameId: number;
-    let nextTimer: NodeJS.Timeout | null = null;
-    let barrageTimers: NodeJS.Timeout[] = [];
-    let isPageVisible = true;
-    let isSequenceWaiting = false;
-
-    // 10 distinct festive celebratory palettes (Vibrant, Radiant & High-End)
-    const PALETTES = [
-      { name: "gold", colors: ["#FFE082", "#FFD54F", "#FFCA28", "#FFB300", "#FFFFFF"] },
-      { name: "emerald", colors: ["#00E676", "#69F0AE", "#00C853", "#B9F6CA", "#FFFFFF"] },
-      { name: "saffron-amber", colors: ["#FF9100", "#FFB74D", "#FF6D00", "#FFE0B2", "#FFFFFF"] },
-      { name: "ruby-crimson", colors: ["#FF1744", "#FF5252", "#FF8A80", "#FFCDD2", "#FFFFFF"] },
-      { name: "royal-purple", colors: ["#D500F9", "#E040FB", "#EA80FC", "#F3E5F5", "#FFFFFF"] },
-      { name: "cyan-azure", colors: ["#00E5FF", "#18FFFF", "#84FFFF", "#E0F7FA", "#FFFFFF"] },
-      { name: "champagne", colors: ["#FFF9C4", "#FFF59D", "#FFF176", "#FFEE58", "#FFFFFF"] },
-      { name: "coral-tangerine", colors: ["#FF6E40", "#FF3D00", "#FF9E80", "#FFCCBC", "#FFFFFF"] },
-      { name: "lime-vitality", colors: ["#76FF03", "#B2FF59", "#64DD17", "#CCFF90", "#FFFFFF"] },
-      { name: "starlight-diamond", colors: ["#FFFFFF", "#E2E8F0", "#CBD5E1", "#FFFBEB", "#FEF3C7"] },
-    ];
-
-    // Desktop: 10 crackers in 10 different colors across the wide horizontal box
-    const DESKTOP_SPECS = [
-      { xRatio: 0.08, yRatio: 0.23, paletteIdx: 0, delay: 0 },    // 1. Far Left (Gold)
-      { xRatio: 0.17, yRatio: 0.18, paletteIdx: 1, delay: 65 },   // 2. Left (Emerald)
-      { xRatio: 0.27, yRatio: 0.25, paletteIdx: 2, delay: 130 },  // 3. Left-Center (Saffron Amber)
-      { xRatio: 0.37, yRatio: 0.17, paletteIdx: 3, delay: 195 },  // 4. Center-Left (Ruby Crimson)
-      { xRatio: 0.47, yRatio: 0.24, paletteIdx: 4, delay: 260 },  // 5. Center (Royal Purple)
-      { xRatio: 0.57, yRatio: 0.16, paletteIdx: 5, delay: 325 },  // 6. Center-Right (Cyan Azure)
-      { xRatio: 0.67, yRatio: 0.22, paletteIdx: 6, delay: 390 },  // 7. Right-Center (Champagne)
-      { xRatio: 0.77, yRatio: 0.17, paletteIdx: 7, delay: 455 },  // 8. Right (Coral Tangerine)
-      { xRatio: 0.86, yRatio: 0.25, paletteIdx: 8, delay: 520 },  // 9. Far Right (Lime Vitality)
-      { xRatio: 0.93, yRatio: 0.19, paletteIdx: 9, delay: 585 },  // 10. Outer Edge (Starlight Diamond)
-    ];
-
-    // Mobile: 3 crackers (Left, Middle, Right) perfectly sized for narrower mobile cards
-    const MOBILE_SPECS = [
-      { xRatio: 0.18, yRatio: 0.22, paletteIdx: 0, delay: 0 },    // 1. Left (Imperial Gold)
-      { xRatio: 0.50, yRatio: 0.17, paletteIdx: 1, delay: 120 },  // 2. Middle (Emerald Green)
-      { xRatio: 0.82, yRatio: 0.22, paletteIdx: 5, delay: 240 },  // 3. Right (Cyan Azure)
-    ];
-
-    interface Spark {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      color: string;
-      alpha: number;
-      decay: number;
-      size: number;
-      gravity: number;
-      friction: number;
-      twinkle: boolean;
-      tail: { x: number; y: number }[];
-    }
-
-    interface Rocket {
-      x: number;
-      y: number;
-      targetY: number;
-      vx: number;
-      vy: number;
-      color: string;
-      trail: { x: number; y: number }[];
-      palette: string[];
-      alive: boolean;
-    }
-
-    interface BlastFlash {
-      x: number;
-      y: number;
-      radius: number;
-      alpha: number;
-      color: string;
-    }
-
-    let rockets: Rocket[] = [];
-    let sparks: Spark[] = [];
-    let flashes: BlastFlash[] = [];
-
-    const resize = () => {
-      if (!canvas.parentElement) return;
-      const rect = canvas.parentElement.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.floor(rect.width * dpr);
-      canvas.height = Math.floor(rect.height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const getCanvasCssWidth = () => (canvas.parentElement ? canvas.parentElement.clientWidth : 800);
-    const getCanvasCssHeight = () => (canvas.parentElement ? canvas.parentElement.clientHeight : 300);
-
-    function createBlast(x: number, y: number, palette: string[]) {
-      // 1. Initial bright flash illumination
-      flashes.push({
-        x,
-        y,
-        radius: 9,
-        alpha: 0.75,
-        color: palette[0] || "#FFE082",
-      });
-
-      // 2. Realistic cracker burst (crisp spark count: 14-16 sparks per cracker)
-      const sparkCount = Math.floor(Math.random() * 3) + 14;
-      for (let i = 0; i < sparkCount; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 2.8 + 1.8;
-        const color = palette[Math.floor(Math.random() * palette.length)];
-        sparks.push({
-          x,
-          y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          color,
-          alpha: 1.0,
-          decay: 0.022 + Math.random() * 0.008, // cleans up in ~1.1s
-          size: Math.random() * 1.3 + 1.1,
-          gravity: 0.065,
-          friction: 0.962,
-          twinkle: Math.random() > 0.35,
-          tail: [],
-        });
-      }
-
-      // 3. Crackling micro-embers
-      const crackleCount = 5;
-      for (let i = 0; i < crackleCount; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 1.6 + 0.5;
-        sparks.push({
-          x: x + (Math.random() - 0.5) * 6,
-          y: y + (Math.random() - 0.5) * 6,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          color: "#FFFFFF",
-          alpha: 0.9,
-          decay: 0.045 + Math.random() * 0.02,
-          size: 0.85,
-          gravity: 0.04,
-          friction: 0.94,
-          twinkle: true,
-          tail: [],
-        });
-      }
-    }
-
-    function clearBarrageTimers() {
-      barrageTimers.forEach(clearTimeout);
-      barrageTimers = [];
-    }
-
-    function launchCrackerBarrage() {
-      if (!isPageVisible) return;
-      if (rockets.length > 0 || sparks.length > 0) return; // Strict: only when canvas is completely finished!
-
-      clearBarrageTimers();
-
-      const w = getCanvasCssWidth();
-      const h = getCanvasCssHeight();
-
-      // Responsive selection: 3 crackers on mobile screens (<640px), 10 on desktop
-      const isMobile = w < 640;
-      const specs = isMobile ? MOBILE_SPECS : DESKTOP_SPECS;
-
-      specs.forEach((spec, idx) => {
-        const timer = setTimeout(() => {
-          if (!isPageVisible) return;
-
-          const tx = w * (spec.xRatio + (Math.random() - 0.5) * 0.025);
-          const ty = h * (spec.yRatio + (Math.random() - 0.5) * 0.035);
-          const startX = tx + (Math.random() - 0.5) * 8;
-          const startY = h * 0.72; // Safe mid-lower altitude (zero bottom border marks!)
-          const dx = tx - startX;
-          const dy = ty - startY;
-          const dist = Math.hypot(dx, dy) || 1;
-          const speed = 7.8 + (idx % 2 === 0 ? 0.3 : -0.2);
-
-          const paletteObj = PALETTES[spec.paletteIdx % PALETTES.length];
-
-          rockets.push({
-            x: startX,
-            y: startY,
-            targetY: ty,
-            vx: (dx / dist) * speed,
-            vy: (dy / dist) * speed,
-            color: paletteObj.colors[0],
-            palette: paletteObj.colors,
-            trail: [],
-            alive: true,
-          });
-        }, spec.delay);
-
-        barrageTimers.push(timer);
-      });
-    }
-
-    function render() {
-      if (!ctx || !canvas) return;
-      const w = getCanvasCssWidth();
-      const h = getCanvasCssHeight();
-
-      // Clean wipe: ensures NO ghost lines, dirty sticks, or messy build-up ever occurs!
-      ctx.clearRect(0, 0, w, h);
-
-      // 1. Draw blast flashes
-      for (let i = flashes.length - 1; i >= 0; i--) {
-        const f = flashes[i];
-        f.radius += 2.0;
-        f.alpha -= 0.15;
-        if (f.alpha <= 0) {
-          flashes.splice(i, 1);
-          continue;
-        }
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-        ctx.fillStyle = f.color;
-        ctx.globalAlpha = Math.max(0, f.alpha * 0.35);
-        ctx.fill();
-        ctx.restore();
-      }
-
-      // 2. Update and draw rockets
-      for (let i = rockets.length - 1; i >= 0; i--) {
-        const r = rockets[i];
-        r.trail.push({ x: r.x, y: r.y });
-        if (r.trail.length > 5) r.trail.shift();
-
-        r.x += r.vx;
-        r.y += r.vy;
-
-        // Draw ascending golden sizzle trail
-        ctx.save();
-        if (r.trail.length > 1) {
-          for (let t = 0; t < r.trail.length - 1; t++) {
-            const ratio = (t + 1) / r.trail.length;
-            ctx.strokeStyle = r.color;
-            ctx.globalAlpha = ratio * 0.55;
-            ctx.lineWidth = ratio * 1.8;
-            ctx.beginPath();
-            ctx.moveTo(r.trail[t].x, r.trail[t].y);
-            ctx.lineTo(r.trail[t + 1].x, r.trail[t + 1].y);
-            ctx.stroke();
-          }
-        }
-
-        // Draw glowing rocket tip
-        ctx.fillStyle = "#FFFFFF";
-        ctx.beginPath();
-        ctx.arc(r.x, r.y, 2.0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-
-        // Rocket blast trigger: reaches apex or target height
-        if (r.y <= r.targetY || r.vy >= 0) {
-          r.alive = false;
-          createBlast(r.x, r.y, r.palette);
-          rockets.splice(i, 1);
-        }
-      }
-
-      // 3. Update and draw sparks
-      for (let i = sparks.length - 1; i >= 0; i--) {
-        const s = sparks[i];
-
-        s.tail.push({ x: s.x, y: s.y });
-        if (s.tail.length > 3) s.tail.shift();
-
-        s.vx *= s.friction;
-        s.vy *= s.friction;
-        s.vy += s.gravity;
-        s.x += s.vx;
-        s.y += s.vy;
-        s.alpha -= s.decay;
-
-        // Dissolve sparks smoothly before touching the bottom border
-        if (s.y > h - 40) {
-          s.alpha -= 0.08;
-        }
-        if (s.y >= h - 14 || s.alpha <= 0) {
-          sparks.splice(i, 1);
-          continue;
-        }
-
-        ctx.save();
-        let displayAlpha = s.alpha;
-        if (s.twinkle && Math.random() > 0.4) {
-          displayAlpha = s.alpha * 0.35;
-        }
-        ctx.globalAlpha = Math.max(0, Math.min(1, displayAlpha));
-
-        if (s.tail.length > 1) {
-          ctx.strokeStyle = s.color;
-          ctx.lineWidth = s.size * 0.7;
-          ctx.beginPath();
-          ctx.moveTo(s.tail[0].x, s.tail[0].y);
-          ctx.lineTo(s.x, s.y);
-          ctx.stroke();
-        }
-
-        ctx.fillStyle = s.color;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-
-      // 4. Sequential Barrage Controller:
-      // Once all 5 crackers have completely blasted and all sparks have vanished:
-      if (
-        isPageVisible &&
-        !isSequenceWaiting &&
-        rockets.length === 0 &&
-        sparks.length === 0 &&
-        flashes.length === 0
-      ) {
-        isSequenceWaiting = true;
-        nextTimer = setTimeout(() => {
-          isSequenceWaiting = false;
-          launchCrackerBarrage();
-        }, 1800); // 1.8s calm pause after full completion before next 5-cracker wave
-      }
-
-      animFrameId = requestAnimationFrame(render);
-    }
-
-    render();
-
-    // Start first cracker wave shortly after mount
-    const initialTimer = setTimeout(() => {
-      launchCrackerBarrage();
-    }, 600);
-
-    // Handle visibility changes so crackers NEVER queue up in background tabs
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        isPageVisible = false;
-        rockets = [];
-        sparks = [];
-        flashes = [];
-        isSequenceWaiting = false;
-        clearBarrageTimers();
-        if (nextTimer) clearTimeout(nextTimer);
-      } else {
-        isPageVisible = true;
-        rockets = [];
-        sparks = [];
-        flashes = [];
-        isSequenceWaiting = false;
-        clearBarrageTimers();
-        if (nextTimer) clearTimeout(nextTimer);
-        nextTimer = setTimeout(() => {
-          launchCrackerBarrage();
-        }, 500);
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      cancelAnimationFrame(animFrameId);
-      clearBarrageTimers();
-      if (nextTimer) clearTimeout(nextTimer);
-      clearTimeout(initialTimer);
-    };
-  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -584,14 +206,8 @@ export default function Effort20Roadmap() {
         <div className="absolute inset-0 opacity-[0.1] bg-[radial-gradient(#b48332_0.75px,transparent_0.75px)] [background-size:32px_32px]" />
         
         {/* Sacred Geometry Mandala Circles Overlay */}
-        <div className="absolute top-[-10%] left-[-5%] w-[650px] h-[650px] rounded-full border border-amber-400/20 opacity-60 animate-halo-spin pointer-events-none" />
-        <div className="absolute top-[30%] right-[-5%] w-[550px] h-[550px] rounded-full border border-dashed border-emerald-400/20 opacity-50 animate-halo-breathe pointer-events-none" />
 
         {/* Ambient Gradient Glows */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-200/25 rounded-full blur-[150px] animate-liquid-drift-a" />
-        <div className="absolute top-1/3 right-1/4 w-[550px] h-[550px] bg-amber-200/30 rounded-full blur-[160px] animate-liquid-drift-b" />
-        <div className="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-teal-200/25 rounded-full blur-[170px] animate-liquid-drift-c" />
-        <div className="bg-noise absolute inset-0 opacity-15" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16 lg:space-y-20">
@@ -602,12 +218,6 @@ export default function Effort20Roadmap() {
         <div
           className="rounded-[36px] border-2 border-[#f59e0b]/70 bg-gradient-to-r from-[#120d06] via-[#22170a] to-[#0f0a04] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_-20px_rgba(245,158,11,0.35)] relative overflow-hidden text-amber-50"
         >
-          {/* HTML5 CELEBRATION CRACKER BLAST SIMULATION BACKGROUND */}
-          <canvas
-            ref={crossetteCanvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none z-0 rounded-[36px]"
-          />
-
           {/* Pristine bottom vignette shield: ensures zero clipped debris or cut-offs on the bottom border */}
           <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#120d06] via-[#120d06]/60 to-transparent pointer-events-none z-1 rounded-b-[36px]" />
 
@@ -615,8 +225,8 @@ export default function Effort20Roadmap() {
             
             {/* Top-Left Section: Precision Tech Circular Emblem Medallion (Proportionately scaled to avoid border clipping) */}
             <div className="lg:col-span-4 relative flex items-center justify-center py-2">
-              <div className="absolute w-40 h-40 sm:w-44 sm:h-44 lg:w-48 lg:h-48 rounded-full border-3 border-dashed border-[#f59e0b]/60 animate-gyro-cw pointer-events-none" />
-              <div className="absolute w-34 h-34 sm:w-38 sm:h-38 lg:w-40 lg:h-40 rounded-full border-2 border-dotted border-amber-300/70 animate-gyro-ccw pointer-events-none" />
+              <div className="absolute w-40 h-40 sm:w-44 sm:h-44 lg:w-48 lg:h-48 rounded-full border-3 border-dashed border-[#f59e0b]/60 pointer-events-none" />
+              <div className="absolute w-34 h-34 sm:w-38 sm:h-38 lg:w-40 lg:h-40 rounded-full border-2 border-dotted border-amber-300/70 pointer-events-none" />
 
               <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-gradient-to-b from-[#1c1409] via-[#2e1e0b] to-[#140d04] border-4 border-[#f59e0b] shadow-[0_0_35px_rgba(245,158,11,0.5)] flex flex-col items-center justify-center gap-1 select-none">
                 <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] font-mono">
@@ -630,14 +240,14 @@ export default function Effort20Roadmap() {
 
             {/* Header Area Copy: Blockbuster Cinematic Trailer Style */}
             <div className="lg:col-span-8 space-y-4 text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-xs font-black uppercase tracking-[0.3em] shadow-md backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-xs font-black uppercase tracking-[0.3em] shadow-md">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" style={{ animationDuration: "8s" }} />
                 <span>EFFORT 2.0 &middot; STRATEGIC ROADMAP (2026–2030)</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase font-serif drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)]">
                 EFFORT &mdash;{" "}
-                <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 via-amber-400 to-emerald-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]">
+                <span className="italic font-normal text-amber-300 via-amber-400 to-emerald-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]">
                   THE NEXT CHAPTER
                 </span>
               </h2>
@@ -699,14 +309,14 @@ export default function Effort20Roadmap() {
                     <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
                       {/* Outer Rotating Gear Ring */}
                       <div
-                        className={`absolute inset-0 rounded-full border-2 border-dashed transition-all duration-500 animate-gyro-cw ${
+                        className={`absolute inset-0 rounded-full border-2 border-dashed transition-all duration-500 ${
                           isActive ? "scale-110 opacity-100 border-[#f59e0b]" : "scale-95 opacity-50 border-amber-400/60 group-hover:scale-100 group-hover:opacity-80"
                         }`}
                       />
 
                       {/* Middle Counter-Rotating Dotted Ring */}
                       <div
-                        className={`absolute w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-dotted transition-all duration-500 animate-gyro-ccw ${
+                        className={`absolute w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-dotted transition-all duration-500 ${
                           isActive ? "border-emerald-500 opacity-100" : "border-emerald-500/40 opacity-40"
                         }`}
                       />
@@ -768,7 +378,7 @@ export default function Effort20Roadmap() {
                   onMouseEnter={() => setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => handleSelectPhase(idx)}
-                  className={`group relative rounded-[28px] p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-white/95 backdrop-blur-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden w-[86vw] max-w-[390px] shrink-0 snap-center lg:w-auto lg:max-w-none lg:shrink ${
+                  className={`group relative rounded-[28px] p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-white/95 border-2 transition-all duration-500 cursor-pointer overflow-hidden w-[86vw] max-w-[390px] shrink-0 snap-center lg:w-auto lg:max-w-none lg:shrink ${
                     isHovered
                       ? "-translate-y-2 lg:-translate-y-3 scale-[1.01] lg:scale-[1.02] z-20"
                       : "z-10"
@@ -782,7 +392,7 @@ export default function Effort20Roadmap() {
                 >
                   {/* Distinct Rotating Border Highlight Track */}
                   <div
-                    className="absolute top-0 inset-x-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer"
+                    className="absolute top-0 inset-x-0 h-1.5 transition-all duration-500"
                     style={{
                       backgroundImage: idx === 0 
                         ? "linear-gradient(90deg, #059669 0%, #34d399 50%, #059669 100%)" 
@@ -791,28 +401,6 @@ export default function Effort20Roadmap() {
                         : "linear-gradient(90deg, #4f46e5 0%, #818cf8 50%, #4f46e5 100%)",
                     }}
                   />
-
-                  {/* 3 DISTINCT PERMANENT LIQUID FLOW BACKDROPS INSIDE EACH CARD */}
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[28px] opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                    <div
-                      className={`absolute -top-10 -right-10 w-44 h-44 rounded-full blur-2xl transition-transform duration-1000 ${
-                        idx === 0
-                          ? "bg-emerald-300/45 animate-liquid-drift-a"
-                          : idx === 1
-                          ? "bg-amber-300/50 animate-liquid-drift-b"
-                          : "bg-indigo-400/45 animate-liquid-drift-c"
-                      }`}
-                    />
-                    <div
-                      className={`absolute -bottom-10 -left-10 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${
-                        idx === 0
-                          ? "bg-teal-200/35 animate-liquid-drift-b"
-                          : idx === 1
-                          ? "bg-yellow-200/40 animate-liquid-drift-c"
-                          : "bg-violet-300/40 animate-liquid-drift-a"
-                      }`}
-                    />
-                  </div>
 
                   {/* Card Content Container */}
                   <div className="relative z-10">
@@ -903,7 +491,7 @@ export default function Effort20Roadmap() {
                   key={pillar.num}
                   onMouseEnter={() => setHoveredPillar(idx)}
                   onMouseLeave={() => setHoveredPillar(null)}
-                  className={`group relative rounded-2xl border-2 p-4 sm:p-6 backdrop-blur-xl transition-all duration-300 flex items-start gap-3.5 sm:gap-4 overflow-hidden bg-white/90 shadow-xs hover:shadow-xl ${
+                  className={`group relative rounded-2xl border-2 p-4 sm:p-6 transition-all duration-300 flex items-start gap-3.5 sm:gap-4 overflow-hidden bg-white/90 shadow-xs hover:shadow-xl ${
                     isHovered ? "border-amber-400 -translate-y-1.5" : "border-slate-200"
                   }`}
                 >
@@ -943,7 +531,7 @@ export default function Effort20Roadmap() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="relative rounded-[28px] border-2 border-amber-300/80 bg-white/95 backdrop-blur-2xl px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-5 shadow-lg overflow-hidden">
+          <div className="relative rounded-[28px] border-2 border-amber-300/80 bg-white/95 px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-5 shadow-lg overflow-hidden">
             {/* Ultra-Compact Header Ribbon */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-amber-900/10">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">

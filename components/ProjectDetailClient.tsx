@@ -184,52 +184,29 @@ function AchievementCard({
 
   return (
     <div
-      className={`group/card relative rounded-[32px] p-6 sm:p-7 overflow-hidden bg-white/90 backdrop-blur-2xl border-2 border-[#e5d4a1] shadow-[0_22px_60px_-20px_rgba(180,140,40,0.32)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_32px_75px_-20px_rgba(180,140,40,0.42)] ${
+      className={`group/card relative rounded-[32px] p-6 sm:p-7 overflow-hidden bg-white/90 border-2 border-[#e5d4a1] shadow-[0_22px_60px_-20px_rgba(180,140,40,0.32)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_32px_75px_-20px_rgba(180,140,40,0.42)] ${
         entered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-6"
       }`}
     >
       {/* Glass Ambient Lighting & Mesh Backdrop */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#fffdf8] via-[#fbf3db] to-[#f4e6b8] opacity-80" />
-      <div className="pointer-events-none absolute -top-16 -right-16 w-52 h-52 rounded-full bg-amber-200/50 blur-[80px]" />
-      <div className="pointer-events-none absolute -bottom-20 -left-16 w-56 h-56 rounded-full bg-emerald-200/40 blur-[80px]" />
-      <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.2]" />
 
       {/* Interactive Sheen Light Sweep Ray on Hover */}
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700">
-        <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-light-sweep" />
       </div>
 
-      {/* Rapid Millisecond Continuous Cracker Blast Effect */}
-      {isCompleted && entered && (
-        <div className="pointer-events-none absolute top-10 right-10 z-30">
-          {crackerParticles.map((p, i) => (
-            <span
-              key={i}
-              className={`absolute rounded-full ${p.color} shadow-[0_0_8px_#d4af6a] animate-cracker-burst-rapid`}
-              style={
-                {
-                  width: p.size,
-                  height: p.size,
-                  "--burst-vector": `translate(${p.dx}px, ${p.dy}px)`,
-                  animationDelay: `${p.delay}s`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
-        </div>
-      )}
 
       <div className="relative z-10 space-y-4.5">
         {/* Category Pill */}
         <div className="inline-flex flex-col">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#d4af6a]/50 text-[11px] font-black uppercase tracking-wider text-[#8a6a1f] shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#d4af6a]/50 text-[11px] font-black uppercase tracking-wider text-[#8a6a1f] shadow-sm">
             <CategoryIcon className="w-3.5 h-3.5 text-[#c9a24a]" /> {project.category}
           </span>
           <span className="h-[2px] w-10 mt-1.5 bg-gradient-to-r from-[#d4af6a] to-transparent rounded-full" />
         </div>
 
         {/* Funding Partner Card */}
-        <div className="p-3.5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#e5d4a1] shadow-sm flex items-start gap-3">
+        <div className="p-3.5 rounded-2xl bg-white/80 border border-[#e5d4a1] shadow-sm flex items-start gap-3">
           <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 shadow-sm">
             <Landmark className="w-4.5 h-4.5 text-amber-700" />
           </div>
@@ -301,7 +278,7 @@ function AchievementCard({
           </a>
           <a
             href="#gallery"
-            className="group/btn2 relative inline-flex items-center px-5.5 py-2.5 border-2 border-[#d4af6a] text-[#8a5a1f] font-black text-[11px] uppercase tracking-wider rounded-full overflow-hidden bg-white/50 backdrop-blur-sm"
+            className="group/btn2 relative inline-flex items-center px-5.5 py-2.5 border-2 border-[#d4af6a] text-[#8a5a1f] font-black text-[11px] uppercase tracking-wider rounded-full overflow-hidden bg-white/50"
           >
             <span className="relative z-10">Open Case Study</span>
             <span className="absolute left-5.5 right-5.5 bottom-2 h-[1.5px] bg-[#d4af6a] scale-x-0 group-hover/btn2:scale-x-100 origin-left transition-transform duration-400" />
@@ -311,7 +288,6 @@ function AchievementCard({
         {/* Footer Ribbon */}
         <div className="relative flex flex-wrap items-center gap-2 pt-3.5 mt-1 border-t border-[#e5d4a1] overflow-hidden">
           <div className="absolute inset-x-0 top-3.5 h-px overflow-hidden">
-            <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#d4af6a] to-transparent animate-light-sweep" />
           </div>
           <Award className="w-3.5 h-3.5 text-[#8a6a1f] shrink-0" />
           <p className="text-[10.5px] font-black text-[#6b4f1d]">Verified Project</p>
@@ -352,35 +328,12 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
   return (
     <div className="relative">
       <div
-        className={`group/prog relative overflow-hidden rounded-[30px] p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border-2 border-[#e2ecdf] shadow-[0_20px_50px_-20px_rgba(80,120,100,0.25)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_30px_65px_-20px_rgba(80,140,120,0.35)] ${
+        className={`group/prog relative overflow-hidden rounded-[30px] p-5 sm:p-6 bg-white/90 border-2 border-[#e2ecdf] shadow-[0_20px_50px_-20px_rgba(80,120,100,0.25)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_30px_65px_-20px_rgba(80,140,120,0.35)] ${
           entered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-[0.92] translate-y-6"
         }`}
       >
         {/* Ambient Glow & Particles */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-amber-50/40 to-sky-50/50" />
-        <div className="pointer-events-none absolute -top-16 -left-10 w-52 h-52 rounded-full bg-emerald-200/40 blur-[70px]" />
-        <div className="pointer-events-none absolute -bottom-20 -right-10 w-56 h-56 rounded-full bg-amber-200/40 blur-[80px]" />
-        <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.2]" />
-
-        {/* Rapid Millisecond Continuous Cracker Blast Effect */}
-        {isCompleted && entered && (
-          <div className="pointer-events-none absolute top-8 right-8 z-30">
-            {crackerParticles.map((p, i) => (
-              <span
-                key={i}
-                className={`absolute rounded-full ${p.color} shadow-[0_0_8px_#d4af6a] animate-cracker-burst-rapid`}
-                style={
-                  {
-                    width: p.size,
-                    height: p.size,
-                    "--burst-vector": `translate(${p.dx}px, ${p.dy}px)`,
-                    animationDelay: `${p.delay}s`,
-                  } as React.CSSProperties
-                }
-              />
-            ))}
-          </div>
-        )}
 
         <div className="relative z-10 space-y-4">
           {/* Header Row: Label & Inline Status Badge */}
@@ -407,7 +360,7 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
           <div className="grid sm:grid-cols-[auto_1fr] gap-5 sm:gap-8 items-center">
             {/* 100% Numeric Display */}
             <div className="relative shrink-0">
-              <p className="text-5xl sm:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 leading-none drop-shadow-sm">
+              <p className="text-5xl sm:text-6xl font-black tracking-tight text-emerald-700 leading-none drop-shadow-sm">
                 {isCompleted ? "100%" : "In Motion"}
               </p>
               {isCompleted && (
@@ -424,7 +377,6 @@ function AchievementProgress({ isCompleted }: { isCompleted: boolean }) {
                   }`}
                 />
                 <div className="absolute inset-y-0 left-0 w-full overflow-hidden rounded-full pointer-events-none">
-                  <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/70 to-transparent animate-light-sweep" />
                 </div>
               </div>
 
@@ -539,9 +491,6 @@ export default function ProjectDetailClient({
       <section className="relative overflow-hidden py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#fdfaf4] via-[#fbf5e6] to-[#f6ecd2]" />
-          <div className="absolute -top-24 -right-20 w-[420px] h-[420px] rounded-full bg-amber-100/60 blur-[110px] animate-liquid-drift-a" />
-          <div className="absolute -bottom-20 -left-16 w-[360px] h-[360px] rounded-full bg-emerald-100/50 blur-[110px] animate-liquid-drift-b" />
-          <div className="absolute inset-0 bg-noise opacity-[0.25]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_440px] gap-12 items-start">
@@ -549,7 +498,7 @@ export default function ProjectDetailClient({
             <button
               type="button"
               onClick={handleBack}
-              className="group relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-[#d4af6a]/60 text-xs font-black uppercase tracking-wider text-[#7a5a18] shadow-[0_10px_25px_-8px_rgba(212,175,106,0.4)] hover:bg-white hover:border-[#b88c30] hover:text-[#5a3f0e] hover:shadow-[0_15px_30px_-5px_rgba(212,175,106,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 overflow-hidden cursor-pointer"
+              className="group relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border-2 border-[#d4af6a]/60 text-xs font-black uppercase tracking-wider text-[#7a5a18] shadow-[0_10px_25px_-8px_rgba(212,175,106,0.4)] hover:bg-white hover:border-[#b88c30] hover:text-[#5a3f0e] hover:shadow-[0_15px_30px_-5px_rgba(212,175,106,0.65)] hover:-translate-y-0.5 transition-all duration-300 mb-8 overflow-hidden cursor-pointer"
             >
               <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-amber-100/50 via-white/80 to-amber-100/50" />
               <div className="w-6 h-6 rounded-full bg-amber-100/80 border border-[#d4af6a]/50 flex items-center justify-center shrink-0 group-hover:bg-amber-500 transition-colors duration-300 relative z-10 shadow-sm">
@@ -567,7 +516,7 @@ export default function ProjectDetailClient({
               >
                 {isCompleted ? "Completed Project" : "Ongoing Project"}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/60 backdrop-blur-md border border-[#d9c98e] text-[10px] font-bold uppercase tracking-wider text-[#8a6a1f]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/60 border border-[#d9c98e] text-[10px] font-bold uppercase tracking-wider text-[#8a6a1f]">
                 <CategoryIcon className="w-3 h-3" /> {project.category}
               </span>
             </div>
@@ -594,16 +543,12 @@ export default function ProjectDetailClient({
       <section id="overview" className="relative overflow-hidden py-16 lg:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#fdfaf4] via-[#f4f9f5] to-[#fdfaf4]" />
-          <div className="absolute top-10 left-1/4 w-[420px] h-[420px] rounded-full bg-emerald-100/40 blur-[120px] animate-liquid-drift-a" />
-          <div className="absolute top-1/2 right-10 w-[380px] h-[380px] rounded-full bg-amber-100/40 blur-[120px] animate-liquid-drift-b" />
-          <div className="absolute bottom-10 left-10 w-[350px] h-[350px] rounded-full bg-sky-100/40 blur-[120px]" />
-          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#d9c98e] text-[#8a6a1f] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-[#d9c98e] text-[#8a6a1f] text-xs font-bold uppercase tracking-wider shadow-sm">
               <CategoryIcon className="w-3.5 h-3.5 text-[#c9a24a]" /> The Project Story & Field Blueprint
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#221c0c]">
@@ -616,7 +561,7 @@ export default function ProjectDetailClient({
 
           {/* Key Metrics Stats Bar (4 Frosted Glass Stat Cards) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16">
-            <div className="group relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center mb-3">
                 <Users className="w-5 h-5 text-amber-600" />
               </div>
@@ -629,7 +574,7 @@ export default function ProjectDetailClient({
               </p>
             </div>
 
-            <div className="group relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-3">
                 <MapPin className="w-5 h-5 text-emerald-600" />
               </div>
@@ -640,7 +585,7 @@ export default function ProjectDetailClient({
               <p className="text-xs text-[#7a6f55] mt-1 line-clamp-1">{location}</p>
             </div>
 
-            <div className="group relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center mb-3">
                 <Landmark className="w-5 h-5 text-sky-600" />
               </div>
@@ -651,7 +596,7 @@ export default function ProjectDetailClient({
               <p className="text-[10px] font-bold text-sky-700 uppercase tracking-wide mt-1">{partnerType}</p>
             </div>
 
-            <div className="group relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-violet-50 border border-violet-100 flex items-center justify-center mb-3">
                 <Award className="w-5 h-5 text-violet-600" />
               </div>
@@ -666,7 +611,7 @@ export default function ProjectDetailClient({
           </div>
 
           {/* Interactive 3-Tab Story Navigator */}
-          <div className="rounded-[36px] bg-white/50 backdrop-blur-2xl border border-white/80 shadow-[0_30px_70px_-25px_rgba(80,120,100,0.25)] p-6 sm:p-10 mb-16">
+          <div className="rounded-[36px] bg-white/50 border border-white/80 shadow-[0_30px_70px_-25px_rgba(80,120,100,0.25)] p-6 sm:p-10 mb-16">
             {/* Tab Pill Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-10 pb-6 border-b border-[#e5dcc6]">
               <button
@@ -783,7 +728,7 @@ export default function ProjectDetailClient({
           {/* Stepper / Field Journey with Animated Cards & Icons */}
           <div className="mb-20">
             <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#e7ddc8] text-[#8a6a1f] text-xs font-bold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-[#e7ddc8] text-[#8a6a1f] text-xs font-bold uppercase tracking-wider">
                 <Milestone className="w-3.5 h-3.5 text-[#c9a24a]" /> Implementation Roadmap
               </span>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#221c0c]">
@@ -797,7 +742,6 @@ export default function ProjectDetailClient({
             {/* Connecting Flow Pipeline (Desktop) */}
             <div className="relative">
               <div className="hidden lg:block absolute top-[52px] inset-x-12 h-1 bg-gradient-to-r from-amber-200 via-emerald-200 via-sky-200 to-violet-200 rounded-full z-0 overflow-hidden shadow-inner">
-                <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#d4af6a] to-transparent animate-light-sweep" />
               </div>
 
               {/* 4 Animated Stage Cards */}
@@ -814,7 +758,7 @@ export default function ProjectDetailClient({
                     <div
                       key={s.stage}
                       onClick={() => setActiveStage(idx)}
-                      className={`group relative rounded-[32px] p-6 cursor-pointer backdrop-blur-2xl border transition-all duration-500 overflow-hidden ${
+                      className={`group relative rounded-[32px] p-6 cursor-pointer border transition-all duration-500 overflow-hidden ${
                         isSelected
                           ? "bg-white border-[#d4af6a] shadow-[0_25px_60px_-15px_rgba(212,175,106,0.45)] -translate-y-2 ring-2 ring-[#d4af6a]/40"
                           : "bg-white/60 border-white/80 hover:bg-white hover:border-[#d4af6a]/60 hover:-translate-y-2 hover:shadow-[0_20px_45px_-20px_rgba(180,140,40,0.3)]"
@@ -878,7 +822,7 @@ export default function ProjectDetailClient({
               </div>
 
               {/* Selected Stage Action Items Panel */}
-              <div className="mt-8 rounded-3xl bg-white/80 backdrop-blur-2xl border border-white p-6 sm:p-8 shadow-[0_20px_50px_-20px_rgba(80,120,100,0.2)] animate-fade-in">
+              <div className="mt-8 rounded-3xl bg-white/80 border border-white p-6 sm:p-8 shadow-[0_20px_50px_-20px_rgba(80,120,100,0.2)] animate-fade-in">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-200 mb-6">
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-full bg-[#221c0c] text-white text-xs font-black flex items-center justify-center">
@@ -918,7 +862,7 @@ export default function ProjectDetailClient({
           {/* Core Transformation Pillars (Impact Highlights Grid) */}
           <div className="mb-20">
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#e7ddc8] text-[#a3711f] text-xs font-bold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-[#e7ddc8] text-[#a3711f] text-xs font-bold uppercase tracking-wider">
                 <Leaf className="w-3.5 h-3.5" /> Transformation Pillars
               </span>
               <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#221c0c]">
@@ -933,7 +877,7 @@ export default function ProjectDetailClient({
                 return (
                   <div
                     key={h.title + idx}
-                    className="group relative rounded-[28px] bg-white/60 backdrop-blur-xl border border-white/80 p-6 pl-7 shadow-[0_20px_45px_-25px_rgba(120,90,40,0.25)] hover:-translate-y-1.5 hover:shadow-[0_28px_55px_-20px_rgba(120,90,40,0.35)] transition-all duration-400 overflow-hidden"
+                    className="group relative rounded-[28px] bg-white/60 border border-white/80 p-6 pl-7 shadow-[0_20px_45px_-25px_rgba(120,90,40,0.25)] hover:-translate-y-1.5 hover:shadow-[0_28px_55px_-20px_rgba(120,90,40,0.35)] transition-all duration-400 overflow-hidden"
                   >
                     <div className={`absolute top-0 left-0 w-1.5 h-full ${a.bar}`} />
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${a.bg}`}>
@@ -954,14 +898,11 @@ export default function ProjectDetailClient({
       <section id="gallery" className="relative overflow-hidden py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#fdfaf4] via-[#f3f8f5] to-[#fdfaf4]" />
-          <div className="absolute top-1/4 left-1/3 w-[380px] h-[380px] rounded-full bg-sky-100/40 blur-[100px]" />
-          <div className="absolute bottom-10 right-10 w-[340px] h-[340px] rounded-full bg-emerald-100/40 blur-[100px]" />
-          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#e7ddc8] text-[#a3711f] text-xs font-bold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-[#e7ddc8] text-[#a3711f] text-xs font-bold uppercase tracking-wider">
               <ImageIcon className="w-3.5 h-3.5" /> Curated Photo Story
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#221c0c]">Moments From the Field</h2>
@@ -976,7 +917,7 @@ export default function ProjectDetailClient({
                 <div
                   key={tile.id}
                   onClick={() => setActivePhoto(tile.id)}
-                  className="group relative rounded-3xl overflow-hidden bg-white/50 backdrop-blur-xl border border-white/80 aspect-[4/3] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-25px_rgba(80,120,100,0.35)] transition-all duration-400"
+                  className="group relative rounded-3xl overflow-hidden bg-white/50 border border-white/80 aspect-[4/3] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-25px_rgba(80,120,100,0.35)] transition-all duration-400"
                 >
                   {photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -1001,7 +942,7 @@ export default function ProjectDetailClient({
 
           {/* Interactive Lightbox Modal */}
           {activePhoto !== null && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 animate-fade-in">
               <div className="relative max-w-xl w-full rounded-3xl bg-[#1c1810] border border-[#d4af6a]/40 p-6 text-white shadow-2xl space-y-4">
                 <button
                   onClick={() => setActivePhoto(null)}
@@ -1036,14 +977,11 @@ export default function ProjectDetailClient({
       <section className="relative overflow-hidden py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#fdfaf4] via-[#fbf5e6] to-[#f6ecd2]" />
-          <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-amber-100/40 blur-[100px]" />
-          <div className="absolute bottom-0 right-1/4 w-[280px] h-[280px] rounded-full bg-emerald-100/30 blur-[100px]" />
-          <div className="absolute inset-0 bg-noise opacity-[0.2]" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {/* Quote Card */}
-          <div className="rounded-[36px] bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_30px_70px_-25px_rgba(120,90,40,0.3)] p-8 sm:p-12 text-center">
+          <div className="rounded-[36px] bg-white/60 border border-white/80 shadow-[0_30px_70px_-25px_rgba(120,90,40,0.3)] p-8 sm:p-12 text-center">
             <Quote className="w-10 h-10 text-[#d4af6a] mx-auto mb-4 opacity-80" />
             <p className="text-xl sm:text-2xl italic text-[#221c0c] leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
               &ldquo;{fieldStory ? fieldStory.quote : "Long after a project closes, the practices, partnerships, and confidence it built continue working in the community."}&rdquo;
@@ -1080,7 +1018,6 @@ export default function ProjectDetailClient({
         <section className="relative overflow-hidden py-16">
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-[#f3f8f5] to-[#fdfaf4]" />
-            <div className="absolute inset-0 bg-noise opacity-[0.2]" />
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
@@ -1102,7 +1039,7 @@ export default function ProjectDetailClient({
                   <Link
                     key={p.name + i}
                     href={`/programs/${status}/${i + 1}`}
-                    className="group rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 hover:border-[#c9a24a] hover:-translate-y-1.5 transition-all duration-300 shadow-sm"
+                    className="group rounded-3xl bg-white/60 border border-white/80 p-6 hover:border-[#c9a24a] hover:-translate-y-1.5 transition-all duration-300 shadow-sm"
                   >
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c9a24a]/15 text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] mb-3">
                       <RelIcon className="w-3 h-3" /> {p.category}

@@ -6,10 +6,8 @@ export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-gradient-to-b from-slate-950 via-emerald-950 to-slate-900 text-white relative overflow-hidden">
       {/* Glow background accents */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-lg w-full text-center space-y-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl">
+      <div className="relative z-10 max-w-lg w-full text-center space-y-6 bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 mb-2">
           <span className="text-2xl font-black">404</span>
         </div>
