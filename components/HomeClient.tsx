@@ -1845,7 +1845,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
               }`}
           >
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-              <Quote className="w-3.5 h-3.5 text-amber-400" />
+              <Quote className="w-3.5 h-3.5 text-amber-400 rotate-180" />
               <span>VOICES OF TRANSFORMATION</span>
             </div>
 
@@ -1870,7 +1870,7 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                   <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500" />
 
                   {/* Background Watermark Quote Mark */}
-                  <Quote className="w-16 h-16 text-rose-300/10 absolute top-4 right-4 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+                  <Quote className="w-16 h-16 text-rose-300/10 absolute top-4 right-4 pointer-events-none group-hover:scale-110 transition-transform duration-500 rotate-180" />
 
                   <div className="space-y-5 relative z-10">
                     <div className="flex items-center gap-4">

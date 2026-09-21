@@ -982,7 +982,7 @@ export default function ProjectDetailClient({
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {/* Quote Card */}
           <div className="rounded-[36px] bg-white/60 border border-white/80 shadow-[0_30px_70px_-25px_rgba(120,90,40,0.3)] p-8 sm:p-12 text-center">
-            <Quote className="w-10 h-10 text-[#d4af6a] mx-auto mb-4 opacity-80" />
+            <Quote className="w-10 h-10 text-[#d4af6a] mx-auto mb-4 opacity-80 rotate-180" />
             <p className="text-xl sm:text-2xl italic text-[#221c0c] leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
               &ldquo;{fieldStory ? fieldStory.quote : "Long after a project closes, the practices, partnerships, and confidence it built continue working in the community."}&rdquo;
             </p>

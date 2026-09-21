@@ -1467,7 +1467,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                   </div>
 
                   <div className="relative bg-emerald-950/70 border-l-4 border-amber-400 rounded-r-2xl p-5 shadow-inner backdrop-blur-md">
-                    <Quote className="w-6 h-6 text-amber-400/30 absolute top-3.5 right-3.5" />
+                    <Quote className="w-6 h-6 text-amber-400/30 absolute top-3.5 right-3.5 rotate-180" />
                     <p className="text-emerald-100 text-xs sm:text-sm font-medium italic leading-relaxed relative z-10">
                       &ldquo;{founderProfile.quote}&rdquo;
                     </p>
@@ -2208,7 +2208,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
                           {/* Philosophy Quote */}
                           <div className={` rounded-2xl p-4 border flex items-start gap-3 ${activeTheme.quoteBox}`}>
-                            <Quote className="w-4 h-4 shrink-0 mt-0.5" />
+                            <Quote className="w-4 h-4 shrink-0 mt-0.5 rotate-180" />
                             <p className="text-xs font-semibold italic leading-relaxed">
                               &ldquo;{pillar.philosophy}&rdquo;
                             </p>
