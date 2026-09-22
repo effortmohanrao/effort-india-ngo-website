@@ -16,6 +16,9 @@ const people = [
   { slug: "bhanodaya", name: "J. Bhanodaya", role: "Project Coordinator" },
   { slug: "nitish-reddy", name: "B. Nitish Reddy", role: "Project Coordinator" },
   { slug: "mohan-reddy", name: "M. V. Mohan Reddy", role: "Lead, IT & Digital Platforms" },
+  { slug: "patan-malansha", name: "Patan Malansha", role: "Lead, Water Conservation and Management" },
+  { slug: "anuradha", name: "J. Anuradha", role: "Lead – Community Based Organisation" },
+  { slug: "annapurna", name: "P. Annapurna", role: "Finance" },
 ];
 
 type Socials = { linkedin?: string; instagram?: string; facebook?: string; twitter?: string };

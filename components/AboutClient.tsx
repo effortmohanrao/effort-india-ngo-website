@@ -386,6 +386,24 @@ const leadershipTeam: LeadershipMember[] = [
     role: "Lead, IT & Digital Platforms",
     intro: "Graduate in Computer Science and Post Graduate in Human Rights & Duties. Expertise in IT Skills.",
   },
+  {
+    slug: "patan-malansha",
+    name: "Patan Malansha",
+    role: "Lead, Water Conservation and Management",
+    intro: "Graduate in Civil Engineering, 28 years of experience in the field of Watershed Development, Irrigation Management, Water Budgeting and Promotion & Strengthening of Watershed Committees & Water User Associations.",
+  },
+  {
+    slug: "anuradha",
+    name: "J. Anuradha",
+    role: "Lead – Community Based Organisation",
+    intro: "Postgraduate in Sociology with 35 years of experience in Social Development. Expert in Social Mobilisation and the promotion & strengthening of Community Based Organisations (CBOs).",
+  },
+  {
+    slug: "annapurna",
+    name: "P. Annapurna",
+    role: "Finance",
+    intro: "Postgraduate in MBA Finance with 33 years of experience in Finance Management.",
+  },
 ];
 
 type PhilosophyNote = {
@@ -1746,6 +1764,30 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                       liquid: "bg-orange-300/40 animate-liquid-drift-b",
                       icon: Sprout,
                       label: "Climate Resilient Farming",
+                    },
+                    "patan-malansha": {
+                      accent: "#0284c7",
+                      badge: "bg-sky-100 text-sky-950 border-sky-400 font-extrabold shadow-2xs",
+                      shimmer: "from-sky-500 via-cyan-300 to-sky-500",
+                      liquid: "bg-sky-300/40 animate-liquid-drift-c",
+                      icon: Droplets,
+                      label: "Watershed & Irrigation Management",
+                    },
+                    "anuradha": {
+                      accent: "#c026d3",
+                      badge: "bg-fuchsia-100 text-fuchsia-950 border-fuchsia-400 font-extrabold shadow-2xs",
+                      shimmer: "from-fuchsia-500 via-pink-300 to-fuchsia-500",
+                      liquid: "bg-fuchsia-300/40 animate-liquid-drift-a",
+                      icon: Handshake,
+                      label: "Community Based Organisations",
+                    },
+                    "annapurna": {
+                      accent: "#b45309",
+                      badge: "bg-amber-100 text-amber-950 border-amber-600 font-extrabold shadow-2xs",
+                      shimmer: "from-amber-700 via-yellow-400 to-amber-700",
+                      liquid: "bg-amber-400/40 animate-liquid-drift-b",
+                      icon: TrendingUp,
+                      label: "Finance Management",
                     },
                   };
 
