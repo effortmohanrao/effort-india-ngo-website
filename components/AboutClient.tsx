@@ -2424,8 +2424,8 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
           <div
             ref={galleryStripRef}
-            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none touch-pan-y overscroll-x-contain"
-            style={{ touchAction: "pan-y" }}
+            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none touch-pan-x overscroll-x-contain"
+            style={{ touchAction: "pan-x" }}
             onMouseEnter={() => setGalleryPaused(true)}
             onMouseLeave={() => {
               setGalleryPaused(false);
