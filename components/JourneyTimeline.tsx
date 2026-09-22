@@ -375,11 +375,11 @@ export default function JourneyTimeline() {
       {/* Horizontal path */}
       <div
         ref={trackRef}
-        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-visible snap-x snap-proximity overscroll-x-contain touch-pan-y pb-8 pt-3 cursor-grab active:cursor-grabbing scrollbar-none"
+        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-visible snap-x snap-proximity overscroll-x-contain touch-pan-x pb-8 pt-3 cursor-grab active:cursor-grabbing scrollbar-none"
         style={{
           paddingLeft: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
           paddingRight: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
-          touchAction: "pan-y",
+          touchAction: "pan-x",
         }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}

@@ -365,8 +365,8 @@ export default function Effort20Roadmap() {
                 }
               }
             }}
-            className="flex overflow-x-auto snap-x snap-proximity touch-pan-y overscroll-x-contain gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
-            style={{ touchAction: "pan-y" }}
+            className="flex overflow-x-auto snap-x snap-proximity touch-pan-x overscroll-x-contain gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
+            style={{ touchAction: "pan-x" }}
           >
             {phasesData.map((phase, idx) => {
               const isHovered = hoveredCard === idx;

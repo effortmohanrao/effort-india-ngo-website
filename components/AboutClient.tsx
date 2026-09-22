@@ -1837,7 +1837,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               <img
                                 src={teamPhotos[member.slug]}
                                 alt={member.name}
-                                className={`w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 ${member.slug === "hanumantha-rao" ? "object-[center_10%]" : "object-top"
+                                className={`w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 ${member.slug === "hanumantha-rao" ? "object-[center_10%]" : member.slug === "anuradha" ? "object-[center_11%]" : "object-top"
                                   }`}
                               />
                             ) : (
