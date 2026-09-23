@@ -605,6 +605,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
   const [galleryScrollPct, setGalleryScrollPct] = useState(0);
   const galleryDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
   const [galleryPaused, setGalleryPaused] = useState(false);
+  const galleryTouchResumeTimer = useRef<NodeJS.Timeout | null>(null);
   const [galleryImages, setGalleryImages] = useState<{ key: string; url: string }[]>([]);
 
   useEffect(() => {
@@ -642,19 +643,28 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
   useEffect(() => {
     const strip = galleryStripRef.current;
     if (!strip) return;
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-      return;
-    }
+
     let raf = 0;
-    const scrollSpeed = 1.8;
-    function drift() {
+    let lastTime = performance.now();
+    const pixelsPerSecond = 38; // Smooth, pleasant flowing gallery drift
+
+    function drift(now: number) {
       raf = requestAnimationFrame(drift);
       const el = galleryStripRef.current;
-      if (!el || galleryPaused || galleryDrag.current.active) return;
+      if (!el || galleryPaused || galleryDrag.current.active) {
+        lastTime = now;
+        return;
+      }
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+      if (dt > 0.2) return;
+
       const max = el.scrollWidth - el.clientWidth;
       if (max <= 0) return;
-      el.scrollLeft = el.scrollLeft >= max - scrollSpeed ? 0 : el.scrollLeft + scrollSpeed;
+      const next = el.scrollLeft + pixelsPerSecond * dt;
+      el.scrollLeft = next >= max ? 0 : next;
     }
+
     raf = requestAnimationFrame(drift);
     return () => cancelAnimationFrame(raf);
   }, [galleryPaused]);
@@ -2466,12 +2476,22 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
 
           <div
             ref={galleryStripRef}
-            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none touch-pan-x overscroll-x-contain"
-            style={{ touchAction: "pan-x" }}
+            className="relative grid grid-rows-2 grid-flow-col gap-5 sm:gap-6 overflow-x-auto scrollbar-hide px-[6vw] py-4 cursor-grab active:cursor-grabbing select-none overscroll-x-contain"
+            style={{ WebkitOverflowScrolling: "touch" }}
             onMouseEnter={() => setGalleryPaused(true)}
             onMouseLeave={() => {
               setGalleryPaused(false);
               galleryDrag.current.active = false;
+            }}
+            onTouchStart={() => {
+              setGalleryPaused(true);
+              if (galleryTouchResumeTimer.current) clearTimeout(galleryTouchResumeTimer.current);
+            }}
+            onTouchEnd={() => {
+              if (galleryTouchResumeTimer.current) clearTimeout(galleryTouchResumeTimer.current);
+              galleryTouchResumeTimer.current = setTimeout(() => {
+                setGalleryPaused(false);
+              }, 2200);
             }}
             onMouseDown={(e) => {
               const strip = galleryStripRef.current;

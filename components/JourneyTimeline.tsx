@@ -150,6 +150,10 @@ export default function JourneyTimeline() {
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
+  const touchStartPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const touchMoved = useRef(false);
+  const touchSwipeLockout = useRef(false);
+  const lockoutTimer = useRef<NodeJS.Timeout | null>(null);
   const [active, setActive] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
@@ -190,6 +194,7 @@ export default function JourneyTimeline() {
     const track = trackRef.current;
     if (!track) return;
 
+    let rafId: number | null = null;
     const update = () => {
       const max = track.scrollWidth - track.clientWidth;
       setScrollPct(max > 0 ? track.scrollLeft / max : 0);
@@ -209,10 +214,46 @@ export default function JourneyTimeline() {
       setActive((prev) => (prev === nearest ? prev : nearest));
     };
 
+    const handleScroll = () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
+
     update();
-    track.addEventListener("scroll", update, { passive: true });
-    return () => track.removeEventListener("scroll", update);
+    track.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      track.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length > 0) {
+      touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      touchMoved.current = false;
+    }
+  };
+
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length > 0) {
+      const dx = Math.abs(e.touches[0].clientX - touchStartPos.current.x);
+      const dy = Math.abs(e.touches[0].clientY - touchStartPos.current.y);
+      if (dx > 8 || dy > 8) {
+        touchMoved.current = true;
+      }
+    }
+  };
+
+  const onTouchEnd = () => {
+    if (touchMoved.current) {
+      touchSwipeLockout.current = true;
+      if (lockoutTimer.current) clearTimeout(lockoutTimer.current);
+      lockoutTimer.current = setTimeout(() => {
+        touchSwipeLockout.current = false;
+        touchMoved.current = false;
+      }, 350);
+    }
+  };
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const track = trackRef.current;
@@ -375,12 +416,16 @@ export default function JourneyTimeline() {
       {/* Horizontal path */}
       <div
         ref={trackRef}
-        className="effort-journey-track relative z-10 flex gap-6 sm:gap-8 overflow-x-auto overflow-y-visible snap-x snap-proximity overscroll-x-contain touch-pan-x pb-8 pt-3 cursor-grab active:cursor-grabbing scrollbar-none"
+        className="effort-journey-track relative z-10 flex gap-5 sm:gap-8 overflow-x-auto overflow-y-visible snap-x snap-mandatory overscroll-x-contain pb-8 pt-3 cursor-grab active:cursor-grabbing scrollbar-none"
         style={{
-          paddingLeft: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
-          paddingRight: "max(1.5rem, calc(50vw - min(90vw, 50rem) / 2))",
-          touchAction: "pan-x",
+          paddingLeft: "max(1.25rem, calc(50vw - min(90vw, 50rem) / 2))",
+          paddingRight: "max(1.25rem, calc(50vw - min(90vw, 50rem) / 2))",
+          WebkitOverflowScrolling: "touch",
         }}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
@@ -411,17 +456,16 @@ export default function JourneyTimeline() {
               }}
               data-index={idx}
               onClick={() => {
-                if (drag.current.moved) return;
+                if (drag.current.moved || touchMoved.current || touchSwipeLockout.current) return;
                 goTo(idx);
               }}
-              className={`snap-center shrink-0 w-[min(90vw,50rem)] rounded-[32px] overflow-hidden bg-[#fbf8f1] border transition-all duration-700 ease-out select-none ${
+              className={`snap-center shrink-0 w-[min(90vw,50rem)] rounded-[32px] overflow-hidden bg-[#fbf8f1] border transition-[opacity,box-shadow,border-color,transform] duration-300 ease-out select-none ${
                 isActive
-                  ? "scale-100 opacity-100 border-[#1c1910]/20 shadow-[0_32px_70px_-25px_rgba(28,25,16,0.45)] z-20"
-                  : "scale-[0.93] opacity-60 hover:opacity-85 border-[#1c1910]/10 z-10 cursor-pointer"
+                  ? "opacity-100 border-[#1c1910]/20 shadow-[0_24px_50px_-20px_rgba(28,25,16,0.35)] sm:scale-100 z-20"
+                  : "opacity-65 hover:opacity-85 border-[#1c1910]/10 sm:scale-[0.96] z-10 cursor-pointer"
               }`}
               style={{
-                transform: isActive ? "scale(1) translateY(0)" : "scale(0.93) translateY(4px)",
-                boxShadow: isActive ? `0 32px 70px -25px ${chapter.accent}66` : undefined,
+                boxShadow: isActive ? `0 24px 50px -20px ${chapter.accent}66` : undefined,
               }}
             >
               <div className="grid sm:grid-cols-[0.92fr_1.08fr] min-h-[22rem]">
