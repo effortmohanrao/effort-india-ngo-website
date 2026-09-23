@@ -162,6 +162,10 @@ export default function Effort20Roadmap() {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const isInteractingRef = useRef(false);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const touchMoved = useRef(false);
+  const touchSwipeLockout = useRef(false);
+  const lockoutTimer = useRef<NodeJS.Timeout | null>(null);
 
   const handleSelectPhase = (idx: number) => {
     setActiveNodeIndex(idx);
@@ -178,6 +182,40 @@ export default function Effort20Roadmap() {
         const targetLeft = cardEl.offsetLeft - container.offsetLeft - 16;
         container.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
       }
+    }
+  };
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    isInteractingRef.current = true;
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 8000);
+
+    if (e.touches.length > 0) {
+      touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      touchMoved.current = false;
+    }
+  };
+
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length > 0) {
+      const dx = Math.abs(e.touches[0].clientX - touchStartPos.current.x);
+      const dy = Math.abs(e.touches[0].clientY - touchStartPos.current.y);
+      if (dx > 8 || dy > 8) {
+        touchMoved.current = true;
+      }
+    }
+  };
+
+  const onTouchEnd = () => {
+    if (touchMoved.current) {
+      touchSwipeLockout.current = true;
+      if (lockoutTimer.current) clearTimeout(lockoutTimer.current);
+      lockoutTimer.current = setTimeout(() => {
+        touchSwipeLockout.current = false;
+        touchMoved.current = false;
+      }, 350);
     }
   };
 
@@ -342,13 +380,10 @@ export default function Effort20Roadmap() {
           {/* 3 Horizontal Phase Cards: Swipeable Snap-Carousel on Mobile/Tablet, 3-Column Grid on Desktop */}
           <div
             ref={cardsContainerRef}
-            onTouchStart={() => {
-              isInteractingRef.current = true;
-              if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
-              pauseTimeoutRef.current = setTimeout(() => {
-                isInteractingRef.current = false;
-              }, 8000);
-            }}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            onTouchCancel={onTouchEnd}
             onScroll={() => {
               if (!cardsContainerRef.current) return;
               const container = cardsContainerRef.current;
@@ -365,8 +400,8 @@ export default function Effort20Roadmap() {
                 }
               }
             }}
-            className="flex overflow-x-auto snap-x snap-proximity touch-pan-x overscroll-x-contain gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
-            style={{ touchAction: "pan-x" }}
+            className="flex overflow-x-auto snap-x snap-mandatory overscroll-x-contain gap-4 pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible scrollbar-none"
+            style={{ WebkitOverflowScrolling: "touch" }}
           >
             {phasesData.map((phase, idx) => {
               const isHovered = hoveredCard === idx;
@@ -377,10 +412,13 @@ export default function Effort20Roadmap() {
                   key={phase.id}
                   onMouseEnter={() => setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => handleSelectPhase(idx)}
-                  className={`group relative rounded-[28px] p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-white/95 border-2 transition-all duration-500 cursor-pointer overflow-hidden w-[86vw] max-w-[390px] shrink-0 snap-center lg:w-auto lg:max-w-none lg:shrink ${
+                  onClick={() => {
+                    if (touchMoved.current || touchSwipeLockout.current) return;
+                    handleSelectPhase(idx);
+                  }}
+                  className={`group relative rounded-[28px] p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-white/95 border-2 transition-[border-color,box-shadow,transform] duration-300 cursor-pointer overflow-hidden w-[86vw] max-w-[390px] shrink-0 snap-center lg:w-auto lg:max-w-none lg:shrink ${
                     isHovered
-                      ? "-translate-y-2 lg:-translate-y-3 scale-[1.01] lg:scale-[1.02] z-20"
+                      ? "sm:-translate-y-2 lg:-translate-y-3 scale-[1.01] lg:scale-[1.02] z-20"
                       : "z-10"
                   }`}
                   style={{
