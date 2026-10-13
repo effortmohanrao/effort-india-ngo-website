@@ -177,16 +177,6 @@ const complianceCards: {
       authority: "Google for Nonprofits & Goodera",
       details: "Officially verified nonprofit organization under Google for Nonprofits (Charity ID: 010330140) with authorized primary domain effortindia.org."
     },
-    {
-      id: "gptw",
-      icon: Award,
-      title: "Great Place To Work Certified",
-      number: "GPTW India Certification 2026",
-      status: "Active & Verified",
-      category: "csr",
-      authority: "Great Place To Work Institute, India",
-      details: "Certified by the Great Place To Work Institute for workplace culture, employee trust, and organizational excellence."
-    },
   ];
 
 const complianceTrustStrip = [
@@ -197,7 +187,6 @@ const complianceTrustStrip = [
   { icon: Fingerprint, label: "NITI Aayog Darpan ID" },
   { icon: Building2, label: "MCA CSR-1 Approved" },
   { icon: Award, label: "TISS Empaneled" },
-  { icon: Award, label: "Great Place To Work Certified" },
 ];
 
 function useReentryScrollReveal<T extends HTMLElement>() {
@@ -543,14 +532,6 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
   const [trustRef, trustVisible] = useScrollReveal<HTMLElement>();
   const [trustScore, setTrustScore] = useState(0);
   const [complianceFilter, setComplianceFilter] = useState<"all" | "govt" | "tax" | "csr">("all");
-  const [gptwLogoUrl, setGptwLogoUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch("/api/site/media?prefix=homepage/certifications/gptw", { cache: "no-store" })
-      .then((res) => res.json())
-      .then((data) => setGptwLogoUrl(data.images?.[0]?.url ?? null))
-      .catch(() => {});
-  }, []);
   const [selectedComplianceDoc, setSelectedComplianceDoc] = useState<(typeof complianceCards)[0] | null>(null);
 
   // Mobile compliance horizontal rail controls & view mode
@@ -1365,16 +1346,9 @@ export default function HomeClient({ initialHeroImageUrl }: { initialHeroImageUr
                       <div>
                         {/* High-Contrast Icon Box & Status Badge */}
                         <div className="flex items-start justify-between mb-3">
-                          {card.id === "gptw" && gptwLogoUrl ? (
-                            <div className="w-10 h-10 rounded-xl bg-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform overflow-hidden p-1 shrink-0">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={gptwLogoUrl} alt="Great Place To Work Certified" className="w-full h-full object-contain" />
-                            </div>
-                          ) : (
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform shrink-0">
-                              <card.icon className="w-5 h-5 text-white" />
-                            </div>
-                          )}
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-white border border-amber-400 flex items-center justify-center shadow-md group-hover/card:scale-110 transition-transform shrink-0">
+                            <card.icon className="w-5 h-5 text-white" />
+                          </div>
 
                           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                             <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Active

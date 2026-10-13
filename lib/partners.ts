@@ -10,7 +10,6 @@ export const partnerCategories: PartnerCategory[] = [
     title: "International Development Partners",
     partners: [
       { name: "German Cooperation (GIZ)", slug: "giz" },
-      { name: "Great Place To Work", slug: "gptw" },
       { name: "IDH – Sustainable Trade Initiative", slug: "idh" },
       { name: "Fairtrade Foundation", slug: "fairtrade" },
       { name: "DKA Austria", slug: "dka-austria" },

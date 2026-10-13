@@ -2410,8 +2410,7 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
                               alt={partner.name}
                               loading="lazy"
                               decoding="async"
-                              className={`max-w-full object-contain transition-transform duration-300 group-hover:scale-105 ${partner.slug === "gptw" ? "max-h-24" : "max-h-16"
-                                }`}
+                              className="max-w-full max-h-16 object-contain transition-transform duration-300 group-hover:scale-105"
                             />
                           ) : (
                             <span className="text-sm font-bold text-[#0b1120] text-center leading-snug">
