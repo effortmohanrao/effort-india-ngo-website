@@ -86,7 +86,6 @@ export default function Header() {
     { Icon: YoutubeIcon, href: "https://youtube.com/@effortap8403", label: "YouTube" },
   ];
 
-  if (pathname?.startsWith("/admin")) return null;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { getR2Text, uploadToR2 } from "@/lib/r2";
+import { getR2Text } from "@/lib/r2";
 
 const SETTINGS_KEY = "config/donation-settings.json";
 
@@ -56,9 +56,4 @@ export async function getDonationSettings(): Promise<DonationSettings> {
   } catch {
     return defaultDonationSettings;
   }
-}
-
-export async function saveDonationSettings(settings: DonationSettings) {
-  const body = JSON.stringify({ ...settings, updatedAt: new Date().toISOString() }, null, 2);
-  await uploadToR2(SETTINGS_KEY, Buffer.from(body, "utf-8"), "application/json");
 }

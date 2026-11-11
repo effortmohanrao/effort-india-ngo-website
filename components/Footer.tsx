@@ -20,7 +20,6 @@ export default function Footer() {
       .catch(() => {});
   }, []);
 
-  if (pathname?.startsWith("/admin")) return null;
 
   const socialLinks = [
     { Icon: InstagramIcon, href: "https://www.instagram.com/effortap", label: "Instagram" },

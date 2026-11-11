@@ -1803,3 +1803,12 @@ body {
 :is(.animate-hero-bob, .animate-glass-glow, .animate-ribbon-flow, .bg-aurora, .bg-aurora-light, .bg-pearl-aurora, .text-metallic-gold, .text-success-gradient):not([data-keep-motion] *) {
   animation: none !important;
 }
+
+/* Mobile readability: micro labels (8–10.5px) are too small to read on phones.
+   Lift them to an 11px floor below the sm breakpoint; desktop sizes are unchanged. */
+@media (max-width: 639px) {
+  .text-\[8px\], .text-\[9px\], .text-\[9\.5px\], .text-\[10px\], .text-\[10\.5px\] {
+    font-size: 11px !important;
+    line-height: 1.35;
+  }
+}

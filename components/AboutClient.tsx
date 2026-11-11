@@ -324,87 +324,82 @@ export const directorAwards: DirectorAward[] = [
   },
 ];
 
-type LeadershipMember = {
-  slug: string;
+// Team structure mirrors "Meet Our Team" (page 7) of the EFFORT 27 Years book.
+// Photos live in /public/images/team/{photo}.jpg.
+type TeamMember = {
+  photo: string;
   name: string;
   role: string;
-  intro: string;
+  officeBearer?: boolean;
+  bio?: string;
 };
 
-const leadershipTeam: LeadershipMember[] = [
-  {
-    slug: "bala-subramanian",
-    name: "Bala Subramanian",
-    role: "President, EFFORT",
-    intro: "M.Sc (Ag), PhD — retired Professor, TNAU, and Director, Centre for Plant Molecular Biology, Tamil Nadu Agricultural University. Expert in Sustainable Agriculture, guiding EFFORT's Sustainable Agriculture Team.",
-  },
-  {
-    slug: "veeranjaneyulu",
-    name: "Danda Veeranjaneyulu",
-    role: "Executive Committee Member",
-    intro: "Progressive Farmer and recipient of the Best Farmer Award from the Chief Minister of Andhra Pradesh. Maintains model sustainable agriculture farms and guides EFFORT's Sustainable Agriculture Team.",
-  },
-  {
-    slug: "y-m-krishna",
-    name: "Y. Murali Krishna",
-    role: "Capacity Building",
-    intro: "Graduate in Commerce and Law, with a Diploma in Social Development from St. Francis Xavier University, Canada. 35 years of experience in Social Development, expert in Human Resource and Community Development. Leads staff and CBO capacity-building programmes.",
-  },
-  {
-    slug: "vijaya-kumari",
-    name: "B. Vijaya Kumari",
-    role: "Gender, Equity & Water Governance",
-    intro: "Postgraduate in M.Sc Resource Management and MA Social Work. 28 years of experience in Social Development, expert in Gender, Equity, Social Inclusion and Water Governance & Community-Led Management.",
-  },
-  {
-    slug: "hanumantha-rao",
-    name: "B. Hanumantha Rao",
-    role: "Lead, Water Governance & Management",
-    intro: "Graduate in Civil Engineering with 30 years of rich experience in Water & Soil Conservation Projects.",
-  },
-  {
-    slug: "koteswara-rao",
-    name: "T. Koteswara Rao",
-    role: "Project Coordinator",
-    intro: "Post graduate in MBA Finance. 25 Years of experience in the field of Social Development. Expertise in Community Led Management Projects and Institutional Building.",
-  },
-  {
-    slug: "bhanodaya",
-    name: "J. Bhanodaya",
-    role: "Project Coordinator",
-    intro: "Postgraduate in Sociology. 20 years of experience in the field of Social Development initiatives. Expertise in Community Mobilisation, Sustainable Agriculture and Institutional Building.",
-  },
-  {
-    slug: "nitish-reddy",
-    name: "B. Nitish Reddy",
-    role: "Project Coordinator",
-    intro: "Post Graduate in Agri Business Management. Expertise in Climate Resilient Farming Projects, Reporting and Documentation.",
-  },
-  {
-    slug: "mohan-reddy",
-    name: "M. V. Mohan Reddy",
-    role: "Lead, IT & Digital Platforms",
-    intro: "Graduate in Computer Science and Post Graduate in Human Rights & Duties. Expertise in IT Skills.",
-  },
-  {
-    slug: "patan-malansha",
-    name: "Patan Malansha",
-    role: "Lead, Water Conservation and Management",
-    intro: "Graduate in Civil Engineering, 28 years of experience in the field of Watershed Development, Irrigation Management, Water Budgeting and Promotion & Strengthening of Watershed Committees & Water User Associations.",
-  },
-  {
-    slug: "anuradha",
-    name: "J. Anuradha",
-    role: "Lead – Community Based Organisation",
-    intro: "Postgraduate in Sociology with 35 years of experience in Social Development. Expert in Social Mobilisation and the promotion & strengthening of Community Based Organisations (CBOs).",
-  },
-  {
-    slug: "annapurna",
-    name: "P. Annapurna",
-    role: "Finance",
-    intro: "Postgraduate in MBA Finance with 33 years of experience in Finance Management.",
-  },
+const executiveCommittee: TeamMember[] = [
+  { photo: "bala", name: "Dr. Bala Subramanian", role: "President", officeBearer: true, bio: "M.Sc (Ag), PhD — retired Professor, TNAU, and Director, Centre for Plant Molecular Biology, Tamil Nadu Agricultural University. Expert in Sustainable Agriculture, guiding EFFORT's Sustainable Agriculture Team." },
+  { photo: "kathyayini", name: "Katyayini", role: "Vice President", officeBearer: true },
+  { photo: "madhavi", name: "N. Madhavi", role: "Executive Secretary", officeBearer: true },
+  { photo: "vijaya", name: "B. Vijaya Kumari", role: "Joint Secretary", officeBearer: true, bio: "Postgraduate in M.Sc Resource Management and MA Social Work. 28 years of experience in Social Development, expert in Gender, Equity, Social Inclusion and Water Governance & Community-Led Management." },
+  { photo: "rajyalakshmi", name: "K. Rajyalakshmi", role: "Treasurer", officeBearer: true },
+  { photo: "murali", name: "Y. Murali Krishna", role: "Executive Committee Member", bio: "Graduate in Commerce and Law, with a Diploma in Social Development from St. Francis Xavier University, Canada. 35 years of experience in Social Development, expert in Human Resource and Community Development." },
+  { photo: "veeranjaneyulu", name: "Danda Veeranjaneyulu", role: "Executive Committee Member", bio: "Progressive Farmer and recipient of the Best Farmer Award from the Chief Minister of Andhra Pradesh. Maintains model sustainable agriculture farms." },
+  { photo: "lakshmaiah", name: "S. Lakshmaiah", role: "Executive Committee Member" },
+  { photo: "subbarao", name: "I. Subbarao", role: "Executive Committee Member" },
 ];
+
+const fieldExpertiseTeam: TeamMember[] = [
+  { photo: "anuradha", name: "J. Anuradha", role: "Lead, Community Based Organisation", bio: "Postgraduate in Sociology with 35 years of experience in Social Development. Expert in Social Mobilisation and the promotion & strengthening of Community Based Organisations (CBOs)." },
+  { photo: "srinivasrao", name: "J. V. Srinivas Rao", role: "Expert in Watershed Development" },
+  { photo: "ramarao", name: "P. Rama Rao", role: "Expert in Sustainable Agriculture" },
+  { photo: "sureshbabu", name: "N. Suresh Babu", role: "Expert in Water Harvesting Structures" },
+  { photo: "annapurna", name: "P. Annapurna", role: "Finance", bio: "Postgraduate in MBA Finance with 33 years of experience in Finance Management." },
+  { photo: "hanumantha", name: "B. Hanumantha Rao", role: "Lead, Water Governance & Management", bio: "Graduate in Civil Engineering with 30 years of rich experience in Water & Soil Conservation Projects." },
+  { photo: "bhanodaya", name: "J. Bhanodaya", role: "Expert in Community Mobilization", bio: "Postgraduate in Sociology. 20 years of experience in Social Development. Expertise in Community Mobilisation, Sustainable Agriculture and Institutional Building." },
+  { photo: "koteswara", name: "T. Koteswara Rao", role: "Community-Led Management", bio: "Postgraduate in MBA Finance. 25 years of experience in Social Development. Expertise in Community Led Management Projects and Institutional Building." },
+  { photo: "nitish", name: "B. Nitish Reddy", role: "Expert in Climate-Resilient Farming", bio: "Postgraduate in Agri Business Management. Expertise in Climate Resilient Farming Projects, Reporting and Documentation." },
+  { photo: "mohanreddy", name: "M. V. Mohan Reddy", role: "Lead, IT & Digital Platforms", bio: "Graduate in Computer Science and Postgraduate in Human Rights & Duties." },
+  { photo: "malansha", name: "Patan Malansha", role: "Lead, Water Conservation & Management", bio: "Graduate in Civil Engineering, 28 years of experience in Watershed Development, Irrigation Management, Water Budgeting and strengthening Watershed Committees & Water User Associations." },
+];
+
+const fieldTeamNumbers: { value: string; label: string }[] = [
+  { value: "45", label: "Social mobilizers & community experts" },
+  { value: "5", label: "Agriculture & NRM experts" },
+  { value: "3", label: "Women's development team" },
+  { value: "4", label: "Livelihood team" },
+  { value: "3", label: "Technical team" },
+];
+
+function TeamCard({ member, compact }: { member: TeamMember; compact?: boolean }) {
+  const size = compact ? "w-20 h-20 sm:w-16 sm:h-16" : "w-20 h-20";
+  return (
+    <div
+      className={`h-full bg-white rounded-2xl border border-emerald-900/10 p-3 sm:p-4 flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2.5 sm:gap-4 shadow-[0_6px_20px_-12px_rgba(6,78,59,0.25)] ${member.officeBearer ? "border-t-4 border-t-emerald-700" : ""}`}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`/images/team/${member.photo}.jpg`}
+        alt={member.name}
+        loading="lazy"
+        decoding="async"
+        className={`${size} shrink-0 rounded-full object-cover object-[center_22%] border-2 border-white ring-2 ring-emerald-700/70`}
+      />
+      <div className="min-w-0 flex-1">
+        <h4 className="text-sm sm:text-[15px] font-bold text-slate-900 leading-snug">{member.name}</h4>
+        <p className={`text-xs mt-0.5 leading-snug ${member.officeBearer ? "font-extrabold text-emerald-800" : "font-semibold text-emerald-700"}`}>
+          {member.role}
+        </p>
+        {member.bio && (
+          <details className="mt-2 group/bio">
+            <summary className="text-[11px] font-bold text-slate-500 cursor-pointer list-none select-none hover:text-emerald-800 [&::-webkit-details-marker]:hidden">
+              <span className="group-open/bio:hidden">Read profile +</span>
+              <span className="hidden group-open/bio:inline">Hide profile −</span>
+            </summary>
+            <p className="text-xs text-slate-600 leading-relaxed mt-1.5">{member.bio}</p>
+          </details>
+        )}
+      </div>
+    </div>
+  );
+}
 
 type PhilosophyNote = {
   step: string;
@@ -522,12 +517,11 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
   const [valuesRef, valuesVisible] = useScrollReveal<HTMLElement>();
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
   const [leadershipRef, leadershipVisible] = useScrollReveal<HTMLElement>();
-  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
 
   const [teamPhotos, setTeamPhotos] = useState<Record<string, string>>({});
   const [teamSocials, setTeamSocials] = useState<Record<string, { linkedin?: string; instagram?: string; facebook?: string; twitter?: string }>>({});
   useEffect(() => {
-    const slugs = [founderProfile.slug, ...leadershipTeam.map((m) => m.slug)];
+    const slugs = [founderProfile.slug];
     Promise.all(
       slugs.map((slug) =>
         fetch(`/api/site/media?prefix=about/team/${slug}`, { cache: "no-store" })
@@ -576,8 +570,6 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
     });
   }, []);
 
-  const teamTrackRef = useRef<HTMLDivElement>(null);
-  const teamDrag = useRef<{ active: boolean; startX: number; startScroll: number }>({ active: false, startX: 0, startScroll: 0 });
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [philosophyRef, philosophyVisible] = useScrollReveal<HTMLElement>();
   const [compareRef, compareVisible] = useScrollReveal<HTMLElement>();
@@ -1686,228 +1678,39 @@ export default function AboutClient({ initialHeroImageUrl }: { initialHeroImageU
             </div>
           </div>
 
-          {/* --- DEPARTMENT HEADS & TEAMMATES EXECUTIVE BOXES GRID --- */}
-          <div className="space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-emerald-900/15 pb-4 gap-2">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-800">DIRECTORS OF NGO OPERATIONS</p>
-                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Executive Leadership Team</h3>
+          {/* --- TEAM BY CATEGORY (mirrors "Meet Our Team" in the EFFORT 27 Years book) --- */}
+          <div className="space-y-14">
+            <div>
+              <div className="flex items-end justify-between border-b-2 border-emerald-800/30 pb-3 mb-6 gap-3">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">Executive Committee</h3>
+                <span className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-800 shrink-0">{executiveCommittee.length} members</span>
               </div>
-              <p className="text-xs font-semibold text-slate-500">
-                Transparent Department Governance &amp; Ground Execution Heads
-              </p>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {executiveCommittee.map((m) => <TeamCard key={m.name} member={m} />)}
+              </div>
             </div>
 
-            {/* Continuous Automatic Horizontal Marquee Track (Infinite Live Scrolling with Hover Pause) */}
-            <div className="relative overflow-hidden py-2 group/marquee">
-              {/* Fade masks on left & right edges */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#FAF7F2] to-transparent z-10" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#FAF7F2] to-transparent z-10" />
+            <div>
+              <div className="flex items-end justify-between border-b-2 border-emerald-800/30 pb-3 mb-6 gap-3">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">Field Expertise Team</h3>
+                <span className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-800 shrink-0">{fieldExpertiseTeam.length} members</span>
+              </div>
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+                {fieldExpertiseTeam.map((m) => <TeamCard key={m.name} member={m} compact />)}
+              </div>
+            </div>
 
-              <div className="flex w-max gap-6 animate-marquee-scroll py-4 hover:[animation-play-state:paused] group-hover/marquee:[animation-play-state:paused]">
-                {[...leadershipTeam, ...leadershipTeam].map((member, idx) => {
-                  const s = teamSocials[member.slug];
-                  const hasSocials = s && (s.linkedin || s.instagram || s.facebook || s.twitter);
-
-                  // Distinct Domain-Specific Icon & Color Palette per Leader (Unique color for every profile)
-                  const memberThemes: Record<string, { accent: string; badge: string; shimmer: string; liquid: string; icon: React.ElementType; label: string }> = {
-                    "bala-subramanian": {
-                      accent: "#d97706",
-                      badge: "bg-amber-100 text-amber-950 border-amber-400 font-extrabold shadow-2xs",
-                      shimmer: "from-amber-500 via-yellow-300 to-amber-500",
-                      liquid: "bg-amber-300/40 animate-liquid-drift-a",
-                      icon: GraduationCap,
-                      label: "Agronomy Science",
-                    },
-                    "veeranjaneyulu": {
-                      accent: "#059669",
-                      badge: "bg-emerald-100 text-emerald-950 border-emerald-400 font-extrabold shadow-2xs",
-                      shimmer: "from-emerald-500 via-teal-300 to-emerald-500",
-                      liquid: "bg-emerald-300/40 animate-liquid-drift-b",
-                      icon: Wheat,
-                      label: "Sustainable Agriculture",
-                    },
-                    "y-m-krishna": {
-                      accent: "#4f46e5",
-                      badge: "bg-indigo-100 text-indigo-950 border-indigo-400 font-extrabold shadow-2xs",
-                      shimmer: "from-indigo-500 via-violet-300 to-indigo-500",
-                      liquid: "bg-indigo-400/40 animate-liquid-drift-c",
-                      icon: BookOpen,
-                      label: "Capacity Building & Training",
-                    },
-                    "vijaya-kumari": {
-                      accent: "#0284c7",
-                      badge: "bg-cyan-100 text-cyan-950 border-cyan-400 font-extrabold shadow-2xs",
-                      shimmer: "from-cyan-500 via-sky-300 to-teal-400",
-                      liquid: "bg-cyan-300/40 animate-liquid-drift-b",
-                      icon: Scale,
-                      label: "Gender & Social Equity",
-                    },
-                    "hanumantha-rao": {
-                      accent: "#0d9488",
-                      badge: "bg-teal-100 text-teal-950 border-teal-400 font-extrabold shadow-2xs",
-                      shimmer: "from-teal-500 via-emerald-300 to-teal-500",
-                      liquid: "bg-teal-300/40 animate-liquid-drift-a",
-                      icon: Droplets,
-                      label: "Water & Soil Conservation",
-                    },
-                    "koteswara-rao": {
-                      accent: "#7c3aed",
-                      badge: "bg-purple-100 text-purple-950 border-purple-400 font-extrabold shadow-2xs",
-                      shimmer: "from-purple-600 via-fuchsia-400 to-purple-600",
-                      liquid: "bg-purple-300/40 animate-liquid-drift-c",
-                      icon: Landmark,
-                      label: "Institutional Building & Finance",
-                    },
-                    "bhanodaya": {
-                      accent: "#e11d48",
-                      badge: "bg-rose-100 text-rose-950 border-rose-400 font-extrabold shadow-2xs",
-                      shimmer: "from-rose-500 via-pink-300 to-rose-500",
-                      liquid: "bg-rose-300/40 animate-liquid-drift-a",
-                      icon: Users2,
-                      label: "Community Mobilisation",
-                    },
-                    "nitish-reddy": {
-                      accent: "#ea580c",
-                      badge: "bg-orange-100 text-orange-950 border-orange-400 font-extrabold shadow-2xs",
-                      shimmer: "from-orange-500 via-amber-300 to-orange-500",
-                      liquid: "bg-orange-300/40 animate-liquid-drift-b",
-                      icon: Sprout,
-                      label: "Climate Resilient Farming",
-                    },
-                    "patan-malansha": {
-                      accent: "#0284c7",
-                      badge: "bg-sky-100 text-sky-950 border-sky-400 font-extrabold shadow-2xs",
-                      shimmer: "from-sky-500 via-cyan-300 to-sky-500",
-                      liquid: "bg-sky-300/40 animate-liquid-drift-c",
-                      icon: Droplets,
-                      label: "Watershed & Irrigation Management",
-                    },
-                    "anuradha": {
-                      accent: "#c026d3",
-                      badge: "bg-fuchsia-100 text-fuchsia-950 border-fuchsia-400 font-extrabold shadow-2xs",
-                      shimmer: "from-fuchsia-500 via-pink-300 to-fuchsia-500",
-                      liquid: "bg-fuchsia-300/40 animate-liquid-drift-a",
-                      icon: Handshake,
-                      label: "Community Based Organisations",
-                    },
-                    "annapurna": {
-                      accent: "#b45309",
-                      badge: "bg-amber-100 text-amber-950 border-amber-600 font-extrabold shadow-2xs",
-                      shimmer: "from-amber-700 via-yellow-400 to-amber-700",
-                      liquid: "bg-amber-400/40 animate-liquid-drift-b",
-                      icon: TrendingUp,
-                      label: "Finance Management",
-                    },
-                  };
-
-                  const theme = memberThemes[member.slug] || memberThemes["bala-subramanian"];
-                  const RoleIcon = theme.icon;
-
-                  return (
-                    <div
-                      key={`${member.slug}-${idx}`}
-                      className="bg-white/95 backdrop-blur-2xl border-2 rounded-[32px] rounded-tl-[14px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.18)] transition-all duration-500 group/card shrink-0 w-[280px] sm:w-[315px] min-h-[440px] relative overflow-hidden text-center"
-                      style={{
-                        borderColor: theme.accent,
-                        boxShadow: `0 15px 35px -10px ${theme.accent}30`,
-                      }}
-                    >
-                      {/* Top Rotating Laser Border Highlight Track */}
-                      <div
-                        className={`absolute top-0 left-0 right-0 h-1.5 transition-all duration-500 animate-journey-rail-shimmer bg-gradient-to-r ${theme.shimmer}`}
-                      />
-
-                      {/* Top Right Role-Specific Insignia Badge */}
-                      <div
-                        className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-white/95 border shadow-sm flex items-center justify-center transition-transform group-hover/card:scale-110"
-                        style={{ borderColor: theme.accent, color: theme.accent }}
-                        title={theme.label}
-                      >
-                        <RoleIcon className="w-4 h-4" />
-                      </div>
-
-                      {/* DISTINCT LIQUID FLOW BACKDROP INSIDE CARD */}
-                      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[32px] opacity-60 group-hover/card:opacity-100 transition-opacity duration-500">
-                        <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl transition-transform duration-1000 ${theme.liquid}`} />
-                        <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-amber-200/25 blur-2xl animate-liquid-drift-b" />
-                      </div>
-
-                      {/* CARD CONTENT WITH FULL UNCLIPPED TEXT */}
-                      <div className="space-y-3 relative z-10">
-                        {/* LUXURY CIRCULAR PRECISION MEDALLION PORTRAIT FRAME */}
-                        <div className="relative w-32 h-32 mx-auto my-0.5 flex items-center justify-center">
-                          {/* Solid Circular Medallion Core Frame */}
-                          <div
-                            className="relative w-32 h-32 rounded-full overflow-hidden border-3 shadow-lg bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 flex items-center justify-center group-hover/card:scale-105 transition-transform duration-500"
-                            style={{ borderColor: theme.accent }}
-                          >
-                            {teamPhotos[member.slug] ? (
-                              // eslint-disable-next-line @next/next/no-img-element
-                              <img
-                                src={teamPhotos[member.slug]}
-                                alt={member.name}
-                                className={`w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 ${member.slug === "hanumantha-rao" ? "object-[center_10%]" : member.slug === "anuradha" ? "object-[center_11%]" : "object-top"
-                                  }`}
-                              />
-                            ) : (
-                              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white p-3 text-center">
-                                <UserCircle2 className="w-12 h-12 text-emerald-400 mb-1" />
-                                <span className="text-xs font-black text-amber-300">{member.name}</span>
-                              </div>
-                            )}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity animate-light-sweep pointer-events-none" />
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="text-base sm:text-lg font-serif italic font-black text-slate-900 group-hover/card:text-amber-950 transition-colors leading-tight truncate">
-                            {member.name}
-                          </h4>
-                          <span className={`mt-1 inline-block text-[9px] px-2.5 py-0.5 rounded-full uppercase ${theme.badge}`}>
-                            {member.role}
-                          </span>
-                        </div>
-
-                        {/* FULL UNCLIPPED TEXT RIGHT HERE ON THE CARD */}
-                        <div className="pt-0.5">
-                          <p className="text-xs text-slate-700 leading-relaxed font-semibold">
-                            {member.intro}
-                          </p>
-                        </div>
-                      </div>
-
-                      {hasSocials && (
-                        <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between relative z-10 mt-auto">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-slate-800">CONNECT</span>
-
-                          <div className="flex items-center gap-2">
-                            {s.linkedin && (
-                              <a href={s.linkedin} target="_blank" rel="noopener noreferrer" title={`${member.name} LinkedIn`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <LinkedinIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            {s.instagram && (
-                              <a href={s.instagram} target="_blank" rel="noopener noreferrer" title={`${member.name} Instagram`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <InstagramIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            {s.facebook && (
-                              <a href={s.facebook} target="_blank" rel="noopener noreferrer" title={`${member.name} Facebook`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <FacebookIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            {s.twitter && (
-                              <a href={s.twitter} target="_blank" rel="noopener noreferrer" title={`${member.name} X`} className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-emerald-600 hover:text-white hover:scale-110 transition-all">
-                                <TwitterXIcon className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+            <div>
+              <div className="border-b-2 border-emerald-800/30 pb-3 mb-6">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">Field Team in Numbers</h3>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                {fieldTeamNumbers.map((n) => (
+                  <div key={n.label} className="bg-white rounded-2xl border border-emerald-900/10 border-t-4 border-t-emerald-700 p-4">
+                    <p className="font-serif text-3xl sm:text-4xl font-black text-emerald-800 leading-none">{n.value}</p>
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-slate-500 mt-2 leading-snug">{n.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

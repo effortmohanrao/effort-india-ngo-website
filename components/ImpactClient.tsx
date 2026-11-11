@@ -194,11 +194,11 @@ export default function ImpactClient() {
                 <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-200">
                   <div>
                     <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] block">Total Projects</span>
-                    <p className="text-2xl font-black text-[#221c0c] mt-0.5">{selectedState.projectsCount} Executed</p>
+                    <p className="text-xl sm:text-2xl font-black text-[#221c0c] mt-0.5">{selectedState.projectsCount} Executed</p>
                   </div>
                   <div>
                     <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] block">Direct Reach</span>
-                    <p className="text-2xl font-black text-emerald-700 mt-0.5">{selectedState.beneficiaries}</p>
+                    <p className="text-xl sm:text-2xl font-black text-emerald-700 mt-0.5 break-words">{selectedState.beneficiaries}</p>
                   </div>
                 </div>
 

@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Name and email are required." }, { status: 400 });
   }
 
-  // Submissions go straight to the admin panel (Form Submissions tab) — no email is sent.
+  // Submissions are stored in the Supabase form_submissions table — view them in the Supabase dashboard. No email is sent.
   try {
     const supabase = getSupabaseAdmin();
     const { error } = await supabase.from("form_submissions").insert({

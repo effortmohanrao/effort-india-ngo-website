@@ -1,4 +1,4 @@
-import { getR2Text, uploadToR2 } from "@/lib/r2";
+import { getR2Text } from "@/lib/r2";
 
 const SETTINGS_KEY = "config/team-settings.json";
 
@@ -25,9 +25,4 @@ export async function getTeamSettings(): Promise<TeamSettings> {
   } catch {
     return defaultTeamSettings;
   }
-}
-
-export async function saveTeamSettings(settings: TeamSettings) {
-  const body = JSON.stringify({ ...settings, updatedAt: new Date().toISOString() }, null, 2);
-  await uploadToR2(SETTINGS_KEY, Buffer.from(body, "utf-8"), "application/json");
 }
