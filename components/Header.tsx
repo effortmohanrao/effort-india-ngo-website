@@ -175,7 +175,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation (Expanded Horizontal Tube Layout) */}
-            <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 font-bold text-slate-700 text-xs sm:text-[13px] xl:text-sm whitespace-nowrap">
+            <nav className="hidden xl:flex items-center gap-5 2xl:gap-6 font-bold text-slate-700 text-[13px] 2xl:text-sm whitespace-nowrap">
               {mainLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -253,7 +253,7 @@ export default function Header() {
                 <span className="relative font-black tracking-wide text-white drop-shadow-sm">Donate Now</span>
 
                 {/* 80G Tax Exemption Pill */}
-                <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/40 border border-amber-300/40 text-[9px] font-black uppercase text-amber-200 tracking-wider">
+                <span className="hidden 2xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/40 border border-amber-300/40 text-[9px] font-black uppercase text-amber-200 tracking-wider">
                   80G Tax Free
                 </span>
 
@@ -264,7 +264,7 @@ export default function Header() {
             {/* Mobile Menu Trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full bg-white/60 border border-white/60 shadow-sm flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors focus:outline-hidden cursor-pointer"
+              className="xl:hidden w-10 h-10 rounded-full bg-white/60 border border-white/60 shadow-sm flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors focus:outline-hidden cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -272,7 +272,7 @@ export default function Header() {
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden relative mt-4 mx-5 bg-white border border-slate-200 rounded-3xl px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[75vh] overflow-y-auto animate-fade-in">
+            <div className="xl:hidden relative mt-4 mx-5 bg-white border border-slate-200 rounded-3xl px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[75vh] overflow-y-auto animate-fade-in">
               <div className="font-bold text-[10px] text-slate-400 uppercase tracking-wider px-3 mb-1">Main Pages</div>
               {mainLinks.map((link) => {
                 const isActive = pathname === link.href;

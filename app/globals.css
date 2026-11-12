@@ -1812,3 +1812,70 @@ body {
     line-height: 1.35;
   }
 }
+
+/* ── Luxury home design (deep green + gold) ───────────────────────────────────
+   Transform/opacity-only animations so they stay smooth on phones. */
+@keyframes lux-kenburns { from { transform: scale(1.04) translate3d(0,0,0); } to { transform: scale(1.16) translate3d(-1.5%,-1%,0); } }
+@keyframes lux-rise { from { opacity: 0; transform: translate3d(0,28px,0); } to { opacity: 1; transform: none; } }
+@keyframes lux-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lux-shimmer { from { background-position: 200% 50%; } to { background-position: -200% 50%; } }
+@keyframes lux-drift-a { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(6%,8%,0); } }
+@keyframes lux-drift-b { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(-8%,-6%,0); } }
+@keyframes lux-particle { 0% { transform: translate3d(0,0,0); opacity: 0; } 15% { opacity: .9; } 85% { opacity: .6; } 100% { transform: translate3d(0,-90vh,0); opacity: 0; } }
+@keyframes lux-spin { to { transform: rotate(360deg); } }
+@keyframes lux-sheen { from { transform: translateX(-120%) skewX(-20deg); } to { transform: translateX(220%) skewX(-20deg); } }
+@keyframes lux-scroll-cue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(10px); opacity: 0; } 100% { opacity: 0; } }
+
+.lux-kenburns { animation: lux-kenburns 26s ease-in-out infinite alternate; will-change: transform; }
+.lux-rise { opacity: 0; animation: lux-rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+.lux-fade { opacity: 0; animation: lux-fade 1.2s ease forwards; }
+.lux-gold-text {
+  background: linear-gradient(100deg, #b8860b 0%, #f7d774 25%, #fff3c4 40%, #e6b84a 55%, #b8860b 75%, #f7d774 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: lux-shimmer 7s linear infinite;
+}
+.lux-drift-a { animation: lux-drift-a 18s ease-in-out infinite; }
+.lux-drift-b { animation: lux-drift-b 22s ease-in-out infinite; }
+.lux-particle { animation: lux-particle linear infinite; will-change: transform, opacity; }
+.lux-spin { animation: lux-spin 6s linear infinite; }
+.lux-sheen::after {
+  content: ""; position: absolute; inset: 0; width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: translateX(-120%) skewX(-20deg); pointer-events: none;
+}
+.lux-sheen:hover::after { animation: lux-sheen .9s ease; }
+.lux-scroll-cue { animation: lux-scroll-cue 1.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lux-kenburns, .lux-gold-text, .lux-drift-a, .lux-drift-b, .lux-spin, .lux-scroll-cue { animation: none; }
+  .lux-particle { display: none; }
+  .lux-rise, .lux-fade { animation: none; opacity: 1; }
+}
+
+/* Section 3 (Trust & Compliance) */
+@keyframes lux-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+.lux-marquee { animation: lux-marquee 40s linear infinite; }
+.lux-marquee:hover { animation-play-state: paused; }
+.lux-guilloche {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(212,160,23,0.10), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(16,120,80,0.08), transparent 45%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(161,120,30,0.06) 0 1px, transparent 1px 14px);
+}
+@media (prefers-reduced-motion: reduce) { .lux-marquee { animation: none; } }
+
+/* Section 5 (Partnerships) */
+@keyframes lux-progress { from { width: 0; } to { width: 100%; } }
+@keyframes lux-marquee-rev { from { transform: translate3d(-50%,0,0); } to { transform: translate3d(0,0,0); } }
+.lux-marquee-rev { animation: lux-marquee-rev 45s linear infinite; }
+.lux-marquee-rev:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .lux-marquee-rev { animation: none; } }
+
+/* Section 6 (CSR model) */
+@keyframes lux-flow { from { background-position: 0 0; } to { background-position: 24px 0; } }
+@keyframes lux-flow-y { from { background-position: 0 0; } to { background-position: 0 24px; } }
+.lux-flow { background-image: linear-gradient(90deg, #f7d774 0 12px, transparent 12px 24px); background-size: 24px 2px; animation: lux-flow .8s linear infinite; }
+.lux-flow-y { background-image: linear-gradient(180deg, #f7d774 0 12px, transparent 12px 24px); background-size: 2px 24px; animation: lux-flow-y .8s linear infinite; }
+.lux-outline-num { -webkit-text-stroke: 1.5px rgba(247,215,116,0.55); color: transparent; }
+@media (prefers-reduced-motion: reduce) { .lux-flow, .lux-flow-y { animation: none; } }
