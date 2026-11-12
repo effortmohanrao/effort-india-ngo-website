@@ -5,6 +5,11 @@ import { listR2Objects, publicUrlFor } from "@/lib/r2";
 
 export const revalidate = 60;
 
+// Pre-build every album page so visitors get a cached page instead of a fresh render.
+export function generateStaticParams() {
+  return programAlbums.map((a) => ({ id: a.folder }));
+}
+
 export async function generateMetadata({
   params,
 }: {
