@@ -1,31 +1,18 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Flame,
-  Network,
-  Rocket,
-  Crown,
-  Globe2,
-  Sprout,
-  MapPin,
-  Users,
-  Landmark,
-} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { ArrowDown, CheckCircle2, Crown, Flame, Globe2, Landmark, MapPin, Network, Rocket, Users } from "lucide-react";
 
 type JourneyChapter = {
-  id: string;
+  id: string; // R2 folder: website/about/journey/{id}/
   era: string;
-  pin: string;
   shortTitle: string;
   indexLabel: string;
   title: string;
   subtitle: string;
   desc: string;
   marks: string[];
-  accent: string;
   icon: typeof Flame;
   stats: { label: string; value: string }[];
 };
@@ -34,7 +21,6 @@ const chapters: JourneyChapter[] = [
   {
     id: "1999",
     era: "1999",
-    pin: "1999",
     shortTitle: "Origin",
     indexLabel: "01",
     title: "The Beginning",
@@ -45,7 +31,6 @@ const chapters: JourneyChapter[] = [
       "Pioneer field roots in 10 villages, Prakasam District",
       "Community participation, livelihoods, and demand generation",
     ],
-    accent: "#b45309",
     icon: Flame,
     stats: [
       { label: "Villages", value: "10" },
@@ -56,7 +41,6 @@ const chapters: JourneyChapter[] = [
   {
     id: "2000-2009",
     era: "2000–2009",
-    pin: "2000",
     shortTitle: "Foundation",
     indexLabel: "02",
     title: "Building the Foundation",
@@ -67,7 +51,6 @@ const chapters: JourneyChapter[] = [
       "20,000 farmers integrated into sustainable agriculture",
       "Government-backed women and child development projects",
     ],
-    accent: "#c2410c",
     icon: Network,
     stats: [
       { label: "Villages", value: "50" },
@@ -78,7 +61,6 @@ const chapters: JourneyChapter[] = [
   {
     id: "2009-2016",
     era: "2009–2016",
-    pin: "2009",
     shortTitle: "Expansion",
     indexLabel: "03",
     title: "The Expansion Engine",
@@ -89,7 +71,6 @@ const chapters: JourneyChapter[] = [
       "1,50,000 small/marginal farmers and landless labourers",
       "Technical support to 16 partner NGOs in NRM",
     ],
-    accent: "#0f766e",
     icon: Rocket,
     stats: [
       { label: "Villages", value: "405" },
@@ -100,7 +81,6 @@ const chapters: JourneyChapter[] = [
   {
     id: "2016-2022",
     era: "2016–2022",
-    pin: "2016",
     shortTitle: "Transform",
     indexLabel: "04",
     title: "Multi-State Transformation",
@@ -111,7 +91,6 @@ const chapters: JourneyChapter[] = [
       "2,00,000 farm families empowered across regions",
       "Alliances with international agencies, CSR, government & CBBOs",
     ],
-    accent: "#047857",
     icon: Crown,
     stats: [
       { label: "States", value: "6" },
@@ -122,7 +101,6 @@ const chapters: JourneyChapter[] = [
   {
     id: "2022-2025",
     era: "2022–2025",
-    pin: "2022",
     shortTitle: "Pan-India",
     indexLabel: "05",
     title: "National Expansion & PAN-India Footprint",
@@ -133,7 +111,6 @@ const chapters: JourneyChapter[] = [
       "2,50,000 farm families actively covered",
       "Field impact in 1,859 villages with grassroots resilience",
     ],
-    accent: "#a16207",
     icon: Globe2,
     stats: [
       { label: "Villages", value: "1,859" },
@@ -145,436 +122,306 @@ const chapters: JourneyChapter[] = [
 
 const STAT_ICONS = [Landmark, Users, MapPin];
 
-export default function JourneyTimeline() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+function Stats({ c, compact }: { c: JourneyChapter; compact?: boolean }) {
+  return (
+    <dl className="grid grid-cols-3 gap-2 sm:gap-3">
+      {c.stats.map((s, i) => {
+        const Icon = STAT_ICONS[i] ?? Landmark;
+        return (
+          <div key={s.label} className={`rounded-xl border border-white/10 bg-white/[0.05] text-center ${compact ? "px-1.5 py-2.5" : "px-2 py-3 sm:p-4"}`}>
+            <Icon className="mx-auto w-4 h-4 text-amber-300/80" />
+            <dd className="mt-1 text-sm min-[360px]:text-base sm:text-lg font-extrabold text-white leading-tight break-words">{s.value}</dd>
+            <dt className="mt-0.5 text-xs font-semibold uppercase tracking-wider text-emerald-100/55">{s.label}</dt>
+          </div>
+        );
+      })}
+    </dl>
+  );
+}
+
+function Marks({ c }: { c: JourneyChapter }) {
+  return (
+    <ul className="space-y-2.5">
+      {c.marks.map((m) => (
+        <li key={m} className="flex items-start gap-2.5 text-sm text-emerald-50/80 leading-relaxed">
+          <CheckCircle2 className="w-5 h-5 text-amber-300 shrink-0" /> {m}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// `images` maps chapter id → photo URL; looked up on the server by app/about/page.tsx.
+export default function JourneyTimeline({ images }: { images: Record<string, string> }) {
+  const [active, setActive] = useState(0); // desktop: chapter nearest the middle of the screen
+  const [mActive, setMActive] = useState(0); // phone: card in view inside the slider
+  const blockRefs = useRef<(HTMLElement | null)[]>([]);
+  const sliderRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
-  const touchStartPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const touchMoved = useRef(false);
-  const touchSwipeLockout = useRef(false);
-  const lockoutTimer = useRef<NodeJS.Timeout | null>(null);
-  const [active, setActive] = useState(0);
-  const [headerVisible, setHeaderVisible] = useState(false);
-  const [scrollPct, setScrollPct] = useState(0);
-  const reduceMotion = useRef(false);
-  const [chapterImages, setChapterImages] = useState<Record<string, string>>({});
+  const chipRowRef = useRef<HTMLDivElement>(null);
 
+  // Desktop scroll story: whichever chapter crosses the middle band of the screen becomes active.
   useEffect(() => {
-    Promise.all(
-      chapters.map((c) =>
-        fetch(`/api/site/media?prefix=about/journey/${c.id}`, { cache: "no-store" })
-          .then((res) => res.json())
-          .then((data) => [c.id, data.images?.[0]?.url] as const)
-      )
-    ).then((entries) => {
-      const map: Record<string, string> = {};
-      for (const [id, url] of entries) if (url) map[id] = url;
-      setChapterImages(map);
-    });
-  }, []);
-
-  const goTo = useCallback((index: number) => {
-    const next = (index + chapters.length) % chapters.length;
-    const card = cardRefs.current[next];
-    const track = trackRef.current;
-    if (!card || !track) return;
-    const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-    track.scrollTo({ left: target, behavior: reduceMotion.current ? "auto" : "smooth" });
-    setActive(next);
-  }, []);
-
-  useEffect(() => {
-    reduceMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const t = setTimeout(() => setHeaderVisible(true), 80);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    let rafId: number | null = null;
-    const update = () => {
-      const max = track.scrollWidth - track.clientWidth;
-      setScrollPct(max > 0 ? track.scrollLeft / max : 0);
-
-      const center = track.scrollLeft + track.clientWidth / 2;
-      let nearest = 0;
-      let best = Infinity;
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return;
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const dist = Math.abs(cardCenter - center);
-        if (dist < best) {
-          best = dist;
-          nearest = i;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index));
         }
-      });
-      setActive((prev) => (prev === nearest ? prev : nearest));
-    };
-
-    const handleScroll = () => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(update);
-    };
-
-    update();
-    track.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      track.removeEventListener("scroll", handleScroll);
-    };
+      },
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
+    blockRefs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
   }, []);
 
-  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length > 0) {
-      touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      touchMoved.current = false;
-    }
+  // Phone slider: native scroll-snap; we only *read* which card is in view.
+  useEffect(() => {
+    const root = sliderRef.current;
+    if (!root) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) setMActive(Number((e.target as HTMLElement).dataset.index));
+        }
+      },
+      { root, threshold: 0.6 }
+    );
+    cardRefs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // Keep the active year chip visible in the chip row (scrolls only that row, never the page).
+  useEffect(() => {
+    const row = chipRowRef.current;
+    const chip = row?.children[mActive] as HTMLElement | undefined;
+    if (!row || !chip || row.scrollWidth <= row.clientWidth) return;
+    row.scrollTo({ left: chip.offsetLeft - row.clientWidth / 2 + chip.clientWidth / 2, behavior: "smooth" });
+  }, [mActive]);
+
+  const goToCard = (i: number) => {
+    const slider = sliderRef.current;
+    const card = cardRefs.current[i];
+    if (slider && card) slider.scrollTo({ left: card.offsetLeft - slider.offsetLeft - 16, behavior: "smooth" });
   };
 
-  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length > 0) {
-      const dx = Math.abs(e.touches[0].clientX - touchStartPos.current.x);
-      const dy = Math.abs(e.touches[0].clientY - touchStartPos.current.y);
-      if (dx > 8 || dy > 8) {
-        touchMoved.current = true;
-      }
-    }
-  };
-
-  const onTouchEnd = () => {
-    if (touchMoved.current) {
-      touchSwipeLockout.current = true;
-      if (lockoutTimer.current) clearTimeout(lockoutTimer.current);
-      lockoutTimer.current = setTimeout(() => {
-        touchSwipeLockout.current = false;
-        touchMoved.current = false;
-      }, 350);
-    }
-  };
-
-  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    const track = trackRef.current;
-    if (!track || e.pointerType === "touch") return;
-    drag.current = { active: true, startX: e.clientX, startScroll: track.scrollLeft, moved: false };
-    track.setPointerCapture(e.pointerId);
-  };
-
-  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const track = trackRef.current;
-    if (!track || !drag.current.active) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 6) drag.current.moved = true;
-    track.scrollLeft = drag.current.startScroll - dx;
-  };
-
-  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
-    const track = trackRef.current;
-    if (!track || !drag.current.active) return;
-    drag.current.active = false;
-    try {
-      track.releasePointerCapture(e.pointerId);
-    } catch {
-      /* already released */
-    }
-  };
-
-  const activeChapter = chapters[active];
+  const c = chapters[active];
 
   return (
-    <section
-      id="journey"
-      ref={sectionRef}
-      className="relative overflow-hidden pt-12 pb-6 sm:pt-16 sm:pb-10 lg:pt-24 lg:pb-16 text-[#1c1910]"
-      style={{
-        background:
-          "radial-gradient(ellipse at 12% 0%, rgba(15,107,76,0.08), transparent 42%), radial-gradient(ellipse at 88% 100%, rgba(180,83,9,0.07), transparent 46%), linear-gradient(180deg, #f7f3ea 0%, #efe6d4 100%)",
-      }}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(28,25,16,0.035) 48px), repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(28,25,16,0.035) 48px)",
-        }}
-      />
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-700/30 to-transparent" />
+    <section id="journey" data-keep-motion className="relative isolate overflow-clip bg-[#03140d] text-white scroll-mt-24">
+      {/* Night-field atmosphere: contour lines + gold horizon glow */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08] bg-[repeating-radial-gradient(circle_at_20%_110%,#f7d774_0_1px,transparent_1px_34px)]" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-48 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1600px] aspect-[3/1] -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(212,160,23,0.22),transparent_65%)]" />
+      <div aria-hidden className="pointer-events-none absolute -top-40 -left-40 w-[50vw] aspect-square -z-10 rounded-full lux-drift-a bg-[radial-gradient(circle,rgba(16,185,129,0.14),transparent_65%)]" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div
-          className={`transition-all duration-700 ${
-            headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-emerald-800 flex items-center gap-3">
-            <span className="inline-block w-10 h-[2px] bg-emerald-700" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-24">
+        {/* Header */}
+        <div className="max-w-3xl">
+          <p className="inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-amber-200">
             Our Journey Since 1999
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black tracking-tight leading-[1.12] mt-3 max-w-3xl">
-            Twenty-seven years,
-            <br className="hidden sm:block" /> written across the field
+          <h2 className="mt-5 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
+            Twenty-seven years, <span className="lux-gold-text">written across the field</span>
           </h2>
-          <p className="text-[#5c5346] text-sm sm:text-base leading-relaxed mt-3 max-w-2xl">
+          <p className="mt-5 text-emerald-50/75 leading-relaxed sm:text-lg max-w-2xl">
             Five chapters of growth — from 10 villages in Prakasam District to 1,909 villages across 10 Indian states. Scroll the path. Each station is a decade of work.
           </p>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {activeChapter.stats.map((stat, i) => {
-              const Icon = STAT_ICONS[i] ?? Landmark;
-              return (
-                <div
-                  key={`${activeChapter.id}-${stat.label}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-white/90 border border-[#1c1910]/10 pl-2 pr-3 py-1.5 shadow-[0_8px_20px_-14px_rgba(28,25,16,0.4)]"
-                >
-                  <span
-                    className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: `${activeChapter.accent}18`, color: activeChapter.accent }}
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                  </span>
-                  <span className="text-sm font-black leading-none" style={{ color: activeChapter.accent }}>
-                    {stat.value}
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#7a7164]">{stat.label}</span>
-                </div>
-              );
-            })}
-          </div>
         </div>
 
-        {/* Equal-column icon stations — line always meets icon centers */}
-        <nav className="mt-8 sm:mt-10 rounded-[28px] bg-white/70 border border-[#1c1910]/10 px-2 sm:px-4 py-4 sm:py-5 shadow-[0_18px_40px_-28px_rgba(28,25,16,0.35)]" aria-label="Journey chapters">
-          <ol className="grid grid-cols-5 list-none m-0 p-0">
-            {chapters.map((chapter, idx) => {
-              const Icon = chapter.icon;
-              const isActive = idx === active;
-              const reached = idx <= active;
-              const passed = idx < active;
-              return (
-                <li key={chapter.id} className="min-w-0">
-                  <button
-                    type="button"
-                    onClick={() => goTo(idx)}
-                    className="group w-full flex flex-col items-center cursor-pointer"
-                    aria-label={`Go to ${chapter.era}: ${chapter.title}`}
-                    aria-current={isActive ? "step" : undefined}
-                  >
-                    <span className="relative w-full h-11 sm:h-14 flex items-center justify-center">
-                      {idx > 0 && (
-                        <span
-                          className="absolute left-0 right-1/2 top-1/2 -translate-y-1/2 h-[3px] rounded-full"
-                          style={{ backgroundColor: reached ? chapter.accent : "#d6d0c4" }}
+        {/* ================= DESKTOP: sticky photo + scrolling story ================= */}
+        <div className="hidden lg:grid grid-cols-12 gap-14 mt-16">
+          {/* Sticky photo panel */}
+          <div className="col-span-5">
+            <div className="sticky top-28">
+              <div className="relative rounded-[30px] p-[1.5px] bg-gradient-to-br from-[#fff3c4] via-[#a1781e] to-[#f7d774] shadow-[0_40px_90px_-35px_rgba(0,0,0,0.9)]">
+                <div className="relative h-[min(64vh,560px)] rounded-[29px] overflow-hidden bg-[#062619]">
+                  {chapters.map((ch, i) =>
+                    images[ch.id] ? (
+                      <div key={ch.id} aria-hidden={i !== active} className={`absolute inset-0 transition-opacity duration-700 ${i === active ? "opacity-100" : "opacity-0"}`}>
+                        <Image
+                          src={images[ch.id]}
+                          alt={`${ch.era} — ${ch.title}`}
+                          fill
+                          sizes="40vw"
+                          className={`object-cover transition-transform ease-out ${i === active ? "scale-110 duration-[7000ms]" : "scale-100 duration-0"}`}
                         />
-                      )}
-                      {idx < chapters.length - 1 && (
-                        <span
-                          className="absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-[3px] rounded-full"
-                          style={{ backgroundColor: passed ? chapters[idx + 1].accent : "#d6d0c4" }}
-                        />
-                      )}
-                      <span
-                        className={`relative z-10 flex items-center justify-center rounded-full border-2 border-white shadow-[0_8px_18px_-8px_rgba(28,25,16,0.45)] transition-all duration-300 ${
-                          isActive
-                            ? "w-11 h-11 sm:w-14 sm:h-14 animate-effort-journey-node"
-                            : "w-9 h-9 sm:w-12 sm:h-12 group-hover:scale-105"
-                        }`}
-                        style={{
-                          backgroundColor: reached ? chapter.accent : "#f4efe3",
-                          color: reached ? "#fff" : "#8a8072",
-                          boxShadow: isActive ? `0 10px 22px -8px ${chapter.accent}` : undefined,
-                        }}
-                      >
-                        <Icon className={isActive ? "w-5 h-5 sm:w-6 sm:h-6" : "w-4 h-4 sm:w-5 sm:h-5"} />
-                      </span>
-                    </span>
+                      </div>
+                    ) : null
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#03140d] via-[#03140d]/30 to-transparent" />
+                  <div key={c.id} className="absolute left-7 right-7 bottom-7">
+                    <p className="lux-rise text-xs font-bold uppercase tracking-[0.3em] text-amber-200">
+                      Chapter {c.indexLabel} · {c.shortTitle}
+                    </p>
+                    <p className="lux-rise mt-1 text-7xl font-extrabold tracking-tight leading-none pb-1" style={{ animationDelay: "80ms" }}>
+                      <span className="lux-gold-text">{c.era}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-                    <span
-                      className={`mt-2 text-[10px] sm:text-xs font-black tabular-nums tracking-tight ${
-                        isActive ? "text-[#1c1910]" : "text-[#8a8072]"
-                      }`}
-                    >
-                      <span className="sm:hidden">{chapter.pin}</span>
-                      <span className="hidden sm:inline">{chapter.era}</span>
+              {/* Growth meter */}
+              <div className="mt-6">
+                <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-emerald-100/50">
+                  <span>1999</span>
+                  <span className="text-amber-300 tabular-nums">{c.indexLabel} / 05</span>
+                  <span>2025</span>
+                </div>
+                <div className="mt-2 grid grid-cols-5 gap-1.5">
+                  {chapters.map((ch, i) => (
+                    <span key={ch.id} className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                      <span
+                        className="block h-full rounded-full bg-gradient-to-r from-[#10b981] to-[#f7d774] transition-transform duration-700 origin-left"
+                        style={{ transform: `scaleX(${i <= active ? 1 : 0})` }}
+                      />
                     </span>
-                    <span
-                      className={`mt-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.14em] sm:tracking-[0.16em] truncate max-w-full px-0.5 ${
-                        isActive ? "text-emerald-800" : "text-[#a39888]"
-                      }`}
-                    >
-                      {chapter.shortTitle}
-                    </span>
-                  </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scrolling chapters on a gold path */}
+          <ol className="col-span-7 relative">
+            <span aria-hidden className="absolute left-[27px] top-2 bottom-2 w-[2px] bg-white/10" />
+            <span
+              aria-hidden
+              className="absolute left-[27px] top-2 w-[2px] bg-gradient-to-b from-[#10b981] via-[#d4a017] to-[#f7d774] shadow-[0_0_14px_rgba(247,215,116,0.7)] transition-[height] duration-700"
+              style={{ height: `calc(${(active / (chapters.length - 1)) * 100}% - 16px)` }}
+            />
+            {chapters.map((ch, i) => {
+              const Icon = ch.icon;
+              const on = i === active;
+              const reached = i <= active;
+              return (
+                <li
+                  key={ch.id}
+                  ref={(el) => {
+                    blockRefs.current[i] = el;
+                  }}
+                  data-index={i}
+                  className={`relative pl-20 min-h-[68vh] flex flex-col justify-center transition-opacity duration-500 ${on ? "opacity-100" : "opacity-35"}`}
+                >
+                  <span
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      on
+                        ? "bg-gradient-to-br from-[#fff3c4] via-[#f7d774] to-[#b8860b] shadow-[0_0_0_6px_rgba(247,215,116,0.15),0_14px_30px_-8px_rgba(212,160,23,0.9)] scale-110"
+                        : reached
+                          ? "bg-[#0b3d2a] border border-amber-300/50"
+                          : "bg-[#062619] border border-white/15"
+                    }`}
+                  >
+                    <Icon className={`w-6 h-6 ${on ? "text-[#062619]" : "text-amber-300/80"}`} />
+                  </span>
+                  <p className="text-sm font-extrabold uppercase tracking-[0.25em] text-amber-300">
+                    {ch.era} <span className="text-emerald-100/40">· Chapter {ch.indexLabel}</span>
+                  </p>
+                  <h3 className="mt-2 text-3xl xl:text-4xl font-extrabold leading-tight">{ch.title}</h3>
+                  <p className="mt-2 text-lg font-semibold text-amber-200/90">{ch.subtitle}</p>
+                  <p className="mt-4 text-base text-emerald-50/75 leading-relaxed">{ch.desc}</p>
+                  <div className="mt-5">
+                    <Marks c={ch} />
+                  </div>
+                  <div className="mt-6 max-w-lg">
+                    <Stats c={ch} />
+                  </div>
                 </li>
               );
             })}
           </ol>
-        </nav>
-      </div>
+        </div>
 
-      {/* Horizontal path */}
-      <div
-        ref={trackRef}
-        className="effort-journey-track relative z-10 flex gap-5 sm:gap-8 overflow-x-auto overflow-y-visible snap-x snap-mandatory overscroll-x-contain pb-8 pt-3 cursor-grab active:cursor-grabbing scrollbar-none"
-        style={{
-          paddingLeft: "max(1.25rem, calc(50vw - min(90vw, 50rem) / 2))",
-          paddingRight: "max(1.25rem, calc(50vw - min(90vw, 50rem) / 2))",
-          WebkitOverflowScrolling: "touch",
-        }}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={onTouchEnd}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") {
-            e.preventDefault();
-            goTo(active + 1);
-          }
-          if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            goTo(active - 1);
-          }
-        }}
-        tabIndex={0}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label="EFFORT journey from 1999 to 2025"
-      >
-        {chapters.map((chapter, idx) => {
-          const Icon = chapter.icon;
-          const isActive = idx === active;
-          return (
-            <article
-              key={chapter.id}
-              ref={(el) => {
-                cardRefs.current[idx] = el;
-              }}
-              data-index={idx}
-              onClick={() => {
-                if (drag.current.moved || touchMoved.current || touchSwipeLockout.current) return;
-                goTo(idx);
-              }}
-              className={`snap-center shrink-0 w-[min(90vw,50rem)] rounded-[32px] overflow-hidden bg-[#fbf8f1] border transition-[opacity,box-shadow,border-color,transform] duration-300 ease-out select-none ${
-                isActive
-                  ? "opacity-100 border-[#1c1910]/20 shadow-[0_24px_50px_-20px_rgba(28,25,16,0.35)] sm:scale-100 z-20"
-                  : "opacity-65 hover:opacity-85 border-[#1c1910]/10 sm:scale-[0.96] z-10 cursor-pointer"
-              }`}
-              style={{
-                boxShadow: isActive ? `0 24px 50px -20px ${chapter.accent}66` : undefined,
-              }}
-            >
-              <div className="grid sm:grid-cols-[0.92fr_1.08fr] min-h-[22rem]">
-                <div className="relative h-48 sm:h-auto min-h-[13.5rem] overflow-hidden bg-[#1c1910]">
-                  {chapterImages[chapter.id] ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={chapterImages[chapter.id]}
-                      alt=""
-                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${
-                        isActive ? "scale-105" : "scale-100"
-                      }`}
-                      draggable={false}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon className="w-12 h-12 text-white/15" />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
-                  <div
-                    className="absolute top-0 left-0 w-1.5 h-full"
-                    style={{ backgroundColor: chapter.accent }}
-                  />
-                  <span
-                    className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black tracking-[0.18em] uppercase text-white border border-white/25"
-                    style={{ backgroundColor: `${chapter.accent}cc` }}
-                  >
-                    <Icon className="w-3 h-3" />
-                    {chapter.indexLabel}
-                  </span>
-                  <p className="absolute bottom-4 left-4 right-4 text-white font-black text-4xl sm:text-5xl tracking-tight leading-none drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]">
-                    {chapter.era}
-                  </p>
-                </div>
+        {/* ================= PHONE & TABLET: native swipe cards ================= */}
+        <div className="lg:hidden mt-10">
+          <div ref={chipRowRef} className="-mx-4 px-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {chapters.map((ch, i) => (
+              <button
+                key={ch.id}
+                type="button"
+                onClick={() => goToCard(i)}
+                aria-label={`${ch.era}: ${ch.title}`}
+                aria-current={i === mActive ? "step" : undefined}
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-extrabold border transition-colors cursor-pointer ${
+                  i === mActive
+                    ? "bg-gradient-to-r from-[#f7d774] to-[#d4a017] text-[#062619] border-transparent"
+                    : "border-white/20 text-emerald-50/80 bg-white/5"
+                }`}
+              >
+                {ch.era}
+              </button>
+            ))}
+          </div>
 
-                <div className="p-5 sm:p-6 flex flex-col">
-                  <p className="text-[10px] font-black uppercase tracking-[0.28em]" style={{ color: chapter.accent }}>
-                    Chapter {chapter.indexLabel}
-                  </p>
-                  <h3 className="text-xl sm:text-2xl font-black tracking-tight mt-1.5 leading-tight">
-                    {chapter.title}
-                  </h3>
-                  <p className="text-sm font-semibold text-[#6b6254] mt-1">{chapter.subtitle}</p>
-                  <p className="text-[13px] leading-relaxed text-[#4a4338] mt-3">{chapter.desc}</p>
-                  <ul className="mt-4 space-y-2">
-                    {chapter.marks.map((mark) => (
-                      <li key={mark} className="flex items-start gap-2 text-[12px] leading-snug text-[#3f3a31]">
-                        <Sprout className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: chapter.accent }} />
-                        <span>{mark}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto pt-5 grid grid-cols-3 gap-2">
-                    {chapter.stats.map((stat) => (
-                      <div key={stat.label} className="rounded-xl bg-[#1c1910]/[0.04] px-2 py-2 text-center">
-                        <p className="text-sm font-black" style={{ color: chapter.accent }}>
-                          {stat.value}
-                        </p>
-                        <p className="text-[9px] font-bold uppercase tracking-wider text-[#7a7164]">{stat.label}</p>
+          <div
+            ref={sliderRef}
+            className="mt-5 -mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {chapters.map((ch, i) => {
+              const Icon = ch.icon;
+              return (
+                <article
+                  key={ch.id}
+                  ref={(el) => {
+                    cardRefs.current[i] = el;
+                  }}
+                  data-index={i}
+                  className="snap-start shrink-0 w-[88%] sm:w-[70%] rounded-[24px] p-[1.5px] bg-gradient-to-br from-[#f7d774]/80 via-white/10 to-[#b8860b]/70"
+                >
+                  <div className="h-full rounded-[23px] bg-[#062619] overflow-hidden flex flex-col">
+                    <div className="relative aspect-[16/10] bg-[#0b3d2a]">
+                      {images[ch.id] && <Image src={images[ch.id]} alt={`${ch.era} — ${ch.title}`} fill sizes="(min-width: 640px) 70vw, 88vw" className="object-cover" />}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#062619] via-[#062619]/20 to-transparent" />
+                      <span className="absolute top-3 left-3 w-10 h-10 rounded-full bg-gradient-to-br from-[#f7d774] to-[#b8860b] flex items-center justify-center shadow-lg">
+                        <Icon className="w-5 h-5 text-[#062619]" />
+                      </span>
+                      <div className="absolute left-4 bottom-3">
+                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-amber-200">Chapter {ch.indexLabel} · {ch.shortTitle}</p>
+                        <p className="text-4xl font-extrabold leading-none lux-gold-text pb-1">{ch.era}</p>
                       </div>
-                    ))}
+                    </div>
+                    <div className="p-5 flex flex-col gap-4 flex-1">
+                      <div>
+                        <h3 className="text-xl font-extrabold leading-tight">{ch.title}</h3>
+                        <p className="mt-1 text-sm font-semibold text-amber-200/90">{ch.subtitle}</p>
+                      </div>
+                      <p className="text-sm text-emerald-50/75 leading-relaxed">{ch.desc}</p>
+                      <Marks c={ch} />
+                      <div className="mt-auto">
+                        <Stats c={ch} compact />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-6">
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={() => goTo(active - 1)}
-            className="w-10 h-10 rounded-full bg-white border border-[#1c1910]/12 text-[#1c1910] flex items-center justify-center hover:border-emerald-700 hover:text-emerald-800 transition-colors cursor-pointer shadow-sm"
-            aria-label="Previous chapter"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => goTo(active + 1)}
-            className="w-10 h-10 rounded-full bg-white border border-[#1c1910]/12 text-[#1c1910] flex items-center justify-center hover:border-emerald-700 hover:text-emerald-800 transition-colors cursor-pointer shadow-sm"
-            aria-label="Next chapter"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-
-          <div className="flex-1 h-1.5 rounded-full bg-[#1c1910]/10 overflow-hidden">
-            <div
-              className="h-full rounded-full bg-[#0f6b4c] transition-[width] duration-200"
-              style={{ width: `${Math.max(scrollPct * 100, 6)}%` }}
-            />
+                </article>
+              );
+            })}
           </div>
 
-          <p className="text-[11px] font-black tabular-nums tracking-widest text-[#6b6254] shrink-0">
-            {chapters[active].indexLabel} / 05
-          </p>
+          <div className="mt-4 flex items-center gap-3">
+            <span className="text-sm font-extrabold tabular-nums text-amber-300">
+              {chapters[mActive].indexLabel} <span className="text-emerald-100/40">/ 05</span>
+            </span>
+            <div className="flex-1 grid grid-cols-5 gap-1.5">
+              {chapters.map((ch, i) => (
+                <span key={ch.id} className={`h-1.5 rounded-full transition-colors duration-300 ${i <= mActive ? "bg-gradient-to-r from-[#10b981] to-[#f7d774]" : "bg-white/10"}`} />
+              ))}
+            </div>
+            <span className="text-xs text-emerald-100/50">Swipe →</span>
+          </div>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mt-6 pt-4 sm:mt-8 sm:pt-6 border-t border-[#1c1910]/10">
-          <span className="h-px w-12 bg-gradient-to-r from-transparent to-emerald-700/70" />
-          <div className="text-center">
-            <p className="text-[10px] font-black tracking-[0.28em] text-emerald-800 uppercase">The path continues</p>
-            <p className="text-[11px] font-bold text-[#8a8072] mt-0.5">EFFORT 2.0 · 2026 → 2030</p>
+        {/* The path continues */}
+        <a
+          href="#roadmap"
+          className="group mt-12 lg:mt-6 flex items-center justify-between gap-4 rounded-2xl border border-amber-300/30 bg-white/[0.04] px-5 py-4 hover:border-amber-300/70 hover:bg-white/[0.07] transition-colors"
+        >
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-300">The path continues</p>
+            <p className="mt-0.5 text-sm font-bold text-emerald-50/70">EFFORT 2.0 · 2026 → 2030</p>
           </div>
-          <span className="h-px w-12 bg-gradient-to-l from-transparent to-emerald-700/70" />
-        </div>
+          <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[#f7d774] to-[#d4a017] flex items-center justify-center group-hover:translate-y-0.5 transition-transform">
+            <ArrowDown className="w-4 h-4 text-[#062619]" />
+          </span>
+        </a>
       </div>
     </section>
   );

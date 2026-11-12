@@ -227,7 +227,7 @@ export default function HomePage({ media }: { media: HomeMedia }) {
           {/* Headline number with a slowly turning gold ring behind it */}
           <Reveal delay={150} className="relative mt-14 sm:mt-16 flex flex-col items-center text-center">
             <div aria-hidden className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-64 h-64 sm:w-96 sm:h-96 -z-10">
-              <div className="w-full h-full rounded-full border border-dashed border-amber-300/25 lux-spin [animation-duration:40s]" />
+              <div className="w-full h-full rounded-full border border-dashed border-amber-300/25 lux-spin" style={{ animationDuration: "40s" }} />
               <div className="absolute inset-8 sm:inset-12 rounded-full bg-[radial-gradient(circle,rgba(212,160,23,0.18),transparent_70%)]" />
             </div>
             <p className="text-6xl sm:text-8xl lg:text-9xl font-extrabold tracking-tight leading-none bg-gradient-to-b from-[#fff3c4] via-[#f7d774] to-[#c9921a] bg-clip-text text-transparent drop-shadow-[0_8px_30px_rgba(212,160,23,0.25)]">
