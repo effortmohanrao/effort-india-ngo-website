@@ -72,6 +72,8 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-7.5 h-7.5 rounded-full bg-slate-900 hover:bg-white text-white hover:text-slate-950 flex items-center justify-center hover:scale-110 transition-all duration-200 border border-slate-800"
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -101,6 +103,8 @@ export default function Footer() {
               <li><Link href="/programs" className="hover:text-emerald-400 transition-colors">Our Projects</Link></li>
               <li><Link href="/gallery" className="hover:text-emerald-400 transition-colors">Photo &amp; Video Gallery</Link></li>
               <li><Link href="/#trust-section" className="hover:text-emerald-400 transition-colors">Transparency &amp; Audits</Link></li>
+              <li><Link href="/get-involved" className="hover:text-emerald-400 transition-colors">Get Involved</Link></li>
+              <li><Link href="/donate" className="hover:text-emerald-400 transition-colors">Donate (80G)</Link></li>
               <li><Link href="/careers" className="hover:text-emerald-400 transition-colors">Careers &amp; Internships</Link></li>
               <li><Link href="/contact" className="hover:text-emerald-400 transition-colors">Contact Us</Link></li>
             </ul>
@@ -147,7 +151,6 @@ export default function Footer() {
               </span>
               <span className="text-amber-300">CSR-1 Registered</span>
               <span className="text-slate-300">DARPAN Registered</span>
-              <span className="text-emerald-400 font-bold">Charity ID: 010330140</span>
             </div>
           </div>
 
@@ -156,13 +159,12 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom Credits */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4 font-medium">
-        <p>© {new Date().getFullYear()} Effort (A Society for the Development of Agriculture and Youth) • Society Reg. 340/1999 • Google Charity ID: 010330140</p>
-        <div className="flex flex-wrap gap-6 font-semibold">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left text-xs text-slate-500 gap-4 font-medium">
+        <p>© {new Date().getFullYear()} Effort (A Society for the Development of Agriculture and Youth) • Society Reg. 340/1999</p>
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-semibold">
           <Link href="/privacy#privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
           <Link href="/privacy#terms" className="hover:text-slate-300 transition-colors">Terms &amp; Conditions</Link>
           <Link href="/domain-ownership" className="hover:text-slate-300 transition-colors">Domain ownership</Link>
-          <Link href="/impact" className="hover:text-slate-300 transition-colors">GIS Coverage Map</Link>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Heart,
@@ -22,15 +23,13 @@ import {
   Copy,
   Check,
   Smartphone,
-  Loader2,
   Sparkles,
   Zap,
 } from "lucide-react";
 import { defaultDonationSettings, type DonationSettings, type BankAccount } from "@/lib/donationSettings";
+import Reveal from "@/components/home/Reveal";
 
 // Possible Collaboration — real EFFORT collaboration packages, as published to funding partners.
-// Single source of truth for this data (an earlier duplicate array here had drifted out of
-// sync with what actually rendered — consolidated back into one list).
 const collaborationOptions = [
   {
     id: "land-water",
@@ -42,7 +41,6 @@ const collaborationOptions = [
     impactMetric: "50 to 1,000 Farmers",
     duration: "1 to 3 Years",
     icon: Sprout,
-    accent: "emerald",
   },
   {
     id: "smart-agri",
@@ -54,7 +52,6 @@ const collaborationOptions = [
     impactMetric: "20 to 3,000 Farmers",
     duration: "1 to 3 Years",
     icon: Zap,
-    accent: "amber",
   },
   {
     id: "ro-plant",
@@ -66,7 +63,6 @@ const collaborationOptions = [
     impactMetric: "1,000 Families",
     duration: "Permanent Asset",
     icon: Droplets,
-    accent: "sky",
   },
   {
     id: "child-school",
@@ -78,7 +74,6 @@ const collaborationOptions = [
     impactMetric: "Whole School Community",
     duration: "Permanent Upgrade",
     icon: GraduationCap,
-    accent: "indigo",
   },
   {
     id: "child-sponsor",
@@ -90,71 +85,51 @@ const collaborationOptions = [
     impactMetric: "1 Child, Full Year",
     duration: "1 Year",
     icon: Heart,
-    accent: "rose",
   },
 ];
 
-const COLLAB_ACCENT: Record<string, { bar: string; iconBg: string; iconText: string; badgeBg: string; badgeText: string }> = {
-  emerald: { bar: "bg-emerald-400", iconBg: "bg-emerald-50", iconText: "text-emerald-700", badgeBg: "bg-emerald-100", badgeText: "text-emerald-800" },
-  amber: { bar: "bg-amber-400", iconBg: "bg-amber-50", iconText: "text-amber-700", badgeBg: "bg-amber-100", badgeText: "text-amber-800" },
-  sky: { bar: "bg-sky-400", iconBg: "bg-sky-50", iconText: "text-sky-700", badgeBg: "bg-sky-100", badgeText: "text-sky-800" },
-  indigo: { bar: "bg-indigo-400", iconBg: "bg-indigo-50", iconText: "text-indigo-700", badgeBg: "bg-indigo-100", badgeText: "text-indigo-800" },
-  rose: { bar: "bg-rose-400", iconBg: "bg-rose-50", iconText: "text-rose-700", badgeBg: "bg-rose-100", badgeText: "text-rose-800" },
-};
+const trustItems = [
+  { icon: ShieldCheck, label: "Registered NGO" },
+  { icon: FileCheck, label: "Transparent Fund Utilisation" },
+  { icon: Landmark, label: "Bank-Verified Details" },
+  { icon: Award, label: "80G Tax Exempt" },
+  { icon: Lock, label: "Secure Contribution" },
+];
 
-function UnionBankLogo({ logoUrl }: { logoUrl?: string | null }) {
-  if (logoUrl) {
-    return (
-      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border-3 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] shrink-0 p-2 overflow-hidden flex items-center justify-center group hover:scale-105 transition-all">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoUrl} alt="Union Bank of India" className="w-full h-full object-contain" />
-      </div>
-    );
-  }
-  return (
-    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-b from-[#ffffff] via-[#f8fafc] to-[#e2e8f0] border-3 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] shrink-0 p-2 flex flex-col items-center justify-center text-center relative overflow-hidden group hover:scale-105 transition-all select-none">
-      {/* Red & Blue Union Bank Interlocking U Vector Icon */}
-      <div className="flex items-center justify-center gap-0.5 relative z-10">
-        <div className="w-6 h-9 sm:w-7 sm:h-10 rounded-b-xl border-3 border-red-600 bg-red-600/10 flex items-center justify-center shadow-xs">
-          <span className="text-[10px] sm:text-xs font-black text-red-600 font-sans">U</span>
-        </div>
-        <div className="w-6 h-9 sm:w-7 sm:h-10 rounded-t-xl border-3 border-[#003366] bg-[#003366]/10 flex items-center justify-center shadow-xs -ml-2.5">
-          <span className="text-[10px] sm:text-xs font-black text-[#003366] font-sans">B</span>
-        </div>
-      </div>
-      <div className="mt-1 text-center relative z-10">
-        <span className="text-[10px] sm:text-[11px] font-black tracking-tight leading-none text-[#003366] block font-sans">
-          Union Bank
-        </span>
-        <span className="text-[8px] sm:text-[9px] font-bold text-red-600 tracking-wider leading-none block mt-0.5 uppercase">
-          of India
-        </span>
-      </div>
-    </div>
-  );
-}
+const supportAreas = [
+  { title: "COMMUNITY DEVELOPMENT", desc: "Empowering rural women through Self-Help Groups (SHGs) and local water-user collectives.", icon: Users },
+  { title: "SUSTAINABLE AGRICULTURE", desc: "Promoting climate-resilient organic farming, Direct Seeded Rice (DSR), and indigenous seed preservation.", icon: Sprout },
+  { title: "LIVELIHOODS & YOUTH", desc: "Equipping rural youth with digital, vocational, and agricultural enterprise skills for income security.", icon: GraduationCap },
+  { title: "RESILIENT COMMUNITIES", desc: "Building rainwater check-dams, watershed conservation, and drought mitigation infrastructure.", icon: Droplets },
+];
 
-function SBIBankLogo({ logoUrl }: { logoUrl?: string | null }) {
-  if (logoUrl) {
-    return (
-      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border-3 border-sky-400 shadow-[0_0_25px_rgba(56,189,248,0.35)] shrink-0 p-2 overflow-hidden flex items-center justify-center group hover:scale-105 transition-all">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoUrl} alt="State Bank of India" className="w-full h-full object-contain" />
-      </div>
-    );
-  }
+const trustPromises = [
+  "Transparent Documentation",
+  "Responsible Fund Management",
+  "Institutional Partnerships",
+  "Impact Reporting",
+  "Official Acknowledgement",
+];
+
+const goldBtn =
+  "lux-sheen relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#e9b949] via-[#f7d774] to-[#d4a017] text-[#062619] font-extrabold shadow-[0_12px_28px_-10px_rgba(212,160,23,0.8)] hover:-translate-y-0.5 transition-transform";
+const greenBtn =
+  "lux-sheen relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#0b3d2a] to-[#062619] text-amber-100 font-extrabold shadow-[0_12px_26px_-12px_rgba(6,38,25,0.8)] hover:-translate-y-0.5 transition-transform";
+const goldText = "bg-gradient-to-r from-[#0b5d3f] via-[#a1781e] to-[#d4a017] bg-clip-text text-transparent";
+
+function BankMark({ url, name, tone }: { url: string | null; name: string; tone: "gold" | "sky" }) {
   return (
-    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-b from-[#280071] to-[#120038] text-white flex flex-col items-center justify-center border-3 border-sky-400 shadow-[0_0_25px_rgba(56,189,248,0.35)] shrink-0 p-2 relative overflow-hidden group hover:scale-105 transition-all select-none">
-      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00a3e0] flex items-center justify-center relative shadow-[0_0_15px_rgba(0,163,224,0.6)]">
-        <div className="w-2.5 h-4 bg-[#280071] rounded-t-full absolute bottom-0" />
-      </div>
-      <span className="text-[10px] sm:text-[11px] font-black tracking-widest leading-none text-sky-300 mt-1 font-mono uppercase">
-        SBI
-      </span>
-      <span className="text-[7px] sm:text-[8px] font-bold text-slate-300 tracking-wider leading-none mt-0.5 uppercase">
-        State Bank
-      </span>
-    </div>
+    <span
+      className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white p-2 shrink-0 flex items-center justify-center overflow-hidden ring-2 ${
+        tone === "gold" ? "ring-amber-300 shadow-[0_0_30px_rgba(247,215,116,0.35)]" : "ring-sky-300 shadow-[0_0_30px_rgba(125,211,252,0.3)]"
+      }`}
+    >
+      {url ? (
+        <Image src={url} alt={name} fill sizes="96px" className="object-contain p-2" />
+      ) : (
+        <span className="text-center text-[11px] font-black leading-tight text-[#062619]">{name}</span>
+      )}
+    </span>
   );
 }
 
@@ -162,20 +137,41 @@ function CopyRow({ label, value, mono = true }: { label: string; value: string; 
   const [copied, setCopied] = useState(false);
   if (!value) return null;
 
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      // clipboard blocked (older browsers / insecure context): select-based fallback
+      const ta = document.createElement("textarea");
+      ta.value = value;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+      } catch {
+        /* nothing more we can do */
+      }
+      ta.remove();
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  };
+
   return (
-    <div className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-400/60 transition-all group">
+    <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#fbf8f0] border border-[#ece0c0] hover:border-amber-400 transition-colors px-4 py-3">
       <div className="min-w-0">
-        <p className="text-[10px] font-black uppercase tracking-wider text-slate-500">{label}</p>
-        <p className={`text-xs sm:text-sm text-slate-900 truncate mt-0.5 ${mono ? "font-mono font-bold" : "font-bold"}`}>{value}</p>
+        <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7a5a12]">{label}</p>
+        <p className={`mt-0.5 text-[15px] text-[#14120c] break-words ${mono ? "font-mono font-bold tracking-wide" : "font-bold"}`}>{value}</p>
       </div>
       <button
         type="button"
-        onClick={() => {
-          navigator.clipboard.writeText(value);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1500);
-        }}
-        className="shrink-0 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-extrabold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
+        onClick={copy}
+        aria-label={`Copy ${label}`}
+        className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-extrabold cursor-pointer transition-colors ${
+          copied ? "bg-[#0b5d3f] text-white" : "bg-[#062619] text-amber-200 hover:bg-[#0b3d2a]"
+        }`}
       >
         {copied ? (
           <>
@@ -191,9 +187,22 @@ function CopyRow({ label, value, mono = true }: { label: string; value: string; 
   );
 }
 
-function IndiaFlagIcon({ className = "w-5 h-3.5" }: { className?: string }) {
+function BankDetail({ account, fcra }: { account: BankAccount; fcra: boolean }) {
   return (
-    <svg viewBox="0 0 30 20" className={`${className} rounded-[2px] shrink-0 shadow-sm ring-1 ring-black/10`} aria-hidden="true">
+    <div className="space-y-2.5">
+      <CopyRow label="Bank Name" value={account.bankName} mono={false} />
+      <CopyRow label="Account Beneficiary" value={account.accountName} mono={false} />
+      <CopyRow label="Account Number" value={account.accountNumber} />
+      <CopyRow label="IFSC Code" value={account.ifsc} />
+      <CopyRow label="Branch" value={account.branch} mono={false} />
+      {fcra && account.swiftCode && <CopyRow label="SWIFT / BIC Code" value={account.swiftCode} />}
+    </div>
+  );
+}
+
+function IndiaFlagIcon() {
+  return (
+    <svg viewBox="0 0 30 20" className="w-5 h-3.5 rounded-[2px] shrink-0 ring-1 ring-black/10" aria-hidden="true">
       <rect width="30" height="20" fill="#fff" />
       <rect width="30" height="6.67" fill="#FF9933" />
       <rect y="13.33" width="30" height="6.67" fill="#138808" />
@@ -214,459 +223,373 @@ function IndiaFlagIcon({ className = "w-5 h-3.5" }: { className?: string }) {
   );
 }
 
-export default function DonateClient() {
+export default function DonateClient({
+  settings: settingsProp,
+  qrUrl = null,
+  unionLogo = null,
+  sbiLogo = null,
+  photo = null,
+}: {
+  settings?: DonationSettings | null;
+  qrUrl?: string | null;
+  unionLogo?: string | null;
+  sbiLogo?: string | null;
+  photo?: string | null;
+}) {
   const [giveTab, setGiveTab] = useState<"india" | "abroad">("india");
-  const [settings, setSettings] = useState<DonationSettings>(defaultDonationSettings);
-  const [qrUrl, setQrUrl] = useState<string | null>(null);
-  const [unionBankLogoUrl, setUnionBankLogoUrl] = useState<string | null>(null);
-  const [sbiLogoUrl, setSbiLogoUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      fetch("/api/site/donation-settings", { cache: "no-store" }).then((r) => r.json()).catch(() => defaultDonationSettings),
-      fetch("/api/site/media?prefix=donation-qr", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
-      fetch("/api/site/media?prefix=bank-logos/union-bank", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
-      fetch("/api/site/media?prefix=bank-logos/sbi", { cache: "no-store" }).then((r) => r.json()).catch(() => ({ images: [] })),
-    ])
-      .then(([settingsData, mediaData, unionLogoData, sbiLogoData]) => {
-        if (settingsData && settingsData.domesticBank) setSettings(settingsData);
-        setQrUrl(mediaData.images?.[0]?.url ?? null);
-        setUnionBankLogoUrl(unionLogoData.images?.[0]?.url ?? null);
-        setSbiLogoUrl(sbiLogoData.images?.[0]?.url ?? null);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  function BankDetail({ account, type }: { account: BankAccount; type: "domestic" | "fcra" }) {
-    const isDomestic = type === "domestic";
-    return (
-      <div className="space-y-2">
-        <CopyRow label="Bank Name" value={account.bankName} mono={false} />
-        <CopyRow label="Account Beneficiary" value={account.accountName} mono={false} />
-        <CopyRow label="Account Number" value={account.accountNumber} />
-        <CopyRow label="IFSC Code" value={account.ifsc} />
-        <CopyRow label="Branch" value={account.branch} mono={false} />
-        {!isDomestic && account.swiftCode && <CopyRow label="SWIFT / BIC Code" value={account.swiftCode} />}
-      </div>
-    );
-  }
+  const settings = settingsProp && settingsProp.domesticBank ? settingsProp : defaultDonationSettings;
+  const india = giveTab === "india";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EBE0] text-slate-900 selection:bg-amber-400 selection:text-slate-950 font-sans">
-
-      {/* ========================================================================= */}
-      {/* 1. HERO SECTION */}
-      {/* ========================================================================= */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-[#2A0B0E] via-[#5c0d18] to-[#381116] text-white border-b-4 border-amber-400 shadow-xl overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2A0B0E] border border-[#5B1D24] text-[#F7E4A3] text-xs font-black uppercase tracking-[0.22em] shadow-md">
-            <Lock className="w-3.5 h-3.5 text-amber-300" />
-            <span>SECURE &bull; TRANSPARENT &bull; ACCOUNTABLE</span>
+    <div className="bg-[#fbf8f0] text-[#14120c] min-h-screen pt-12 relative overflow-x-clip selection:bg-amber-300 selection:text-[#062619]">
+      {/* ================= HERO ================= */}
+      <section data-keep-motion className="relative isolate overflow-hidden bg-[#03140d] text-white -mt-12">
+        {photo && (
+          <div aria-hidden className="absolute inset-0 -z-20">
+            <Image src={photo} alt="" fill preload sizes="100vw" className="object-cover opacity-25 lux-kenburns" />
           </div>
+        )}
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_30%,rgba(11,93,63,0.55),#03140d_70%)]" />
+        {/* slowly turning gold rings */}
+        <div aria-hidden className="pointer-events-none absolute left-1/2 top-[42%] -z-10 -translate-x-1/2 -translate-y-1/2">
+          <div className="lux-spin w-[640px] h-[640px] sm:w-[900px] sm:h-[900px] rounded-full border border-amber-300/15 border-dashed" style={{ animationDuration: "90s" }} />
+          <div className="absolute inset-[70px] sm:inset-[110px] rounded-full border border-amber-300/20" />
+          <div className="absolute inset-[150px] sm:inset-[230px] rounded-full border border-amber-300/10" />
+        </div>
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent" />
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none drop-shadow-md">
-            SUPPORT THE <span className=" text-[#F7E4A3]">JOURNEY</span>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-28 pb-36 sm:pt-36 sm:pb-44 text-center">
+          <p className="lux-rise inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-amber-200" style={{ animationDelay: "80ms" }}>
+            <Lock className="w-3.5 h-3.5 shrink-0" /> Secure &bull; Transparent &bull; Accountable
+          </p>
+          <h1 className="lux-rise mt-7 text-[2.6rem] min-[400px]:text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1] uppercase" style={{ animationDelay: "160ms" }}>
+            Support the
+            <span className="block mt-1">
+              <span className="lux-gold-text">Journey</span>
+            </span>
           </h1>
-
-          <p className="text-lg sm:text-2xl text-[#F5E5C9] font-semibold max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
+          <p className="lux-rise mt-7 max-w-2xl mx-auto text-lg sm:text-2xl text-emerald-50/85 leading-relaxed" style={{ animationDelay: "260ms" }}>
             Your contribution helps build resilient communities, sustainable livelihoods and a stronger future.
           </p>
-
-          <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#give"
-              className="px-9 py-4 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-black text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(251,191,36,0.35)] hover:scale-105 transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <Heart className="w-4 h-4 fill-slate-950" /> DONATE NOW <ArrowDown className="w-4 h-4" />
+          <div className="lux-rise mt-9 flex flex-col min-[420px]:flex-row items-center justify-center gap-3" style={{ animationDelay: "340ms" }}>
+            <a href="#give" className={`${goldBtn} px-9 py-4 text-sm uppercase tracking-wider`}>
+              <Heart className="w-4 h-4 fill-[#062619]" /> Donate Now <ArrowDown className="w-4 h-4" />
+            </a>
+            <a href="#collaboration" className="inline-flex items-center justify-center gap-2 rounded-full border border-amber-300/50 text-amber-100 font-extrabold px-8 py-4 text-sm uppercase tracking-wider hover:bg-amber-300/10 transition-colors">
+              Partner With Us
             </a>
           </div>
-
-          <p className="text-xs text-[#F7E4A3] font-bold tracking-wide pt-1 italic">
+          <p className="lux-rise mt-8 text-sm italic text-amber-200/80" style={{ animationDelay: "420ms" }}>
             &quot;Every contribution supports EFFORT&apos;s mission of inclusive and sustainable development.&quot;
           </p>
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* 2. TRUST STRIP */}
-      {/* ========================================================================= */}
-      <section className="bg-white/90 border-b border-amber-900/15 py-4 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 text-center sm:text-left text-xs font-black uppercase tracking-widest text-slate-800">
-            <div className="flex items-center gap-2 mx-auto sm:mx-0"><ShieldCheck className="w-4 h-4 text-amber-700" /><span>REGISTERED NGO</span></div>
-            <div className="flex items-center gap-2 mx-auto sm:mx-0"><FileCheck className="w-4 h-4 text-amber-700" /><span>TRANSPARENT FUND UTILISATION</span></div>
-            <div className="flex items-center gap-2 mx-auto sm:mx-0"><Landmark className="w-4 h-4 text-amber-700" /><span>BANK-VERIFIED DETAILS</span></div>
-            <div className="flex items-center gap-2 mx-auto sm:mx-0"><Award className="w-4 h-4 text-amber-700" /><span>80G TAX EXEMPT</span></div>
-            <div className="flex items-center gap-2 mx-auto sm:mx-0"><Lock className="w-4 h-4 text-amber-700" /><span>SECURE CONTRIBUTION</span></div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 3. GIVE — INDIA / ABROAD TOGGLE PANEL */}
-      {/* ========================================================================= */}
-      <section id="give" className="py-16 lg:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-            OFFICIAL DONATION DETAILS
+      {/* ================= GIVE (overlaps the hero) ================= */}
+      <section id="give" className="relative z-10 scroll-mt-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 sm:-mt-28">
+        <div className="text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#062619] text-amber-200 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.18em] shadow-[0_14px_30px_-14px_rgba(6,38,25,0.9)]">
+            Official Donation Details
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">WHERE ARE YOU GIVING FROM?</h2>
+          <h2 className="mt-4 text-2xl sm:text-4xl font-extrabold tracking-tight text-white sm:text-white uppercase [text-wrap:balance] drop-shadow-[0_2px_10px_rgba(3,20,13,0.7)]">
+            Where are you giving from?
+          </h2>
         </div>
 
-        {/* Segmented Toggle */}
-        <div className="flex justify-center">
-          <div className="inline-flex w-full max-w-md p-1.5 rounded-full bg-white border-2 border-amber-200 shadow-md">
-            <button
-              type="button"
-              onClick={() => setGiveTab("india")}
-              className={`flex-1 px-4 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${giveTab === "india"
-                  ? "bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg scale-[1.02]"
-                  : "text-slate-600 hover:text-slate-900"
+        <div role="tablist" aria-label="Donation region" className="mt-6 mx-auto grid grid-cols-2 max-w-md gap-1.5 p-1.5 rounded-full bg-[#062619] shadow-[0_20px_45px_-20px_rgba(6,38,25,0.9)]">
+          {([
+            { id: "india", label: "India (INR)", icon: <IndiaFlagIcon /> },
+            { id: "abroad", label: "Abroad (FCRA)", icon: <span aria-hidden>🌍</span> },
+          ] as const).map((t) => {
+            const on = giveTab === t.id;
+            return (
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={on}
+                type="button"
+                onClick={() => setGiveTab(t.id)}
+                className={`flex items-center justify-center gap-2 rounded-full px-3 py-3 text-xs sm:text-sm font-extrabold uppercase tracking-wider cursor-pointer transition-colors ${
+                  on ? "bg-gradient-to-r from-[#e9b949] via-[#f7d774] to-[#d4a017] text-[#062619]" : "text-amber-100/80 hover:text-white"
                 }`}
-            >
-              <IndiaFlagIcon />
-              India (INR)
-            </button>
-            <button
-              type="button"
-              onClick={() => setGiveTab("abroad")}
-              className={`flex-1 px-4 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${giveTab === "abroad"
-                  ? "bg-gradient-to-r from-sky-700 via-indigo-800 to-sky-900 text-white shadow-lg scale-[1.02]"
-                  : "text-slate-600 hover:text-slate-900"
-                }`}
-            >
-              🌍 Abroad (FCRA)
-            </button>
-          </div>
+              >
+                {t.icon} {t.label}
+              </button>
+            );
+          })}
         </div>
 
-        {loading ? (
-          <div className="p-16 flex flex-col items-center justify-center gap-3 text-sm text-slate-500">
-            <Loader2 className="w-6 h-6 animate-spin text-amber-700" />
-            <span className="font-bold">Loading verified bank details...</span>
-          </div>
-        ) : (
-          <div className="rounded-[36px] bg-white border-2 border-amber-300/70 shadow-xl p-6 sm:p-10 animate-fade-in">
-            {giveTab === "india" ? (
-              <div className="space-y-6">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 pb-5 border-b border-amber-100">
-                  <UnionBankLogo logoUrl={unionBankLogoUrl} />
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">{settings.domesticBank.bankName}</h3>
-                    <p className="text-xs font-bold text-amber-800 uppercase tracking-wider mt-1">Official Domestic Transfer Partner &bull; Sec 80G Tax Exempt</p>
-                  </div>
+        {/* The transfer "ticket": dark identity panel + copyable details */}
+        <div key={giveTab} className="lux-rise mt-6 grid lg:grid-cols-12 rounded-[28px] sm:rounded-[36px] overflow-hidden border border-[#e3cf94] bg-white shadow-[0_50px_100px_-50px_rgba(6,38,25,0.7)]" style={{ animationDuration: "0.6s" }}>
+          <div className="relative isolate overflow-hidden lg:col-span-5 bg-gradient-to-br from-[#0b3d2a] to-[#03140d] text-white p-6 sm:p-9 flex flex-col">
+            <span aria-hidden className="absolute inset-0 -z-10 opacity-[0.07] bg-[radial-gradient(#f7d774_1px,transparent_1px)] [background-size:18px_18px]" />
+            <span aria-hidden className="absolute -top-20 -right-20 w-64 h-64 rounded-full -z-10 bg-[radial-gradient(circle,rgba(212,160,23,0.25),transparent_65%)]" />
+            <BankMark
+              url={india ? unionLogo : sbiLogo}
+              name={india ? settings.domesticBank.bankName : settings.fcraBank.bankName}
+              tone={india ? "gold" : "sky"}
+            />
+            <h3 className="mt-6 text-2xl sm:text-3xl font-extrabold leading-tight">
+              {india ? settings.domesticBank.bankName : settings.fcraBank.bankName}
+            </h3>
+            <p className="mt-2 text-xs font-extrabold uppercase tracking-wider text-amber-300 leading-relaxed">
+              {india ? <>Official Domestic Transfer Partner &bull; Sec 80G Tax Exempt</> : <>New Delhi Main Branch &bull; Designated MHA FCRA Approved</>}
+            </p>
+
+            {!india && (
+              <div className="mt-6 flex gap-3 rounded-2xl bg-white/[0.07] border border-white/15 p-4">
+                <ShieldCheck className="w-5 h-5 shrink-0 text-amber-300 mt-0.5" />
+                <div>
+                  <p className="text-xs font-extrabold uppercase tracking-wider text-amber-200">MHA FCRA Government Statutory Requirement</p>
+                  <p className="mt-1 text-sm text-emerald-50/80 leading-relaxed">
+                    Under Ministry of Home Affairs (MHA) regulations, all international &amp; NRI foreign contributions must be routed through this designated State Bank of India (SBI) New Delhi Main Branch account.
+                  </p>
                 </div>
-
-                {/* UPI QR — only shown once a real QR/UPI ID is on file, so the page never implies a scan option that doesn't exist yet */}
-                {(qrUrl || settings.upiId) && (
-                  <div className="rounded-2xl border-2 border-amber-200 bg-amber-50/50 p-5 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
-                    {qrUrl && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={qrUrl} alt="UPI QR code to donate to EFFORT NGO" className="w-40 h-40 object-contain rounded-xl border-2 border-amber-300 shadow-md shrink-0 bg-white p-1.5" />
-                    )}
-                    <div className="space-y-2">
-                      <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/80 px-2.5 py-0.5 rounded-full">
-                        <Smartphone className="w-3 h-3 text-amber-900" /> Instant UPI Payment
-                      </span>
-                      <h4 className="text-base font-black text-slate-900">Scan the QR or use NEFT/RTGS Transfer</h4>
-                      <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                        All domestic donations are eligible for tax exemption under Section 80G of the Income Tax Act.
-                      </p>
-                      {settings.upiId && <div className="max-w-xs"><CopyRow label="Official UPI ID" value={settings.upiId} /></div>}
-                    </div>
-                  </div>
-                )}
-
-                <BankDetail account={settings.domesticBank} type="domestic" />
-              </div>
-            ) : (
-              <div className="space-y-6">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 pb-5 border-b border-sky-100">
-                  <SBIBankLogo logoUrl={sbiLogoUrl} />
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">{settings.fcraBank.bankName}</h3>
-                    <p className="text-xs font-bold text-sky-800 uppercase tracking-wider mt-1">New Delhi Main Branch &bull; Designated MHA FCRA Approved</p>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl bg-sky-50 border-2 border-sky-200 p-4 text-xs text-sky-900 leading-relaxed flex gap-3 shadow-xs">
-                  <ShieldCheck className="w-5 h-5 shrink-0 text-sky-600 mt-0.5" />
-                  <div>
-                    <h5 className="font-black text-xs text-sky-950 uppercase tracking-wider">MHA FCRA Government Statutory Requirement</h5>
-                    <p className="mt-1 text-sky-800 font-medium">
-                      Under Ministry of Home Affairs (MHA) regulations, all international &amp; NRI foreign contributions must be routed through this designated State Bank of India (SBI) New Delhi Main Branch account.
-                    </p>
-                  </div>
-                </div>
-
-                <BankDetail account={settings.fcraBank} type="fcra" />
               </div>
             )}
 
-            {/* Tax Receipt Note */}
-            <div className="mt-6 rounded-2xl bg-slate-900 text-white p-4 text-xs leading-relaxed flex items-center gap-3 shadow-lg">
-              <Mail className="w-5 h-5 text-amber-400 shrink-0" />
+            {india && (qrUrl || settings.upiId) && (
+              <div className="mt-6 rounded-2xl bg-white/[0.07] border border-white/15 p-4 text-center sm:text-left flex flex-col sm:flex-row items-center gap-4">
+                {qrUrl && (
+                  <span className="relative w-36 h-36 shrink-0 rounded-xl bg-white p-1.5 overflow-hidden">
+                    <Image src={qrUrl} alt="UPI QR code to donate to EFFORT NGO" fill sizes="144px" className="object-contain p-1.5" />
+                  </span>
+                )}
+                <div className="min-w-0">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-300/15 border border-amber-300/30 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-amber-200">
+                    <Smartphone className="w-3 h-3" /> Instant UPI Payment
+                  </span>
+                  <p className="mt-2 font-extrabold">Scan the QR or use NEFT/RTGS Transfer</p>
+                  <p className="mt-1 text-sm text-emerald-50/75 leading-relaxed">
+                    All domestic donations are eligible for tax exemption under Section 80G of the Income Tax Act.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-auto pt-7 flex gap-3">
+              <Mail className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
               <div>
-                <p className="font-bold text-slate-200">Need your 80G Tax Exemption Receipt?</p>
-                <p className="text-[11px] text-slate-400 font-medium">
+                <p className="font-extrabold text-amber-100">Need your 80G Tax Exemption Receipt?</p>
+                <p className="mt-0.5 text-sm text-emerald-50/75 leading-relaxed">
                   Email your transaction reference / screenshot to{" "}
-                  <a href={`mailto:${settings.receiptEmail}`} className="text-amber-300 font-bold underline">{settings.receiptEmail}</a>
+                  <a href={`mailto:${settings.receiptEmail}`} className="block mt-0.5 font-bold text-amber-300 underline underline-offset-2 break-words">
+                    {settings.receiptEmail}
+                  </a>
                 </p>
               </div>
             </div>
           </div>
-        )}
 
-        <div className="p-6 rounded-[28px] bg-white border border-amber-900/15 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <Users className="w-6 h-6 text-emerald-700 shrink-0" />
+          <div className="lg:col-span-7 p-5 sm:p-9 space-y-3">
+            {india && settings.upiId && <CopyRow label="Official UPI ID" value={settings.upiId} />}
+            <BankDetail account={india ? settings.domesticBank : settings.fcraBank} fcra={!india} />
+          </div>
+        </div>
+
+        <div className="mt-5 rounded-3xl bg-[#f8f1df] border border-[#e3cf94] p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <Users className="w-6 h-6 text-[#0b5d3f] shrink-0" />
             <div>
-              <p className="font-bold text-sm text-slate-900">Giving as an organisation, corporate or funding agency?</p>
-              <p className="text-xs text-slate-600 font-medium">See our structured collaboration packages below — from land conservation to school infrastructure.</p>
+              <p className="font-extrabold">Giving as an organisation, corporate or funding agency?</p>
+              <p className="mt-0.5 text-sm text-[#5a5240]">See our structured collaboration packages below — from land conservation to school infrastructure.</p>
             </div>
           </div>
-          <a
-            href="#collaboration"
-            className="shrink-0 px-6 py-3 rounded-full bg-amber-400 text-slate-950 text-xs font-black uppercase tracking-wider hover:bg-amber-300 transition-all shadow-md whitespace-nowrap"
-          >
-            View Collaboration Options
+          <a href="#collaboration" className={`${greenBtn} px-6 py-3 text-sm whitespace-nowrap`}>
+            View Collaboration Options <ArrowRight className="w-4 h-4 text-amber-300" />
           </a>
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* 3B. POSSIBLE COLLABORATION — institutional & corporate packages */}
-      {/* ========================================================================= */}
-      <section id="collaboration" className="py-16 lg:py-20 bg-gradient-to-b from-[#fdfaf4] via-[#faf3e0] to-[#fdfaf4] border-y border-amber-900/15">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      {/* ================= TRUST TICKER ================= */}
+      <section aria-label="Trust highlights" className="mt-14 sm:mt-20 border-y border-[#e3cf94] bg-[#f8f1df] overflow-hidden">
+        <div className="lux-marquee flex w-max">
+          {[0, 1].map((dup) => (
+            <ul key={dup} aria-hidden={dup === 1} className="flex shrink-0 items-center">
+              {[...trustItems, ...trustItems].map((t, i) => (
+                <li key={i} className="flex items-center gap-2.5 px-7 py-4 text-xs sm:text-sm font-extrabold uppercase tracking-[0.16em] text-[#3d3420] whitespace-nowrap">
+                  <t.icon className="w-4 h-4 text-[#a1781e]" /> {t.label}
+                  <span aria-hidden className="ml-7 w-1.5 h-1.5 rounded-full bg-[#d4a017]" />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </section>
 
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+      {/* ================= COLLABORATION LEDGER ================= */}
+      <section id="collaboration" data-keep-motion className="relative isolate scroll-mt-20 overflow-hidden bg-[#03140d] text-white py-16 sm:py-24">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06] bg-[linear-gradient(rgba(247,215,116,0.7)_1px,transparent_1px),linear-gradient(90deg,rgba(247,215,116,0.7)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+        <div aria-hidden className="pointer-events-none absolute -top-40 -right-40 w-[50vw] aspect-square -z-10 rounded-full lux-drift-b bg-[radial-gradient(circle,rgba(16,185,129,0.16),transparent_65%)]" />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-amber-200">
               <Sparkles className="w-3.5 h-3.5" /> Possible Collaboration
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Structured Ways to Partner With Us</h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            </p>
+            <h2 className="mt-5 text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] [text-wrap:balance]">
+              Structured Ways to <span className="lux-gold-text">Partner With Us</span>
+            </h2>
+            <p className="mt-4 text-emerald-50/75 leading-relaxed sm:text-lg">
               EFFORT invites Individuals, Organisations, Funding Agencies and Corporate Companies to co-create sustainable impact. Every package is community co-funded and Section 80G / FCRA compliant.
             </p>
-          </div>
+          </Reveal>
 
-          {/* Collaboration Packages Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {collaborationOptions.map((pkg) => {
-              const PkgIcon = pkg.icon;
-              const a = COLLAB_ACCENT[pkg.accent];
-              return (
-                <div
-                  key={pkg.id}
-                  className="relative bg-white border border-amber-900/15 rounded-3xl p-6 flex flex-col justify-between gap-5 shadow-[0_20px_45px_-25px_rgba(120,90,40,0.25)] hover:-translate-y-1 hover:border-amber-400/60 hover:shadow-[0_28px_55px_-20px_rgba(120,90,40,0.3)] transition-all duration-300 overflow-hidden"
-                >
-                  <span className={`absolute top-0 left-0 w-full h-1 ${a.bar}`} />
-
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className={`text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full ${a.badgeBg} ${a.badgeText}`}>
-                        {pkg.badge}
-                      </span>
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${a.iconBg}`}>
-                        <PkgIcon className={`w-4.5 h-4.5 ${a.iconText}`} />
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-base font-black text-slate-900 leading-snug">{pkg.title}</h3>
-                      <p className="text-lg font-black text-[#a3711f] font-mono mt-1">{pkg.budget}</p>
-                      <p className="text-[10px] text-slate-450 font-bold mt-0.5">{pkg.subText}</p>
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed">{pkg.desc}</p>
-                  </div>
-
-                  <div className="space-y-3 pt-3 border-t border-amber-900/10">
-                    <div className="flex items-center justify-between text-[10px] text-slate-500 font-bold">
-                      <span>{pkg.impactMetric}</span>
-                      <span>{pkg.duration}</span>
-                    </div>
-                    <a
-                      href={`mailto:contact@effortindia.org?subject=Collaboration%20Enquiry%20-%20${encodeURIComponent(pkg.title)}`}
-                      className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md hover:bg-amber-800 transition-all"
-                    >
-                      Sponsor This Package <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
+          <ol className="mt-10 sm:mt-14 divide-y divide-white/10 border-y border-white/10">
+            {collaborationOptions.map((pkg, i) => (
+              <Reveal as="li" key={pkg.id} delay={(i % 3) * 60} className="group py-7 sm:py-9 grid lg:grid-cols-12 gap-x-8 gap-y-5 items-start">
+                <div className="lg:col-span-1 flex items-center lg:block gap-4">
+                  <span className="text-4xl sm:text-5xl font-extrabold tabular-nums lux-outline-num">0{i + 1}</span>
+                  <span className="lg:mt-3 w-11 h-11 rounded-2xl bg-amber-300/10 border border-amber-300/30 flex items-center justify-center group-hover:bg-amber-300/20 transition-colors">
+                    <pkg.icon className="w-5 h-5 text-amber-300" />
+                  </span>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Statutory Trust Strip */}
-          <div className="p-5 rounded-2xl bg-white border border-amber-900/15 text-center space-y-2 max-w-3xl mx-auto shadow-xs">
-            <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase text-slate-700">
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-amber-700" /> Societies Act 1860 (Reg. 340/1999)</span>
-              <span className="flex items-center gap-1.5"><FileCheck className="w-3.5 h-3.5 text-amber-700" /> MHA FCRA Approved</span>
-              <span className="flex items-center gap-1.5"><Award className="w-3.5 h-3.5 text-amber-700" /> 80G Tax Exempt</span>
-            </div>
-            <p className="text-xs text-slate-500">
+                <div className="lg:col-span-6 min-w-0">
+                  <p className="text-xs font-extrabold uppercase tracking-wider text-amber-300">{pkg.badge}</p>
+                  <h3 className="mt-1 text-xl sm:text-2xl font-extrabold leading-snug">{pkg.title}</h3>
+                  <p className="mt-2 text-sm sm:text-base text-emerald-50/75 leading-relaxed">{pkg.desc}</p>
+                  <p className="mt-3 text-xs sm:text-sm font-semibold text-amber-100/70 leading-relaxed">{pkg.subText}</p>
+                </div>
+
+                <div className="lg:col-span-3">
+                  <p className="text-2xl sm:text-3xl font-extrabold lux-gold-text leading-tight">{pkg.budget}</p>
+                  <dl className="mt-2 flex lg:block gap-x-6 gap-y-1 flex-wrap text-xs font-bold uppercase tracking-wider text-emerald-50/60">
+                    <dt className="sr-only">Reach</dt>
+                    <dd>{pkg.impactMetric}</dd>
+                    <dt className="sr-only">Duration</dt>
+                    <dd>{pkg.duration}</dd>
+                  </dl>
+                </div>
+
+                <div className="lg:col-span-2 lg:text-right">
+                  <a
+                    href={`mailto:contact@effortindia.org?subject=Collaboration%20Enquiry%20-%20${encodeURIComponent(pkg.title)}`}
+                    className={`${goldBtn} w-full lg:w-auto px-5 py-3 text-sm`}
+                  >
+                    Sponsor This Package <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+
+          <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-5 sm:p-7 text-center">
+            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-amber-100">
+              <li className="inline-flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-amber-300" /> Societies Act 1860 (Reg. 340/1999)</li>
+              <li className="inline-flex items-center gap-1.5"><FileCheck className="w-4 h-4 text-amber-300" /> MHA FCRA Approved</li>
+              <li className="inline-flex items-center gap-1.5"><Award className="w-4 h-4 text-amber-300" /> 80G Tax Exempt</li>
+            </ul>
+            <p className="mt-3 text-sm text-emerald-50/65">
               EFFORT provides statutory audit reports and utilization certificates for all institutional partner contributions.
             </p>
           </div>
 
-          <div className="text-center">
-            <a
-              href="mailto:contact@effortindia.org?subject=Custom%20Collaboration%20Proposal"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-black text-xs uppercase tracking-wider shadow-md hover:bg-amber-800 transition-all"
-            >
+          <div className="mt-8 text-center">
+            <a href="mailto:contact@effortindia.org?subject=Custom%20Collaboration%20Proposal" className={`${goldBtn} px-8 py-4 text-sm uppercase tracking-wider`}>
               <Mail className="w-4 h-4" /> Request a Custom Proposal <ArrowRight className="w-4 h-4" />
             </a>
           </div>
-
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* 4. WHERE YOUR SUPPORT GOES */}
-      {/* ========================================================================= */}
-      <section className="py-16 bg-white/80 border-y border-amber-900/15">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-
-          <div className="text-center max-w-3xl mx-auto space-y-2">
-            <span className="text-[10px] font-black uppercase tracking-[0.25em] text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-              AUDITABLE FIELD IMPACT
+      {/* ================= WHERE YOUR SUPPORT GOES ================= */}
+      <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#fbf8f0] via-[#f8eed4] to-[#fbf8f0] py-16 sm:py-24">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-40 lux-guilloche" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="text-center max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#e3cf94] bg-white px-3.5 py-1.5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#7a5a12]">
+              Auditable Field Impact
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900">WHERE YOUR SUPPORT GOES</h2>
-          </div>
+            <h2 className="mt-5 text-3xl sm:text-5xl font-extrabold tracking-tight uppercase [text-wrap:balance]">
+              Where your <span className={goldText}>support goes</span>
+            </h2>
+          </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "COMMUNITY DEVELOPMENT",
-                desc: "Empowering rural women through Self-Help Groups (SHGs) and local water-user collectives.",
-                icon: Users,
-              },
-              {
-                title: "SUSTAINABLE AGRICULTURE",
-                desc: "Promoting climate-resilient organic farming, Direct Seeded Rice (DSR), and indigenous seed preservation.",
-                icon: Sprout,
-              },
-              {
-                title: "LIVELIHOODS & YOUTH",
-                desc: "Equipping rural youth with digital, vocational, and agricultural enterprise skills for income security.",
-                icon: GraduationCap,
-              },
-              {
-                title: "RESILIENT COMMUNITIES",
-                desc: "Building rainwater check-dams, watershed conservation, and drought mitigation infrastructure.",
-                icon: Droplets,
-              },
-            ].map((cat) => (
-              <div key={cat.title} className="p-6 rounded-3xl bg-white border border-amber-900/15 hover:border-amber-500/50 shadow-md hover:shadow-lg transition-all space-y-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <cat.icon className="w-6 h-6 text-amber-800" />
-                </div>
-                <h3 className="text-base font-black text-slate-900">{cat.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-medium">{cat.desc}</p>
-              </div>
+          <div className="mt-12 grid sm:grid-cols-2 gap-4 sm:gap-6">
+            {supportAreas.map((a, i) => (
+              <Reveal key={a.title} delay={(i % 2) * 90} className="group relative overflow-hidden rounded-[28px] bg-white border border-[#efe2bd] p-6 sm:p-8 hover:border-amber-400 hover:shadow-[0_35px_70px_-40px_rgba(90,61,0,0.55)] transition-[border-color,box-shadow] duration-300">
+                <span aria-hidden className="absolute -top-4 right-3 text-[7rem] leading-none font-extrabold text-[#f4ead0] select-none">0{i + 1}</span>
+                <span className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0b3d2a] to-[#062619] flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <a.icon className="w-7 h-7 text-amber-300" />
+                </span>
+                <h3 className="relative mt-5 text-lg font-extrabold tracking-wide">{a.title}</h3>
+                <p className="relative mt-2 text-[15px] text-[#5a5240] leading-relaxed">{a.desc}</p>
+              </Reveal>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* 5. ACCOUNTABILITY SECTION */}
-      {/* ========================================================================= */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h2 className="text-3xl font-black text-slate-900">YOUR TRUST MATTERS</h2>
-          <p className="text-slate-600 text-sm font-medium">Built on 27 years of statutory compliance, independent audits, and transparent reporting.</p>
-        </div>
+      {/* ================= YOUR TRUST MATTERS ================= */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
+        <Reveal className="text-center max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight uppercase">Your trust matters</h2>
+          <p className="mt-3 text-[#5a5240] leading-relaxed">Built on 27 years of statutory compliance, independent audits, and transparent reporting.</p>
+        </Reveal>
 
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-          {[
-            "Transparent Documentation",
-            "Responsible Fund Management",
-            "Institutional Partnerships",
-            "Impact Reporting",
-            "Official Acknowledgement",
-          ].map((item) => (
-            <div key={item} className="p-4 rounded-2xl bg-white border border-amber-900/15 text-center space-y-2 shadow-xs">
-              <ShieldCheck className="w-6 h-6 text-amber-800 mx-auto" />
-              <p className="text-xs font-extrabold text-slate-900">{item}</p>
-            </div>
+        <ul className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+          {trustPromises.map((item, i) => (
+            <Reveal as="li" key={item} delay={i * 70} className={`rounded-2xl bg-white border border-[#efe2bd] p-4 sm:p-5 text-center min-w-0 ${i === 4 ? "col-span-2 sm:col-span-1" : ""}`}>
+              <span className="mx-auto w-12 h-12 rounded-full p-[2px] bg-gradient-to-br from-[#fff3c4] via-[#d4a017] to-[#7a5a12] flex">
+                <span className="w-full h-full rounded-full bg-[#062619] flex items-center justify-center">
+                  <CheckCircle2 className="w-5 h-5 text-amber-300" />
+                </span>
+              </span>
+              <p className="mt-3 text-sm font-extrabold leading-snug break-words hyphens-auto">{item}</p>
+            </Reveal>
           ))}
-        </div>
+        </ul>
 
-        <div className="flex justify-center gap-4 pt-2">
-          <Link href="/impact" className="px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-black uppercase tracking-wider transition-all shadow-md">
-            VIEW OUR REPORTS
+        <div className="mt-8 flex flex-col min-[420px]:flex-row items-center justify-center gap-3">
+          <Link href="/impact" className={`${greenBtn} px-7 py-3.5 text-sm uppercase tracking-wider`}>
+            View Our Reports
           </Link>
-          <Link href="/impact" className="px-6 py-3 rounded-full bg-amber-400 text-slate-950 text-xs font-black uppercase tracking-wider hover:bg-amber-300 transition-all shadow-md">
-            VIEW OUR IMPACT
+          <Link href="/impact" className={`${goldBtn} px-7 py-3.5 text-sm uppercase tracking-wider`}>
+            View Our Impact
           </Link>
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* 6. CONTACT & SUPPORT */}
-      {/* ========================================================================= */}
-      <section className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <div>
-          <h2 className="text-2xl font-black text-slate-900">NEED HELP WITH YOUR CONTRIBUTION?</h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1 font-medium">Our finance &amp; donor relations team is here to assist you.</p>
+      {/* ================= NEED HELP ================= */}
+      <section data-keep-motion className="relative isolate overflow-hidden bg-[#03140d] text-white py-16 sm:py-24">
+        <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-40 left-1/2 -translate-x-1/2 w-[80vw] aspect-[2/1] -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(212,160,23,0.18),transparent_65%)]" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Reveal>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight uppercase [text-wrap:balance]">
+              Need help with your <span className="lux-gold-text">contribution?</span>
+            </h2>
+            <p className="mt-4 text-emerald-50/75 sm:text-lg">Our finance &amp; donor relations team is here to assist you.</p>
+          </Reveal>
+
+          <ul className="mt-10 grid sm:grid-cols-3 gap-3 sm:gap-4 text-left">
+            {[
+              { icon: Mail, label: "Official Email", value: "contact@effortindia.org", href: "mailto:contact@effortindia.org" },
+              { icon: Phone, label: "Direct Phone Support", value: "+91 99599 00081", href: "tel:+919959900081" },
+              { icon: MapPin, label: "Central Office", value: "MARTUR - 523 301, A.P. India", href: "https://www.google.com/maps/search/?api=1&query=X4H2%2B53C,+Martur,+Andhra+Pradesh+523301,+India" },
+            ].map((c, i) => (
+              <Reveal as="li" key={c.label} delay={i * 80}>
+                <a
+                  href={c.href}
+                  {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="group block h-full rounded-2xl border border-white/10 bg-white/[0.05] p-5 hover:border-amber-300/50 hover:bg-white/[0.09] transition-colors"
+                >
+                  <span className="w-11 h-11 rounded-xl bg-amber-300/10 border border-amber-300/30 flex items-center justify-center">
+                    <c.icon className="w-5 h-5 text-amber-300" />
+                  </span>
+                  <p className="mt-4 text-xs font-extrabold uppercase tracking-wider text-emerald-50/60">{c.label}</p>
+                  <p className="mt-1 font-extrabold text-amber-100 break-words">{c.value}</p>
+                </a>
+              </Reveal>
+            ))}
+          </ul>
+
+          <a href="mailto:contact@effortindia.org" className={`${goldBtn} mt-10 px-8 py-4 text-sm uppercase tracking-wider`}>
+            Contact Donation Support <Mail className="w-4 h-4" />
+          </a>
         </div>
-
-        <div className="grid sm:grid-cols-3 gap-4">
-          <div className="p-5 rounded-2xl bg-white border border-amber-900/15 space-y-2 shadow-xs">
-            <Mail className="w-5 h-5 text-amber-800 mx-auto" />
-            <p className="text-xs font-bold text-slate-500">Official Email</p>
-            <p className="text-xs font-black text-slate-900">contact@effortindia.org</p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-white border border-amber-900/15 space-y-2 shadow-xs">
-            <Phone className="w-5 h-5 text-emerald-700 mx-auto" />
-            <p className="text-xs font-bold text-slate-500">Direct Phone Support</p>
-            <p className="text-xs font-black text-slate-900">+91 99599 00081</p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-white border border-amber-900/15 space-y-2 shadow-xs">
-            <MapPin className="w-5 h-5 text-sky-800 mx-auto" />
-            <p className="text-xs font-bold text-slate-500">Central Office</p>
-            <p className="text-xs font-black text-slate-900 truncate">MARTUR - 523 301, A.P. India</p>
-          </div>
-        </div>
-
-        <a
-          href="mailto:contact@effortindia.org"
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md"
-        >
-          CONTACT DONATION SUPPORT <Mail className="w-4 h-4 text-amber-400" />
-        </a>
       </section>
-
-      {/* ========================================================================= */}
-      {/* 7. FOOTER TRUST AREA */}
-      {/* ========================================================================= */}
-      <footer className="bg-slate-950 text-slate-400 border-t border-slate-900 py-12 text-center space-y-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <h3 className="text-xl font-black text-white tracking-wider">EFFORT</h3>
-          <p className="text-xs text-amber-400 font-bold uppercase tracking-widest">
-            Empowering Communities &bull; Strengthening Livelihoods &bull; Building Resilience
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6 text-xs text-slate-400 font-semibold pt-4 border-t border-slate-900">
-            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
-          </div>
-
-          <p className="text-[11px] text-slate-500 font-medium">
-            © {new Date().getFullYear()} EFFORT. All Rights Reserved. Section 80G &amp; FCRA Registered.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
