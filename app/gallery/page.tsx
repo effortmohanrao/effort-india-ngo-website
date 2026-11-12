@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import GalleryClient from "@/components/GalleryClient";
+import { listR2Objects, publicUrlFor } from "@/lib/r2";
+import { programAlbums } from "@/lib/programAlbums";
+
+// Albums are listed on the server and cached for a minute, so the page arrives with its covers
+// instead of fetching 26 lists from the browser after load.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Field Photo Gallery & Project Albums | EFFORT NGO",
@@ -27,6 +33,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GalleryPage() {
-  return <GalleryClient />;
+export default async function GalleryPage() {
+  const entries = await Promise.all(
+    programAlbums.map(async (a) => {
+      try {
+        const objs = await listR2Objects(`website/programs/${a.status}/${a.folder}/`);
+        const keys = objs.map((o) => o.Key).filter((k): k is string => !!k).sort();
+        return [a.folder, { coverUrl: keys[0] ? publicUrlFor(keys[0]) : null, count: keys.length }] as const;
+      } catch {
+        return [a.folder, { coverUrl: null, count: 0 }] as const;
+      }
+    })
+  );
+  return <GalleryClient live={Object.fromEntries(entries)} />;
 }

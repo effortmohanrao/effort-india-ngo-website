@@ -2,30 +2,15 @@
 
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Sparkles, MapPin, Layers, ArrowRight, Loader2, Filter } from "lucide-react";
+import { Sparkles, MapPin, Layers, ArrowRight, Filter } from "lucide-react";
 import { programAlbums, ALBUM_CATEGORY_LABELS, type AlbumCategory } from "@/lib/programAlbums";
 
 type LiveAlbum = { coverUrl: string | null; count: number };
 
-export default function GalleryClient() {
-  const [live, setLive] = useState<Record<string, LiveAlbum>>({});
-  const [loading, setLoading] = useState(true);
+export default function GalleryClient({ live }: { live: Record<string, LiveAlbum> }) {
   const [activeCategory, setActiveCategory] = useState<AlbumCategory | "all">("all");
-
-  useEffect(() => {
-    Promise.all(
-      programAlbums.map((a) =>
-        fetch(`/api/site/media?prefix=programs/${a.status}/${a.folder}`, { cache: "no-store" })
-          .then((res) => res.json())
-          .then((data) => [a.folder, { coverUrl: data.images?.[0]?.url ?? null, count: data.images?.length ?? 0 }] as const)
-      )
-    ).then((entries) => {
-      setLive(Object.fromEntries(entries));
-      setLoading(false);
-    });
-  }, []);
 
   const totalPhotos = Object.values(live).reduce((n, a) => n + a.count, 0);
   const visibleAlbums = programAlbums.filter(
@@ -78,11 +63,7 @@ export default function GalleryClient() {
           ))}
         </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center gap-2 text-slate-500 text-sm py-16">
-            <Loader2 className="w-5 h-5 animate-spin" /> Loading albums...
-          </div>
-        ) : visibleAlbums.length === 0 ? (
+        {visibleAlbums.length === 0 ? (
           <div className="text-center text-slate-500 text-sm py-16">
             No albums with photos on file for this category yet.
           </div>
@@ -103,6 +84,7 @@ export default function GalleryClient() {
                         alt={album.label}
                         fill
                         sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+                        quality={70}
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
                     )}
@@ -153,7 +135,7 @@ export default function GalleryClient() {
           {[
             { num: "1,909", label: "Villages Documented", desc: "Across 10 states & 37 districts" },
             { num: "2.67 Lakh+", label: "Families Empowered", desc: "Verified ground beneficiaries" },
-            { num: `${programAlbums.length} Albums`, label: "Real Field Photo Sets", desc: loading ? "Loading..." : `${totalPhotos} photos on file` },
+            { num: `${programAlbums.length} Albums`, label: "Real Field Photo Sets", desc: `${totalPhotos} photos on file` },
             { num: "27+ Years", label: "Unbroken Legacy", desc: "Continuous service since 1999" },
           ].map((stat) => (
             <div key={stat.label} className="bg-white/90 border border-slate-200/90 rounded-3xl p-6 text-center shadow-sm hover:shadow-md transition-all">

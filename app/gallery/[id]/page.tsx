@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { programAlbums } from "@/lib/programAlbums";
 import AlbumDetailClient from "@/components/AlbumDetailClient";
+import { listR2Objects, publicUrlFor } from "@/lib/r2";
 
 export const revalidate = 60;
 
@@ -53,5 +54,19 @@ export default async function DedicatedAlbumPage({
   const albumIndex = programAlbums.findIndex((a) => a.folder === id);
   const album = albumIndex >= 0 ? programAlbums[albumIndex] : undefined;
 
-  return <AlbumDetailClient album={album} albumIndex={albumIndex} />;
+  let photos: { key: string; url: string }[] = [];
+  if (album) {
+    try {
+      const objs = await listR2Objects(`website/programs/${album.status}/${album.folder}/`);
+      photos = objs
+        .map((o) => o.Key)
+        .filter((k): k is string => !!k)
+        .sort()
+        .map((key) => ({ key, url: publicUrlFor(key) }));
+    } catch {
+      photos = [];
+    }
+  }
+
+  return <AlbumDetailClient album={album} albumIndex={albumIndex} photos={photos} />;
 }

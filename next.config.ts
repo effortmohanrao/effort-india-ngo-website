@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     // Photos and logos are served from the public Cloudflare R2 bucket.
+    qualities: [70, 75],
     remotePatterns: [new URL("https://pub-3a2ecc74fc3b46b18016c7ea063fe834.r2.dev/website/**")],
   },
   async redirects() {

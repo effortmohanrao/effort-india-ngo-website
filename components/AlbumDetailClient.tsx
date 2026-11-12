@@ -14,7 +14,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Layers,
-  Loader2,
 } from "lucide-react";
 import { ProgramAlbum, programAlbums } from "@/lib/programAlbums";
 
@@ -23,12 +22,12 @@ type Photo = { key: string; url: string };
 export default function AlbumDetailClient({
   album,
   albumIndex,
+  photos,
 }: {
   album?: ProgramAlbum;
   albumIndex: number;
+  photos: Photo[];
 }) {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const touchStartX = React.useRef<number | null>(null);
 
@@ -47,15 +46,6 @@ export default function AlbumDetailClient({
     }
     touchStartX.current = null;
   };
-
-  useEffect(() => {
-    if (!album) return;
-    setLoading(true);
-    fetch(`/api/site/media?prefix=programs/${album.status}/${album.folder}`, { cache: "no-store" })
-      .then((res) => res.json())
-      .then((data) => setPhotos(data.images ?? []))
-      .finally(() => setLoading(false));
-  }, [album]);
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -161,11 +151,7 @@ export default function AlbumDetailClient({
             <p className="text-xs font-semibold text-slate-500 hidden sm:block">Click any photo to view full-screen</p>
           </div>
 
-          {loading ? (
-            <div className="flex items-center justify-center gap-2 text-slate-500 text-sm py-16">
-              <Loader2 className="w-5 h-5 animate-spin" /> Loading photos...
-            </div>
-          ) : (
+          {(
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {photos.map((photo, index) => (
                 <div
@@ -174,7 +160,7 @@ export default function AlbumDetailClient({
                   className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/90 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
                 >
                   <div className="relative h-64 overflow-hidden bg-slate-950">
-                    <Image src={photo.url} alt={`${album.label} — photo ${index + 1}`} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                    <Image src={photo.url} alt={`${album.label} — photo ${index + 1}`} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw" quality={70} className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                     <span className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/90 text-slate-900 flex items-center justify-center font-black text-xs shadow-sm">
                       {index + 1}
