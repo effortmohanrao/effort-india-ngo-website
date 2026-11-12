@@ -223,7 +223,7 @@ export default function CategorizedImpactLedger() {
                       {stat.value}
                     </p>
                     
-                    <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#e6c687] group-hover:text-[#fdfbf7] transition-colors mt-2 leading-tight">
+                    <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-normal sm:tracking-wider break-words text-[#e6c687] group-hover:text-[#fdfbf7] transition-colors mt-2 leading-tight">
                       {stat.label}
                     </p>
                   </div>

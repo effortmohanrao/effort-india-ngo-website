@@ -1,5 +1,7 @@
 "use client";
 
+
+import Image from "next/image";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { notFound, useRouter } from "next/navigation";
@@ -516,7 +518,7 @@ export default function ProjectDetailClient({
               >
                 {isCompleted ? "Completed Project" : "Ongoing Project"}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/60 border border-[#d9c98e] text-[10px] font-bold uppercase tracking-wider text-[#8a6a1f]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/60 border border-[#d9c98e] text-[10px] font-bold uppercase tracking-wide sm:tracking-wider break-words text-[#8a6a1f]">
                 <CategoryIcon className="w-3 h-3" /> {project.category}
               </span>
             </div>
@@ -560,13 +562,13 @@ export default function ProjectDetailClient({
           </div>
 
           {/* Key Metrics Stats Bar (4 Frosted Glass Stat Cards) */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16">
-            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-16">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-4 sm:p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] min-w-0 hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center mb-3">
                 <Users className="w-5 h-5 text-amber-600" />
               </div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[#8a6a1f]">Direct Reach</p>
-              <p className="text-2xl sm:text-3xl font-black text-metallic-gold mt-1 leading-none">
+              <p className="text-[10px] font-bold uppercase tracking-wide sm:tracking-wider break-words text-[#8a6a1f]">Direct Reach</p>
+              <p className="text-xl min-[360px]:text-2xl sm:text-3xl font-black text-metallic-gold mt-1 leading-tight break-words">
                 {stat ? stat.value : "Community"}
               </p>
               <p className="text-xs text-[#7a6f55] capitalize mt-1">
@@ -574,34 +576,34 @@ export default function ProjectDetailClient({
               </p>
             </div>
 
-            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-4 sm:p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] min-w-0 hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-3">
                 <MapPin className="w-5 h-5 text-emerald-600" />
               </div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Geographic Footprint</p>
-              <p className="text-2xl sm:text-3xl font-black text-emerald-700 mt-1 leading-none">
+              <p className="text-[10px] font-bold uppercase tracking-wide sm:tracking-wider break-words text-emerald-800">Geographic Footprint</p>
+              <p className="text-xl min-[360px]:text-2xl sm:text-3xl font-black text-emerald-700 mt-1 leading-tight break-words">
                 {villageCount ? `${villageCount} Villages` : "Multi-Village"}
               </p>
               <p className="text-xs text-[#7a6f55] mt-1 line-clamp-1">{location}</p>
             </div>
 
-            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-4 sm:p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] min-w-0 hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center mb-3">
                 <Landmark className="w-5 h-5 text-sky-600" />
               </div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-sky-800">Funding & Support</p>
+              <p className="text-[10px] font-bold uppercase tracking-wide sm:tracking-wider break-words text-sky-800">Funding & Support</p>
               <p className="text-sm font-black text-[#221c0c] mt-1 line-clamp-2 leading-snug">
                 {project.funder}
               </p>
-              <p className="text-[10px] font-bold text-sky-700 uppercase tracking-wide mt-1">{partnerType}</p>
+              <p className="text-[10px] font-bold text-sky-700 uppercase tracking-normal sm:tracking-wide break-words mt-1">{partnerType}</p>
             </div>
 
-            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] hover:-translate-y-1.5 transition-all duration-400">
+            <div className="group relative rounded-3xl bg-white/60 border border-white/80 p-4 sm:p-6 shadow-[0_20px_45px_-20px_rgba(80,120,100,0.25)] min-w-0 hover:-translate-y-1.5 transition-all duration-400">
               <div className="w-10 h-10 rounded-2xl bg-violet-50 border border-violet-100 flex items-center justify-center mb-3">
                 <Award className="w-5 h-5 text-violet-600" />
               </div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-violet-800">Verification Status</p>
-              <p className="text-2xl sm:text-3xl font-black text-violet-700 mt-1 leading-none">
+              <p className="text-[10px] font-bold uppercase tracking-wide sm:tracking-wider break-words text-violet-800">Verification Status</p>
+              <p className="text-xl min-[360px]:text-2xl sm:text-3xl font-black text-violet-700 mt-1 leading-tight break-words">
                 {isCompleted ? "100%" : "Active"}
               </p>
               <p className="text-xs text-[#7a6f55] mt-1">
@@ -920,8 +922,7 @@ export default function ProjectDetailClient({
                   className="group relative rounded-3xl overflow-hidden bg-white/50 border border-white/80 aspect-[4/3] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-25px_rgba(80,120,100,0.35)] transition-all duration-400"
                 >
                   {photo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={photo.url} alt={tile.label} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <Image src={photo.url} alt={tile.label} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-amber-500/10 to-sky-500/10 flex items-center justify-center">
                       <ImageIcon className="w-10 h-10 text-[#5b7a68]/40 group-hover:scale-110 transition-transform duration-500" />

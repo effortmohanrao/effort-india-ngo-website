@@ -1,5 +1,7 @@
 "use client";
 
+
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
@@ -114,8 +116,7 @@ export default function AlbumDetailClient({
         <div className="relative rounded-[36px] overflow-hidden bg-slate-950 border-2 border-slate-200/90 shadow-2xl">
           <div className="relative h-72 sm:h-96 w-full">
             {photos[0] && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={photos[0].url} alt={album.label} className="w-full h-full object-cover opacity-60" />
+              <Image src={photos[0].url} alt={album.label} fill preload sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover opacity-60" />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
           </div>
@@ -173,8 +174,7 @@ export default function AlbumDetailClient({
                   className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/90 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
                 >
                   <div className="relative h-64 overflow-hidden bg-slate-950">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photo.url} alt={`${album.label} — photo ${index + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                    <Image src={photo.url} alt={`${album.label} — photo ${index + 1}`} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                     <span className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/90 text-slate-900 flex items-center justify-center font-black text-xs shadow-sm">
                       {index + 1}

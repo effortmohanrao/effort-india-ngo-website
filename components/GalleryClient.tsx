@@ -1,5 +1,7 @@
 "use client";
 
+
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Sparkles, MapPin, Layers, ArrowRight, Loader2, Filter } from "lucide-react";
@@ -96,13 +98,12 @@ export default function GalleryClient() {
                 >
                   <div className="relative h-72 overflow-hidden bg-slate-950">
                     {info.coverUrl && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={info.coverUrl}
                         alt={album.label}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        fill
+                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />

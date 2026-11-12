@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Award,
@@ -114,7 +115,7 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
       }}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="group relative flex flex-col rounded-[26px] bg-white border border-[#e7ddc8] shadow-[0_20px_45px_-30px_rgba(120,90,40,0.35)] hover:shadow-[0_30px_60px_-25px_rgba(180,130,40,0.35)] transition-shadow duration-500 overflow-hidden"
+      className="group relative flex flex-row sm:flex-col rounded-[22px] sm:rounded-[26px] bg-white border border-[#e7ddc8] shadow-[0_20px_45px_-30px_rgba(120,90,40,0.35)] hover:shadow-[0_30px_60px_-25px_rgba(180,130,40,0.35)] transition-shadow duration-500 overflow-hidden"
       style={{ transformStyle: "preserve-3d", transition: "transform 300ms ease-out, box-shadow 400ms ease-out" }}
     >
       <div
@@ -122,35 +123,34 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
         style={{ background: "radial-gradient(200px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(217,164,65,0.16), transparent 70%)" }}
       />
 
-      <div className="relative h-32 bg-gradient-to-br from-[#faf3e3] to-[#f1e6cc] flex items-center justify-center overflow-hidden">
+      <div className="relative w-28 shrink-0 sm:w-auto sm:h-32 bg-gradient-to-br from-[#faf3e3] to-[#f1e6cc] flex items-center justify-center overflow-hidden">
         {coverUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={coverUrl} alt={project.name} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <Image src={coverUrl} alt={project.name} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 112px" className="object-cover group-hover:scale-110 transition-transform duration-500" />
         ) : (
           <FolderOpen className="w-8 h-8 text-[#c9a24a]/40 group-hover:scale-110 group-hover:text-[#c9a24a]/60 transition-all duration-500" />
         )}
         {coverUrl && <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />}
         <span
-          className={`absolute top-3 left-3 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+          className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider ${
             status === "completed" ? "bg-amber-400/90 text-[#3a2a08]" : "bg-emerald-500/90 text-white"
           }`}
         >
           {status === "completed" ? "Completed" : "Ongoing"}
         </span>
         {stat && (
-          <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/85 text-[9px] font-bold uppercase tracking-wide text-[#6b4f1d]">
+          <span className="hidden sm:inline absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/85 text-[9px] font-bold uppercase tracking-wide text-[#6b4f1d]">
             {stat.value} {stat.unit}
           </span>
         )}
       </div>
 
-      <div className="p-5 flex flex-col grow">
+      <div className="p-3.5 sm:p-5 flex flex-col grow min-w-0">
         <h3 className="text-[#2b2410] font-bold text-sm leading-snug line-clamp-2 mb-1.5 group-hover:text-[#a3711f] transition-colors duration-300">
           {project.name}
         </h3>
         <p className="text-[#7a6f55] text-xs leading-relaxed line-clamp-2 mb-3">{project.beneficiaries}</p>
 
-        <div className="mt-auto space-y-1.5 max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-400 overflow-hidden">
+        <div className="mt-auto space-y-1.5 overflow-hidden lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-20 lg:group-hover:opacity-100 transition-all duration-400">
           <div className="flex items-center gap-1.5 text-[11px] text-[#6b6046]">
             <MapPin className="w-3 h-3 shrink-0 text-[#c9a24a]" />
             <span className="line-clamp-1">{location}</span>
@@ -161,15 +161,15 @@ function ProjectCard({ project, index, status, coverUrl }: { project: Project; i
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#efe6d2]">
-          <span className="text-[10px] font-bold uppercase tracking-wide text-[#a3711f] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="flex items-center justify-between mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-[#efe6d2]">
+          <span className="text-[10px] font-bold uppercase tracking-wide text-[#a3711f] lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
             View Case Study
           </span>
           <ArrowRight className="w-3.5 h-3.5 text-[#a3711f] group-hover:translate-x-1 transition-transform duration-300" />
         </div>
       </div>
 
-      <div className="relative h-[3px] bg-[#f1e6cc] overflow-hidden">
+      <div className="hidden sm:block relative h-[3px] bg-[#f1e6cc] overflow-hidden">
         {status === "completed" ? (
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500" />
         ) : null}
@@ -335,16 +335,16 @@ export default function ProgramsClient() {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* Liquid Aurora Mesh Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#fffdf8] via-[#faf2db] to-[#f4e6b8]" />
-          <div className="absolute -top-24 -left-20 w-[520px] h-[520px] rounded-full bg-amber-200/50 blur-[130px] animate-liquid-drift-a" />
-          <div className="absolute top-1/3 -right-20 w-[480px] h-[480px] rounded-full bg-emerald-200/40 blur-[120px] animate-liquid-drift-b" />
-          <div className="absolute -bottom-24 left-1/3 w-[450px] h-[450px] rounded-full bg-sky-200/40 blur-[120px] animate-liquid-drift-c" />
+          <div className="absolute -top-48 -left-44 w-[780px] h-[780px] rounded-full bg-[radial-gradient(circle,rgba(253,230,138,0.55),transparent_62%)] animate-liquid-drift-a" />
+          <div className="absolute top-[10%] -right-40 w-[720px] h-[720px] rounded-full bg-[radial-gradient(circle,rgba(167,243,208,0.45),transparent_62%)] animate-liquid-drift-b" />
+          <div className="absolute -bottom-48 left-[22%] w-[680px] h-[680px] rounded-full bg-[radial-gradient(circle,rgba(186,230,253,0.45),transparent_62%)] animate-liquid-drift-c" />
 
           {/* Continuous Rising Translucent Bubbles */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute bottom-0 left-[10%] w-12 h-12 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0s", animationDuration: "7s" }} />
-            <div className="absolute bottom-0 left-[30%] w-16 h-16 rounded-full bg-emerald-400/20 border border-emerald-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "1.5s", animationDuration: "8.5s" }} />
-            <div className="absolute bottom-0 left-[55%] w-20 h-20 rounded-full bg-sky-400/20 border border-sky-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "0.8s", animationDuration: "9s" }} />
-            <div className="absolute bottom-0 left-[80%] w-14 h-14 rounded-full bg-purple-400/20 border border-purple-300/40 backdrop-blur-xs animate-float-rising-bubble" style={{ animationDelay: "2.8s", animationDuration: "7.5s" }} />
+            <div className="absolute bottom-0 left-[10%] w-12 h-12 rounded-full bg-amber-400/20 border border-amber-300/40 animate-float-rising-bubble" style={{ animationDelay: "0s", animationDuration: "7s" }} />
+            <div className="absolute bottom-0 left-[30%] w-16 h-16 rounded-full bg-emerald-400/20 border border-emerald-300/40 animate-float-rising-bubble" style={{ animationDelay: "1.5s", animationDuration: "8.5s" }} />
+            <div className="absolute bottom-0 left-[55%] w-20 h-20 rounded-full bg-sky-400/20 border border-sky-300/40 animate-float-rising-bubble" style={{ animationDelay: "0.8s", animationDuration: "9s" }} />
+            <div className="absolute bottom-0 left-[80%] w-14 h-14 rounded-full bg-purple-400/20 border border-purple-300/40 animate-float-rising-bubble" style={{ animationDelay: "2.8s", animationDuration: "7.5s" }} />
           </div>
 
           {/* Frosted Geometric Mesh Overlay */}
@@ -551,7 +551,7 @@ export default function ProgramsClient() {
             ))}
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {(() => {
               const categoryCounters: Record<string, number> = {};
               return activeProjects.map((p, i) => {

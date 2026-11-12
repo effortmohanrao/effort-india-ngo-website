@@ -194,7 +194,7 @@ export default function ImpactClient() {
                 <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-200">
                   <div>
                     <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] block">Total Projects</span>
-                    <p className="text-xl sm:text-2xl font-black text-[#221c0c] mt-0.5">{selectedState.projectsCount} Executed</p>
+                    <p className="text-lg min-[360px]:text-xl sm:text-2xl font-black text-[#221c0c] mt-0.5 break-words">{selectedState.projectsCount} Executed</p>
                   </div>
                   <div>
                     <span className="text-[10px] font-black uppercase tracking-wider text-[#8a6a1f] block">Direct Reach</span>
@@ -316,18 +316,18 @@ export default function ImpactClient() {
 
               <h3 className="text-xl font-black text-[#f7e4a3] tracking-tight">Verified Presentation List</h3>
               <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 flex items-center gap-1">
+                <div className="p-3 sm:p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800 min-w-0">
+                  <span className="text-[10px] font-black uppercase tracking-normal sm:tracking-wider text-emerald-400 flex items-center gap-1 min-w-0">
                     <CheckCircle className="w-3 h-3 text-emerald-400" /> Completed
                   </span>
-                  <p className="text-2xl font-black text-white mt-1">65 Projects</p>
+                  <p className="text-lg min-[360px]:text-xl sm:text-2xl font-black text-white mt-1 break-words">65 Projects</p>
                   <p className="text-[10px] text-stone-400 font-medium">Fully Executed</p>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                <div className="p-3 sm:p-3.5 rounded-2xl bg-stone-900/80 border border-stone-800 min-w-0">
+                  <span className="text-[10px] font-black uppercase tracking-normal sm:tracking-wider text-amber-400 flex items-center gap-1 min-w-0">
                     <Clock className="w-3 h-3 text-amber-400" /> Active
                   </span>
-                  <p className="text-2xl font-black text-white mt-1">15 Projects</p>
+                  <p className="text-lg min-[360px]:text-xl sm:text-2xl font-black text-white mt-1 break-words">15 Projects</p>
                   <p className="text-[10px] text-stone-400 font-medium">In Field Progress</p>
                 </div>
               </div>

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import GetInvolvedClient from "@/components/GetInvolvedClient";
+import { listR2Objects, publicUrlFor } from "@/lib/r2";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Get Involved, CSR Partnerships & Volunteering | EFFORT NGO",
@@ -27,6 +30,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GetInvolvedPage() {
-  return <GetInvolvedClient />;
+// Curated field photos (the same set the About hero uses) for the hero and the form panel.
+async function fieldPhotos(): Promise<string[]> {
+  try {
+    const objs = await listR2Objects("website/about/hero/");
+    const keys = objs.map((o) => o.Key).filter((k): k is string => !!k).sort();
+    // lead with a different photo than the About page does
+    return [...keys.slice(1), ...keys.slice(0, 1)].map(publicUrlFor);
+  } catch {
+    return [];
+  }
+}
+
+export default async function GetInvolvedPage() {
+  return <GetInvolvedClient photos={await fieldPhotos()} />;
 }
